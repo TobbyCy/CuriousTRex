@@ -1,92 +1,138 @@
-# Banc de mesures de la consommation électrique
+# 1. Projet de Banc de Mesures de Performance
+
+Ce projet consiste à mettre en place un banc de mesures de performance pour évaluer la performance d'un site web ou d'une application web en collectant des données de mesure et en générant des rapports détaillés. Le banc de mesures utilisera des outils tels que Gatling, INA219 et Node-RED pour effectuer les mesures et analyser les résultats.
+
+# 2. Table des matières
+- [1. Projet de Banc de Mesures de Performance](#1-projet-de-banc-de-mesures-de-performance)
+- [2. Table des matières](#2-table-des-matières)
+- [3. Description](#3-description)
+- [4. Caractéristiques](#4-caractéristiques)
+- [5. Jalons](#5-jalons)
+  - [5.1. Mise en place (14.08.2023 - 21.08.2023)](#51-mise-en-place-14082023---21082023)
+    - [5.1.1. But](#511-but)
+    - [5.1.2. Etapes](#512-etapes)
+    - [5.1.3. Remarque](#513-remarque)
+  - [5.2. 1ère itération (21.08.2023 - 04.09.2023)](#52-1ère-itération-21082023---04092023)
+    - [5.2.1. But](#521-but)
+    - [5.2.2. Étape](#522-étape)
+    - [5.2.3. Remarque](#523-remarque)
+  - [5.3. 2ème itération (04.09.2023 - 11.09.2023)](#53-2ème-itération-04092023---11092023)
+    - [5.3.1. But](#531-but)
+    - [5.3.2. Étape](#532-étape)
+      - [5.3.2.1. Configuration de l'UI](#5321-configuration-de-lui)
+      - [5.3.2.2. Sélection du conteneur LXD et Configuration du Serveur](#5322-sélection-du-conteneur-lxd-et-configuration-du-serveur)
+      - [5.3.2.3. Génération de Comparatifs](#5323-génération-de-comparatifs)
+      - [5.3.2.4. Tests et Validation](#5324-tests-et-validation)
+    - [5.3.3. Remarque](#533-remarque)
+  - [5.4. Bonus (11.09.2023 - 22.09.2023)](#54-bonus-11092023---22092023)
+    - [5.4.1. Remarque](#541-remarque)
+- [6. Matériel](#6-matériel)
+- [Documentation](#documentation)
 
 
+# 3. Description
 
-## Getting started
+Le système sera conçu pour simuler des requêtes HTTP réalistes à l'aide de Gatling, mesurer la consommation électrique en utilisant l'INA219 connecté via le bus I2C, et collecter les mesures de performance à l'aide de Node-RED. Les rapports générés fourniront des informations détaillées sur les performances du système testé, y compris le temps de réponse, la consommation d'énergie par requête, l'utilisation du processeur, etc.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+# 4. Caractéristiques
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+- **Génération de trafic web:** Utilisation de Gatling pour simuler des requêtes HTTP réalistes, configurer des scénarios de charge et évaluer les performances du système testé.
 
-## Add your files
+- **Mesure de la consommation électrique (INA219):** Utilisation d'un chip INA219 pour mesurer la consommation d'énergie avec précision en mesurant la tension et le courant du système testé.
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+- **Mesure de la consommation:** Utilisation de Node-RED pour relever les mesures de consommation des ressources du banc de tests, y compris la consommation d'énergie, l'utilisation du processeur, la consommation de mémoire, la bande passante et les temps de réponse.
 
-```
-cd existing_repo
-git remote add origin https://mylos.cifom.ch/gitlab/ToblerC/banc-de-mesures-de-la-consommation-electrique.git
-git branch -M main
-git push -uf origin main
-```
+# 5. Jalons
 
-## Integrate with your tools
+## 5.1. Mise en place (14.08.2023 - 21.08.2023)
+### 5.1.1. But 
+Création d'une UI pour gérer les tests et permettre au projet de passer une étape pour devenir "utilisable" en production de fais, l'utilisateur dois pouvoir via l'UI choisir le conteneur LXD à tester, définir le serveur WEB, ajouter des paramètre (Avec/sans BD, SSL, Apache/Nginx, etc) et utiliser plusieurs tests pour créer un comparatif.
+### 5.1.2. Etapes
+- [ ] Création du repository du projet
+- [ ] Mise en place de la structure de documentation
+- [ ] Installation des Raspberry Pi dans l'environnement prévu
+- [ ] Configuration des paramètres de base des Raspberry Pi
+- [ ] Installation de LXD, Node-RED et Gatling sur les Raspberry Pi
+- [ ] Configuration de l'INA219 pour la mesure de la consommation
+### 5.1.3. Remarque
+Ce jalon est une étape importante pour le projet, car il permettra de mettre en place l'environnement de test et de configurer les outils nécessaires pour effectuer les mesures. En atteignant ces objectifs, le projet sera prêt à passer à la prochaine étape et à commencer à effectuer des tests de performance.
+## 5.2. 1ère itération (21.08.2023 - 04.09.2023)
+### 5.2.1. But
+Mettre en places un "proof of concept" qui se baseras simplement sur la génération d'un rapport PDF par node-red via les informations de monitoring d'une machine LXC mise sous pression par gattling.
 
-- [ ] [Set up project integrations](https://mylos.cifom.ch/gitlab/ToblerC/banc-de-mesures-de-la-consommation-electrique/-/settings/integrations)
+Cette "PoC" ne permettras pas de :
+1. L'impossibilité de sélectionner le serveur à tester.
+1. L'absence d'interface utilisateur conviviale (UI/UX).
+1. L'incapacité à comparer les performances entre différents serveurs.
 
-## Collaborate with your team
+### 5.2.2. Étape
+Pour atteindre ces objectifs, les étapes suivantes seront entreprises :
+- [ ] Configuration de Node-red pour la gestion des flux de données.
+- [ ] Création d'une machine LXD avec un serveur apache simple
+- [ ] Configurer l'outil Gatling pour générer des charges de test sur la machine LXD et collecter les données de performance.
+- [ ] Configuration et test de relevé de l'INA219
+- [ ] Test de création de PDF avec Node-Red
+- [ ] Lancement des test de charge de Gatling depuis Node-Red
+- [ ] Agrégation du lancement des test et des relevé de l'INA219
+- [ ] Création du PDF contenant les résultat de Gatling et de l'INA219
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+### 5.2.3. Remarque
 
-## Test and Deploy
+En atteignant ces étapes de validation, le PoC démontrera la capacité à générer un rapport PDF en utilisant Node-RED, en se basant sur les informations de surveillance d'une machine LXC soumise à des tests de charge avec Gatling. Cela jettera les bases d'une solution plus complète pour l'interface utilisateur, la comparaison de serveurs et d'autres fonctionnalités futures.
 
-Use the built-in continuous integration in GitLab.
+## 5.3. 2ème itération (04.09.2023 - 11.09.2023)
+### 5.3.1. But 
+Création d'une UI pour gérer les tests et permettre au projet de passer une étape pour devenir "utilisable" en production de fais, l'utilisateur dois pouvoir via l'UI choisir le conteneur LXD à tester, définir le serveur WEB, ajouter des paramètre (Avec/sans BD, SSL, Apache/Nginx, etc) et utiliser plusieurs tests pour créer un comparatif.
+### 5.3.2. Étape
+#### 5.3.2.1. Configuration de l'UI
+- Développer une interface utilisateur conviviale et intuitive.
+- Intégrer les champs de sélection du conteneur LXD et de configuration du serveur WEB.
+- Permettre l'ajout et la gestion des différentes configurations de test.
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+#### 5.3.2.2. Sélection du conteneur LXD et Configuration du Serveur
+- Mettre en place la fonctionnalité de sélection du conteneur LXD.
+- Implémenter la configuration du serveur WEB (Apache/Nginx).
+- Intégrer les paramètres tels que la présence de base de données, SSL, etc.
 
-***
+#### 5.3.2.3. Génération de Comparatifs
+- Implémenter la fonctionnalité pour exécuter plusieurs tests.
+- Collecter et enregistrer les résultats de chaque test sous la forme de JSON.
+- Établir un mécanisme pour comparer les performances des différents tests.
+- Permettre l'importation de JSON pour comparer directement le performance sans refaire de tests
 
-# Editing this README
+#### 5.3.2.4. Tests et Validation
+- Effectuer des tests approfondis pour s'assurer du bon fonctionnement de l'UI.
+- Vérifier la cohérence et l'exactitude des données collectées.
+- Assurer que l'UI est réactive et adaptée à différentes configurations.
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+### 5.3.3. Remarque
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+Ce jalon représente une avancée significative par rapport au précédent "proof of concept" (PoC), car il inclut la mise en place d'une interface utilisateur, la sélection de conteneurs LXD, la configuration des serveurs, et la possibilité de comparer les résultats de différents tests. En atteignant ces objectifs, le projet se rapprochera davantage d'une utilisation en production et offrira une expérience plus complète aux utilisateurs.
 
-## Name
-Choose a self-explaining name for your project.
+## 5.4. Bonus (11.09.2023 - 22.09.2023)
+Selon suivi voir si il est possible de faire une troisième itération pour ajouter des fonctionnalités supplémentaires, telles que :
+- [ ] Ajouter la possibilité de tester plusieurs serveurs en même temps.
+- [ ] Ajouter la possibilitée de stocker les résultats dans une base de données.
+- [ ] Ajouter la possibilité de générer des graphiques pour les résultats.
+- [ ] Ajouter la possibilitée d'utiliser un capteur type prise connectée pour mesurer la consommation électrique d'un rack de serveur complet.
+- [ ] Consultation d'un expert pour voir si il est possible de faire une version "boitier" du projet pour le rendre plus portable.
+- [ ] Consultation d'un expert pour donner des résultats plus précis notament grâce a des statistique sur de multiple test.
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+### 5.4.1. Remarque
+Ce jalon est facultatif et dépendra de la disponibilité des ressources et du temps restant. Iytel s'agit d'une opportunité pour le projet d'aller au-delà des objectifs initiaux et d'ajouter des fonctionnalités supplémentaires pour améliorer l'expérience utilisateur et les performances du système.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+# 6. Matériel
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+- 2x Raspberry Pi 4
+- Blocs d'alimentation Raspberry
+- Platine de mesure INA219
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+# Documentation
+La documentation se trouve dans le dossier `docs` du repository. Il y a deux documents principaux :
+- [Rapport de projet](docs/rapport.md) : Rapport de projet qui décrit les différentes étapes du projet pour le reproduire ou le modifier.
+- [Manuel d'utilisation](docs/manuel.md) : Manuel d'utilisation qui décrit comment utiliser le projet une fois qu'il est installé.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+La documentation est écrite en Markdown et peut être consultée directement sur GitLab ou convertie en PDF à l'aide de Pandoc.
+Un [wiki](https://mylos.cifom.ch/gitlab/ToblerC/banc-de-mesures-de-la-consommation-electrique/-/wikis/home) est également disponible sur GitLab pour fournir des informations mieux structurées sur le projet.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
