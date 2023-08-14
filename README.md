@@ -27,7 +27,8 @@ Ce projet consiste à mettre en place un banc de mesures de performance pour év
   - [5.4. Bonus (11.09.2023 - 22.09.2023)](#54-bonus-11092023---22092023)
     - [5.4.1. Remarque](#541-remarque)
 - [6. Matériel](#6-matériel)
-- [Documentation](#documentation)
+- [7. Documentation](#7-documentation)
+- [8. Sources](#8-sources)
 
 
 # 3. Description
@@ -41,6 +42,10 @@ Le système sera conçu pour simuler des requêtes HTTP réalistes à l'aide de 
 - **Mesure de la consommation électrique (INA219):** Utilisation d'un chip INA219 pour mesurer la consommation d'énergie avec précision en mesurant la tension et le courant du système testé.
 
 - **Mesure de la consommation:** Utilisation de Node-RED pour relever les mesures de consommation des ressources du banc de tests, y compris la consommation d'énergie, l'utilisation du processeur, la consommation de mémoire, la bande passante et les temps de réponse.
+
+- **Génération de rapports:** Utilisation de Node-RED pour générer des rapports détaillés sur les performances du système testé, y compris les mesures de performance et les données de consommation.
+
+- **Interface utilisateur:** Utilisation d'une interface utilisateur conviviale pour configurer les tests, sélectionner les serveurs à tester et comparer les résultats des tests.
 
 # 5. Jalons
 
@@ -127,7 +132,7 @@ Ce jalon est facultatif et dépendra de la disponibilité des ressources et du t
 - Blocs d'alimentation Raspberry
 - Platine de mesure INA219
 
-# Documentation
+# 7. Documentation
 La documentation se trouve dans le dossier `docs` du repository. Il y a deux documents principaux :
 - [Rapport de projet](docs/rapport.md) : Rapport de projet qui décrit les différentes étapes du projet pour le reproduire ou le modifier.
 - [Manuel d'utilisation](docs/manuel.md) : Manuel d'utilisation qui décrit comment utiliser le projet une fois qu'il est installé.
@@ -136,3 +141,4 @@ La documentation est écrite en Markdown et peut être consultée directement su
 Un [wiki](https://mylos.cifom.ch/gitlab/ToblerC/banc-de-mesures-de-la-consommation-electrique/-/wikis/home) est également disponible sur GitLab pour fournir des informations mieux structurées sur le projet.
 
 
+# 8. Sources
