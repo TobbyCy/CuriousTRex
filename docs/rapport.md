@@ -29,8 +29,8 @@ Le système sera conçu pour simuler des requêtes HTTP réalistes à l'aide de 
            |_________|      |_____________|
            |  RPI 4  |      |  RPI 4      |
            |_________|      |_____________|
-           | LXD VM  |      | Node-RED    |
-           |         |      | Gatling     |
+           | Apache  |      | Node-RED    |
+           | No-Proc |      | Gatling     |
            |         |      | INA219      |
            +---------+      +-------------+
               ^   |             ^   |
