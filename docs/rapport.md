@@ -23,6 +23,9 @@
     - [Download](#download)
   - [Vérification de l'installation](#vérification-de-linstallation)
   - [9.2. Configuration](#92-configuration)
+- [Apache et Site Web](#apache-et-site-web)
+  - [1. Installation](#1-installation)
+  - [Mise en place d'un site Web](#mise-en-place-dun-site-web)
 - [10. Sources](#10-sources)
 
 # 3. Introduction
@@ -584,6 +587,18 @@ Reports generated in 0s.
 Please open the following file: file:///home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/results/computerdatabasesimulation-20230816142907884/index.html
 ```
 ## 9.2. Configuration
+# Apache et Site Web
+## 1. Installation
+```bash
+sudo apt install apache2
+sudo systemctl status apache2
+sudo systemctl enable apache2
+```
+## Mise en place d'un site Web
+J'ai créee un site web très simple reprenant le readme du projet. Et il comporte trois pages ainsi que du CSS.
+```bash
+scp -r /home/toblerc/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique/siteWeb/www/html tobby@Volt:/var/www/html/
+```
 # 10. Sources
 Node-Red [Install](https://nodered.org/docs/getting-started/raspberrypi)
 Sécurisation de [Node-Red](https://nodered.org/docs/user-guide/runtime/securing-node-red)
