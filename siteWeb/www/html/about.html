@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Confuse T-Rex - À Propos</title>
+</head>
+<body>
+    <header>
+        <h1>1. Confuse T-Rex</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.html">À Propos</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="markdown-content">
+            <article>
+                <h2>2. Projet de Banc de Mesures de Performance</h2>
+                <article>
+                    <h3 id="3-description">3. Description</h3>
+                    <p>Le système sera conçu pour simuler des requêtes HTTP réalistes à l'aide de Gatling, mesurer la consommation électrique en utilisant l'INA219 connecté via le bus I2C, et collecter les mesures de performance à l'aide de Node-RED. Les rapports générés fourniront des informations détaillées sur les performances du système testé, y compris le temps de réponse, la consommation d'énergie par requête, l'utilisation du processeur, etc.</p>
+                </article>
+                <article>
+                    <h3 id="4-caract%C3%A9ristiques">4. Caractéristiques</h3>
+                    <ul>
+                        <li><strong>Génération de trafic web:</strong> Utilisation de Gatling pour simuler des requêtes HTTP réalistes, configurer des scénarios de charge et évaluer les performances du système testé.</li>
+                        <li><strong>Mesure de la consommation électrique (INA219):</strong> Utilisation d'un chip INA219 pour mesurer la consommation d'énergie avec précision en mesurant la tension et le courant du système testé.</li>
+                        <li><strong>Mesure de la consommation:</strong> Utilisation de Node-RED pour relever les mesures de consommation des ressources du banc de tests, y compris la consommation d'énergie, l'utilisation du processeur, la consommation de mémoire, la bande passante et les temps de réponse.</li>
+                        <li><strong>Génération de rapports:</strong> Utilisation de Node-RED pour générer des rapports détaillés sur les performances du système testé, y compris les mesures de performance et les données de consommation.</li>
+                        <li><strong>Interface utilisateur:</strong> Utilisation d'une interface utilisateur conviviale pour configurer les tests, sélectionner les serveurs à tester et comparer les résultats des tests.</li>
+                    </ul>
+                </article>
+                <article>
+                    <h3 id="5-sh%C3%A9ma-de-principe">5. Schéma de principe</h3>
+                    <pre class="hljs"><code>
+                    +---------+      +-------------+
+                    |   Volt  |      |   Nidus     |
+                    |_________|      |_____________|
+                    |  RPI 4  |      |  RPI 4      |
+                    |_________|      |_____________|
+                    | Apache  |      | Node-RED    |
+                    | No-Proc |      | Gatling     |
+                    |         |      | INA219      |
+                    +---------+      +-------------+
+                       ^   |             ^   |
+                       |   |             |   |
+                       |   |             |   |
+                       |   |             |   |
+                       |   v             |   v
+                  +-----------------------------+
+                  |       Réseau local          |
+                  +---+-------------------+-----+
+                      | Dashboard Node-Red|
+                      +-------------------+
+                                 ^
+                                 |
+                                 |
+                           +------------+
+                           |Utilisateur |
+                           +------------+
+                    </code></pre>
+                </article>
+                <article>
+                    <h3 id="analyse-ui">Analyse UI</h3>
+                    <p>L'interface web sera réalisée avec Node-Red de fait, la navigation se fera via un menu hamburger en haut à gauche, et les pages seront affichées dans la partie centrale de la page.
+                    Il y aura 3 pages principales :</p>
+                    <ul>
+                        <li>Page d'accueil : Présente le système et explique comment l'utiliser.</li>
+                        <li>Données : Permet de voir les données collectées en temps réel.</li>
+                        <li>Tests : Permet de lancer des tests et de voir les résultats.</li>
+                    </ul>
+                    <p>Il y a possibilité d'ajouter des pages supplémentaires si besoin, par exemple dans le cas de l'ajout d'une base de données pour stocker les résultats, il y aurait une page pour consulter les résultats stockés dans la base de données.</p>
+                </article>
+                <article>
+                    <h3 id="page-daccueil">Page d'accueil</h3>
+                    <p><img src="capture/Home.jpg" alt="Alt text"></p>
+                </article>
+                <article>
+                    <h3 id="donn%C3%A9es">Données</h3>
+                    <p><img src="capture/Données.jpg" alt="Alt text"></p>
+                </article>
+                <article>
+                    <h3 id="tests">Tests</h3>
+                    <p><img src="capture/Test.jpg" alt="Alt text">
+                    <img src="capture/Test_Complet.jpg" alt="Alt text"></p>
+                </article>
+                <article>
+                    <h3 id="5-jalons">5. Jalons</h3>
+                    <article>
+                        <h4 id="51-mise-en-place-14082023---21082023">5.1. Mise en place (14.08.2023 - 21.08.2023)</h4>
+                        <h5 id="511-but">5.1.1. But</h5>
+                        <p>Le but de ce jalon est de mettre en place l'environnement de test et de configurer les outils nécessaires pour effectuer les mesures. Tout ce qui est nécessaire pour effectuer les tests de performance doit être installé et configuré,  Node-RED, Gatling et l'INA219. Les Raspberry Pi doivent être installés dans l'environnement prévu et configurés avec les paramètres de base.</p>
+                        <h5 id="512-etapes">5.1.2. Étapes</h5>
+                        <ul>
+                            <li>Installer et configurer Node-RED sur le Raspberry Pi Nidus.</li>
+                            <li>Installer et configurer Gatling sur le Raspberry Pi Volt.</li>
+                            <li>Configurer les scénarios de test de performance dans Gatling.</li>
+                            <li>Configurer les nœuds de collecte de données dans Node-RED pour les mesures de performance et de consommation.</li>
+                            <li>Configurer l'INA219 pour mesurer la consommation d'énergie sur les Raspberry Pi.</li>
+                            <li>Installer et configurer un serveur web (Apache) sur le Raspberry Pi Volt pour les tests de performance.</li>
+                            <li>Valider la communication entre les Raspberry Pi et les outils de mesure (Node-RED, Gatling, INA219).</li>
+                        </ul>
+                    </article>
+                </article>
+                <article>
+                    <h3 id="6-conclusion">6. Conclusion</h3>
+                    <p>Le projet de Banc de Mesures de Performance vise à fournir un moyen efficace de simuler des charges réalistes sur des systèmes web, mesurer leur consommation d'énergie et collecter des données de performance. La combinaison de Gatling, Node-RED et l'INA219 offre une solution puissante pour évaluer les performances et l'efficacité énergétique des systèmes testés. L'interface utilisateur réalisée avec Node-RED permet de configurer les tests, de visualiser les données en temps réel et de générer des rapports détaillés. En réalisant ce projet, l'équipe de Confuse T-Rex a acquis une expérience précieuse dans le domaine de la performance des systèmes web et de la mesure de la consommation d'énergie.</p>
+                </article>
+            </article>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Confuse T-Rex. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>
+
