@@ -149,8 +149,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 420,
-        "y": 320,
+        "x": 680,
+        "y": 280,
         "wires": []
     },
     {
@@ -170,7 +170,7 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 420,
+        "x": 680,
         "y": 360,
         "wires": []
     },
@@ -184,12 +184,12 @@
         "y": 340,
         "wires": [
             [
-                "3f2698910c317457",
-                "06aa7125c7bfbcd7"
+                "06aa7125c7bfbcd7",
+                "68b1e6e95bce2ef2"
             ],
             [
-                "e8334464abeb8df9",
-                "06aa7125c7bfbcd7"
+                "06aa7125c7bfbcd7",
+                "587821a4c81b1185"
             ]
         ]
     },
@@ -198,14 +198,14 @@
         "type": "function",
         "z": "76efdb70933209ac",
         "name": "function 1",
-        "func": "// Récupérer les valeurs de courant (mA) et de tension (V) depuis les propriétés msg.payload\nvar current_mA = msg.payload.miliamps;\nvar voltage_V = msg.payload.voltage;\n\n// Calculer la puissance en watts (W)\nvar power_W = (current_mA / 1000) * voltage_V;  // Convertir le courant en ampères\n\n// Créer un nouvel objet msg avec la puissance en watts comme payload\nmsg.payload = power_W;\nmsg.topic = \"Watt\";\n// Renvoyer le message modifié\nreturn msg;\n",
+        "func": "// Récupérer les valeurs de courant (mA) et de tension (V) depuis les propriétés msg.payload\nvar current_mA = msg.payload.miliamps;\nvar voltage_V = msg.payload.voltage;\n\n// Calculer la puissance en watts (W)\nvar power_W = (current_mA / 1000) * voltage_V;  // Convertir le courant en ampères\n\n// Vérifier si la tension est négative\nif (voltage_V < 0) {\n    // Si la tension est négative, ne rien faire et retourner le message inchangé\n    return;\n}\n\n// Créer un nouvel objet msg avec la puissance en watts comme payload\nmsg.payload = power_W;\nmsg.topic = \"Watt\";\n// Renvoyer le message modifié\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 420,
-        "y": 460,
+        "x": 660,
+        "y": 220,
         "wires": [
             [
                 "c2f42c42be3ffdd2",
@@ -233,31 +233,13 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 290,
-        "y": 460,
+        "x": 490,
+        "y": 220,
         "wires": [
             [
-                "b8288639de4d40ea",
-                "8d5ecb1b013215a8"
+                "b8288639de4d40ea"
             ]
         ]
-    },
-    {
-        "id": "8d5ecb1b013215a8",
-        "type": "debug",
-        "z": "76efdb70933209ac",
-        "name": "debug 1",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 380,
-        "y": 180,
-        "wires": []
     },
     {
         "id": "c2f42c42be3ffdd2",
@@ -276,8 +258,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 550,
-        "y": 460,
+        "x": 830,
+        "y": 160,
         "wires": []
     },
     {
@@ -318,10 +300,48 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 530,
-        "y": 600,
+        "x": 830,
+        "y": 220,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "587821a4c81b1185",
+        "type": "function",
+        "z": "76efdb70933209ac",
+        "name": "function 2",
+        "func": "if(msg.payload < 0){\n    return;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 360,
+        "wires": [
+            [
+                "e8334464abeb8df9"
+            ]
+        ]
+    },
+    {
+        "id": "68b1e6e95bce2ef2",
+        "type": "function",
+        "z": "76efdb70933209ac",
+        "name": "function 3",
+        "func": "if(msg.payload < 0){\n    return;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 280,
+        "wires": [
+            [
+                "3f2698910c317457"
+            ]
         ]
     }
 ]
