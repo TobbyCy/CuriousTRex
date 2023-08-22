@@ -355,12 +355,12 @@
         "timer": "",
         "winHide": true,
         "oldrc": false,
-        "name": "",
-        "x": 530,
+        "name": "CPU_Usage%",
+        "x": 340,
         "y": 560,
         "wires": [
             [
-                "827e72eae489f6a3"
+                "b688f544fed38038"
             ],
             [],
             []
@@ -380,36 +380,149 @@
                 "vt": "str"
             }
         ],
-        "repeat": "",
+        "repeat": "1",
         "crontab": "",
-        "once": false,
+        "once": true,
         "onceDelay": 0.1,
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 120,
+        "x": 130,
         "y": 560,
         "wires": [
             [
-                "058d3b10309eae98"
+                "058d3b10309eae98",
+                "ea9c250527414c8b",
+                "f24ee82d3a72a32e"
             ]
         ]
     },
     {
-        "id": "827e72eae489f6a3",
-        "type": "debug",
+        "id": "b688f544fed38038",
+        "type": "ui_gauge",
         "z": "76efdb70933209ac",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 940,
-        "y": 560,
+        "name": "",
+        "group": "bddfc83fd54ae92b",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "gauge",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 570,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "ea9c250527414c8b",
+        "type": "exec",
+        "z": "76efdb70933209ac",
+        "command": "ssh tobby@157.26.228.141 \"free | awk '/Mem/{printf(\"%.2f%\\n\", $3/$2*100)}'\"",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": true,
+        "oldrc": false,
+        "name": "Mem_Usage%",
+        "x": 340,
+        "y": 620,
+        "wires": [
+            [
+                "16748f9a31a5fb74"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "16748f9a31a5fb74",
+        "type": "ui_gauge",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "group": "bddfc83fd54ae92b",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "gauge",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 570,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "f24ee82d3a72a32e",
+        "type": "exec",
+        "z": "76efdb70933209ac",
+        "command": "ssh tobby@157.26.228.141 \"ps aux | wc -l\"",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": true,
+        "oldrc": false,
+        "name": "Process",
+        "x": 320,
+        "y": 680,
+        "wires": [
+            [
+                "6581bb557340ec17"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "6581bb557340ec17",
+        "type": "ui_gauge",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "group": "bddfc83fd54ae92b",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "gauge",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "500",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 570,
+        "y": 680,
         "wires": []
     }
 ]
