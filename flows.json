@@ -405,37 +405,6 @@
         ]
     },
     {
-        "id": "708d7a8a7ffc0127",
-        "type": "inject",
-        "z": "76efdb70933209ac",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "1",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 130,
-        "y": 560,
-        "wires": [
-            [
-                "058d3b10309eae98",
-                "f24ee82d3a72a32e",
-                "ea9c250527414c8b"
-            ]
-        ]
-    },
-    {
         "id": "b688f544fed38038",
         "type": "ui_gauge",
         "z": "76efdb70933209ac",
@@ -459,7 +428,7 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 550,
+        "x": 650,
         "y": 540,
         "wires": []
     },
@@ -476,7 +445,7 @@
         "oldrc": false,
         "name": "Mem_Usage%",
         "x": 340,
-        "y": 620,
+        "y": 700,
         "wires": [
             [
                 "e4b8fa072df9d2fc"
@@ -498,7 +467,7 @@
         "oldrc": false,
         "name": "Process",
         "x": 320,
-        "y": 680,
+        "y": 860,
         "wires": [
             [
                 "95ac268a855d0a7a"
@@ -531,7 +500,7 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 550,
+        "x": 650,
         "y": 600,
         "wires": []
     },
@@ -559,7 +528,7 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 570,
+        "x": 670,
         "y": 660,
         "wires": []
     },
@@ -576,28 +545,52 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 900,
-        "y": 520,
+        "x": 340,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5dddcb64761b7d57",
+        "type": "mqtt in",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "topic": "benchmark/ram",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "12e50ad63920a21c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 340,
+        "y": 640,
         "wires": [
             [
-                "23eae4182f5845d5"
+                "e4b8fa072df9d2fc"
             ]
         ]
     },
     {
-        "id": "23eae4182f5845d5",
-        "type": "debug",
+        "id": "7ab2d9f0ef997aac",
+        "type": "mqtt in",
         "z": "76efdb70933209ac",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1120,
-        "y": 520,
-        "wires": []
+        "name": "",
+        "topic": "benchmark/processes",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "12e50ad63920a21c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 360,
+        "y": 800,
+        "wires": [
+            [
+                "95ac268a855d0a7a"
+            ]
+        ]
     }
 ]
