@@ -135,9 +135,47 @@
     {
         "id": "837441be757b92ac",
         "type": "ui_group",
-        "name": "Monitorring",
+        "name": "Monitorring Volt",
         "tab": "e42b4edae71dedd4",
         "order": 2,
+        "disp": true,
+        "width": "20",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "12e50ad63920a21c",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "65e942c300ec1ce1",
+        "type": "ui_group",
+        "name": "Monittoring Nidus",
+        "tab": "e42b4edae71dedd4",
+        "order": 3,
         "disp": true,
         "width": "20",
         "collapse": false,
@@ -291,9 +329,9 @@
         "dot": false,
         "ymin": "",
         "ymax": "",
-        "removeOlder": 1,
+        "removeOlder": "5",
         "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
+        "removeOlderUnit": "60",
         "cutout": 0,
         "useOneColor": false,
         "useUTC": false,
@@ -378,37 +416,6 @@
         ]
     },
     {
-        "id": "708d7a8a7ffc0127",
-        "type": "inject",
-        "z": "76efdb70933209ac",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "1",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 130,
-        "y": 560,
-        "wires": [
-            [
-                "058d3b10309eae98",
-                "f24ee82d3a72a32e",
-                "ea9c250527414c8b"
-            ]
-        ]
-    },
-    {
         "id": "b688f544fed38038",
         "type": "ui_gauge",
         "z": "76efdb70933209ac",
@@ -432,7 +439,7 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 550,
+        "x": 650,
         "y": 540,
         "wires": []
     },
@@ -449,7 +456,7 @@
         "oldrc": false,
         "name": "Mem_Usage%",
         "x": 340,
-        "y": 620,
+        "y": 700,
         "wires": [
             [
                 "e4b8fa072df9d2fc"
@@ -471,7 +478,7 @@
         "oldrc": false,
         "name": "Process",
         "x": 320,
-        "y": 680,
+        "y": 860,
         "wires": [
             [
                 "95ac268a855d0a7a"
@@ -504,7 +511,7 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 550,
+        "x": 650,
         "y": 600,
         "wires": []
     },
@@ -532,8 +539,218 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 570,
+        "x": 670,
         "y": 660,
         "wires": []
+    },
+    {
+        "id": "b69a0aed1b6608d9",
+        "type": "mqtt in",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "topic": "benchmark/cpu",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "12e50ad63920a21c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 340,
+        "y": 500,
+        "wires": [
+            [
+                "b688f544fed38038"
+            ]
+        ]
+    },
+    {
+        "id": "5dddcb64761b7d57",
+        "type": "mqtt in",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "topic": "benchmark/ram",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "12e50ad63920a21c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 340,
+        "y": 640,
+        "wires": [
+            [
+                "e4b8fa072df9d2fc"
+            ]
+        ]
+    },
+    {
+        "id": "7ab2d9f0ef997aac",
+        "type": "mqtt in",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "topic": "benchmark/processes",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "12e50ad63920a21c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 360,
+        "y": 800,
+        "wires": [
+            [
+                "95ac268a855d0a7a"
+            ]
+        ]
+    },
+    {
+        "id": "5e01dde5ab04cf9f",
+        "type": "ui_gauge",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "group": "65e942c300ec1ce1",
+        "order": 4,
+        "width": "10",
+        "height": "8",
+        "gtype": "gage",
+        "title": "CPU",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 650,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "2f77fbb6f1c9c8b2",
+        "type": "ui_gauge",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "group": "65e942c300ec1ce1",
+        "order": 4,
+        "width": "10",
+        "height": "8",
+        "gtype": "gage",
+        "title": "RAM",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 650,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "78164e0fc6561bb0",
+        "type": "ui_gauge",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "group": "65e942c300ec1ce1",
+        "order": 4,
+        "width": "10",
+        "height": "8",
+        "gtype": "gage",
+        "title": "Processus",
+        "label": "",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "500",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 670,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "d36d783723cacbde",
+        "type": "mqtt in",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "topic": "nidus/benchmark/cpu",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "12e50ad63920a21c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 360,
+        "y": 1080,
+        "wires": [
+            [
+                "5e01dde5ab04cf9f"
+            ]
+        ]
+    },
+    {
+        "id": "4d9488b6e1088231",
+        "type": "mqtt in",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "topic": "nidus/benchmark/ram",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "12e50ad63920a21c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 360,
+        "y": 1140,
+        "wires": [
+            [
+                "2f77fbb6f1c9c8b2"
+            ]
+        ]
+    },
+    {
+        "id": "cfd7ef673c828f97",
+        "type": "mqtt in",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "topic": "nidus/benchmark/processes",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "12e50ad63920a21c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 380,
+        "y": 1200,
+        "wires": [
+            [
+                "78164e0fc6561bb0"
+            ]
+        ]
     }
 ]
