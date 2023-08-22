@@ -128,7 +128,7 @@
         "id": "173c4031bd3a25c0",
         "type": "ina-sensor-manager",
         "address": "0x40",
-        "delay": "250",
+        "delay": "0.5",
         "ohms": "0.01",
         "customResistor": false
     },
@@ -342,6 +342,26 @@
             [
                 "3f2698910c317457"
             ]
+        ]
+    },
+    {
+        "id": "058d3b10309eae98",
+        "type": "exec",
+        "z": "76efdb70933209ac",
+        "command": "",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 310,
+        "y": 560,
+        "wires": [
+            [],
+            [],
+            []
         ]
     }
 ]
