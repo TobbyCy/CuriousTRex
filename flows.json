@@ -320,7 +320,7 @@
         "ymax": "",
         "removeOlder": 1,
         "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
+        "removeOlderUnit": "604800",
         "cutout": 0,
         "useOneColor": false,
         "useUTC": false,
