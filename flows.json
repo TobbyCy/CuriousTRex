@@ -144,6 +144,33 @@
         "className": ""
     },
     {
+        "id": "12e50ad63920a21c",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
         "id": "3f2698910c317457",
         "type": "ui_text",
         "z": "76efdb70933209ac",
@@ -535,5 +562,24 @@
         "x": 570,
         "y": 660,
         "wires": []
+    },
+    {
+        "id": "b69a0aed1b6608d9",
+        "type": "mqtt in",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "topic": "benchmark/cpu",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "12e50ad63920a21c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 900,
+        "y": 520,
+        "wires": [
+            []
+        ]
     }
 ]
