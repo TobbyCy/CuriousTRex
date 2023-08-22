@@ -128,7 +128,7 @@
         "id": "173c4031bd3a25c0",
         "type": "ina-sensor-manager",
         "address": "0x40",
-        "delay": "5000",
+        "delay": "1000",
         "ohms": "0.01",
         "customResistor": false
     },
@@ -185,11 +185,13 @@
         "wires": [
             [
                 "3f2698910c317457",
-                "06aa7125c7bfbcd7"
+                "06aa7125c7bfbcd7",
+                "cd1f740c61e8aa04"
             ],
             [
                 "e8334464abeb8df9",
-                "06aa7125c7bfbcd7"
+                "06aa7125c7bfbcd7",
+                "cd1f740c61e8aa04"
             ]
         ]
     },
@@ -208,7 +210,8 @@
         "y": 460,
         "wires": [
             [
-                "c2f42c42be3ffdd2"
+                "c2f42c42be3ffdd2",
+                "cd1f740c61e8aa04"
             ]
         ]
     },
@@ -278,5 +281,49 @@
         "x": 550,
         "y": 460,
         "wires": []
+    },
+    {
+        "id": "cd1f740c61e8aa04",
+        "type": "ui_chart",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "group": "bddfc83fd54ae92b",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 530,
+        "y": 600,
+        "wires": [
+            []
+        ]
     }
 ]
