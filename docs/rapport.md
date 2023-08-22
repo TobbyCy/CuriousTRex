@@ -27,6 +27,13 @@
 - [9. Apache et Site Web](#9-apache-et-site-web)
   - [9.1. Installation](#91-installation)
   - [9.2. Mise en place d'un site Web](#92-mise-en-place-dun-site-web)
+- [MQTT](#mqtt)
+  - [Instalaion de Mosquitto sur Nidus](#instalaion-de-mosquitto-sur-nidus)
+  - [Ouverture des port sur Nidus](#ouverture-des-port-sur-nidus)
+  - [Script MQTT](#script-mqtt)
+  - [10.1. Installation](#101-installation)
+  - [Utilisation du script](#utilisation-du-script)
+    - [Vérification](#vérification)
 - [10. INA219](#10-ina219)
   - [10.1. Instalation physique](#101-instalation-physique)
     - [10.1.1. Branchement SANS VOLT](#1011-branchement-sans-volt)
@@ -34,6 +41,11 @@
   - [10.2. Vérification de la présence du INA219](#102-vérification-de-la-présence-du-ina219)
   - [10.3. Obtention des données](#103-obtention-des-données)
     - [10.3.1. Test avec le script python A vide](#1031-test-avec-le-script-python-a-vide)
+- [Noeud Node-Red](#noeud-node-red)
+  - [Dashboard](#dashboard)
+  - [Fonctions](#fonctions)
+  - [INA219](#ina219)
+  - [Monitoring](#monitoring)
 - [11. Sources](#11-sources)
 
 # 3. Introduction
@@ -94,6 +106,8 @@ Adresse IP de Nidus : 157.26.251.158
 
 
 ## 6.4. Configuration
+
+
 # 7. Node-RED
 Node-RED est un outil de programmation visuelle open source conçu pour connecter des périphériques, des API et des services en ligne. Il fournit un éditeur de flux basé sur un navigateur qui facilite la connexion de nœuds en utilisant des liens glisser-déposer qui peuvent être exécutés dans un environnement Node.js. Les nœuds peuvent être des fonctions JavaScript ou des modules npm, tels que node-red-contrib-gpio, node-red-contrib-sqlite, node-red-contrib-modbustcp, etc. Node-RED est livré avec un ensemble de nœuds de base prêts à l'emploi, mais il existe maintenant plus de 2000 nœuds de la communauté qui sont disponibles pour une utilisation.
 ## 7.1. Instalation
@@ -471,6 +485,160 @@ J'ai créee un site web très simple reprenant le readme du projet. Et il compor
 ```bash
 scp -r /home/toblerc/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique/siteWeb/www/html tobby@Volt:/var/www/html/
 ```
+# MQTT
+Dans notre cas ,je souhaite utiliser le MQTT pour envoyer les données de consommation à Node-Red.
+En passant outre le tranfert de requette via le SSH et l'utilisation de clé SSH, le MQTT permet de gagner en performance et en sécurité.
+Niveau performance, le MQTT est plus léger que le SSH de l'ordre de 10 fois plus léger.
+## Instalaion de Mosquitto sur Nidus
+```bash
+tobby@Nidus:~/.ssh $ sudo apt install mosquitto
+Lecture des listes de paquets... Fait
+[...]
+tobby@Nidus:~/.ssh $ sudo systemctl status mosquitto
+● mosquitto.service - Mosquitto MQTT Broker
+     Loaded: loaded (/lib/systemd/system/mosquitto.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2023-08-22 16:01:58 CEST; 7s ago
+       Docs: man:mosquitto.conf(5)
+             man:mosquitto(8)
+    Process: 22571 ExecStartPre=/bin/mkdir -m 740 -p /var/log/mosquitto (code=exited, status=0/SUCCESS)
+    Process: 22572 ExecStartPre=/bin/chown mosquitto /var/log/mosquitto (code=exited, status=0/SUCCESS)
+    Process: 22573 ExecStartPre=/bin/mkdir -m 740 -p /run/mosquitto (code=exited, status=0/SUCCESS)
+    Process: 22574 ExecStartPre=/bin/chown mosquitto /run/mosquitto (code=exited, status=0/SUCCESS)
+   Main PID: 22575 (mosquitto)
+      Tasks: 1 (limit: 3933)
+        CPU: 42ms
+     CGroup: /system.slice/mosquitto.service
+             └─22575 /usr/sbin/mosquitto -c /etc/mosquitto/mosquitto.conf
+
+aoû 22 16:01:58 Nidus systemd[1]: Starting Mosquitto MQTT Broker...
+aoû 22 16:01:58 Nidus systemd[1]: Started Mosquitto MQTT Broker.
+```
+## Ouverture des port sur Nidus
+Modifier le fichier de conf comme suit :
+```bash
+tobby@Nidus:~ $ sudo vim /etc/mosquitto/mosquitto.conf
+tobby@Nidus:~ $ sudo cat /etc/mosquitto/mosquitto.conf 
+# Place your local configuration in /etc/mosquitto/conf.d/
+#
+# A full description of the configuration file is at
+# /usr/share/doc/mosquitto/examples/mosquitto.conf.example
+
+pid_file /run/mosquitto/mosquitto.pid
+
+persistence true
+persistence_location /var/lib/mosquitto/
+
+log_dest file /var/log/mosquitto/mosquitto.log
+
+include_dir /etc/mosquitto/conf.d
+
+listener 1883
+allow_anonymous true
+```
+## Script MQTT
+J'ai créé un script MQTT qui permet de publier les données de consommation sur le broker MQTT.
+Le script est lancé au démarrage de la machine et tourne en boucle.
+Et verifie si les dépendances sont installées, si ce n'est pas le cas il les installe.
+Et finalement il vérifie si le lien symbolique vers init.d existe, si ce n'est pas le cas il le crée.
+
+```sh
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          mqtt
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Script MQTT de collecte de données
+# Description:       Ce script collecte la charge CPU, la charge RAM
+#                    et le nombre de processus, puis publie ces données
+#                    sur un broker MQTT.
+### END INIT INFO
+
+# Pour ajouter les droits d'exécution : 
+# chmod +x mqtt.sh
+# Pour le copier depuis Nidus vers Volt :
+# scp ./mqtt.sh tobby@volt:/usr/local/bin/mqtt.sh
+# Emplacement du script (doit être dans /usr/local/bin)
+INSTALL_DIR="/usr/local/bin"
+# Nom du script
+SCRIPT_NAME="mqtt.sh"
+# Adresse du broker MQTT
+MQTT_BROKER="nidus"
+# Sujets MQTT pour les différentes données
+MQTT_TOPIC_CPU="benchmark/cpu"
+MQTT_TOPIC_RAM="benchmark/ram"
+MQTT_TOPIC_PROCESSES="benchmark/processes"
+
+# Vérification si le script est dans le bon dossier d'installation
+if [ "$(dirname "$(readlink -f "$0")")" != "$INSTALL_DIR" ]; then
+    echo "Erreur : Le script doit être installé dans $INSTALL_DIR"
+    exit 1
+fi
+
+# Vérification et installation des dépendances (mosquitto-clients)
+if ! command -v mosquitto_pub &> /dev/null; then
+    echo "Installation de mosquitto-clients..."
+    sudo apt-get update
+    sudo apt-get install mosquitto-clients
+    echo "Installation terminée."
+fi
+
+# Vérification si le lien symbolique vers init.d existe
+if [ ! -e "/etc/init.d/$SCRIPT_NAME" ]; then
+    echo "Création du lien symbolique dans /etc/init.d..."
+    sudo ln -s "$INSTALL_DIR/$SCRIPT_NAME" "/etc/init.d/$SCRIPT_NAME"
+    echo "Lien symbolique créé."
+fi
+
+# Vérification et activation du service init.d
+if ! sudo service "$SCRIPT_NAME" status &> /dev/null; then
+    echo "Activation du service..."
+    sudo update-rc.d "$SCRIPT_NAME" defaults
+    echo "Service activé."
+fi
+
+# Boucle principale pour la collecte et la publication des données
+while true; do
+    # Collecte des données
+    CPU_LOAD=$(top -bn1 | grep "Cpu(s)" | awk '{print $2 + $4}')
+    RAM_LOAD=$(free | awk '/Mem/{printf("%.2f\n", $3/$2*100)}')
+    PROCESS_COUNT=$(ps aux | wc -l)
+
+    # Publication des données sur MQTT
+    mosquitto_pub -h $MQTT_BROKER -t $MQTT_TOPIC_CPU -m "$CPU_LOAD"
+    mosquitto_pub -h $MQTT_BROKER -t $MQTT_TOPIC_RAM -m "$RAM_LOAD"
+    mosquitto_pub -h $MQTT_BROKER -t $MQTT_TOPIC_PROCESSES -m "$PROCESS_COUNT"
+
+    echo "Données publiées sur MQTT"
+
+    sleep 1  # Attente d'une seconde
+done
+
+```
+## 10.1. Installation
+```bash
+toblerc@LPT-UNIX-USB-CT:~/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique$ scp ./mqtt.sh tobby@volt:/usr/local/bin/mqtt.sh
+mqtt.sh                                                                                                                                                                         100% 2526     2.1MB/s   00:00 
+```
+## Utilisation du script
+```bash
+tobby@Volt:/usr/local/bin$ sudo ./mqtt.sh
+Installation de mosquitto-clients...
+[...]
+Il est nécessaire de prendre 136 ko dans les archives.
+Après cette opération, 568 ko d'espace disque supplémentaires seront utilisés.
+Souhaitez-vous continuer ? [O/n] O
+[...]
+Installation terminée.
+Création du lien symbolique dans /etc/init.d...
+Lien symbolique créé.
+Activation du service...
+Service activé.
+```
+
+### Vérification
+![Alt text](../capture/RPI/Node-Red/MQTT.png)
 # 10. INA219
 Dans notre cas, il y a deux puce INA219, une en remplacement en cas de problème et l'autre pour la mesure de la consommation.
 Pour les diférencier, j'ai souder l'adresse I2C de la puce de mesure sur 0x40 et celle de la puce de rwemplacement sur 0x41.
@@ -579,7 +747,14 @@ Bus Current: -0.195 mA
 Power: 0.000 mW
 Shunt voltage: -0.010 mV
 ```
+# Noeud Node-Red
+## Dashboard
 
+## Fonctions
+
+## INA219
+
+## Monitoring
     
 
 # 11. Sources
