@@ -1,111 +1,45 @@
-<<<<<<< HEAD
 # 1. Rapport de projet
 # 2. Sommaire
 - [1. Rapport de projet](#1-rapport-de-projet)
 - [2. Sommaire](#2-sommaire)
 - [3. Introduction](#3-introduction)
 - [4. Instalation physique](#4-instalation-physique)
-- [5. Shéma de principe](#5-shéma-de-principe)
-- [6. Raspbian](#6-raspbian)
-  - [6.1. Instalation](#61-instalation)
-  - [6.2. Configuration](#62-configuration)
-- [7. LXD](#7-lxd)
-  - [7.1. Instalation](#71-instalation)
-  - [7.2. Configuration](#72-configuration)
-- [8. Node-RED](#8-node-red)
-  - [8.1. Instalation](#81-instalation)
-  - [8.2. Configuration](#82-configuration)
-- [9. Gatling](#9-gatling)
-  - [9.1. Instalation](#91-instalation)
-  - [9.2. Configuration](#92-configuration)
-- [10. Sources](#10-sources)
-
-# 3. Introduction
-Le système sera conçu pour simuler des requêtes HTTP réalistes à l'aide de Gatling, mesurer la consommation électrique en utilisant l'INA219 connecté via le bus I2C, et collecter les mesures de performance à l'aide de Node-RED. Les rapports générés fourniront des informations détaillées sur les performances du système testé, y compris le temps de réponse, la consommation d'énergie par requête, l'utilisation du processeur, etc.
-# 4. Instalation physique
-# 5. Shéma de principe
-```ascii
-           +---------+      +-------------+
-           |   Volt  |      |   Nidus     |
-           |_________|      |_____________|
-           |  RPI 4  |      |  RPI 4      |
-           |_________|      |_____________|
-           | Apache  |      | Node-RED    |
-           | No-Proc |      | Gatling     |
-           |         |      | INA219      |
-           +---------+      +-------------+
-              ^   |             ^   |
-              |   |             |   |
-              |   |             |   |
-              |   |             |   |
-              |   v             |   v
-         +-----------------------------+
-         |       Réseau local          |
-         +---+-------------------+-----+
-             | Dashboard Node-Red|
-             +-------------------+
-                        ^
-                        |
-                        |
-                  +------------+
-                  |Utilisateur |
-                  +------------+
-
-```
-# 6. Raspbian
-Raspbian est un système d'exploitation libre basé sur Debian optimisé pour le Raspberry Pi. Depuis 2015, Raspbian est fourni avec un ensemble d'outils appelé Pixel. Pixel est un environnement de bureau qui comprend un navigateur Web, un éditeur de texte, des logiciels de programmation, des outils de calcul, des jeux et des logiciels de productivité. Pixel est un environnement de bureau léger et réactif conçu pour les ordinateurs monocarte Raspberry Pi.
-## 6.1. Instalation
-## 6.2. Configuration
-# 7. LXD
-LXD est un hyperviseur de conteneurs open source, léger, basé sur le noyau Linux et conçu pour fournir des machines virtuelles et des images de conteneurs à des systèmes d'exploitation Linux. LXD est un système de gestion de conteneurs qui offre une expérience utilisateur similaire à celle des machines virtuelles, mais en utilisant des technologies de conteneur et des fonctionnalités de noyau Linux. Il est disponible pour les distributions Linux et est intégré à Ubuntu depuis la version 15.04 (Vivid Vervet).
-## 7.1. Instalation
-## 7.2. Configuration
-# 8. Node-RED
-Node-RED est un outil de programmation visuelle open source conçu pour connecter des périphériques, des API et des services en ligne. Il fournit un éditeur de flux basé sur un navigateur qui facilite la connexion de nœuds en utilisant des liens glisser-déposer qui peuvent être exécutés dans un environnement Node.js. Les nœuds peuvent être des fonctions JavaScript ou des modules npm, tels que node-red-contrib-gpio, node-red-contrib-sqlite, node-red-contrib-modbustcp, etc. Node-RED est livré avec un ensemble de nœuds de base prêts à l'emploi, mais il existe maintenant plus de 2000 nœuds de la communauté qui sont disponibles pour une utilisation.
-## 8.1. Instalation
-## 8.2. Configuration
-# 9. Gatling
-Gatling est un outil de test de charge open source basé sur Scala, conçu pour tester les performances des applications et des sites Web. Gatling simule des utilisateurs virtuels qui envoient des requêtes HTTP vers le système cible. Il enregistre les temps de réponse des requêtes et les présente sous forme de graphiques. Gatling est livré avec un éditeur de scénario basé sur un navigateur qui permet aux utilisateurs de créer des scénarios de test de charge en utilisant un langage de domaine spécifique (DSL) appelé Gatling DSL. Gatling DSL est un langage de programmation basé sur Scala qui permet aux utilisateurs de définir des scénarios de test de charge en utilisant des mots-clés tels que exec, pause, feed, etc.
-## 9.1. Instalation
-## 9.2. Configuration
-# 10. Sources
-=======
-# 1. Rapport de projet
-# 2. Sommaire
-- [1. Rapport de projet](#1-rapport-de-projet)
-- [2. Sommaire](#2-sommaire)
-- [3. Introduction](#3-introduction)
-- [4. Instalation physique](#4-instalation-physique)
-  - [Nidus](#nidus)
-  - [Volt](#volt)
+  - [4.1. Nidus](#41-nidus)
+  - [4.2. Volt](#42-volt)
 - [5. Shéma de principe](#5-shéma-de-principe)
 - [6. OS](#6-os)
-  - [Ubuntu](#ubuntu)
-  - [Raspbian](#raspbian)
-  - [6.1. Première instalation](#61-première-instalation)
-  - [6.2. Configuration](#62-configuration)
-- [8. Node-RED](#8-node-red)
+  - [6.1. Ubuntu](#61-ubuntu)
+  - [6.2. Raspbian](#62-raspbian)
+  - [6.3. Première instalation](#63-première-instalation)
+  - [6.4. Configuration](#64-configuration)
+- [7. Node-RED](#7-node-red)
+  - [7.1. Instalation](#71-instalation)
+  - [7.2. Configuration](#72-configuration)
+    - [7.2.1. Instalation des plugins](#721-instalation-des-plugins)
+    - [7.2.2. Sécurisation de Node-Red](#722-sécurisation-de-node-red)
+    - [Suivi Git](#suivi-git)
+- [8. Gatling](#8-gatling)
   - [8.1. Instalation](#81-instalation)
-  - [8.2. Configuration](#82-configuration)
-    - [Instalation des plugins](#instalation-des-plugins)
-    - [Sécurisation de Node-Red](#sécurisation-de-node-red)
-- [9. Gatling](#9-gatling)
-  - [9.1. Instalation](#91-instalation)
-    - [Prerequis](#prerequis)
-    - [Download](#download)
-  - [Vérification de l'installation](#vérification-de-linstallation)
-  - [9.2. Configuration](#92-configuration)
-- [Apache et Site Web](#apache-et-site-web)
-  - [1. Installation](#1-installation)
-  - [Mise en place d'un site Web](#mise-en-place-dun-site-web)
-- [10. Sources](#10-sources)
+    - [8.1.1. Prerequis](#811-prerequis)
+    - [8.1.2. Download](#812-download)
+  - [8.2. Vérification de l'installation](#82-vérification-de-linstallation)
+  - [8.3. Configuration](#83-configuration)
+- [9. Apache et Site Web](#9-apache-et-site-web)
+  - [9.1. Installation](#91-installation)
+  - [9.2. Mise en place d'un site Web](#92-mise-en-place-dun-site-web)
+- [10. INA219](#10-ina219)
+  - [10.1. Instalation physique](#101-instalation-physique)
+    - [10.1.1. Branchement SANS VOLT](#1011-branchement-sans-volt)
+    - [10.1.2. Branchement AVEC VOLT](#1012-branchement-avec-volt)
+  - [Vérification de la présence du INA219](#vérification-de-la-présence-du-ina219)
+- [11. Sources](#11-sources)
 
 # 3. Introduction
 Le système sera conçu pour simuler des requêtes HTTP réalistes à l'aide de Gatling, mesurer la consommation électrique en utilisant l'INA219 connecté via le bus I2C, et collecter les mesures de performance à l'aide de Node-RED. Les rapports générés fourniront des informations détaillées sur les performances du système testé, y compris le temps de réponse, la consommation d'énergie par requête, l'utilisation du processeur, etc.
 # 4. Instalation physique
-## Nidus
+## 4.1. Nidus
 ![](../capture/Nidus.jpg)
-## Volt
+## 4.2. Volt
 ![](../capture/Volt.jpg)
 
 # 5. Shéma de principe
@@ -139,11 +73,11 @@ Le système sera conçu pour simuler des requêtes HTTP réalistes à l'aide de 
 ```
 # 6. OS
 Dans le cadre de ce projet il y auras plusieurs OS utilisée mais pour débuter nous allons utiliser Ubuntu.
-## Ubuntu
+## 6.1. Ubuntu
 Ubuntu est un OS largement utilisé pour les serveurs et les ordinateurs de bureau. Ubuntu est livré avec un ensemble d'outils de développement et de productivité, y compris un navigateur Web, un éditeur de texte, des logiciels de programmation, des outils de calcul, des jeux et des logiciels de productivité. Ubuntu est un environnement de bureau léger et réactif conçu pour les ordinateurs de bureau et les serveurs.
-## Raspbian
+## 6.2. Raspbian
 Raspbian est un système d'exploitation libre basé sur Debian optimisé pour le Raspberry Pi. Depuis 2015, Raspbian est fourni avec un ensemble d'outils appelé Pixel. Pixel est un environnement de bureau qui comprend un navigateur Web, un éditeur de texte, des logiciels de programmation, des outils de calcul, des jeux et des logiciels de productivité. Pixel est un environnement de bureau léger et réactif conçu pour les ordinateurs monocarte Raspberry Pi.
-## 6.1. Première instalation
+## 6.3. Première instalation
 Dans un premier temps nous allons installer Ubuntu en version desktop sur Volt. La raison dèrière ce choix est que pour tester au plus vite tous les concepts du projet il est plus simple de travailler sur un environnement de bureau.
 
 Sur Nidus c'est Raspbian enversion desktop qui sera installé pour les mêmes raisons que pour Volt.
@@ -157,10 +91,10 @@ Adresse IP de Volt : 157.26.228.130
 Adresse IP de Nidus : 157.26.251.158
 
 
-## 6.2. Configuration
-# 8. Node-RED
+## 6.4. Configuration
+# 7. Node-RED
 Node-RED est un outil de programmation visuelle open source conçu pour connecter des périphériques, des API et des services en ligne. Il fournit un éditeur de flux basé sur un navigateur qui facilite la connexion de nœuds en utilisant des liens glisser-déposer qui peuvent être exécutés dans un environnement Node.js. Les nœuds peuvent être des fonctions JavaScript ou des modules npm, tels que node-red-contrib-gpio, node-red-contrib-sqlite, node-red-contrib-modbustcp, etc. Node-RED est livré avec un ensemble de nœuds de base prêts à l'emploi, mais il existe maintenant plus de 2000 nœuds de la communauté qui sont disponibles pour une utilisation.
-## 8.1. Instalation
+## 7.1. Instalation
 ```bash
 tobby@Nidus:~ $ bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
 Running Node-RED install for user tobby at /home/tobby on debian
@@ -270,21 +204,36 @@ Created symlink /etc/systemd/system/multi-user.target.wants/nodered.service → 
 
 ```
 ![Alt text](../capture/RPI/Node-Red/PostInstall.png)
-## 8.2. Configuration
-### Instalation des plugins
+## 7.2. Configuration
+### 7.2.1. Instalation des plugins
 ![Alt text](../capture/RPI/Node-Red/palette1.png)
 ![Alt text](../capture/RPI/Node-Red/palette2.png)
 ![Alt text](../capture/RPI/Node-Red/palette3.png)
 ![Alt text](../capture/RPI/Node-Red/palette4.png)
 ![Alt text](../capture/RPI/Node-Red/Dashboard.png)
-### Sécurisation de Node-Red
-# 9. Gatling
+### 7.2.2. Sécurisation de Node-Red
+La sécurisation de Node-Red se fait en modifiant le fichier settings.js, ou dans note cas en utilisant la commande `node-red admin init`qui permet par exemple de créer les couple Utilisateur mot de passe.
+
+Suite à celà il faudra également si celà s'avère utile ajouter un login au Dashboard.
+### Suivi Git
+Pour suivre le projet sur git, il faut configurer un utiiisateur les clé SSH puis faire un clone du projet.
+![Alt text](../capture/RPI/Node-Red/Git_Config.png)
+![Alt text](../capture/RPI/Node-Red/GIT_Open.png)
+![Alt text](../capture/RPI/Node-Red/GIT_Setting.png)
+
+Comme c'est un clone il faut ajouter un fichier qui manque et modifier les droits d'accès.
+```bash
+tobby@Nidus:~/.node-red/projects/banc-de-mesures-de-la-consommation-electrique $ touch ~/.node-red/projects/banc-de-mesures-de-la-consommation-electrique/flows_cred.json
+tobby@Nidus:~/.node-red/projects/banc-de-mesures-de-la-consommation-electrique $ chmod 600 ~/.node-red/projects/banc-de-mesures-de-la-consommation-electrique/flows_cred.json
+
+```
+# 8. Gatling
 Gatling est un outil de test de charge open source basé sur Scala, conçu pour tester les performances des applications et des sites Web. Gatling simule des utilisateurs virtuels qui envoient des requêtes HTTP vers le système cible. Il enregistre les temps de réponse des requêtes et les présente sous forme de graphiques. Gatling est livré avec un éditeur de scénario basé sur un navigateur qui permet aux utilisateurs de créer des scénarios de test de charge en utilisant un langage de domaine spécifique (DSL) appelé Gatling DSL. Gatling DSL est un langage de programmation basé sur Scala qui permet aux utilisateurs de définir des scénarios de test de charge en utilisant des mots-clés tels que exec, pause, feed, etc.
 
 La dernière version de Gatling est la version 3.9.5 qui est compatible avec Java 8 et Java 11. Dans ce projet, nous utiliserons Java 11 pour exécuter Gatling.
 
-## 9.1. Instalation
-### Prerequis
+## 8.1. Instalation
+### 8.1.1. Prerequis
 ```bash
 tobby@Nidus:~ $ sudo apt install default-jdk
 tobby@Nidus:~/.node-red $ java -version
@@ -295,7 +244,7 @@ tobby@Nidus:~/.node-red $
 
 
 ```
-### Download
+### 8.1.2. Download
 
 ```bash
 tobby@Nidus:~ $ mkdir .gatling
@@ -341,160 +290,9 @@ Sauvegarde en : « /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5
 
 tobby@Nidus:~ $ unzip ~/.gatling/gatling-charts-highcharts-bundle-3.9.5-bundle.zip -d ~/.gatling/
 Archive:  /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5-bundle.zip
-   creating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/
-   creating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/conf/
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/conf/recorder.conf  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/conf/logback.xml  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/conf/gatling.conf  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/conf/gatling-akka.conf  
-   creating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-transport-classes-epoll-4.1.92.Final.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-handler-4.1.92.Final.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-charts-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-tcnative-boringssl-static-2.0.61.Final-windows-x86_64.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/native-osx-x86_64-1.11.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/native-windows-x86_64-1.11.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/javax.jms-api-2.0.1.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/jackson-annotations-2.15.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/zinc-persist_2.13-1.8.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/akka-slf4j_2.13-2.6.20.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/config-1.4.2.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/zinc-core_2.13-1.8.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/service-1.11.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/unbescape-1.1.6.RELEASE.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-tcnative-boringssl-static-2.0.61.Final-osx-x86_64.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/commons-pool2-2.8.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/Saxon-HE-10.6.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/zinc-classfile_2.13-1.8.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-scanner-1.1.3-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/java-diff-utils-4.12.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-recorder-bc-shaded-1.73.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/logback-core-1.2.12.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/zinc-classpath_2.13-1.8.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-mqtt-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/util-control_2.13-1.8.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-resolver-dns-classes-macos-4.1.92.Final.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/file-tree-views-2.1.9.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/scala-logging_2.13-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/pebble-3.2.1.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-asm-shaded-9.5-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/HdrHistogram-2.1.12.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/scala-library-2.13.10.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/zinc_2.13-1.8.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-commons-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/caffeine-2.9.3.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/io_2.13-1.8.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-jdbc-java-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/zinc-apiinfo_2.13-1.8.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-http-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/util-relation_2.13-1.8.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/collections_2.13-1.8.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-jsonpath-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/jodd-util-6.1.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/scala-parallel-collections_2.13-0.2.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/logback-classic-1.2.12.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-core-java-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/error_prone_annotations-2.10.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-incubator-transport-native-io_uring-0.0.21.Final-linux-x86_64.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/boopickle_2.13-1.3.3.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-tcnative-boringssl-static-2.0.61.Final-linux-x86_64.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-graphite-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-codec-http-4.1.92.Final.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-jms-java-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/jackson-core-2.15.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-codec-http2-4.1.92.Final.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-jms-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/util-interface-1.8.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/util-logging_2.13-1.8.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-charts-highcharts-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/native-linux-x86_64-1.11.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/lightning-csv-8.2.3.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-handler-proxy-4.1.92.Final.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/scala-swing_2.13-3.0.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-incubator-transport-native-io_uring-0.0.21.Final-linux-aarch_64.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/scala-reflect-2.13.10.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/jmespath-core-0.5.1.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-http-client-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-redis-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-common-4.1.92.Final.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-transport-native-epoll-4.1.92.Final-linux-aarch_64.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-bundle-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-jdbc-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/fast-uuid-0.2.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-jdk-util-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/redisclient_2.13-3.42.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-buffer-4.1.92.Final.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/jodd-lagarto-6.0.6.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/scala-parser-combinators_2.13-2.3.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-recorder-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/slf4j-api-1.7.36.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-tcnative-boringssl-static-2.0.61.Final-linux-aarch_64.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-enterprise-plugin-commons-1.5.3.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/compiler-bridge_2.13-1.8.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/jna-platform-5.12.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-mqtt-java-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-compiler-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/util-position_2.13-1.8.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-http-java-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-resolver-dns-native-macos-4.1.92.Final-osx-aarch_64.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/jsr305-3.0.2.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-resolver-4.1.92.Final.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-codec-mqtt-4.1.92.Final.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/scopt_2.13-3.7.1.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-commons-shared-unstable-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-app-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/jackson-databind-2.15.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-commons-shared-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/sfm-util-8.2.3.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-codec-4.1.92.Final.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/quicklens_2.13-1.9.3.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/spire-macros_2.13-0.17.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/native-osx-aarch64-1.11.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/akka-actor_2.13-2.6.20.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-transport-native-epoll-4.1.92.Final-linux-x86_64.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-transport-native-unix-common-4.1.92.Final.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-redis-java-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/jline-terminal-3.19.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/scala-java8-compat_2.13-1.0.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/zinc-compile-core_2.13-1.8.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-tcnative-boringssl-static-2.0.61.Final-osx-aarch_64.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-codec-socks-4.1.92.Final.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/zero-allocation-hashing-0.10.1.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/core-macros_2.13-1.8.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/jna-5.12.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/typetools-0.6.3.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/jmespath-jackson-0.5.1.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-resolver-dns-4.1.92.Final.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/scala-compiler-2.13.10.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-transport-4.1.92.Final.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/checker-qual-3.19.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-incubator-transport-classes-io_uring-0.0.21.Final.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-tcnative-boringssl-static-2.0.61.Final.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/t-digest-3.1.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/brotli4j-1.11.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-codec-dns-4.1.92.Final.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-netty-util-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-tcnative-classes-2.0.61.Final.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/netty-resolver-dns-native-macos-4.1.92.Final-osx-x86_64.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/compiler-interface-1.8.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/native-linux-aarch64-1.11.0.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/gatling-core-3.9.5.jar  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/lib/zinc-persist-core-assembly-1.8.0.jar  
-   creating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/recorder.bat  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.bat  
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/recorder.sh  
-   creating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/user-files/
-   creating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/user-files/lib/
- extracting: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/user-files/lib/.keep  
-   creating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/user-files/simulations/
-   creating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/user-files/simulations/computerdatabase/
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/user-files/simulations/computerdatabase/ComputerDatabaseSimulation.java  
-   creating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/user-files/resources/
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/user-files/resources/search.csv  
-   creating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/results/
- extracting: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/results/.keep  
+
+[...]
+
   inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/LICENSE  
 tobby@Nidus:~ $ cd .gatling/
 tobby@Nidus:~/.gatling $ ls -la
@@ -515,7 +313,7 @@ drwxr-xr-x 2 tobby tobby 12288 10 mai 11:19 lib
 drwxr-xr-x 2 tobby tobby  4096 10 mai 11:19 results
 drwxr-xr-x 5 tobby tobby  4096 10 mai 11:19 user-files
 ```
-## Vérification de l'installation
+## 8.2. Vérification de l'installation
 ```
 tobby@Nidus:~/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin $ ./gatling.sh
 GATLING_HOME is set to /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5
@@ -658,24 +456,63 @@ Generating reports...
 Reports generated in 0s.
 Please open the following file: file:///home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/results/computerdatabasesimulation-20230816142907884/index.html
 ```
-## 9.2. Configuration
-# Apache et Site Web
-## 1. Installation
+## 8.3. Configuration
+# 9. Apache et Site Web
+## 9.1. Installation
 ```bash
 sudo apt install apache2
 sudo systemctl status apache2
 sudo systemctl enable apache2
 ```
-## Mise en place d'un site Web
+## 9.2. Mise en place d'un site Web
 J'ai créee un site web très simple reprenant le readme du projet. Et il comporte trois pages ainsi que du CSS.
 ```bash
 scp -r /home/toblerc/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique/siteWeb/www/html tobby@Volt:/var/www/html/
 ```
-# 10. Sources
-Node-Red [Install](https://nodered.org/docs/getting-started/raspberrypi)
-Sécurisation de [Node-Red](https://nodered.org/docs/user-guide/runtime/securing-node-red)
+# 10. INA219
+Dans notre cas, il y a deux puce INA219, une en remplacement en cas de problème et l'autre pour la mesure de la consommation.
+Pour les diférencier, j'ai souder l'adresse I2C de la puce de mesure sur 0x40 et celle de la puce de rwemplacement sur 0x41.
+Sur le photos, la puce branchée en E1 à E6 est celle de mesure et celle branchée en E25 à E30 est celle de remplacement.
+## 10.1. Instalation physique
+### 10.1.1. Branchement SANS VOLT
+### 10.1.2. Branchement AVEC VOLT
+## Vérification de la présence du INA219
+```bash
+tobby@Nidus:~ $ sudo i2cdetect -y 1
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:                         -- -- -- -- -- -- -- -- 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+40: 40 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+70: -- -- -- -- -- -- -- --         
 
-Télèchargement [Gatling](https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/3.9.5/gatling-charts-highcharts-bundle-3.9.5-bundle.zip)
-Tuto Avancé [Gatling](https://gatling.io/docs/gatling/tutorials/advanced/)
-Tuto [Gatling](https://gatling.io/docs/gatling/tutorials/quickstart/)
->>>>>>> 31f30534c6093c2b4535723f0f2ca088342c322f
+tobby@Nidus:~ $ sudo i2cdetect -y 1
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:                         -- -- -- -- -- -- -- -- 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+40: -- 41 -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+70: -- -- -- -- -- -- -- --    
+```
+
+# 11. Sources
+- Node-Red [Install](https://nodered.org/docs/getting-started/raspberrypi)
+- Sécurisation de [Node-Red](https://nodered.org/docs/user-guide/runtime/securing-node-red)
+- [Rototron Tutoriel suivi de base](https://www.rototron.info/raspberry-pi-ina219-tutorial/)
+- [Documentation technique de l'INA219](https://www.ti.com/lit/ds/symlink/ina219.pdf)
+- [Travail de M. Lamber](https://www.researchgate.net/publication/350387196_Power_Consumption_Profiling_of_a_Lightweight_Development_Board_Sensing_with_the_INA219_and_Teensy_40_Microcontroller)
+- [Travail de M. Pol J. Planas Pulido](https://upcommons.upc.edu/bitstream/handle/2117/180533/tfg-report-pol-planas.pdf?sequence=1&isAllowed=y)
+- [Librairie python utilisée pour les tests](https://pypi.org/project/pi-ina219/)
+- [Forum problème de detection I2C](https://forums.raspberrypi.com/viewtopic.php?t=272351#p1652031)
+- [Tutoriel sur la mise en place des INA219](https://binaryfury.wann.net/2014/04/solarbatteryload-power-logging-with-raspberry-pi-and-ina219/) 
+- [Tutoriel sur la mise en place d'un logger de consomation](https://www.hackster.io/Sparky/diy-power-logger-using-i2c-python-9a39e0)
+- [Tutoriel complet avec un arduino utilisée](https://electropeak.com/learn/interfacing-ina219-current-sensor-module-with-arduino/)
+- Télèchargement [Gatling](https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/3.9.5/gatling-charts-highcharts-bundle-3.9.5-bundle.zip)
+- Tuto Avancé [Gatling](https://gatling.io/docs/gatling/tutorials/advanced/)
+- Tuto [Gatling](https://gatling.io/docs/gatling/tutorials/quickstart/)
