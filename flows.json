@@ -198,7 +198,7 @@
         "type": "function",
         "z": "76efdb70933209ac",
         "name": "function 1",
-        "func": "\nreturn msg;",
+        "func": "// Récupérer les valeurs de courant (mA) et de tension (V) depuis les propriétés msg.payload\nvar current_mA = msg.payload.miliamps;\nvar voltage_V = msg.payload.voltage;\n\n// Calculer la puissance en watts (W)\nvar power_W = (current_mA / 1000) * voltage_V;  // Convertir le courant en ampères\n\n// Créer un nouvel objet msg avec la puissance en watts comme payload\nmsg.payload = power_W;\n\n// Renvoyer le message modifié\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -207,7 +207,9 @@
         "x": 420,
         "y": 460,
         "wires": [
-            []
+            [
+                "c2f42c42be3ffdd2"
+            ]
         ]
     },
     {
@@ -244,7 +246,7 @@
         "type": "debug",
         "z": "76efdb70933209ac",
         "name": "debug 1",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -254,6 +256,27 @@
         "statusType": "auto",
         "x": 380,
         "y": 180,
+        "wires": []
+    },
+    {
+        "id": "c2f42c42be3ffdd2",
+        "type": "ui_text",
+        "z": "76efdb70933209ac",
+        "group": "bddfc83fd54ae92b",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Watt",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 550,
+        "y": 460,
         "wires": []
     }
 ]
