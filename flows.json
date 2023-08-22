@@ -135,7 +135,7 @@
     {
         "id": "837441be757b92ac",
         "type": "ui_group",
-        "name": "Monitorring",
+        "name": "Monitorring Volt",
         "tab": "e42b4edae71dedd4",
         "order": 2,
         "disp": true,
@@ -169,6 +169,17 @@
         "willMsg": {},
         "userProps": "",
         "sessionExpiry": ""
+    },
+    {
+        "id": "65e942c300ec1ce1",
+        "type": "ui_group",
+        "name": "Monittoring Nidus",
+        "tab": "e42b4edae71dedd4",
+        "order": 3,
+        "disp": true,
+        "width": "20",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "3f2698910c317457",
@@ -592,6 +603,153 @@
         "wires": [
             [
                 "95ac268a855d0a7a"
+            ]
+        ]
+    },
+    {
+        "id": "5e01dde5ab04cf9f",
+        "type": "ui_gauge",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "group": "65e942c300ec1ce1",
+        "order": 4,
+        "width": "10",
+        "height": "8",
+        "gtype": "gage",
+        "title": "CPU",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 650,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "2f77fbb6f1c9c8b2",
+        "type": "ui_gauge",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "group": "65e942c300ec1ce1",
+        "order": 4,
+        "width": "10",
+        "height": "8",
+        "gtype": "gage",
+        "title": "RAM",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 650,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "78164e0fc6561bb0",
+        "type": "ui_gauge",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "group": "65e942c300ec1ce1",
+        "order": 4,
+        "width": "10",
+        "height": "8",
+        "gtype": "gage",
+        "title": "Processus",
+        "label": "",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "500",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 670,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "d36d783723cacbde",
+        "type": "mqtt in",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "topic": "nidus/benchmark/cpu",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "12e50ad63920a21c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 360,
+        "y": 1080,
+        "wires": [
+            [
+                "5e01dde5ab04cf9f"
+            ]
+        ]
+    },
+    {
+        "id": "4d9488b6e1088231",
+        "type": "mqtt in",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "topic": "nidus/benchmark/ram",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "12e50ad63920a21c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 360,
+        "y": 1140,
+        "wires": [
+            [
+                "2f77fbb6f1c9c8b2"
+            ]
+        ]
+    },
+    {
+        "id": "cfd7ef673c828f97",
+        "type": "mqtt in",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "topic": "nidus/benchmark/processes",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "12e50ad63920a21c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 380,
+        "y": 1200,
+        "wires": [
+            [
+                "78164e0fc6561bb0"
             ]
         ]
     }
