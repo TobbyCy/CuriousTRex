@@ -440,7 +440,7 @@
         "id": "ea9c250527414c8b",
         "type": "exec",
         "z": "76efdb70933209ac",
-        "command": "ssh tobby@157.26.228.141 \"free | awk '/Mem/{printf(\"%.2f%\\n\", $3/$2*100)}'\"",
+        "command": "ssh tobby@157.26.228.141 \"free | awk '/Mem/{printf(\"%.2f\\n\", $3/$2*100)}'\"",
         "addpay": "",
         "append": "",
         "useSpawn": "false",
