@@ -17,7 +17,7 @@
   - [7.2. Configuration](#72-configuration)
     - [7.2.1. Instalation des plugins](#721-instalation-des-plugins)
     - [7.2.2. Sécurisation de Node-Red](#722-sécurisation-de-node-red)
-    - [Suivi Git](#suivi-git)
+    - [7.2.3. Suivi Git](#723-suivi-git)
 - [8. Gatling](#8-gatling)
   - [8.1. Instalation](#81-instalation)
     - [8.1.1. Prerequis](#811-prerequis)
@@ -31,7 +31,9 @@
   - [10.1. Instalation physique](#101-instalation-physique)
     - [10.1.1. Branchement SANS VOLT](#1011-branchement-sans-volt)
     - [10.1.2. Branchement AVEC VOLT](#1012-branchement-avec-volt)
-  - [Vérification de la présence du INA219](#vérification-de-la-présence-du-ina219)
+  - [10.2. Vérification de la présence du INA219](#102-vérification-de-la-présence-du-ina219)
+  - [10.3. Obtention des données](#103-obtention-des-données)
+    - [10.3.1. Test avec le script python A vide](#1031-test-avec-le-script-python-a-vide)
 - [11. Sources](#11-sources)
 
 # 3. Introduction
@@ -215,7 +217,7 @@ Created symlink /etc/systemd/system/multi-user.target.wants/nodered.service → 
 La sécurisation de Node-Red se fait en modifiant le fichier settings.js, ou dans note cas en utilisant la commande `node-red admin init`qui permet par exemple de créer les couple Utilisateur mot de passe.
 
 Suite à celà il faudra également si celà s'avère utile ajouter un login au Dashboard.
-### Suivi Git
+### 7.2.3. Suivi Git
 Pour suivre le projet sur git, il faut configurer un utiiisateur les clé SSH puis faire un clone du projet.
 ![Alt text](../capture/RPI/Node-Red/Git_Config.png)
 ![Alt text](../capture/RPI/Node-Red/GIT_Open.png)
@@ -477,7 +479,7 @@ Sur le photos, la puce branchée en E1 à E6 est celle de mesure et celle branch
 ### 10.1.1. Branchement SANS VOLT
 ![Alt text](../capture/RPI/INA219/Sans_Volt.jpg)
 ### 10.1.2. Branchement AVEC VOLT
-## Vérification de la présence du INA219
+## 10.2. Vérification de la présence du INA219
 ```bash
 tobby@Nidus:~ $ sudo i2cdetect -y 1
      0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
@@ -501,6 +503,84 @@ tobby@Nidus:~ $ sudo i2cdetect -y 1
 60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 70: -- -- -- -- -- -- -- --    
 ```
+## 10.3. Obtention des données
+### 10.3.1. Test avec le script python A vide 
+Instalation de la bibliothèque python
+```bash
+tobby@Nidus:~ $ sudo pip3 install pi-ina219
+Looking in indexes: https://pypi.org/simple, https://www.piwheels.org/simple
+Collecting pi-ina219
+  Downloading pi_ina219-1.4.1-py2.py3-none-any.whl (10 kB)
+Collecting Adafruit-GPIO
+  Downloading https://www.piwheels.org/simple/adafruit-gpio/Adafruit_GPIO-1.0.3-py3-none-any.whl (38 kB)
+Collecting mock
+  Downloading https://www.piwheels.org/simple/mock/mock-5.1.0-py3-none-any.whl (30 kB)
+Collecting adafruit-pureio
+  Downloading https://www.piwheels.org/simple/adafruit-pureio/Adafruit_PureIO-1.1.11-py3-none-any.whl (10 kB)
+Requirement already satisfied: spidev in /usr/lib/python3/dist-packages (from Adafruit-GPIO->pi-ina219) (3.5)
+Installing collected packages: adafruit-pureio, mock, Adafruit-GPIO, pi-ina219
+Successfully installed Adafruit-GPIO-1.0.3 adafruit-pureio-1.1.11 mock-5.1.0 pi-ina219-1.4.1
+```
+Vérification de la présence de l'INA219
+```
+tobby@Nidus:~ $ i2cdetect -y 1
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:                         -- -- -- -- -- -- -- -- 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+40: 40 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+70: -- -- -- -- -- -- -- --      
+``` 
+Création du script python
+```bash
+tobby@Nidus:~/Documents $ mkdir py
+tobby@Nidus:~/Documents $ cd py
+tobby@Nidus:~/Documents/py $ touch my_ina219.py
+tobby@Nidus:~/Documents/py $ ls -la
+total 8
+drwxr-xr-x 2 tobby tobby 4096 22 aoû 10:19 .
+drwxr-xr-x 3 tobby tobby 4096 22 aoû 10:18 ..
+-rw-r--r-- 1 tobby tobby    0 22 aoû 10:19 my_ina219.py
+tobby@Nidus:~/Documents/py $ sudo vi ./my_ina219.py
+``` 
+```python
+#!/usr/bin/env python
+from ina219 import INA219
+from ina219 import DeviceRangeError
+
+SHUNT_OHMS = 0.1
+
+
+def read():
+    ina = INA219(SHUNT_OHMS)
+    ina.configure()
+
+    print("Bus Voltage: %.3f V" % ina.voltage())
+    try:
+        print("Bus Current: %.3f mA" % ina.current())
+        print("Power: %.3f mW" % ina.power())
+        print("Shunt voltage: %.3f mV" % ina.shunt_voltage())
+    except DeviceRangeError as e:
+        # Current out of device range with specified shunt resistor
+        print(e)
+
+
+if __name__ == "__main__":
+    read()
+```
+Execution du script
+```bash
+tobby@Nidus:~/Documents/py $ python ./my_ina219.py 
+Bus Voltage: 0.888 V
+Bus Current: -0.195 mA
+Power: 0.000 mW
+Shunt voltage: -0.010 mV
+```
+
+    
 
 # 11. Sources
 - Node-Red [Install](https://nodered.org/docs/getting-started/raspberrypi)
