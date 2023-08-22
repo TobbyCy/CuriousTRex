@@ -198,7 +198,7 @@
         "type": "function",
         "z": "76efdb70933209ac",
         "name": "function 1",
-        "func": "// Récupérer les valeurs de courant (mA) et de tension (V) depuis les propriétés msg.payload\nvar current_mA = msg.payload.miliamps;\nvar voltage_V = msg.payload.voltage;\n\n// Calculer la puissance en watts (W)\nvar power_W = (current_mA / 1000) * voltage_V;  // Convertir le courant en ampères\n\n// Créer un nouvel objet msg avec la puissance en watts comme payload\nmsg.payload = power_W;\n\n// Renvoyer le message modifié\nreturn msg;\n",
+        "func": "// Récupérer les valeurs de courant (mA) et de tension (V) depuis les propriétés msg.payload\nvar current_mA = msg.payload.miliamps;\nvar voltage_V = msg.payload.voltage;\n\n// Calculer la puissance en watts (W)\nvar power_W = (current_mA / 1000) * voltage_V;  // Convertir le courant en ampères\n\n// Créer un nouvel objet msg avec la puissance en watts comme payload\nmsg.payload = power_W;\nmsg.topic = \"Watt\";\n// Renvoyer le message modifié\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
