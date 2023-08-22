@@ -418,8 +418,8 @@
         "width": "10",
         "height": "10",
         "gtype": "gage",
-        "title": "gauge",
-        "label": "units",
+        "title": "CPU",
+        "label": "%",
         "format": "{{value}}",
         "min": 0,
         "max": "100",
@@ -432,8 +432,8 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 570,
-        "y": 520,
+        "x": 550,
+        "y": 540,
         "wires": []
     },
     {
@@ -490,8 +490,8 @@
         "width": "10",
         "height": "10",
         "gtype": "gage",
-        "title": "gauge",
-        "label": "units",
+        "title": "RAM",
+        "label": "%",
         "format": "{{value}}",
         "min": 0,
         "max": "100",
@@ -504,8 +504,8 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 570,
-        "y": 620,
+        "x": 550,
+        "y": 600,
         "wires": []
     },
     {
@@ -518,11 +518,11 @@
         "width": "10",
         "height": "10",
         "gtype": "gage",
-        "title": "gauge",
-        "label": "units",
+        "title": "Processus",
+        "label": "",
         "format": "{{value}}",
         "min": 0,
-        "max": "100",
+        "max": "500",
         "colors": [
             "#00b500",
             "#e6e600",
@@ -533,7 +533,7 @@
         "diff": false,
         "className": "",
         "x": 570,
-        "y": 680,
+        "y": 660,
         "wires": []
     }
 ]
