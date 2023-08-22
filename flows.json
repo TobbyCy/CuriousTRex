@@ -184,11 +184,76 @@
         "y": 340,
         "wires": [
             [
-                "3f2698910c317457"
+                "3f2698910c317457",
+                "06aa7125c7bfbcd7",
+                "8d5ecb1b013215a8"
             ],
             [
-                "e8334464abeb8df9"
+                "e8334464abeb8df9",
+                "06aa7125c7bfbcd7",
+                "8d5ecb1b013215a8"
             ]
         ]
+    },
+    {
+        "id": "b8288639de4d40ea",
+        "type": "function",
+        "z": "76efdb70933209ac",
+        "name": "function 1",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "06aa7125c7bfbcd7",
+        "type": "join",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 290,
+        "y": 460,
+        "wires": [
+            [
+                "b8288639de4d40ea"
+            ]
+        ]
+    },
+    {
+        "id": "8d5ecb1b013215a8",
+        "type": "debug",
+        "z": "76efdb70933209ac",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 180,
+        "wires": []
     }
 ]
