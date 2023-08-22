@@ -133,6 +133,17 @@
         "customResistor": false
     },
     {
+        "id": "837441be757b92ac",
+        "type": "ui_group",
+        "name": "Monitorring",
+        "tab": "e42b4edae71dedd4",
+        "order": 2,
+        "disp": true,
+        "width": "20",
+        "collapse": false,
+        "className": ""
+    },
+    {
         "id": "3f2698910c317457",
         "type": "ui_text",
         "z": "76efdb70933209ac",
@@ -402,10 +413,10 @@
         "type": "ui_gauge",
         "z": "76efdb70933209ac",
         "name": "",
-        "group": "bddfc83fd54ae92b",
+        "group": "837441be757b92ac",
         "order": 4,
-        "width": 0,
-        "height": 0,
+        "width": "10",
+        "height": "10",
         "gtype": "gage",
         "title": "gauge",
         "label": "units",
@@ -441,39 +452,12 @@
         "y": 620,
         "wires": [
             [
-                "16748f9a31a5fb74"
+                "e4b8fa072df9d2fc",
+                "2bd2581f994f55f5"
             ],
             [],
             []
         ]
-    },
-    {
-        "id": "16748f9a31a5fb74",
-        "type": "ui_gauge",
-        "z": "76efdb70933209ac",
-        "name": "",
-        "group": "bddfc83fd54ae92b",
-        "order": 5,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "gauge",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "100",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "diff": false,
-        "className": "",
-        "x": 570,
-        "y": 600,
-        "wires": []
     },
     {
         "id": "f24ee82d3a72a32e",
@@ -491,27 +475,55 @@
         "y": 680,
         "wires": [
             [
-                "6581bb557340ec17"
+                "95ac268a855d0a7a"
             ],
             [],
             []
         ]
     },
     {
-        "id": "6581bb557340ec17",
+        "id": "e4b8fa072df9d2fc",
         "type": "ui_gauge",
         "z": "76efdb70933209ac",
         "name": "",
-        "group": "bddfc83fd54ae92b",
-        "order": 6,
-        "width": 0,
-        "height": 0,
+        "group": "837441be757b92ac",
+        "order": 4,
+        "width": "10",
+        "height": "10",
         "gtype": "gage",
         "title": "gauge",
         "label": "units",
         "format": "{{value}}",
         "min": 0,
-        "max": "500",
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 570,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "95ac268a855d0a7a",
+        "type": "ui_gauge",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "group": "837441be757b92ac",
+        "order": 4,
+        "width": "10",
+        "height": "10",
+        "gtype": "gage",
+        "title": "gauge",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
         "colors": [
             "#00b500",
             "#e6e600",
@@ -523,6 +535,23 @@
         "className": "",
         "x": 570,
         "y": 680,
+        "wires": []
+    },
+    {
+        "id": "2bd2581f994f55f5",
+        "type": "debug",
+        "z": "76efdb70933209ac",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 580,
         "wires": []
     }
 ]
