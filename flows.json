@@ -348,20 +348,72 @@
         "id": "058d3b10309eae98",
         "type": "exec",
         "z": "76efdb70933209ac",
-        "command": "",
+        "command": "ssh tobby@157.26.228.141 \"top -bn1 | grep 'Cpu(s)' | awk '{print \\$2 + \\$4}'\"",
         "addpay": "",
         "append": "",
         "useSpawn": "false",
         "timer": "",
-        "winHide": false,
+        "winHide": true,
         "oldrc": false,
         "name": "",
-        "x": 310,
+        "x": 530,
         "y": 560,
         "wires": [
-            [],
-            [],
-            []
+            [
+                "827e72eae489f6a3"
+            ],
+            [
+                "827e72eae489f6a3"
+            ],
+            [
+                "827e72eae489f6a3"
+            ]
         ]
+    },
+    {
+        "id": "708d7a8a7ffc0127",
+        "type": "inject",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 560,
+        "wires": [
+            [
+                "058d3b10309eae98"
+            ]
+        ]
+    },
+    {
+        "id": "827e72eae489f6a3",
+        "type": "debug",
+        "z": "76efdb70933209ac",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 560,
+        "wires": []
     }
 ]
