@@ -128,7 +128,7 @@
         "id": "173c4031bd3a25c0",
         "type": "ina-sensor-manager",
         "address": "0x40",
-        "delay": "0.5",
+        "delay": "250",
         "ohms": "0.01",
         "customResistor": false
     },
