@@ -318,7 +318,7 @@
         "dot": false,
         "ymin": "",
         "ymax": "",
-        "removeOlder": 1,
+        "removeOlder": "5",
         "removeOlderPoints": "",
         "removeOlderUnit": "60",
         "cutout": 0,
