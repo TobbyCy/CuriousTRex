@@ -180,7 +180,7 @@
         "z": "76efdb70933209ac",
         "name": "",
         "handle": "173c4031bd3a25c0",
-        "x": 170,
+        "x": 130,
         "y": 340,
         "wires": [
             [
@@ -224,7 +224,7 @@
         "joinerType": "str",
         "accumulate": true,
         "timeout": "",
-        "count": "",
+        "count": "2",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
