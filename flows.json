@@ -1639,6 +1639,7 @@
         "id": "928e60a7.994be",
         "type": "ui_switch",
         "z": "8b4c08f2a705dd79",
+        "d": true,
         "name": "",
         "label": "Hidden",
         "tooltip": "Show hidden files or not",
