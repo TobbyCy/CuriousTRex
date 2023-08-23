@@ -818,12 +818,21 @@
         "type": "inject",
         "z": "8b4c08f2a705dd79",
         "name": "Init",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": true,
         "onceDelay": 0.1,
         "topic": "change",
-        "payload": "/home/pi",
+        "payload": "/home/NodeRed",
         "payloadType": "str",
         "x": 190,
         "y": 160,
@@ -1715,13 +1724,13 @@
         "type": "file",
         "z": "aa36cc7d7fa5cea5",
         "name": "",
-        "filename": "/home/tobby/test.pdf",
+        "filename": "/home/NodeRed/test.pdf",
         "filenameType": "str",
         "appendNewline": true,
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "base64",
-        "x": 700,
+        "x": 710,
         "y": 220,
         "wires": [
             []
