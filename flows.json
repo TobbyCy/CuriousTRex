@@ -200,12 +200,13 @@
     {
         "id": "160e81fb.f1c86e",
         "type": "ui_group",
-        "name": "File Browser",
+        "name": "Fichiers",
         "tab": "b63d1f91.68095",
         "order": 1,
         "disp": true,
         "width": "18",
-        "collapse": false
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "b63d1f91.68095",
