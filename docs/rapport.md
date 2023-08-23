@@ -11,6 +11,7 @@
   - [6.1. Ubuntu](#61-ubuntu)
   - [6.2. Raspbian](#62-raspbian)
   - [6.3. Première instalation](#63-première-instalation)
+  - [Seconde instalation Ubuntu Server](#seconde-instalation-ubuntu-server)
   - [6.4. Configuration](#64-configuration)
 - [7. Node-RED](#7-node-red)
   - [7.1. Instalation](#71-instalation)
@@ -27,26 +28,26 @@
 - [9. Apache et Site Web](#9-apache-et-site-web)
   - [9.1. Installation](#91-installation)
   - [9.2. Mise en place d'un site Web](#92-mise-en-place-dun-site-web)
-- [MQTT](#mqtt)
-  - [Instalaion de Mosquitto sur Nidus](#instalaion-de-mosquitto-sur-nidus)
-  - [Ouverture des port sur Nidus](#ouverture-des-port-sur-nidus)
-  - [Script MQTT](#script-mqtt)
-  - [10.1. Installation](#101-installation)
-  - [Utilisation du script](#utilisation-du-script)
-    - [Vérification](#vérification)
-- [10. INA219](#10-ina219)
-  - [10.1. Instalation physique](#101-instalation-physique)
-    - [10.1.1. Branchement SANS VOLT](#1011-branchement-sans-volt)
-    - [10.1.2. Branchement AVEC VOLT](#1012-branchement-avec-volt)
-  - [10.2. Vérification de la présence du INA219](#102-vérification-de-la-présence-du-ina219)
-  - [10.3. Obtention des données](#103-obtention-des-données)
-    - [10.3.1. Test avec le script python A vide](#1031-test-avec-le-script-python-a-vide)
-- [Noeud Node-Red](#noeud-node-red)
-  - [Dashboard](#dashboard)
-  - [Fonctions](#fonctions)
-  - [INA219](#ina219)
-  - [Monitoring](#monitoring)
-- [11. Sources](#11-sources)
+- [10. MQTT](#10-mqtt)
+  - [10.1. Instalaion de Mosquitto sur Nidus](#101-instalaion-de-mosquitto-sur-nidus)
+  - [10.2. Ouverture des port sur Nidus](#102-ouverture-des-port-sur-nidus)
+  - [10.3. Script MQTT](#103-script-mqtt)
+  - [10.4. Installation](#104-installation)
+  - [10.5. Utilisation du script](#105-utilisation-du-script)
+    - [10.5.1. Vérification](#1051-vérification)
+- [11. INA219](#11-ina219)
+  - [11.1. Instalation physique](#111-instalation-physique)
+    - [11.1.1. Branchement SANS VOLT](#1111-branchement-sans-volt)
+    - [11.1.2. Branchement AVEC VOLT](#1112-branchement-avec-volt)
+  - [11.2. Vérification de la présence du INA219](#112-vérification-de-la-présence-du-ina219)
+  - [11.3. Obtention des données](#113-obtention-des-données)
+    - [11.3.1. Test avec le script python A vide](#1131-test-avec-le-script-python-a-vide)
+- [12. Noeud Node-Red](#12-noeud-node-red)
+  - [12.1. Dashboard](#121-dashboard)
+  - [12.2. Fonctions](#122-fonctions)
+  - [12.3. INA219](#123-ina219)
+  - [12.4. Monitoring](#124-monitoring)
+- [13. Sources](#13-sources)
 
 # 3. Introduction
 Le système sera conçu pour simuler des requêtes HTTP réalistes à l'aide de Gatling, mesurer la consommation électrique en utilisant l'INA219 connecté via le bus I2C, et collecter les mesures de performance à l'aide de Node-RED. Les rapports générés fourniront des informations détaillées sur les performances du système testé, y compris le temps de réponse, la consommation d'énergie par requête, l'utilisation du processeur, etc.
@@ -104,7 +105,8 @@ Dans un second temps pour avoir des mesures plus précise nous allons installer 
 Adresse IP de Volt : 157.26.228.130
 Adresse IP de Nidus : 157.26.251.158
 
-
+## Seconde instalation Ubuntu Server
+![Alt text](../capture/RPI/Volt/Imager.png)
 ## 6.4. Configuration
 
 
@@ -485,11 +487,11 @@ J'ai créee un site web très simple reprenant le readme du projet. Et il compor
 ```bash
 scp -r /home/toblerc/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique/siteWeb/www/html tobby@Volt:/var/www/html/
 ```
-# MQTT
+# 10. MQTT
 Dans notre cas ,je souhaite utiliser le MQTT pour envoyer les données de consommation à Node-Red.
 En passant outre le tranfert de requette via le SSH et l'utilisation de clé SSH, le MQTT permet de gagner en performance et en sécurité.
 Niveau performance, le MQTT est plus léger que le SSH de l'ordre de 10 fois plus léger.
-## Instalaion de Mosquitto sur Nidus
+## 10.1. Instalaion de Mosquitto sur Nidus
 ```bash
 tobby@Nidus:~/.ssh $ sudo apt install mosquitto
 Lecture des listes de paquets... Fait
@@ -513,7 +515,7 @@ tobby@Nidus:~/.ssh $ sudo systemctl status mosquitto
 aoû 22 16:01:58 Nidus systemd[1]: Starting Mosquitto MQTT Broker...
 aoû 22 16:01:58 Nidus systemd[1]: Started Mosquitto MQTT Broker.
 ```
-## Ouverture des port sur Nidus
+## 10.2. Ouverture des port sur Nidus
 Modifier le fichier de conf comme suit :
 ```bash
 tobby@Nidus:~ $ sudo vim /etc/mosquitto/mosquitto.conf
@@ -535,7 +537,7 @@ include_dir /etc/mosquitto/conf.d
 listener 1883
 allow_anonymous true
 ```
-## Script MQTT
+## 10.3. Script MQTT
 J'ai créé un script MQTT qui permet de publier les données de consommation sur le broker MQTT.
 Le script est lancé au démarrage de la machine et tourne en boucle.
 Et verifie si les dépendances sont installées, si ce n'est pas le cas il les installe.
@@ -616,12 +618,12 @@ while true; do
 done
 
 ```
-## 10.1. Installation
+## 10.4. Installation
 ```bash
 toblerc@LPT-UNIX-USB-CT:~/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique$ scp ./mqtt.sh tobby@volt:/usr/local/bin/mqtt.sh
 mqtt.sh                                                                                                                                                                         100% 2526     2.1MB/s   00:00 
 ```
-## Utilisation du script
+## 10.5. Utilisation du script
 ```bash
 tobby@Volt:/usr/local/bin$ sudo ./mqtt.sh
 Installation de mosquitto-clients...
@@ -637,17 +639,19 @@ Activation du service...
 Service activé.
 ```
 
-### Vérification
+### 10.5.1. Vérification
 ![Alt text](../capture/RPI/Node-Red/MQTT.png)
-# 10. INA219
+# 11. INA219
 Dans notre cas, il y a deux puce INA219, une en remplacement en cas de problème et l'autre pour la mesure de la consommation.
 Pour les diférencier, j'ai souder l'adresse I2C de la puce de mesure sur 0x40 et celle de la puce de rwemplacement sur 0x41.
 Sur le photos, la puce branchée en E1 à E6 est celle de mesure et celle branchée en E25 à E30 est celle de remplacement.
-## 10.1. Instalation physique
-### 10.1.1. Branchement SANS VOLT
-![Alt text](../capture/RPI/INA219/Sans_Volt.jpg)
-### 10.1.2. Branchement AVEC VOLT
-## 10.2. Vérification de la présence du INA219
+## 11.1. Instalation physique
+### 11.1.1. Branchement SANS VOLT
+![Alt text](../capture/RPI/INA219/Sans_Volt.jpg){width=40%}
+### 11.1.2. Branchement AVEC VOLT
+![Alt text](../capture/RPI/INA219/Avec_Volt.jpg){width=40%}
+![Alt text](../capture/RPI/INA219/Avec_Volt_Detail.jpg){width=40%}
+## 11.2. Vérification de la présence du INA219
 ```bash
 tobby@Nidus:~ $ sudo i2cdetect -y 1
      0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
@@ -671,8 +675,8 @@ tobby@Nidus:~ $ sudo i2cdetect -y 1
 60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 70: -- -- -- -- -- -- -- --    
 ```
-## 10.3. Obtention des données
-### 10.3.1. Test avec le script python A vide 
+## 11.3. Obtention des données
+### 11.3.1. Test avec le script python A vide 
 Instalation de la bibliothèque python
 ```bash
 tobby@Nidus:~ $ sudo pip3 install pi-ina219
@@ -747,17 +751,17 @@ Bus Current: -0.195 mA
 Power: 0.000 mW
 Shunt voltage: -0.010 mV
 ```
-# Noeud Node-Red
-## Dashboard
+# 12. Noeud Node-Red
+## 12.1. Dashboard
 
-## Fonctions
+## 12.2. Fonctions
 
-## INA219
+## 12.3. INA219
 
-## Monitoring
+## 12.4. Monitoring
     
 
-# 11. Sources
+# 13. Sources
 - Node-Red [Install](https://nodered.org/docs/getting-started/raspberrypi)
 - Sécurisation de [Node-Red](https://nodered.org/docs/user-guide/runtime/securing-node-red)
 - [Rototron Tutoriel suivi de base](https://www.rototron.info/raspberry-pi-ina219-tutorial/)
