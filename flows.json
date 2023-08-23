@@ -10,7 +10,7 @@
     {
         "id": "8b4c08f2a705dd79",
         "type": "tab",
-        "label": "Flow 2",
+        "label": "Téléchargement du fichier",
         "disabled": false,
         "info": "",
         "env": []
@@ -872,6 +872,7 @@
         "id": "eb17c7ee.e61988",
         "type": "ui_dropdown",
         "z": "8b4c08f2a705dd79",
+        "d": true,
         "name": "File Selector",
         "label": "",
         "tooltip": "",
@@ -881,6 +882,7 @@
         "width": "5",
         "height": "1",
         "passthru": false,
+        "multiple": false,
         "options": [
             {
                 "label": "",
@@ -890,6 +892,8 @@
         ],
         "payload": "",
         "topic": "",
+        "topicType": "str",
+        "className": "",
         "x": 990,
         "y": 200,
         "wires": [
@@ -960,6 +964,9 @@
         "func": "for (var i=0; i<msg.payload.length; i++) {\n    msg.payload[i].stat.created = msg.payload[i].stat.created.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.changed = msg.payload[i].stat.changed.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.accessed = msg.payload[i].stat.accessed.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.statusChanged = msg.payload[i].stat.statusChanged.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].fname = msg.payload[i].name.replace(/^.*(\\\\|\\/|\\:)/, '');\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 820,
         "y": 260,
         "wires": [
@@ -972,6 +979,7 @@
         "id": "7b7e0d58.05e244",
         "type": "ui_button",
         "z": "8b4c08f2a705dd79",
+        "d": true,
         "name": "",
         "group": "160e81fb.f1c86e",
         "order": 10,
@@ -982,10 +990,12 @@
         "tooltip": "",
         "color": "",
         "bgcolor": "",
+        "className": "",
         "icon": "delete",
         "payload": "",
         "payloadType": "str",
         "topic": "",
+        "topicType": "str",
         "x": 210,
         "y": 360,
         "wires": [
@@ -1140,6 +1150,7 @@
         "id": "2519dd0d.54d6b2",
         "type": "ui_button",
         "z": "8b4c08f2a705dd79",
+        "d": true,
         "name": "",
         "group": "160e81fb.f1c86e",
         "order": 11,
@@ -1150,10 +1161,12 @@
         "tooltip": "",
         "color": "",
         "bgcolor": "",
+        "className": "",
         "icon": "show_chart",
         "payload": "",
         "payloadType": "str",
         "topic": "",
+        "topicType": "str",
         "x": 170,
         "y": 680,
         "wires": [
@@ -1252,6 +1265,7 @@
         "id": "5022cb53.8adc44",
         "type": "ui_chart",
         "z": "8b4c08f2a705dd79",
+        "d": true,
         "name": "",
         "group": "160e81fb.f1c86e",
         "order": 12,
@@ -1271,6 +1285,7 @@
         "removeOlderUnit": "3600",
         "cutout": 0,
         "useOneColor": false,
+        "useUTC": false,
         "colors": [
             "#1f77b4",
             "#aec7e8",
@@ -1283,6 +1298,8 @@
             "#c5b0d5"
         ],
         "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
         "x": 1080,
         "y": 680,
         "wires": [
@@ -1378,6 +1395,9 @@
         "func": "let folder = context.get(\"folder\");\nif (folder===undefined) {\n    folder=\"/\";\n    context.set(\"folder\", folder);\n}\n\nlet hidden = context.get(\"hidden\");\nif (hidden===undefined) {\n    hidden=false;\n    context.set(\"hidden\", hidden);\n}\n\nif (msg.topic===\"up\") {\n    var the_arr = folder.split('/');\n    the_arr.pop();\n    folder=the_arr.join('/'); \n    context.set(\"folder\", folder);\n}\nif (msg.topic===\"change\") {\n    folder=msg.payload;    \n    context.set(\"folder\", folder);\n}\nif (msg.topic===\"hidden\") {\n    hidden=msg.payload;    \n    context.set(\"hidden\", hidden);\n}\n\nmsg.payload = {\"start\":folder, \"hidden\": hidden};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 380,
         "y": 260,
         "wires": [
@@ -1392,6 +1412,7 @@
         "id": "399ac341.7d43bc",
         "type": "ui_text",
         "z": "8b4c08f2a705dd79",
+        "d": true,
         "group": "160e81fb.f1c86e",
         "order": 4,
         "width": "9",
@@ -1400,6 +1421,11 @@
         "label": "Folder:",
         "format": "{{msg.payload.start}}",
         "layout": "row-left",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
         "x": 580,
         "y": 140,
         "wires": []
@@ -1408,6 +1434,7 @@
         "id": "b40ea1d8.c700a",
         "type": "ui_button",
         "z": "8b4c08f2a705dd79",
+        "d": true,
         "name": "",
         "group": "160e81fb.f1c86e",
         "order": 3,
@@ -1418,10 +1445,12 @@
         "tooltip": "",
         "color": "",
         "bgcolor": "",
+        "className": "",
         "icon": "arrow_upwards",
         "payload": "",
         "payloadType": "str",
         "topic": "up",
+        "topicType": "str",
         "x": 190,
         "y": 280,
         "wires": [
@@ -1434,6 +1463,7 @@
         "id": "80940e39.5035b",
         "type": "ui_button",
         "z": "8b4c08f2a705dd79",
+        "d": true,
         "name": "",
         "group": "160e81fb.f1c86e",
         "order": 8,
@@ -1444,10 +1474,12 @@
         "tooltip": "",
         "color": "",
         "bgcolor": "",
+        "className": "",
         "icon": "folder_open",
         "payload": "",
         "payloadType": "str",
         "topic": "",
+        "topicType": "str",
         "x": 210,
         "y": 480,
         "wires": [
@@ -1476,6 +1508,7 @@
         "id": "58414ec4.c716e",
         "type": "ui_button",
         "z": "8b4c08f2a705dd79",
+        "d": true,
         "name": "",
         "group": "160e81fb.f1c86e",
         "order": 2,
@@ -1486,10 +1519,12 @@
         "tooltip": "",
         "color": "",
         "bgcolor": "",
+        "className": "",
         "icon": "autorenew",
         "payload": "/home/pi",
         "payloadType": "str",
         "topic": "change",
+        "topicType": "str",
         "x": 190,
         "y": 240,
         "wires": [
@@ -1502,6 +1537,7 @@
         "id": "37485c24.212054",
         "type": "ui_dropdown",
         "z": "8b4c08f2a705dd79",
+        "d": true,
         "name": "Folder Selector",
         "label": "",
         "tooltip": "",
@@ -1511,6 +1547,7 @@
         "width": "5",
         "height": "1",
         "passthru": false,
+        "multiple": false,
         "options": [
             {
                 "label": "",
@@ -1520,6 +1557,8 @@
         ],
         "payload": "",
         "topic": "",
+        "topicType": "str",
+        "className": "",
         "x": 1000,
         "y": 300,
         "wires": [
@@ -1608,6 +1647,7 @@
         "passthru": false,
         "decouple": "false",
         "topic": "hidden",
+        "topicType": "str",
         "style": "",
         "onvalue": "true",
         "onvalueType": "bool",
@@ -1617,6 +1657,8 @@
         "offvalueType": "bool",
         "officon": "check_box_outline_blank",
         "offcolor": "#000000",
+        "animate": true,
+        "className": "",
         "x": 180,
         "y": 320,
         "wires": [
@@ -1714,7 +1756,6 @@
         "y": 220,
         "wires": [
             [
-                "e1234e178f032ff7",
                 "904144c3f832e485"
             ]
         ]
@@ -1737,93 +1778,22 @@
         ]
     },
     {
-        "id": "92c48eea6d19c3b1",
-        "type": "pdfmake",
-        "z": "aa36cc7d7fa5cea5",
-        "name": "",
-        "outputType": "base64",
-        "inputProperty": "payload",
-        "options": "{}",
-        "outputProperty": "payload",
-        "x": 440,
-        "y": 260,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "59b2fa9f54fae4de",
-        "type": "ui_button",
-        "z": "aa36cc7d7fa5cea5",
-        "name": "",
-        "group": "65e942c300ec1ce1",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "button",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "{\"content\":[\"First paragraph\",\"Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines\"]}",
-        "payloadType": "json",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 250,
-        "y": 260,
-        "wires": [
-            [
-                "92c48eea6d19c3b1"
-            ]
-        ]
-    },
-    {
-        "id": "7c1a3556f6412001",
-        "type": "downloadfile",
-        "z": "aa36cc7d7fa5cea5",
-        "name": "",
-        "filename": "Result.pdf",
-        "encoding": "base64",
-        "x": 670,
-        "y": 260,
-        "wires": []
-    },
-    {
         "id": "de5c8212fe2b174f",
         "type": "function",
         "z": "aa36cc7d7fa5cea5",
-        "name": "function 1",
+        "name": "Ajoute le chemin du fichier ",
         "func": "var now = new Date();\nvar jour = (\"0\" + now.getDate()).slice(-2);\nvar mois = (\"0\" + (now.getMonth() + 1)).slice(-2);\n\nmsg.filePath = \"/home/NodeRed/\" + jour + mois + \".pdf\";\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 420,
+        "x": 340,
         "y": 160,
         "wires": [
             [
                 "9feebdce6905e6f3"
             ]
         ]
-    },
-    {
-        "id": "e1234e178f032ff7",
-        "type": "debug",
-        "z": "aa36cc7d7fa5cea5",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 620,
-        "y": 140,
-        "wires": []
     }
 ]
