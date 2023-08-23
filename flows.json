@@ -16,6 +16,14 @@
         "env": []
     },
     {
+        "id": "8b4c08f2a705dd79",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "e42b4edae71dedd4",
         "type": "ui_tab",
         "name": "Home",
@@ -188,6 +196,22 @@
         "width": "20",
         "collapse": false,
         "className": ""
+    },
+    {
+        "id": "dfb4a60f.d788f8",
+        "type": "ui_group",
+        "name": "Data Export",
+        "tab": "48418b79.0f5834",
+        "order": 1,
+        "disp": true,
+        "width": "12"
+    },
+    {
+        "id": "48418b79.0f5834",
+        "type": "ui_tab",
+        "name": "Dashboard",
+        "icon": "dashboard",
+        "order": 1
     },
     {
         "id": "3f2698910c317457",
@@ -799,7 +823,7 @@
         "inputProperty": "payload",
         "options": "{}",
         "outputProperty": "payload",
-        "x": 460,
+        "x": 440,
         "y": 220,
         "wires": [
             [
@@ -822,6 +846,207 @@
         "y": 220,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "92c48eea6d19c3b1",
+        "type": "pdfmake",
+        "z": "aa36cc7d7fa5cea5",
+        "name": "",
+        "outputType": "Buffer",
+        "inputProperty": "payload",
+        "options": "{}",
+        "outputProperty": "payload",
+        "x": 440,
+        "y": 260,
+        "wires": [
+            [
+                "8fc8a04254916eb3"
+            ]
+        ]
+    },
+    {
+        "id": "8fc8a04254916eb3",
+        "type": "http response",
+        "z": "aa36cc7d7fa5cea5",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 650,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "59b2fa9f54fae4de",
+        "type": "ui_button",
+        "z": "aa36cc7d7fa5cea5",
+        "name": "",
+        "group": "65e942c300ec1ce1",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "button",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{\"content\":[\"First paragraph\",\"Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines\"]}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 250,
+        "y": 260,
+        "wires": [
+            [
+                "92c48eea6d19c3b1"
+            ]
+        ]
+    },
+    {
+        "id": "f31a598d.9fd2c8",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Set base path",
+        "func": "//restrict to c:\\temp\\\nvar basePath = \"c:\\\\temp\\\\\";\nvar filename = msg.req.params.fn;\n\n\nif(filename.includes(\"..\\\\\")){\n    msg.payload = \"Illegal file path\";\n    msg.statusCode = 405;//not allowed\n    return [null, msg];//fire output 2\n} else if(filename.includes(\"../\")){\n    msg.payload = \"Illegal file path\";\n    msg.statusCode = 405;//not allowed\n    return [null, msg];//fire output 2\n} \n//TODO: add more checks\n\nmsg.filename = basePath + filename;\nreturn [msg, null];//fire output 1\n\n\n",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 480,
+        "y": 260,
+        "wires": [
+            [
+                "34dc99e5.495466"
+            ],
+            [
+                "98261154.3006"
+            ]
+        ]
+    },
+    {
+        "id": "98261154.3006",
+        "type": "http response",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 830,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "34dc99e5.495466",
+        "type": "file in",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "filename": "filename",
+        "filenameType": "msg",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 670,
+        "y": 240,
+        "wires": [
+            [
+                "98261154.3006"
+            ]
+        ]
+    },
+    {
+        "id": "38d65d59.1d8aa2",
+        "type": "catch",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 300,
+        "y": 340,
+        "wires": [
+            [
+                "3b8014a.86ad8ec",
+                "5b18a8e7.fb8da8"
+            ]
+        ]
+    },
+    {
+        "id": "3b8014a.86ad8ec",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Set 404",
+        "func": "msg.payload = msg.error;\nmsg.statusCode = 404;//resource not found\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 340,
+        "wires": [
+            [
+                "98261154.3006"
+            ]
+        ]
+    },
+    {
+        "id": "5b18a8e7.fb8da8",
+        "type": "debug",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 450,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "a8c2985e.d23ad8",
+        "type": "ui_template",
+        "z": "8b4c08f2a705dd79",
+        "group": "dfb4a60f.d788f8",
+        "name": "ui_temlplate - present download links on dashboard",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "format": "<div >\n    <a href=\"/files/log.log\">download log.log</a>\n    <a href=\"/files/log2.log\">download log2.log</a>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 670,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5de7cbb4.fa21a4",
+        "type": "comment",
+        "z": "8b4c08f2a705dd79",
+        "name": "Create http endpoint <nodered>/files/xxx  where xxx is the file name to download",
+        "info": "",
+        "x": 520,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "67ecfa7f.3f0e24",
+        "type": "http in",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "url": "/files/:fn",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 310,
+        "y": 260,
+        "wires": [
+            [
+                "f31a598d.9fd2c8"
+            ]
         ]
     }
 ]
