@@ -815,7 +815,7 @@
         "outputType": "Buffer",
         "inputProperty": "payload",
         "options": "{}",
-        "outputProperty": "payload",
+        "outputProperty": "topic",
         "x": 500,
         "y": 220,
         "wires": [
