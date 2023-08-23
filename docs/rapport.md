@@ -647,7 +647,10 @@ Pour les diférencier, j'ai souder l'adresse I2C de la puce de mesure sur 0x40 e
 Sur le photos, la puce branchée en E1 à E6 est celle de mesure et celle branchée en E25 à E30 est celle de remplacement.
 ## 11.1. Instalation physique
 ### 11.1.1. Branchement SANS VOLT
-![Alt text](../capture/RPI/INA219/Sans_Volt.jpg){width=40%}
+<center>
+![Alt text](../capture/RPI/INA219/Sans_Volt.jpg){width=80%}
+</center>
+
 ### 11.1.2. Branchement AVEC VOLT
 ![Alt text](../capture/RPI/INA219/Avec_Volt.jpg){width=40%}
 
