@@ -1724,13 +1724,13 @@
         "type": "file",
         "z": "aa36cc7d7fa5cea5",
         "name": "",
-        "filename": "/home/NodeRed/test.pdf",
+        "filename": "/home/NodeRed/A.pdf",
         "filenameType": "str",
         "appendNewline": true,
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "base64",
-        "x": 710,
+        "x": 700,
         "y": 220,
         "wires": [
             []
