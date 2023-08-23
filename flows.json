@@ -1084,6 +1084,138 @@
         ]
     },
     {
+        "id": "58d87d4478967523",
+        "type": "ui_button",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "group": "bddfc83fd54ae92b",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "button",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{\"content\":[\"First paragraph\",\"Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines\"]}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 110,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4ef3788f935e6027",
+        "type": "pdfmake",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "outputType": "base64",
+        "inputProperty": "payload",
+        "options": "{}",
+        "outputProperty": "payload",
+        "x": 340,
+        "y": 640,
+        "wires": [
+            [
+                "0479ae659b0e83c9"
+            ]
+        ]
+    },
+    {
+        "id": "0479ae659b0e83c9",
+        "type": "file",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "filename": "filePath",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "base64",
+        "x": 560,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aa7bc1543a451763",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Ajoute le chemin du fichier ",
+        "func": "var now = new Date();\nvar jour = (\"0\" + now.getDate()).slice(-2);\nvar mois = (\"0\" + (now.getMonth() + 1)).slice(-2);\n\nmsg.filePath = \"/home/NodeRed/\" + jour + mois + \".pdf\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 580,
+        "wires": [
+            [
+                "4ef3788f935e6027"
+            ]
+        ]
+    },
+    {
+        "id": "7428a3bfe4a5a24d",
+        "type": "ui_form",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "label": "",
+        "group": "160e81fb.f1c86e",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Nom du FIchier",
+                "value": "nameFile",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "nameFile": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 130,
+        "y": 540,
+        "wires": [
+            [
+                "837b36c483d79b4a"
+            ]
+        ]
+    },
+    {
+        "id": "837b36c483d79b4a",
+        "type": "debug",
+        "z": "8b4c08f2a705dd79",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 520,
+        "wires": []
+    },
+    {
         "id": "9ba0d599c2412587",
         "type": "inject",
         "z": "aa36cc7d7fa5cea5",
@@ -1157,7 +1289,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
+        "x": 500,
         "y": 160,
         "wires": [
             [
