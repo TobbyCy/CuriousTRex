@@ -812,7 +812,7 @@
         "type": "pdfmake",
         "z": "aa36cc7d7fa5cea5",
         "name": "",
-        "outputType": "base64",
+        "outputType": "Buffer",
         "inputProperty": "payload",
         "options": "{}",
         "outputProperty": "payload",
@@ -834,7 +834,7 @@
         "appendNewline": true,
         "createDir": false,
         "overwriteFile": "true",
-        "encoding": "none",
+        "encoding": "base64",
         "x": 740,
         "y": 220,
         "wires": [
