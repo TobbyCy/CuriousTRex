@@ -1084,32 +1084,6 @@
         ]
     },
     {
-        "id": "58d87d4478967523",
-        "type": "ui_button",
-        "z": "8b4c08f2a705dd79",
-        "name": "",
-        "group": "bddfc83fd54ae92b",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "button",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "{\"content\":[\"First paragraph\",\"Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines\"]}",
-        "payloadType": "json",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 110,
-        "y": 460,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "4ef3788f935e6027",
         "type": "pdfmake",
         "z": "8b4c08f2a705dd79",
@@ -1118,8 +1092,8 @@
         "inputProperty": "payload",
         "options": "{}",
         "outputProperty": "payload",
-        "x": 340,
-        "y": 640,
+        "x": 280,
+        "y": 620,
         "wires": [
             [
                 "0479ae659b0e83c9"
@@ -1137,10 +1111,12 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "base64",
-        "x": 560,
-        "y": 640,
+        "x": 100,
+        "y": 660,
         "wires": [
-            []
+            [
+                "a715f7a4.a398a8"
+            ]
         ]
     },
     {
@@ -1191,12 +1167,10 @@
         "topicType": "msg",
         "splitLayout": "",
         "className": "",
-        "x": 130,
-        "y": 540,
+        "x": 390,
+        "y": 520,
         "wires": [
             [
-                "837b36c483d79b4a",
-                "a715f7a4.a398a8",
                 "aa7bc1543a451763"
             ]
         ]
@@ -1214,8 +1188,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 460,
-        "y": 460,
+        "x": 660,
+        "y": 520,
         "wires": []
     },
     {
