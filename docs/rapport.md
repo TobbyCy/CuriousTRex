@@ -653,10 +653,10 @@ Sur le photos, la puce branchée en E1 à E6 est celle de mesure et celle branch
 ![Alt text](../capture/RPI/INA219/Sans_Volt.jpg){width=100%}
 
 ### 11.1.2. Branchement AVEC VOLT
-![Alt text](../capture/RPI/INA219/Avec_Volt.jpg){width=50%}
+![Alt text](../capture/RPI/INA219/Avec_Volt.jpg){width=100%}
 
 
-![Alt text](../capture/RPI/INA219/Avec_Volt_Detail.jpg){width=50%}
+![Alt text](../capture/RPI/INA219/Avec_Volt_Detail.jpg){width=100%}
 ## 11.2. Vérification de la présence du INA219
 ```bash
 tobby@Nidus:~ $ sudo i2cdetect -y 1
@@ -768,17 +768,45 @@ Shunt voltage: -0.010 mV
     
 
 # 13. Sources
-- Node-Red [Install](https://nodered.org/docs/getting-started/raspberrypi)
-- Sécurisation de [Node-Red](https://nodered.org/docs/user-guide/runtime/securing-node-red)
-- [Rototron Tutoriel suivi de base](https://www.rototron.info/raspberry-pi-ina219-tutorial/)
-- [Documentation technique de l'INA219](https://www.ti.com/lit/ds/symlink/ina219.pdf)
-- [Travail de M. Lamber](https://www.researchgate.net/publication/350387196_Power_Consumption_Profiling_of_a_Lightweight_Development_Board_Sensing_with_the_INA219_and_Teensy_40_Microcontroller)
-- [Travail de M. Pol J. Planas Pulido](https://upcommons.upc.edu/bitstream/handle/2117/180533/tfg-report-pol-planas.pdf?sequence=1&isAllowed=y)
-- [Librairie python utilisée pour les tests](https://pypi.org/project/pi-ina219/)
-- [Forum problème de detection I2C](https://forums.raspberrypi.com/viewtopic.php?t=272351#p1652031)
-- [Tutoriel sur la mise en place des INA219](https://binaryfury.wann.net/2014/04/solarbatteryload-power-logging-with-raspberry-pi-and-ina219/) 
-- [Tutoriel sur la mise en place d'un logger de consomation](https://www.hackster.io/Sparky/diy-power-logger-using-i2c-python-9a39e0)
-- [Tutoriel complet avec un arduino utilisée](https://electropeak.com/learn/interfacing-ina219-current-sensor-module-with-arduino/)
-- Télèchargement [Gatling](https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/3.9.5/gatling-charts-highcharts-bundle-3.9.5-bundle.zip)
-- Tuto Avancé [Gatling](https://gatling.io/docs/gatling/tutorials/advanced/)
-- Tuto [Gatling](https://gatling.io/docs/gatling/tutorials/quickstart/)
+
+1. **Guide d'Installation Node-Red**  
+   [Installer Node-Red](https://nodered.org/docs/getting-started/raspberrypi)
+
+2. **Guide de Sécurisation de Node-Red**  
+   [Sécurisation de Node-Red](https://nodered.org/docs/user-guide/runtime/securing-node-red)
+
+3. **Tutoriel de Base Rototron**  
+   [Tutoriel Rototron](https://www.rototron.info/raspberry-pi-ina219-tutorial/)
+
+4. **Documentation Technique de l'INA219**  
+   [Documentation INA219](https://www.ti.com/lit/ds/symlink/ina219.pdf)
+
+5. **Recherche de M. Lamber**  
+   [Profil de Consommation par M. Lamber](https://www.researchgate.net/publication/350387196_Power_Consumption_Profiling_of_a_Lightweight_Development_Board_Sensing_with_the_INA219_and_Teensy_40_Microcontroller)
+
+6. **Recherche de M. Pol J. Planas Pulido**  
+   [Profil de Consommation par M. Pol J. Planas Pulido](https://upcommons.upc.edu/bitstream/handle/2117/180533/tfg-report-pol-planas.pdf?sequence=1&isAllowed=y)
+
+7. **Bibliothèque Python pour l'INA219**  
+   [Bibliothèque pi-ina219](https://pypi.org/project/pi-ina219/)
+
+8. **Forum Problème de Détection I2C**  
+   [Forum Raspberry Pi](https://forums.raspberrypi.com/viewtopic.php?t=272351#p1652031)
+
+9. **Tutoriel Mise en Place INA219**  
+   [Tutoriel INA219](https://binaryfury.wann.net/2014/04/solarbatteryload-power-logging-with-raspberry-pi-and-ina219/)
+
+10. **Tutoriel Création d'un Enregistreur de Consommation**  
+    [Tutoriel Enregistreur de Consommation](https://www.hackster.io/Sparky/diy-power-logger-using-i2c-python-9a39e0)
+
+11. **Tutoriel Complet avec Arduino**  
+    [Tutoriel Complet avec Arduino](https://electropeak.com/learn/interfacing-ina219-current-sensor-module-with-arduino/)
+
+12. **Téléchargement Gatling**  
+    [Téléchargement Gatling](https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/3.9.5/gatling-charts-highcharts-bundle-3.9.5-bundle.zip)
+
+13. **Tutoriel Avancé Gatling**  
+    [Tutoriel Avancé Gatling](https://gatling.io/docs/gatling/tutorials/advanced/)
+
+14. **Tutoriel de Démarrage Rapide Gatling**  
+    [Tutoriel de Démarrage Rapide Gatling](https://gatling.io/docs/gatling/tutorials/quickstart/)
