@@ -797,7 +797,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "[{\"id\":\"60d67f0a.11a40c\",\"type\":\"inject\",\"z\":\"a78406b8.7e7af8\",\"name\":\"\",\"props\":[{\"p\":\"payload\"},{\"p\":\"topic\",\"vt\":\"str\"}],\"repeat\":\"\",\"crontab\":\"\",\"once\":false,\"onceDelay\":0.1,\"topic\":\"\",\"payload\":\"{\\\"content\\\":[{\\\"text\\\":\\\"Hello, World!\\\"}],\\\"defaultStyle\\\":{\\\"fontSize\\\":12}}\",\"payloadType\":\"json\",\"x\":200,\"y\":160,\"wires\":[[\"c39daa0c.6ac16\"]]},{\"id\":\"c39daa0c.6ac16\",\"type\":\"pdfmake\",\"z\":\"a78406b8.7e7af8\",\"name\":\"\",\"x\":390,\"y\":160,\"wires\":[[\"f21ca5e1.26b7a\"]]},{\"id\":\"f21ca5e1.26b7a\",\"type\":\"http response\",\"z\":\"a78406b8.7e7af8\",\"name\":\"\",\"statusCode\":\"\",\"headers\":{},\"x\":600,\"y\":160,\"wires\":[]}]",
+        "payload": "{\"content\":[\"First paragraph\",\"Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines\"]}",
         "payloadType": "json",
         "x": 250,
         "y": 220,
