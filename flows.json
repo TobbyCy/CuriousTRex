@@ -770,7 +770,7 @@
         "y": 320,
         "wires": [
             [
-                "904144c3f832e485"
+                "3d1c283967d4195b"
             ]
         ]
     },
@@ -785,12 +785,10 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 710,
-        "y": 320,
+        "x": 690,
+        "y": 420,
         "wires": [
-            [
-                "3d1c283967d4195b"
-            ]
+            []
         ]
     },
     {
@@ -828,9 +826,9 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 280,
+        "payload": "var dd = { \tcontent: [ \t\t'First paragraph', \t\t'Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines' \t] \t }",
+        "payloadType": "json",
+        "x": 270,
         "y": 320,
         "wires": [
             [
