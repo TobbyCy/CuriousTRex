@@ -826,7 +826,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "var dd = { \tcontent: [ \t\t'First paragraph', \t\t'Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines' \t] \t }",
+        "payload": "{\tcontent: [\t\t'First paragraph',\t\t'Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines'    ]}",
         "payloadType": "json",
         "x": 270,
         "y": 320,
