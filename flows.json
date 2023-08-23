@@ -1149,14 +1149,14 @@
         "type": "function",
         "z": "8b4c08f2a705dd79",
         "name": "Ajoute le chemin du fichier ",
-        "func": "var now = new Date();\nvar jour = (\"0\" + now.getDate()).slice(-2);\nvar mois = (\"0\" + (now.getMonth() + 1)).slice(-2);\n\nmsg.filePath = \"/home/NodeRed/\" + jour + mois + \".pdf\";\n\nreturn msg;",
+        "func": "var now = new Date();\nvar jour = (\"0\" + now.getDate()).slice(-2);\nvar mois = (\"0\" + (now.getMonth() + 1)).slice(-2);\n\n// Récupérer le nom de fichier de msg.payload.nameFile\nvar nameFile = msg.payload.nameFile || \"default\";\n// Remplacer les caractères interdits dans le nom de fichier\nnameFile = nameFile.replace(/[\\\\/:\"*?<>|]+/g, \"_\");\n\nmsg.filePath = \"/home/NodeRed/\" + nameFile + \"_\" + jour + mois + \".pdf\";\n\nmsg.payload = {\n    content: [\n        \"First paragraph\",\n        \"Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines\"\n    ]\n};\n\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 400,
-        "y": 580,
+        "x": 780,
+        "y": 520,
         "wires": [
             [
                 "4ef3788f935e6027"
