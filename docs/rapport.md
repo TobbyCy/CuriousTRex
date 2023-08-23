@@ -11,7 +11,10 @@
   - [6.1. Ubuntu](#61-ubuntu)
   - [6.2. Raspbian](#62-raspbian)
   - [6.3. Première instalation](#63-première-instalation)
-  - [6.4. Configuration](#64-configuration)
+  - [6.4. Seconde instalation Ubuntu Server](#64-seconde-instalation-ubuntu-server)
+    - [6.4.1. Configuration post instalation](#641-configuration-post-instalation)
+    - [6.4.2. Instalation Apache](#642-instalation-apache)
+    - [6.4.3. Script MQTT](#643-script-mqtt)
 - [7. Node-RED](#7-node-red)
   - [7.1. Instalation](#71-instalation)
   - [7.2. Configuration](#72-configuration)
@@ -27,22 +30,34 @@
 - [9. Apache et Site Web](#9-apache-et-site-web)
   - [9.1. Installation](#91-installation)
   - [9.2. Mise en place d'un site Web](#92-mise-en-place-dun-site-web)
-- [10. INA219](#10-ina219)
-  - [10.1. Instalation physique](#101-instalation-physique)
-    - [10.1.1. Branchement SANS VOLT](#1011-branchement-sans-volt)
-    - [10.1.2. Branchement AVEC VOLT](#1012-branchement-avec-volt)
-  - [10.2. Vérification de la présence du INA219](#102-vérification-de-la-présence-du-ina219)
-  - [10.3. Obtention des données](#103-obtention-des-données)
-    - [10.3.1. Test avec le script python A vide](#1031-test-avec-le-script-python-a-vide)
-- [11. Sources](#11-sources)
+- [10. MQTT](#10-mqtt)
+  - [10.1. Instalaion de Mosquitto sur Nidus](#101-instalaion-de-mosquitto-sur-nidus)
+  - [10.2. Ouverture des port sur Nidus](#102-ouverture-des-port-sur-nidus)
+  - [10.3. Script MQTT](#103-script-mqtt)
+  - [10.4. Installation](#104-installation)
+  - [10.5. Utilisation du script](#105-utilisation-du-script)
+    - [10.5.1. Vérification](#1051-vérification)
+- [11. INA219](#11-ina219)
+  - [11.1. Instalation physique](#111-instalation-physique)
+    - [11.1.1. Branchement SANS VOLT](#1111-branchement-sans-volt)
+    - [11.1.2. Branchement AVEC VOLT](#1112-branchement-avec-volt)
+  - [11.2. Vérification de la présence du INA219](#112-vérification-de-la-présence-du-ina219)
+  - [11.3. Obtention des données](#113-obtention-des-données)
+    - [11.3.1. Test avec le script python A vide](#1131-test-avec-le-script-python-a-vide)
+- [12. Noeud Node-Red](#12-noeud-node-red)
+  - [12.1. Dashboard](#121-dashboard)
+  - [12.2. Fonctions](#122-fonctions)
+  - [12.3. INA219](#123-ina219)
+  - [12.4. Monitoring](#124-monitoring)
+- [13. Sources](#13-sources)
 
 # 3. Introduction
 Le système sera conçu pour simuler des requêtes HTTP réalistes à l'aide de Gatling, mesurer la consommation électrique en utilisant l'INA219 connecté via le bus I2C, et collecter les mesures de performance à l'aide de Node-RED. Les rapports générés fourniront des informations détaillées sur les performances du système testé, y compris le temps de réponse, la consommation d'énergie par requête, l'utilisation du processeur, etc.
 # 4. Instalation physique
 ## 4.1. Nidus
-![](../capture/Nidus.jpg)
+![](../capture/Nidus.jpg){width=100%}
 ## 4.2. Volt
-![](../capture/Volt.jpg)
+![](../capture/Volt.jpg){width=100%}
 
 # 5. Shéma de principe
 ```ascii
@@ -92,8 +107,176 @@ Dans un second temps pour avoir des mesures plus précise nous allons installer 
 Adresse IP de Volt : 157.26.228.130
 Adresse IP de Nidus : 157.26.251.158
 
+## 6.4. Seconde instalation Ubuntu Server
+![Alt text](../capture/RPI/Volt/Imager.png){width=100%}
+### 6.4.1. Configuration post instalation
+```bash
+toblerc@LPT-UNIX-USB-CT:~$ ssh tobby@157.26.228.77
+The authenticity of host '157.26.228.77 (157.26.228.77)' can't be established.
+ED25519 key fingerprint is SHA256:/5raLlKqk0A4AnFWnLP9bagNS3zKE9rFPqn5vA5pc+M.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '157.26.228.77' (ED25519) to the list of known hosts.
+tobby@157.26.228.77's password: 
+Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 5.15.0-1034-raspi aarch64)
 
-## 6.4. Configuration
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Wed Aug 23 09:29:06 CEST 2023
+
+  System load:  2.43994140625     Temperature:           39.4 C
+  Usage of /:   4.0% of 58.36GB   Processes:             158
+  Memory usage: 7%                Users logged in:       0
+  Swap usage:   0%                IPv4 address for eth0: 157.26.228.77
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+25 updates can be applied immediately.
+12 of these updates are standard security updates.
+To see these additional updates run: apt list --upgradable
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+Last login: Wed Aug 23 09:29:10 2023
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+tobby@Volt:~$ ls -la
+total 28
+drwxr-x--- 4 tobby tobby 4096 Aug 23 09:30 .
+drwxr-xr-x 3 root  root  4096 Aug  7 17:34 ..
+-rw-r--r-- 1 tobby tobby  220 Jan  6  2022 .bash_logout
+-rw-r--r-- 1 tobby tobby 3771 Jan  6  2022 .bashrc
+drwx------ 2 tobby tobby 4096 Aug 23 09:29 .cache
+-rw-r--r-- 1 tobby tobby  807 Jan  6  2022 .profile
+drwx------ 2 tobby tobby 4096 Aug 23 09:30 .ssh
+tobby@Volt:~$ cd .ssh/
+tobby@Volt:~/.ssh$ ls -la
+total 8
+drwx------ 2 tobby tobby 4096 Aug 23 09:30 .
+drwxr-x--- 4 tobby tobby 4096 Aug 23 09:30 ..
+-rw------- 1 tobby tobby    0 Aug 23 09:30 authorized_keys
+tobby@Volt:~/.ssh$ sudo vi authorized_keys 
+[sudo] password for tobby: 
+tobby@Volt:~/.ssh$ exit
+logout
+Connection to 157.26.228.77 closed.
+toblerc@LPT-UNIX-USB-CT:~$ ssh tobby@157.26.228.77
+Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 5.15.0-1034-raspi aarch64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Wed Aug 23 09:31:44 CEST 2023
+
+  System load:  0.490234375       Temperature:           40.9 C
+  Usage of /:   4.1% of 58.36GB   Processes:             153
+  Memory usage: 6%                Users logged in:       1
+  Swap usage:   0%                IPv4 address for eth0: 157.26.228.77
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+25 updates can be applied immediately.
+12 of these updates are standard security updates.
+To see these additional updates run: apt list --upgradable
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+Last login: Wed Aug 23 09:30:02 2023 from 157.26.215.31
+tobby@Volt:~$ sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo apt autzo-remove -y
+[sudo] password for tobby: 
+[...]
+tobby@Volt:~$ sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo apt auto-remove -y
+Hit:1 http://ports.ubuntu.com/ubuntu-ports jammy InRelease
+Get:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease [119 kB]
+Hit:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease
+Get:4 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease [110 kB]
+Fetched 229 kB in 2s (100 kB/s)    
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+All packages are up to date.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Calculating upgrade... Done
+#
+# You can verify the status of security fixes using the `pro fix` command.
+# E.g., a recent Ruby vulnerability can be checked with: `pro fix USN-6219-1`
+# For more detail see: https://ubuntu.com/security/notices/USN-6219-1
+#
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Calculating upgrade... Done
+#
+# You can verify the status of security fixes using the `pro fix` command.
+# E.g., a recent Ruby vulnerability can be checked with: `pro fix USN-6219-1`
+# For more detail see: https://ubuntu.com/security/notices/USN-6219-1
+#
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+
+```
+### 6.4.2. Instalation Apache
+```bash
+tobby@Volt:~$ sudo apt install apache2
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  apache2-bin apache2-data apache2-utils bzip2 libapr1 li
+[...]
+
+```
+
+```bash
+toblerc@LPT-UNIX-USB-CT:~$ scp -r /home/toblerc/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique/siteWeb/www/html tobby@157.26.228.77://home/tobby
+[...]   
+toblerc@LPT-UNIX-USB-CT:~$ 
+tobby@Volt:~$ sudo cp -r /home/tobby/html /var/www/
+```
+### 6.4.3. Script MQTT
+```bash
+toblerc@LPT-UNIX-USB-CT:~/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique$ scp ./mqtt.sh tobby@157.26.228.77:/home/tobby
+mqtt.sh                                                                                                                                                                         100% 2522     1.7MB/s   00:00    
+toblerc@LPT-UNIX-USB-CT:~/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique$ 
+tobby@Volt:~$ sudo cp ./mqtt.sh /usr/local/bin/
+tobby@Volt:~$ ls -la /usr/local/bin/
+total 12
+drwxr-xr-x  2 root root 4096 Aug 23 10:26 .
+drwxr-xr-x 10 root root 4096 Aug  7 17:23 ..
+-rw-r--r--  1 root root 2522 Aug 23 10:26 mqtt.sh
+```
+```bash
+tobby@Volt:/usr/local/bin$ sudo ./mqtt.sh 
+Installation de mosquitto-clients...
+Hit:1 http://ports.ubuntu.com/ubuntu-ports jammy InRelease
+Get:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease [119 kB]
+Hit:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease
+Get:4 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease [110 kB]
+Fetched 229 kB in 2s (133 kB/s)    
+Reading package lists... Done
+Reading package lists... Done
+Building dependency tree... Done
+[...]
+
+```
+
+
 # 7. Node-RED
 Node-RED est un outil de programmation visuelle open source conçu pour connecter des périphériques, des API et des services en ligne. Il fournit un éditeur de flux basé sur un navigateur qui facilite la connexion de nœuds en utilisant des liens glisser-déposer qui peuvent être exécutés dans un environnement Node.js. Les nœuds peuvent être des fonctions JavaScript ou des modules npm, tels que node-red-contrib-gpio, node-red-contrib-sqlite, node-red-contrib-modbustcp, etc. Node-RED est livré avec un ensemble de nœuds de base prêts à l'emploi, mais il existe maintenant plus de 2000 nœuds de la communauté qui sont disponibles pour une utilisation.
 ## 7.1. Instalation
@@ -205,23 +388,25 @@ tobby@Nidus:~ $ sudo systemctl enable nodered.service
 Created symlink /etc/systemd/system/multi-user.target.wants/nodered.service → /lib/systemd/system/nodered.service.
 
 ```
-![Alt text](../capture/RPI/Node-Red/PostInstall.png)
+![Alt text](../capture/RPI/Node-Red/PostInstall.png){width=100%}
 ## 7.2. Configuration
 ### 7.2.1. Instalation des plugins
-![Alt text](../capture/RPI/Node-Red/palette1.png)
-![Alt text](../capture/RPI/Node-Red/palette2.png)
-![Alt text](../capture/RPI/Node-Red/palette3.png)
-![Alt text](../capture/RPI/Node-Red/palette4.png)
-![Alt text](../capture/RPI/Node-Red/Dashboard.png)
+![Alt text](../capture/RPI/Node-Red/palette1.png){width=33%}
+![Alt text](../capture/RPI/Node-Red/palette2.png){width=33%}
+![Alt text](../capture/RPI/Node-Red/palette3.png){width=33%}
+![Alt text](../capture/RPI/Node-Red/palette4.png){width=100%}
+![Alt text](../capture/RPI/Node-Red/Dashboard.png){width=100%}
 ### 7.2.2. Sécurisation de Node-Red
 La sécurisation de Node-Red se fait en modifiant le fichier settings.js, ou dans note cas en utilisant la commande `node-red admin init`qui permet par exemple de créer les couple Utilisateur mot de passe.
 
 Suite à celà il faudra également si celà s'avère utile ajouter un login au Dashboard.
 ### 7.2.3. Suivi Git
 Pour suivre le projet sur git, il faut configurer un utiiisateur les clé SSH puis faire un clone du projet.
-![Alt text](../capture/RPI/Node-Red/Git_Config.png)
-![Alt text](../capture/RPI/Node-Red/GIT_Open.png)
-![Alt text](../capture/RPI/Node-Red/GIT_Setting.png)
+
+
+![Alt text](../capture/RPI/Node-Red/Git_Config.png){width=30%}
+![Alt text](../capture/RPI/Node-Red/GIT_Open.png){width=30%}
+![Alt text](../capture/RPI/Node-Red/GIT_Setting.png){width=30%}
 
 Comme c'est un clone il faut ajouter un fichier qui manque et modifier les droits d'accès.
 ```bash
@@ -316,7 +501,7 @@ drwxr-xr-x 2 tobby tobby  4096 10 mai 11:19 results
 drwxr-xr-x 5 tobby tobby  4096 10 mai 11:19 user-files
 ```
 ## 8.2. Vérification de l'installation
-```
+```bash
 tobby@Nidus:~/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin $ ./gatling.sh
 GATLING_HOME is set to /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5
 Do you want to run the simulation locally, on Gatling Enterprise, or just package it?
@@ -471,15 +656,175 @@ J'ai créee un site web très simple reprenant le readme du projet. Et il compor
 ```bash
 scp -r /home/toblerc/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique/siteWeb/www/html tobby@Volt:/var/www/html/
 ```
-# 10. INA219
+# 10. MQTT
+Dans notre cas ,je souhaite utiliser le MQTT pour envoyer les données de consommation à Node-Red.
+En passant outre le tranfert de requette via le SSH et l'utilisation de clé SSH, le MQTT permet de gagner en performance et en sécurité.
+Niveau performance, le MQTT est plus léger que le SSH de l'ordre de 10 fois plus léger.
+## 10.1. Instalaion de Mosquitto sur Nidus
+```bash
+tobby@Nidus:~/.ssh $ sudo apt install mosquitto
+Lecture des listes de paquets... Fait
+[...]
+tobby@Nidus:~/.ssh $ sudo systemctl status mosquitto
+● mosquitto.service - Mosquitto MQTT Broker
+     Loaded: loaded (/lib/systemd/system/mosquitto.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2023-08-22 16:01:58 CEST; 7s ago
+       Docs: man:mosquitto.conf(5)
+             man:mosquitto(8)
+    Process: 22571 ExecStartPre=/bin/mkdir -m 740 -p /var/log/mosquitto (code=exited, status=0/SUCCESS)
+    Process: 22572 ExecStartPre=/bin/chown mosquitto /var/log/mosquitto (code=exited, status=0/SUCCESS)
+    Process: 22573 ExecStartPre=/bin/mkdir -m 740 -p /run/mosquitto (code=exited, status=0/SUCCESS)
+    Process: 22574 ExecStartPre=/bin/chown mosquitto /run/mosquitto (code=exited, status=0/SUCCESS)
+   Main PID: 22575 (mosquitto)
+      Tasks: 1 (limit: 3933)
+        CPU: 42ms
+     CGroup: /system.slice/mosquitto.service
+             └─22575 /usr/sbin/mosquitto -c /etc/mosquitto/mosquitto.conf
+
+aoû 22 16:01:58 Nidus systemd[1]: Starting Mosquitto MQTT Broker...
+aoû 22 16:01:58 Nidus systemd[1]: Started Mosquitto MQTT Broker.
+```
+## 10.2. Ouverture des port sur Nidus
+Modifier le fichier de conf comme suit :
+```bash
+tobby@Nidus:~ $ sudo vim /etc/mosquitto/mosquitto.conf
+tobby@Nidus:~ $ sudo cat /etc/mosquitto/mosquitto.conf 
+# Place your local configuration in /etc/mosquitto/conf.d/
+#
+# A full description of the configuration file is at
+# /usr/share/doc/mosquitto/examples/mosquitto.conf.example
+
+pid_file /run/mosquitto/mosquitto.pid
+
+persistence true
+persistence_location /var/lib/mosquitto/
+
+log_dest file /var/log/mosquitto/mosquitto.log
+
+include_dir /etc/mosquitto/conf.d
+
+listener 1883
+allow_anonymous true
+```
+## 10.3. Script MQTT
+J'ai créé un script MQTT qui permet de publier les données de consommation sur le broker MQTT.
+Le script est lancé au démarrage de la machine et tourne en boucle.
+Et verifie si les dépendances sont installées, si ce n'est pas le cas il les installe.
+Et finalement il vérifie si le lien symbolique vers init.d existe, si ce n'est pas le cas il le crée.
+
+```sh
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          mqtt
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Script MQTT de collecte de données
+# Description:       Ce script collecte la charge CPU, la charge RAM
+#                    et le nombre de processus, puis publie ces données
+#                    sur un broker MQTT.
+### END INIT INFO
+
+# Pour ajouter les droits d'exécution : 
+# chmod +x mqtt.sh
+# Pour le copier depuis Nidus vers Volt :
+# scp ./mqtt.sh tobby@volt:/usr/local/bin/mqtt.sh
+# Emplacement du script (doit être dans /usr/local/bin)
+INSTALL_DIR="/usr/local/bin"
+# Nom du script
+SCRIPT_NAME="mqtt.sh"
+# Adresse du broker MQTT
+MQTT_BROKER="nidus"
+# Sujets MQTT pour les différentes données
+MQTT_TOPIC_CPU="benchmark/cpu"
+MQTT_TOPIC_RAM="benchmark/ram"
+MQTT_TOPIC_PROCESSES="benchmark/processes"
+
+# Vérification si le script est dans le bon dossier d'installation
+if [ "$(dirname "$(readlink -f "$0")")" != "$INSTALL_DIR" ]; then
+    echo "Erreur : Le script doit être installé dans $INSTALL_DIR"
+    exit 1
+fi
+
+# Vérification et installation des dépendances (mosquitto-clients)
+if ! command -v mosquitto_pub &> /dev/null; then
+    echo "Installation de mosquitto-clients..."
+    sudo apt-get update
+    sudo apt-get install mosquitto-clients
+    echo "Installation terminée."
+fi
+
+# Vérification si le lien symbolique vers init.d existe
+if [ ! -e "/etc/init.d/$SCRIPT_NAME" ]; then
+    echo "Création du lien symbolique dans /etc/init.d..."
+    sudo ln -s "$INSTALL_DIR/$SCRIPT_NAME" "/etc/init.d/$SCRIPT_NAME"
+    echo "Lien symbolique créé."
+fi
+
+# Vérification et activation du service init.d
+if ! sudo service "$SCRIPT_NAME" status &> /dev/null; then
+    echo "Activation du service..."
+    sudo update-rc.d "$SCRIPT_NAME" defaults
+    echo "Service activé."
+fi
+
+# Boucle principale pour la collecte et la publication des données
+while true; do
+    # Collecte des données
+    CPU_LOAD=$(top -bn1 | grep "Cpu(s)" | awk '{print $2 + $4}')
+    RAM_LOAD=$(free | awk '/Mem/{printf("%.2f\n", $3/$2*100)}')
+    PROCESS_COUNT=$(ps aux | wc -l)
+
+    # Publication des données sur MQTT
+    mosquitto_pub -h $MQTT_BROKER -t $MQTT_TOPIC_CPU -m "$CPU_LOAD"
+    mosquitto_pub -h $MQTT_BROKER -t $MQTT_TOPIC_RAM -m "$RAM_LOAD"
+    mosquitto_pub -h $MQTT_BROKER -t $MQTT_TOPIC_PROCESSES -m "$PROCESS_COUNT"
+
+    echo "Données publiées sur MQTT"
+
+    sleep 1  # Attente d'une seconde
+done
+
+```
+## 10.4. Installation
+```bash
+toblerc@LPT-UNIX-USB-CT:~/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique$ scp ./mqtt.sh tobby@volt:/usr/local/bin/mqtt.sh
+mqtt.sh                                                                                                                                                                         100% 2526     2.1MB/s   00:00 
+```
+## 10.5. Utilisation du script
+```bash
+tobby@Volt:/usr/local/bin$ sudo ./mqtt.sh
+Installation de mosquitto-clients...
+[...]
+Il est nécessaire de prendre 136 ko dans les archives.
+Après cette opération, 568 ko d'espace disque supplémentaires seront utilisés.
+Souhaitez-vous continuer ? [O/n] O
+[...]
+Installation terminée.
+Création du lien symbolique dans /etc/init.d...
+Lien symbolique créé.
+Activation du service...
+Service activé.
+```
+
+### 10.5.1. Vérification
+![Alt text](../capture/RPI/Node-Red/MQTT.png){width=100%}
+# 11. INA219
 Dans notre cas, il y a deux puce INA219, une en remplacement en cas de problème et l'autre pour la mesure de la consommation.
 Pour les diférencier, j'ai souder l'adresse I2C de la puce de mesure sur 0x40 et celle de la puce de rwemplacement sur 0x41.
 Sur le photos, la puce branchée en E1 à E6 est celle de mesure et celle branchée en E25 à E30 est celle de remplacement.
-## 10.1. Instalation physique
-### 10.1.1. Branchement SANS VOLT
-![Alt text](../capture/RPI/INA219/Sans_Volt.jpg)
-### 10.1.2. Branchement AVEC VOLT
-## 10.2. Vérification de la présence du INA219
+## 11.1. Instalation physique
+### 11.1.1. Branchement SANS VOLT
+
+![Alt text](../capture/RPI/INA219/Sans_Volt.jpg){width=100%}
+
+### 11.1.2. Branchement AVEC VOLT
+![Alt text](../capture/RPI/INA219/Avec_Volt.jpg){width=100%}
+
+
+![Alt text](../capture/RPI/INA219/Avec_Volt_Detail.jpg){width=100%}
+## 11.2. Vérification de la présence du INA219
 ```bash
 tobby@Nidus:~ $ sudo i2cdetect -y 1
      0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
@@ -503,8 +848,8 @@ tobby@Nidus:~ $ sudo i2cdetect -y 1
 60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 70: -- -- -- -- -- -- -- --    
 ```
-## 10.3. Obtention des données
-### 10.3.1. Test avec le script python A vide 
+## 11.3. Obtention des données
+### 11.3.1. Test avec le script python A vide 
 Instalation de la bibliothèque python
 ```bash
 tobby@Nidus:~ $ sudo pip3 install pi-ina219
@@ -579,21 +924,56 @@ Bus Current: -0.195 mA
 Power: 0.000 mW
 Shunt voltage: -0.010 mV
 ```
+# 12. Noeud Node-Red
+## 12.1. Dashboard
 
+## 12.2. Fonctions
+
+## 12.3. INA219
+
+## 12.4. Monitoring
     
 
-# 11. Sources
-- Node-Red [Install](https://nodered.org/docs/getting-started/raspberrypi)
-- Sécurisation de [Node-Red](https://nodered.org/docs/user-guide/runtime/securing-node-red)
-- [Rototron Tutoriel suivi de base](https://www.rototron.info/raspberry-pi-ina219-tutorial/)
-- [Documentation technique de l'INA219](https://www.ti.com/lit/ds/symlink/ina219.pdf)
-- [Travail de M. Lamber](https://www.researchgate.net/publication/350387196_Power_Consumption_Profiling_of_a_Lightweight_Development_Board_Sensing_with_the_INA219_and_Teensy_40_Microcontroller)
-- [Travail de M. Pol J. Planas Pulido](https://upcommons.upc.edu/bitstream/handle/2117/180533/tfg-report-pol-planas.pdf?sequence=1&isAllowed=y)
-- [Librairie python utilisée pour les tests](https://pypi.org/project/pi-ina219/)
-- [Forum problème de detection I2C](https://forums.raspberrypi.com/viewtopic.php?t=272351#p1652031)
-- [Tutoriel sur la mise en place des INA219](https://binaryfury.wann.net/2014/04/solarbatteryload-power-logging-with-raspberry-pi-and-ina219/) 
-- [Tutoriel sur la mise en place d'un logger de consomation](https://www.hackster.io/Sparky/diy-power-logger-using-i2c-python-9a39e0)
-- [Tutoriel complet avec un arduino utilisée](https://electropeak.com/learn/interfacing-ina219-current-sensor-module-with-arduino/)
-- Télèchargement [Gatling](https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/3.9.5/gatling-charts-highcharts-bundle-3.9.5-bundle.zip)
-- Tuto Avancé [Gatling](https://gatling.io/docs/gatling/tutorials/advanced/)
-- Tuto [Gatling](https://gatling.io/docs/gatling/tutorials/quickstart/)
+# 13. Sources
+
+1. **Guide d'Installation Node-Red**  
+   [Installer Node-Red](https://nodered.org/docs/getting-started/raspberrypi)
+
+2. **Guide de Sécurisation de Node-Red**  
+   [Sécurisation de Node-Red](https://nodered.org/docs/user-guide/runtime/securing-node-red)
+
+3. **Tutoriel de Base Rototron**  
+   [Tutoriel Rototron](https://www.rototron.info/raspberry-pi-ina219-tutorial/)
+
+4. **Documentation Technique de l'INA219**  
+   [Documentation INA219](https://www.ti.com/lit/ds/symlink/ina219.pdf)
+
+5. **Recherche de M. Lamber**  
+   [Profil de Consommation par M. Lamber](https://www.researchgate.net/publication/350387196_Power_Consumption_Profiling_of_a_Lightweight_Development_Board_Sensing_with_the_INA219_and_Teensy_40_Microcontroller)
+
+6. **Recherche de M. Pol J. Planas Pulido**  
+   [Profil de Consommation par M. Pol J. Planas Pulido](https://upcommons.upc.edu/bitstream/handle/2117/180533/tfg-report-pol-planas.pdf?sequence=1&isAllowed=y)
+
+7. **Bibliothèque Python pour l'INA219**  
+   [Bibliothèque pi-ina219](https://pypi.org/project/pi-ina219/)
+
+8. **Forum Problème de Détection I2C**  
+   [Forum Raspberry Pi](https://forums.raspberrypi.com/viewtopic.php?t=272351#p1652031)
+
+9. **Tutoriel Mise en Place INA219**  
+   [Tutoriel INA219](https://binaryfury.wann.net/2014/04/solarbatteryload-power-logging-with-raspberry-pi-and-ina219/)
+
+10. **Tutoriel Création d'un Enregistreur de Consommation**  
+    [Tutoriel Enregistreur de Consommation](https://www.hackster.io/Sparky/diy-power-logger-using-i2c-python-9a39e0)
+
+11. **Tutoriel Complet avec Arduino**  
+    [Tutoriel Complet avec Arduino](https://electropeak.com/learn/interfacing-ina219-current-sensor-module-with-arduino/)
+
+12. **Téléchargement Gatling**  
+    [Téléchargement Gatling](https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/3.9.5/gatling-charts-highcharts-bundle-3.9.5-bundle.zip)
+
+13. **Tutoriel Avancé Gatling**  
+    [Tutoriel Avancé Gatling](https://gatling.io/docs/gatling/tutorials/advanced/)
+
+14. **Tutoriel de Démarrage Rapide Gatling**  
+    [Tutoriel de Démarrage Rapide Gatling](https://gatling.io/docs/gatling/tutorials/quickstart/)

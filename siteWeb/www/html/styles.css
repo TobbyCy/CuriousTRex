@@ -1,221 +1,256 @@
-
 /* Global Styles */
+
+/* Applique des styles globaux au corps du document */
 body {
-    font: normal 100% hack sans-serif;
-    margin: 1rem auto;
-    background-color: #2b2b2b;
-    color: #e5e5e5;
-    text-align: left;
+    font: normal 100% hack sans-serif; /* Police et taille de police */
+    margin: 1rem auto; /* Marge autour du corps */
+    background-color: #2b2b2b; /* Couleur de fond */
+    color: #e5e5e5; /* Couleur du texte */
+    text-align: left; /* Alignement du texte */
 }
 
+/* Applique des styles à la zone d'article */
 article {
-    background-color: #3c3c3c;
+    background-color: #3c3c3c; /* Couleur de fond de l'article */
 }
 
+/* Applique des styles aux liens */
 a[href] {
-    color: #568255;
-    text-decoration: none;
+    color: #568255; /* Couleur du lien */
+    text-decoration: none; /* Pas de soulignement */
 }
+
+/* Applique des styles au survol des liens */
 a[href]:hover {
-    color: #449944;
-    text-decoration: underline;
+    color: #449944; /* Couleur du lien au survol */
+    text-decoration: underline; /* Soulignement au survol */
 }
+
+/* Applique des styles au corps */
 body {
-    margin-left: 1em;
+    margin-left: 1em; /* Marge à gauche du corps */
 }
 
-
-
+/* Applique des styles à la liste dans la barre de navigation */
 nav ul {
-  list-style: none;
-  display: flex;
-  align-items: center; /* Center the items vertically */
-  padding: 0;
-  margin: 0;
+    list-style: none; /* Pas de puces */
+    display: flex; /* Affiche les éléments en tant que flex container */
+    align-items: center; /* Alignement vertical des éléments */
+    padding: 0;
+    margin: 0;
 }
 
+/* Applique des styles aux éléments de la liste dans la barre de navigation */
 nav li {
-  margin-right: 1rem; /* Add spacing between the navigation items */
+    margin-right: 1rem; /* Espacement entre les éléments de la navigation */
 }
 
+/* Applique des styles aux liens dans la barre de navigation */
 nav a {
-  text-decoration: none;
-  color: #333; /* Change the link color */
-  font-weight: bold;
-  font-size: 2rem; /* Adjust the font size */
-  transition: color 0.3s ease; /* Add a smooth color transition */
+    text-decoration: none; /* Pas de soulignement */
+    color: #333; /* Couleur du lien */
+    font-weight: bold; /* Gras */
+    font-size: 2rem; /* Taille de police */
+    transition: color 0.3s ease; /* Transition de couleur en douceur */
 }
 
+/* Applique des styles au survol des liens dans la barre de navigation */
 nav a:hover {
-  color: #ff6347; /* Change the link color on hover */
+    color: #ff6347; /* Couleur du lien au survol */
 }
-
-
 
 /* Footer Styles */
+
+/* Applique des styles au pied de page */
 footer {
-    position: fixed;
-    left: 95rem;
-    bottom: 0;
-    width: 100%;
+    position: fixed; /* Position fixe en bas de la page */
+    left: 95rem; /* Position de gauche */
+    bottom: 0; /* Position en bas */
+    width: 100%; /* Largeur de 100% */
 }
 
 /* Table Styles */
+
+/* Applique des styles au tableau */
 table {
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 800px;
-    background-color: #1f1f1f;
-    border: 1px solid #3c3c3c;
+    border-collapse: collapse; /* Fusionne les bordures de cellules */
+    width: 100%; /* Largeur de 100% */
+    max-width: 800px; /* Largeur maximale de 800px */
+    background-color: #1f1f1f; /* Couleur de fond du tableau */
+    border: 1px solid #3c3c3c; /* Bordure du tableau */
 }
 
+/* Applique des styles aux en-têtes et aux cellules du tableau */
 th, td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #3c3c3c;
+    padding: 12px; /* Espacement intérieur des cellules */
+    text-align: left; /* Alignement du texte à gauche */
+    border-bottom: 1px solid #3c3c3c; /* Bordure inférieure des cellules */
 }
 
+/* Applique des styles aux en-têtes du tableau */
 th {
-    background-color: #3c3c3c;
-    color: #e5e5e5;
+    background-color: #3c3c3c; /* Couleur de fond de l'en-tête */
+    color: #e5e5e5; /* Couleur du texte de l'en-tête */
 }
 
+/* Applique des styles aux lignes paires du tableau */
 tr:nth-child(even) {
-    background-color: #2b2b2b;
+    background-color: #2b2b2b; /* Couleur de fond des lignes paires */
 }
 
+/* Applique des styles au survol des lignes du tableau */
 tr:hover {
-    background-color: #3c3f41;
+    background-color: #3c3f41; /* Couleur de fond au survol des lignes */
 }
 
 /* Modal Styles */
+
+/* Applique des styles à la fenêtre modale */
 .FenetreModale {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 200;
-    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed; /* Position fixe */
+    left: 0; /* Position de gauche */
+    top: 0; /* Position en haut */
+    width: 100%; /* Largeur de 100% */
+    height: 100%; /* Hauteur de 100% */
+    z-index: 200; /* Indice de profondeur */
+    background-color: rgba(0, 0, 0, 0.5); /* Couleur de fond semi-transparente */
 }
 
+/* Applique des styles à la boîte de dialogue de la fenêtre modale */
 .FenetreModale-dialog {
-    max-width: 60%;
-    max-height: 40%;
-    margin: 5% auto;
-    background-color: #2b2b2b;
-    border: 1px solid #3c3f41;
-    padding: 1%;
-    overflow: auto;
+    max-width: 60%; /* Largeur maximale de 60% */
+    max-height: 40%; /* Hauteur maximale de 40% */
+    margin: 5% auto; /* Marge autour de la boîte de dialogue */
+    background-color: #2b2b2b; /* Couleur de fond de la boîte de dialogue */
+    border: 1px solid #3c3f41; /* Bordure de la boîte de dialogue */
+    padding: 1%; /* Espacement intérieur */
+    overflow: auto; /* Défilement automatique si le contenu dépasse */
 }
 
 /* Form Styles */
+
+/* Applique des styles aux champs requis */
 :required {
-    border-color: #ff6347;
+    border-color: #ff6347; /* Couleur de la bordure en cas de champ requis */
 }
 
+/* Applique des styles au formulaire de recherche */
 .form-recherche {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    display: flex; /* Affiche les éléments en tant que flex container */
+    flex-wrap: wrap; /* Enroule les éléments */
+    align-items: center; /* Alignement vertical des éléments */
 }
 
+/* Applique des styles à la zone de saisie dans le formulaire de recherche */
 .form-recherche input {
-    flex-grow: 2;
-    background-color: #4d4d4d;
-    color: #e5e5e5;
-    border: 1px solid #4d4d4d;
-    margin-top: 0.5rem;
+    flex-grow: 2; /* Permet à l'élément de croître avec flex */
+    background-color: #4d4d4d; /* Couleur de fond de la zone de saisie */
+    color: #e5e5e5; /* Couleur du texte */
+    border: 1px solid #4d4d4d; /* Bordure */
+    margin-top: 0.5rem; /* Marge supérieure */
 }
 
 /* Grid Form Styles */
+
+/* Applique des styles à un formulaire basé sur la grille */
 .grid-form {
-    display: grid;
-    grid-template-columns: [first] 1fr [control] 1fr 1fr 2fr 1fr [end];
-    row-gap: 0.5em;
-    column-gap: 0.5em;
+    display: grid; /* Affiche les éléments en tant que grille */
+    grid-template-columns: [first] 1fr [control] 1fr 1fr 2fr 1fr [end]; /* Colonnes de la grille */
+    row-gap: 0.5em; /* Espacement vertical entre les lignes */
+    column-gap: 0.5em; /* Espacement horizontal entre les colonnes */
 }
 
+/* Applique des styles à la navigation et aux petits éléments dans le formulaire basé sur la grille */
 .grid-form > nav,
 .grid-form > small {
-    grid-column: first / end;
-    grid-row: auto;
+    grid-column: first / end; /* Colonne de début et de fin */
+    grid-row: auto; /* Ligne automatique */
 }
 
+/* Applique des styles aux étiquettes dans le formulaire basé sur la grille */
 .grid-form > label {
-    grid-column: first;
-    grid-row: auto;
+    grid-column: first; /* Colonne de début */
+    grid-row: auto; /* Ligne automatique */
 }
 
+/* Applique des styles aux champs de saisie, aux espaces et aux zones de texte dans le formulaire basé sur la grille */
 .grid-form > input,
 .grid-form > span,
 .grid-form > textarea {
-    grid-column: control / end;
-    grid-row: auto;
-    background-color: #4d4d4d;
-    color: #e5e5e5;
-    border: 1px solid #4d4d4d;
+    grid-column: control / end; /* Colonne de début à la colonne de fin */
+    grid-row: auto; /* Ligne automatique */
+    background-color: #4d4d4d; /* Couleur de fond */
+    color: #e5e5e5; /* Couleur du texte */
+    border: 1px solid #4d4d4d; /* Bordure */
 }
 
+/* Applique des styles aux espaces dans le formulaire basé sur la grille */
 .grid-form span {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    display: flex; /* Affiche les éléments en tant que flex container */
+    flex-wrap: wrap; /* Enroule les éléments */
+    align-items: center; /* Alignement vertical des éléments */
 }
 
+/* Applique des styles aux éléments dans les espaces du formulaire basé sur la grille */
 .grid-form span > * {
-    margin-right: 0.5em;
+    margin-right: 0.5em; /* Marge à droite */
 }
 
+/* Applique des styles aux zones de saisie dans les espaces du formulaire basé sur la grille */
 .grid-form span > input {
-    flex-grow: 1;
+    flex-grow: 1; /* Permet à l'élément de croître avec flex */
 }
 
+/* Applique des styles à la section dans le formulaire basé sur la grille */
 .grid-form > section {
-    grid-column: first / end;
-    grid-row: auto;
-    display: grid;
-    grid-template-columns: subgrid;
-    row-gap: 0.5em;
-    column-gap: 0.5em;
+    grid-column: first / end; /* Colonne de début à la colonne de fin */
+    grid-row: auto; /* Ligne automatique */
+    display: grid; /* Affiche les éléments en tant que grille */
+    grid-template-columns: subgrid; /* Colonnes de la grille */
+    row-gap: 0.5em; /* Espacement vertical entre les lignes */
+    column-gap: 0.5em; /* Espacement horizontal entre les colonnes */
 }
 
+/* Applique des styles à une nouvelle ligne dans la section du formulaire basé sur la grille */
 .grid-form > section > .new_row {
-    grid-column: first;
-    grid-row: auto;
+    grid-column: first; /* Colonne de début */
+    grid-row: auto; /* Ligne automatique */
 }
 
+/* Applique des styles aux titres de la section dans le formulaire basé sur la grille */
 .grid-form > section > h3 {
-    grid-column: first / end;
-    grid-row: auto;
+    grid-column: first / end; /* Colonne de début à la colonne de fin */
+    grid-row: auto; /* Ligne automatique */
 }
 
-/* Other Styles... */
+/* Media Queries... */
 
+/* Applique des styles lorsque la largeur d'affichage est inférieure à 1200px */
 @media (max-width: 1200px) {
-  .grid-form > section {
-    display: grid;
-    grid-template-columns: [first] 1fr 1fr [end];
-  }
+    .grid-form > section {
+        display: grid; /* Affiche les éléments en tant que grille */
+        grid-template-columns: [first] 1fr 1fr [end]; /* Colonnes de la grille */
+    }
 }
 
+/* Applique des styles lorsque la largeur d'affichage est inférieure à 500px */
 @media (max-width: 500px) {
-  .grid-form {
-    display: grid;
-    grid-template-columns: [first control] 1fr [end];
-  }
+    .grid-form {
+        display: grid; /* Affiche les éléments en tant que grille */
+        grid-template-columns: [first control] 1fr [end]; /* Colonnes de la grille */
+    }
 
-  .grid-form > section {
-    grid-template-columns: subgrid;
-  }
+    .grid-form > section {
+        grid-template-columns: subgrid; /* Colonnes de la grille */
+    }
 }
 
+/* Applique des styles pour l'impression */
 @media print {
-  nav,
-  aside,
-  h2 + form,
-  a {
-    display: none;
-  }
+    nav,
+    aside,
+    h2 + form,
+    a {
+        display: none; /* Masque ces éléments à l'impression */
+    }
 }
-
