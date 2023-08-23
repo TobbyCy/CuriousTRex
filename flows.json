@@ -1124,17 +1124,17 @@
         "type": "function",
         "z": "8b4c08f2a705dd79",
         "name": "Ajoute le chemin du fichier ",
-        "func": "var now = new Date();\nvar jour = (\"0\" + now.getDate()).slice(-2);\nvar mois = (\"0\" + (now.getMonth() + 1)).slice(-2);\n\n// Récupérer le nom de fichier de msg.payload.nameFile\nvar nameFile = msg.payload.nameFile || \"default\";\n// Remplacer les caractères interdits dans le nom de fichier\nnameFile = nameFile.replace(/[\\\\/:\"*?<>|]+/g, \"_\");\n\nmsg.filePath = \"/home/NodeRed/\" + nameFile + \"_\" + jour + mois + \".pdf\";\n\nmsg.payload = {\n    content: [\n        \"First paragraph\",\n        \"Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines\"\n    ]\n};\n\n\nreturn msg;",
+        "func": "var now = new Date();\nvar jour = (\"0\" + now.getDate()).slice(-2);\nvar mois = (\"0\" + (now.getMonth() + 1)).slice(-2);\n\n// Récupérer le nom de fichier de msg.payload.nameFile\nvar nameFile = msg.payload.nameFile || \"default\";\n// Remplacer les caractères interdits dans le nom de fichier\nnameFile = nameFile.replace(/[\\\\/:\"*?<>|]+/g, \"_\");\n\nmsg.filePath = \"/home/NodeRed/\" + nameFile + \"_\" + jour + mois + \".pdf\";\n\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 440,
-        "y": 560,
+        "y": 500,
         "wires": [
             [
-                "4ef3788f935e6027"
+                "ce7fc785e5173ede"
             ]
         ]
     },
@@ -1167,8 +1167,8 @@
         "topicType": "msg",
         "splitLayout": "",
         "className": "",
-        "x": 390,
-        "y": 520,
+        "x": 370,
+        "y": 460,
         "wires": [
             [
                 "aa7bc1543a451763"
@@ -1191,6 +1191,25 @@
         "x": 660,
         "y": 520,
         "wires": []
+    },
+    {
+        "id": "ce7fc785e5173ede",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Créer le contenue du fichier",
+        "func": "msg.payload = {\n    header: function (currentPage, pageCount, pageSize) {\n        return [\n            {\n                text: \"Mon nom et prénom\",\n                alignment: \"left\",\n                fontSize: 10\n            },\n            {\n                text: \"Nom du projet : Confuse T-Rex\",\n                alignment: \"center\",\n                fontSize: 10\n            }\n        ];\n    },\n    footer: function (currentPage, pageCount) {\n        return {\n            columns: [\n                {\n                    text: currentPage.toString() + \" / \" + pageCount,\n                    alignment: \"left\",\n                    fontSize: 10\n                },\n                {\n                    text: new Date().toLocaleDateString(\"fr-FR\"),\n                    alignment: \"right\",\n                    fontSize: 10\n                }\n            ]\n        };\n    },\n    content: [\n        \"First paragraph\",\n        \"Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines\"\n    ]\n};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 540,
+        "wires": [
+            [
+                "4ef3788f935e6027"
+            ]
+        ]
     },
     {
         "id": "9ba0d599c2412587",
