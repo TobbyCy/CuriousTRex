@@ -847,7 +847,7 @@
         "options": "{}",
         "outputProperty": "payload",
         "x": 500,
-        "y": 320,
+        "y": 360,
         "wires": [
             [
                 "3d1c283967d4195b",
@@ -865,33 +865,5 @@
         "x": 910,
         "y": 240,
         "wires": []
-    },
-    {
-        "id": "121fb89b234067b0",
-        "type": "ui_button",
-        "z": "aa36cc7d7fa5cea5",
-        "name": "",
-        "group": "65e942c300ec1ce1",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "button",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 250,
-        "y": 320,
-        "wires": [
-            [
-                "9feebdce6905e6f3"
-            ]
-        ]
     }
 ]
