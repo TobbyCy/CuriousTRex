@@ -815,8 +815,8 @@
         "outputType": "base64",
         "inputProperty": "payload",
         "options": "{}",
-        "outputProperty": "topic",
-        "x": 500,
+        "outputProperty": "payload",
+        "x": 400,
         "y": 220,
         "wires": [
             [
