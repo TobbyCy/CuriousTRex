@@ -1356,6 +1356,60 @@
         "wires": []
     },
     {
+        "id": "ca4fb0049128555c",
+        "type": "inject",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "props": [
+            {
+                "p": "cmd",
+                "v": "subscribe",
+                "vt": "str"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "/",
+        "x": 670,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "35da0ba38b62a9f5",
+        "type": "inject",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "props": [
+            {
+                "p": "cmd",
+                "v": "subscribe",
+                "vt": "str"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "benchmark/cpu",
+        "x": 700,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "9ba0d599c2412587",
         "type": "inject",
         "z": "aa36cc7d7fa5cea5",
