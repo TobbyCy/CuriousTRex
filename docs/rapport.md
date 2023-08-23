@@ -650,7 +650,7 @@ Sur le photos, la puce branchée en E1 à E6 est celle de mesure et celle branch
 
 ![Alt text](../capture/RPI/INA219/Sans_Volt.jpg){width=80%}
 
-<p align="center">
+<p align="center" width=80%>
   <img src="../capture/RPI/INA219/Sans_Volt.jpg" />
 </p>
 
