@@ -1261,7 +1261,7 @@
         "id": "5c69c227d997ff0a",
         "type": "mqtt-plus in",
         "z": "8b4c08f2a705dd79",
-        "name": "",
+        "name": "CPU",
         "topic": "/",
         "qos": "2",
         "broker": "ae336b538b957769",
@@ -1317,8 +1317,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "/",
-        "x": 870,
-        "y": 840,
+        "x": 670,
+        "y": 800,
         "wires": [
             [
                 "5c69c227d997ff0a",
@@ -1347,8 +1347,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "benchmark/cpu",
-        "x": 900,
-        "y": 880,
+        "x": 700,
+        "y": 840,
         "wires": [
             [
                 "5c69c227d997ff0a"
