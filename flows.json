@@ -762,23 +762,6 @@
         ]
     },
     {
-        "id": "904144c3f832e485",
-        "type": "file",
-        "z": "aa36cc7d7fa5cea5",
-        "name": "",
-        "filename": "/home/tobby",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "true",
-        "encoding": "none",
-        "x": 910,
-        "y": 180,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "3d1c283967d4195b",
         "type": "debug",
         "z": "aa36cc7d7fa5cea5",
@@ -837,8 +820,7 @@
         "y": 220,
         "wires": [
             [
-                "3d1c283967d4195b",
-                "904144c3f832e485"
+                "3d1c283967d4195b"
             ]
         ]
     }
