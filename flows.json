@@ -2,7 +2,23 @@
     {
         "id": "76efdb70933209ac",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "Monittoring",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8b4c08f2a705dd79",
+        "type": "tab",
+        "label": "Téléchargement du fichier",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "aa36cc7d7fa5cea5",
+        "type": "tab",
+        "label": "PDF",
         "disabled": false,
         "info": "",
         "env": []
@@ -182,6 +198,43 @@
         "className": ""
     },
     {
+        "id": "160e81fb.f1c86e",
+        "type": "ui_group",
+        "name": "Fichiers",
+        "tab": "b63d1f91.68095",
+        "order": 1,
+        "disp": true,
+        "width": "18",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "b63d1f91.68095",
+        "type": "ui_tab",
+        "name": "Files",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "ae336b538b957769",
+        "type": "mqtt-plus-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": ""
+    },
+    {
         "id": "3f2698910c317457",
         "type": "ui_text",
         "z": "76efdb70933209ac",
@@ -246,14 +299,14 @@
         "id": "b8288639de4d40ea",
         "type": "function",
         "z": "76efdb70933209ac",
-        "name": "function 1",
+        "name": "Watt",
         "func": "// Récupérer les valeurs de courant (mA) et de tension (V) depuis les propriétés msg.payload\nvar current_mA = msg.payload.miliamps;\nvar voltage_V = msg.payload.voltage;\n\n// Calculer la puissance en watts (W)\nvar power_W = (current_mA / 1000) * voltage_V;  // Convertir le courant en ampères\n\n// Vérifier si la tension est négative\nif (voltage_V < 0.5) {\n    // Si la tension est négative, ne rien faire et retourner le message inchangé\n    return null;\n}\n\n// Créer un nouvel objet msg avec la puissance en watts comme payload\nmsg.payload = power_W;\nmsg.topic = \"Watt\";\n// Renvoyer le message modifié\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 660,
+        "x": 650,
         "y": 220,
         "wires": [
             [
@@ -266,7 +319,7 @@
         "id": "06aa7125c7bfbcd7",
         "type": "join",
         "z": "76efdb70933209ac",
-        "name": "",
+        "name": "Join_Amp_Volt",
         "mode": "custom",
         "build": "object",
         "property": "payload",
@@ -282,7 +335,7 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 490,
+        "x": 460,
         "y": 220,
         "wires": [
             [
@@ -359,14 +412,14 @@
         "id": "587821a4c81b1185",
         "type": "function",
         "z": "76efdb70933209ac",
-        "name": "function 2",
+        "name": "Drop_Negatif",
         "func": "if(msg.payload < 0){\n    return null;\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 480,
+        "x": 450,
         "y": 360,
         "wires": [
             [
@@ -378,14 +431,14 @@
         "id": "68b1e6e95bce2ef2",
         "type": "function",
         "z": "76efdb70933209ac",
-        "name": "function 3",
+        "name": "Drop_Negatif",
         "func": "if(msg.payload < 0){\n    return null;\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 480,
+        "x": 450,
         "y": 280,
         "wires": [
             [
@@ -630,8 +683,8 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 650,
-        "y": 1040,
+        "x": 570,
+        "y": 960,
         "wires": []
     },
     {
@@ -658,8 +711,8 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 650,
-        "y": 1100,
+        "x": 570,
+        "y": 1020,
         "wires": []
     },
     {
@@ -686,8 +739,8 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 670,
-        "y": 1160,
+        "x": 590,
+        "y": 1080,
         "wires": []
     },
     {
@@ -704,7 +757,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 360,
-        "y": 1080,
+        "y": 960,
         "wires": [
             [
                 "5e01dde5ab04cf9f"
@@ -725,7 +778,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 360,
-        "y": 1140,
+        "y": 1020,
         "wires": [
             [
                 "2f77fbb6f1c9c8b2"
@@ -746,10 +799,641 @@
         "rh": 0,
         "inputs": 0,
         "x": 380,
-        "y": 1200,
+        "y": 1080,
         "wires": [
             [
                 "78164e0fc6561bb0"
+            ]
+        ]
+    },
+    {
+        "id": "4fa73dd9.83cca4",
+        "type": "comment",
+        "z": "8b4c08f2a705dd79",
+        "name": "File Browser",
+        "info": "1) Update the default folder in the Init node\n2) Update the default folder in the Reset node as well\n3) You can duplicate the Reset nodes and use them as saved shortcuts\n4) Check the Convert Timestamps function node if you want to see your dates in a different format. I just used the Javascript toISOString format.\n5) The Graph button can read any CSV file which have any number of values, but the first column always contains a timestamp column with javascript timestamp of the data point.",
+        "x": 190,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "d185a45.2327a58",
+        "type": "inject",
+        "z": "8b4c08f2a705dd79",
+        "name": "Init",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "change",
+        "payload": "/home/NodeRed",
+        "payloadType": "str",
+        "x": 190,
+        "y": 160,
+        "wires": [
+            [
+                "3d4e5e51.bdf952"
+            ]
+        ]
+    },
+    {
+        "id": "a715f7a4.a398a8",
+        "type": "ui_button",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "group": "160e81fb.f1c86e",
+        "order": 11,
+        "width": "3",
+        "height": "2",
+        "passthru": true,
+        "label": "Refresh",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "refresh",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "refresh",
+        "topicType": "str",
+        "x": 180,
+        "y": 260,
+        "wires": [
+            [
+                "3d4e5e51.bdf952"
+            ]
+        ]
+    },
+    {
+        "id": "638728aa.cd0b08",
+        "type": "ui_template",
+        "z": "8b4c08f2a705dd79",
+        "group": "160e81fb.f1c86e",
+        "name": "",
+        "order": 5,
+        "width": "18",
+        "height": "6",
+        "format": "<div ng-bind-html=\"msg.payload\" height=\"400\" style=\"height: 400px;\"><br/>\n</div>\n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 1180,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9d27e846.b31db8",
+        "type": "template",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<table width=\"100%\">\n    <tr><th>Nom de Fichier</th><th>Taille</th><th>Créer</th><th>Changer</th></tr>\n    {{#payload}}\n        <tr>\n            <td><a href=\"/download?filename={{name}}\" target=\"blank\">{{fname}}</a></td>\n            <td>{{stat.size}}</td>\n            <td>{{stat.created}}</td>\n            <td>{{stat.changed}}</td>\n        </tr>\n    {{/payload}}\n</table>\n",
+        "output": "str",
+        "x": 1020,
+        "y": 260,
+        "wires": [
+            [
+                "638728aa.cd0b08"
+            ]
+        ]
+    },
+    {
+        "id": "3e094f82.15d6e",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Convert timestamps",
+        "func": "for (var i=0; i<msg.payload.length; i++) {\n    msg.payload[i].stat.created = msg.payload[i].stat.created.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.changed = msg.payload[i].stat.changed.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.accessed = msg.payload[i].stat.accessed.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.statusChanged = msg.payload[i].stat.statusChanged.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].fname = msg.payload[i].name.replace(/^.*(\\\\|\\/|\\:)/, '');\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 260,
+        "wires": [
+            [
+                "9d27e846.b31db8"
+            ]
+        ]
+    },
+    {
+        "id": "aa8c482.93734b8",
+        "type": "http in",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "url": "/download",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 220,
+        "y": 360,
+        "wires": [
+            [
+                "d969ba04.e24028"
+            ]
+        ]
+    },
+    {
+        "id": "d19cc7d8.646328",
+        "type": "http response",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1010,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "d969ba04.e24028",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Get the file name",
+        "func": "msg.filename = msg.req.query.filename;\nmsg.contentdisposition = \"attachment; filename=\\\"\" + msg.req.query.filename.replace(/^.*(\\\\|\\/|\\:)/, '') + \"\\\"\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 360,
+        "wires": [
+            [
+                "e92381c3.c4cd2"
+            ]
+        ],
+        "outputLabels": [
+            "Folder selected",
+            "File selected"
+        ]
+    },
+    {
+        "id": "e92381c3.c4cd2",
+        "type": "file in",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "filename": "",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 660,
+        "y": 360,
+        "wires": [
+            [
+                "99ff4953.d0d5c8"
+            ]
+        ]
+    },
+    {
+        "id": "99ff4953.d0d5c8",
+        "type": "change",
+        "z": "8b4c08f2a705dd79",
+        "name": "Set Headers",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "headers.content-type",
+                "pt": "msg",
+                "to": "text/csv",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.Content-Disposition",
+                "pt": "msg",
+                "to": "contentdisposition",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 830,
+        "y": 360,
+        "wires": [
+            [
+                "d19cc7d8.646328"
+            ]
+        ]
+    },
+    {
+        "id": "3d4e5e51.bdf952",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Folder handling",
+        "func": "let folder = context.get(\"folder\");\nif (folder===undefined) {\n    folder=\"/\";\n    context.set(\"folder\", folder);\n}\n\nlet hidden = context.get(\"hidden\");\nif (hidden===undefined) {\n    hidden=false;\n    context.set(\"hidden\", hidden);\n}\n\nif (msg.topic===\"up\") {\n    var the_arr = folder.split('/');\n    the_arr.pop();\n    folder=the_arr.join('/'); \n    context.set(\"folder\", folder);\n}\nif (msg.topic===\"change\") {\n    folder=msg.payload;    \n    context.set(\"folder\", folder);\n}\nif (msg.topic===\"hidden\") {\n    hidden=msg.payload;    \n    context.set(\"hidden\", hidden);\n}\n\nmsg.payload = {\"start\":folder, \"hidden\": hidden};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 260,
+        "wires": [
+            [
+                "993d7272.843ae",
+                "5219875b.c070d8"
+            ]
+        ]
+    },
+    {
+        "id": "993d7272.843ae",
+        "type": "fs-file-lister",
+        "z": "8b4c08f2a705dd79",
+        "name": "Files",
+        "start": "/home/pi",
+        "pattern": "*.*",
+        "folders": "*",
+        "hidden": false,
+        "lstype": "files",
+        "path": true,
+        "single": true,
+        "depth": 0,
+        "stat": true,
+        "showWarnings": false,
+        "x": 590,
+        "y": 200,
+        "wires": [
+            [
+                "3e094f82.15d6e"
+            ]
+        ]
+    },
+    {
+        "id": "5219875b.c070d8",
+        "type": "fs-file-lister",
+        "z": "8b4c08f2a705dd79",
+        "name": "Folders",
+        "start": "/home/pi",
+        "pattern": "*.*",
+        "folders": "*",
+        "hidden": false,
+        "lstype": "directories",
+        "path": true,
+        "single": true,
+        "depth": 0,
+        "stat": true,
+        "showWarnings": false,
+        "x": 600,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4ef3788f935e6027",
+        "type": "pdfmake",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "outputType": "base64",
+        "inputProperty": "payload",
+        "options": "{}",
+        "outputProperty": "payload",
+        "x": 280,
+        "y": 620,
+        "wires": [
+            [
+                "0479ae659b0e83c9"
+            ]
+        ]
+    },
+    {
+        "id": "0479ae659b0e83c9",
+        "type": "file",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "filename": "filePath",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "base64",
+        "x": 100,
+        "y": 660,
+        "wires": [
+            [
+                "a715f7a4.a398a8"
+            ]
+        ]
+    },
+    {
+        "id": "aa7bc1543a451763",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Ajoute le chemin du fichier ",
+        "func": "var now = new Date();\nvar jour = (\"0\" + now.getDate()).slice(-2);\nvar mois = (\"0\" + (now.getMonth() + 1)).slice(-2);\n\n// Récupérer le nom de fichier de msg.payload.nameFile\nvar nameFile = msg.payload.nameFile || \"default\";\n// Remplacer les caractères interdits dans le nom de fichier\nnameFile = nameFile.replace(/[\\\\/:\"*?<>|]+/g, \"_\");\n\nmsg.filePath = \"/home/NodeRed/\" + nameFile + \"_\" + jour + mois + \".pdf\";\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 500,
+        "wires": [
+            [
+                "ce7fc785e5173ede"
+            ]
+        ]
+    },
+    {
+        "id": "7428a3bfe4a5a24d",
+        "type": "ui_form",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "label": "",
+        "group": "160e81fb.f1c86e",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Nom du FIchier",
+                "value": "nameFile",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "nameFile": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 370,
+        "y": 460,
+        "wires": [
+            [
+                "aa7bc1543a451763"
+            ]
+        ]
+    },
+    {
+        "id": "837b36c483d79b4a",
+        "type": "debug",
+        "z": "8b4c08f2a705dd79",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "ce7fc785e5173ede",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Créer le contenue du fichier",
+        "func": "msg.payload = {\n    header: function (currentPage, pageCount, pageSize) {\n        return [\n            {\n                text: \"Tobler Cyril\",\n                alignment: \"left\",\n                fontSize: 10,\n                margin: [15, 10, 0, 0]\n            },\n            {\n                text: \"Nom du projet : Confuse T-Rex\",\n                alignment: \"center\",\n                fontSize: 10,\n                margin: [0, 0, 0, 0]\n            }\n        ];\n    },\n    footer: function (currentPage, pageCount) {\n        return {\n            columns: [\n                {\n                    text: currentPage.toString() + \" / \" + pageCount,\n                    alignment: \"left\",\n                    fontSize: 10,\n                    margin: [15, 0, 0, 10]\n                },\n                {\n                    text: new Date().toLocaleDateString(\"fr-FR\"),\n                    alignment: \"right\",\n                    fontSize: 10,\n                    margin: [0, 0, 15, 10]\n                }\n            ],\n            margin: [0, 0, 0, 10]\n        };\n    },\n    content: [\n        {\n            text: \"This is a header\",\n            style: \"header\",\n            margin: [0, 10, 0, 0]\n        },\n        \"No styling here, this is a standard paragraph\",\n        {\n            text: \"Another text\",\n            style: \"anotherStyle\",\n            margin: [0, 10, 0, 0]\n        },\n        {\n            text: \"Multiple styles applied\",\n            style: [\"header\", \"anotherStyle\"],\n            margin: [0, 10, 0, 0]\n        }\n    ],\n    styles: {\n        header: {\n            fontSize: 22,\n            bold: true\n        },\n        anotherStyle: {\n            italics: true,\n            alignment: \"right\"\n        }\n    }\n};\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 540,
+        "wires": [
+            [
+                "4ef3788f935e6027"
+            ]
+        ]
+    },
+    {
+        "id": "69a8a0bed6aeee0e",
+        "type": "join",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "240",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1090,
+        "y": 700,
+        "wires": [
+            [
+                "d1df9583fab7293e"
+            ]
+        ]
+    },
+    {
+        "id": "5c69c227d997ff0a",
+        "type": "mqtt-plus in",
+        "z": "8b4c08f2a705dd79",
+        "name": "CPU",
+        "topic": "/",
+        "qos": "2",
+        "broker": "ae336b538b957769",
+        "x": 910,
+        "y": 680,
+        "wires": [
+            [
+                "69a8a0bed6aeee0e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d1df9583fab7293e",
+        "type": "debug",
+        "z": "8b4c08f2a705dd79",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1260,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "ca4fb0049128555c",
+        "type": "inject",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "props": [
+            {
+                "p": "cmd",
+                "v": "subscribe",
+                "vt": "str"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "complete",
+                "v": "true",
+                "vt": "bool"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "/",
+        "x": 670,
+        "y": 800,
+        "wires": [
+            [
+                "5c69c227d997ff0a",
+                "69a8a0bed6aeee0e"
+            ]
+        ]
+    },
+    {
+        "id": "35da0ba38b62a9f5",
+        "type": "inject",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "props": [
+            {
+                "p": "cmd",
+                "v": "subscribe",
+                "vt": "str"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "benchmark/cpu",
+        "x": 700,
+        "y": 840,
+        "wires": [
+            [
+                "5c69c227d997ff0a"
+            ]
+        ]
+    },
+    {
+        "id": "9ba0d599c2412587",
+        "type": "inject",
+        "z": "aa36cc7d7fa5cea5",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"content\":[\"First paragraph\",\"Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines\"]}",
+        "payloadType": "json",
+        "x": 250,
+        "y": 220,
+        "wires": [
+            [
+                "de5c8212fe2b174f"
+            ]
+        ]
+    },
+    {
+        "id": "9feebdce6905e6f3",
+        "type": "pdfmake",
+        "z": "aa36cc7d7fa5cea5",
+        "name": "",
+        "outputType": "base64",
+        "inputProperty": "payload",
+        "options": "{}",
+        "outputProperty": "payload",
+        "x": 440,
+        "y": 220,
+        "wires": [
+            [
+                "904144c3f832e485"
+            ]
+        ]
+    },
+    {
+        "id": "904144c3f832e485",
+        "type": "file",
+        "z": "aa36cc7d7fa5cea5",
+        "name": "",
+        "filename": "filePath",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "base64",
+        "x": 660,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "de5c8212fe2b174f",
+        "type": "function",
+        "z": "aa36cc7d7fa5cea5",
+        "name": "Ajoute le chemin du fichier ",
+        "func": "var now = new Date();\nvar jour = (\"0\" + now.getDate()).slice(-2);\nvar mois = (\"0\" + (now.getMonth() + 1)).slice(-2);\n\nmsg.filePath = \"/home/NodeRed/\" + jour + mois + \".pdf\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 160,
+        "wires": [
+            [
+                "9feebdce6905e6f3"
             ]
         ]
     }
