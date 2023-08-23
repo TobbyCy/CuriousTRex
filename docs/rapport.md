@@ -11,8 +11,10 @@
   - [6.1. Ubuntu](#61-ubuntu)
   - [6.2. Raspbian](#62-raspbian)
   - [6.3. Première instalation](#63-première-instalation)
-  - [Seconde instalation Ubuntu Server](#seconde-instalation-ubuntu-server)
-  - [6.4. Configuration](#64-configuration)
+  - [6.4. Seconde instalation Ubuntu Server](#64-seconde-instalation-ubuntu-server)
+    - [6.4.1. Configuration post instalation](#641-configuration-post-instalation)
+    - [6.4.2. Instalation Apache](#642-instalation-apache)
+    - [6.4.3. Script MQTT](#643-script-mqtt)
 - [7. Node-RED](#7-node-red)
   - [7.1. Instalation](#71-instalation)
   - [7.2. Configuration](#72-configuration)
@@ -105,9 +107,174 @@ Dans un second temps pour avoir des mesures plus précise nous allons installer 
 Adresse IP de Volt : 157.26.228.130
 Adresse IP de Nidus : 157.26.251.158
 
-## Seconde instalation Ubuntu Server
+## 6.4. Seconde instalation Ubuntu Server
 ![Alt text](../capture/RPI/Volt/Imager.png){width=100%}
-## 6.4. Configuration
+### 6.4.1. Configuration post instalation
+```bash
+toblerc@LPT-UNIX-USB-CT:~$ ssh tobby@157.26.228.77
+The authenticity of host '157.26.228.77 (157.26.228.77)' can't be established.
+ED25519 key fingerprint is SHA256:/5raLlKqk0A4AnFWnLP9bagNS3zKE9rFPqn5vA5pc+M.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '157.26.228.77' (ED25519) to the list of known hosts.
+tobby@157.26.228.77's password: 
+Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 5.15.0-1034-raspi aarch64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Wed Aug 23 09:29:06 CEST 2023
+
+  System load:  2.43994140625     Temperature:           39.4 C
+  Usage of /:   4.0% of 58.36GB   Processes:             158
+  Memory usage: 7%                Users logged in:       0
+  Swap usage:   0%                IPv4 address for eth0: 157.26.228.77
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+25 updates can be applied immediately.
+12 of these updates are standard security updates.
+To see these additional updates run: apt list --upgradable
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+Last login: Wed Aug 23 09:29:10 2023
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+tobby@Volt:~$ ls -la
+total 28
+drwxr-x--- 4 tobby tobby 4096 Aug 23 09:30 .
+drwxr-xr-x 3 root  root  4096 Aug  7 17:34 ..
+-rw-r--r-- 1 tobby tobby  220 Jan  6  2022 .bash_logout
+-rw-r--r-- 1 tobby tobby 3771 Jan  6  2022 .bashrc
+drwx------ 2 tobby tobby 4096 Aug 23 09:29 .cache
+-rw-r--r-- 1 tobby tobby  807 Jan  6  2022 .profile
+drwx------ 2 tobby tobby 4096 Aug 23 09:30 .ssh
+tobby@Volt:~$ cd .ssh/
+tobby@Volt:~/.ssh$ ls -la
+total 8
+drwx------ 2 tobby tobby 4096 Aug 23 09:30 .
+drwxr-x--- 4 tobby tobby 4096 Aug 23 09:30 ..
+-rw------- 1 tobby tobby    0 Aug 23 09:30 authorized_keys
+tobby@Volt:~/.ssh$ sudo vi authorized_keys 
+[sudo] password for tobby: 
+tobby@Volt:~/.ssh$ exit
+logout
+Connection to 157.26.228.77 closed.
+toblerc@LPT-UNIX-USB-CT:~$ ssh tobby@157.26.228.77
+Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 5.15.0-1034-raspi aarch64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Wed Aug 23 09:31:44 CEST 2023
+
+  System load:  0.490234375       Temperature:           40.9 C
+  Usage of /:   4.1% of 58.36GB   Processes:             153
+  Memory usage: 6%                Users logged in:       1
+  Swap usage:   0%                IPv4 address for eth0: 157.26.228.77
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+25 updates can be applied immediately.
+12 of these updates are standard security updates.
+To see these additional updates run: apt list --upgradable
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+Last login: Wed Aug 23 09:30:02 2023 from 157.26.215.31
+tobby@Volt:~$ sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo apt autzo-remove -y
+[sudo] password for tobby: 
+[...]
+tobby@Volt:~$ sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo apt auto-remove -y
+Hit:1 http://ports.ubuntu.com/ubuntu-ports jammy InRelease
+Get:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease [119 kB]
+Hit:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease
+Get:4 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease [110 kB]
+Fetched 229 kB in 2s (100 kB/s)    
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+All packages are up to date.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Calculating upgrade... Done
+#
+# You can verify the status of security fixes using the `pro fix` command.
+# E.g., a recent Ruby vulnerability can be checked with: `pro fix USN-6219-1`
+# For more detail see: https://ubuntu.com/security/notices/USN-6219-1
+#
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Calculating upgrade... Done
+#
+# You can verify the status of security fixes using the `pro fix` command.
+# E.g., a recent Ruby vulnerability can be checked with: `pro fix USN-6219-1`
+# For more detail see: https://ubuntu.com/security/notices/USN-6219-1
+#
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+
+```
+### 6.4.2. Instalation Apache
+```bash
+tobby@Volt:~$ sudo apt install apache2
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  apache2-bin apache2-data apache2-utils bzip2 libapr1 li
+[...]
+
+```
+
+```bash
+toblerc@LPT-UNIX-USB-CT:~$ scp -r /home/toblerc/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique/siteWeb/www/html tobby@157.26.228.77://home/tobby
+[...]   
+toblerc@LPT-UNIX-USB-CT:~$ 
+tobby@Volt:~$ sudo cp -r /home/tobby/html /var/www/
+```
+### 6.4.3. Script MQTT
+```bash
+toblerc@LPT-UNIX-USB-CT:~/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique$ scp ./mqtt.sh tobby@157.26.228.77:/home/tobby
+mqtt.sh                                                                                                                                                                         100% 2522     1.7MB/s   00:00    
+toblerc@LPT-UNIX-USB-CT:~/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique$ 
+tobby@Volt:~$ sudo cp ./mqtt.sh /usr/local/bin/
+tobby@Volt:~$ ls -la /usr/local/bin/
+total 12
+drwxr-xr-x  2 root root 4096 Aug 23 10:26 .
+drwxr-xr-x 10 root root 4096 Aug  7 17:23 ..
+-rw-r--r--  1 root root 2522 Aug 23 10:26 mqtt.sh
+```
+```bash
+tobby@Volt:/usr/local/bin$ sudo ./mqtt.sh 
+Installation de mosquitto-clients...
+Hit:1 http://ports.ubuntu.com/ubuntu-ports jammy InRelease
+Get:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease [119 kB]
+Hit:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease
+Get:4 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease [110 kB]
+Fetched 229 kB in 2s (133 kB/s)    
+Reading package lists... Done
+Reading package lists... Done
+Building dependency tree... Done
+[...]
+
+```
 
 
 # 7. Node-RED
