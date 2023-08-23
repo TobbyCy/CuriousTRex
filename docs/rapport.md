@@ -650,6 +650,8 @@ Sur le photos, la puce branchée en E1 à E6 est celle de mesure et celle branch
 ![Alt text](../capture/RPI/INA219/Sans_Volt.jpg){width=40%}
 ### 11.1.2. Branchement AVEC VOLT
 ![Alt text](../capture/RPI/INA219/Avec_Volt.jpg){width=40%}
+
+
 ![Alt text](../capture/RPI/INA219/Avec_Volt_Detail.jpg){width=40%}
 ## 11.2. Vérification de la présence du INA219
 ```bash
