@@ -812,7 +812,7 @@
         "type": "pdfmake",
         "z": "aa36cc7d7fa5cea5",
         "name": "",
-        "outputType": "Buffer",
+        "outputType": "base64",
         "inputProperty": "payload",
         "options": "{}",
         "outputProperty": "payload",
