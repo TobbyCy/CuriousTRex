@@ -1326,10 +1326,10 @@
         "type": "mqtt-plus in",
         "z": "8b4c08f2a705dd79",
         "name": "",
-        "topic": "benchmark/cpu",
+        "topic": "/",
         "qos": "2",
         "broker": "ae336b538b957769",
-        "x": 940,
+        "x": 910,
         "y": 680,
         "wires": [
             [
@@ -1376,8 +1376,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "/",
-        "x": 670,
-        "y": 640,
+        "x": 770,
+        "y": 760,
         "wires": [
             [
                 "5c69c227d997ff0a"
@@ -1405,8 +1405,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "benchmark/cpu",
-        "x": 700,
-        "y": 680,
+        "x": 800,
+        "y": 800,
         "wires": [
             [
                 "5c69c227d997ff0a"
