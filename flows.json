@@ -766,8 +766,8 @@
         "type": "generate pdf",
         "z": "aa36cc7d7fa5cea5",
         "name": "",
-        "x": 470,
-        "y": 320,
+        "x": 510,
+        "y": 260,
         "wires": [
             [
                 "3d1c283967d4195b"
@@ -833,7 +833,25 @@
         "y": 320,
         "wires": [
             [
-                "dfd391ef5271fefb"
+                "dfd391ef5271fefb",
+                "9feebdce6905e6f3"
+            ]
+        ]
+    },
+    {
+        "id": "9feebdce6905e6f3",
+        "type": "pdfmake",
+        "z": "aa36cc7d7fa5cea5",
+        "name": "",
+        "outputType": "base64",
+        "inputProperty": "payload",
+        "options": "{}",
+        "outputProperty": "payload",
+        "x": 500,
+        "y": 320,
+        "wires": [
+            [
+                "3d1c283967d4195b"
             ]
         ]
     }
