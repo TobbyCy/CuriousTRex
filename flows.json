@@ -1230,27 +1230,6 @@
         ]
     },
     {
-        "id": "e8052b93cf246422",
-        "type": "mqtt in",
-        "z": "8b4c08f2a705dd79",
-        "name": "",
-        "topic": "benchmark/cpu",
-        "qos": "2",
-        "datatype": "auto-detect",
-        "broker": "12e50ad63920a21c",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 940,
-        "y": 620,
-        "wires": [
-            [
-                "69a8a0bed6aeee0e"
-            ]
-        ]
-    },
-    {
         "id": "69a8a0bed6aeee0e",
         "type": "join",
         "z": "8b4c08f2a705dd79",
@@ -1262,7 +1241,7 @@
         "key": "topic",
         "joiner": "\\n",
         "joinerType": "str",
-        "accumulate": true,
+        "accumulate": false,
         "timeout": "240",
         "count": "",
         "reduceRight": false,
@@ -1270,55 +1249,12 @@
         "reduceInit": "",
         "reduceInitType": "num",
         "reduceFixup": "",
-        "x": 1130,
-        "y": 620,
+        "x": 1090,
+        "y": 700,
         "wires": [
-            []
-        ]
-    },
-    {
-        "id": "ca1a81fbe41d4787",
-        "type": "switch",
-        "z": "8b4c08f2a705dd79",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 1130,
-        "y": 580,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "46a001ebc5fa75f1",
-        "type": "msg-resend",
-        "z": "8b4c08f2a705dd79",
-        "interval": 5,
-        "intervalUnit": "secs",
-        "maximum": 5,
-        "bytopic": false,
-        "clone": false,
-        "firstDelayed": false,
-        "addCounters": false,
-        "waitForResend": false,
-        "highRate": false,
-        "outputCountField": "",
-        "outputMaxField": "",
-        "name": "",
-        "x": 950,
-        "y": 580,
-        "wires": [
-            []
+            [
+                "d1df9583fab7293e"
+            ]
         ]
     },
     {
@@ -1333,7 +1269,7 @@
         "y": 680,
         "wires": [
             [
-                "d1df9583fab7293e"
+                "69a8a0bed6aeee0e"
             ],
             []
         ]
@@ -1351,8 +1287,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1200,
-        "y": 680,
+        "x": 1260,
+        "y": 700,
         "wires": []
     },
     {
@@ -1369,6 +1305,11 @@
             {
                 "p": "topic",
                 "vt": "str"
+            },
+            {
+                "p": "complete",
+                "v": "true",
+                "vt": "bool"
             }
         ],
         "repeat": "",
@@ -1376,8 +1317,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "/",
-        "x": 770,
-        "y": 760,
+        "x": 870,
+        "y": 840,
         "wires": [
             [
                 "5c69c227d997ff0a"
@@ -1405,8 +1346,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "benchmark/cpu",
-        "x": 800,
-        "y": 800,
+        "x": 900,
+        "y": 880,
         "wires": [
             [
                 "5c69c227d997ff0a"
