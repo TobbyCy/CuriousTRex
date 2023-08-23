@@ -774,8 +774,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1160,
-        "y": 180,
+        "x": 960,
+        "y": 220,
         "wires": []
     },
     {
@@ -812,7 +812,7 @@
         "type": "pdfmake",
         "z": "aa36cc7d7fa5cea5",
         "name": "",
-        "outputType": "Buffer",
+        "outputType": "base64",
         "inputProperty": "payload",
         "options": "{}",
         "outputProperty": "topic",
@@ -835,8 +835,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 940,
-        "y": 180,
+        "x": 740,
+        "y": 220,
         "wires": [
             [
                 "3d1c283967d4195b"
