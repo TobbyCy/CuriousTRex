@@ -235,6 +235,8 @@ La sécurisation de Node-Red se fait en modifiant le fichier settings.js, ou dan
 Suite à celà il faudra également si celà s'avère utile ajouter un login au Dashboard.
 ### 7.2.3. Suivi Git
 Pour suivre le projet sur git, il faut configurer un utiiisateur les clé SSH puis faire un clone du projet.
+
+
 ![Alt text](../capture/RPI/Node-Red/Git_Config.png){width=30%}
 ![Alt text](../capture/RPI/Node-Red/GIT_Open.png){width=30%}
 ![Alt text](../capture/RPI/Node-Red/GIT_Setting.png){width=30%}
