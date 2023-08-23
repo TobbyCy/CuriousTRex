@@ -1714,7 +1714,8 @@
         "y": 220,
         "wires": [
             [
-                "e1234e178f032ff7"
+                "e1234e178f032ff7",
+                "904144c3f832e485"
             ]
         ]
     },
@@ -1723,13 +1724,13 @@
         "type": "file",
         "z": "aa36cc7d7fa5cea5",
         "name": "",
-        "filename": "/home/NodeRed/A.pdf",
-        "filenameType": "str",
+        "filename": "filePath",
+        "filenameType": "msg",
         "appendNewline": true,
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "base64",
-        "x": 700,
+        "x": 660,
         "y": 220,
         "wires": [
             []
