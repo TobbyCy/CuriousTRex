@@ -853,7 +853,7 @@
         "type": "pdfmake",
         "z": "aa36cc7d7fa5cea5",
         "name": "",
-        "outputType": "Buffer",
+        "outputType": "base64",
         "inputProperty": "payload",
         "options": "{}",
         "outputProperty": "payload",
@@ -861,20 +861,9 @@
         "y": 260,
         "wires": [
             [
-                "8fc8a04254916eb3"
+                "7c1a3556f6412001"
             ]
         ]
-    },
-    {
-        "id": "8fc8a04254916eb3",
-        "type": "http response",
-        "z": "aa36cc7d7fa5cea5",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 650,
-        "y": 260,
-        "wires": []
     },
     {
         "id": "59b2fa9f54fae4de",
@@ -903,5 +892,16 @@
                 "92c48eea6d19c3b1"
             ]
         ]
+    },
+    {
+        "id": "7c1a3556f6412001",
+        "type": "downloadfile",
+        "z": "aa36cc7d7fa5cea5",
+        "name": "",
+        "filename": "Result.pdf",
+        "encoding": "base64",
+        "x": 670,
+        "y": 260,
+        "wires": []
     }
 ]
