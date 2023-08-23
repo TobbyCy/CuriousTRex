@@ -762,23 +762,6 @@
         ]
     },
     {
-        "id": "3d1c283967d4195b",
-        "type": "debug",
-        "z": "aa36cc7d7fa5cea5",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 940,
-        "y": 100,
-        "wires": []
-    },
-    {
         "id": "9ba0d599c2412587",
         "type": "inject",
         "z": "aa36cc7d7fa5cea5",
@@ -803,8 +786,7 @@
         "y": 220,
         "wires": [
             [
-                "9feebdce6905e6f3",
-                "3d1c283967d4195b"
+                "9feebdce6905e6f3"
             ]
         ]
     },
@@ -817,7 +799,7 @@
         "inputProperty": "payload",
         "options": "{}",
         "outputProperty": "payload",
-        "x": 400,
+        "x": 460,
         "y": 220,
         "wires": [
             [
@@ -836,12 +818,10 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "base64",
-        "x": 740,
+        "x": 700,
         "y": 220,
         "wires": [
-            [
-                "3d1c283967d4195b"
-            ]
+            []
         ]
     }
 ]
