@@ -1236,7 +1236,7 @@
         "name": "",
         "mode": "custom",
         "build": "array",
-        "property": "payload[\"benchmark/cpu\"]",
+        "property": "payload",
         "propertyType": "msg",
         "key": "topic",
         "joiner": "\\n",
