@@ -2,7 +2,15 @@
     {
         "id": "76efdb70933209ac",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "Monittoring",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "aa36cc7d7fa5cea5",
+        "type": "tab",
+        "label": "PDF",
         "disabled": false,
         "info": "",
         "env": []
@@ -246,14 +254,14 @@
         "id": "b8288639de4d40ea",
         "type": "function",
         "z": "76efdb70933209ac",
-        "name": "function 1",
+        "name": "Watt",
         "func": "// Récupérer les valeurs de courant (mA) et de tension (V) depuis les propriétés msg.payload\nvar current_mA = msg.payload.miliamps;\nvar voltage_V = msg.payload.voltage;\n\n// Calculer la puissance en watts (W)\nvar power_W = (current_mA / 1000) * voltage_V;  // Convertir le courant en ampères\n\n// Vérifier si la tension est négative\nif (voltage_V < 0.5) {\n    // Si la tension est négative, ne rien faire et retourner le message inchangé\n    return null;\n}\n\n// Créer un nouvel objet msg avec la puissance en watts comme payload\nmsg.payload = power_W;\nmsg.topic = \"Watt\";\n// Renvoyer le message modifié\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 660,
+        "x": 650,
         "y": 220,
         "wires": [
             [
@@ -266,7 +274,7 @@
         "id": "06aa7125c7bfbcd7",
         "type": "join",
         "z": "76efdb70933209ac",
-        "name": "",
+        "name": "Join_Amp_Volt",
         "mode": "custom",
         "build": "object",
         "property": "payload",
@@ -282,7 +290,7 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 490,
+        "x": 460,
         "y": 220,
         "wires": [
             [
@@ -359,14 +367,14 @@
         "id": "587821a4c81b1185",
         "type": "function",
         "z": "76efdb70933209ac",
-        "name": "function 2",
+        "name": "Drop_Negatif",
         "func": "if(msg.payload < 0){\n    return null;\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 480,
+        "x": 450,
         "y": 360,
         "wires": [
             [
@@ -378,14 +386,14 @@
         "id": "68b1e6e95bce2ef2",
         "type": "function",
         "z": "76efdb70933209ac",
-        "name": "function 3",
+        "name": "Drop_Negatif",
         "func": "if(msg.payload < 0){\n    return null;\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 480,
+        "x": 450,
         "y": 280,
         "wires": [
             [
@@ -750,6 +758,83 @@
         "wires": [
             [
                 "78164e0fc6561bb0"
+            ]
+        ]
+    },
+    {
+        "id": "dfd391ef5271fefb",
+        "type": "generate pdf",
+        "z": "aa36cc7d7fa5cea5",
+        "name": "",
+        "x": 470,
+        "y": 320,
+        "wires": [
+            [
+                "904144c3f832e485"
+            ]
+        ]
+    },
+    {
+        "id": "904144c3f832e485",
+        "type": "file",
+        "z": "aa36cc7d7fa5cea5",
+        "name": "",
+        "filename": "/home/tobby",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 710,
+        "y": 320,
+        "wires": [
+            [
+                "3d1c283967d4195b"
+            ]
+        ]
+    },
+    {
+        "id": "3d1c283967d4195b",
+        "type": "debug",
+        "z": "aa36cc7d7fa5cea5",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "9ba0d599c2412587",
+        "type": "inject",
+        "z": "aa36cc7d7fa5cea5",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 280,
+        "y": 320,
+        "wires": [
+            [
+                "dfd391ef5271fefb"
             ]
         ]
     }
