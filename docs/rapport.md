@@ -106,7 +106,7 @@ Adresse IP de Volt : 157.26.228.130
 Adresse IP de Nidus : 157.26.251.158
 
 ## Seconde instalation Ubuntu Server
-![Alt text](../capture/RPI/Volt/Imager.png)
+![Alt text](../capture/RPI/Volt/Imager.png){width=100%}
 ## 6.4. Configuration
 
 
@@ -221,23 +221,23 @@ tobby@Nidus:~ $ sudo systemctl enable nodered.service
 Created symlink /etc/systemd/system/multi-user.target.wants/nodered.service → /lib/systemd/system/nodered.service.
 
 ```
-![Alt text](../capture/RPI/Node-Red/PostInstall.png)
+![Alt text](../capture/RPI/Node-Red/PostInstall.png){width=100%}
 ## 7.2. Configuration
 ### 7.2.1. Instalation des plugins
-![Alt text](../capture/RPI/Node-Red/palette1.png)
-![Alt text](../capture/RPI/Node-Red/palette2.png)
-![Alt text](../capture/RPI/Node-Red/palette3.png)
-![Alt text](../capture/RPI/Node-Red/palette4.png)
-![Alt text](../capture/RPI/Node-Red/Dashboard.png)
+![Alt text](../capture/RPI/Node-Red/palette1.png){width=100%}
+![Alt text](../capture/RPI/Node-Red/palette2.png){width=100%}
+![Alt text](../capture/RPI/Node-Red/palette3.png){width=100%}
+![Alt text](../capture/RPI/Node-Red/palette4.png){width=100%}
+![Alt text](../capture/RPI/Node-Red/Dashboard.png){width=100%}
 ### 7.2.2. Sécurisation de Node-Red
 La sécurisation de Node-Red se fait en modifiant le fichier settings.js, ou dans note cas en utilisant la commande `node-red admin init`qui permet par exemple de créer les couple Utilisateur mot de passe.
 
 Suite à celà il faudra également si celà s'avère utile ajouter un login au Dashboard.
 ### 7.2.3. Suivi Git
 Pour suivre le projet sur git, il faut configurer un utiiisateur les clé SSH puis faire un clone du projet.
-![Alt text](../capture/RPI/Node-Red/Git_Config.png)
-![Alt text](../capture/RPI/Node-Red/GIT_Open.png)
-![Alt text](../capture/RPI/Node-Red/GIT_Setting.png)
+![Alt text](../capture/RPI/Node-Red/Git_Config.png){width=100%}
+![Alt text](../capture/RPI/Node-Red/GIT_Open.png){width=100%}
+![Alt text](../capture/RPI/Node-Red/GIT_Setting.png){width=100%}
 
 Comme c'est un clone il faut ajouter un fichier qui manque et modifier les droits d'accès.
 ```bash
@@ -332,7 +332,7 @@ drwxr-xr-x 2 tobby tobby  4096 10 mai 11:19 results
 drwxr-xr-x 5 tobby tobby  4096 10 mai 11:19 user-files
 ```
 ## 8.2. Vérification de l'installation
-```
+```bash
 tobby@Nidus:~/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin $ ./gatling.sh
 GATLING_HOME is set to /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5
 Do you want to run the simulation locally, on Gatling Enterprise, or just package it?
@@ -640,7 +640,7 @@ Service activé.
 ```
 
 ### 10.5.1. Vérification
-![Alt text](../capture/RPI/Node-Red/MQTT.png)
+![Alt text](../capture/RPI/Node-Red/MQTT.png){width=100%}
 # 11. INA219
 Dans notre cas, il y a deux puce INA219, une en remplacement en cas de problème et l'autre pour la mesure de la consommation.
 Pour les diférencier, j'ai souder l'adresse I2C de la puce de mesure sur 0x40 et celle de la puce de rwemplacement sur 0x41.
@@ -648,17 +648,13 @@ Sur le photos, la puce branchée en E1 à E6 est celle de mesure et celle branch
 ## 11.1. Instalation physique
 ### 11.1.1. Branchement SANS VOLT
 
-![Alt text](../capture/RPI/INA219/Sans_Volt.jpg){width=80%}
-
-<p align="center" width=80%>
-  <img src="../capture/RPI/INA219/Sans_Volt.jpg" />
-</p>
+![Alt text](../capture/RPI/INA219/Sans_Volt.jpg){width=100%}
 
 ### 11.1.2. Branchement AVEC VOLT
-![Alt text](../capture/RPI/INA219/Avec_Volt.jpg){width=40%}
+![Alt text](../capture/RPI/INA219/Avec_Volt.jpg){width=50%}
 
 
-![Alt text](../capture/RPI/INA219/Avec_Volt_Detail.jpg){width=40%}
+![Alt text](../capture/RPI/INA219/Avec_Volt_Detail.jpg){width=50%}
 ## 11.2. Vérification de la présence du INA219
 ```bash
 tobby@Nidus:~ $ sudo i2cdetect -y 1
