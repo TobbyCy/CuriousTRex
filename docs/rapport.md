@@ -53,9 +53,9 @@
 Le système sera conçu pour simuler des requêtes HTTP réalistes à l'aide de Gatling, mesurer la consommation électrique en utilisant l'INA219 connecté via le bus I2C, et collecter les mesures de performance à l'aide de Node-RED. Les rapports générés fourniront des informations détaillées sur les performances du système testé, y compris le temps de réponse, la consommation d'énergie par requête, l'utilisation du processeur, etc.
 # 4. Instalation physique
 ## 4.1. Nidus
-![](../capture/Nidus.jpg)
+![](../capture/Nidus.jpg){width=100%}
 ## 4.2. Volt
-![](../capture/Volt.jpg)
+![](../capture/Volt.jpg){width=100%}
 
 # 5. Shéma de principe
 ```ascii
