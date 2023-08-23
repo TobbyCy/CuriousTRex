@@ -831,12 +831,13 @@
         "id": "a715f7a4.a398a8",
         "type": "ui_button",
         "z": "8b4c08f2a705dd79",
+        "d": true,
         "name": "",
         "group": "160e81fb.f1c86e",
         "order": 11,
         "width": "9",
         "height": "1",
-        "passthru": false,
+        "passthru": true,
         "label": "Refresh",
         "tooltip": "",
         "color": "",
@@ -848,7 +849,7 @@
         "topic": "refresh",
         "topicType": "str",
         "x": 180,
-        "y": 200,
+        "y": 260,
         "wires": [
             [
                 "3d4e5e51.bdf952"
@@ -1195,7 +1196,8 @@
         "y": 540,
         "wires": [
             [
-                "837b36c483d79b4a"
+                "837b36c483d79b4a",
+                "a715f7a4.a398a8"
             ]
         ]
     },
