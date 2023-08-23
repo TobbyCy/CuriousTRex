@@ -829,11 +829,10 @@
         "topic": "",
         "payload": "[{\"id\":\"60d67f0a.11a40c\",\"type\":\"inject\",\"z\":\"a78406b8.7e7af8\",\"name\":\"\",\"props\":[{\"p\":\"payload\"},{\"p\":\"topic\",\"vt\":\"str\"}],\"repeat\":\"\",\"crontab\":\"\",\"once\":false,\"onceDelay\":0.1,\"topic\":\"\",\"payload\":\"{\\\"content\\\":[{\\\"text\\\":\\\"Hello, World!\\\"}],\\\"defaultStyle\\\":{\\\"fontSize\\\":12}}\",\"payloadType\":\"json\",\"x\":200,\"y\":160,\"wires\":[[\"c39daa0c.6ac16\"]]},{\"id\":\"c39daa0c.6ac16\",\"type\":\"pdfmake\",\"z\":\"a78406b8.7e7af8\",\"name\":\"\",\"x\":390,\"y\":160,\"wires\":[[\"f21ca5e1.26b7a\"]]},{\"id\":\"f21ca5e1.26b7a\",\"type\":\"http response\",\"z\":\"a78406b8.7e7af8\",\"name\":\"\",\"statusCode\":\"\",\"headers\":{},\"x\":600,\"y\":160,\"wires\":[]}]",
         "payloadType": "json",
-        "x": 270,
-        "y": 320,
+        "x": 250,
+        "y": 220,
         "wires": [
             [
-                "dfd391ef5271fefb",
                 "9feebdce6905e6f3"
             ]
         ]
@@ -851,7 +850,47 @@
         "y": 320,
         "wires": [
             [
-                "3d1c283967d4195b"
+                "3d1c283967d4195b",
+                "5135eab3f11aa56c"
+            ]
+        ]
+    },
+    {
+        "id": "5135eab3f11aa56c",
+        "type": "http response",
+        "z": "aa36cc7d7fa5cea5",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 910,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "121fb89b234067b0",
+        "type": "ui_button",
+        "z": "aa36cc7d7fa5cea5",
+        "name": "",
+        "group": "65e942c300ec1ce1",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "button",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 250,
+        "y": 320,
+        "wires": [
+            [
+                "9feebdce6905e6f3"
             ]
         ]
     }
