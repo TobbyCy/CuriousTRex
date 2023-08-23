@@ -762,19 +762,6 @@
         ]
     },
     {
-        "id": "dfd391ef5271fefb",
-        "type": "generate pdf",
-        "z": "aa36cc7d7fa5cea5",
-        "name": "",
-        "x": 510,
-        "y": 260,
-        "wires": [
-            [
-                "3d1c283967d4195b"
-            ]
-        ]
-    },
-    {
         "id": "904144c3f832e485",
         "type": "file",
         "z": "aa36cc7d7fa5cea5",
@@ -785,7 +772,7 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 930,
+        "x": 910,
         "y": 180,
         "wires": [
             []
@@ -805,7 +792,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 900,
-        "y": 320,
+        "y": 220,
         "wires": []
     },
     {
@@ -847,23 +834,12 @@
         "options": "{}",
         "outputProperty": "payload",
         "x": 500,
-        "y": 360,
+        "y": 220,
         "wires": [
             [
                 "3d1c283967d4195b",
                 "904144c3f832e485"
             ]
         ]
-    },
-    {
-        "id": "5135eab3f11aa56c",
-        "type": "http response",
-        "z": "aa36cc7d7fa5cea5",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 910,
-        "y": 240,
-        "wires": []
     }
 ]
