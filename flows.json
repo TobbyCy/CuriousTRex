@@ -1152,7 +1152,8 @@
         "y": 500,
         "wires": [
             [
-                "ce7fc785e5173ede"
+                "ce7fc785e5173ede",
+                "f26e31525cd26f5a"
             ]
         ]
     },
@@ -1291,35 +1292,6 @@
             ],
             [
                 "7d68e80e8c88e5f7"
-            ]
-        ]
-    },
-    {
-        "id": "802d0ae22f6bc742",
-        "type": "inject",
-        "z": "8b4c08f2a705dd79",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 400,
-        "y": 760,
-        "wires": [
-            [
-                "f26e31525cd26f5a"
             ]
         ]
     },
@@ -1708,7 +1680,7 @@
         "id": "4e4f4f7a85b8a2cd",
         "type": "join",
         "z": "8b4c08f2a705dd79",
-        "name": "",
+        "name": "Values",
         "mode": "custom",
         "build": "object",
         "property": "payload",
@@ -1725,18 +1697,16 @@
         "reduceInitType": "",
         "reduceFixup": "",
         "x": 1530,
-        "y": 960,
+        "y": 920,
         "wires": [
-            [
-                "92030e62b4213b62"
-            ]
+            []
         ]
     },
     {
         "id": "9a3d6e47ed36af55",
         "type": "join",
         "z": "8b4c08f2a705dd79",
-        "name": "",
+        "name": "Moyennes",
         "mode": "custom",
         "build": "object",
         "property": "moyenne",
@@ -1752,54 +1722,11 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 1530,
-        "y": 1000,
+        "x": 1550,
+        "y": 1040,
         "wires": [
-            [
-                "92030e62b4213b62"
-            ]
+            []
         ]
-    },
-    {
-        "id": "92030e62b4213b62",
-        "type": "join",
-        "z": "8b4c08f2a705dd79",
-        "name": "",
-        "mode": "auto",
-        "build": "object",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": "false",
-        "timeout": "",
-        "count": "",
-        "reduceRight": false,
-        "x": 1670,
-        "y": 980,
-        "wires": [
-            [
-                "9a9f03ce451c423a"
-            ]
-        ]
-    },
-    {
-        "id": "9a9f03ce451c423a",
-        "type": "debug",
-        "z": "8b4c08f2a705dd79",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1820,
-        "y": 980,
-        "wires": []
     },
     {
         "id": "9ba0d599c2412587",
