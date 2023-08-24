@@ -1232,8 +1232,8 @@
         "reduceInit": "",
         "reduceInitType": "num",
         "reduceFixup": "",
-        "x": 1090,
-        "y": 700,
+        "x": 1150,
+        "y": 720,
         "wires": [
             [
                 "cc5acc717f80b5aa"
@@ -1244,11 +1244,11 @@
         "id": "5c69c227d997ff0a",
         "type": "mqtt-plus in",
         "z": "8b4c08f2a705dd79",
-        "name": "CPU",
+        "name": "Volt/CPU",
         "topic": "/",
         "qos": "2",
         "broker": "ae336b538b957769",
-        "x": 930,
+        "x": 940,
         "y": 720,
         "wires": [
             [
@@ -1261,21 +1261,36 @@
         "id": "f26e31525cd26f5a",
         "type": "function",
         "z": "8b4c08f2a705dd79",
-        "name": "function 1",
-        "func": "// Créer un objet de message pour la première sortie\nvar msg1 = {\n    cmd: \"subscribe\",\n    topic: \"/\",\n    complete: true\n};\n\n// Créer un objet de message pour la deuxième sortie\nvar msg2 = {\n    cmd: \"subscribe\",\n    topic: \"benchmark/cpu\"\n};\n\n// Envoyer le premier message à la première sortie (index 0)\nnode.send([msg1, null]);\n\n// Envoyer le deuxième message à la deuxième sortie (index 1)\nnode.send([null, msg2]);\n",
-        "outputs": 2,
+        "name": "Activate",
+        "func": "// Créer les objets de message pour chaque sortie\nvar msg1 = {\n    cmd: \"subscribe\",\n    topic: \"/\",\n    complete: true\n};\n\nvar msg2 = {\n    cmd: \"subscribe\",\n    topic: \"benchmark/cpu\"\n};\n\nvar msg3 = {\n    cmd: \"subscribe\",\n    topic: \"benchmark/ram\"\n};\n\nvar msg4 = {\n    cmd: \"subscribe\",\n    topic: \"benchmark/process\"\n};\n\nvar msg5 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/cpu\"\n};\n\nvar msg6 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/ram\"\n};\n\nvar msg7 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/process\"\n};\n\n// Envoyer les messages aux sorties correspondantes\n// Les messages seront envoyés dans l'ordre de 0 à 6, correspondant aux sorties activées\n// Assurez-vous que le nœud \"Function\" a sept sorties activées pour recevoir ces messages\nnode.send([msg1, msg2, msg3, msg4, msg5, msg6, msg7]);\n",
+        "outputs": 7,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 580,
-        "y": 760,
+        "x": 520,
+        "y": 940,
         "wires": [
             [
                 "7b65a4353d980a32"
             ],
             [
                 "5c69c227d997ff0a"
+            ],
+            [
+                "f4d244933230ca3c"
+            ],
+            [
+                "0133cae69ae5104b"
+            ],
+            [
+                "2f71f2cc59cf73fe"
+            ],
+            [
+                "bd2b8fa03e46740a"
+            ],
+            [
+                "7d68e80e8c88e5f7"
             ]
         ]
     },
@@ -1300,7 +1315,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 420,
+        "x": 400,
         "y": 760,
         "wires": [
             [
@@ -1325,12 +1340,22 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 740,
-        "y": 600,
+        "x": 660,
+        "y": 660,
         "wires": [
             [
                 "5c69c227d997ff0a",
-                "69a8a0bed6aeee0e"
+                "69a8a0bed6aeee0e",
+                "f4d244933230ca3c",
+                "0133cae69ae5104b",
+                "2f71f2cc59cf73fe",
+                "bd2b8fa03e46740a",
+                "7d68e80e8c88e5f7",
+                "346e23e614df9b2f",
+                "09be40e07be60911",
+                "7e535f8c5b186600",
+                "f591304f29200dcd",
+                "376177303fee8e6b"
             ]
         ]
     },
@@ -1347,9 +1372,348 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1240,
-        "y": 640,
+        "x": 1320,
+        "y": 660,
         "wires": []
+    },
+    {
+        "id": "3b6eef8af77cc1d4",
+        "type": "mqtt in",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "topic": "benchmark/cpu",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "12e50ad63920a21c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 120,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "881566a6dceb280a",
+        "type": "mqtt in",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "topic": "benchmark/ram",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "12e50ad63920a21c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 120,
+        "y": 880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c7c9689dfbf0eb8a",
+        "type": "mqtt in",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "topic": "benchmark/processes",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "12e50ad63920a21c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e82bcb47bcce00e4",
+        "type": "mqtt in",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "topic": "nidus/benchmark/cpu",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "12e50ad63920a21c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0ebbee3322f98030",
+        "type": "mqtt in",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "topic": "nidus/benchmark/ram",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "12e50ad63920a21c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 1000,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ba00403f2e800b09",
+        "type": "mqtt in",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "topic": "nidus/benchmark/processes",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "12e50ad63920a21c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 160,
+        "y": 1040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "346e23e614df9b2f",
+        "type": "join",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "240",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1150,
+        "y": 820,
+        "wires": [
+            [
+                "cc5acc717f80b5aa"
+            ]
+        ]
+    },
+    {
+        "id": "f4d244933230ca3c",
+        "type": "mqtt-plus in",
+        "z": "8b4c08f2a705dd79",
+        "name": "Volt/Ram",
+        "topic": "/",
+        "qos": "2",
+        "broker": "ae336b538b957769",
+        "x": 940,
+        "y": 820,
+        "wires": [
+            [
+                "346e23e614df9b2f"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "09be40e07be60911",
+        "type": "join",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "240",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1150,
+        "y": 920,
+        "wires": [
+            [
+                "cc5acc717f80b5aa"
+            ]
+        ]
+    },
+    {
+        "id": "0133cae69ae5104b",
+        "type": "mqtt-plus in",
+        "z": "8b4c08f2a705dd79",
+        "name": "Volt/Process",
+        "topic": "/",
+        "qos": "2",
+        "broker": "ae336b538b957769",
+        "x": 950,
+        "y": 920,
+        "wires": [
+            [
+                "09be40e07be60911"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "7e535f8c5b186600",
+        "type": "join",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "240",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1150,
+        "y": 1020,
+        "wires": [
+            [
+                "cc5acc717f80b5aa"
+            ]
+        ]
+    },
+    {
+        "id": "2f71f2cc59cf73fe",
+        "type": "mqtt-plus in",
+        "z": "8b4c08f2a705dd79",
+        "name": "Nidus/CPU",
+        "topic": "/",
+        "qos": "2",
+        "broker": "ae336b538b957769",
+        "x": 950,
+        "y": 1020,
+        "wires": [
+            [
+                "7e535f8c5b186600"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f591304f29200dcd",
+        "type": "join",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "240",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1150,
+        "y": 1120,
+        "wires": [
+            [
+                "cc5acc717f80b5aa"
+            ]
+        ]
+    },
+    {
+        "id": "bd2b8fa03e46740a",
+        "type": "mqtt-plus in",
+        "z": "8b4c08f2a705dd79",
+        "name": "Nidus/Ram",
+        "topic": "/",
+        "qos": "2",
+        "broker": "ae336b538b957769",
+        "x": 950,
+        "y": 1120,
+        "wires": [
+            [
+                "f591304f29200dcd"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "376177303fee8e6b",
+        "type": "join",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "240",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1150,
+        "y": 1220,
+        "wires": [
+            [
+                "cc5acc717f80b5aa"
+            ]
+        ]
+    },
+    {
+        "id": "7d68e80e8c88e5f7",
+        "type": "mqtt-plus in",
+        "z": "8b4c08f2a705dd79",
+        "name": "NidusProc",
+        "topic": "/",
+        "qos": "2",
+        "broker": "ae336b538b957769",
+        "x": 950,
+        "y": 1220,
+        "wires": [
+            [
+                "376177303fee8e6b"
+            ],
+            []
+        ]
     },
     {
         "id": "9ba0d599c2412587",
