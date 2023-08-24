@@ -1263,7 +1263,7 @@
         "type": "function",
         "z": "8b4c08f2a705dd79",
         "name": "Activate",
-        "func": "// Créer les objets de message pour chaque sortie\nvar msg1 = {\n    cmd: \"subscribe\",\n    topic: \"/\",\n    complete: true,\n    out:1\n};\n\nvar msg2 = {\n    cmd: \"subscribe\",\n    topic: \"benchmark/cpu\",\n    out: 2\n};\n\nvar msg3 = {\n    cmd: \"subscribe\",\n    topic: \"benchmark/ram\",\n    out: 3\n};\n\nvar msg4 = {\n    cmd: \"subscribe\",\n    topic: \"benchmark/processes\",\n    out: 4\n};\n\nvar msg5 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/cpu\",\n    out: 5\n};\n\nvar msg6 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/ram\",\n    out: 6\n};\n\nvar msg7 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/processes\",\n    out: 7\n};\n\n// Envoyer les messages aux sorties correspondantes\n// Les messages seront envoyés dans l'ordre de 0 à 6, correspondant aux sorties activées\n// Assurez-vous que le nœud \"Function\" a sept sorties activées pour recevoir ces messages\nnode.send([msg1, msg2, msg3, msg4, msg5, msg6, msg7]);\n",
+        "func": "// Créer les objets de message pour chaque sortie\nvar msg1 = {\n    cmd: \"subscribe\",\n    topic: \"/\",\n    complete: true,\n    out:1,\n    delay: 10000 // Délai en ms\n};\n\nvar msg2 = {\n    cmd: \"subscribe\",\n    topic: \"benchmark/cpu\",\n    out: 2\n};\n\nvar msg3 = {\n    cmd: \"subscribe\",\n    topic: \"benchmark/ram\",\n    out: 3\n};\n\nvar msg4 = {\n    cmd: \"subscribe\",\n    topic: \"benchmark/processes\",\n    out: 4\n};\n\nvar msg5 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/cpu\",\n    out: 5\n};\n\nvar msg6 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/ram\",\n    out: 6\n};\n\nvar msg7 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/processes\",\n    out: 7\n};\n\n// Envoyer les messages aux sorties correspondantes\n// Les messages seront envoyés dans l'ordre de 0 à 6, correspondant aux sorties activées\n// Assurez-vous que le nœud \"Function\" a sept sorties activées pour recevoir ces messages\nnode.send([msg1, msg2, msg3, msg4, msg5, msg6, msg7]);\n",
         "outputs": 7,
         "noerr": 0,
         "initialize": "",
@@ -1329,7 +1329,7 @@
         "type": "delay",
         "z": "8b4c08f2a705dd79",
         "name": "",
-        "pauseType": "delay",
+        "pauseType": "delayv",
         "timeout": "15",
         "timeoutUnits": "seconds",
         "rate": "1",
@@ -1590,7 +1590,7 @@
         "type": "function",
         "z": "8b4c08f2a705dd79",
         "name": "Rename",
-        "func": "msg.topic = \"volt/benchmark/cpu\"\nreturn msg;",
+        "func": "// Définir le sujet du message\nmsg.topic = \"volt/benchmark/cpu\";\n\n// Vérifier si le tableau payload existe et n'est pas vide\nif (msg.payload && Array.isArray(msg.payload) && msg.payload.length > 0) {\n    // Calculer la somme des valeurs dans le tableau\n    var sum = msg.payload.reduce(function (acc, value) {\n        return acc + value;\n    }, 0);\n\n    // Calculer la moyenne en divisant la somme par le nombre d'éléments\n    var moyenne = sum / msg.payload.length;\n\n    // Ajouter la moyenne au message\n    msg.moyenne = moyenne;\n} else {\n    // Si le tableau est vide ou n'existe pas, définir la moyenne à 0\n    msg.moyenne = 0;\n}\n\n// Renvoyer le message modifié\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1600,7 +1600,8 @@
         "y": 720,
         "wires": [
             [
-                "4e4f4f7a85b8a2cd"
+                "4e4f4f7a85b8a2cd",
+                "5ced62dbb473d59e"
             ]
         ]
     },
