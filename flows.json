@@ -1262,7 +1262,7 @@
         "type": "function",
         "z": "8b4c08f2a705dd79",
         "name": "Activate",
-        "func": "// Créer les objets de message pour chaque sortie\nvar msg1 = {\n    cmd: \"subscribe\",\n    topic: \"/\",\n    complete: true\n};\n\nvar msg2 = {\n    cmd: \"subscribe\",\n    topic: \"benchmark/cpu\"\n};\n\nvar msg3 = {\n    cmd: \"subscribe\",\n    topic: \"benchmark/ram\"\n};\n\nvar msg4 = {\n    cmd: \"subscribe\",\n    topic: \"benchmark/process\"\n};\n\nvar msg5 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/cpu\"\n};\n\nvar msg6 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/ram\"\n};\n\nvar msg7 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/process\"\n};\n\n// Envoyer les messages aux sorties correspondantes\n// Les messages seront envoyés dans l'ordre de 0 à 6, correspondant aux sorties activées\n// Assurez-vous que le nœud \"Function\" a sept sorties activées pour recevoir ces messages\nnode.send([msg1, msg2, msg3, msg4, msg5, msg6, msg7]);\n",
+        "func": "// Créer les objets de message pour chaque sortie\nvar msg1 = {\n    cmd: \"subscribe\",\n    topic: \"/\",\n    complete: true,\n    out:1\n};\n\nvar msg2 = {\n    cmd: \"subscribe\",\n    topic: \"benchmark/cpu\",\n    out: 2\n};\n\nvar msg3 = {\n    cmd: \"subscribe\",\n    topic: \"benchmark/ram\",\n    out: 3\n};\n\nvar msg4 = {\n    cmd: \"subscribe\",\n    topic: \"benchmark/process\",\n    out: 4\n};\n\nvar msg5 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/cpu\",\n    out: 5\n};\n\nvar msg6 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/ram\",\n    out: 6\n};\n\nvar msg7 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/process\",\n    out: 7\n};\n\n// Envoyer les messages aux sorties correspondantes\n// Les messages seront envoyés dans l'ordre de 0 à 6, correspondant aux sorties activées\n// Assurez-vous que le nœud \"Function\" a sept sorties activées pour recevoir ces messages\nnode.send([msg1, msg2, msg3, msg4, msg5, msg6, msg7]);\n",
         "outputs": 7,
         "noerr": 0,
         "initialize": "",
@@ -1272,25 +1272,32 @@
         "y": 940,
         "wires": [
             [
-                "7b65a4353d980a32"
+                "7b65a4353d980a32",
+                "c95da7eb261533f2"
             ],
             [
-                "5c69c227d997ff0a"
+                "5c69c227d997ff0a",
+                "c95da7eb261533f2"
             ],
             [
-                "f4d244933230ca3c"
+                "f4d244933230ca3c",
+                "c95da7eb261533f2"
             ],
             [
-                "0133cae69ae5104b"
+                "0133cae69ae5104b",
+                "c95da7eb261533f2"
             ],
             [
-                "2f71f2cc59cf73fe"
+                "2f71f2cc59cf73fe",
+                "c95da7eb261533f2"
             ],
             [
-                "bd2b8fa03e46740a"
+                "bd2b8fa03e46740a",
+                "c95da7eb261533f2"
             ],
             [
-                "7d68e80e8c88e5f7"
+                "7d68e80e8c88e5f7",
+                "c95da7eb261533f2"
             ]
         ]
     },
@@ -1372,123 +1379,9 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1320,
-        "y": 660,
-        "wires": []
-    },
-    {
-        "id": "3b6eef8af77cc1d4",
-        "type": "mqtt in",
-        "z": "8b4c08f2a705dd79",
-        "name": "",
-        "topic": "benchmark/cpu",
-        "qos": "2",
-        "datatype": "auto-detect",
-        "broker": "12e50ad63920a21c",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 120,
-        "y": 840,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "881566a6dceb280a",
-        "type": "mqtt in",
-        "z": "8b4c08f2a705dd79",
-        "name": "",
-        "topic": "benchmark/ram",
-        "qos": "2",
-        "datatype": "auto-detect",
-        "broker": "12e50ad63920a21c",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 120,
-        "y": 880,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "c7c9689dfbf0eb8a",
-        "type": "mqtt in",
-        "z": "8b4c08f2a705dd79",
-        "name": "",
-        "topic": "benchmark/processes",
-        "qos": "2",
-        "datatype": "auto-detect",
-        "broker": "12e50ad63920a21c",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 140,
+        "x": 1340,
         "y": 920,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "e82bcb47bcce00e4",
-        "type": "mqtt in",
-        "z": "8b4c08f2a705dd79",
-        "name": "",
-        "topic": "nidus/benchmark/cpu",
-        "qos": "2",
-        "datatype": "auto-detect",
-        "broker": "12e50ad63920a21c",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 140,
-        "y": 960,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "0ebbee3322f98030",
-        "type": "mqtt in",
-        "z": "8b4c08f2a705dd79",
-        "name": "",
-        "topic": "nidus/benchmark/ram",
-        "qos": "2",
-        "datatype": "auto-detect",
-        "broker": "12e50ad63920a21c",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 140,
-        "y": 1000,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "ba00403f2e800b09",
-        "type": "mqtt in",
-        "z": "8b4c08f2a705dd79",
-        "name": "",
-        "topic": "nidus/benchmark/processes",
-        "qos": "2",
-        "datatype": "auto-detect",
-        "broker": "12e50ad63920a21c",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 160,
-        "y": 1040,
-        "wires": [
-            []
-        ]
+        "wires": []
     },
     {
         "id": "346e23e614df9b2f",
@@ -1714,6 +1607,22 @@
             ],
             []
         ]
+    },
+    {
+        "id": "c95da7eb261533f2",
+        "type": "debug",
+        "z": "8b4c08f2a705dd79",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 1200,
+        "wires": []
     },
     {
         "id": "9ba0d599c2412587",
