@@ -1236,7 +1236,8 @@
         "y": 720,
         "wires": [
             [
-                "437e6a5585d440a9"
+                "437e6a5585d440a9",
+                "5ced62dbb473d59e"
             ]
         ]
     },
@@ -1711,8 +1712,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1800,
-        "y": 880,
+        "x": 1200,
+        "y": 620,
         "wires": []
     },
     {
@@ -1735,12 +1736,10 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 1650,
-        "y": 880,
+        "x": 1550,
+        "y": 960,
         "wires": [
-            [
-                "5ced62dbb473d59e"
-            ]
+            []
         ]
     },
     {
