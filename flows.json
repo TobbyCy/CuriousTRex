@@ -1232,11 +1232,11 @@
         "reduceInit": "",
         "reduceInitType": "num",
         "reduceFixup": "",
-        "x": 1150,
+        "x": 1090,
         "y": 720,
         "wires": [
             [
-                "cc5acc717f80b5aa"
+                "437e6a5585d440a9"
             ]
         ]
     },
@@ -1367,23 +1367,6 @@
         ]
     },
     {
-        "id": "cc5acc717f80b5aa",
-        "type": "debug",
-        "z": "8b4c08f2a705dd79",
-        "name": "debug 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1380,
-        "y": 720,
-        "wires": []
-    },
-    {
         "id": "346e23e614df9b2f",
         "type": "join",
         "z": "8b4c08f2a705dd79",
@@ -1403,11 +1386,11 @@
         "reduceInit": "",
         "reduceInitType": "num",
         "reduceFixup": "",
-        "x": 1150,
+        "x": 1090,
         "y": 820,
         "wires": [
             [
-                "cc5acc717f80b5aa"
+                "e8ce72700af4ebf3"
             ]
         ]
     },
@@ -1448,11 +1431,11 @@
         "reduceInit": "",
         "reduceInitType": "num",
         "reduceFixup": "",
-        "x": 1150,
+        "x": 1090,
         "y": 920,
         "wires": [
             [
-                "cc5acc717f80b5aa"
+                "b75f1a3ce01ce919"
             ]
         ]
     },
@@ -1493,11 +1476,11 @@
         "reduceInit": "",
         "reduceInitType": "num",
         "reduceFixup": "",
-        "x": 1150,
+        "x": 1090,
         "y": 1020,
         "wires": [
             [
-                "cc5acc717f80b5aa"
+                "7b6671537c22ccbb"
             ]
         ]
     },
@@ -1538,11 +1521,11 @@
         "reduceInit": "",
         "reduceInitType": "num",
         "reduceFixup": "",
-        "x": 1150,
+        "x": 1090,
         "y": 1120,
         "wires": [
             [
-                "cc5acc717f80b5aa"
+                "a4788f45248625c0"
             ]
         ]
     },
@@ -1583,11 +1566,11 @@
         "reduceInit": "",
         "reduceInitType": "num",
         "reduceFixup": "",
-        "x": 1150,
+        "x": 1090,
         "y": 1220,
         "wires": [
             [
-                "cc5acc717f80b5aa"
+                "c8ba41e1313713fc"
             ]
         ]
     },
@@ -1623,6 +1606,137 @@
         "statusType": "auto",
         "x": 700,
         "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "437e6a5585d440a9",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Rename",
+        "func": "msg.topic = \"volt/benchmark/cpu\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 720,
+        "wires": [
+            [
+                "5ced62dbb473d59e"
+            ]
+        ]
+    },
+    {
+        "id": "e8ce72700af4ebf3",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Rename",
+        "func": "msg.topic = \"volt/benchmark/ram\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 820,
+        "wires": [
+            [
+                "5ced62dbb473d59e"
+            ]
+        ]
+    },
+    {
+        "id": "b75f1a3ce01ce919",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Rename",
+        "func": "msg.topic = \"volt/benchmark/process\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 920,
+        "wires": [
+            [
+                "5ced62dbb473d59e"
+            ]
+        ]
+    },
+    {
+        "id": "7b6671537c22ccbb",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Rename",
+        "func": "msg.topic = \"nidus/benchmark/cpu\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 1020,
+        "wires": [
+            [
+                "5ced62dbb473d59e"
+            ]
+        ]
+    },
+    {
+        "id": "a4788f45248625c0",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Rename",
+        "func": "msg.topic = \"nidus/benchmark/ram\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 1120,
+        "wires": [
+            [
+                "5ced62dbb473d59e"
+            ]
+        ]
+    },
+    {
+        "id": "c8ba41e1313713fc",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Rename",
+        "func": "msg.topic = \"nidus/benchmark/process\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 1220,
+        "wires": [
+            [
+                "5ced62dbb473d59e"
+            ]
+        ]
+    },
+    {
+        "id": "5ced62dbb473d59e",
+        "type": "debug",
+        "z": "8b4c08f2a705dd79",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1440,
+        "y": 1000,
         "wires": []
     },
     {
