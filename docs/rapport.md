@@ -49,6 +49,7 @@
   - [12.2. Fonctions](#122-fonctions)
   - [12.3. INA219](#123-ina219)
   - [12.4. Monitoring](#124-monitoring)
+  - [PDF](#pdf)
 - [13. Sources](#13-sources)
 
 # 3. Introduction
@@ -932,8 +933,28 @@ Shunt voltage: -0.010 mV
 ## 12.3. INA219
 
 ## 12.4. Monitoring
-    
 
+## PDF
+```bash
+node-red-contrib-pdfmake2
+```
+Pour generer un PDF, il faut passer un Json dans le payload du message :
+```json
+  {
+  "_msgid":"b63574aa110e9d9b"
+  ,"payload":
+      {
+      "content":
+        [
+        "First paragraph",
+        "Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines"
+        ]
+      },
+      "topic":""
+  }
+```
+Qui est reçu dans le noeud pdfmake qui le passe en Base64 qui est ensuite reçu dans le noeud write file qui l'ecrie dans un fichier PDF.
+![Alt text](../capture/RPI/Node-Red/PDF1.png)
 # 13. Sources
 
 1. **Guide d'Installation Node-Red**  
@@ -977,3 +998,6 @@ Shunt voltage: -0.010 mV
 
 14. **Tutoriel de Démarrage Rapide Gatling**  
     [Tutoriel de Démarrage Rapide Gatling](https://gatling.io/docs/gatling/tutorials/quickstart/)
+
+15. **Tutoriel sur l'utilisation de S1seven**  
+    [Tutoriel S1seven](https://www.s1seven.com/blog/use-s1sevens-certificate-tools-to-convert-a-json-certificate-to-a-pdf/)
