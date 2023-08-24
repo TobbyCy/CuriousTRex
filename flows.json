@@ -1406,7 +1406,9 @@
         "x": 1150,
         "y": 820,
         "wires": [
-            []
+            [
+                "cc5acc717f80b5aa"
+            ]
         ]
     },
     {
@@ -1449,7 +1451,9 @@
         "x": 1150,
         "y": 920,
         "wires": [
-            []
+            [
+                "cc5acc717f80b5aa"
+            ]
         ]
     },
     {
@@ -1492,7 +1496,9 @@
         "x": 1150,
         "y": 1020,
         "wires": [
-            []
+            [
+                "cc5acc717f80b5aa"
+            ]
         ]
     },
     {
@@ -1535,7 +1541,9 @@
         "x": 1150,
         "y": 1120,
         "wires": [
-            []
+            [
+                "cc5acc717f80b5aa"
+            ]
         ]
     },
     {
@@ -1578,7 +1586,9 @@
         "x": 1150,
         "y": 1220,
         "wires": [
-            []
+            [
+                "cc5acc717f80b5aa"
+            ]
         ]
     },
     {
@@ -1603,7 +1613,7 @@
         "type": "debug",
         "z": "8b4c08f2a705dd79",
         "name": "debug 3",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
