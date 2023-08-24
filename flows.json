@@ -1206,8 +1206,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 660,
-        "y": 520,
+        "x": 800,
+        "y": 580,
         "wires": []
     },
     {
@@ -1352,6 +1352,74 @@
         "wires": [
             [
                 "5c69c227d997ff0a"
+            ]
+        ]
+    },
+    {
+        "id": "f26e31525cd26f5a",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "function 1",
+        "func": "// Créer un objet de message pour la première sortie\nvar msg1 = {\n    cmd: \"subscribe\",\n    topic: \"/\"\n};\n\n// Créer un objet de message pour la deuxième sortie\nvar msg2 = {\n    cmd: \"subscribe\",\n    topic: \"benchmark/cpu\"\n};\n\n// Envoyer le premier message à la première sortie (index 0)\nnode.send([msg1, null]);\n\n// Envoyer le deuxième message à la deuxième sortie (index 1)\nnode.send([null, msg2]);\n",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 680,
+        "wires": [
+            [
+                "837b36c483d79b4a"
+            ],
+            [
+                "13e45d92f2e37a72"
+            ]
+        ]
+    },
+    {
+        "id": "13e45d92f2e37a72",
+        "type": "debug",
+        "z": "8b4c08f2a705dd79",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "802d0ae22f6bc742",
+        "type": "inject",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 420,
+        "y": 680,
+        "wires": [
+            [
+                "f26e31525cd26f5a"
             ]
         ]
     },
