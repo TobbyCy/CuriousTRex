@@ -1194,23 +1194,6 @@
         ]
     },
     {
-        "id": "837b36c483d79b4a",
-        "type": "debug",
-        "z": "8b4c08f2a705dd79",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 800,
-        "y": 580,
-        "wires": []
-    },
-    {
         "id": "ce7fc785e5173ede",
         "type": "function",
         "z": "8b4c08f2a705dd79",
@@ -1265,8 +1248,8 @@
         "topic": "/",
         "qos": "2",
         "broker": "ae336b538b957769",
-        "x": 910,
-        "y": 680,
+        "x": 930,
+        "y": 720,
         "wires": [
             [
                 "69a8a0bed6aeee0e"
@@ -1292,107 +1275,26 @@
         "wires": []
     },
     {
-        "id": "ca4fb0049128555c",
-        "type": "inject",
-        "z": "8b4c08f2a705dd79",
-        "name": "",
-        "props": [
-            {
-                "p": "cmd",
-                "v": "subscribe",
-                "vt": "str"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            },
-            {
-                "p": "complete",
-                "v": "true",
-                "vt": "bool"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "/",
-        "x": 670,
-        "y": 800,
-        "wires": [
-            [
-                "5c69c227d997ff0a",
-                "69a8a0bed6aeee0e"
-            ]
-        ]
-    },
-    {
-        "id": "35da0ba38b62a9f5",
-        "type": "inject",
-        "z": "8b4c08f2a705dd79",
-        "name": "",
-        "props": [
-            {
-                "p": "cmd",
-                "v": "subscribe",
-                "vt": "str"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "benchmark/cpu",
-        "x": 700,
-        "y": 840,
-        "wires": [
-            [
-                "5c69c227d997ff0a"
-            ]
-        ]
-    },
-    {
         "id": "f26e31525cd26f5a",
         "type": "function",
         "z": "8b4c08f2a705dd79",
         "name": "function 1",
-        "func": "// Créer un objet de message pour la première sortie\nvar msg1 = {\n    cmd: \"subscribe\",\n    topic: \"/\"\n};\n\n// Créer un objet de message pour la deuxième sortie\nvar msg2 = {\n    cmd: \"subscribe\",\n    topic: \"benchmark/cpu\"\n};\n\n// Envoyer le premier message à la première sortie (index 0)\nnode.send([msg1, null]);\n\n// Envoyer le deuxième message à la deuxième sortie (index 1)\nnode.send([null, msg2]);\n",
+        "func": "// Créer un objet de message pour la première sortie\nvar msg1 = {\n    cmd: \"subscribe\",\n    topic: \"/\",\n    complete: true\n};\n\n// Créer un objet de message pour la deuxième sortie\nvar msg2 = {\n    cmd: \"subscribe\",\n    topic: \"benchmark/cpu\"\n};\n\n// Envoyer le premier message à la première sortie (index 0)\nnode.send([msg1, null]);\n\n// Envoyer le deuxième message à la deuxième sortie (index 1)\nnode.send([null, msg2]);\n",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 600,
-        "y": 680,
+        "x": 580,
+        "y": 760,
         "wires": [
             [
-                "837b36c483d79b4a"
+                "7b65a4353d980a32"
             ],
             [
-                "13e45d92f2e37a72"
+                "5c69c227d997ff0a"
             ]
         ]
-    },
-    {
-        "id": "13e45d92f2e37a72",
-        "type": "debug",
-        "z": "8b4c08f2a705dd79",
-        "name": "debug 3",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 800,
-        "y": 620,
-        "wires": []
     },
     {
         "id": "802d0ae22f6bc742",
@@ -1416,10 +1318,36 @@
         "payload": "",
         "payloadType": "date",
         "x": 420,
-        "y": 680,
+        "y": 760,
         "wires": [
             [
                 "f26e31525cd26f5a"
+            ]
+        ]
+    },
+    {
+        "id": "7b65a4353d980a32",
+        "type": "delay",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "15",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 740,
+        "y": 600,
+        "wires": [
+            [
+                "5c69c227d997ff0a",
+                "69a8a0bed6aeee0e"
             ]
         ]
     },
