@@ -1177,7 +1177,7 @@
                 "rows": null
             },
             {
-                "label": "Temps de mesure",
+                "label": "Temps de mesure en minutes",
                 "value": "time",
                 "type": "number",
                 "required": false,
