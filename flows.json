@@ -28,6 +28,7 @@
         "type": "ui_tab",
         "name": "Home",
         "icon": "dashboard",
+        "order": 2,
         "disabled": false,
         "hidden": false
     },
@@ -213,6 +214,7 @@
         "type": "ui_tab",
         "name": "Files",
         "icon": "dashboard",
+        "order": 1,
         "disabled": false,
         "hidden": false
     },
