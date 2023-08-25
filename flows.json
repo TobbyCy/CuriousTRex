@@ -1845,7 +1845,9 @@
                 "22b46f6b8f42dced",
                 "2329d63ddb032254",
                 "5f624f25.98f38",
-                "ac62bafd63eb963d"
+                "ac62bafd63eb963d",
+                "2cc5874bb5a68c41",
+                "4991c7c1bebc6b36"
             ]
         ]
     },
@@ -2134,8 +2136,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1580,
-        "y": 720,
+        "x": 1100,
+        "y": 420,
         "wires": []
     },
     {
@@ -2232,8 +2234,8 @@
         "type": "chart-image",
         "z": "8b4c08f2a705dd79",
         "name": "",
-        "width": "1000",
-        "height": "1000",
+        "width": "1920",
+        "height": "1080",
         "x": 1570,
         "y": 620,
         "wires": [
@@ -2255,6 +2257,108 @@
         "encoding": "none",
         "x": 1730,
         "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2cc5874bb5a68c41",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Volt Line Chart",
+        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload;\n\n// Extraction des données nécessaires\nvar voltCpuData = rawData[\"volt/benchmark/cpu\"];\nvar voltRamData = rawData[\"volt/benchmark/ram\"];\nvar voltProcessesData = rawData[\"volt/benchmark/processes\"];\nvar voltTempData = rawData[\"volt/benchmark/temp\"];\n\n\n// Création du graphique\nvar chartData = {\n    type: 'line',  // Changement du type de graphique en \"line\"\n    options: {\n        title: {\n            display: true,\n            text: 'Comparaison des performances'\n        },\n        legend: {\n            display: true\n        },\n        chartArea: {\n            backgroundColor: 'white'\n        },\n        plugins: {\n            datalabels: {\n                display: false  // Désactiver l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: Array.from({ length: voltCpuData.length }, (_, i) => (i + 1).toString()),  // Numéros de 1 à n\n        datasets: [\n            {\n                label: \"Volt CPU\",\n                borderColor: 'rgba(57,97,184,1)',  // Couleur de la ligne\n                fill: false,  // Désactiver le remplissage sous la ligne\n                data: voltCpuData\n            },\n            {\n                label: \"Volt RAM\",\n                borderColor: 'rgba(127, 184, 57,1)',\n                fill: false,\n                data: voltRamData\n            },\n            {\n                label: \"Volt Processes\",\n                borderColor: 'rgba(184, 57, 127,1)',\n                fill: false,\n                data: voltProcessesData\n            },\n            {\n                label: \"Volt Temp\",\n                borderColor: 'rgba(184, 127, 57,1)',\n                fill: false,\n                data: voltTempData\n            },\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1340,
+        "y": 660,
+        "wires": [
+            [
+                "0624d850b450f11c"
+            ]
+        ]
+    },
+    {
+        "id": "0624d850b450f11c",
+        "type": "chart-image",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "width": "1920",
+        "height": "1080",
+        "x": 1570,
+        "y": 660,
+        "wires": [
+            [
+                "3c7687d83cf34e96"
+            ]
+        ]
+    },
+    {
+        "id": "3c7687d83cf34e96",
+        "type": "file",
+        "z": "8b4c08f2a705dd79",
+        "name": "Image dump",
+        "filename": "/home/NodeRed/Volt.png",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1730,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4991c7c1bebc6b36",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Nidus Line Chart",
+        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload;\n\n// Extraction des données nécessaires\nvar nidusCpuData = rawData[\"nidus/benchmark/cpu\"];\nvar nidusRamData = rawData[\"nidus/benchmark/ram\"];\nvar nidusProcessesData = rawData[\"nidus/benchmark/processes\"];\nvar nidusTempData = rawData[\"nidus/benchmark/temp\"];\n\n// Création du graphique\nvar chartData = {\n    type: 'line',  // Changement du type de graphique en \"line\"\n    options: {\n        title: {\n            display: true,\n            text: 'Comparaison des performances'\n        },\n        legend: {\n            display: true\n        },\n        chartArea: {\n            backgroundColor: 'white'\n        },\n        plugins: {\n            datalabels: {\n                display: false  // Désactiver l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: Array.from({ length: nidusCpuData.length }, (_, i) => (i + 1).toString()),  // Numéros de 1 à n\n        datasets: [\n            {\n                label: \"Nidus CPU\",\n                borderColor: 'rgba(97, 184, 57,1)',\n                fill: false,\n                data: nidusCpuData\n            },\n            {\n                label: \"Nidus RAM\",\n                borderColor: 'rgba(57,97,127,1)',\n                fill: false,\n                data: nidusRamData\n            },\n            {\n                label: \"Nidus Processes\",\n                borderColor: 'rgba(57,127,184,1)',\n                fill: false,\n                data: nidusProcessesData\n            },\n            {\n                label: \"Nidus Temp\",\n                borderColor: 'rgba(127, 57, 184,1)',\n                fill: false,\n                data: nidusTempData\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1350,
+        "y": 700,
+        "wires": [
+            [
+                "35ae4744eb6cb342"
+            ]
+        ]
+    },
+    {
+        "id": "35ae4744eb6cb342",
+        "type": "chart-image",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "width": "1920",
+        "height": "1080",
+        "x": 1570,
+        "y": 700,
+        "wires": [
+            [
+                "d474eb71658b6f9b"
+            ]
+        ]
+    },
+    {
+        "id": "d474eb71658b6f9b",
+        "type": "file",
+        "z": "8b4c08f2a705dd79",
+        "name": "Image dump",
+        "filename": "/home/NodeRed/Nidus.png",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1730,
+        "y": 700,
         "wires": [
             []
         ]
