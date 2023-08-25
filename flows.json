@@ -2105,7 +2105,7 @@
         "order": 3,
         "width": 0,
         "height": 0,
-        "format": "<style>\n    #progress {\n        width: 100%;\n        height: 30px;\n        background-color: lightgray;\n        position: relative;\n    }\n\n    #progressbar {\n        width: {\n                {\n                msg.progress\n            }\n        }\n\n        %;\n        height: 100%;\n        background-color: green;\n    }\n</style>\n<div id=\"progress\">\n    <div id=\"progressbar\"></div>\n</div>",
+        "format": "<md-progress-linear class=\"md-accent\" md-mode=\"determinate\"\n    value=\"{{(msg.originalDelay - msg.delay) / msg.originalDelay * 100}}\"\n    ng-show=\"msg.delay !== undefined && msg.originalDelay !== undefined\"></md-progress-linear>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
@@ -2133,7 +2133,8 @@
         "wires": [
             [
                 "66dfc0722fba42f0",
-                "203196feaca6266b"
+                "203196feaca6266b",
+                "2bc8e373016fe163"
             ]
         ]
     },
