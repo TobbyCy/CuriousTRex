@@ -1398,9 +1398,7 @@
         "wires": [
             [
                 "7b65a4353d980a32",
-                "30a0a1ccd8e67894",
-                "203196feaca6266b",
-                "de14cb3b031ba34f"
+                "45632b1506735cd0"
             ],
             [
                 "5c69c227d997ff0a"
@@ -2081,27 +2079,6 @@
         "wires": []
     },
     {
-        "id": "30a0a1ccd8e67894",
-        "type": "ui_template",
-        "z": "8b4c08f2a705dd79",
-        "group": "160e81fb.f1c86e",
-        "name": "ProgressBar",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "format": "<style>\n    #progress {\n        width: 100%;\n        height: 30px;\n        background-color: lightgray;\n        position: relative;\n    }\n\n    #progressbar {\n        width: 0;\n        height: 100%;\n        background-color: green;\n    }\n</style>\n<div id=\"progress\">\n    <div id=\"progressbar\"></div>\n</div>\n<script>\n    var progressBar = document.getElementById('progressbar');\n    var duration = {{msg.payload.delay}}; // Durée en millisecondes\n\n    var startTime = new Date().getTime();\n    var interval = setInterval(function() {\n        var currentTime = new Date().getTime();\n        var elapsedTime = currentTime - startTime;\n        var progress = (elapsedTime / duration) * 100;\n        progressBar.style.width = progress + '%';\n\n        if (progress >= 100) {\n            clearInterval(interval);\n        }\n    }, 100);\n</script>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 710,
-        "y": 600,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "203196feaca6266b",
         "type": "debug",
         "z": "8b4c08f2a705dd79",
@@ -2114,28 +2091,9 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1040,
+        "x": 560,
         "y": 460,
         "wires": []
-    },
-    {
-        "id": "de14cb3b031ba34f",
-        "type": "function",
-        "z": "8b4c08f2a705dd79",
-        "name": "function 1",
-        "func": "// Extraire la durée du message\nvar duration = msg.delay;\n\n// Initialiser la valeur de progression\nvar progress = 0;\n\n// Créer un intervalle pour mettre à jour la progression\nvar interval = setInterval(function () {\n    // Calculer la progression en pourcentage\n    progress = (msg.payload / duration) * 100;\n\n    // Envoyer la progression dans le message de sortie\n    msg.progress = progress;\n\n    // Si la progression atteint 100 %, arrêter l'intervalle\n    if (progress >= 100) {\n        clearInterval(interval);\n    }\n\n    // Envoyer le message\n    return msg;\n}, 100);\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 400,
-        "y": 580,
-        "wires": [
-            [
-                "2bc8e373016fe163"
-            ]
-        ]
     },
     {
         "id": "2bc8e373016fe163",
@@ -2152,10 +2110,55 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 710,
-        "y": 560,
+        "x": 810,
+        "y": 500,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "45632b1506735cd0",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "function 1",
+        "func": "// Vérifier si msg.delay est défini\nif (msg.delay !== undefined) {\n    // Convertir msg.delay en nombre (si c'est une chaîne)\n    const currentDelay = parseFloat(msg.delay);\n\n    // Vérifier si currentDelay est un nombre valide\n    if (!isNaN(currentDelay)) {\n        // Soustraire 500 de currentDelay, mais s'assurer que le résultat est positif\n        const newDelay = Math.max(currentDelay - 500, 0);\n\n        // Mettre à jour msg.delay avec la nouvelle valeur\n        msg.delay = newDelay;\n\n        // Si le nouveau délai est 0, ne rien retourner\n        if (newDelay === 0) {\n            return null;\n        } else {\n            // Sinon, retourner le message avec le nouveau délai\n            return msg;\n        }\n    } else {\n        // msg.delay n'est pas un nombre valide\n        return null;\n    }\n} else {\n    // msg.delay n'est pas défini\n    return null;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 540,
+        "wires": [
+            [
+                "66dfc0722fba42f0",
+                "203196feaca6266b"
+            ]
+        ]
+    },
+    {
+        "id": "66dfc0722fba42f0",
+        "type": "delay",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "500",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 550,
+        "y": 540,
+        "wires": [
+            [
+                "45632b1506735cd0"
+            ]
         ]
     },
     {
