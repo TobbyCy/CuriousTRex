@@ -1266,7 +1266,7 @@
         "type": "function",
         "z": "8b4c08f2a705dd79",
         "name": "Ajoute le chemin du fichier ",
-        "func": "var now = new Date();\nvar jour = (\"0\" + now.getDate()).slice(-2);\nvar mois = (\"0\" + (now.getMonth() + 1)).slice(-2);\n\n// Récupérer le nom de fichier de msg.payload.nameFile\nvar nameFile = msg.payload.nameFile || \"default\";\n// Remplacer les caractères interdits dans le nom de fichier\nnameFile = nameFile.replace(/[\\\\/:\"*?<>|]+/g, \"_\");\n\nmsg.filePath = \"/home/NodeRed/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" +jour + mois + \".pdf\";\n\n\nreturn msg;",
+        "func": "var now = new Date();\nvar jour = (\"0\" + now.getDate()).slice(-2);\nvar mois = (\"0\" + (now.getMonth() + 1)).slice(-2);\n\n// Récupérer le nom de fichier de msg.payload.nameFile, ou utiliser \"default\" si absent\nvar nameFile = msg.payload.nameFile || \"default\";\n// Remplacer les caractères interdits dans le nom de fichier par des underscores\nnameFile = nameFile.replace(/[\\\\/:\"*?<>|]+/g, \"_\");\n\n// Construire le chemin du fichier PDF\nmsg.filePath = \"/home/NodeRed/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \".pdf\";\n\n// Construire les chemins des fichiers graphiques\nmsg.graphPath = {\n    volt: {\n        cpu: \"/home/NodeRed/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vcpu.png\",\n        ram: \"/home/NodeRed/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vram.png\",\n        proc: \"/home/NodeRed/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vproc.png\",\n        temp: \"/home/NodeRed/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vtemp.png\"\n    },\n    nidus: {\n        cpu: \"/home/NodeRed/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ncpu.png\",\n        ram: \"/home/NodeRed/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nram.png\",\n        proc: \"/home/NodeRed/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nproc.png\",\n        temp: \"/home/NodeRed/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ntemp.png\"\n    }\n};\n\n// Renvoyer le message modifié\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1451,7 +1451,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 500,
-        "y": 540,
+        "y": 560,
         "wires": [
             [
                 "5c69c227d997ff0a",
@@ -1714,7 +1714,8 @@
         "wires": [
             [
                 "4e4f4f7a85b8a2cd",
-                "9a3d6e47ed36af55"
+                "9a3d6e47ed36af55",
+                "5f624f25.98f38"
             ]
         ]
     },
@@ -2131,9 +2132,59 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1300,
+        "x": 1320,
         "y": 620,
         "wires": []
+    },
+    {
+        "id": "5f624f25.98f38",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Vertical Bar Chart 2 series",
+        "func": "function getGetOrdinal(n) {\n    var s=[\"th\",\"st\",\"nd\",\"rd\"],\n    v=n%100;\n    return n+(s[(v-20)%10]||s[v]||s[0]);\n }\n\nvar dL = [\"Sunday\", \"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\"];\nvar dS = [\"Sun\", \"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\"];\nvar mL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];\nvar mS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];\n\nlet now = new Date();\n\n// Create the chart object\nlet m = {\n    type: 'bar',\n    options: {\n        title: {\n            display:true,\n            text:'Vertical bar with 2 data series'\n        },\n        legend: {\n            display:true\n        },\n        chartArea: {\n            backgroundColor: 'white'\n        },\n        plugins: {\n            datalabels: {\n                display:true,\n                backgroundColor:'whitesmoke',\n                borderRadius:1,\n                padding:1,\n                align: 'right',\n                anchor: function(context) {\n                    //node.send({debug:{dataindex:context.dataIndex}});\n                    if (context.dataIndex == context.dataset.data.length - 1) {\n                        return 'center';\n                    } else {\n                        return 'end';\n                    }\n                },\n                offset:8,\n                formatter:function(value) {\n                    return value > 0 ? value.toLocaleString() : '';\n                }\n            }\n        }\n    },\n    data: {\n        labels:[],\n        datasets: [\n            {\n                label:\"Series 1\",\n                backgroundColor:'rgba(57,97,184,0.8)',\n                data:[]\n            },\n            {\n                label:\"Series 2\",\n                backgroundColor:'rgba(127, 184, 57,0.8)',\n                data:[]\n            }\n        ]\n    }\n}\n\nlet l = Math.floor(Math.random()*50);\nlet k = Math.floor(Math.random()*50);\n\nfor (let i=0; i<10; i++) {\n    l = l + Math.floor(Math.random()*6)-3;\n    m.data.datasets[0].data.push(l);\n    k = k + Math.floor(Math.random()*6)-3;\n    m.data.datasets[1].data.push(k);\n    var d = new Date();\n    d.setTime(now.getTime()-1000*60*60*24*(10-i));\n    let month = \"\" + (d.getMonth() + 1);\n    let day = \"\" + d.getDate();\n    let year = d.getFullYear();\n\n    if (month.length < 2) month = '0' + month;\n    if (day.length < 2) day = '0' + day;\n    m.data.labels.push(day + \".\"+month+\".\"+year);\n}\n\nmsg.payload = m;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1350,
+        "y": 560,
+        "wires": [
+            [
+                "89dfcf39.990ca"
+            ]
+        ]
+    },
+    {
+        "id": "89dfcf39.990ca",
+        "type": "chart-image",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "width": 500,
+        "height": "500",
+        "x": 1570,
+        "y": 560,
+        "wires": [
+            [
+                "62271758.c63728"
+            ]
+        ]
+    },
+    {
+        "id": "62271758.c63728",
+        "type": "file",
+        "z": "8b4c08f2a705dd79",
+        "name": "Image dump",
+        "filename": "/home/pi/charts/test.png",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1730,
+        "y": 560,
+        "wires": [
+            []
+        ]
     },
     {
         "id": "9ba0d599c2412587",
@@ -2237,25 +2288,6 @@
         ]
     },
     {
-        "id": "62271758.c63728",
-        "type": "file",
-        "z": "3572c39984e6901e",
-        "name": "Image dump",
-        "filename": "/home/pi/charts/test.png",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "true",
-        "encoding": "none",
-        "x": 810,
-        "y": 140,
-        "wires": [
-            [
-                "18d162d1.33e8ed"
-            ]
-        ]
-    },
-    {
         "id": "18d162d1.33e8ed",
         "type": "function",
         "z": "3572c39984e6901e",
@@ -2302,24 +2334,6 @@
         ]
     },
     {
-        "id": "5f624f25.98f38",
-        "type": "function",
-        "z": "3572c39984e6901e",
-        "name": "Vertical Bar Chart 2 series",
-        "func": "function getGetOrdinal(n) {\n    var s=[\"th\",\"st\",\"nd\",\"rd\"],\n    v=n%100;\n    return n+(s[(v-20)%10]||s[v]||s[0]);\n }\n\nvar dL = [\"Sunday\", \"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\"];\nvar dS = [\"Sun\", \"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\"];\nvar mL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];\nvar mS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];\n\nlet now = new Date();\n\n// Create the chart object\nlet m = {\n    type: 'bar',\n    options: {\n        title: {\n            display:true,\n            text:'Vertical bar with 2 data series'\n        },\n        legend: {\n            display:true\n        },\n        chartArea: {\n            backgroundColor: 'white'\n        },\n        plugins: {\n            datalabels: {\n                display:true,\n                backgroundColor:'whitesmoke',\n                borderRadius:1,\n                padding:1,\n                align: 'right',\n                anchor: function(context) {\n                    //node.send({debug:{dataindex:context.dataIndex}});\n                    if (context.dataIndex == context.dataset.data.length - 1) {\n                        return 'center';\n                    } else {\n                        return 'end';\n                    }\n                },\n                offset:8,\n                formatter:function(value) {\n                    return value > 0 ? value.toLocaleString() : '';\n                }\n            }\n        }\n    },\n    data: {\n        labels:[],\n        datasets: [\n            {\n                label:\"Series 1\",\n                backgroundColor:'rgba(57,97,184,0.8)',\n                data:[]\n            },\n            {\n                label:\"Series 2\",\n                backgroundColor:'rgba(127, 184, 57,0.8)',\n                data:[]\n            }\n        ]\n    }\n}\n\nlet l = Math.floor(Math.random()*50);\nlet k = Math.floor(Math.random()*50);\n\nfor (let i=0; i<10; i++) {\n    l = l + Math.floor(Math.random()*6)-3;\n    m.data.datasets[0].data.push(l);\n    k = k + Math.floor(Math.random()*6)-3;\n    m.data.datasets[1].data.push(k);\n    var d = new Date();\n    d.setTime(now.getTime()-1000*60*60*24*(10-i));\n    let month = \"\" + (d.getMonth() + 1);\n    let day = \"\" + d.getDate();\n    let year = d.getFullYear();\n\n    if (month.length < 2) month = '0' + month;\n    if (day.length < 2) day = '0' + day;\n    m.data.labels.push(day + \".\"+month+\".\"+year);\n}\n\nmsg.payload = m;\n\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 370,
-        "y": 200,
-        "wires": [
-            [
-                "89dfcf39.990ca"
-            ]
-        ]
-    },
-    {
         "id": "d658d601.f421e8",
         "type": "inject",
         "z": "3572c39984e6901e",
@@ -2343,9 +2357,7 @@
         "x": 150,
         "y": 200,
         "wires": [
-            [
-                "5f624f25.98f38"
-            ]
+            []
         ]
     },
     {
@@ -2559,24 +2571,7 @@
         "x": 550,
         "y": 140,
         "wires": [
-            [
-                "62271758.c63728"
-            ]
-        ]
-    },
-    {
-        "id": "89dfcf39.990ca",
-        "type": "chart-image",
-        "z": "3572c39984e6901e",
-        "name": "",
-        "width": 500,
-        "height": "500",
-        "x": 590,
-        "y": 200,
-        "wires": [
-            [
-                "62271758.c63728"
-            ]
+            []
         ]
     },
     {
@@ -2590,7 +2585,6 @@
         "y": 300,
         "wires": [
             [
-                "62271758.c63728",
                 "fac75646.ed0358"
             ]
         ]
@@ -2605,9 +2599,7 @@
         "x": 550,
         "y": 380,
         "wires": [
-            [
-                "62271758.c63728"
-            ]
+            []
         ]
     },
     {
@@ -2620,9 +2612,7 @@
         "x": 550,
         "y": 460,
         "wires": [
-            [
-                "62271758.c63728"
-            ]
+            []
         ]
     }
 ]
