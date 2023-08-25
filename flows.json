@@ -1714,8 +1714,7 @@
         "wires": [
             [
                 "4e4f4f7a85b8a2cd",
-                "9a3d6e47ed36af55",
-                "5f624f25.98f38"
+                "9a3d6e47ed36af55"
             ]
         ]
     },
@@ -1843,7 +1842,9 @@
         "y": 620,
         "wires": [
             [
-                "22b46f6b8f42dced"
+                "22b46f6b8f42dced",
+                "2329d63ddb032254",
+                "5f624f25.98f38"
             ]
         ]
     },
@@ -2132,8 +2133,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1320,
-        "y": 620,
+        "x": 1580,
+        "y": 720,
         "wires": []
     },
     {
@@ -2141,11 +2142,12 @@
         "type": "function",
         "z": "8b4c08f2a705dd79",
         "name": "Vertical Bar Chart 2 series",
-        "func": "function getGetOrdinal(n) {\n    var s=[\"th\",\"st\",\"nd\",\"rd\"],\n    v=n%100;\n    return n+(s[(v-20)%10]||s[v]||s[0]);\n }\n\nvar dL = [\"Sunday\", \"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\"];\nvar dS = [\"Sun\", \"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\"];\nvar mL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];\nvar mS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];\n\nlet now = new Date();\n\n// Create the chart object\nlet m = {\n    type: 'bar',\n    options: {\n        title: {\n            display:true,\n            text:'Vertical bar with 2 data series'\n        },\n        legend: {\n            display:true\n        },\n        chartArea: {\n            backgroundColor: 'white'\n        },\n        plugins: {\n            datalabels: {\n                display:true,\n                backgroundColor:'whitesmoke',\n                borderRadius:1,\n                padding:1,\n                align: 'right',\n                anchor: function(context) {\n                    //node.send({debug:{dataindex:context.dataIndex}});\n                    if (context.dataIndex == context.dataset.data.length - 1) {\n                        return 'center';\n                    } else {\n                        return 'end';\n                    }\n                },\n                offset:8,\n                formatter:function(value) {\n                    return value > 0 ? value.toLocaleString() : '';\n                }\n            }\n        }\n    },\n    data: {\n        labels:[],\n        datasets: [\n            {\n                label:\"Series 1\",\n                backgroundColor:'rgba(57,97,184,0.8)',\n                data:[]\n            },\n            {\n                label:\"Series 2\",\n                backgroundColor:'rgba(127, 184, 57,0.8)',\n                data:[]\n            }\n        ]\n    }\n}\n\nlet l = Math.floor(Math.random()*50);\nlet k = Math.floor(Math.random()*50);\n\nfor (let i=0; i<10; i++) {\n    l = l + Math.floor(Math.random()*6)-3;\n    m.data.datasets[0].data.push(l);\n    k = k + Math.floor(Math.random()*6)-3;\n    m.data.datasets[1].data.push(k);\n    var d = new Date();\n    d.setTime(now.getTime()-1000*60*60*24*(10-i));\n    let month = \"\" + (d.getMonth() + 1);\n    let day = \"\" + d.getDate();\n    let year = d.getFullYear();\n\n    if (month.length < 2) month = '0' + month;\n    if (day.length < 2) day = '0' + day;\n    m.data.labels.push(day + \".\"+month+\".\"+year);\n}\n\nmsg.payload = m;\n\nreturn msg;\n",
+        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload;\n\n// Extraction des données nécessaires\nvar voltCpuData = rawData[\"volt/benchmark/cpu\"];\nvar voltRamData = rawData[\"volt/benchmark/ram\"];\nvar voltProcessesData = rawData[\"volt/benchmark/processes\"];\nvar voltTempData = rawData[\"volt/benchmark/temp\"];\nvar nidusCpuData = rawData[\"nidus/benchmark/cpu\"];\nvar nidusRamData = rawData[\"nidus/benchmark/ram\"];\nvar nidusProcessesData = rawData[\"nidus/benchmark/processes\"];\nvar nidusTempData = rawData[\"nidus/benchmark/temp\"];\n\n// Création du graphique\nvar chartData = {\n    type: 'bar',\n    options: {\n        title: {\n            display: true,\n            text: 'Comparaison des performances'\n        },\n        legend: {\n            display: true\n        },\n        chartArea: {\n            backgroundColor: 'white'\n        },\n        plugins: {\n            datalabels: {\n                display: true,\n                backgroundColor: 'whitesmoke',\n                borderRadius: 1,\n                padding: 1,\n                align: 'right',\n                anchor: function (context) {\n                    if (context.dataIndex == context.dataset.data.length - 1) {\n                        return 'center';\n                    } else {\n                        return 'end';\n                    }\n                },\n                offset: 8,\n                formatter: function (value) {\n                    return value > 0 ? value.toLocaleString() : '';\n                }\n            }\n        }\n    },\n    data: {\n        labels: ['CPU', 'RAM', 'Processes', 'Temp'],\n        datasets: [\n            {\n                label: \"Volt CPU\",\n                backgroundColor: 'rgba(57,97,184,0.8)',\n                data: voltCpuData\n            },\n            {\n                label: \"Volt RAM\",\n                backgroundColor: 'rgba(127, 184, 57,0.8)',\n                data: voltRamData\n            },\n            {\n                label: \"Volt Processes\",\n                backgroundColor: 'rgba(184, 57, 127,0.8)',\n                data: voltProcessesData\n            },\n            {\n                label: \"Volt Temp\",\n                backgroundColor: 'rgba(184, 127, 57,0.8)',\n                data: voltTempData\n            },\n            {\n                label: \"Nidus CPU\",\n                backgroundColor: 'rgba(97, 184, 57,0.8)',\n                data: nidusCpuData\n            },\n            {\n                label: \"Nidus RAM\",\n                backgroundColor: 'rgba(57,97,127,0.8)',\n                data: nidusRamData\n            },\n            {\n                label: \"Nidus Processes\",\n                backgroundColor: 'rgba(57,127,184,0.8)',\n                data: nidusProcessesData\n            },\n            {\n                label: \"Nidus Temp\",\n                backgroundColor: 'rgba(127, 57, 184,0.8)',\n                data: nidusTempData\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 1350,
         "y": 560,
         "wires": [
@@ -2184,6 +2186,24 @@
         "y": 560,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "2329d63ddb032254",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Vertical Bar Chart 2 series",
+        "func": "function getGetOrdinal(n) {\n    var s=[\"th\",\"st\",\"nd\",\"rd\"],\n    v=n%100;\n    return n+(s[(v-20)%10]||s[v]||s[0]);\n }\n\nvar dL = [\"Sunday\", \"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\"];\nvar dS = [\"Sun\", \"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\"];\nvar mL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];\nvar mS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];\n\nlet now = new Date();\n\n// Create the chart object\nlet m = {\n    type: 'bar',\n    options: {\n        title: {\n            display:true,\n            text:'Vertical bar with 2 data series'\n        },\n        legend: {\n            display:true\n        },\n        chartArea: {\n            backgroundColor: 'white'\n        },\n        plugins: {\n            datalabels: {\n                display:true,\n                backgroundColor:'whitesmoke',\n                borderRadius:1,\n                padding:1,\n                align: 'right',\n                anchor: function(context) {\n                    //node.send({debug:{dataindex:context.dataIndex}});\n                    if (context.dataIndex == context.dataset.data.length - 1) {\n                        return 'center';\n                    } else {\n                        return 'end';\n                    }\n                },\n                offset:8,\n                formatter:function(value) {\n                    return value > 0 ? value.toLocaleString() : '';\n                }\n            }\n        }\n    },\n    data: {\n        labels:[],\n        datasets: [\n            {\n                label:\"Series 1\",\n                backgroundColor:'rgba(57,97,184,0.8)',\n                data:[]\n            },\n            {\n                label:\"Series 2\",\n                backgroundColor:'rgba(127, 184, 57,0.8)',\n                data:[]\n            }\n        ]\n    }\n}\n\nlet l = Math.floor(Math.random()*50);\nlet k = Math.floor(Math.random()*50);\n\nfor (let i=0; i<10; i++) {\n    l = l + Math.floor(Math.random()*6)-3;\n    m.data.datasets[0].data.push(l);\n    k = k + Math.floor(Math.random()*6)-3;\n    m.data.datasets[1].data.push(k);\n    var d = new Date();\n    d.setTime(now.getTime()-1000*60*60*24*(10-i));\n    let month = \"\" + (d.getMonth() + 1);\n    let day = \"\" + d.getDate();\n    let year = d.getFullYear();\n\n    if (month.length < 2) month = '0' + month;\n    if (day.length < 2) day = '0' + day;\n    m.data.labels.push(day + \".\"+month+\".\"+year);\n}\n\nmsg.payload = m;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1350,
+        "y": 500,
+        "wires": [
+            [
+                "22b46f6b8f42dced"
+            ]
         ]
     },
     {
