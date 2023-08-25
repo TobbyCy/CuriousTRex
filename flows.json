@@ -1706,7 +1706,8 @@
         "wires": [
             [
                 "4e4f4f7a85b8a2cd",
-                "9a3d6e47ed36af55"
+                "9a3d6e47ed36af55",
+                "2c5f4ef119fee838"
             ]
         ]
     },
@@ -1726,7 +1727,8 @@
         "wires": [
             [
                 "4e4f4f7a85b8a2cd",
-                "9a3d6e47ed36af55"
+                "9a3d6e47ed36af55",
+                "2c5f4ef119fee838"
             ]
         ]
     },
@@ -1746,7 +1748,8 @@
         "wires": [
             [
                 "4e4f4f7a85b8a2cd",
-                "9a3d6e47ed36af55"
+                "9a3d6e47ed36af55",
+                "2c5f4ef119fee838"
             ]
         ]
     },
@@ -1766,7 +1769,8 @@
         "wires": [
             [
                 "4e4f4f7a85b8a2cd",
-                "9a3d6e47ed36af55"
+                "9a3d6e47ed36af55",
+                "2c5f4ef119fee838"
             ]
         ]
     },
@@ -1786,7 +1790,8 @@
         "wires": [
             [
                 "4e4f4f7a85b8a2cd",
-                "9a3d6e47ed36af55"
+                "9a3d6e47ed36af55",
+                "2c5f4ef119fee838"
             ]
         ]
     },
@@ -1806,7 +1811,8 @@
         "wires": [
             [
                 "4e4f4f7a85b8a2cd",
-                "9a3d6e47ed36af55"
+                "9a3d6e47ed36af55",
+                "2c5f4ef119fee838"
             ]
         ]
     },
@@ -1989,7 +1995,8 @@
         "wires": [
             [
                 "4e4f4f7a85b8a2cd",
-                "9a3d6e47ed36af55"
+                "9a3d6e47ed36af55",
+                "2c5f4ef119fee838"
             ]
         ]
     },
@@ -2054,7 +2061,8 @@
         "wires": [
             [
                 "4e4f4f7a85b8a2cd",
-                "9a3d6e47ed36af55"
+                "9a3d6e47ed36af55",
+                "2c5f4ef119fee838"
             ]
         ]
     },
@@ -2073,6 +2081,23 @@
         "statusType": "auto",
         "x": 1820,
         "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "2c5f4ef119fee838",
+        "type": "debug",
+        "z": "8b4c08f2a705dd79",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1560,
+        "y": 840,
         "wires": []
     },
     {
