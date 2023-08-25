@@ -1398,7 +1398,8 @@
         "y": 940,
         "wires": [
             [
-                "7b65a4353d980a32"
+                "7b65a4353d980a32",
+                "30a0a1ccd8e67894"
             ],
             [
                 "5c69c227d997ff0a"
@@ -2094,6 +2095,27 @@
         "x": 1560,
         "y": 840,
         "wires": []
+    },
+    {
+        "id": "30a0a1ccd8e67894",
+        "type": "ui_template",
+        "z": "8b4c08f2a705dd79",
+        "group": "160e81fb.f1c86e",
+        "name": "",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n    #progress {\n        width: 100%;\n        height: 30px;\n        background-color: lightgray;\n        position: relative;\n    }\n\n    #progressbar {\n        width: 0;\n        height: 100%;\n        background-color: green;\n    }\n</style>\n<div id=\"progress\">\n    <div id=\"progressbar\"></div>\n</div>\n<script>\n    var progressBar = document.getElementById('progressbar');\n    var duration = {{msg.payload.delay}}; // Durée en millisecondes\n\n    var startTime = new Date().getTime();\n    var interval = setInterval(function() {\n        var currentTime = new Date().getTime();\n        var elapsedTime = currentTime - startTime;\n        var progress = (elapsedTime / duration) * 100;\n        progressBar.style.width = progress + '%';\n\n        if (progress >= 100) {\n            clearInterval(interval);\n        }\n    }, 100);\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 700,
+        "y": 600,
+        "wires": [
+            []
+        ]
     },
     {
         "id": "9ba0d599c2412587",
