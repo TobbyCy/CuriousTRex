@@ -601,7 +601,7 @@
         "type": "mqtt in",
         "z": "76efdb70933209ac",
         "name": "",
-        "topic": "benchmark/cpu",
+        "topic": "volt/benchmark/cpu",
         "qos": "2",
         "datatype": "auto-detect",
         "broker": "12e50ad63920a21c",
@@ -609,7 +609,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 340,
+        "x": 350,
         "y": 500,
         "wires": [
             [
@@ -622,7 +622,7 @@
         "type": "mqtt in",
         "z": "76efdb70933209ac",
         "name": "",
-        "topic": "benchmark/ram",
+        "topic": "volt/benchmark/ram",
         "qos": "2",
         "datatype": "auto-detect",
         "broker": "12e50ad63920a21c",
@@ -630,7 +630,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 340,
+        "x": 350,
         "y": 640,
         "wires": [
             [
@@ -643,7 +643,7 @@
         "type": "mqtt in",
         "z": "76efdb70933209ac",
         "name": "",
-        "topic": "benchmark/processes",
+        "topic": "volt/benchmark/processes",
         "qos": "2",
         "datatype": "auto-detect",
         "broker": "12e50ad63920a21c",
@@ -651,7 +651,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 360,
+        "x": 370,
         "y": 800,
         "wires": [
             [
@@ -803,6 +803,55 @@
         "wires": [
             [
                 "78164e0fc6561bb0"
+            ]
+        ]
+    },
+    {
+        "id": "af5a5bdbf9e320eb",
+        "type": "ui_gauge",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "group": "837441be757b92ac",
+        "order": 4,
+        "width": "10",
+        "height": "8",
+        "gtype": "gage",
+        "title": "Temp",
+        "label": "C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "500",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 650,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "7186fbb338a8160c",
+        "type": "mqtt in",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "topic": "volt/benchmark/processes",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "12e50ad63920a21c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 570,
+        "y": 860,
+        "wires": [
+            [
+                "af5a5bdbf9e320eb"
             ]
         ]
     },
