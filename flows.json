@@ -1322,7 +1322,7 @@
         "type": "function",
         "z": "8b4c08f2a705dd79",
         "name": "Créer le contenue du fichier",
-        "func": "msg.payload = {\n    header: function (currentPage, pageCount, pageSize) {\n        return [\n            {\n                text: \"Tobler Cyril\",\n                alignment: \"left\",\n                fontSize: 10,\n                margin: [15, 10, 0, 0]\n            },\n            {\n                text: \"Nom du projet : Confuse T-Rex\",\n                alignment: \"center\",\n                fontSize: 10,\n                margin: [0, 0, 0, 0]\n            }\n        ];\n    },\n    footer: function (currentPage, pageCount) {\n        return {\n            columns: [\n                {\n                    text: currentPage.toString() + \" / \" + pageCount,\n                    alignment: \"left\",\n                    fontSize: 10,\n                    margin: [15, 0, 0, 10]\n                },\n                {\n                    text: new Date().toLocaleDateString(\"fr-FR\"),\n                    alignment: \"right\",\n                    fontSize: 10,\n                    margin: [0, 0, 15, 10]\n                }\n            ],\n            margin: [0, 0, 0, 10]\n        };\n    },\n    content: [\n        {\n            text: \"Rapport d'utilisation\",\n            style: \"header\",\n            margin: [0, 10, 0, 0]\n        },\n        {\n            text: \"Les valeurs sont des moyennes sur les \" + Math.floor(msg.delay / (1000 * 60)) +\" dèrnière minutes\"\n        },\n        {\n            text: \"Nidus :\",\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.moyenne[\"nidus/benchmark/cpu\"]\n        },\n        {\n            text: \"RAM :                 \" + msg.moyenne[\"nidus/benchmark/ram\"]\n        },\n        {\n            text: \"Nombre de processus : \" + msg.moyenne[\"nidus/benchmark/processes\"]\n        },\n        {\n            text: \"Volt\",\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.moyenne[\"volt/benchmark/cpu\"]\n        },\n        {\n            text: \"RAM :                 \" + msg.moyenne[\"volt/benchmark/ram\"]\n        },\n        {\n            text: \"Nombre de processus : \" + msg.moyenne[\"volt/benchmark/processes\"]\n        },\n    ],\n    styles: {\n        header: {\n            fontSize: 22,\n            bold: true,\n            margin: [0, 30, 0, 0]\n        },\n        header2: {\n            fontSize: 18,\n            bold: true,\n            margin: [0, 20, 0, 0]\n        }\n    }\n};\n\nreturn msg;\n",
+        "func": "msg.payload = {\n    header: function (currentPage, pageCount, pageSize) {\n        return [\n            {\n                text: \"Tobler Cyril\",\n                alignment: \"left\",\n                fontSize: 10,\n                margin: [15, 10, 0, 0]\n            },\n            {\n                text: \"Nom du projet : Confuse T-Rex\",\n                alignment: \"center\",\n                fontSize: 10,\n                margin: [0, 0, 0, 0]\n            }\n        ];\n    },\n    footer: function (currentPage, pageCount) {\n        return {\n            columns: [\n                {\n                    text: currentPage.toString() + \" / \" + pageCount,\n                    alignment: \"left\",\n                    fontSize: 10,\n                    margin: [15, 0, 0, 10]\n                },\n                {\n                    text: new Date().toLocaleDateString(\"fr-FR\"),\n                    alignment: \"right\",\n                    fontSize: 10,\n                    margin: [0, 0, 15, 10]\n                }\n            ],\n            margin: [0, 0, 0, 10]\n        };\n    },\n    content: [\n        {\n            text: \"Rapport d'utilisation\",\n            style: \"header\",\n            margin: [0, 10, 0, 0]\n        },\n        {\n            text: \"Les valeurs sont des moyennes sur les \" + Math.floor(msg.delay / (1000 * 60)) +\" dèrnière minutes\"\n        },\n        {\n            text: \"Nidus :\",\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.moyenne[\"nidus/benchmark/cpu\"]\n        },\n        {\n            text: \"RAM :                 \" + msg.moyenne[\"nidus/benchmark/ram\"]\n        },\n        {\n            text: \"Nombre de processus : \" + msg.moyenne[\"nidus/benchmark/processes\"]\n        },\n        {\n            text: \"Température CPU :     \" + msg.moyenne[\"nidus/benchmark/temp\"]\n        },\n        {\n            text: \"Volt\",\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.moyenne[\"volt/benchmark/cpu\"]\n        },\n        {\n            text: \"RAM :                 \" + msg.moyenne[\"volt/benchmark/ram\"]\n        },\n        {\n            text: \"Nombre de processus : \" + msg.moyenne[\"volt/benchmark/processes\"]\n        },\n        {\n            text: \"Température CPU :     \" + msg.moyenne[\"volt/benchmark/temp\"]\n        },\n    ],\n    styles: {\n        header: {\n            fontSize: 22,\n            bold: true,\n            margin: [0, 30, 0, 0]\n        },\n        header2: {\n            fontSize: 18,\n            bold: true,\n            margin: [0, 20, 0, 0]\n        }\n    }\n};\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1386,8 +1386,8 @@
         "type": "function",
         "z": "8b4c08f2a705dd79",
         "name": "Activate",
-        "func": "var delay = msg.payload.time !== null ? msg.payload.time * 60 * 1000 : 2000; // Convertir en millisecondes si nécessaire\n\n// Créer les objets de message pour chaque sortie\nvar msg1 = {\n    cmd: \"subscribe\",\n    topic: \"/\",\n    complete: true,\n    out:1,\n    delay: delay, // Délai en ms\n    filepath: msg.filePath\n};\n\nvar msg2 = {\n    cmd: \"subscribe\",\n    topic: \"volt/benchmark/cpu\",\n    out: 2\n};\n\nvar msg3 = {\n    cmd: \"subscribe\",\n    topic: \"volt/benchmark/ram\",\n    out: 3\n};\n\nvar msg4 = {\n    cmd: \"subscribe\",\n    topic: \"volt/benchmark/processes\",\n    out: 4\n};\n\nvar msg5 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/cpu\",\n    out: 5\n};\n\nvar msg6 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/ram\",\n    out: 6\n};\n\nvar msg7 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/processes\",\n    out: 7\n};\n\n// Envoyer les messages aux sorties correspondantes\n// Les messages seront envoyés dans l'ordre de 0 à 6, correspondant aux sorties activées\n// Assurez-vous que le nœud \"Function\" a sept sorties activées pour recevoir ces messages\nnode.send([msg1, msg2, msg3, msg4, msg5, msg6, msg7]);\n",
-        "outputs": 7,
+        "func": "var delay = msg.payload.time !== null ? msg.payload.time * 60 * 1000 : 2000; // Convertir en millisecondes si nécessaire\n\n// Créer les objets de message pour chaque sortie\nvar msg1 = {\n    cmd: \"subscribe\",\n    topic: \"/\",\n    complete: true,\n    out:1,\n    delay: delay, // Délai en ms\n    filepath: msg.filePath\n};\n\nvar msg2 = {\n    cmd: \"subscribe\",\n    topic: \"volt/benchmark/cpu\",\n    out: 2\n};\n\nvar msg3 = {\n    cmd: \"subscribe\",\n    topic: \"volt/benchmark/ram\",\n    out: 3\n};\n\nvar msg4 = {\n    cmd: \"subscribe\",\n    topic: \"volt/benchmark/processes\",\n    out: 4\n};\n\nvar msg5 = {\n    cmd: \"subscribe\",\n    topic: \"volt/benchmark/temp\",\n    out: 4\n};\n\n\n\nvar msg6 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/cpu\",\n    out: 5\n};\n\nvar msg7 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/ram\",\n    out: 6\n};\n\nvar msg8 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/processes\",\n    out: 7\n};\nvar msg9 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/temps\",\n    out: 4\n};\n\n\n// Envoyer les messages aux sorties correspondantes\n// Les messages seront envoyés dans l'ordre de 0 à 6, correspondant aux sorties activées\n// Assurez-vous que le nœud \"Function\" a sept sorties activées pour recevoir ces messages\nnode.send([msg1, msg2, msg3, msg4, msg5, msg6, msg7,msg8,msg9]);\n",
+        "outputs": 9,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -1409,6 +1409,9 @@
                 "0133cae69ae5104b"
             ],
             [
+                "639890ec7f76a77c"
+            ],
+            [
                 "2f71f2cc59cf73fe"
             ],
             [
@@ -1416,6 +1419,9 @@
             ],
             [
                 "7d68e80e8c88e5f7"
+            ],
+            [
+                "36a3fe1d1cb9d60b"
             ]
         ]
     },
@@ -1451,7 +1457,9 @@
                 "09be40e07be60911",
                 "7e535f8c5b186600",
                 "f591304f29200dcd",
-                "376177303fee8e6b"
+                "376177303fee8e6b",
+                "639890ec7f76a77c",
+                "36a3fe1d1cb9d60b"
             ]
         ]
     },
@@ -1566,7 +1574,7 @@
         "reduceInitType": "num",
         "reduceFixup": "",
         "x": 1110,
-        "y": 1020,
+        "y": 1080,
         "wires": [
             [
                 "7b6671537c22ccbb"
@@ -1582,7 +1590,7 @@
         "qos": "2",
         "broker": "ae336b538b957769",
         "x": 950,
-        "y": 1020,
+        "y": 1080,
         "wires": [
             [
                 "7e535f8c5b186600"
@@ -1611,7 +1619,7 @@
         "reduceInitType": "num",
         "reduceFixup": "",
         "x": 1110,
-        "y": 1120,
+        "y": 1180,
         "wires": [
             [
                 "a4788f45248625c0"
@@ -1627,7 +1635,7 @@
         "qos": "2",
         "broker": "ae336b538b957769",
         "x": 950,
-        "y": 1120,
+        "y": 1180,
         "wires": [
             [
                 "f591304f29200dcd"
@@ -1656,7 +1664,7 @@
         "reduceInitType": "num",
         "reduceFixup": "",
         "x": 1110,
-        "y": 1220,
+        "y": 1280,
         "wires": [
             [
                 "c8ba41e1313713fc"
@@ -1672,7 +1680,7 @@
         "qos": "2",
         "broker": "ae336b538b957769",
         "x": 960,
-        "y": 1220,
+        "y": 1280,
         "wires": [
             [
                 "376177303fee8e6b"
@@ -1752,7 +1760,7 @@
         "finalize": "",
         "libs": [],
         "x": 1240,
-        "y": 1020,
+        "y": 1080,
         "wires": [
             [
                 "4e4f4f7a85b8a2cd",
@@ -1772,7 +1780,7 @@
         "finalize": "",
         "libs": [],
         "x": 1240,
-        "y": 1120,
+        "y": 1180,
         "wires": [
             [
                 "4e4f4f7a85b8a2cd",
@@ -1792,7 +1800,7 @@
         "finalize": "",
         "libs": [],
         "x": 1240,
-        "y": 1220,
+        "y": 1280,
         "wires": [
             [
                 "4e4f4f7a85b8a2cd",
@@ -1840,14 +1848,14 @@
         "joinerType": "str",
         "accumulate": false,
         "timeout": "",
-        "count": "6",
+        "count": "8",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
         "x": 1550,
-        "y": 1040,
+        "y": 1060,
         "wires": [
             [
                 "ce7fc785e5173ede"
@@ -1916,6 +1924,136 @@
         "x": 2240,
         "y": 1000,
         "wires": []
+    },
+    {
+        "id": "3b8849fe5c0112fb",
+        "type": "join",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1110,
+        "y": 980,
+        "wires": [
+            [
+                "11d7e6fa4a405b9d"
+            ]
+        ]
+    },
+    {
+        "id": "639890ec7f76a77c",
+        "type": "mqtt-plus in",
+        "z": "8b4c08f2a705dd79",
+        "name": "Volt/Temp",
+        "topic": "/",
+        "qos": "2",
+        "broker": "ae336b538b957769",
+        "x": 940,
+        "y": 980,
+        "wires": [
+            [
+                "3b8849fe5c0112fb"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "11d7e6fa4a405b9d",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Rename",
+        "func": "// Définir le sujet du message\nmsg.topic = \"volt/benchmark/temp\";\n\n// Vérifier si le tableau payload existe et n'est pas vide\nif (msg.payload && Array.isArray(msg.payload) && msg.payload.length > 0) {\n    // Convertir les valeurs en chaînes de caractères en nombres entiers\n    var numericValues = msg.payload.map(function (value) {\n        return parseInt(value, 10); // 10 indique la base décimale\n    }).filter(function (value) {\n        return !isNaN(value); // Filtrer les valeurs non numériques\n    });\n\n    // Vérifier si des valeurs numériques ont été trouvées\n    if (numericValues.length > 0) {\n        // Calculer la somme des valeurs numériques dans le tableau\n        var sum = numericValues.reduce(function (acc, value) {\n            return acc + value;\n        }, 0);\n\n        // Calculer la moyenne en divisant la somme par le nombre d'éléments\n        var moyenne = sum / numericValues.length;\n\n        // Arrondir la moyenne à deux chiffres après la virgule et au multiple de 0.05 le plus proche\n        moyenne = Math.round(moyenne * 20) / 20;\n\n        // Ajouter la moyenne au message\n        msg.moyenne = moyenne.toFixed(2);\n    } else {\n        // Si aucune valeur numérique n'a été trouvée, définir la moyenne à 0\n        msg.moyenne = \"0.00\";\n    }\n} else {\n    // Si le tableau est vide ou n'existe pas, définir la moyenne à 0\n    msg.moyenne = \"0.00\";\n}\n\n// Renvoyer le message modifié\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1240,
+        "y": 980,
+        "wires": [
+            [
+                "4e4f4f7a85b8a2cd",
+                "9a3d6e47ed36af55"
+            ]
+        ]
+    },
+    {
+        "id": "16850c4ba1026ed6",
+        "type": "join",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1110,
+        "y": 1340,
+        "wires": [
+            [
+                "6aaa0d33e800fed0"
+            ]
+        ]
+    },
+    {
+        "id": "36a3fe1d1cb9d60b",
+        "type": "mqtt-plus in",
+        "z": "8b4c08f2a705dd79",
+        "name": "Nidus/temp",
+        "topic": "/",
+        "qos": "2",
+        "broker": "ae336b538b957769",
+        "x": 950,
+        "y": 1340,
+        "wires": [
+            [
+                "16850c4ba1026ed6"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "6aaa0d33e800fed0",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Rename",
+        "func": "// Définir le sujet du message\nmsg.topic = \"nidus/benchmark/temp\";\n// Vérifier si le tableau payload existe et n'est pas vide\nif (msg.payload && Array.isArray(msg.payload) && msg.payload.length > 0) {\n    // Convertir les valeurs en chaînes de caractères en nombres entiers\n    var numericValues = msg.payload.map(function (value) {\n        return parseInt(value, 10); // 10 indique la base décimale\n    }).filter(function (value) {\n        return !isNaN(value); // Filtrer les valeurs non numériques\n    });\n\n    // Vérifier si des valeurs numériques ont été trouvées\n    if (numericValues.length > 0) {\n        // Calculer la somme des valeurs numériques dans le tableau\n        var sum = numericValues.reduce(function (acc, value) {\n            return acc + value;\n        }, 0);\n\n        // Calculer la moyenne en divisant la somme par le nombre d'éléments\n        var moyenne = sum / numericValues.length;\n\n        // Arrondir la moyenne à deux chiffres après la virgule et au multiple de 0.05 le plus proche\n        moyenne = Math.round(moyenne * 20) / 20;\n\n        // Ajouter la moyenne au message\n        msg.moyenne = moyenne.toFixed(2);\n    } else {\n        // Si aucune valeur numérique n'a été trouvée, définir la moyenne à 0\n        msg.moyenne = \"0.00\";\n    }\n} else {\n    // Si le tableau est vide ou n'existe pas, définir la moyenne à 0\n    msg.moyenne = \"0.00\";\n}\n\n// Renvoyer le message modifié\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1240,
+        "y": 1340,
+        "wires": [
+            [
+                "4e4f4f7a85b8a2cd",
+                "9a3d6e47ed36af55"
+            ]
+        ]
     },
     {
         "id": "9ba0d599c2412587",
