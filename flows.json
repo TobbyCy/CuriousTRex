@@ -1234,8 +1234,8 @@
         "inputProperty": "payload",
         "options": "{}",
         "outputProperty": "payload",
-        "x": 1460,
-        "y": 860,
+        "x": 1740,
+        "y": 900,
         "wires": [
             [
                 "0479ae659b0e83c9"
@@ -1253,8 +1253,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "base64",
-        "x": 1200,
-        "y": 820,
+        "x": 1740,
+        "y": 860,
         "wires": [
             [
                 "e8ac5800cefa20d9"
@@ -1336,8 +1336,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1260,
-        "y": 860,
+        "x": 1400,
+        "y": 900,
         "wires": [
             [
                 "4ef3788f935e6027"
@@ -1888,7 +1888,7 @@
         "links": [
             "26a410550aabca72"
         ],
-        "x": 1305,
+        "x": 2065,
         "y": 820,
         "wires": []
     },
@@ -2189,7 +2189,9 @@
         "x": 1730,
         "y": 560,
         "wires": [
-            []
+            [
+                "e8ac5800cefa20d9"
+            ]
         ]
     },
     {
@@ -2258,7 +2260,9 @@
         "x": 1730,
         "y": 620,
         "wires": [
-            []
+            [
+                "e8ac5800cefa20d9"
+            ]
         ]
     },
     {
@@ -2266,7 +2270,7 @@
         "type": "function",
         "z": "8b4c08f2a705dd79",
         "name": "Volt Line Chart",
-        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload;\n\n// Extraction des données nécessaires\nvar voltCpuData = rawData[\"volt/benchmark/cpu\"];\nvar voltRamData = rawData[\"volt/benchmark/ram\"];\nvar voltProcessesData = rawData[\"volt/benchmark/processes\"];\nvar voltTempData = rawData[\"volt/benchmark/temp\"];\n\n\n// Création du graphique\nvar chartData = {\n    type: 'line',  // Changement du type de graphique en \"line\"\n    options: {\n        title: {\n            display: true,\n            text: 'Comparaison des performances'\n        },\n        legend: {\n            display: true\n        },\n        chartArea: {\n            backgroundColor: 'white'\n        },\n        plugins: {\n            datalabels: {\n                display: false  // Désactiver l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: Array.from({ length: voltCpuData.length }, (_, i) => (i + 1).toString()),  // Numéros de 1 à n\n        datasets: [\n            {\n                label: \"Volt CPU\",\n                borderColor: 'rgba(57,97,184,1)',  // Couleur de la ligne\n                fill: false,  // Désactiver le remplissage sous la ligne\n                data: voltCpuData\n            },\n            {\n                label: \"Volt RAM\",\n                borderColor: 'rgba(127, 184, 57,1)',\n                fill: false,\n                data: voltRamData\n            },\n            {\n                label: \"Volt Processes\",\n                borderColor: 'rgba(184, 57, 127,1)',\n                fill: false,\n                data: voltProcessesData\n            },\n            {\n                label: \"Volt Temp\",\n                borderColor: 'rgba(184, 127, 57,1)',\n                fill: false,\n                data: voltTempData\n            },\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
+        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload;\n\n// Extraction des données nécessaires\nvar voltCpuData = rawData[\"volt/benchmark/cpu\"];\nvar voltRamData = rawData[\"volt/benchmark/ram\"];\nvar voltProcessesData = rawData[\"volt/benchmark/processes\"];\nvar voltTempData = rawData[\"volt/benchmark/temp\"];\n\n\n// Création du graphique\nvar chartData = {\n    type: 'line',  // Changement du type de graphique en \"line\"\n    options: {\n        title: {\n            display: true,\n            text: 'Comparaison des performances'\n        },\n        legend: {\n            display: true\n        },\n        chartArea: {\n            backgroundColor: 'white'\n        },\n        plugins: {\n            datalabels: {\n                display: false  // Désactiver l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: Array.from({ length: voltCpuData.length }, (_, i) => (i + 1).toString()),  // Numéros de 1 à n\n        datasets: [\n            {\n                label: \"Volt CPU\",\n                borderColor: 'rgba(57,97,184,1)',  // Couleur de la ligne\n                fill: false,  // Désactiver le remplissage sous la ligne\n                data: voltCpuData\n            },\n            {\n                label: \"Volt RAM\",\n                borderColor: 'rgba(127, 184, 57,1)',\n                fill: false,\n                data: voltRamData\n            },\n            //{\n            //    label: \"Volt Processes\",\n            //    borderColor: 'rgba(184, 57, 127,1)',\n            //    fill: false,\n            //    data: voltProcessesData\n            //},\n            {\n                label: \"Volt Temp\",\n                borderColor: 'rgba(184, 127, 57,1)',\n                fill: false,\n                data: voltTempData\n            },\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2309,7 +2313,9 @@
         "x": 1730,
         "y": 660,
         "wires": [
-            []
+            [
+                "e8ac5800cefa20d9"
+            ]
         ]
     },
     {
@@ -2317,7 +2323,7 @@
         "type": "function",
         "z": "8b4c08f2a705dd79",
         "name": "Nidus Line Chart",
-        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload;\n\n// Extraction des données nécessaires\nvar nidusCpuData = rawData[\"nidus/benchmark/cpu\"];\nvar nidusRamData = rawData[\"nidus/benchmark/ram\"];\nvar nidusProcessesData = rawData[\"nidus/benchmark/processes\"];\nvar nidusTempData = rawData[\"nidus/benchmark/temp\"];\n\n// Création du graphique\nvar chartData = {\n    type: 'line',  // Changement du type de graphique en \"line\"\n    options: {\n        title: {\n            display: true,\n            text: 'Comparaison des performances'\n        },\n        legend: {\n            display: true\n        },\n        chartArea: {\n            backgroundColor: 'white'\n        },\n        plugins: {\n            datalabels: {\n                display: false  // Désactiver l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: Array.from({ length: nidusCpuData.length }, (_, i) => (i + 1).toString()),  // Numéros de 1 à n\n        datasets: [\n            {\n                label: \"Nidus CPU\",\n                borderColor: 'rgba(97, 184, 57,1)',\n                fill: false,\n                data: nidusCpuData\n            },\n            {\n                label: \"Nidus RAM\",\n                borderColor: 'rgba(57,97,127,1)',\n                fill: false,\n                data: nidusRamData\n            },\n            {\n                label: \"Nidus Processes\",\n                borderColor: 'rgba(57,127,184,1)',\n                fill: false,\n                data: nidusProcessesData\n            },\n            {\n                label: \"Nidus Temp\",\n                borderColor: 'rgba(127, 57, 184,1)',\n                fill: false,\n                data: nidusTempData\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
+        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload;\n\n// Extraction des données nécessaires\nvar nidusCpuData = rawData[\"nidus/benchmark/cpu\"];\nvar nidusRamData = rawData[\"nidus/benchmark/ram\"];\nvar nidusProcessesData = rawData[\"nidus/benchmark/processes\"];\nvar nidusTempData = rawData[\"nidus/benchmark/temp\"];\n\n// Création du graphique\nvar chartData = {\n    type: 'line',  // Changement du type de graphique en \"line\"\n    options: {\n        title: {\n            display: true,\n            text: 'Comparaison des performances'\n        },\n        legend: {\n            display: true\n        },\n        chartArea: {\n            backgroundColor: 'white'\n        },\n        plugins: {\n            datalabels: {\n                display: false  // Désactiver l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: Array.from({ length: nidusCpuData.length }, (_, i) => (i + 1).toString()),  // Numéros de 1 à n\n        datasets: [\n            {\n                label: \"Nidus CPU\",\n                borderColor: 'rgba(97, 184, 57,1)',\n                fill: false,\n                data: nidusCpuData\n            },\n            {\n                label: \"Nidus RAM\",\n                borderColor: 'rgba(57,97,127,1)',\n                fill: false,\n                data: nidusRamData\n            },\n            //{\n            //    label: \"Nidus Processes\",\n            //    borderColor: 'rgba(57,127,184,1)',\n            //    fill: false,\n            //    data: nidusProcessesData\n            //},\n            {\n                label: \"Nidus Temp\",\n                borderColor: 'rgba(127, 57, 184,1)',\n                fill: false,\n                data: nidusTempData\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2360,7 +2366,9 @@
         "x": 1730,
         "y": 700,
         "wires": [
-            []
+            [
+                "e8ac5800cefa20d9"
+            ]
         ]
     },
     {
