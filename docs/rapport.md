@@ -50,6 +50,7 @@
   - [12.3. INA219](#123-ina219)
   - [12.4. Monitoring](#124-monitoring)
   - [PDF](#pdf)
+  - [Images de chart et de tableau](#images-de-chart-et-de-tableau)
 - [13. Sources](#13-sources)
 
 # 3. Introduction
@@ -955,6 +956,12 @@ Pour generer un PDF, il faut passer un Json dans le payload du message :
 ```
 Qui est reçu dans le noeud pdfmake qui le passe en Base64 qui est ensuite reçu dans le noeud write file qui l'ecrie dans un fichier PDF.
 ![Alt text](../capture/RPI/Node-Red/PDF1.png)
+
+## Images de chart et de tableau
+Pour 
+```bash
+sudo apt-get install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
+```
 # 13. Sources
 
 1. **Guide d'Installation Node-Red**  
