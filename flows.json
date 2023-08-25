@@ -1398,7 +1398,7 @@
         "wires": [
             [
                 "7b65a4353d980a32",
-                "45632b1506735cd0"
+                "1a94997d94eb26fa"
             ],
             [
                 "5c69c227d997ff0a"
@@ -2155,6 +2155,25 @@
         "outputs": 1,
         "x": 550,
         "y": 540,
+        "wires": [
+            [
+                "45632b1506735cd0"
+            ]
+        ]
+    },
+    {
+        "id": "1a94997d94eb26fa",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "function 2",
+        "func": "// Vérifier si msg.delay est défini\nif (msg.delay !== undefined) {\nmsg.originalDelay = msg.delay;\n}else{\n    return null;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 680,
         "wires": [
             [
                 "45632b1506735cd0"
