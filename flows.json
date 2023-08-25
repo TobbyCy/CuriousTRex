@@ -1124,7 +1124,7 @@
         "type": "file",
         "z": "8b4c08f2a705dd79",
         "name": "",
-        "filename": "filePath",
+        "filename": "filepath",
         "filenameType": "msg",
         "appendNewline": true,
         "createDir": false,
@@ -1210,7 +1210,6 @@
         "wires": [
             [
                 "c50fac02ab9ddb0c",
-                "c1cad0ecb372a66c",
                 "4ef3788f935e6027"
             ]
         ]
@@ -1812,22 +1811,6 @@
         "x": 2240,
         "y": 1000,
         "wires": []
-    },
-    {
-        "id": "c1cad0ecb372a66c",
-        "type": "json",
-        "z": "8b4c08f2a705dd79",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 1950,
-        "y": 800,
-        "wires": [
-            [
-                "c50fac02ab9ddb0c"
-            ]
-        ]
     },
     {
         "id": "9ba0d599c2412587",
