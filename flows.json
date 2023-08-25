@@ -872,6 +872,55 @@
         "wires": []
     },
     {
+        "id": "b5e64e3d32ee1834",
+        "type": "ui_gauge",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "group": "65e942c300ec1ce1",
+        "order": 4,
+        "width": "10",
+        "height": "8",
+        "gtype": "gage",
+        "title": "Température",
+        "label": "C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "500",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 590,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "2cf2a295ee7de67c",
+        "type": "mqtt in",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "topic": "nidus/benchmark/temp",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "12e50ad63920a21c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 360,
+        "y": 1140,
+        "wires": [
+            [
+                "b5e64e3d32ee1834"
+            ]
+        ]
+    },
+    {
         "id": "4fa73dd9.83cca4",
         "type": "comment",
         "z": "8b4c08f2a705dd79",
