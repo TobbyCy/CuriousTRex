@@ -1833,7 +1833,7 @@
         "joinerType": "str",
         "accumulate": false,
         "timeout": "",
-        "count": "6",
+        "count": "8",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
@@ -2149,7 +2149,9 @@
         "x": 1350,
         "y": 560,
         "wires": [
-            []
+            [
+                "22b46f6b8f42dced"
+            ]
         ]
     },
     {
