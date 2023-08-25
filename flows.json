@@ -839,7 +839,7 @@
         "type": "mqtt in",
         "z": "76efdb70933209ac",
         "name": "",
-        "topic": "volt/benchmark/processes",
+        "topic": "volt/benchmark/temp",
         "qos": "2",
         "datatype": "auto-detect",
         "broker": "12e50ad63920a21c",
@@ -847,13 +847,29 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 570,
+        "x": 550,
         "y": 860,
         "wires": [
             [
                 "af5a5bdbf9e320eb"
             ]
         ]
+    },
+    {
+        "id": "ad315c76154e040f",
+        "type": "debug",
+        "z": "76efdb70933209ac",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 860,
+        "wires": []
     },
     {
         "id": "4fa73dd9.83cca4",
