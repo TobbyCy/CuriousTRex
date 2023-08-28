@@ -245,6 +245,14 @@
         "birthPayload": ""
     },
     {
+        "id": "bba7f20366547c44",
+        "type": "ina-sensor-manager",
+        "address": "0x40",
+        "delay": "2000",
+        "ohms": "0.01",
+        "customResistor": false
+    },
+    {
         "id": "3f2698910c317457",
         "type": "ui_text",
         "z": "76efdb70933209ac",
@@ -2376,7 +2384,7 @@
         "type": "ina-sensor",
         "z": "8b4c08f2a705dd79",
         "name": "",
-        "handle": "173c4031bd3a25c0",
+        "handle": "bba7f20366547c44",
         "x": 710,
         "y": 480,
         "wires": [
