@@ -2140,8 +2140,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1880,
-        "y": 1020,
+        "x": 1940,
+        "y": 1040,
         "wires": []
     },
     {
@@ -2189,7 +2189,7 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 1730,
+        "x": 1950,
         "y": 560,
         "wires": [
             [
@@ -2258,7 +2258,7 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 1730,
+        "x": 1950,
         "y": 620,
         "wires": [
             [
@@ -2278,7 +2278,8 @@
         "wires": [
             [
                 "3c7687d83cf34e96",
-                "0cf627b430aec580"
+                "0cf627b430aec580",
+                "22b46f6b8f42dced"
             ]
         ]
     },
@@ -2293,7 +2294,7 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 1730,
+        "x": 1950,
         "y": 660,
         "wires": [
             [
@@ -2328,7 +2329,7 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 1730,
+        "x": 1950,
         "y": 700,
         "wires": [
             [
@@ -2482,9 +2483,7 @@
         "x": 1410,
         "y": 840,
         "wires": [
-            [
-                "22b46f6b8f42dced"
-            ]
+            []
         ]
     },
     {
@@ -2508,12 +2507,37 @@
         "to": "",
         "reg": false,
         "x": 1420,
-        "y": 1040,
+        "y": 1060,
         "wires": [
             [
-                "22b46f6b8f42dced",
                 "0cf627b430aec580"
             ]
+        ]
+    },
+    {
+        "id": "696f35b1c89a67f0",
+        "type": "change",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "moyenne",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1120,
+        "y": 1060,
+        "wires": [
+            []
         ]
     },
     {
