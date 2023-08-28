@@ -245,14 +245,6 @@
         "birthPayload": ""
     },
     {
-        "id": "bba7f20366547c44",
-        "type": "ina-sensor-manager",
-        "address": "0x40",
-        "delay": "20000",
-        "ohms": "0.01",
-        "customResistor": false
-    },
-    {
         "id": "3f2698910c317457",
         "type": "ui_text",
         "z": "76efdb70933209ac",
@@ -1312,11 +1304,35 @@
                 "type": "number",
                 "required": false,
                 "rows": null
+            },
+            {
+                "label": "Stress test Nidus",
+                "value": "stressNidus",
+                "type": "checkbox",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "Stress test Volt",
+                "value": "stressVolt",
+                "type": "text",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "Temps de Stress test",
+                "value": "timeStress",
+                "type": "number",
+                "required": false,
+                "rows": null
             }
         ],
         "formValue": {
             "nameFile": "",
-            "time": ""
+            "time": "",
+            "stressNidus": false,
+            "stressVolt": "",
+            "timeStress": ""
         },
         "payload": "",
         "submit": "submit",
@@ -2376,67 +2392,6 @@
         "wires": [
             [
                 "0624d850b450f11c"
-            ]
-        ]
-    },
-    {
-        "id": "5a3be4131a620f7c",
-        "type": "ina-sensor",
-        "z": "8b4c08f2a705dd79",
-        "name": "",
-        "handle": "bba7f20366547c44",
-        "x": 750,
-        "y": 480,
-        "wires": [
-            [
-                "a31005fddf865bbb"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "a31005fddf865bbb",
-        "type": "debug",
-        "z": "8b4c08f2a705dd79",
-        "name": "debug 6",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 920,
-        "y": 480,
-        "wires": []
-    },
-    {
-        "id": "3770f46ab8d6206a",
-        "type": "inject",
-        "z": "8b4c08f2a705dd79",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 540,
-        "y": 480,
-        "wires": [
-            [
-                "5a3be4131a620f7c"
             ]
         ]
     },
