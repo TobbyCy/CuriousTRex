@@ -2648,15 +2648,20 @@
         "type": "file in",
         "z": "8b4c08f2a705dd79",
         "name": "",
-        "filename": "node_modules/node-red-contrib-pdfmake/examples/sample.jpg",
+        "filename": "/home/NodeRed/Volt.png",
+        "filenameType": "str",
         "format": "",
         "chunk": false,
         "sendError": false,
         "encoding": "none",
-        "x": 1550,
+        "allProps": false,
+        "x": 1470,
         "y": 1160,
         "wires": [
-            []
+            [
+                "f3ea19ee.f08518",
+                "927013c7ac3bd3b3"
+            ]
         ]
     },
     {
@@ -2718,8 +2723,23 @@
         "name": "",
         "action": "",
         "property": "msg.payload.voltGraph",
-        "x": 1920,
-        "y": 1160,
+        "x": 1860,
+        "y": 1120,
+        "wires": [
+            [
+                "22b46f6b8f42dced"
+            ]
+        ]
+    },
+    {
+        "id": "927013c7ac3bd3b3",
+        "type": "base64",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "action": "str",
+        "property": "msg.payload.voltGraph",
+        "x": 1860,
+        "y": 1180,
         "wires": [
             [
                 "22b46f6b8f42dced"
