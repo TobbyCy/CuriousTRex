@@ -2072,7 +2072,7 @@
         "order": 3,
         "width": "0",
         "height": "0",
-        "format": "<div layout=\"column\" layout-align=\"center center\">\n    <md-progress-linear class=\"md-accent\" md-mode=\"determinate\"\n        value=\"{{(msg.originalDelay - msg.delay) / msg.originalDelay * 100}}\"\n        md-stroke=\"100\"\n        ng-show=\"msg.delay !== undefined && msg.originalDelay !== undefined\"></md-progress-linear>",
+        "format": "<div layout=\"column\" layout-align=\"center center\">\n    <md-progress-linear class=\"md-accent\" md-mode=\"determinate\"\n        value=\"{{(msg.originalDelay - msg.delay) / msg.originalDelay * 100}}\"\n        md-stroke=\"1000\"\n        ng-show=\"msg.delay !== undefined && msg.originalDelay !== undefined\"></md-progress-linear>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
