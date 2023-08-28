@@ -1315,7 +1315,7 @@
             {
                 "label": "Stress test Volt",
                 "value": "stressVolt",
-                "type": "text",
+                "type": "checkbox",
                 "required": false,
                 "rows": null
             },
@@ -1331,7 +1331,7 @@
             "nameFile": "",
             "time": "",
             "stressNidus": false,
-            "stressVolt": "",
+            "stressVolt": false,
             "timeStress": ""
         },
         "payload": "",
