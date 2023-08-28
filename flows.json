@@ -1900,8 +1900,7 @@
         "wires": [
             [
                 "ce7fc785e5173ede",
-                "0cf627b430aec580",
-                "22b46f6b8f42dced"
+                "c71d1f39bb911b75"
             ]
         ]
     },
@@ -2485,6 +2484,35 @@
         "wires": [
             [
                 "22b46f6b8f42dced"
+            ]
+        ]
+    },
+    {
+        "id": "c71d1f39bb911b75",
+        "type": "change",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "moyenne",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1420,
+        "y": 1040,
+        "wires": [
+            [
+                "22b46f6b8f42dced",
+                "0cf627b430aec580"
             ]
         ]
     },
