@@ -9,7 +9,8 @@
         "node-red-contrib-fs": "1.4.1",
         "node-red-contrib-easybotics-ina219-sensor": "0.7.6",
         "node-red-contrib-chart-image": "1.2.0",
-        "node-red-contrib-msg-resend": "1.0.0"
+        "node-red-contrib-msg-resend": "1.0.0",
+        "node-red-node-base64": "0.3.0"
     },
     "node-red": {
         "settings": {
