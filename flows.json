@@ -2380,7 +2380,7 @@
         "type": "function",
         "z": "8b4c08f2a705dd79",
         "name": "function 1",
-        "func": "const sshNidus = \"ssh tobby@nidus\"; \nconst sshVolt = \"ssh tobby@157.26.228.77\"; \n\n    var stressCommandsNidus;\n    var stressCommandsVolt;\n\n    if (msg.payload.stressNidus) {\n        var msg1 = {\n            payload : `${sshNidus} 'sudo stress-ng --cpu 2 --io 1 --timeout ${msg.payload.timeStress}m --cpu-load 100 --vm-bytes 3G'`\n        };\n    }\n\n    if (msg.payload.stressVolt) {\n        var msg2 = {\n            payload: `${sshVolt} 'sudo stress-ng --cpu 2 --io 1 --timeout ${msg.payload.timeStress}m --cpu-load 100 --vm-bytes 3G'`\n        };\n    }\n    node.send([msg1, msg2]);\n",
+        "func": "const sshNidus = \"ssh tobby@nidus\"; \nconst sshVolt = \"ssh tobby@157.26.228.77\"; \n\n    var stressCommandsNidus;\n    var stressCommandsVolt;\n\n    if (msg.payload.stressNidus) {\n        var msg1 = {\n            payload : `${sshNidus} 'sudo stress-ng --cpu 2 --io 1 --timeout ${msg.payload.timeStress*60}s --cpu-load 100 --vm-bytes 3G'`\n        };\n    }\n\n    if (msg.payload.stressVolt) {\n        var msg2 = {\n            payload: `${sshVolt} 'sudo stress-ng --cpu 2 --io 1 --timeout ${msg.payload.timeStress*60}s --cpu-load 100 --vm-bytes 3G'`\n        };\n    }\n    node.send([msg1, msg2]);\n",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
