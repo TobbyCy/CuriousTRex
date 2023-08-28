@@ -1006,10 +1006,12 @@
         "order": 1,
         "width": "18",
         "height": "6",
-        "format": "<div ng-bind-html=\"msg.payload\" height=\"400\" style=\"height: 400px;\"><br/>\n</div>\n\n",
+        "format": "<div ng-bind-html=\"msg.payload\" height=\"400\" style=\"height: 400px;\"><br/>\n</div>\n<style>\n/* Applique des styles aux liens */\na[href] {\ncolor: #568255; /* Couleur du lien */\ntext-decoration: none; /* Pas de soulignement */\n}\n\n/* Applique des styles au survol des liens */\na[href]:hover {\ncolor: #449944; /* Couleur du lien au survol */\ntext-decoration: underline; /* Soulignement au survol */\n}\n</style>",
         "storeOutMessages": true,
         "fwdInMessages": true,
+        "resendOnRefresh": false,
         "templateScope": "local",
+        "className": "",
         "x": 1180,
         "y": 260,
         "wires": [
@@ -1238,7 +1240,8 @@
         "y": 900,
         "wires": [
             [
-                "0479ae659b0e83c9"
+                "0479ae659b0e83c9",
+                "22b46f6b8f42dced"
             ]
         ]
     },
@@ -1365,7 +1368,8 @@
         "y": 900,
         "wires": [
             [
-                "22b46f6b8f42dced"
+                "22b46f6b8f42dced",
+                "4ef3788f935e6027"
             ]
         ]
     },
