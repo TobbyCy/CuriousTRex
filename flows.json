@@ -1234,7 +1234,7 @@
         "inputProperty": "payload",
         "options": "{}",
         "outputProperty": "payload",
-        "x": 1740,
+        "x": 1820,
         "y": 900,
         "wires": [
             [
@@ -1253,7 +1253,7 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "base64",
-        "x": 1740,
+        "x": 1820,
         "y": 860,
         "wires": [
             [
@@ -1355,13 +1355,13 @@
         "type": "function",
         "z": "8b4c08f2a705dd79",
         "name": "Créer le contenue du fichier",
-        "func": "msg.payload = {\n    header: function (currentPage, pageCount, pageSize) {\n        return [\n            {\n                text: \"Tobler Cyril\",\n                alignment: \"left\",\n                fontSize: 10,\n                margin: [15, 10, 0, 0]\n            },\n            {\n                text: \"Nom du projet : Confuse T-Rex\",\n                alignment: \"center\",\n                fontSize: 10,\n                margin: [0, 0, 0, 0]\n            }\n        ];\n    },\n    footer: function (currentPage, pageCount) {\n        return {\n            columns: [\n                {\n                    text: currentPage.toString() + \" / \" + pageCount,\n                    alignment: \"left\",\n                    fontSize: 10,\n                    margin: [15, 0, 0, 10]\n                },\n                {\n                    text: new Date().toLocaleDateString(\"fr-FR\"),\n                    alignment: \"right\",\n                    fontSize: 10,\n                    margin: [0, 0, 15, 10]\n                }\n            ],\n            margin: [0, 0, 0, 10]\n        };\n    },\n    content: [\n        {\n            text: \"Rapport d'utilisation\",\n            style: \"header\",\n            margin: [0, 10, 0, 0]\n        },\n        {\n            text: \"Les valeurs sont des moyennes sur les \" + Math.floor(msg.delay / (1000 * 60)) +\" dèrnière minutes\"\n        },\n        {\n            text: \"Nidus :\",\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.moyenne[\"nidus/benchmark/cpu\"]\n        },\n        {\n            text: \"RAM :                 \" + msg.moyenne[\"nidus/benchmark/ram\"]\n        },\n        {\n            text: \"Nombre de processus : \" + msg.moyenne[\"nidus/benchmark/processes\"]\n        },\n        {\n            text: \"Température CPU :     \" + msg.moyenne[\"nidus/benchmark/temp\"]\n        },\n        {\n            text: \"Volt\",\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.moyenne[\"volt/benchmark/cpu\"]\n        },\n        {\n            text: \"RAM :                 \" + msg.moyenne[\"volt/benchmark/ram\"]\n        },\n        {\n            text: \"Nombre de processus : \" + msg.moyenne[\"volt/benchmark/processes\"]\n        },\n        {\n            text: \"Température CPU :     \" + msg.moyenne[\"volt/benchmark/temp\"]\n        },\n    ],\n    styles: {\n        header: {\n            fontSize: 22,\n            bold: true,\n            margin: [0, 30, 0, 0]\n        },\n        header2: {\n            fontSize: 18,\n            bold: true,\n            margin: [0, 20, 0, 0]\n        }\n    }\n};\n\nreturn msg;\n",
+        "func": "msg.payload = {\n    header: function (currentPage, pageCount, pageSize) {\n        return [\n            {\n                text: \"Tobler Cyril\",\n                alignment: \"left\",\n                fontSize: 10,\n                margin: [15, 10, 0, 0]\n            },\n            {\n                text: \"Nom du projet : Confuse T-Rex\",\n                alignment: \"center\",\n                fontSize: 10,\n                margin: [0, 0, 0, 0]\n            }\n        ];\n    },\n    footer: function (currentPage, pageCount) {\n        return {\n            columns: [\n                {\n                    text: currentPage.toString() + \" / \" + pageCount,\n                    alignment: \"left\",\n                    fontSize: 10,\n                    margin: [15, 0, 0, 10]\n                },\n                {\n                    text: new Date().toLocaleDateString(\"fr-FR\"),\n                    alignment: \"right\",\n                    fontSize: 10,\n                    margin: [0, 0, 15, 10]\n                }\n            ],\n            margin: [0, 0, 0, 10]\n        };\n    },\n    content: [\n        {\n            text: \"Rapport d'utilisation\",\n            style: \"header\",\n            margin: [0, 10, 0, 0]\n        },\n        {\n            text: \"Les valeurs sont des moyennes sur les \" + Math.floor(msg.delay / (1000 * 60)) +\" dèrnière minutes\"\n        },\n        {\n            text: \"Nidus :\",\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.moyenne[\"nidus/benchmark/cpu\"]\n        },\n        {\n            text: \"RAM :                 \" + msg.moyenne[\"nidus/benchmark/ram\"]\n        },\n        {\n            text: \"Nombre de processus : \" + msg.moyenne[\"nidus/benchmark/processes\"]\n        },\n        {\n            text: \"Température CPU :     \" + msg.moyenne[\"nidus/benchmark/temp\"]\n        },\n        {\n            image: 'NidusImage'\n        },\n        {\n            text: \"Volt\",\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.moyenne[\"volt/benchmark/cpu\"]\n        },\n        {\n            text: \"RAM :                 \" + msg.moyenne[\"volt/benchmark/ram\"]\n        },\n        {\n            text: \"Nombre de processus : \" + msg.moyenne[\"volt/benchmark/processes\"]\n        },\n        {\n            text: \"Température CPU :     \" + msg.moyenne[\"volt/benchmark/temp\"]\n        },\n        {\n            image: 'VoltImage'\n        },\n\n    ],\n    images:{\n        VoltImage: 'data:image/png;base64,' + getBase64Image(\"/home/NodeRed/Volt.png\"),  // Remplacez \"data:image/png;base64,\" par le format approprié pour votre image\n        NidusImage: 'data:image/png;base64,' + getBase64Image(\"/home/NodeRed/Nidus.png\")  // Remplacez \"data:image/png;base64,\" par le format approprié pour votre image\n    },\n    styles: {\n        header: {\n            fontSize: 22,\n            bold: true,\n            margin: [0, 30, 0, 0]\n        },\n        header2: {\n            fontSize: 18,\n            bold: true,\n            margin: [0, 20, 0, 0]\n        }\n    }\n};\n\nreturn msg;\n\n\nfunction getBase64Image(imagePath) {\n    var fs = require('fs');\n    var bitmap = fs.readFileSync(imagePath);\n    return Buffer.from(bitmap).toString('base64');\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1400,
+        "x": 1620,
         "y": 900,
         "wires": [
             [
@@ -1900,7 +1900,7 @@
         "y": 900,
         "wires": [
             [
-                "ce7fc785e5173ede"
+                "f59099c42b70fbf1"
             ]
         ]
     },
@@ -2461,6 +2461,31 @@
         "x": 580,
         "y": 1000,
         "wires": []
+    },
+    {
+        "id": "f59099c42b70fbf1",
+        "type": "delay",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1380,
+        "y": 900,
+        "wires": [
+            [
+                "ce7fc785e5173ede"
+            ]
+        ]
     },
     {
         "id": "9ba0d599c2412587",
