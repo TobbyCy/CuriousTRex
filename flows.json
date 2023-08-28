@@ -1234,7 +1234,7 @@
         "inputProperty": "payload",
         "options": "{}",
         "outputProperty": "payload",
-        "x": 1820,
+        "x": 1860,
         "y": 900,
         "wires": [
             [
@@ -1365,7 +1365,6 @@
         "y": 900,
         "wires": [
             [
-                "4ef3788f935e6027",
                 "22b46f6b8f42dced"
             ]
         ]
@@ -2458,6 +2457,28 @@
             [
                 "ce7fc785e5173ede"
             ]
+        ]
+    },
+    {
+        "id": "ebb757461e027e2a",
+        "type": "msg-resend",
+        "z": "8b4c08f2a705dd79",
+        "interval": "250",
+        "intervalUnit": "msecs",
+        "maximum": 5,
+        "bytopic": false,
+        "clone": false,
+        "firstDelayed": false,
+        "addCounters": false,
+        "waitForResend": false,
+        "highRate": false,
+        "outputCountField": "",
+        "outputMaxField": "",
+        "name": "",
+        "x": 810,
+        "y": 500,
+        "wires": [
+            []
         ]
     },
     {
