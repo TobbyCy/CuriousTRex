@@ -1365,7 +1365,8 @@
         "y": 900,
         "wires": [
             [
-                "4ef3788f935e6027"
+                "4ef3788f935e6027",
+                "22b46f6b8f42dced"
             ]
         ]
     },
@@ -1867,7 +1868,6 @@
         "y": 620,
         "wires": [
             [
-                "22b46f6b8f42dced",
                 "2329d63ddb032254",
                 "5f624f25.98f38",
                 "ac62bafd63eb963d",
@@ -2140,8 +2140,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1100,
-        "y": 420,
+        "x": 1880,
+        "y": 1020,
         "wires": []
     },
     {
@@ -2159,7 +2159,6 @@
         "y": 560,
         "wires": [
             [
-                "22b46f6b8f42dced",
                 "89dfcf39.990ca"
             ]
         ]
@@ -2211,9 +2210,7 @@
         "x": 1350,
         "y": 500,
         "wires": [
-            [
-                "22b46f6b8f42dced"
-            ]
+            []
         ]
     },
     {
@@ -2390,8 +2387,7 @@
         "y": 820,
         "wires": [
             [
-                "5556b3e3ae54080e",
-                "15dce8d6fc9061d6"
+                "5556b3e3ae54080e"
             ],
             [
                 "5556b3e3ae54080e"
@@ -2413,15 +2409,9 @@
         "x": 370,
         "y": 980,
         "wires": [
-            [
-                "15dce8d6fc9061d6"
-            ],
-            [
-                "15dce8d6fc9061d6"
-            ],
-            [
-                "15dce8d6fc9061d6"
-            ]
+            [],
+            [],
+            []
         ]
     },
     {
@@ -2444,23 +2434,6 @@
         "wires": [
             []
         ]
-    },
-    {
-        "id": "15dce8d6fc9061d6",
-        "type": "debug",
-        "z": "8b4c08f2a705dd79",
-        "name": "debug 6",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 580,
-        "y": 1000,
-        "wires": []
     },
     {
         "id": "f59099c42b70fbf1",
