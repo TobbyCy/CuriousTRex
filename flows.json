@@ -1357,7 +1357,7 @@
         "type": "function",
         "z": "8b4c08f2a705dd79",
         "name": "Créer le contenue du fichier",
-        "func": "msg.payload = {\n    header: function (currentPage, pageCount, pageSize) {\n        return [\n            {\n                text: \"Tobler Cyril\",\n                alignment: \"left\",\n                fontSize: 10,\n                margin: [15, 10, 0, 0]\n            },\n            {\n                text: \"Nom du projet : Confuse T-Rex\",\n                alignment: \"center\",\n                fontSize: 10,\n                margin: [0, 0, 0, 0]\n            }\n        ];\n    },\n    footer: function (currentPage, pageCount) {\n        return {\n            columns: [\n                {\n                    text: currentPage.toString() + \" / \" + pageCount,\n                    alignment: \"left\",\n                    fontSize: 10,\n                    margin: [15, 0, 0, 10]\n                },\n                {\n                    text: new Date().toLocaleDateString(\"fr-FR\"),\n                    alignment: \"right\",\n                    fontSize: 10,\n                    margin: [0, 0, 15, 10]\n                }\n            ],\n            margin: [0, 0, 0, 10]\n        };\n    },\n    content: [\n        {\n            text: \"Rapport d'utilisation\",\n            style: \"header\",\n            margin: [0, 10, 0, 0]\n        },\n        {\n            text: \"Les valeurs sont des moyennes sur les \" + Math.floor(msg.delay / (1000 * 60)) + \" dèrnière minutes\"\n        },\n        {\n            text: \"Nidus :\",\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"nidus/benchmark/cpu\"]\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"nidus/benchmark/ram\"]\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"nidus/benchmark/processes\"]\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"nidus/benchmark/temp\"]\n        },\n        {\n            image: 'nidusImage'\n        },\n        {\n            text: \"Volt\",\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"volt/benchmark/cpu\"]\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"volt/benchmark/ram\"]\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"volt/benchmark/processes\"]\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"volt/benchmark/temp\"]\n        },\n        {\n            image: 'voltImage'\n        },\n    ],\n    images: {\n        voltImage: 'data:image/png;base64,' + msg.payload.voltGraph.toString('base64'), // Utilisation du buffer pour l'image Volt\n        nidusImage: 'data:image/png;base64,' + msg.payload.nidusGraph.toString('base64'),  // Utilisation du buffer pour l'image Nidus\n    },\n    styles: {\n        header: {\n            fontSize: 22,\n            bold: true,\n            margin: [0, 30, 0, 0]\n        },\n        header2: {\n            fontSize: 18,\n            bold: true,\n            margin: [0, 20, 0, 0]\n        }\n    }\n};\n\nreturn msg;\n",
+        "func": "msg.payload = {\n    header: function (currentPage, pageCount, pageSize) {\n        return [\n            {\n                text: \"Tobler Cyril\",\n                alignment: \"left\",\n                fontSize: 10,\n                margin: [15, 10, 0, 0]\n            },\n            {\n                text: \"Nom du projet : Confuse T-Rex\",\n                alignment: \"center\",\n                fontSize: 10,\n                margin: [0, 0, 0, 0]\n            }\n        ];\n    },\n    footer: function (currentPage, pageCount) {\n        return {\n            columns: [\n                {\n                    text: currentPage.toString() + \" / \" + pageCount,\n                    alignment: \"left\",\n                    fontSize: 10,\n                    margin: [15, 0, 0, 10]\n                },\n                {\n                    text: new Date().toLocaleDateString(\"fr-FR\"),\n                    alignment: \"right\",\n                    fontSize: 10,\n                    margin: [0, 0, 15, 10]\n                }\n            ],\n            margin: [0, 0, 0, 10]\n        };\n    },\n    content: [\n        {\n            text: \"Rapport d'utilisation\",\n            style: \"header\",\n            margin: [0, 10, 0, 0]\n        },\n        {\n            text: \"Les valeurs sont des moyennes sur les \" + Math.floor(msg.delay / (1000 * 60)) + \" dèrnière minutes\"\n        },\n        {\n            text: \"Nidus :\",\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"nidus/benchmark/cpu\"]\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"nidus/benchmark/ram\"]\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"nidus/benchmark/processes\"]\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"nidus/benchmark/temp\"]\n        },\n        {\n            image: 'nidusImage',\n            width: 300\n        },\n        {\n            text: \"Volt\",\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"volt/benchmark/cpu\"]\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"volt/benchmark/ram\"]\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"volt/benchmark/processes\"]\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"volt/benchmark/temp\"]\n        },\n        {\n            image: 'voltImage',\n            width: 300\n        },\n    ],\n    images: {\n        voltImage: 'data:image/png;base64,' + msg.payload.voltGraph.toString('base64'), // Utilisation du buffer pour l'image Volt\n        nidusImage: 'data:image/png;base64,' + msg.payload.nidusGraph.toString('base64'),  // Utilisation du buffer pour l'image Nidus\n    },\n    styles: {\n        header: {\n            fontSize: 22,\n            bold: true,\n            margin: [0, 30, 0, 0]\n        },\n        header2: {\n            fontSize: 18,\n            bold: true,\n            margin: [0, 20, 0, 0]\n        }\n    }\n};\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1367,7 +1367,6 @@
         "y": 980,
         "wires": [
             [
-                "5193359d76d51522",
                 "4ef3788f935e6027"
             ]
         ]
@@ -2464,8 +2463,8 @@
         "reduceInit": "",
         "reduceInitType": "num",
         "reduceFixup": "",
-        "x": 1650,
-        "y": 880,
+        "x": 1630,
+        "y": 980,
         "wires": [
             [
                 "e58255ccc7601a18"
@@ -2499,8 +2498,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1360,
-        "y": 840,
+        "x": 1000,
+        "y": 1060,
         "wires": [
             [
                 "0cf627b430aec580",
@@ -2590,19 +2589,6 @@
         ]
     },
     {
-        "id": "b37661c707fdc84a",
-        "type": "catch",
-        "z": "8b4c08f2a705dd79",
-        "name": "",
-        "scope": null,
-        "uncaught": false,
-        "x": 1780,
-        "y": 1060,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "58239d73.30c134",
         "type": "file in",
         "z": "8b4c08f2a705dd79",
@@ -2614,77 +2600,12 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 1060,
-        "y": 1100,
+        "x": 1240,
+        "y": 1120,
         "wires": [
             [
                 "927013c7ac3bd3b3"
             ]
-        ]
-    },
-    {
-        "id": "54ef025d.56fccc",
-        "type": "template",
-        "z": "8b4c08f2a705dd79",
-        "name": "",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "json",
-        "syntax": "mustache",
-        "template": "{\n    \"pageSize\": \"A4\",\n    \"pageOrientation\": \"portrait\",\n    \"pageMargins\": [\n        40,\n        60,\n        40,\n        60\n    ],\n    \"info\": {\n        \"title\": \"awesome Document\",\n        \"author\": \"john doe\",\n        \"subject\": \"subject of document\",\n        \"keywords\": \"keywords for document\"\n    },\n    \"content\": [\n        \"Sample Image from file\",\n        {\n            \"image\": \"data:image/jpeg;base64,{{{payload}}}\",\n            \"width\": 200\n        },\n        \"Sample SVG\",\n        {\n            \"svg\": \"<svg width=\\\"300\\\" height=\\\"200\\\" viewBox=\\\"0 0 300 200\\\"><polygon points=\\\"100,10 40,198 190,78 10,78 160,198\\\" style=\\\"fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd;stroke-linecap:round;\\\"/></svg>\",\n            \"width\": 150\n        }\n\n    ]\n}",
-        "output": "json",
-        "x": 1380,
-        "y": 1220,
-        "wires": [
-            [
-                "bdd7feab.d9412"
-            ]
-        ]
-    },
-    {
-        "id": "57c0a23a.ab3bec",
-        "type": "file",
-        "z": "8b4c08f2a705dd79",
-        "name": "",
-        "filename": "test.pdf",
-        "appendNewline": false,
-        "createDir": false,
-        "overwriteFile": "true",
-        "encoding": "none",
-        "x": 1680,
-        "y": 1220,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "bdd7feab.d9412",
-        "type": "pdfmake",
-        "z": "8b4c08f2a705dd79",
-        "name": "",
-        "outputType": "Buffer",
-        "inputProperty": "payload",
-        "options": "{}",
-        "outputProperty": "payload",
-        "x": 1540,
-        "y": 1220,
-        "wires": [
-            [
-                "57c0a23a.ab3bec"
-            ]
-        ]
-    },
-    {
-        "id": "f3ea19ee.f08518",
-        "type": "base64",
-        "z": "8b4c08f2a705dd79",
-        "name": "",
-        "action": "",
-        "property": "msg.payload.voltGraph",
-        "x": 1540,
-        "y": 800,
-        "wires": [
-            []
         ]
     },
     {
@@ -2694,8 +2615,8 @@
         "name": "",
         "action": "str",
         "property": "msg.payload",
-        "x": 1280,
-        "y": 1100,
+        "x": 1460,
+        "y": 1120,
         "wires": [
             [
                 "1ae0b1e5953c4dc9"
@@ -2714,8 +2635,8 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 1050,
-        "y": 1060,
+        "x": 1230,
+        "y": 1080,
         "wires": [
             [
                 "75dba7cb1b841b76"
@@ -2729,8 +2650,8 @@
         "name": "",
         "action": "str",
         "property": "msg.payload",
-        "x": 1280,
-        "y": 1060,
+        "x": 1460,
+        "y": 1080,
         "wires": [
             [
                 "0538fdff5e05960b"
@@ -2758,7 +2679,7 @@
         "to": "",
         "reg": false,
         "x": 1450,
-        "y": 1060,
+        "y": 1040,
         "wires": [
             [
                 "0cf627b430aec580"
@@ -2785,29 +2706,13 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1450,
-        "y": 1100,
+        "x": 1470,
+        "y": 1160,
         "wires": [
             [
                 "0cf627b430aec580"
             ]
         ]
-    },
-    {
-        "id": "5193359d76d51522",
-        "type": "debug",
-        "z": "8b4c08f2a705dd79",
-        "name": "debug 5",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2300,
-        "y": 980,
-        "wires": []
     },
     {
         "id": "9ba0d599c2412587",
