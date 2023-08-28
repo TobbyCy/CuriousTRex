@@ -1236,8 +1236,8 @@
         "inputProperty": "payload",
         "options": "{}",
         "outputProperty": "payload",
-        "x": 1860,
-        "y": 900,
+        "x": 1940,
+        "y": 860,
         "wires": [
             [
                 "0479ae659b0e83c9"
@@ -1255,8 +1255,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "base64",
-        "x": 1820,
-        "y": 860,
+        "x": 1940,
+        "y": 820,
         "wires": [
             [
                 "e8ac5800cefa20d9"
@@ -1363,8 +1363,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1620,
-        "y": 900,
+        "x": 1700,
+        "y": 1060,
         "wires": [
             []
         ]
@@ -1899,7 +1899,6 @@
         "y": 900,
         "wires": [
             [
-                "ce7fc785e5173ede",
                 "c71d1f39bb911b75"
             ]
         ]
@@ -2189,8 +2188,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 1950,
-        "y": 560,
+        "x": 2030,
+        "y": 460,
         "wires": [
             [
                 "e8ac5800cefa20d9"
@@ -2258,8 +2257,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 1950,
-        "y": 620,
+        "x": 2030,
+        "y": 520,
         "wires": [
             [
                 "e8ac5800cefa20d9"
@@ -2293,8 +2292,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 1950,
-        "y": 660,
+        "x": 2030,
+        "y": 560,
         "wires": [
             [
                 "e8ac5800cefa20d9"
@@ -2328,8 +2327,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 1950,
-        "y": 700,
+        "x": 2030,
+        "y": 600,
         "wires": [
             [
                 "e8ac5800cefa20d9"
@@ -2479,11 +2478,11 @@
         "reduceInit": "",
         "reduceInitType": "num",
         "reduceFixup": "",
-        "x": 1410,
-        "y": 840,
+        "x": 1590,
+        "y": 900,
         "wires": [
             [
-                "22b46f6b8f42dced"
+                "e58255ccc7601a18"
             ]
         ]
     },
@@ -2514,8 +2513,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1420,
-        "y": 1060,
+        "x": 1360,
+        "y": 840,
         "wires": [
             [
                 "0cf627b430aec580"
@@ -2542,11 +2541,10 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1730,
-        "y": 760,
+        "x": 1750,
+        "y": 740,
         "wires": [
             [
-                "22b46f6b8f42dced",
                 "0cf627b430aec580"
             ]
         ]
@@ -2571,11 +2569,39 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1710,
-        "y": 800,
+        "x": 1730,
+        "y": 780,
         "wires": [
             [
                 "0cf627b430aec580"
+            ]
+        ]
+    },
+    {
+        "id": "e58255ccc7601a18",
+        "type": "change",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Moyenne_Graph",
+                "tot": "str",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1570,
+        "y": 940,
+        "wires": [
+            [
+                "22b46f6b8f42dced"
             ]
         ]
     },
