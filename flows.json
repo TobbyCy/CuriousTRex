@@ -2442,6 +2442,7 @@
         "id": "cbc0fa7df08ccd70",
         "type": "ui_template",
         "z": "8b4c08f2a705dd79",
+        "d": true,
         "group": "160e81fb.f1c86e",
         "name": "ProgressBar",
         "order": 3,
