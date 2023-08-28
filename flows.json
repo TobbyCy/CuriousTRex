@@ -2072,7 +2072,7 @@
         "order": 3,
         "width": "0",
         "height": "0",
-        "format": "<div layout=\"column\" layout-align=\"center center\">\n    <md-progress-linear class=\"md-accent\" md-mode=\"determinate\"\n        value=\"{{(msg.originalDelay - msg.delay) / msg.originalDelay * 100}}\"\n        md-stroke=\"1000\"\n        ng-show=\"msg.delay !== undefined && msg.originalDelay !== undefined\"></md-progress-linear>",
+        "format": "<style>\n    .custom-progress-bar .md-progress-linear-fill {\n        height: 20px;\n        /* Définissez la hauteur souhaitée ici */\n    }\n</style>\n\n<div layout=\"column\" layout-align=\"center center\">\n    <md-progress-linear class=\"md-accent custom-progress-bar\" md-mode=\"determinate\"\n        value=\"{{(msg.originalDelay - msg.delay) / msg.originalDelay * 100}}\"\n        ng-show=\"msg.delay !== undefined && msg.originalDelay !== undefined\"></md-progress-linear>\n</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
@@ -2435,6 +2435,27 @@
         "wires": [
             [],
             [],
+            []
+        ]
+    },
+    {
+        "id": "cbc0fa7df08ccd70",
+        "type": "ui_template",
+        "z": "8b4c08f2a705dd79",
+        "group": "160e81fb.f1c86e",
+        "name": "ProgressBar",
+        "order": 3,
+        "width": "0",
+        "height": "0",
+        "format": "<div layout=\"column\" layout-align=\"center center\">\n    <md-progress-linear class=\"md-accent\" md-mode=\"determinate\"\n        value=\"{{(msg.originalDelay - msg.delay) / msg.originalDelay * 100}}\"\n        ng-show=\"msg.delay !== undefined && msg.originalDelay !== undefined\"></md-progress-linear>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 310,
+        "y": 540,
+        "wires": [
             []
         ]
     },
