@@ -2072,7 +2072,7 @@
         "order": 3,
         "width": "0",
         "height": "0",
-        "format": "<style>\n    .custom-progress-bar .md-progress-linear-fill {\n        height: 20px;\n        /* Définissez la hauteur souhaitée ici */\n    }\n</style>\n\n<div layout=\"column\" layout-align=\"center center\">\n    <md-progress-linear class=\"md-accent custom-progress-bar\" md-mode=\"determinate\"\n        value=\"{{(msg.originalDelay - msg.delay) / msg.originalDelay * 100}}\"\n        ng-show=\"msg.delay !== undefined && msg.originalDelay !== undefined\"></md-progress-linear>\n</div>",
+        "format": "<style>\n    .custom-progress-bar .md-progress-linear-fill {\n        height: 200px;\n        /* Définissez la hauteur souhaitée ici */\n    }\n</style>\n\n<div layout=\"column\" layout-align=\"center center\">\n    <md-progress-linear class=\"md-accent custom-progress-bar\" md-mode=\"determinate\"\n        value=\"{{(msg.originalDelay - msg.delay) / msg.originalDelay * 100}}\"\n        ng-show=\"msg.delay !== undefined && msg.originalDelay !== undefined\"></md-progress-linear>\n</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
