@@ -1366,9 +1366,7 @@
         "x": 1620,
         "y": 900,
         "wires": [
-            [
-                "22b46f6b8f42dced"
-            ]
+            []
         ]
     },
     {
@@ -1901,7 +1899,8 @@
         "y": 900,
         "wires": [
             [
-                "ce7fc785e5173ede"
+                "ce7fc785e5173ede",
+                "0cf627b430aec580"
             ]
         ]
     },
@@ -2278,7 +2277,8 @@
         "y": 660,
         "wires": [
             [
-                "3c7687d83cf34e96"
+                "3c7687d83cf34e96",
+                "0cf627b430aec580"
             ]
         ]
     },
@@ -2313,7 +2313,7 @@
         "wires": [
             [
                 "d474eb71658b6f9b",
-                "22b46f6b8f42dced"
+                "0cf627b430aec580"
             ]
         ]
     },
@@ -2473,7 +2473,7 @@
         "joinerType": "str",
         "accumulate": false,
         "timeout": "",
-        "count": "",
+        "count": "3",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
@@ -2482,7 +2482,9 @@
         "x": 1410,
         "y": 840,
         "wires": [
-            []
+            [
+                "22b46f6b8f42dced"
+            ]
         ]
     },
     {
