@@ -2278,8 +2278,7 @@
         "wires": [
             [
                 "3c7687d83cf34e96",
-                "0cf627b430aec580",
-                "22b46f6b8f42dced"
+                "696f35b1c89a67f0"
             ]
         ]
     },
@@ -2314,7 +2313,7 @@
         "wires": [
             [
                 "d474eb71658b6f9b",
-                "0cf627b430aec580"
+                "77227e452f61758c"
             ]
         ]
     },
@@ -2466,7 +2465,7 @@
         "z": "8b4c08f2a705dd79",
         "name": "",
         "mode": "custom",
-        "build": "array",
+        "build": "object",
         "property": "payload",
         "propertyType": "msg",
         "key": "topic",
@@ -2483,7 +2482,9 @@
         "x": 1410,
         "y": 840,
         "wires": [
-            []
+            [
+                "22b46f6b8f42dced"
+            ]
         ]
     },
     {
@@ -2499,6 +2500,13 @@
                 "to": "moyenne",
                 "tot": "msg",
                 "dc": true
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "moyenne",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -2522,10 +2530,10 @@
         "rules": [
             {
                 "t": "set",
-                "p": "payload",
+                "p": "topic",
                 "pt": "msg",
-                "to": "moyenne",
-                "tot": "msg",
+                "to": "voltGraph",
+                "tot": "str",
                 "dc": true
             }
         ],
@@ -2534,10 +2542,41 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1120,
-        "y": 1060,
+        "x": 1730,
+        "y": 760,
         "wires": [
-            []
+            [
+                "22b46f6b8f42dced",
+                "0cf627b430aec580"
+            ]
+        ]
+    },
+    {
+        "id": "77227e452f61758c",
+        "type": "change",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "nidusGraph",
+                "tot": "str",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1710,
+        "y": 800,
+        "wires": [
+            [
+                "0cf627b430aec580"
+            ]
         ]
     },
     {
