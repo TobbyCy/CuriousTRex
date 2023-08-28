@@ -2372,6 +2372,66 @@
         ]
     },
     {
+        "id": "5a3be4131a620f7c",
+        "type": "ina-sensor",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "handle": "173c4031bd3a25c0",
+        "x": 710,
+        "y": 480,
+        "wires": [
+            [
+                "a31005fddf865bbb"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a31005fddf865bbb",
+        "type": "debug",
+        "z": "8b4c08f2a705dd79",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "3770f46ab8d6206a",
+        "type": "inject",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 540,
+        "y": 480,
+        "wires": [
+            [
+                "5a3be4131a620f7c"
+            ]
+        ]
+    },
+    {
         "id": "9ba0d599c2412587",
         "type": "inject",
         "z": "aa36cc7d7fa5cea5",
