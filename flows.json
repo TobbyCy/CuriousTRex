@@ -2738,7 +2738,7 @@
         "z": "8b4c08f2a705dd79",
         "name": "",
         "action": "str",
-        "property": "msg.payload.voltGraph",
+        "property": "msg.payload",
         "x": 1860,
         "y": 1180,
         "wires": [
