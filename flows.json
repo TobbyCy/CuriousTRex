@@ -248,7 +248,7 @@
         "id": "bba7f20366547c44",
         "type": "ina-sensor-manager",
         "address": "0x40",
-        "delay": "2000",
+        "delay": "20000",
         "ohms": "0.01",
         "customResistor": false
     },
@@ -2385,7 +2385,7 @@
         "z": "8b4c08f2a705dd79",
         "name": "",
         "handle": "bba7f20366547c44",
-        "x": 710,
+        "x": 750,
         "y": 480,
         "wires": [
             [
