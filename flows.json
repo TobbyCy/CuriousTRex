@@ -1345,7 +1345,8 @@
         "y": 780,
         "wires": [
             [
-                "aa7bc1543a451763"
+                "aa7bc1543a451763",
+                "e87001580862758b"
             ]
         ]
     },
@@ -2393,6 +2394,46 @@
             [
                 "0624d850b450f11c"
             ]
+        ]
+    },
+    {
+        "id": "e87001580862758b",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "function 1",
+        "func": "\nreturn msg;",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 180,
+        "y": 820,
+        "wires": [
+            [
+                "5556b3e3ae54080e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "5556b3e3ae54080e",
+        "type": "exec",
+        "z": "8b4c08f2a705dd79",
+        "command": "",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 410,
+        "y": 1020,
+        "wires": [
+            [],
+            [],
+            []
         ]
     },
     {
