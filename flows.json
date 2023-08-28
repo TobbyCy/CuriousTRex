@@ -2655,11 +2655,10 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 1470,
-        "y": 1160,
+        "x": 1430,
+        "y": 1140,
         "wires": [
             [
-                "f3ea19ee.f08518",
                 "927013c7ac3bd3b3",
                 "22b46f6b8f42dced"
             ]
