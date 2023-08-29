@@ -292,8 +292,8 @@
         "z": "76efdb70933209ac",
         "name": "",
         "handle": "173c4031bd3a25c0",
-        "x": 130,
-        "y": 340,
+        "x": 170,
+        "y": 360,
         "wires": [
             [
                 "06aa7125c7bfbcd7",
@@ -457,28 +457,6 @@
         ]
     },
     {
-        "id": "058d3b10309eae98",
-        "type": "exec",
-        "z": "76efdb70933209ac",
-        "command": "ssh tobby@157.26.228.141 \"top -bn1 | grep 'Cpu(s)' | awk '{print \\$2 + \\$4}'\"",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": true,
-        "oldrc": false,
-        "name": "CPU_Usage%",
-        "x": 340,
-        "y": 560,
-        "wires": [
-            [
-                "b688f544fed38038"
-            ],
-            [],
-            []
-        ]
-    },
-    {
         "id": "b688f544fed38038",
         "type": "ui_gauge",
         "z": "76efdb70933209ac",
@@ -502,53 +480,9 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 650,
-        "y": 540,
+        "x": 590,
+        "y": 500,
         "wires": []
-    },
-    {
-        "id": "ea9c250527414c8b",
-        "type": "exec",
-        "z": "76efdb70933209ac",
-        "command": "ssh tobby@157.26.228.141 \"free | awk '/Mem/{printf(\\\"%.2f\\\\n\\\", \\$3/\\$2*100)}'\"",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": true,
-        "oldrc": false,
-        "name": "Mem_Usage%",
-        "x": 340,
-        "y": 700,
-        "wires": [
-            [
-                "e4b8fa072df9d2fc"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "f24ee82d3a72a32e",
-        "type": "exec",
-        "z": "76efdb70933209ac",
-        "command": "ssh tobby@157.26.228.141 \"ps aux | wc -l\"",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": true,
-        "oldrc": false,
-        "name": "Process",
-        "x": 320,
-        "y": 860,
-        "wires": [
-            [
-                "95ac268a855d0a7a"
-            ],
-            [],
-            []
-        ]
     },
     {
         "id": "e4b8fa072df9d2fc",
@@ -574,8 +508,8 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 650,
-        "y": 600,
+        "x": 590,
+        "y": 560,
         "wires": []
     },
     {
@@ -602,8 +536,8 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 670,
-        "y": 660,
+        "x": 610,
+        "y": 620,
         "wires": []
     },
     {
@@ -641,7 +575,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 350,
-        "y": 640,
+        "y": 560,
         "wires": [
             [
                 "e4b8fa072df9d2fc"
@@ -662,7 +596,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 370,
-        "y": 800,
+        "y": 620,
         "wires": [
             [
                 "95ac268a855d0a7a"
@@ -693,8 +627,8 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 570,
-        "y": 960,
+        "x": 590,
+        "y": 760,
         "wires": []
     },
     {
@@ -721,8 +655,8 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 570,
-        "y": 1020,
+        "x": 590,
+        "y": 820,
         "wires": []
     },
     {
@@ -750,7 +684,7 @@
         "diff": false,
         "className": "",
         "x": 590,
-        "y": 1080,
+        "y": 880,
         "wires": []
     },
     {
@@ -767,7 +701,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 360,
-        "y": 960,
+        "y": 760,
         "wires": [
             [
                 "5e01dde5ab04cf9f"
@@ -788,7 +722,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 360,
-        "y": 1020,
+        "y": 820,
         "wires": [
             [
                 "2f77fbb6f1c9c8b2"
@@ -809,7 +743,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 380,
-        "y": 1080,
+        "y": 880,
         "wires": [
             [
                 "78164e0fc6561bb0"
@@ -840,8 +774,8 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 650,
-        "y": 740,
+        "x": 590,
+        "y": 680,
         "wires": []
     },
     {
@@ -857,8 +791,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 550,
-        "y": 860,
+        "x": 350,
+        "y": 680,
         "wires": [
             [
                 "af5a5bdbf9e320eb"
@@ -890,7 +824,7 @@
         "diff": false,
         "className": "",
         "x": 590,
-        "y": 1140,
+        "y": 940,
         "wires": []
     },
     {
@@ -907,7 +841,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 360,
-        "y": 1140,
+        "y": 940,
         "wires": [
             [
                 "b5e64e3d32ee1834"
@@ -946,7 +880,7 @@
         "payload": "/home/NodeRed/pdf",
         "payloadType": "str",
         "x": 350,
-        "y": 180,
+        "y": 280,
         "wires": [
             [
                 "3d4e5e51.bdf952"
@@ -974,7 +908,7 @@
         "topic": "refresh",
         "topicType": "str",
         "x": 360,
-        "y": 280,
+        "y": 320,
         "wires": [
             [
                 "3d4e5e51.bdf952"
@@ -997,7 +931,7 @@
         "templateScope": "local",
         "className": "",
         "x": 1340,
-        "y": 280,
+        "y": 320,
         "wires": [
             []
         ]
@@ -1014,7 +948,7 @@
         "template": "<table width=\"100%\">\n    <tr><th>Nom de Fichier</th><th>Taille</th><th>Créer</th><th>Changer</th></tr>\n    {{#payload}}\n        <tr>\n            <td><a href=\"/download?filename={{name}}\" target=\"blank\">{{fname}}</a></td>\n            <td>{{stat.size}}</td>\n            <td>{{stat.created}}</td>\n            <td>{{stat.changed}}</td>\n        </tr>\n    {{/payload}}\n</table>\n",
         "output": "str",
         "x": 1180,
-        "y": 280,
+        "y": 320,
         "wires": [
             [
                 "638728aa.cd0b08"
@@ -1026,14 +960,14 @@
         "type": "function",
         "z": "8b4c08f2a705dd79",
         "name": "Convert timestamps",
-        "func": "for (var i=0; i<msg.payload.length; i++) {\n    msg.payload[i].stat.created = msg.payload[i].stat.created.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.changed = msg.payload[i].stat.changed.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.accessed = msg.payload[i].stat.accessed.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.statusChanged = msg.payload[i].stat.statusChanged.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].fname = msg.payload[i].name.replace(/^.*(\\\\|\\/|\\:)/, '');\n}\nreturn msg;",
+        "func": "// Parcourir chaque élément dans le tableau \"payload\" du message\nfor (var i = 0; i < msg.payload.length; i++) {\n    // Formater et mettre à jour les propriétés de date/heure dans l'objet \"stat\"\n    msg.payload[i].stat.created = msg.payload[i].stat.created.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.changed = msg.payload[i].stat.changed.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.accessed = msg.payload[i].stat.accessed.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.statusChanged = msg.payload[i].stat.statusChanged.toISOString().slice(0, 19).replace('T', ' ');\n\n    // Extraire le nom de fichier à partir de la propriété \"name\" et mettre à jour \"fname\"\n    msg.payload[i].fname = msg.payload[i].name.replace(/^.*(\\\\|\\/|\\:)/, '');\n}\n\nreturn msg; // Renvoyer le message modifié\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 980,
-        "y": 280,
+        "y": 320,
         "wires": [
             [
                 "9d27e846.b31db8"
@@ -1049,7 +983,7 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 380,
+        "x": 440,
         "y": 380,
         "wires": [
             [
@@ -1064,7 +998,7 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 1170,
+        "x": 1230,
         "y": 380,
         "wires": []
     },
@@ -1076,7 +1010,7 @@
         "func": "msg.filename = msg.req.query.filename;\nmsg.contentdisposition = \"attachment; filename=\\\"\" + msg.req.query.filename.replace(/^.*(\\\\|\\/|\\:)/, '') + \"\\\"\";\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 630,
+        "x": 690,
         "y": 380,
         "wires": [
             [
@@ -1098,7 +1032,7 @@
         "chunk": false,
         "sendError": false,
         "encoding": "none",
-        "x": 820,
+        "x": 880,
         "y": 380,
         "wires": [
             [
@@ -1139,7 +1073,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 990,
+        "x": 1050,
         "y": 380,
         "wires": [
             [
@@ -1152,14 +1086,14 @@
         "type": "function",
         "z": "8b4c08f2a705dd79",
         "name": "Folder handling",
-        "func": "let folder = context.get(\"folder\");\nif (folder===undefined) {\n    folder=\"/\";\n    context.set(\"folder\", folder);\n}\n\nlet hidden = context.get(\"hidden\");\nif (hidden===undefined) {\n    hidden=false;\n    context.set(\"hidden\", hidden);\n}\n\nif (msg.topic===\"up\") {\n    var the_arr = folder.split('/');\n    the_arr.pop();\n    folder=the_arr.join('/'); \n    context.set(\"folder\", folder);\n}\nif (msg.topic===\"change\") {\n    folder=msg.payload;    \n    context.set(\"folder\", folder);\n}\nif (msg.topic===\"hidden\") {\n    hidden=msg.payload;    \n    context.set(\"hidden\", hidden);\n}\n\nmsg.payload = {\"start\":folder, \"hidden\": hidden};\nreturn msg;",
+        "func": "// Récupérer la valeur de la variable \"folder\" depuis le contexte\nlet folder = context.get(\"folder\");\n// Si la variable \"folder\" n'est pas définie, l'initialiser avec \"/\"\nif (folder === undefined) {\n    folder = \"/\";\n    context.set(\"folder\", folder); // Enregistrer la valeur dans le contexte\n}\n\n// Récupérer la valeur de la variable \"hidden\" depuis le contexte\nlet hidden = context.get(\"hidden\");\n// Si la variable \"hidden\" n'est pas définie, l'initialiser avec \"false\"\nif (hidden === undefined) {\n    hidden = false;\n    context.set(\"hidden\", hidden); // Enregistrer la valeur dans le contexte\n}\n\n// Si le sujet du message est \"up\"\nif (msg.topic === \"up\") {\n    var the_arr = folder.split('/');\n    the_arr.pop(); // Supprimer le dernier élément du tableau\n    folder = the_arr.join('/'); // Rejoindre les éléments du tableau pour former le nouveau chemin\n    context.set(\"folder\", folder); // Enregistrer le nouveau chemin dans le contexte\n}\n\n// Si le sujet du message est \"change\"\nif (msg.topic === \"change\") {\n    folder = msg.payload; // Mettre à jour la valeur de \"folder\" avec le contenu du champ \"payload\"\n    context.set(\"folder\", folder); // Enregistrer la nouvelle valeur dans le contexte\n}\n\n// Si le sujet du message est \"hidden\"\nif (msg.topic === \"hidden\") {\n    hidden = msg.payload; // Mettre à jour la valeur de \"hidden\" avec le contenu du champ \"payload\"\n    context.set(\"hidden\", hidden); // Enregistrer la nouvelle valeur dans le contexte\n}\n\n// Construire un objet JSON contenant les valeurs actuelles de \"folder\" et \"hidden\"\nmsg.payload = { \"start\": folder, \"hidden\": hidden };\n\nreturn msg; // Renvoyer le message modifié\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 540,
-        "y": 280,
+        "y": 320,
         "wires": [
             [
                 "993d7272.843ae",
@@ -1183,7 +1117,7 @@
         "stat": true,
         "showWarnings": false,
         "x": 750,
-        "y": 220,
+        "y": 260,
         "wires": [
             [
                 "3e094f82.15d6e"
@@ -1206,7 +1140,7 @@
         "stat": true,
         "showWarnings": false,
         "x": 760,
-        "y": 280,
+        "y": 320,
         "wires": [
             []
         ]
@@ -1220,8 +1154,8 @@
         "inputProperty": "payload",
         "options": "{}",
         "outputProperty": "payload",
-        "x": 1780,
-        "y": 920,
+        "x": 1760,
+        "y": 740,
         "wires": [
             [
                 "0479ae659b0e83c9"
@@ -1239,8 +1173,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "base64",
-        "x": 1940,
-        "y": 920,
+        "x": 1900,
+        "y": 740,
         "wires": [
             [
                 "e8ac5800cefa20d9"
@@ -1327,7 +1261,7 @@
         "topicType": "msg",
         "splitLayout": true,
         "className": "",
-        "x": 140,
+        "x": 160,
         "y": 800,
         "wires": [
             [
@@ -1347,8 +1281,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2020,
-        "y": 960,
+        "x": 1960,
+        "y": 780,
         "wires": [
             [
                 "4ef3788f935e6027"
@@ -1851,7 +1785,7 @@
         "reduceInitType": "",
         "reduceFixup": "",
         "x": 1330,
-        "y": 640,
+        "y": 540,
         "wires": [
             [
                 "5f624f25.98f38",
@@ -1881,8 +1815,8 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 1410,
-        "y": 920,
+        "x": 1390,
+        "y": 740,
         "wires": [
             [
                 "c71d1f39bb911b75"
@@ -1898,8 +1832,8 @@
         "links": [
             "26a410550aabca72"
         ],
-        "x": 2045,
-        "y": 920,
+        "x": 1995,
+        "y": 740,
         "wires": []
     },
     {
@@ -1911,7 +1845,7 @@
             "e8ac5800cefa20d9"
         ],
         "x": 265,
-        "y": 280,
+        "y": 320,
         "wires": [
             [
                 "a715f7a4.a398a8"
@@ -2126,7 +2060,7 @@
         "finalize": "",
         "libs": [],
         "x": 1510,
-        "y": 600,
+        "y": 500,
         "wires": [
             [
                 "89dfcf39.990ca"
@@ -2141,7 +2075,7 @@
         "width": "1000",
         "height": "1000",
         "x": 1730,
-        "y": 600,
+        "y": 500,
         "wires": [
             [
                 "62271758.c63728"
@@ -2160,7 +2094,7 @@
         "overwriteFile": "true",
         "encoding": "none",
         "x": 2010,
-        "y": 600,
+        "y": 500,
         "wires": [
             []
         ]
@@ -2177,7 +2111,7 @@
         "finalize": "",
         "libs": [],
         "x": 1510,
-        "y": 640,
+        "y": 540,
         "wires": [
             [
                 "410a379834aff737"
@@ -2192,7 +2126,7 @@
         "width": "1920",
         "height": "1080",
         "x": 1730,
-        "y": 640,
+        "y": 540,
         "wires": [
             [
                 "dfe30fa5a85a4a10"
@@ -2211,7 +2145,7 @@
         "overwriteFile": "true",
         "encoding": "none",
         "x": 2010,
-        "y": 640,
+        "y": 540,
         "wires": [
             []
         ]
@@ -2224,7 +2158,7 @@
         "width": "1920",
         "height": "1920",
         "x": 1730,
-        "y": 680,
+        "y": 580,
         "wires": [
             [
                 "3c7687d83cf34e96",
@@ -2244,7 +2178,7 @@
         "overwriteFile": "true",
         "encoding": "none",
         "x": 2010,
-        "y": 680,
+        "y": 580,
         "wires": [
             []
         ]
@@ -2257,7 +2191,7 @@
         "width": "1920",
         "height": "1920",
         "x": 1730,
-        "y": 720,
+        "y": 620,
         "wires": [
             [
                 "d474eb71658b6f9b",
@@ -2277,7 +2211,7 @@
         "overwriteFile": "true",
         "encoding": "none",
         "x": 2010,
-        "y": 720,
+        "y": 620,
         "wires": [
             []
         ]
@@ -2294,7 +2228,7 @@
         "finalize": "",
         "libs": [],
         "x": 1510,
-        "y": 720,
+        "y": 620,
         "wires": [
             [
                 "35ae4744eb6cb342"
@@ -2313,7 +2247,7 @@
         "finalize": "",
         "libs": [],
         "x": 1500,
-        "y": 680,
+        "y": 580,
         "wires": [
             [
                 "0624d850b450f11c"
@@ -2354,8 +2288,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 530,
-        "y": 1000,
+        "x": 610,
+        "y": 900,
         "wires": [
             [],
             [],
@@ -2404,7 +2338,7 @@
         "reduceInitType": "num",
         "reduceFixup": "",
         "x": 1850,
-        "y": 1000,
+        "y": 840,
         "wires": [
             [
                 "e58255ccc7601a18"
@@ -2438,8 +2372,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1130,
-        "y": 1000,
+        "x": 1450,
+        "y": 800,
         "wires": [
             [
                 "0cf627b430aec580",
@@ -2477,7 +2411,7 @@
         "to": "",
         "reg": false,
         "x": 1860,
-        "y": 860,
+        "y": 680,
         "wires": [
             [
                 "9a3d6e47ed36af55"
@@ -2504,8 +2438,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1790,
-        "y": 960,
+        "x": 1750,
+        "y": 780,
         "wires": [
             [
                 "ce7fc785e5173ede"
@@ -2524,8 +2458,8 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 1400,
-        "y": 1220,
+        "x": 1460,
+        "y": 1020,
         "wires": [
             [
                 "927013c7ac3bd3b3"
@@ -2539,8 +2473,8 @@
         "name": "",
         "action": "str",
         "property": "msg.payload",
-        "x": 1620,
-        "y": 1220,
+        "x": 1680,
+        "y": 1020,
         "wires": [
             [
                 "1ae0b1e5953c4dc9"
@@ -2559,8 +2493,8 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 1390,
-        "y": 1100,
+        "x": 1450,
+        "y": 900,
         "wires": [
             [
                 "75dba7cb1b841b76"
@@ -2574,8 +2508,8 @@
         "name": "",
         "action": "str",
         "property": "msg.payload",
-        "x": 1620,
-        "y": 1100,
+        "x": 1680,
+        "y": 900,
         "wires": [
             [
                 "0538fdff5e05960b"
@@ -2602,8 +2536,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1610,
-        "y": 1060,
+        "x": 1670,
+        "y": 860,
         "wires": [
             [
                 "0cf627b430aec580"
@@ -2630,8 +2564,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1610,
-        "y": 1260,
+        "x": 1670,
+        "y": 1060,
         "wires": [
             [
                 "0cf627b430aec580"
@@ -2690,8 +2624,8 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 1670,
-        "y": 860,
+        "x": 1710,
+        "y": 680,
         "wires": [
             [
                 "696f35b1c89a67f0"
@@ -2927,7 +2861,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1500,
-        "y": 480,
+        "y": 380,
         "wires": []
     },
     {
@@ -2944,7 +2878,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1500,
-        "y": 520,
+        "y": 420,
         "wires": []
     },
     {
@@ -2961,7 +2895,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1820,
-        "y": 420,
+        "y": 320,
         "wires": []
     },
     {
@@ -2976,7 +2910,7 @@
         "finalize": "",
         "libs": [],
         "x": 1500,
-        "y": 560,
+        "y": 460,
         "wires": [
             [
                 "df8c40fc1071e2b0",
@@ -2992,7 +2926,7 @@
         "width": "1920",
         "height": "1920",
         "x": 1730,
-        "y": 560,
+        "y": 460,
         "wires": [
             [
                 "72b2cd6c7aeb1dcb",
@@ -3013,7 +2947,7 @@
         "overwriteFile": "true",
         "encoding": "none",
         "x": 2010,
-        "y": 560,
+        "y": 460,
         "wires": [
             []
         ]
@@ -3030,8 +2964,8 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 1380,
-        "y": 1140,
+        "x": 1440,
+        "y": 940,
         "wires": [
             [
                 "b671f4bd54bdfe46"
@@ -3045,8 +2979,8 @@
         "name": "",
         "action": "str",
         "property": "msg.payload",
-        "x": 1620,
-        "y": 1140,
+        "x": 1680,
+        "y": 940,
         "wires": [
             [
                 "2c0b998967ff7c0d"
@@ -3073,8 +3007,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1610,
-        "y": 1180,
+        "x": 1670,
+        "y": 980,
         "wires": [
             [
                 "0cf627b430aec580"
@@ -3136,8 +3070,8 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 190,
-        "y": 1080,
+        "x": 150,
+        "y": 900,
         "wires": [
             [
                 "73eaf84541d1b946"
@@ -3164,8 +3098,8 @@
         "payloadType": "str",
         "topic": "Purge des fichier !!!",
         "topicType": "str",
-        "x": 170,
-        "y": 1120,
+        "x": 130,
+        "y": 860,
         "wires": [
             [
                 "dadf8df00e8a66e0"
@@ -3176,15 +3110,15 @@
         "id": "2eef0c7e57e55032",
         "type": "function",
         "z": "8b4c08f2a705dd79",
-        "name": "function 1",
+        "name": "Purge",
         "func": "if (msg.payload === \"Valider\"){\n    msg.payload = \"rm -r /home/NodeRed/*\";\n    return msg;\n}else{\n    return null;\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 680,
-        "y": 1080,
+        "x": 330,
+        "y": 980,
         "wires": [
             [
                 "5556b3e3ae54080e"
@@ -3206,8 +3140,8 @@
         "className": "",
         "topic": "VRAIMENT ???",
         "name": "",
-        "x": 490,
-        "y": 1080,
+        "x": 150,
+        "y": 980,
         "wires": [
             [
                 "2eef0c7e57e55032",
@@ -3226,8 +3160,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
-        "y": 1080,
+        "x": 140,
+        "y": 940,
         "wires": [
             [
                 "cd1ab62ecb897dfe"
@@ -3251,8 +3185,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 680,
-        "y": 1120,
+        "x": 340,
+        "y": 1020,
         "wires": [
             [
                 "764a61b3fe2e36ab"
@@ -3263,15 +3197,15 @@
         "id": "764a61b3fe2e36ab",
         "type": "function",
         "z": "8b4c08f2a705dd79",
-        "name": "function 3",
+        "name": "Mkdir",
         "func": "if (msg.payload === \"Valider\"){\n    msg.payload = \"mkdir /home/NodeRed/png /home/NodeRed/pdf\";\n    return msg;\n}else{\n    return null;\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 820,
-        "y": 1120,
+        "x": 470,
+        "y": 1020,
         "wires": [
             [
                 "5556b3e3ae54080e"
