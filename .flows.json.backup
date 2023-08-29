@@ -10,7 +10,7 @@
     {
         "id": "8b4c08f2a705dd79",
         "type": "tab",
-        "label": "Téléchargement du fichier",
+        "label": "StressTest",
         "disabled": false,
         "info": "",
         "env": []
@@ -24,10 +24,19 @@
         "env": []
     },
     {
+        "id": "3572c39984e6901e",
+        "type": "tab",
+        "label": "GenerateChart",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "e42b4edae71dedd4",
         "type": "ui_tab",
         "name": "Home",
         "icon": "dashboard",
+        "order": 2,
         "disabled": false,
         "hidden": false
     },
@@ -213,6 +222,7 @@
         "type": "ui_tab",
         "name": "Files",
         "icon": "dashboard",
+        "order": 1,
         "disabled": false,
         "hidden": false
     },
@@ -601,7 +611,7 @@
         "type": "mqtt in",
         "z": "76efdb70933209ac",
         "name": "",
-        "topic": "benchmark/cpu",
+        "topic": "volt/benchmark/cpu",
         "qos": "2",
         "datatype": "auto-detect",
         "broker": "12e50ad63920a21c",
@@ -609,7 +619,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 340,
+        "x": 350,
         "y": 500,
         "wires": [
             [
@@ -622,7 +632,7 @@
         "type": "mqtt in",
         "z": "76efdb70933209ac",
         "name": "",
-        "topic": "benchmark/ram",
+        "topic": "volt/benchmark/ram",
         "qos": "2",
         "datatype": "auto-detect",
         "broker": "12e50ad63920a21c",
@@ -630,7 +640,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 340,
+        "x": 350,
         "y": 640,
         "wires": [
             [
@@ -643,7 +653,7 @@
         "type": "mqtt in",
         "z": "76efdb70933209ac",
         "name": "",
-        "topic": "benchmark/processes",
+        "topic": "volt/benchmark/processes",
         "qos": "2",
         "datatype": "auto-detect",
         "broker": "12e50ad63920a21c",
@@ -651,7 +661,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 360,
+        "x": 370,
         "y": 800,
         "wires": [
             [
@@ -807,13 +817,111 @@
         ]
     },
     {
+        "id": "af5a5bdbf9e320eb",
+        "type": "ui_gauge",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "group": "837441be757b92ac",
+        "order": 4,
+        "width": "10",
+        "height": "8",
+        "gtype": "gage",
+        "title": "Temp",
+        "label": "C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "500",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 650,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "7186fbb338a8160c",
+        "type": "mqtt in",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "topic": "volt/benchmark/temp",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "12e50ad63920a21c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 550,
+        "y": 860,
+        "wires": [
+            [
+                "af5a5bdbf9e320eb"
+            ]
+        ]
+    },
+    {
+        "id": "b5e64e3d32ee1834",
+        "type": "ui_gauge",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "group": "65e942c300ec1ce1",
+        "order": 4,
+        "width": "10",
+        "height": "8",
+        "gtype": "gage",
+        "title": "Température",
+        "label": "C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "500",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 590,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "2cf2a295ee7de67c",
+        "type": "mqtt in",
+        "z": "76efdb70933209ac",
+        "name": "",
+        "topic": "nidus/benchmark/temp",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "12e50ad63920a21c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 360,
+        "y": 1140,
+        "wires": [
+            [
+                "b5e64e3d32ee1834"
+            ]
+        ]
+    },
+    {
         "id": "4fa73dd9.83cca4",
         "type": "comment",
         "z": "8b4c08f2a705dd79",
         "name": "File Browser",
         "info": "1) Update the default folder in the Init node\n2) Update the default folder in the Reset node as well\n3) You can duplicate the Reset nodes and use them as saved shortcuts\n4) Check the Convert Timestamps function node if you want to see your dates in a different format. I just used the Javascript toISOString format.\n5) The Graph button can read any CSV file which have any number of values, but the first column always contains a timestamp column with javascript timestamp of the data point.",
-        "x": 190,
-        "y": 100,
+        "x": 350,
+        "y": 120,
         "wires": []
     },
     {
@@ -835,10 +943,10 @@
         "once": true,
         "onceDelay": 0.1,
         "topic": "change",
-        "payload": "/home/NodeRed",
+        "payload": "/home/NodeRed/pdf",
         "payloadType": "str",
-        "x": 190,
-        "y": 160,
+        "x": 350,
+        "y": 180,
         "wires": [
             [
                 "3d4e5e51.bdf952"
@@ -851,8 +959,8 @@
         "z": "8b4c08f2a705dd79",
         "name": "",
         "group": "160e81fb.f1c86e",
-        "order": 11,
-        "width": "3",
+        "order": 4,
+        "width": "4",
         "height": "2",
         "passthru": true,
         "label": "Refresh",
@@ -865,8 +973,8 @@
         "payloadType": "str",
         "topic": "refresh",
         "topicType": "str",
-        "x": 180,
-        "y": 260,
+        "x": 360,
+        "y": 280,
         "wires": [
             [
                 "3d4e5e51.bdf952"
@@ -879,15 +987,17 @@
         "z": "8b4c08f2a705dd79",
         "group": "160e81fb.f1c86e",
         "name": "",
-        "order": 5,
+        "order": 1,
         "width": "18",
         "height": "6",
-        "format": "<div ng-bind-html=\"msg.payload\" height=\"400\" style=\"height: 400px;\"><br/>\n</div>\n\n",
+        "format": "<div ng-bind-html=\"msg.payload\" height=\"400\" style=\"height: 400px;\"><br/>\n</div>\n<style>\n/* Applique des styles aux liens */\na[href] {\ncolor: #d93347; /* Couleur du lien */\ntext-decoration: none; /* Pas de soulignement */\n}\n\n/* Applique des styles au survol des liens */\na[href]:hover {\ncolor: #cb0505; /* Couleur du lien au survol */\ntext-decoration: underline; /* Soulignement au survol */\n}\n</style>",
         "storeOutMessages": true,
         "fwdInMessages": true,
+        "resendOnRefresh": false,
         "templateScope": "local",
-        "x": 1180,
-        "y": 260,
+        "className": "",
+        "x": 1340,
+        "y": 280,
         "wires": [
             []
         ]
@@ -903,8 +1013,8 @@
         "syntax": "mustache",
         "template": "<table width=\"100%\">\n    <tr><th>Nom de Fichier</th><th>Taille</th><th>Créer</th><th>Changer</th></tr>\n    {{#payload}}\n        <tr>\n            <td><a href=\"/download?filename={{name}}\" target=\"blank\">{{fname}}</a></td>\n            <td>{{stat.size}}</td>\n            <td>{{stat.created}}</td>\n            <td>{{stat.changed}}</td>\n        </tr>\n    {{/payload}}\n</table>\n",
         "output": "str",
-        "x": 1020,
-        "y": 260,
+        "x": 1180,
+        "y": 280,
         "wires": [
             [
                 "638728aa.cd0b08"
@@ -922,8 +1032,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 820,
-        "y": 260,
+        "x": 980,
+        "y": 280,
         "wires": [
             [
                 "9d27e846.b31db8"
@@ -939,8 +1049,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 220,
-        "y": 360,
+        "x": 380,
+        "y": 380,
         "wires": [
             [
                 "d969ba04.e24028"
@@ -954,8 +1064,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 1010,
-        "y": 360,
+        "x": 1170,
+        "y": 380,
         "wires": []
     },
     {
@@ -966,8 +1076,8 @@
         "func": "msg.filename = msg.req.query.filename;\nmsg.contentdisposition = \"attachment; filename=\\\"\" + msg.req.query.filename.replace(/^.*(\\\\|\\/|\\:)/, '') + \"\\\"\";\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 470,
-        "y": 360,
+        "x": 630,
+        "y": 380,
         "wires": [
             [
                 "e92381c3.c4cd2"
@@ -988,8 +1098,8 @@
         "chunk": false,
         "sendError": false,
         "encoding": "none",
-        "x": 660,
-        "y": 360,
+        "x": 820,
+        "y": 380,
         "wires": [
             [
                 "99ff4953.d0d5c8"
@@ -1029,8 +1139,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 830,
-        "y": 360,
+        "x": 990,
+        "y": 380,
         "wires": [
             [
                 "d19cc7d8.646328"
@@ -1048,8 +1158,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 380,
-        "y": 260,
+        "x": 540,
+        "y": 280,
         "wires": [
             [
                 "993d7272.843ae",
@@ -1072,8 +1182,8 @@
         "depth": 0,
         "stat": true,
         "showWarnings": false,
-        "x": 590,
-        "y": 200,
+        "x": 750,
+        "y": 220,
         "wires": [
             [
                 "3e094f82.15d6e"
@@ -1095,8 +1205,8 @@
         "depth": 0,
         "stat": true,
         "showWarnings": false,
-        "x": 600,
-        "y": 300,
+        "x": 760,
+        "y": 280,
         "wires": [
             []
         ]
@@ -1110,8 +1220,8 @@
         "inputProperty": "payload",
         "options": "{}",
         "outputProperty": "payload",
-        "x": 280,
-        "y": 620,
+        "x": 1780,
+        "y": 920,
         "wires": [
             [
                 "0479ae659b0e83c9"
@@ -1123,17 +1233,17 @@
         "type": "file",
         "z": "8b4c08f2a705dd79",
         "name": "",
-        "filename": "filePath",
+        "filename": "filepath",
         "filenameType": "msg",
         "appendNewline": true,
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "base64",
-        "x": 100,
-        "y": 660,
+        "x": 1940,
+        "y": 920,
         "wires": [
             [
-                "a715f7a4.a398a8"
+                "e8ac5800cefa20d9"
             ]
         ]
     },
@@ -1142,17 +1252,17 @@
         "type": "function",
         "z": "8b4c08f2a705dd79",
         "name": "Ajoute le chemin du fichier ",
-        "func": "var now = new Date();\nvar jour = (\"0\" + now.getDate()).slice(-2);\nvar mois = (\"0\" + (now.getMonth() + 1)).slice(-2);\n\n// Récupérer le nom de fichier de msg.payload.nameFile\nvar nameFile = msg.payload.nameFile || \"default\";\n// Remplacer les caractères interdits dans le nom de fichier\nnameFile = nameFile.replace(/[\\\\/:\"*?<>|]+/g, \"_\");\n\nmsg.filePath = \"/home/NodeRed/\" + nameFile + \"_\" + jour + mois + \".pdf\";\n\n\nreturn msg;",
+        "func": "var now = new Date();\nvar jour = (\"0\" + now.getDate()).slice(-2);\nvar mois = (\"0\" + (now.getMonth() + 1)).slice(-2);\n\n// Récupérer le nom de fichier de msg.payload.nameFile, ou utiliser \"default\" si absent\nvar nameFile = msg.payload.nameFile || \"default\";\n// Remplacer les caractères interdits dans le nom de fichier par des underscores\nnameFile = nameFile.replace(/[\\\\/:\"*?<>|]+/g, \"_\");\n\n// Construire le chemin du fichier PDF\nmsg.filePath = \"/home/NodeRed/pdf/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \".pdf\";\n\n// Construire les chemins des fichiers graphiques\nmsg.graphPath = {\n    volt: {\n        complet: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"VOLT.png\",\n        cpu: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vcpu.png\",\n        ram: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vram.png\",\n        proc: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vproc.png\",\n        temp: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vtemp.png\",\n        watt: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vwatt.png\"\n    },\n    nidus: {\n        complet: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"NIDUS.png\",\n        cpu: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ncpu.png\",\n        ram: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nram.png\",\n        proc: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nproc.png\",\n        temp: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ntemp.png\"\n    }\n};\n\n// Renvoyer le message modifié\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 440,
-        "y": 500,
+        "x": 400,
+        "y": 800,
         "wires": [
             [
-                "ce7fc785e5173ede"
+                "f26e31525cd26f5a"
             ]
         ]
     },
@@ -1160,69 +1270,85 @@
         "id": "7428a3bfe4a5a24d",
         "type": "ui_form",
         "z": "8b4c08f2a705dd79",
-        "name": "",
+        "name": "Configuration du Test",
         "label": "",
         "group": "160e81fb.f1c86e",
-        "order": 6,
+        "order": 2,
         "width": 0,
         "height": 0,
         "options": [
             {
-                "label": "Nom du FIchier",
+                "label": "Nom du Fichier",
                 "value": "nameFile",
                 "type": "text",
                 "required": true,
                 "rows": null
+            },
+            {
+                "label": "Temps de mesure en minutes",
+                "value": "time",
+                "type": "number",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "Stress test Nidus",
+                "value": "stressNidus",
+                "type": "checkbox",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "Stress test Volt",
+                "value": "stressVolt",
+                "type": "checkbox",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "Temps de Stress test",
+                "value": "timeStress",
+                "type": "number",
+                "required": false,
+                "rows": null
             }
         ],
         "formValue": {
-            "nameFile": ""
+            "nameFile": "",
+            "time": "",
+            "stressNidus": false,
+            "stressVolt": false,
+            "timeStress": ""
         },
         "payload": "",
         "submit": "submit",
         "cancel": "cancel",
         "topic": "topic",
         "topicType": "msg",
-        "splitLayout": "",
+        "splitLayout": true,
         "className": "",
-        "x": 370,
-        "y": 460,
+        "x": 140,
+        "y": 800,
         "wires": [
             [
-                "aa7bc1543a451763"
+                "aa7bc1543a451763",
+                "e87001580862758b"
             ]
         ]
-    },
-    {
-        "id": "837b36c483d79b4a",
-        "type": "debug",
-        "z": "8b4c08f2a705dd79",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 660,
-        "y": 520,
-        "wires": []
     },
     {
         "id": "ce7fc785e5173ede",
         "type": "function",
         "z": "8b4c08f2a705dd79",
         "name": "Créer le contenue du fichier",
-        "func": "msg.payload = {\n    header: function (currentPage, pageCount, pageSize) {\n        return [\n            {\n                text: \"Tobler Cyril\",\n                alignment: \"left\",\n                fontSize: 10,\n                margin: [15, 10, 0, 0]\n            },\n            {\n                text: \"Nom du projet : Confuse T-Rex\",\n                alignment: \"center\",\n                fontSize: 10,\n                margin: [0, 0, 0, 0]\n            }\n        ];\n    },\n    footer: function (currentPage, pageCount) {\n        return {\n            columns: [\n                {\n                    text: currentPage.toString() + \" / \" + pageCount,\n                    alignment: \"left\",\n                    fontSize: 10,\n                    margin: [15, 0, 0, 10]\n                },\n                {\n                    text: new Date().toLocaleDateString(\"fr-FR\"),\n                    alignment: \"right\",\n                    fontSize: 10,\n                    margin: [0, 0, 15, 10]\n                }\n            ],\n            margin: [0, 0, 0, 10]\n        };\n    },\n    content: [\n        {\n            text: \"This is a header\",\n            style: \"header\",\n            margin: [0, 10, 0, 0]\n        },\n        \"No styling here, this is a standard paragraph\",\n        {\n            text: \"Another text\",\n            style: \"anotherStyle\",\n            margin: [0, 10, 0, 0]\n        },\n        {\n            text: \"Multiple styles applied\",\n            style: [\"header\", \"anotherStyle\"],\n            margin: [0, 10, 0, 0]\n        }\n    ],\n    styles: {\n        header: {\n            fontSize: 22,\n            bold: true\n        },\n        anotherStyle: {\n            italics: true,\n            alignment: \"right\"\n        }\n    }\n};\n\nreturn msg;\n",
+        "func": "msg.payload = {\n    header: function (currentPage, pageCount, pageSize) {\n        return [\n            {\n                text: \"Tobler Cyril\",\n                alignment: \"left\",\n                fontSize: 10,\n                margin: [15, 10, 0, 0]\n            },\n            {\n                text: \"Nom du projet : Confuse T-Rex\",\n                alignment: \"center\",\n                fontSize: 10,\n                margin: [0, 0, 0, 0]\n            }\n        ];\n    },\n    footer: function (currentPage, pageCount) {\n        return {\n            columns: [\n                {\n                    text: currentPage.toString() + \" / \" + pageCount,\n                    alignment: \"left\",\n                    fontSize: 10,\n                    margin: [15, 0, 0, 10]\n                },\n                {\n                    text: new Date().toLocaleDateString(\"fr-FR\"),\n                    alignment: \"right\",\n                    fontSize: 10,\n                    margin: [0, 0, 15, 10]\n                }\n            ],\n            margin: [0, 0, 0, 10]\n        };\n    },\n    content: [\n        {\n            text: \"Rapport d'utilisation\",\n            style: \"header\",\n            margin: [0, 10, 0, 0]\n        },\n        {\n            text: \"Les valeurs sont des moyennes sur les \" + Math.floor(msg.delay / (1000 * 60)) + \" dèrnière minutes\"\n        },\n        {\n            text: \"Nidus :\",\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"nidus/benchmark/cpu\"]\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"nidus/benchmark/ram\"]\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"nidus/benchmark/processes\"]\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"nidus/benchmark/temp\"]\n        },\n        {\n            image: 'nidusImage',\n            width: 500,\n            pageBreak: 'after',\n        },\n        {\n            text: \"Volt\",\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"volt/benchmark/cpu\"]\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"volt/benchmark/ram\"]\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"volt/benchmark/processes\"]\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"volt/benchmark/temp\"]\n        }, \n        {\n            text: \"MilliWatt :           \" + msg.payload.moyenne[\"volt/benchmark/watt\"]\n        },\n        {\n            image: 'voltImage',\n            width: 500\n        }, \n        {\n            image: 'wattImage',\n            width: 500\n        },\n    ],\n    images: {\n        voltImage: 'data:image/png;base64,' + msg.payload.voltGraph.toString('base64'), // Utilisation du buffer pour l'image Volt\n        wattImage: 'data:image/png;base64,' + msg.payload.wattGraph.toString('base64'),  // Utilisation du buffer pour l'image Watt de volt\n        nidusImage: 'data:image/png;base64,' + msg.payload.nidusGraph.toString('base64'),  // Utilisation du buffer pour l'image Nidus\n    },\n    styles: {\n        header: {\n            fontSize: 22,\n            bold: true,\n            margin: [0, 30, 0, 0]\n        },\n        header2: {\n            fontSize: 18,\n            bold: true,\n            margin: [0, 20, 0, 0]\n        }\n    }\n};\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 440,
-        "y": 540,
+        "x": 2020,
+        "y": 960,
         "wires": [
             [
                 "4ef3788f935e6027"
@@ -1242,18 +1368,18 @@
         "joiner": "\\n",
         "joinerType": "str",
         "accumulate": false,
-        "timeout": "240",
+        "timeout": "",
         "count": "",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
         "reduceInitType": "num",
         "reduceFixup": "",
-        "x": 1090,
-        "y": 700,
+        "x": 1010,
+        "y": 640,
         "wires": [
             [
-                "d1df9583fab7293e"
+                "437e6a5585d440a9"
             ]
         ]
     },
@@ -1261,12 +1387,12 @@
         "id": "5c69c227d997ff0a",
         "type": "mqtt-plus in",
         "z": "8b4c08f2a705dd79",
-        "name": "",
+        "name": "Volt/CPU",
         "topic": "/",
         "qos": "2",
         "broker": "ae336b538b957769",
-        "x": 910,
-        "y": 680,
+        "x": 840,
+        "y": 640,
         "wires": [
             [
                 "69a8a0bed6aeee0e"
@@ -1275,10 +1401,1248 @@
         ]
     },
     {
-        "id": "d1df9583fab7293e",
+        "id": "f26e31525cd26f5a",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Activate",
+        "func": "var delay = msg.payload.time !== null ? msg.payload.time * 60 * 1000 : 30000; // Convertir en millisecondes si nécessaire\n\n// Créer les objets de message pour chaque sortie\nvar msg1 = {\n    cmd: \"subscribe\",\n    topic: \"/\",\n    complete: true,\n    out:1,\n    delay: delay, // Délai en ms\n    filepath: msg.filePath,\n    graphPath: msg.graphPath\n};\n\nvar msg2 = {\n    cmd: \"subscribe\",\n    topic: \"volt/benchmark/cpu\",\n    out: 2\n};\n\nvar msg3 = {\n    cmd: \"subscribe\",\n    topic: \"volt/benchmark/ram\",\n    out: 3\n};\n\nvar msg4 = {\n    cmd: \"subscribe\",\n    topic: \"volt/benchmark/processes\",\n    out: 4\n};\n\nvar msg5 = {\n    cmd: \"subscribe\",\n    topic: \"volt/benchmark/temp\",\n    out: 4\n};\n\n\n\nvar msg6 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/cpu\",\n    out: 5\n};\n\nvar msg7 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/ram\",\n    out: 6\n};\n\nvar msg8 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/processes\",\n    out: 7\n};\nvar msg9 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/temp\",\n    out: 4\n};\n\n\n// Envoyer les messages aux sorties correspondantes\n// Les messages seront envoyés dans l'ordre de 0 à 6, correspondant aux sorties activées\n// Assurez-vous que le nœud \"Function\" a sept sorties activées pour recevoir ces messages\nnode.send([msg1, msg2, msg3, msg4, msg5, msg6, msg7,msg8,msg9]);\n",
+        "outputs": 9,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 800,
+        "wires": [
+            [
+                "7b65a4353d980a32",
+                "1a94997d94eb26fa"
+            ],
+            [
+                "5c69c227d997ff0a"
+            ],
+            [
+                "f4d244933230ca3c"
+            ],
+            [
+                "0133cae69ae5104b"
+            ],
+            [
+                "639890ec7f76a77c"
+            ],
+            [
+                "2f71f2cc59cf73fe"
+            ],
+            [
+                "bd2b8fa03e46740a"
+            ],
+            [
+                "7d68e80e8c88e5f7"
+            ],
+            [
+                "36a3fe1d1cb9d60b"
+            ]
+        ]
+    },
+    {
+        "id": "7b65a4353d980a32",
+        "type": "delay",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "pauseType": "delayv",
+        "timeout": "15",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 660,
+        "y": 580,
+        "wires": [
+            [
+                "5c69c227d997ff0a",
+                "69a8a0bed6aeee0e",
+                "f4d244933230ca3c",
+                "0133cae69ae5104b",
+                "2f71f2cc59cf73fe",
+                "bd2b8fa03e46740a",
+                "7d68e80e8c88e5f7",
+                "346e23e614df9b2f",
+                "09be40e07be60911",
+                "7e535f8c5b186600",
+                "f591304f29200dcd",
+                "376177303fee8e6b",
+                "639890ec7f76a77c",
+                "36a3fe1d1cb9d60b",
+                "3b8849fe5c0112fb",
+                "16850c4ba1026ed6",
+                "1b0aeb2184b98462"
+            ]
+        ]
+    },
+    {
+        "id": "346e23e614df9b2f",
+        "type": "join",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1010,
+        "y": 680,
+        "wires": [
+            [
+                "e8ce72700af4ebf3"
+            ]
+        ]
+    },
+    {
+        "id": "f4d244933230ca3c",
+        "type": "mqtt-plus in",
+        "z": "8b4c08f2a705dd79",
+        "name": "Volt/Ram",
+        "topic": "/",
+        "qos": "2",
+        "broker": "ae336b538b957769",
+        "x": 840,
+        "y": 680,
+        "wires": [
+            [
+                "346e23e614df9b2f"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "09be40e07be60911",
+        "type": "join",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1010,
+        "y": 720,
+        "wires": [
+            [
+                "b75f1a3ce01ce919"
+            ]
+        ]
+    },
+    {
+        "id": "0133cae69ae5104b",
+        "type": "mqtt-plus in",
+        "z": "8b4c08f2a705dd79",
+        "name": "Volt/processes",
+        "topic": "/",
+        "qos": "2",
+        "broker": "ae336b538b957769",
+        "x": 860,
+        "y": 720,
+        "wires": [
+            [
+                "09be40e07be60911"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "7e535f8c5b186600",
+        "type": "join",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1010,
+        "y": 800,
+        "wires": [
+            [
+                "7b6671537c22ccbb"
+            ]
+        ]
+    },
+    {
+        "id": "2f71f2cc59cf73fe",
+        "type": "mqtt-plus in",
+        "z": "8b4c08f2a705dd79",
+        "name": "Nidus/CPU",
+        "topic": "/",
+        "qos": "2",
+        "broker": "ae336b538b957769",
+        "x": 850,
+        "y": 800,
+        "wires": [
+            [
+                "7e535f8c5b186600"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f591304f29200dcd",
+        "type": "join",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1010,
+        "y": 840,
+        "wires": [
+            [
+                "a4788f45248625c0"
+            ]
+        ]
+    },
+    {
+        "id": "bd2b8fa03e46740a",
+        "type": "mqtt-plus in",
+        "z": "8b4c08f2a705dd79",
+        "name": "Nidus/Ram",
+        "topic": "/",
+        "qos": "2",
+        "broker": "ae336b538b957769",
+        "x": 850,
+        "y": 840,
+        "wires": [
+            [
+                "f591304f29200dcd"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "376177303fee8e6b",
+        "type": "join",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1010,
+        "y": 880,
+        "wires": [
+            [
+                "c8ba41e1313713fc"
+            ]
+        ]
+    },
+    {
+        "id": "7d68e80e8c88e5f7",
+        "type": "mqtt-plus in",
+        "z": "8b4c08f2a705dd79",
+        "name": "Nidus/processes",
+        "topic": "/",
+        "qos": "2",
+        "broker": "ae336b538b957769",
+        "x": 860,
+        "y": 880,
+        "wires": [
+            [
+                "376177303fee8e6b"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "437e6a5585d440a9",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Rename",
+        "func": "// Définir le sujet du message\nmsg.topic = \"volt/benchmark/cpu\";\n\n// Vérifier si le tableau payload existe et n'est pas vide\nif (msg.payload && Array.isArray(msg.payload) && msg.payload.length > 0) {\n    // Convertir les valeurs en chaînes de caractères en nombres entiers\n    var numericValues = msg.payload.map(function (value) {\n        return parseInt(value, 10); // 10 indique la base décimale\n    }).filter(function (value) {\n        return !isNaN(value); // Filtrer les valeurs non numériques\n    });\n\n    // Vérifier si des valeurs numériques ont été trouvées\n    if (numericValues.length > 0) {\n        // Calculer la somme des valeurs numériques dans le tableau\n        var sum = numericValues.reduce(function (acc, value) {\n            return acc + value;\n        }, 0);\n\n        // Calculer la moyenne en divisant la somme par le nombre d'éléments\n        var moyenne = sum / numericValues.length;\n\n        // Arrondir la moyenne à deux chiffres après la virgule et au multiple de 0.05 le plus proche\n        moyenne = Math.round(moyenne * 20) / 20;\n\n        // Ajouter la moyenne au message\n        msg.moyenne = moyenne.toFixed(2);\n    } else {\n        // Si aucune valeur numérique n'a été trouvée, définir la moyenne à 0\n        msg.moyenne = \"0.00\";\n    }\n} else {\n    // Si le tableau est vide ou n'existe pas, définir la moyenne à 0\n    msg.moyenne.volt.benchmark.cpu = \"0.00\";\n}\n\n// Renvoyer le message modifié\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 640,
+        "wires": [
+            [
+                "4e4f4f7a85b8a2cd",
+                "9a3d6e47ed36af55"
+            ]
+        ]
+    },
+    {
+        "id": "e8ce72700af4ebf3",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Rename",
+        "func": "// Définir le sujet du message\nmsg.topic = \"volt/benchmark/ram\";\n\n// Vérifier si le tableau payload existe et n'est pas vide\nif (msg.payload && Array.isArray(msg.payload) && msg.payload.length > 0) {\n    // Convertir les valeurs en chaînes de caractères en nombres entiers\n    var numericValues = msg.payload.map(function (value) {\n        return parseInt(value, 10); // 10 indique la base décimale\n    }).filter(function (value) {\n        return !isNaN(value); // Filtrer les valeurs non numériques\n    });\n\n    // Vérifier si des valeurs numériques ont été trouvées\n    if (numericValues.length > 0) {\n        // Calculer la somme des valeurs numériques dans le tableau\n        var sum = numericValues.reduce(function (acc, value) {\n            return acc + value;\n        }, 0);\n\n        // Calculer la moyenne en divisant la somme par le nombre d'éléments\n        var moyenne = sum / numericValues.length;\n\n        // Arrondir la moyenne à deux chiffres après la virgule et au multiple de 0.05 le plus proche\n        moyenne = Math.round(moyenne * 20) / 20;\n\n        // Ajouter la moyenne au message\n        msg.moyenne = moyenne.toFixed(2);\n    } else {\n        // Si aucune valeur numérique n'a été trouvée, définir la moyenne à 0\n        msg.moyenne = \"0.00\";\n    }\n} else {\n    // Si le tableau est vide ou n'existe pas, définir la moyenne à 0\n    msg.moyenne = \"0.00\";\n}\n\n// Renvoyer le message modifié\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 680,
+        "wires": [
+            [
+                "4e4f4f7a85b8a2cd",
+                "9a3d6e47ed36af55"
+            ]
+        ]
+    },
+    {
+        "id": "b75f1a3ce01ce919",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Rename",
+        "func": "// Définir le sujet du message\nmsg.topic = \"volt/benchmark/processes\";\n\n// Vérifier si le tableau payload existe et n'est pas vide\nif (msg.payload && Array.isArray(msg.payload) && msg.payload.length > 0) {\n    // Convertir les valeurs en chaînes de caractères en nombres entiers\n    var numericValues = msg.payload.map(function (value) {\n        return parseInt(value, 10); // 10 indique la base décimale\n    }).filter(function (value) {\n        return !isNaN(value); // Filtrer les valeurs non numériques\n    });\n\n    // Vérifier si des valeurs numériques ont été trouvées\n    if (numericValues.length > 0) {\n        // Calculer la somme des valeurs numériques dans le tableau\n        var sum = numericValues.reduce(function (acc, value) {\n            return acc + value;\n        }, 0);\n\n        // Calculer la moyenne en divisant la somme par le nombre d'éléments\n        var moyenne = sum / numericValues.length;\n\n        // Arrondir la moyenne à deux chiffres après la virgule et au multiple de 0.05 le plus proche\n        moyenne = Math.round(moyenne * 20) / 20;\n\n        // Ajouter la moyenne au message\n        msg.moyenne = moyenne.toFixed(2);\n    } else {\n        // Si aucune valeur numérique n'a été trouvée, définir la moyenne à 0\n        msg.moyenne = \"0.00\";\n    }\n} else {\n    // Si le tableau est vide ou n'existe pas, définir la moyenne à 0\n    msg.moyenne = \"0.00\";\n}\n\n// Renvoyer le message modifié\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 720,
+        "wires": [
+            [
+                "4e4f4f7a85b8a2cd",
+                "9a3d6e47ed36af55"
+            ]
+        ]
+    },
+    {
+        "id": "7b6671537c22ccbb",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Rename",
+        "func": "// Définir le sujet du message\nmsg.topic = \"nidus/benchmark/cpu\";\n\n// Vérifier si le tableau payload existe et n'est pas vide\nif (msg.payload && Array.isArray(msg.payload) && msg.payload.length > 0) {\n    // Convertir les valeurs en chaînes de caractères en nombres entiers\n    var numericValues = msg.payload.map(function (value) {\n        return parseInt(value, 10); // 10 indique la base décimale\n    }).filter(function (value) {\n        return !isNaN(value); // Filtrer les valeurs non numériques\n    });\n\n    // Vérifier si des valeurs numériques ont été trouvées\n    if (numericValues.length > 0) {\n        // Calculer la somme des valeurs numériques dans le tableau\n        var sum = numericValues.reduce(function (acc, value) {\n            return acc + value;\n        }, 0);\n\n        // Calculer la moyenne en divisant la somme par le nombre d'éléments\n        var moyenne = sum / numericValues.length;\n\n        // Arrondir la moyenne à deux chiffres après la virgule et au multiple de 0.05 le plus proche\n        moyenne = Math.round(moyenne * 20) / 20;\n\n        // Ajouter la moyenne au message\n        msg.moyenne = moyenne.toFixed(2);\n    } else {\n        // Si aucune valeur numérique n'a été trouvée, définir la moyenne à 0\n        msg.moyenne = \"0.00\";\n    }\n} else {\n    // Si le tableau est vide ou n'existe pas, définir la moyenne à 0\n    msg.moyenne = \"0.00\";\n}\n\n// Renvoyer le message modifié\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 800,
+        "wires": [
+            [
+                "4e4f4f7a85b8a2cd",
+                "9a3d6e47ed36af55"
+            ]
+        ]
+    },
+    {
+        "id": "a4788f45248625c0",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Rename",
+        "func": "// Définir le sujet du message\nmsg.topic = \"nidus/benchmark/ram\";\n\n// Vérifier si le tableau payload existe et n'est pas vide\nif (msg.payload && Array.isArray(msg.payload) && msg.payload.length > 0) {\n    // Convertir les valeurs en chaînes de caractères en nombres entiers\n    var numericValues = msg.payload.map(function (value) {\n        return parseInt(value, 10); // 10 indique la base décimale\n    }).filter(function (value) {\n        return !isNaN(value); // Filtrer les valeurs non numériques\n    });\n\n    // Vérifier si des valeurs numériques ont été trouvées\n    if (numericValues.length > 0) {\n        // Calculer la somme des valeurs numériques dans le tableau\n        var sum = numericValues.reduce(function (acc, value) {\n            return acc + value;\n        }, 0);\n\n        // Calculer la moyenne en divisant la somme par le nombre d'éléments\n        var moyenne = sum / numericValues.length;\n\n        // Arrondir la moyenne à deux chiffres après la virgule et au multiple de 0.05 le plus proche\n        moyenne = Math.round(moyenne * 20) / 20;\n\n        // Ajouter la moyenne au message\n        msg.moyenne = moyenne.toFixed(2);\n    } else {\n        // Si aucune valeur numérique n'a été trouvée, définir la moyenne à 0\n        msg.moyenne = \"0.00\";\n    }\n} else {\n    // Si le tableau est vide ou n'existe pas, définir la moyenne à 0\n    msg.moyenne = \"0.00\";\n}\n\n// Renvoyer le message modifié\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 840,
+        "wires": [
+            [
+                "4e4f4f7a85b8a2cd",
+                "9a3d6e47ed36af55"
+            ]
+        ]
+    },
+    {
+        "id": "c8ba41e1313713fc",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Rename",
+        "func": "// Définir le sujet du message\nmsg.topic = \"nidus/benchmark/processes\";\n// Vérifier si le tableau payload existe et n'est pas vide\nif (msg.payload && Array.isArray(msg.payload) && msg.payload.length > 0) {\n    // Convertir les valeurs en chaînes de caractères en nombres entiers\n    var numericValues = msg.payload.map(function (value) {\n        return parseInt(value, 10); // 10 indique la base décimale\n    }).filter(function (value) {\n        return !isNaN(value); // Filtrer les valeurs non numériques\n    });\n\n    // Vérifier si des valeurs numériques ont été trouvées\n    if (numericValues.length > 0) {\n        // Calculer la somme des valeurs numériques dans le tableau\n        var sum = numericValues.reduce(function (acc, value) {\n            return acc + value;\n        }, 0);\n\n        // Calculer la moyenne en divisant la somme par le nombre d'éléments\n        var moyenne = sum / numericValues.length;\n\n        // Arrondir la moyenne à deux chiffres après la virgule et au multiple de 0.05 le plus proche\n        moyenne = Math.round(moyenne * 20) / 20;\n\n        // Ajouter la moyenne au message\n        msg.moyenne = moyenne.toFixed(2);\n    } else {\n        // Si aucune valeur numérique n'a été trouvée, définir la moyenne à 0\n        msg.moyenne = \"0.00\";\n    }\n} else {\n    // Si le tableau est vide ou n'existe pas, définir la moyenne à 0\n    msg.moyenne = \"0.00\";\n}\n\n// Renvoyer le message modifié\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 880,
+        "wires": [
+            [
+                "4e4f4f7a85b8a2cd",
+                "9a3d6e47ed36af55"
+            ]
+        ]
+    },
+    {
+        "id": "4e4f4f7a85b8a2cd",
+        "type": "join",
+        "z": "8b4c08f2a705dd79",
+        "name": "Values",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "8",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1330,
+        "y": 640,
+        "wires": [
+            [
+                "5f624f25.98f38",
+                "ac62bafd63eb963d",
+                "866c4b8b950d47ba",
+                "1b1ec814f8b80459"
+            ]
+        ]
+    },
+    {
+        "id": "9a3d6e47ed36af55",
+        "type": "join",
+        "z": "8b4c08f2a705dd79",
+        "name": "Moyennes",
+        "mode": "custom",
+        "build": "object",
+        "property": "moyenne",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1410,
+        "y": 920,
+        "wires": [
+            [
+                "c71d1f39bb911b75"
+            ]
+        ]
+    },
+    {
+        "id": "e8ac5800cefa20d9",
+        "type": "link out",
+        "z": "8b4c08f2a705dd79",
+        "name": "End_PDF",
+        "mode": "link",
+        "links": [
+            "26a410550aabca72"
+        ],
+        "x": 2045,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "26a410550aabca72",
+        "type": "link in",
+        "z": "8b4c08f2a705dd79",
+        "name": "From_PDF",
+        "links": [
+            "e8ac5800cefa20d9"
+        ],
+        "x": 265,
+        "y": 280,
+        "wires": [
+            [
+                "a715f7a4.a398a8"
+            ]
+        ]
+    },
+    {
+        "id": "3b8849fe5c0112fb",
+        "type": "join",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1010,
+        "y": 760,
+        "wires": [
+            [
+                "11d7e6fa4a405b9d"
+            ]
+        ]
+    },
+    {
+        "id": "639890ec7f76a77c",
+        "type": "mqtt-plus in",
+        "z": "8b4c08f2a705dd79",
+        "name": "Volt/Temp",
+        "topic": "/",
+        "qos": "2",
+        "broker": "ae336b538b957769",
+        "x": 840,
+        "y": 760,
+        "wires": [
+            [
+                "3b8849fe5c0112fb"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "11d7e6fa4a405b9d",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Rename",
+        "func": "// Définir le sujet du message\nmsg.topic = \"volt/benchmark/temp\";\n\n// Vérifier si le tableau payload existe et n'est pas vide\nif (msg.payload && Array.isArray(msg.payload) && msg.payload.length > 0) {\n    // Convertir les valeurs en chaînes de caractères en nombres entiers\n    var numericValues = msg.payload.map(function (value) {\n        return parseInt(value, 10); // 10 indique la base décimale\n    }).filter(function (value) {\n        return !isNaN(value); // Filtrer les valeurs non numériques\n    });\n\n    // Vérifier si des valeurs numériques ont été trouvées\n    if (numericValues.length > 0) {\n        // Calculer la somme des valeurs numériques dans le tableau\n        var sum = numericValues.reduce(function (acc, value) {\n            return acc + value;\n        }, 0);\n\n        // Calculer la moyenne en divisant la somme par le nombre d'éléments\n        var moyenne = sum / numericValues.length;\n\n        // Arrondir la moyenne à deux chiffres après la virgule et au multiple de 0.05 le plus proche\n        moyenne = Math.round(moyenne * 20) / 20;\n\n        // Ajouter la moyenne au message\n        msg.moyenne = moyenne.toFixed(2);\n    } else {\n        // Si aucune valeur numérique n'a été trouvée, définir la moyenne à 0\n        msg.moyenne = \"0.00\";\n    }\n} else {\n    // Si le tableau est vide ou n'existe pas, définir la moyenne à 0\n    msg.moyenne = \"0.00\";\n}\n\n// Renvoyer le message modifié\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 760,
+        "wires": [
+            [
+                "4e4f4f7a85b8a2cd",
+                "9a3d6e47ed36af55"
+            ]
+        ]
+    },
+    {
+        "id": "16850c4ba1026ed6",
+        "type": "join",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1010,
+        "y": 920,
+        "wires": [
+            [
+                "6aaa0d33e800fed0"
+            ]
+        ]
+    },
+    {
+        "id": "36a3fe1d1cb9d60b",
+        "type": "mqtt-plus in",
+        "z": "8b4c08f2a705dd79",
+        "name": "Nidus/temp",
+        "topic": "/",
+        "qos": "2",
+        "broker": "ae336b538b957769",
+        "x": 850,
+        "y": 920,
+        "wires": [
+            [
+                "16850c4ba1026ed6"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "6aaa0d33e800fed0",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Rename",
+        "func": "// Définir le sujet du message\nmsg.topic = \"nidus/benchmark/temp\";\n// Vérifier si le tableau payload existe et n'est pas vide\nif (msg.payload && Array.isArray(msg.payload) && msg.payload.length > 0) {\n    // Convertir les valeurs en chaînes de caractères en nombres entiers\n    var numericValues = msg.payload.map(function (value) {\n        return parseInt(value, 10); // 10 indique la base décimale\n    }).filter(function (value) {\n        return !isNaN(value); // Filtrer les valeurs non numériques\n    });\n\n    // Vérifier si des valeurs numériques ont été trouvées\n    if (numericValues.length > 0) {\n        // Calculer la somme des valeurs numériques dans le tableau\n        var sum = numericValues.reduce(function (acc, value) {\n            return acc + value;\n        }, 0);\n\n        // Calculer la moyenne en divisant la somme par le nombre d'éléments\n        var moyenne = sum / numericValues.length;\n\n        // Arrondir la moyenne à deux chiffres après la virgule et au multiple de 0.05 le plus proche\n        moyenne = Math.round(moyenne * 20) / 20;\n\n        // Ajouter la moyenne au message\n        msg.moyenne = moyenne.toFixed(2);\n    } else {\n        // Si aucune valeur numérique n'a été trouvée, définir la moyenne à 0\n        msg.moyenne = \"0.00\";\n    }\n} else {\n    // Si le tableau est vide ou n'existe pas, définir la moyenne à 0\n    msg.moyenne = \"0.00\";\n}\n\n// Renvoyer le message modifié\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 920,
+        "wires": [
+            [
+                "4e4f4f7a85b8a2cd",
+                "9a3d6e47ed36af55"
+            ]
+        ]
+    },
+    {
+        "id": "45632b1506735cd0",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "MiseAJourDelay",
+        "func": "// Vérifier si msg.delay est défini\nif (msg.delay !== undefined) {\n    if(msg.delay === 1){\n        return null;\n    }\n    // Convertir msg.delay en nombre (si c'est une chaîne)\n    const currentDelay = parseFloat(msg.delay);\n\n    // Vérifier si currentDelay est un nombre valide\n    if (!isNaN(currentDelay)) {\n        // Soustraire 250 de currentDelay, mais s'assurer que le résultat est positif\n        const newDelay = Math.max(currentDelay - 250, 0);\n\n        // Mettre à jour msg.delay avec la nouvelle valeur\n        msg.delay = newDelay;\n\n        // Si le nouveau délai est 0, ne rien retourner\n        if (newDelay === 0) {\n            msg.delay = 1;\n            msg.originalDelay = 1;\n            return msg;\n        } else {\n            // Sinon, retourner le message avec le nouveau délai\n            return msg;\n        }\n    } else {\n        // msg.delay n'est pas un nombre valide\n        return null;\n    }\n} else {\n    // msg.delay n'est pas défini\n    return null;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 640,
+        "wires": [
+            [
+                "66dfc0722fba42f0",
+                "cbc0fa7df08ccd70",
+                "1c59637f2afd3963",
+                "2e815e58756a55d3"
+            ]
+        ]
+    },
+    {
+        "id": "66dfc0722fba42f0",
+        "type": "delay",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "250",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 470,
+        "y": 640,
+        "wires": [
+            [
+                "45632b1506735cd0"
+            ]
+        ]
+    },
+    {
+        "id": "1a94997d94eb26fa",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "CopyDelay",
+        "func": "// Vérifier si msg.delay est défini\nif (msg.delay !== undefined) {\nmsg.originalDelay = msg.delay;\nreturn msg;\n}else{\n    return null;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 700,
+        "wires": [
+            [
+                "45632b1506735cd0"
+            ]
+        ]
+    },
+    {
+        "id": "5f624f25.98f38",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Vertical Bar Chart ",
+        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload;\n\n// Extraction des données nécessaires\nvar voltCpuData = rawData[\"volt/benchmark/cpu\"];\nvar voltRamData = rawData[\"volt/benchmark/ram\"];\nvar voltProcessesData = rawData[\"volt/benchmark/processes\"];\nvar voltTempData = rawData[\"volt/benchmark/temp\"];\nvar nidusCpuData = rawData[\"nidus/benchmark/cpu\"];\nvar nidusRamData = rawData[\"nidus/benchmark/ram\"];\nvar nidusProcessesData = rawData[\"nidus/benchmark/processes\"];\nvar nidusTempData = rawData[\"nidus/benchmark/temp\"];\n\n// Création du graphique\nvar chartData = {\n    type: 'bar',\n    options: {\n        title: {\n            display: true,\n            text: 'Comparaison des performances'\n        },\n        legend: {\n            display: true\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        plugins: {\n            datalabels: {\n                display: true,\n                backgroundColor: 'whitesmoke',\n                borderRadius: 1,\n                padding: 1,\n                align: 'right',\n                anchor: function (context) {\n                    if (context.dataIndex == context.dataset.data.length - 1) {\n                        return 'center';\n                    } else {\n                        return 'end';\n                    }\n                },\n                offset: 8,\n                formatter: function (value) {\n                    return value > 0 ? value.toLocaleString() : '';\n                }\n            }\n        }\n    },\n    data: {\n        datasets: [\n            {\n                label: \"Volt CPU\",\n                backgroundColor: 'rgba(57,97,184,0.8)',\n                data: voltCpuData\n            },\n            {\n                label: \"Volt RAM\",\n                backgroundColor: 'rgba(127, 184, 57,0.8)',\n                data: voltRamData\n            },\n            {\n                label: \"Volt Processes\",\n                backgroundColor: 'rgba(184, 57, 127,0.8)',\n                data: voltProcessesData\n            },\n            {\n                label: \"Volt Temp\",\n                backgroundColor: 'rgba(184, 127, 57,0.8)',\n                data: voltTempData\n            },\n            {\n                label: \"Nidus CPU\",\n                backgroundColor: 'rgba(97, 184, 57,0.8)',\n                data: nidusCpuData\n            },\n            {\n                label: \"Nidus RAM\",\n                backgroundColor: 'rgba(57,97,127,0.8)',\n                data: nidusRamData\n            },\n            {\n                label: \"Nidus Processes\",\n                backgroundColor: 'rgba(57,127,184,0.8)',\n                data: nidusProcessesData\n            },\n            {\n                label: \"Nidus Temp\",\n                backgroundColor: 'rgba(127, 57, 184,0.8)',\n                data: nidusTempData\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1510,
+        "y": 600,
+        "wires": [
+            [
+                "89dfcf39.990ca"
+            ]
+        ]
+    },
+    {
+        "id": "89dfcf39.990ca",
+        "type": "chart-image",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "width": "1000",
+        "height": "1000",
+        "x": 1730,
+        "y": 600,
+        "wires": [
+            [
+                "62271758.c63728"
+            ]
+        ]
+    },
+    {
+        "id": "62271758.c63728",
+        "type": "file",
+        "z": "8b4c08f2a705dd79",
+        "name": "Image dump",
+        "filename": "/home/NodeRed/bar.png",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 2010,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ac62bafd63eb963d",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Vertical Line Chart",
+        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload;\nvar delayInSeconds = msg.delay / 1000; // Conversion en secondes\n\n// Extraction des données nécessaires\nvar voltCpuData = rawData[\"volt/benchmark/cpu\"];\nvar voltRamData = rawData[\"volt/benchmark/ram\"];\nvar voltProcessesData = rawData[\"volt/benchmark/processes\"];\nvar voltTempData = rawData[\"volt/benchmark/temp\"];\nvar nidusCpuData = rawData[\"nidus/benchmark/cpu\"];\nvar nidusRamData = rawData[\"nidus/benchmark/ram\"];\nvar nidusProcessesData = rawData[\"nidus/benchmark/processes\"];\nvar nidusTempData = rawData[\"nidus/benchmark/temp\"];\n\n// Création du graphique\nvar chartData = {\n    type: 'line',  // Changement du type de graphique en \"line\"\n    options: {\n        title: {\n            display: true,\n            text: 'Comparaison des performances'\n        },\n        legend: {\n            display: true\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        plugins: {\n            datalabels: {\n                display: false  // Désactiver l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: Array.from({ length: voltCpuData.length }, (_, i) => (i * delayInSeconds).toFixed(1)),  // Temps en secondes\n        datasets: [\n            {\n                label: \"Volt CPU\",\n                borderColor: 'rgba(0, 128, 255, 1)',  // Couleur de la ligne (couleur froide pour Volt)\n                fill: false,  // Désactiver le remplissage sous la ligne\n                data: voltCpuData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Volt RAM\",\n                borderColor: 'rgba(0, 255, 128, 1)',\n                fill: false,\n                data: voltRamData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Volt Temp\",\n                borderColor: 'rgba(255, 193, 37, 1)',\n                fill: false,\n                data: voltTempData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Nidus CPU\",\n                borderColor: 'rgba(255, 69, 0, 1)',\n                fill: false,\n                data: nidusCpuData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Nidus RAM\",\n                borderColor: 'rgba(255, 165, 0, 1)',\n                fill: false,\n                data: nidusRamData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Nidus Temp\",\n                borderColor: 'rgba(255, 0, 0, 1)',\n                fill: false,\n                data: nidusTempData,\n                pointRadius: 0,\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1510,
+        "y": 640,
+        "wires": [
+            [
+                "410a379834aff737"
+            ]
+        ]
+    },
+    {
+        "id": "410a379834aff737",
+        "type": "chart-image",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "width": "1920",
+        "height": "1080",
+        "x": 1730,
+        "y": 640,
+        "wires": [
+            [
+                "dfe30fa5a85a4a10"
+            ]
+        ]
+    },
+    {
+        "id": "dfe30fa5a85a4a10",
+        "type": "file",
+        "z": "8b4c08f2a705dd79",
+        "name": "Image dump",
+        "filename": "/home/NodeRed/line.png",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 2010,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0624d850b450f11c",
+        "type": "chart-image",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "width": "1920",
+        "height": "1920",
+        "x": 1730,
+        "y": 680,
+        "wires": [
+            [
+                "3c7687d83cf34e96",
+                "0cb19cef3d4b79aa"
+            ]
+        ]
+    },
+    {
+        "id": "3c7687d83cf34e96",
+        "type": "file",
+        "z": "8b4c08f2a705dd79",
+        "name": "Image dump",
+        "filename": "graphPath.volt.complet",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 2010,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "35ae4744eb6cb342",
+        "type": "chart-image",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "width": "1920",
+        "height": "1920",
+        "x": 1730,
+        "y": 720,
+        "wires": [
+            [
+                "d474eb71658b6f9b",
+                "0cb19cef3d4b79aa"
+            ]
+        ]
+    },
+    {
+        "id": "d474eb71658b6f9b",
+        "type": "file",
+        "z": "8b4c08f2a705dd79",
+        "name": "Image dump",
+        "filename": "graphPath.nidus.complet",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 2010,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1b1ec814f8b80459",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Nidus Line Chart",
+        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload;\nvar delayInSeconds = msg.delay / 1000; // Conversion en secondes\nmsg.topic = \"NidusLineChart\";\n// Extraction des données nécessaires\nvar nidusCpuData = rawData[\"nidus/benchmark/cpu\"];\nvar nidusRamData = rawData[\"nidus/benchmark/ram\"];\nvar nidusTempData = rawData[\"nidus/benchmark/temp\"];\n\n// Création du graphique\nvar chartData = {\n    type: 'line',  // Changement du type de graphique en \"line\"\n    options: {\n        title: {\n            display: true,\n            text: 'Comparaison des performances'\n        },\n        legend: {\n            display: true\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        plugins: {\n            datalabels: {\n                display: false  // Désactiver l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: Array.from({ length: nidusCpuData.length }, (_, i) => (i * delayInSeconds).toFixed(1)),  // Temps en secondes\n        datasets: [\n            \n            {\n                label: \"Nidus CPU\",\n                borderColor: 'rgba(255, 69, 0, 1)',\n                fill: false,\n                data: nidusCpuData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Nidus RAM\",\n                borderColor: 'rgba(255, 165, 0, 1)',\n                fill: false,\n                data: nidusRamData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Nidus Temp\",\n                borderColor: 'rgba(255, 0, 0, 1)',\n                fill: false,\n                data: nidusTempData,\n                pointRadius: 0,\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1510,
+        "y": 720,
+        "wires": [
+            [
+                "35ae4744eb6cb342"
+            ]
+        ]
+    },
+    {
+        "id": "866c4b8b950d47ba",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Volt Line Chart",
+        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload;\nvar delayInSeconds = msg.delay / 1000; // Conversion en secondes\nmsg.topic = \"VoltLineChart\";\n// Extraction des données nécessaires\nvar voltCpuData = rawData[\"volt/benchmark/cpu\"];\nvar voltRamData = rawData[\"volt/benchmark/ram\"];\nvar voltTempData = rawData[\"volt/benchmark/temp\"];\n\n\n// Création du graphique\nvar chartData = {\n    type: 'line',  // Changement du type de graphique en \"line\"\n    options: {\n        title: {\n            display: true,\n            text: 'Comparaison des performances'\n        },\n        legend: {\n            display: true\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        plugins: {\n            datalabels: {\n                display: false  // Désactiver l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: Array.from({ length: voltCpuData.length }, (_, i) => (i * delayInSeconds).toFixed(1)),  // Temps en secondes\n        datasets: [\n            {\n                label: \"Volt CPU\",\n                borderColor: 'rgba(0, 128, 255, 1)',  // Couleur de la ligne (couleur froide pour Volt)\n                fill: false,  // Désactiver le remplissage sous la ligne\n                data: voltCpuData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Volt RAM\",\n                borderColor: 'rgba(0, 255, 128, 1)',\n                fill: false,\n                data: voltRamData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Volt Temp\",\n                borderColor: 'rgba(0, 173, 0, 1)',\n                fill: false,\n                data: voltTempData,\n                pointRadius: 0,\n            },\n\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1500,
+        "y": 680,
+        "wires": [
+            [
+                "0624d850b450f11c"
+            ]
+        ]
+    },
+    {
+        "id": "e87001580862758b",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Commmandes de StressTest",
+        "func": "const sshNidus = \"ssh tobby@nidus\"; \nconst sshVolt = \"ssh tobby@157.26.228.77\"; \n\n    var stressCommandsNidus;\n    var stressCommandsVolt;\n\n    if (msg.payload.stressNidus) {\n        var msg1 = {\n            payload : `stress-ng --cpu 2 --io 1 --timeout ${msg.payload.timeStress*60}s --cpu-load 100 --vm-bytes 3G`\n        };\n    }\n\n    if (msg.payload.stressVolt) {\n        var msg2 = {\n            payload: `ssh tobby@157.26.228.77 \\\"stress-ng --cpu 2 --io 1 --timeout ${msg.payload.timeStress*60}s --cpu-load 100 --vm-bytes 3G\\\"`\n        };\n    }\n    node.send([msg1, msg2]);\n",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 840,
+        "wires": [
+            [
+                "5556b3e3ae54080e"
+            ],
+            [
+                "5556b3e3ae54080e"
+            ]
+        ]
+    },
+    {
+        "id": "5556b3e3ae54080e",
+        "type": "exec",
+        "z": "8b4c08f2a705dd79",
+        "command": "",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 530,
+        "y": 1000,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "cbc0fa7df08ccd70",
+        "type": "ui_template",
+        "z": "8b4c08f2a705dd79",
+        "group": "160e81fb.f1c86e",
+        "name": "ProgressBar",
+        "order": 3,
+        "width": "0",
+        "height": "0",
+        "format": "<style>\n    .custom-progress-bar .md-progress-linear-fill {\n        height: 20px;\n        /* Définissez la hauteur souhaitée ici */\n    }\n</style>\n\n<div layout=\"column\" layout-align=\"center center\">\n    <md-progress-linear class=\"md-accent custom-progress-bar\" md-mode=\"determinate\"\n        value=\"{{(msg.originalDelay - msg.delay) / msg.originalDelay * 100}}\"\n        ng-show=\"msg.delay !== undefined && msg.originalDelay !== undefined\"></md-progress-linear>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 470,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0cf627b430aec580",
+        "type": "join",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "4",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1850,
+        "y": 1000,
+        "wires": [
+            [
+                "e58255ccc7601a18"
+            ]
+        ]
+    },
+    {
+        "id": "c71d1f39bb911b75",
+        "type": "change",
+        "z": "8b4c08f2a705dd79",
+        "name": "Organise Payload-Topic",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "moyenne",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "moyenne",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1130,
+        "y": 1000,
+        "wires": [
+            [
+                "0cf627b430aec580",
+                "b804feabadb6d67c",
+                "58239d73.30c134",
+                "5f72196b81b8a6cd"
+            ]
+        ]
+    },
+    {
+        "id": "696f35b1c89a67f0",
+        "type": "change",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "complete",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "ChartComplete",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1860,
+        "y": 860,
+        "wires": [
+            [
+                "9a3d6e47ed36af55"
+            ]
+        ]
+    },
+    {
+        "id": "e58255ccc7601a18",
+        "type": "change",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Moyenne_Graph",
+                "tot": "str",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1790,
+        "y": 960,
+        "wires": [
+            [
+                "ce7fc785e5173ede"
+            ]
+        ]
+    },
+    {
+        "id": "58239d73.30c134",
+        "type": "file in",
+        "z": "8b4c08f2a705dd79",
+        "name": "Read Graph Nidus Complet",
+        "filename": "graphPath.nidus.complet",
+        "filenameType": "msg",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 1400,
+        "y": 1220,
+        "wires": [
+            [
+                "927013c7ac3bd3b3"
+            ]
+        ]
+    },
+    {
+        "id": "927013c7ac3bd3b3",
+        "type": "base64",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "action": "str",
+        "property": "msg.payload",
+        "x": 1620,
+        "y": 1220,
+        "wires": [
+            [
+                "1ae0b1e5953c4dc9"
+            ]
+        ]
+    },
+    {
+        "id": "b804feabadb6d67c",
+        "type": "file in",
+        "z": "8b4c08f2a705dd79",
+        "name": "Read Graph Volt Complet",
+        "filename": "graphPath.volt.complet",
+        "filenameType": "msg",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 1390,
+        "y": 1100,
+        "wires": [
+            [
+                "75dba7cb1b841b76"
+            ]
+        ]
+    },
+    {
+        "id": "75dba7cb1b841b76",
+        "type": "base64",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "action": "str",
+        "property": "msg.payload",
+        "x": 1620,
+        "y": 1100,
+        "wires": [
+            [
+                "0538fdff5e05960b"
+            ]
+        ]
+    },
+    {
+        "id": "0538fdff5e05960b",
+        "type": "change",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "voltGraph",
+                "tot": "str",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1610,
+        "y": 1060,
+        "wires": [
+            [
+                "0cf627b430aec580"
+            ]
+        ]
+    },
+    {
+        "id": "1ae0b1e5953c4dc9",
+        "type": "change",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "nidusGraph",
+                "tot": "str",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1610,
+        "y": 1260,
+        "wires": [
+            [
+                "0cf627b430aec580"
+            ]
+        ]
+    },
+    {
+        "id": "f1879fc3dd7ac416",
         "type": "debug",
         "z": "8b4c08f2a705dd79",
-        "name": "debug 2",
+        "name": "CATCH_ERROR",
         "active": true,
         "tosidebar": true,
         "console": false,
@@ -1287,72 +2651,629 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1260,
-        "y": 700,
+        "x": 370,
+        "y": 1180,
         "wires": []
     },
     {
-        "id": "ca4fb0049128555c",
-        "type": "inject",
+        "id": "8a147f8e2c4d3ce8",
+        "type": "catch",
         "z": "8b4c08f2a705dd79",
         "name": "",
-        "props": [
-            {
-                "p": "cmd",
-                "v": "subscribe",
-                "vt": "str"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            },
-            {
-                "p": "complete",
-                "v": "true",
-                "vt": "bool"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "/",
-        "x": 870,
-        "y": 840,
+        "scope": null,
+        "uncaught": false,
+        "x": 160,
+        "y": 1180,
         "wires": [
             [
-                "5c69c227d997ff0a",
-                "69a8a0bed6aeee0e"
+                "f1879fc3dd7ac416"
             ]
         ]
     },
     {
-        "id": "35da0ba38b62a9f5",
-        "type": "inject",
+        "id": "0cb19cef3d4b79aa",
+        "type": "join",
         "z": "8b4c08f2a705dd79",
         "name": "",
-        "props": [
-            {
-                "p": "cmd",
-                "v": "subscribe",
-                "vt": "str"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "benchmark/cpu",
-        "x": 900,
-        "y": 880,
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "3",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1670,
+        "y": 860,
         "wires": [
             [
-                "5c69c227d997ff0a"
+                "696f35b1c89a67f0"
             ]
+        ]
+    },
+    {
+        "id": "24fc8fe41b101320",
+        "type": "ina-sensor",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "handle": "173c4031bd3a25c0",
+        "x": 270,
+        "y": 520,
+        "wires": [
+            [
+                "ddb601b1002aee59"
+            ],
+            [
+                "ddb601b1002aee59"
+            ]
+        ]
+    },
+    {
+        "id": "6a813d78d66370e3",
+        "type": "join",
+        "z": "8b4c08f2a705dd79",
+        "name": "Join_2",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 750,
+        "y": 480,
+        "wires": [
+            [
+                "998946691c1cd0c3"
+            ]
+        ]
+    },
+    {
+        "id": "1c59637f2afd3963",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "USE",
+        "func": "msg.use = true;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 520,
+        "wires": [
+            [
+                "6a813d78d66370e3"
+            ]
+        ]
+    },
+    {
+        "id": "9d3341bb48f633bc",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "MilliWatt",
+        "func": "// Récupérer les valeurs de courant (mA) et de tension (V) depuis les propriétés msg.payload\nvar current_mA = msg.payload.miliamps;\nvar voltage_V = msg.payload.voltage;\n\n// Calculer la puissance en watts (W)\nvar power_W = (current_mA / 1000) * voltage_V;  // Convertir le courant en ampères\n\n// Vérifier si la tension est négative\nif (voltage_V < 0.5) {\n    // Si la tension est négative, ne rien faire et retourner le message inchangé\n    return null;\n}\n\n// Créer un nouvel objet msg avec la puissance en watts comme payload\nmsg.payload = power_W*1000;\nmsg.topic = \"Watt\";\n// Renvoyer le message modifié\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 480,
+        "wires": [
+            [
+                "6a813d78d66370e3"
+            ]
+        ]
+    },
+    {
+        "id": "ddb601b1002aee59",
+        "type": "join",
+        "z": "8b4c08f2a705dd79",
+        "name": "Join_Amp_Volt",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 440,
+        "y": 480,
+        "wires": [
+            [
+                "9d3341bb48f633bc"
+            ]
+        ]
+    },
+    {
+        "id": "998946691c1cd0c3",
+        "type": "switch",
+        "z": "8b4c08f2a705dd79",
+        "name": "DropWhenNotUse",
+        "property": "use",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 930,
+        "y": 480,
+        "wires": [
+            [
+                "27123f4d6dd99166"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "1b0aeb2184b98462",
+        "type": "join",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1010,
+        "y": 600,
+        "wires": [
+            [
+                "af4c526055903414"
+            ]
+        ]
+    },
+    {
+        "id": "af4c526055903414",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Rename",
+        "func": "// Définir le sujet du message\nmsg.topic = \"volt/benchmark/watt\";\n\n// Vérifier si le tableau payload existe et n'est pas vide\nif (msg.payload && Array.isArray(msg.payload) && msg.payload.length > 0) {\n    // Convertir les valeurs en chaînes de caractères en nombres entiers\n    var numericValues = msg.payload.map(function (value) {\n        return parseInt(value, 10); // 10 indique la base décimale\n    }).filter(function (value) {\n        return !isNaN(value); // Filtrer les valeurs non numériques\n    });\n\n    // Vérifier si des valeurs numériques ont été trouvées\n    if (numericValues.length > 0) {\n        // Calculer la somme des valeurs numériques dans le tableau\n        var sum = numericValues.reduce(function (acc, value) {\n            return acc + value;\n        }, 0);\n\n        // Calculer la moyenne en divisant la somme par le nombre d'éléments\n        var moyenne = sum / numericValues.length;\n\n        // Arrondir la moyenne à deux chiffres après la virgule et au multiple de 0.05 le plus proche\n        moyenne = Math.round(moyenne * 20) / 20;\n\n        // Ajouter la moyenne au message\n        msg.moyenne = moyenne.toFixed(2);\n    } else {\n        // Si aucune valeur numérique n'a été trouvée, définir la moyenne à 0\n        msg.moyenne = \"0.00\";\n    }\n} else {\n    // Si le tableau est vide ou n'existe pas, définir la moyenne à 0\n    msg.moyenne.volt.benchmark.cpu = \"0.00\";\n}\n\n// Renvoyer le message modifié\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 600,
+        "wires": [
+            [
+                "e9f03e26ef2155ab",
+                "8783fd80a6da0d24",
+                "9a3d6e47ed36af55"
+            ]
+        ]
+    },
+    {
+        "id": "27123f4d6dd99166",
+        "type": "change",
+        "z": "8b4c08f2a705dd79",
+        "name": "Set Payload Watt",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.Watt",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1150,
+        "y": 480,
+        "wires": [
+            [
+                "1b0aeb2184b98462"
+            ]
+        ]
+    },
+    {
+        "id": "e9f03e26ef2155ab",
+        "type": "debug",
+        "z": "8b4c08f2a705dd79",
+        "name": "debug 7",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1500,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "7acc3fa0a5dcc2fb",
+        "type": "debug",
+        "z": "8b4c08f2a705dd79",
+        "name": "debug 8",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1500,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "8ecf31daa1a605e7",
+        "type": "debug",
+        "z": "8b4c08f2a705dd79",
+        "name": "debug 9",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1820,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "8783fd80a6da0d24",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Watt Line Chart",
+        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload;\nvar delayInSeconds = msg.delay / 1000; // Conversion en secondes\n\n// Extraction des données nécessaires\nvar voltWatt = rawData;\n// Création du graphique\nvar chartData = {\n    type: 'line',  // Changement du type de graphique en \"line\"\n    options: {\n        title: {\n            display: true,\n            text: 'Comparaison des performances'\n        },\n        legend: {\n            display: true\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        plugins: {\n            datalabels: {\n                display: false  // Désactiver l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: Array.from({ length: voltWatt.length }, (_, i) => (i * delayInSeconds).toFixed(1)),  // Temps en secondes\n        datasets: [\n            \n            {\n                label: \"Volt Watt\",\n                borderColor: 'rgba(0, 255, 255, 1)',\n                fill: false,\n                data: voltWatt,\n                pointRadius: 0,\n            },\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1500,
+        "y": 560,
+        "wires": [
+            [
+                "df8c40fc1071e2b0",
+                "7acc3fa0a5dcc2fb"
+            ]
+        ]
+    },
+    {
+        "id": "df8c40fc1071e2b0",
+        "type": "chart-image",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "width": "1920",
+        "height": "1920",
+        "x": 1730,
+        "y": 560,
+        "wires": [
+            [
+                "72b2cd6c7aeb1dcb",
+                "8ecf31daa1a605e7",
+                "0cb19cef3d4b79aa"
+            ]
+        ]
+    },
+    {
+        "id": "72b2cd6c7aeb1dcb",
+        "type": "file",
+        "z": "8b4c08f2a705dd79",
+        "name": "Image dump",
+        "filename": "graphPath.volt.watt",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 2010,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5f72196b81b8a6cd",
+        "type": "file in",
+        "z": "8b4c08f2a705dd79",
+        "name": "Read Graph Volt Watt",
+        "filename": "graphPath.volt.watt",
+        "filenameType": "msg",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 1380,
+        "y": 1140,
+        "wires": [
+            [
+                "b671f4bd54bdfe46"
+            ]
+        ]
+    },
+    {
+        "id": "b671f4bd54bdfe46",
+        "type": "base64",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "action": "str",
+        "property": "msg.payload",
+        "x": 1620,
+        "y": 1140,
+        "wires": [
+            [
+                "2c0b998967ff7c0d"
+            ]
+        ]
+    },
+    {
+        "id": "2c0b998967ff7c0d",
+        "type": "change",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "wattGraph",
+                "tot": "str",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1610,
+        "y": 1180,
+        "wires": [
+            [
+                "0cf627b430aec580"
+            ]
+        ]
+    },
+    {
+        "id": "2e815e58756a55d3",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "Prepare Payload Time",
+        "func": "// Vérifier si les valeurs sont toutes les deux égales à 1 milliseconde\nif (msg.originalDelay === 1 && msg.delay === 1) {\n    msg.payload = \"00:00\";  // Cas spécial\n} else {\n    // Calculer le temps effectué et le temps total (en millisecondes)\n    var tempsEffectue = msg.originalDelay - msg.delay;\n    var tempsTotal = msg.originalDelay;\n\n    // Convertir les millisecondes en secondes\n    tempsEffectue /= 1000;\n    tempsTotal /= 1000;\n\n    // Arrondir les secondes\n    tempsEffectue = Math.round(tempsEffectue);\n    tempsTotal = Math.round(tempsTotal);\n\n    // Formater les temps dans le format \"mm:ss\"\n    var formatTemps = function (temps) {\n        var minutes = Math.floor(temps / 60);\n        var secondes = temps % 60;\n        return (minutes < 10 ? \"0\" : \"\") + minutes + \":\" + (secondes < 10 ? \"0\" : \"\") + secondes;\n    };\n\n    // Former le résultat\n    var tempsFormate = formatTemps(tempsEffectue) + \"/\" + formatTemps(tempsTotal);\n\n    msg.payload = tempsFormate;\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 600,
+        "wires": [
+            [
+                "f1025c377f95d47c"
+            ]
+        ]
+    },
+    {
+        "id": "f1025c377f95d47c",
+        "type": "ui_text",
+        "z": "8b4c08f2a705dd79",
+        "group": "160e81fb.f1c86e",
+        "order": 4,
+        "width": "10",
+        "height": "2",
+        "name": "Time",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "",
+        "style": true,
+        "font": "",
+        "fontSize": "30",
+        "color": "#e01b24",
+        "x": 250,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "dadf8df00e8a66e0",
+        "type": "ui_toast",
+        "z": "8b4c08f2a705dd79",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "Valider",
+        "cancel": "Annuler",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 190,
+        "y": 1080,
+        "wires": [
+            [
+                "73eaf84541d1b946"
+            ]
+        ]
+    },
+    {
+        "id": "0ea63a06c4580851",
+        "type": "ui_button",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "group": "160e81fb.f1c86e",
+        "order": 4,
+        "width": "4",
+        "height": "2",
+        "passthru": true,
+        "label": "Purge",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "Voulez vous vraiment purger tout les fichier generé par Node-Red ?",
+        "payloadType": "str",
+        "topic": "Purge des fichier !!!",
+        "topicType": "str",
+        "x": 170,
+        "y": 1120,
+        "wires": [
+            [
+                "dadf8df00e8a66e0"
+            ]
+        ]
+    },
+    {
+        "id": "2eef0c7e57e55032",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "function 1",
+        "func": "if (msg.payload === \"Valider\"){\n    msg.payload = \"rm -r /home/NodeRed/*\";\n    return msg;\n}else{\n    return null;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 1080,
+        "wires": [
+            [
+                "5556b3e3ae54080e"
+            ]
+        ]
+    },
+    {
+        "id": "cd1ab62ecb897dfe",
+        "type": "ui_toast",
+        "z": "8b4c08f2a705dd79",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "Valider",
+        "cancel": "Annuler",
+        "raw": false,
+        "className": "",
+        "topic": "VRAIMENT ???",
+        "name": "",
+        "x": 490,
+        "y": 1080,
+        "wires": [
+            [
+                "2eef0c7e57e55032",
+                "fcc0e2816a1e8a96"
+            ]
+        ]
+    },
+    {
+        "id": "73eaf84541d1b946",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "function 2",
+        "func": "if (msg.payload === \"Valider\"){\n    msg.payload = \"En êtes vous bien sûr ???\";\n    return msg;\n}else{\n    return null;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 1080,
+        "wires": [
+            [
+                "cd1ab62ecb897dfe"
+            ]
+        ]
+    },
+    {
+        "id": "fcc0e2816a1e8a96",
+        "type": "delay",
+        "z": "8b4c08f2a705dd79",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 680,
+        "y": 1120,
+        "wires": [
+            [
+                "764a61b3fe2e36ab"
+            ]
+        ]
+    },
+    {
+        "id": "764a61b3fe2e36ab",
+        "type": "function",
+        "z": "8b4c08f2a705dd79",
+        "name": "function 3",
+        "func": "if (msg.payload === \"Valider\"){\n    msg.payload = \"mkdir /home/NodeRed/png /home/NodeRed/pdf\";\n    return msg;\n}else{\n    return null;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 1120,
+        "wires": [
+            []
         ]
     },
     {
@@ -1435,6 +3356,353 @@
             [
                 "9feebdce6905e6f3"
             ]
+        ]
+    },
+    {
+        "id": "dce34fa7.56d7d",
+        "type": "function",
+        "z": "3572c39984e6901e",
+        "name": "Vertical Bar Chart",
+        "func": "function getGetOrdinal(n) {\n    var s=[\"th\",\"st\",\"nd\",\"rd\"],\n    v=n%100;\n    return n+(s[(v-20)%10]||s[v]||s[0]);\n }\n\nvar dL = [\"Sunday\", \"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\"];\nvar dS = [\"Sun\", \"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\"];\nvar mL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];\nvar mS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];\n\nlet now = new Date();\n\n// Create the chart object\nlet m = {\n    type: 'bar',\n    options: {\n        title: {\n            display:true,\n            text:'Vertical bar example'\n        },\n        legend: {\n            display:false\n        },\n        chartArea: {\n            backgroundColor: 'white'\n        },\n        plugins: {\n            datalabels: {\n                display:true,\n                backgroundColor:'whitesmoke',\n                borderRadius:1,\n                padding:1,\n                align: 'right',\n                anchor: function(context) {\n                    //node.send({debug:{dataindex:context.dataIndex}});\n                    if (context.dataIndex == context.dataset.data.length - 1) {\n                        return 'center';\n                    } else {\n                        return 'end';\n                    }\n                },\n                offset:8,\n                formatter:function(value) {\n                    return value > 0 ? value.toLocaleString() : '';\n                }\n            }\n        }\n    },\n    data: {\n        labels:[],\n        datasets: [\n            {\n                label:\"Sample data\",\n                backgroundColor:'rgba(57,97,184,0.8)',\n                data:[]\n            }\n        ]\n    }\n}\n\nlet l = Math.floor(Math.random()*50);\n\nfor (let i=0; i<10; i++) {\n    l = l + Math.floor(Math.random()*6)-3;\n    m.data.datasets[0].data.push(l);\n    var d = new Date();\n    d.setTime(now.getTime()-1000*60*60*24*(10-i));\n    m.data.labels.push(dL[d.getDay()]+\", \"+getGetOrdinal(d.getDate()));\n}\n\nmsg.payload = m;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 140,
+        "wires": [
+            [
+                "12d010c4.fc8e3f"
+            ]
+        ]
+    },
+    {
+        "id": "18d162d1.33e8ed",
+        "type": "function",
+        "z": "3572c39984e6901e",
+        "name": "Telegram message",
+        "func": "msg.payload = {chatId: \"xxxxx\", type:\"photo\", content:\"/home/pi/charts/test.png\", caption:\"Chart caption\"};\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1010,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "68d737f4.5047f8",
+        "type": "inject",
+        "z": "3572c39984e6901e",
+        "name": "Vertical Bar",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "dce34fa7.56d7d"
+            ]
+        ]
+    },
+    {
+        "id": "d658d601.f421e8",
+        "type": "inject",
+        "z": "3572c39984e6901e",
+        "name": "Vertical Bar",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e284de4.fc6a12",
+        "type": "function",
+        "z": "3572c39984e6901e",
+        "name": "Line Chart",
+        "func": "function getGetOrdinal(n) {\n    var s=[\"th\",\"st\",\"nd\",\"rd\"],\n    v=n%100;\n    return n+(s[(v-20)%10]||s[v]||s[0]);\n }\n\nvar dL = [\"Sunday\", \"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\"];\nvar dS = [\"Sun\", \"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\"];\nvar mL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];\nvar mS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];\n\nlet now = new Date();\n\n// Create the chart object\nlet m = {\n    type: 'line',\n    options: {\n        title: {\n            display:true,\n            text:'Line chart example'\n        },\n        legend: {\n            display:false\n        },\n        chartArea: {\n            backgroundColor: 'white'\n        },\n        plugins: {\n            datalabels: {\n                display:true,\n                backgroundColor:'whitesmoke',\n                borderRadius:1,\n                padding:1,\n                align: 'right',\n                anchor: function(context) {\n                    //node.send({debug:{dataindex:context.dataIndex}});\n                    if (context.dataIndex == context.dataset.data.length - 1) {\n                        return 'center';\n                    } else {\n                        return 'end';\n                    }\n                },\n                offset:8,\n                formatter:function(value) {\n                    return value > 0 ? value.toLocaleString() : '';\n                }\n            }\n        }\n    },\n    data: {\n        labels:[],\n        datasets: [\n            {\n                label:\"Sample data\",\n                borderColor:'rgba(57,97,184,0.8)',\n                fill:false,\n                data:[]\n            }\n        ]\n    }\n}\n\nlet l = Math.floor(Math.random()*50);\n\nfor (let i=0; i<10; i++) {\n    l = l + Math.floor(Math.random()*6)-3;\n    m.data.datasets[0].data.push(l);\n    var d = new Date();\n    d.setTime(now.getTime()-1000*60*60*24*(10-i));\n    m.data.labels.push(dL[d.getDay()]+\", \"+getGetOrdinal(d.getDate()));\n}\n\nmsg.payload = m;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 330,
+        "y": 300,
+        "wires": [
+            [
+                "f7e11042.f96d9"
+            ]
+        ]
+    },
+    {
+        "id": "f9531538.ab1988",
+        "type": "inject",
+        "z": "3572c39984e6901e",
+        "name": "Line Chart",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 300,
+        "wires": [
+            [
+                "e284de4.fc6a12"
+            ]
+        ]
+    },
+    {
+        "id": "4bfe6190.6619c",
+        "type": "function",
+        "z": "3572c39984e6901e",
+        "name": "Line Chart 3 series",
+        "func": "function getGetOrdinal(n) {\n    var s=[\"th\",\"st\",\"nd\",\"rd\"],\n    v=n%100;\n    return n+(s[(v-20)%10]||s[v]||s[0]);\n }\n\nvar dL = [\"Sunday\", \"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\"];\nvar dS = [\"Sun\", \"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\"];\nvar mL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];\nvar mS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];\n\nlet now = new Date();\n\n// Create the chart object\nlet m = {\n    type: 'line',\n    options: {\n        title: {\n            display:true,\n            text:'Line chart example'\n        },\n        legend: {\n            display:false\n        },\n        chartArea: {\n            backgroundColor: 'white'\n        },\n        plugins: {\n            datalabels: {\n                display:true,\n                backgroundColor:'whitesmoke',\n                borderRadius:1,\n                padding:1,\n                align: 'right',\n                anchor: function(context) {\n                    //node.send({debug:{dataindex:context.dataIndex}});\n                    if (context.dataIndex == context.dataset.data.length - 1) {\n                        return 'center';\n                    } else {\n                        return 'end';\n                    }\n                },\n                offset:8,\n                formatter:function(value) {\n                    return value > 0 ? value.toLocaleString() : '';\n                }\n            }\n        }\n    },\n    data: {\n        labels:[],\n        datasets: [\n            {\n                label:\"Series 1\",\n                borderColor:'rgba(184, 163, 57,0.8)',\n                backgroundColor:'rgba(184, 163, 57,0.1)',\n                fill:true,\n                data:[]\n            },\n            {\n                label:\"Series 2\",\n                borderColor:'rgba(57,97,184,0.8)',\n                fill:false,\n                data:[]\n            },\n            {\n                label:\"Series 3\",\n                borderColor:'rgba(184, 57, 93,0.8)',\n                fill:false,\n                data:[]\n            }\n        ]\n    }\n}\n\nlet l = Math.floor(Math.random()*50);\nlet k = l;\nlet j = l;\n\nfor (let i=0; i<10; i++) {\n    l = l + Math.floor(Math.random()*6)-3;\n    m.data.datasets[0].data.push(l);\n    k = k + Math.floor(Math.random()*6)-3;\n    m.data.datasets[1].data.push(k);\n    j = j + Math.floor(Math.random()*6)-3;\n    m.data.datasets[2].data.push(j);\n    var d = new Date();\n    d.setTime(now.getTime()-1000*60*60*24*(10-i));\n    m.data.labels.push(dL[d.getDay()]+\", \"+getGetOrdinal(d.getDate()));\n}\n\nmsg.payload = m;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 350,
+        "y": 380,
+        "wires": [
+            [
+                "c86b69d5.68d2d8"
+            ]
+        ]
+    },
+    {
+        "id": "13c25f21.9a6aa1",
+        "type": "inject",
+        "z": "3572c39984e6901e",
+        "name": "Line Chart",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 380,
+        "wires": [
+            [
+                "4bfe6190.6619c"
+            ]
+        ]
+    },
+    {
+        "id": "d1ca5ba9.da1338",
+        "type": "function",
+        "z": "3572c39984e6901e",
+        "name": "Doughnut example",
+        "func": "function getGetOrdinal(n) {\n    var s=[\"th\",\"st\",\"nd\",\"rd\"],\n    v=n%100;\n    return n+(s[(v-20)%10]||s[v]||s[0]);\n }\n\nvar dL = [\"Sunday\", \"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\"];\nvar dS = [\"Sun\", \"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\"];\nvar mL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];\nvar mS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];\n\nlet now = new Date();\n\n// Create the chart object\nlet m = {\n    type: 'pie',\n    options: {\n        cutoutPercentage: 50,\n        title: {\n            display:true,\n            text:'Doughnut chart example'\n        },\n        legend: {\n            display:false\n        },\n        chartArea: {\n            backgroundColor: 'white'\n        },\n        plugins: {\n            datalabels: {\n                display:true,\n                backgroundColor:'whitesmoke',\n                borderRadius:1,\n                padding:1,\n                align: 'right',\n                anchor: function(context) {\n                    //node.send({debug:{dataindex:context.dataIndex}});\n                    if (context.dataIndex == context.dataset.data.length - 1) {\n                        return 'center';\n                    } else {\n                        return 'end';\n                    }\n                },\n                offset:8,\n                formatter:function(value, context) {\n                    return value > 0 ? context.chart.data.labels[context.dataIndex]+\": \"+value.toLocaleString() : '';\n                }\n            }\n        }\n    },\n    data: {\n        labels:[],\n        datasets: [\n            {\n                backgroundColor:[],\n                borderColor:\"white\",\n                borderWidth:2,\n                data:[]\n            }\n        ]\n    }\n}\n\n\n\nfor (let i=0; i<12; i++) {\n    m.data.datasets[0].data.push(Math.floor(Math.random()*50));\n    m.data.datasets[0].backgroundColor.push(\"hsl(\"+i*360/12+\",100%,50%)\");\n    m.data.labels.push(mL[i]);\n}\n\nmsg.payload = m;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 350,
+        "y": 460,
+        "wires": [
+            [
+                "4af5b6dc.e60d28"
+            ]
+        ]
+    },
+    {
+        "id": "493ec7a4.b98fe8",
+        "type": "inject",
+        "z": "3572c39984e6901e",
+        "name": "Line Chart",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 460,
+        "wires": [
+            [
+                "d1ca5ba9.da1338"
+            ]
+        ]
+    },
+    {
+        "id": "fac75646.ed0358",
+        "type": "change",
+        "z": "3572c39984e6901e",
+        "name": "Set up the email",
+        "rules": [
+            {
+                "t": "set",
+                "p": "attachments",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "attachments.content",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "attachments.filename",
+                "pt": "msg",
+                "to": "chart.jpg",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Chart example",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "This is the auto generated chart",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "to",
+                "pt": "msg",
+                "to": "<to_email_address>",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "12d010c4.fc8e3f",
+        "type": "chart-image",
+        "z": "3572c39984e6901e",
+        "name": "",
+        "width": 500,
+        "height": "500",
+        "x": 550,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f7e11042.f96d9",
+        "type": "chart-image",
+        "z": "3572c39984e6901e",
+        "name": "",
+        "width": 500,
+        "height": "500",
+        "x": 550,
+        "y": 300,
+        "wires": [
+            [
+                "fac75646.ed0358"
+            ]
+        ]
+    },
+    {
+        "id": "c86b69d5.68d2d8",
+        "type": "chart-image",
+        "z": "3572c39984e6901e",
+        "name": "",
+        "width": 500,
+        "height": "500",
+        "x": 550,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4af5b6dc.e60d28",
+        "type": "chart-image",
+        "z": "3572c39984e6901e",
+        "name": "",
+        "width": 500,
+        "height": "500",
+        "x": 550,
+        "y": 460,
+        "wires": [
+            []
         ]
     }
 ]
