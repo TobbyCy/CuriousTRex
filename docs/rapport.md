@@ -45,12 +45,16 @@
   - [11.3. Obtention des données](#113-obtention-des-données)
     - [11.3.1. Test avec le script python A vide](#1131-test-avec-le-script-python-a-vide)
 - [12. Noeud Node-Red](#12-noeud-node-red)
-  - [12.1. Dashboard](#121-dashboard)
-  - [12.2. Fonctions](#122-fonctions)
   - [12.3. INA219](#123-ina219)
   - [12.4. Monitoring](#124-monitoring)
+  - [12.1. Dashboard](#121-dashboard)
   - [PDF](#pdf)
+    - [Base](#base)
   - [Images de chart et de tableau](#images-de-chart-et-de-tableau)
+- [Stress Test V1.0](#stress-test-v10)
+  - [Accueil](#accueil)
+  - [En Execution](#en-execution)
+  - [Résultat](#résultat)
 - [13. Sources](#13-sources)
 
 # 3. Introduction
@@ -149,10 +153,7 @@ To run a command as administrator (user "root"), use "sudo <command>".
 See "man sudo_root" for details.
 
 tobby@Volt:~$ ls -la
-total 28
-drwxr-x--- 4 tobby tobby 4096 Aug 23 09:30 .
-drwxr-xr-x 3 root  root  4096 Aug  7 17:34 ..
--rw-r--r-- 1 tobby tobby  220 Jan  6  2022 .bash_logout
+total 28> 2022 .bash_logout
 -rw-r--r-- 1 tobby tobby 3771 Jan  6  2022 .bashrc
 drwx------ 2 tobby tobby 4096 Aug 23 09:29 .cache
 -rw-r--r-- 1 tobby tobby  807 Jan  6  2022 .profile
@@ -927,18 +928,63 @@ Power: 0.000 mW
 Shunt voltage: -0.010 mV
 ```
 # 12. Noeud Node-Red
-## 12.1. Dashboard
-
-## 12.2. Fonctions
 
 ## 12.3. INA219
+![Alt text](../capture/RPI/Node-Red/INA219.png)
 
+
+Pour l'INA219, il y a deux sortie qui donne les valeurs des MilliAmpère et des Volt, en sortie, j'ai mis des noeud de foctions qui vont "dropper" les valeurs négative qui sont des erreurs de lecture et je traire ensuite les valeurs pour les mettre dans un label.
+A cotée un noeud join joint le deux valeur pour n'en faire qu'un message qui est envoyée à un noeud fonction qui va calculer les watt et les envoyer dans un label et dans un chart. 
+```javascript
+// Récupérer les valeurs de courant (mA) et de tension (V) depuis les propriétés msg.payload
+var current_mA = msg.payload.miliamps;
+var voltage_V = msg.payload.voltage;
+
+// Calculer la puissance en watts (W)
+var power_W = (current_mA / 1000) * voltage_V;  // Convertir le courant en ampères
+
+// Vérifier si la tension est négative
+if (voltage_V < 0.5) {
+    // Si la tension est négative, ne rien faire et retourner le message inchangé
+    return null;
+}
+
+// Créer un nouvel objet msg avec la puissance en watts comme payload
+msg.payload = power_W;
+msg.topic = "Watt";
+// Renvoyer le message modifié
+return msg;
+```
 ## 12.4. Monitoring
+![Alt text](../capture/RPI/Node-Red/benchmark.png)
+
+
+Pour le monitoring, j'ai utilisé le MQTT pour échanger les donnée plus rapidement et plus légèrement que le SSH.
+Depuis le noeud de réception MQTT, les données sont envoyées dans un noeud de gauge qui affiche la valeur en temps réel.
+## 12.1. Dashboard
+Le dashboard est le regroupement de tout les noeuds qui vont permettre de visualiser les données.
+Les noeud qui permettent de visualiser les données sont les suivants :
+- button
+- dropdown
+- switch
+- slider
+- numeric
+- text input
+- date picker
+- colour picker
+- form
+- text
+- gauge
+- chart
+- audio out
+- notification
+- ui control
+- template
+
+Grâce à ces noeuds, il est possible de créer une interface graphique pour visualiser les données, les modifier et les envoyer et tout ça sans avoir à coder.
 
 ## PDF
-```bash
-node-red-contrib-pdfmake2
-```
+### Base
 Pour generer un PDF, il faut passer un Json dans le payload du message :
 ```json
   {
@@ -955,13 +1001,288 @@ Pour generer un PDF, il faut passer un Json dans le payload du message :
   }
 ```
 Qui est reçu dans le noeud pdfmake qui le passe en Base64 qui est ensuite reçu dans le noeud write file qui l'ecrie dans un fichier PDF.
-![Alt text](../capture/RPI/Node-Red/PDF1.png)
 
+![Alt text](../capture/RPI/Node-Red/PDF1.png)
 ## Images de chart et de tableau
-Pour 
-```bash
-sudo apt-get install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
+Maintenant que generer un PDF n'est plus un soucis, il faut maintenant y mettre des images.
+En effet avoir les valeurs au moment "t" est bien mais avoir un graphique de ces valeurs est mieux.
+Pour ce faire nous allons utiliser le noeud node-red-contrib-chart-image qui va nous permettre de generer un graphique, ce noeud est basée sur le module chartjs qui permet de créer des graph a base de javascript.
+Il nous faudras aussi le noeud "node-red-node-base64" qui va nous permettre de convertir l'image en base64 et inversement.
+
+# Stress Test V1.0
+J'ai créer une page qui permet de créer un raport selon une durée et si l'on execute un stress test ou non sur Nidus et/ou sur Volt.
+Voici le flux complet pour la génération du rapport :
+![Alt text](../capture/RPI/Node-Red/RapportPDF/0.png)
+
+Il faut être honnête, ce n'est pas très lisible, donc j'ai décidé de traiter étape par étape.
+## Accueil
+![Alt text](../capture/RPI/Node-Red/RapportPDF/1.png)
+
+Au premier abord, on arrive sur un navigateur de fichier et un formulaire, ce formulaire permet de choisir la durée du test et si l'on souhaite faire un stress test sur Nidus et/ou sur Volt.
+Le contenue de la page file qui contient le formulaire est le suivant :
+
+
+![Alt text](../capture/RPI/Node-Red/RapportPDF/1.1.png)
+
+
+Après le remplissage du formulaire :
+
+
+![Alt text](../capture/RPI/Node-Red/RapportPDF/2.png)
+
+Les noeud gérant cette partie sont les suivants :
+
+![Alt text](../capture/RPI/Node-Red/RapportPDF/2.2.png)
+
+On peut y voir deux choses différente :
+- Un formulaire `Configuration du Test`
+- Un bouton `Purge` sur lequel je reviendrais plus tard
+
+Le formulaire contient les donnée rentrer par l'utilisateur, en sortie il vas donc envoyer ce que l'utilisateur à rempli, sur sa sortie deux fonctions sont connectée la première ajoutes les chemins des fichier comme les chart.png et le repport.pdf dans un tableau et la seconde gère le stress test selon les entrée utilisateur pour les envoyer dans un noeud `exec` qui execute la commande sur Nidus et/ou sur Volt.
+
+La premiere fonction envoie ensuite sur une fonction à sortie multiple qui permet d'envoyer de nombreux message complètement différent.
+## En Execution
+![Alt text](../capture/RPI/Node-Red/RapportPDF/3.png)
+
+Pendant l'execution, une `progressbar` est affichée pour montrer l'avancement du test ave un label en dessous de lui pour avoir un chiffrement de l'avancement.
+En background, par contre un certains nombre de choses se produident :
+
+![Alt text](../capture/RPI/Node-Red/RapportPDF/3.3.png)
+
+Pour détailler: 
+- La premiere sortie de `Activate` est connectée à un `delay` qui permet de gèrer la durée du test et à une autre série de noeud qui gère la bar de progression.
+- La seconde sortie de `Activate` est connectée à un noeud MQTT amélioré qui permet de recevoir le topic auquel il doit s'inscrire donc en début de test il reçoit le topic `#/benchmark/#` et à la fin du test il reçoit le topic `/` qui lui permet de se désinscrire de la part du délay qui à garder son message en mémoire.
+De cette manière nous n'avons les information que nous souhaitons et pas tout les messages qui sont envoyés sur le broker MQTT.
+- La troisième sortie de `Activate` comme les 6 autre sortie de `Activate` font la même chose, elles envoient un message pour changer le topic MQTT.
+
+Ensuite ces messages sont envoyés dans un noeud `join` qui permet de créer un Array de message qui est ensuite envoyé dans un noeud `function` qui permet de traiter les données notamment en définissant le topic personalisée pour chaque donnée et en calculant la moyenne des valeurs reçues :
+```javascript
+// Définir le sujet du message
+msg.topic = "volt/benchmark/cpu";
+
+// Vérifier si le tableau payload existe et n'est pas vide
+if (msg.payload && Array.isArray(msg.payload) && msg.payload.length > 0) {
+    // Convertir les valeurs en chaînes de caractères en nombres entiers
+    var numericValues = msg.payload.map(function (value) {
+        return parseInt(value, 10); // 10 indique la base décimale
+    }).filter(function (value) {
+        return !isNaN(value); // Filtrer les valeurs non numériques
+    });
+
+    // Vérifier si des valeurs numériques ont été trouvées
+    if (numericValues.length > 0) {
+        // Calculer la somme des valeurs numériques dans le tableau
+        var sum = numericValues.reduce(function (acc, value) {
+            return acc + value;
+        }, 0);
+
+        // Calculer la moyenne en divisant la somme par le nombre d'éléments
+        var moyenne = sum / numericValues.length;
+
+        // Arrondir la moyenne à deux chiffres après la virgule et au multiple de 0.05 le plus proche
+        moyenne = Math.round(moyenne * 20) / 20;
+
+        // Ajouter la moyenne au message
+        msg.moyenne = moyenne.toFixed(2);
+    } else {
+        // Si aucune valeur numérique n'a été trouvée, définir la moyenne à 0
+        msg.moyenne = "0.00";
+    }
+} else {
+    // Si le tableau est vide ou n'existe pas, définir la moyenne à 0
+    msg.moyenne.volt.benchmark.cpu = "0.00";
+}
+
+// Renvoyer le message modifié
+return msg;
 ```
+
+La partie suppélrieur elle permet grâce à l'INA219 d'arriver au même résultat mais comme je ne peux pas dire quand je veux récuperer les valeurs mais qu'elle viennent en continue, j'ai utilisée un subterfuge qui consiste à détourner les messages de mise à jour de la `progressbar`, de les synchroniser avec les messages de l'INA219 et de les envoyer dans un noeud `join` qui va les regrouper et les envoyer dans un noeud switch qui vas "Drop" les messages qui n'ont pas la partie de la progressbar ce qui permet de ne garder que les messages de l'INA219 pendant le test.
+
+Une fois le jeux de donnée collecter, il faut les utiliser :
+
+![Alt text](../capture/RPI/Node-Red/RapportPDF/3.3.3.png)
+
+Après les fonctions `rename`, il y deux noeud `join` qui permettent de regrouper les données l'une groupe les tableau de donnée et l'autre groupe les moyenne.
+On vas déja voir ce que l'on fais avec le noeud `Values` car c'est le premier à être utilisée, il permet de créer un tableau de donnée qui est ensuite envoyé dans un noeud dans des noeud de fonctions qui vont traiter ces donnée et les mettre en forme pour en faire des "line chart" sous formme de buffer png :
+```javascript
+// Données reçues du flux précédent
+var rawData = msg.payload;
+var delayInSeconds = msg.delay / 1000; // Conversion en secondes
+
+// Extraction des données nécessaires
+var voltWatt = rawData;
+// Création du graphique
+var chartData = {
+    type: 'line',  // Changement du type de graphique en "line"
+    options: {
+        title: {
+            display: true,
+            text: 'Comparaison des performances'
+        },
+        legend: {
+            display: true
+        },
+        chartArea: {
+            backgroundColor: '#d3d7dd'
+        },
+        plugins: {
+            datalabels: {
+                display: false  // Désactiver l'affichage des étiquettes de données
+            }
+        }
+    },
+    data: {
+        labels: Array.from({ length: voltWatt.length }, (_, i) => (i * delayInSeconds).toFixed(1)),  // Temps en secondes
+        datasets: [
+            
+            {
+                label: "Volt Watt",
+                borderColor: 'rgba(0, 255, 255, 1)',
+                fill: false,
+                data: voltWatt,
+                pointRadius: 0,
+            },
+        ]
+    }
+};
+
+msg.payload = chartData;
+
+return msg;
+```
+
+L'exemple ci dessus est volontairement plus simple car il n'y a que un jeux de donnée qui est les watt de Volt.
+A la sortie de cette fonction, un noeud vas utiliser ce qui à été créer pour en faire un buffer png qui est ensuite envoyé dans un noeud write file qui va écrire le fichier dans le dossier défini par le noeud  `Ajoute le nom du fichier` qui est situé après le formulaire.
+Mais en parralèle, il vas également envoyer à un noeud `joint` qui passient jusqu'a ce que tous les graphique aient été créer et qu'ils puissent donc être réutiliser.
+
+Une fois que le signal à été reçu pour dire que les fichier ont été créer, le noeud joint nommée `Moyenne` peut envoyer ses donnée qui sont réorganisée par un noeud `change` pour être ensuite envoyée dans plusieurs noeud afin de récuperer la base 64 des charts et les envoyer en même temps que les moyennes vers la fonction `Créer le contenue du fichier` :
+
+```javascript
+msg.payload = {
+    header: function (currentPage, pageCount, pageSize) {
+        return [
+            {
+                text: "Tobler Cyril",
+                alignment: "left",
+                fontSize: 10,
+                margin: [15, 10, 0, 0]
+            },
+            {
+                text: "Nom du projet : Confuse T-Rex",
+                alignment: "center",
+                fontSize: 10,
+                margin: [0, 0, 0, 0]
+            }
+        ];
+    },
+    footer: function (currentPage, pageCount) {
+        return {
+            columns: [
+                {
+                    text: currentPage.toString() + " / " + pageCount,
+                    alignment: "left",
+                    fontSize: 10,
+                    margin: [15, 0, 0, 10]
+                },
+                {
+                    text: new Date().toLocaleDateString("fr-FR"),
+                    alignment: "right",
+                    fontSize: 10,
+                    margin: [0, 0, 15, 10]
+                }
+            ],
+            margin: [0, 0, 0, 10]
+        };
+    },
+    content: [
+        {
+            text: "Rapport d'utilisation",
+            style: "header",
+            margin: [0, 10, 0, 0]
+        },
+        {
+            text: "Les valeurs sont des moyennes sur les " + Math.floor(msg.delay / (1000 * 60)) + " dèrnière minutes"
+        },
+        {
+            text: "Nidus :",
+            style: "header2"
+        },
+        {
+            text: "CPU :                 " + msg.payload.moyenne["nidus/benchmark/cpu"]
+        },
+        {
+            text: "RAM :                 " + msg.payload.moyenne["nidus/benchmark/ram"]
+        },
+        {
+            text: "Nombre de processus : " + msg.payload.moyenne["nidus/benchmark/processes"]
+        },
+        {
+            text: "Température CPU :     " + msg.payload.moyenne["nidus/benchmark/temp"]
+        },
+        {
+            image: 'nidusImage',
+            width: 500,
+            pageBreak: 'after',
+        },
+        {
+            text: "Volt",
+            style: "header2"
+        },
+        {
+            text: "CPU :                 " + msg.payload.moyenne["volt/benchmark/cpu"]
+        },
+        {
+            text: "RAM :                 " + msg.payload.moyenne["volt/benchmark/ram"]
+        },
+        {
+            text: "Nombre de processus : " + msg.payload.moyenne["volt/benchmark/processes"]
+        },
+        {
+            text: "Température CPU :     " + msg.payload.moyenne["volt/benchmark/temp"]
+        }, 
+        {
+            text: "MilliWatt :           " + msg.payload.moyenne["volt/benchmark/watt"]
+        },
+        {
+            image: 'voltImage',
+            width: 500
+        }, 
+        {
+            image: 'wattImage',
+            width: 500
+        },
+    ],
+    images: {
+        voltImage: 'data:image/png;base64,' + msg.payload.voltGraph.toString('base64'), // Utilisation du buffer pour l'image Volt
+        wattImage: 'data:image/png;base64,' + msg.payload.wattGraph.toString('base64'),  // Utilisation du buffer pour l'image Watt de volt
+        nidusImage: 'data:image/png;base64,' + msg.payload.nidusGraph.toString('base64'),  // Utilisation du buffer pour l'image Nidus
+    },
+    styles: {
+        header: {
+            fontSize: 22,
+            bold: true,
+            margin: [0, 30, 0, 0]
+        },
+        header2: {
+            fontSize: 18,
+            bold: true,
+            margin: [0, 20, 0, 0]
+        }
+    }
+};
+
+return msg;
+```
+
+Cette fonction vas créer comme pour les chart une structure utilisée par PDFMake pour créer un .pdf et l'envoyer dans un noeud `pdfmake` qui vas le convertir en base 64 et l'envoyer dans un noeud `write file` qui vas l'écrire dans le dossier défini par le noeud `Ajoute le nom du fichier` qui est situé après le formulaire.
+Le noeud final permet de mettre à jour le template html qui liste les fichier pdf et png dans le dossier défini par le noeud `Ajoute le nom du fichier` qui est situé après le formulaire et qui permet de les télécharger en un clic.
+## Résultat
+![Alt text](../capture/RPI/Node-Red/RapportPDF/4.png)
+
+4.4 AFAIRE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+![Alt text](../capture/RPI/Node-Red/RapportPDF/5.png)
 # 13. Sources
 
 1. **Guide d'Installation Node-Red**  
