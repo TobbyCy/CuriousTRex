@@ -34,19 +34,19 @@
   - [10.1. Installation de Mosquitto sur Nidus](#101-installation-de-mosquitto-sur-nidus)
   - [10.2. Ouverture des port sur Nidus](#102-ouverture-des-port-sur-nidus)
   - [10.3. Script MQTT](#103-script-mqtt)
-    - [Script MQTT](#script-mqtt)
-    - [Descriptiono détaillée du script](#descriptiono-détaillée-du-script)
-    - [Conclusion](#conclusion)
+    - [10.3.1. Script MQTT](#1031-script-mqtt)
+    - [10.3.2. Descriptiono détaillée du script](#1032-descriptiono-détaillée-du-script)
+    - [10.3.3. Conclusion](#1033-conclusion)
   - [10.4. Installation](#104-installation)
   - [10.5. Utilisation du script](#105-utilisation-du-script)
     - [10.5.1. Vérification](#1051-vérification)
 - [11. INA219](#11-ina219)
-    - [11.1. Installation physique](#111-installation-physique)
-      - [11.1.1. Branchement SANS VOLT](#1111-branchement-sans-volt)
-      - [11.1.2. Branchement AVEC VOLT](#1112-branchement-avec-volt)
-    - [11.2. Vérification de la présence du INA219](#112-vérification-de-la-présence-du-ina219)
-  - [11.3. Obtention des données](#113-obtention-des-données)
-    - [11.3.1. Test avec le script python A vide](#1131-test-avec-le-script-python-a-vide)
+    - [11.0.1. Installation physique](#1101-installation-physique)
+      - [11.0.1.1. Branchement SANS VOLT](#11011-branchement-sans-volt)
+      - [11.0.1.2. Branchement AVEC VOLT](#11012-branchement-avec-volt)
+    - [11.0.2. Vérification de la présence du INA219](#1102-vérification-de-la-présence-du-ina219)
+  - [11.1. Obtention des données](#111-obtention-des-données)
+    - [11.1.1. Test avec le script python A vide](#1111-test-avec-le-script-python-a-vide)
 - [12. Noeud Node-Red](#12-noeud-node-red)
   - [12.1. INA219](#121-ina219)
   - [12.2. Monitoring](#122-monitoring)
@@ -722,7 +722,7 @@ allow_anonymous true
 ```
 ## 10.3. Script MQTT
 J'ai élaboré un script MQTT sophistiqué, conçu pour publier efficacement les données de consommation sur le broker MQTT. Ce script, au démarrage de la machine, entreprend un fonctionnement en boucle continue, garantissant la collecte et la publication régulières de ces données. L'objectif est d'optimiser les performances tout en garantissant la fiabilité du processus.
-### Script MQTT
+### 10.3.1. Script MQTT
 ```sh
 #!/bin/bash
 ### BEGIN INIT INFO
@@ -797,7 +797,7 @@ while true; do
     sleep 1  # Attente d'une seconde
 done
 ```
-### Descriptiono détaillée du script
+### 10.3.2. Descriptiono détaillée du script
 Le script commence par vérifier si l'emplacement d'installation est correct, s'assurant qu'il est placé dans le répertoire défini par **INSTALL_DIR**. Ensuite, il vérifie la présence et l'installation des dépendances requises, notamment **mosquitto-clients**, en l'installant si nécessaire.
 
 Une autre vérification importante concerne l'existence d'un lien symbolique vers **/etc/init.d**, qui est nécessaire pour exécuter le script au démarrage de la machine. Si le lien symbolique n'existe pas, le script le crée.
@@ -810,7 +810,7 @@ Ces données sont ensuite publiées sur le broker MQTT à l'aide de la commande 
 
 Le script affiche également un message indiquant que les données ont été publiées sur MQTT, et ensuite attend une seconde avant de reprendre une nouvelle itération de la boucle.
 
-### Conclusion
+### 10.3.3. Conclusion
 Ce script MQTT élaboré et bien structuré offre un moyen efficace de collecter et de publier les données de consommation sur le broker **MQTT**. Son fonctionnement en boucle continue, combiné à des vérifications et des actions préliminaires, garantit une gestion fiable et optimisée des données, contribuant ainsi à la réussite globale du projet.
 
 ## 10.4. Installation
@@ -840,22 +840,22 @@ Service activé.
 
 Dans ce chapitre, nous explorerons la puce **INA219**, qui joue un rôle essentiel dans la mesure de la consommation. Il est important de noter que nous utilisons deux puces INA219 dans ce projet : l'une pour la mesure proprement dite et l'autre en tant que pièce de rechange en cas de problème. Pour les différencier, nous avons effectué des soudures pour attribuer des adresses I2C spécifiques à chaque puce. L'adresse de la puce de mesure est réglée sur *0x40*, tandis que l'adresse de la puce de remplacement est réglée sur *0x41*.
 
-### 11.1. Installation physique
+### 11.0.1. Installation physique
 
 L'installation physique du **INA219** implique des branchements spécifiques en fonction des scénarios : avec ou sans le dispositif Volt. Voici les détails de chaque configuration :
 
-#### 11.1.1. Branchement SANS VOLT
+#### 11.0.1.1. Branchement SANS VOLT
 
 ![Schéma de branchement sans Volt](../capture/RPI/INA219/Sans_Volt.jpg){width=100%}
 
-#### 11.1.2. Branchement AVEC VOLT
+#### 11.0.1.2. Branchement AVEC VOLT
 
 Le branchement avec le dispositif Volt ajoute une complexité supplémentaire. Voici un aperçu détaillé de ce branchement :
 
 ![Schéma de branchement avec Volt](../capture/RPI/INA219/Avec_Volt.jpg){width=100%}
 ![Détail du branchement avec Volt](../capture/RPI/INA219/Avec_Volt_Detail.jpg){width=100%}
 
-### 11.2. Vérification de la présence du INA219
+### 11.0.2. Vérification de la présence du INA219
 
 Avant de pouvoir commencer à utiliser le **INA219** pour mesurer la consommation, il est crucial de vérifier la présence de la puce et de s'assurer qu'elle est correctement détectée par le système. Cette étape est essentielle pour garantir des mesures précises et fiables tout au long du projet.
 
@@ -882,8 +882,8 @@ tobby@Nidus:~ $ sudo i2cdetect -y 1
 60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 70: -- -- -- -- -- -- -- --    
 ```
-## 11.3. Obtention des données
-### 11.3.1. Test avec le script python A vide 
+## 11.1. Obtention des données
+### 11.1.1. Test avec le script python A vide 
 Instalation de la bibliothèque python
 ```bash
 tobby@Nidus:~ $ sudo pip3 install pi-ina219
