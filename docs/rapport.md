@@ -398,13 +398,13 @@ Created symlink /etc/systemd/system/multi-user.target.wants/nodered.service → 
 ![Alt text](../capture/RPI/Node-Red/PostInstall.png){width=100%}
 ## 7.2. Configuration
 ### 7.2.1. Installation des plugins
-![Installation des plugins](../capture/RPI/Node-Red/palette1.png){width=32%} 
+![Installation des plugins](../capture/RPI/Node-Red/palette1.png){width=30%} 
+![Installation des plugins](../capture/RPI/Node-Red/palette2.png){width=30%} 
+![Installation des plugins](../capture/RPI/Node-Red/palette3.png){width=30%} 
 
-![Installation des plugins](../capture/RPI/Node-Red/palette2.png){width=32%} 
-
-![Installation des plugins](../capture/RPI/Node-Red/palette3.png){width=32%} 
 
 ![Installation des plugins](../capture/RPI/Node-Red/palette4.png){width=100%} 
+
 
 ![Installation des plugins](../capture/RPI/Node-Red/Dashboard.png){width=100%}
 
