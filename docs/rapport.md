@@ -398,11 +398,11 @@ Created symlink /etc/systemd/system/multi-user.target.wants/nodered.service → 
 ![Alt text](../capture/RPI/Node-Red/PostInstall.png){width=100%}
 ## 7.2. Configuration
 ### 7.2.1. Installation des plugins
-![Installation des plugins](../capture/RPI/Node-Red/palette1.png){width=33%} 
+![Installation des plugins](../capture/RPI/Node-Red/palette1.png){width=32%} 
 
-![Installation des plugins](../capture/RPI/Node-Red/palette2.png){width=33%} 
+![Installation des plugins](../capture/RPI/Node-Red/palette2.png){width=32%} 
 
-![Installation des plugins](../capture/RPI/Node-Red/palette3.png){width=33%} 
+![Installation des plugins](../capture/RPI/Node-Red/palette3.png){width=32%} 
 
 ![Installation des plugins](../capture/RPI/Node-Red/palette4.png){width=100%} 
 
@@ -418,7 +418,9 @@ De plus, il est recommandé, si nécessaire, d'ajouter un login au *Dashboard*.
 ### 7.2.3. Suivi Git
 Afin de suivre le projet sur Git, il est nécessaire de configurer un utilisateur, générer des clés SSH, puis effectuer un *clone* du projet.
 
-![Configuration Git](../capture/RPI/Node-Red/Git_Config.png){width=30%} ![Ouvrir le projet sur Git](../capture/RPI/Node-Red/GIT_Open.png){width=30%} ![Configuration Git](../capture/RPI/Node-Red/GIT_Setting.png){width=30%}
+![Configuration Git](../capture/RPI/Node-Red/Git_Config.png){width=30%} 
+![Ouvrir le projet sur Git](../capture/RPI/Node-Red/GIT_Open.png){width=30%} 
+![Configuration Git](../capture/RPI/Node-Red/GIT_Setting.png){width=30%}
 
 Comme il s'agit d'un *clone*, il faudra ajouter les fichiers manquants et ajuster les droits d'accès.
 
@@ -844,14 +846,14 @@ L'installation physique du **INA219** implique des branchements spécifiques en 
 
 #### 11.1.1. Branchement SANS VOLT
 
-![Schéma de branchement sans Volt](../capture/RPI/INA219/Sans_Volt.jpg)
+![Schéma de branchement sans Volt](../capture/RPI/INA219/Sans_Volt.jpg){width=100%}
 
 #### 11.1.2. Branchement AVEC VOLT
 
 Le branchement avec le dispositif Volt ajoute une complexité supplémentaire. Voici un aperçu détaillé de ce branchement :
 
-![Schéma de branchement avec Volt](../capture/RPI/INA219/Avec_Volt.jpg)
-![Détail du branchement avec Volt](../capture/RPI/INA219/Avec_Volt_Detail.jpg)
+![Schéma de branchement avec Volt](../capture/RPI/INA219/Avec_Volt.jpg){width=100%}
+![Détail du branchement avec Volt](../capture/RPI/INA219/Avec_Volt_Detail.jpg){width=100%}
 
 ### 11.2. Vérification de la présence du INA219
 
@@ -962,7 +964,7 @@ Shunt voltage: -0.010 mV
 
 Dans cette section, nous explorons le composant **INA219**, un élément clé de notre projet. L'**INA219** est équipé de deux sorties qui fournissent des valeurs en milliampères et en volts, offrant ainsi des informations cruciales sur la consommation.
 
-![Image de l'INA219](../capture/RPI/Node-Red/INA219.png)
+![Image de l'INA219](../capture/RPI/Node-Red/INA219.png){width=100%}
 
 Pour tirer le meilleur parti de l'INA219, j'ai mis en place une configuration sophistiquée. J'ai configuré des nœuds de fonctions spécifiques pour exclure les valeurs négatives. Ces valeurs négatives sont généralement des erreurs de lecture et doivent être traitées correctement pour garantir des données précises. Ensuite, j'ai élaboré une séquence de traitement pour afficher ces valeurs de manière compréhensible dans un libellé.
 
@@ -991,7 +993,7 @@ return msg;
 ```
 ## 12.2. Monitoring
 
-![Image de Monitoring](../capture/RPI/Node-Red/benchmark.png)
+![Image de Monitoring](../capture/RPI/Node-Red/benchmark.png){width=100%}
 
 Dans cette section, nous abordons le **Monitoring**, une étape cruciale de notre projet. Pour cette tâche, j'ai choisi d'utiliser le protocole **MQTT**, qui présente des avantages significatifs en termes de rapidité et de légèreté par rapport au **SSH**.
 
@@ -1056,7 +1058,7 @@ Pour generer un PDF, il faut passer un Json dans le payload du message :
 ```
 Qui est reçu dans le noeud pdfmake qui le passe en Base64 qui est ensuite reçu dans le noeud write file qui l'ecrie dans un fichier PDF.
 
-![Alt text](../capture/RPI/Node-Red/PDF1.png)
+![Alt text](../capture/RPI/Node-Red/PDF1.png){width=100%}
 ## 12.5. Images de graphiques et de tableaux
 Une fois que la génération de PDF est maîtrisée, il est temps de valoriser davantage les informations en y ajoutant des images.
 
@@ -1069,25 +1071,25 @@ Cette combinaison de nœuds nous permettra de créer des représentations visuel
 
 J'ai créé une page qui permet de générer un rapport en fonction de la durée et de l'exécution d'un stress test sur Nidus et/ou sur Volt. Voici le flux complet pour la génération du rapport:
 
-![Flux de Génération du Rapport](../capture/RPI/Node-Red/RapportPDF/0.png)
+![Flux de Génération du Rapport](../capture/RPI/Node-Red/RapportPDF/0.png){width=100%}
 
 Pour être honnête, il faut admettre que la lisibilité initiale n'est pas optimale. Par conséquent, j'ai décidé de décomposer le processus en plusieurs étapes afin d'obtenir une meilleure compréhension globale.
 
 ## 13.1. Écran d'Accueil
 
-![Écran d'Accueil](../capture/RPI/Node-Red/RapportPDF/1.1.png)
+![Écran d'Accueil](../capture/RPI/Node-Red/RapportPDF/1.1.png){width=50%}
 
 Au premier abord, vous serez accueilli par un navigateur de fichiers et un formulaire. Ce formulaire vous permet de spécifier la durée du test et de décider si vous souhaitez exécuter un test de stress sur Nidus et/ou sur Volt. Voici le contenu de la page "file" qui contient le formulaire:
 
-![Contenu de la Page "file"](../capture/RPI/Node-Red/RapportPDF/1.png)
+![Contenu de la Page "file"](../capture/RPI/Node-Red/RapportPDF/1.png){width=100%}
 
 Après avoir rempli le formulaire:
 
-![Formulaire Rempli](../capture/RPI/Node-Red/RapportPDF/2.png)
+![Formulaire Rempli](../capture/RPI/Node-Red/RapportPDF/2.png){width=100%}
 
 Les nœuds responsables de cette section sont les suivants:
 
-![Nœuds de Gestion](../capture/RPI/Node-Red/RapportPDF/2.2.png)
+![Nœuds de Gestion](../capture/RPI/Node-Red/RapportPDF/2.2.png){width=100%}
 
 Deux éléments se distinguent ici:
 - Un formulaire de "Configuration du Test"
@@ -1099,13 +1101,13 @@ La première fonction transmet ensuite les données à une fonction à sorties m
 
 ## 13.2. En Exécution
 
-![En Exécution](../capture/RPI/Node-Red/RapportPDF/3.png)
+![En Exécution](../capture/RPI/Node-Red/RapportPDF/3.png){width=100%}
 
 Pendant l'exécution, une **barre de progression** est affichée pour montrer l'avancement du test, accompagnée d'une **étiquette** en dessous pour indiquer le pourcentage d'avancement. Cela permet d'obtenir une meilleure visualisation de l'état d'avancement.
 
 En arrière-plan, un certain nombre de tâches se déroulent :
 
-![Tâches en Arrière-plan](../capture/RPI/Node-Red/RapportPDF/3.3.png)
+![Tâches en Arrière-plan](../capture/RPI/Node-Red/RapportPDF/3.3.png){width=100%}
 
 Pour en donner plus de détails :
 - La première sortie du nœud **Activate** est connectée à un nœud **delay** qui ajuste la durée du test, ainsi qu'à une série d'autres nœuds qui gèrent la barre de progression.
@@ -1157,7 +1159,7 @@ La partie supérieure permet d'atteindre le même résultat à l'aide de l'INA21
 
 Une fois les ensembles de données collectés, il est temps de les utiliser :
 
-![Utilisation des Données](../capture/RPI/Node-Red/RapportPDF/3.3.3.png)
+![Utilisation des Données](../capture/RPI/Node-Red/RapportPDF/3.3.3.png){width=100%}
 
 Après l'application des fonctions **rename**, deux nœuds **join** sont utilisés pour regrouper les données. L'un regroupe les tableaux de données, tandis que l'autre regroupe les moyennes calculées.
 
@@ -1336,25 +1338,25 @@ Cette fonction va créer, de manière similaire aux graphiques, une structure ut
 Le nœud final permet de mettre à jour le modèle HTML qui répertorie les fichiers PDF et PNG dans le dossier défini par le nœud **Ajoute le nom du fichier**. Ce modèle HTML permet de les télécharger en un seul clic.
 
 ## 13.3. Résultat
-![Alt text](../capture/RPI/Node-Red/RapportPDF/4.png)
+![Alt text](../capture/RPI/Node-Red/RapportPDF/4.png){width=100%}
 
 Pour obtenir les résultats, il suffit de cliquer sur le nom du fichier, qui sera automatiquement téléchargé. Ce processus est géré par ces nœuds :
 
-![Alt text](../capture/RPI/Node-Red/RapportPDF/4.4.png)
+![Alt text](../capture/RPI/Node-Red/RapportPDF/4.4.png){width=100%}
 
 La partie supérieure gère l'affichage des fichiers dans un modèle et ajoute aux noms de fichier des requêtes GET qui permettent de télécharger les fichiers en un seul clic. La partie inférieure gère la réception des requêtes GET et envoie le fichier demandé à un nœud **read file**, qui le lit et l'envoie ensuite à un nœud **http response**. Ce dernier envoie le fichier au client ayant effectué la requête.
 
-![Alt text](../capture/RPI/Node-Red/RapportPDF/5.png)
+![Alt text](../capture/RPI/Node-Red/RapportPDF/5.png){width=100%}
 
 ## 13.4. Purge
 Au cours de mes tests, j'ai réalisé qu'un problème survient lorsque l'on génère un certain nombre de rapports, le dossier devient rapidement surchargé. Par conséquent, j'ai décidé de mettre en place un bouton permettant de purger le dossier de tous les fichiers .pdf et .png qui s'y trouvent. Cependant, pour éviter toute suppression accidentelle de fichiers importants, j'ai mis en place un système de confirmation demandant à l'utilisateur s'il est sûr de vouloir supprimer les fichiers.
 
-![Alt text](../capture/RPI/Node-Red/RapportPDF/6.png)
-![Alt text](../capture/RPI/Node-Red/RapportPDF/7.png)
+![Alt text](../capture/RPI/Node-Red/RapportPDF/6.png){width=100%}
+![Alt text](../capture/RPI/Node-Red/RapportPDF/7.png){width=50%}
 
 Voici les nœuds qui gèrent cette partie :
 
-![Alt text](../capture/RPI/Node-Red/RapportPDF/6.6.png)
+![Alt text](../capture/RPI/Node-Red/RapportPDF/6.6.png){width=100%}
 
 Ce que l'on peut observer, c'est qu'après avoir appuyé sur le bouton de purge, un message est envoyé dans un nœud `show dialog` qui affiche une fenêtre de confirmation. Si l'utilisateur appuie sur le bouton "Oui", un message est transmis à un nœud de fonction qui vérifie le contenu du message et redemande une confirmation s'il est à nouveau validé. À ce stade, deux flux sont créés :
 - Le premier effectue la purge totale de tous les fichiers dans `/home/NodeRed/`.
