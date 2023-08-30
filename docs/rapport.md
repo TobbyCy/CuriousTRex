@@ -1,12 +1,27 @@
-# 1. Rapport de projet
+# 1. Rapport de projet : Banc de mesures de la consommation électrique pour application web
 
-![Alt text](../capture/CuruisTRex.png){width=100%}
+<img src="../capture/CuruisTRex.png" alt="Image" style="width:100%;">
+
+<br><br><br><br><br>
+
+
+---
+
+**Candidat:** Cyril Tobler  
+**Proposé par:** SINABE Sarl  
+**Personne de contact:** Benoit Vianin  
+**Enseignant-e:** Fabien Maire  
+**Lieu de travail:** Ecole CPNE-TI SIS2  
+**Nombre de périodes:** 300  
+**Durée du travail :**  *14.08.23 - 22.09.23*
+
+---
 
 <div style="page-break-after: always;"></div>
 
 
 # 2. Sommaire
-- [1. Rapport de projet](#1-rapport-de-projet)
+- [1. Rapport de projet : Banc de mesures de la consommation électrique pour application web](#1-rapport-de-projet--banc-de-mesures-de-la-consommation-électrique-pour-application-web)
 - [2. Sommaire](#2-sommaire)
 - [3. Introduction](#3-introduction)
 - [4. Instalation physique](#4-instalation-physique)
@@ -74,9 +89,11 @@
 Le système sera conçu pour simuler des requêtes HTTP réalistes à l'aide de Gatling, mesurer la consommation électrique en utilisant l'INA219 connecté via le bus I2C, et collecter les mesures de performance à l'aide de Node-RED. Les rapports générés fourniront des informations détaillées sur les performances du système testé, y compris le temps de réponse, la consommation d'énergie par requête, l'utilisation du processeur, etc.
 # 4. Instalation physique
 ## 4.1. Nidus
-![](../capture/Nidus.jpg){width=100%}
+<img src="../capture/Nidus.jpg" alt="Image" style="width:100%;">
+
 ## 4.2. Volt
-![](../capture/Volt.jpg){width=100%}
+<img src="../capture/Volt.jpg" alt="Image" style="width:100%;">
+
 
 <div style="page-break-after: always;"></div>
 
@@ -132,7 +149,8 @@ Adresse IP de Nidus : 157.26.251.185
 
 
 ## 6.4. Seconde instalation Ubuntu Server
-![Alt text](../capture/RPI/Volt/Imager.png){width=100%}
+<img src="../capture/RPI/Volt/Imager.png" alt="Image" style="width:100%;">
+
 
 <div style="page-break-after: always;"></div>
 
@@ -414,19 +432,17 @@ tobby@Nidus:~ $ sudo systemctl enable nodered.service
 Created symlink /etc/systemd/system/multi-user.target.wants/nodered.service → /lib/systemd/system/nodered.service.
 
 ```
-![Alt text](../capture/RPI/Node-Red/PostInstall.png){width=100%}
+<img src="../capture/RPI/Node-Red/PostInstall.png" alt="Image" style="width:100%;">
+
 ## 7.2. Configuration
 ### 7.2.1. Installation des plugins
-![Installation des plugins](../capture/RPI/Node-Red/palette1.png){width=30%} 
-![Installation des plugins](../capture/RPI/Node-Red/palette2.png){width=30%} 
-![Installation des plugins](../capture/RPI/Node-Red/palette3.png){width=30%} 
+<img src="../capture/RPI/Node-Red/palette1.png" alt="Installation des plugins" style="width:30%;">
+<img src="../capture/RPI/Node-Red/palette2.png" alt="Installation des plugins" style="width:30%;">
+<img src="../capture/RPI/Node-Red/palette3.png" alt="Installation des plugins" style="width:30%;">
 
+<img src="../capture/RPI/Node-Red/palette4.png" alt="Installation des plugins" style="width:100%;">
 
-![Installation des plugins](../capture/RPI/Node-Red/palette4.png){width=100%} 
-
-
-![Installation des plugins](../capture/RPI/Node-Red/Dashboard.png){width=100%}
-
+<img src="../capture/RPI/Node-Red/Dashboard.png" alt="Installation des plugins" style="width:100%;">
 
 
 ### 7.2.2. Sécurisation de Node-Red
@@ -437,9 +453,10 @@ De plus, il est recommandé, si nécessaire, d'ajouter un login au *Dashboard*.
 ### 7.2.3. Suivi Git
 Afin de suivre le projet sur Git, il est nécessaire de configurer un utilisateur, générer des clés SSH, puis effectuer un *clone* du projet.
 
-![Configuration Git](../capture/RPI/Node-Red/Git_Config.png){width=30%} 
-![Ouvrir le projet sur Git](../capture/RPI/Node-Red/GIT_Open.png){width=30%} 
-![Configuration Git](../capture/RPI/Node-Red/GIT_Setting.png){width=30%}
+<img src="../capture/RPI/Node-Red/Git_Config.png" alt="Configuration Git" style="width:30%;">
+<img src="../capture/RPI/Node-Red/GIT_Open.png" alt="Ouvrir le projet sur Git" style="width:30%;">
+<img src="../capture/RPI/Node-Red/GIT_Setting.png" alt="Configuration Git" style="width:30%;">
+
 
 Comme il s'agit d'un *clone*, il faudra ajouter les fichiers manquants et ajuster les droits d'accès.
 
@@ -867,7 +884,8 @@ Service activé.
 ```
 
 ### 10.5.1. Vérification
-![Alt text](../capture/RPI/Node-Red/MQTT.png){width=100%}
+<img src="../capture/RPI/Node-Red/MQTT.png" alt="Image" style="width:100%;">
+
 
 <div style="page-break-after: always;"></div>
 
@@ -881,14 +899,15 @@ L'installation physique du **INA219** implique des branchements spécifiques en 
 
 #### 11.0.1.1. Branchement SANS VOLT
 
-![Schéma de branchement sans Volt](../capture/RPI/INA219/Sans_Volt.jpg){width=100%}
+<img src="../capture/RPI/INA219/Sans_Volt.jpg" alt="Schéma de branchement sans Volt" style="width:100%;">
 
 #### 11.0.1.2. Branchement AVEC VOLT
 
 Le branchement avec le dispositif Volt ajoute une complexité supplémentaire. Voici un aperçu détaillé de ce branchement :
 
-![Schéma de branchement avec Volt](../capture/RPI/INA219/Avec_Volt.jpg){width=100%}
-![Détail du branchement avec Volt](../capture/RPI/INA219/Avec_Volt_Detail.jpg){width=100%}
+<img src="../capture/RPI/INA219/Avec_Volt.jpg" alt="Schéma de branchement avec Volt" style="width:100%;">
+<img src="../capture/RPI/INA219/Avec_Volt_Detail.jpg" alt="Détail du branchement avec Volt" style="width:100%;">
+
 
 ### 11.0.2. Vérification de la présence du INA219
 
@@ -1002,7 +1021,8 @@ Shunt voltage: -0.010 mV
 
 Dans cette section, nous explorons le composant **INA219**, un élément clé de notre projet. L'**INA219** est équipé de deux sorties qui fournissent des valeurs en milliampères et en volts, offrant ainsi des informations cruciales sur la consommation.
 
-![Image de l'INA219](../capture/RPI/Node-Red/INA219.png){width=100%}
+<img src="../capture/RPI/Node-Red/INA219.png" alt="Image de l'INA219" style="width:100%;">
+
 
 Pour tirer le meilleur parti de l'INA219, j'ai mis en place une configuration sophistiquée. J'ai configuré des nœuds de fonctions spécifiques pour exclure les valeurs négatives. Ces valeurs négatives sont généralement des erreurs de lecture et doivent être traitées correctement pour garantir des données précises. Ensuite, j'ai élaboré une séquence de traitement pour afficher ces valeurs de manière compréhensible dans un libellé.
 
@@ -1031,7 +1051,8 @@ return msg;
 ```
 ## 12.2. Monitoring
 
-![Image de Monitoring](../capture/RPI/Node-Red/benchmark.png){width=100%}
+<img src="../capture/RPI/Node-Red/benchmark.png" alt="Image de Monitoring" style="width:100%;">
+
 
 Dans cette section, nous abordons le **Monitoring**, une étape cruciale de notre projet. Pour cette tâche, j'ai choisi d'utiliser le protocole **MQTT**, qui présente des avantages significatifs en termes de rapidité et de légèreté par rapport au **SSH**.
 
@@ -1096,9 +1117,10 @@ Pour generer un PDF, il faut passer un Json dans le payload du message :
       "topic":""
   }
 ```
-Qui est reçu dans le noeud pdfmake qui le passe en Base64 qui est ensuite reçu dans le noeud write file qui l'ecrie dans un fichier PDF.
+Qui est reçu dans le noeud pdfmake qui le passe en Base64 qui est ensuite reçu dans le noeud write file qui l'écrit dans un fichier PDF.
 
-![Alt text](../capture/RPI/Node-Red/PDF1.png){width=100%}
+<img src="../capture/RPI/Node-Red/PDF1.png" alt="Image" style="width:100%;">
+
 ## 12.5. Images de graphiques et de tableaux
 Une fois que la génération de PDF est maîtrisée, il est temps de valoriser davantage les informations en y ajoutant des images.
 
@@ -1114,25 +1136,27 @@ Cette combinaison de nœuds nous permettra de créer des représentations visuel
 
 J'ai créé une page qui permet de générer un rapport en fonction de la durée et de l'exécution d'un stress test sur Nidus et/ou sur Volt. Voici le flux complet pour la génération du rapport:
 
-![Flux de Génération du Rapport](../capture/RPI/Node-Red/RapportPDF/0.png){width=100%}
+<img src="../capture/RPI/Node-Red/RapportPDF/0.png" alt="Flux de Génération du Rapport" style="width:100%;">
+
 
 Pour être honnête, il faut admettre que la lisibilité initiale n'est pas optimale. Par conséquent, j'ai décidé de décomposer le processus en plusieurs étapes afin d'obtenir une meilleure compréhension globale.
 
 ## 13.1. Écran d'Accueil
 
-![Écran d'Accueil](../capture/RPI/Node-Red/RapportPDF/1.1.png){width=50%}
+<img src="../capture/RPI/Node-Red/RapportPDF/1.1.png" alt="Écran d'Accueil" style="width:50%;">
 
 Au premier abord, vous serez accueilli par un navigateur de fichiers et un formulaire. Ce formulaire vous permet de spécifier la durée du test et de décider si vous souhaitez exécuter un test de stress sur Nidus et/ou sur Volt. Voici le contenu de la page "file" qui contient le formulaire:
 
-![Contenu de la Page "file"](../capture/RPI/Node-Red/RapportPDF/1.png){width=100%}
+<img src="../capture/RPI/Node-Red/RapportPDF/1.png" alt="Contenu de la Page 'file'" style="width:100%;">
 
 Après avoir rempli le formulaire:
 
-![Formulaire Rempli](../capture/RPI/Node-Red/RapportPDF/2.png){width=100%}
+<img src="../capture/RPI/Node-Red/RapportPDF/2.png" alt="Formulaire Rempli" style="width:100%;">
 
 Les nœuds responsables de cette section sont les suivants:
 
-![Nœuds de Gestion](../capture/RPI/Node-Red/RapportPDF/2.2.png){width=100%}
+<img src="../capture/RPI/Node-Red/RapportPDF/2.2.png" alt="Nœuds de Gestion" style="width:100%;">
+
 
 Deux éléments se distinguent ici:
 - Un formulaire de "Configuration du Test"
