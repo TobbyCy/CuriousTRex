@@ -1,6 +1,7 @@
 # 1. Rapport de projet : Banc de mesures de la consommation électrique pour application web
 
-<img src="../capture/CuruisTRex.png" alt="Image" style="width:100%;">
+<img src="../capture/CuruisTRex.png" alt="Image" width="100%" style="width:100%;">
+
 
 <br><br><br><br><br>
 
@@ -1168,13 +1169,14 @@ La première fonction transmet ensuite les données à une fonction à sorties m
 
 ## 13.2. En Exécution
 
-![En Exécution](../capture/RPI/Node-Red/RapportPDF/3.png){width=100%}
+<img src="../capture/RPI/Node-Red/RapportPDF/3.png" alt="En Exécution" style="width:100%;">
 
 Pendant l'exécution, une **barre de progression** est affichée pour montrer l'avancement du test, accompagnée d'une **étiquette** en dessous pour indiquer le pourcentage d'avancement. Cela permet d'obtenir une meilleure visualisation de l'état d'avancement.
 
 En arrière-plan, un certain nombre de tâches se déroulent :
 
-![Tâches en Arrière-plan](../capture/RPI/Node-Red/RapportPDF/3.3.png){width=100%}
+<img src="../capture/RPI/Node-Red/RapportPDF/3.3.png" alt="Tâches en Arrière-plan" style="width:100%;">
+
 
 Pour en donner plus de détails :
 - La première sortie du nœud **Activate** est connectée à un nœud **delay** qui ajuste la durée du test, ainsi qu'à une série d'autres nœuds qui gèrent la barre de progression.
