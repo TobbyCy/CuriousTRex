@@ -100,31 +100,31 @@ Le système sera conçu pour simuler des requêtes HTTP réalistes à l'aide de 
 
 # 5. Shéma de principe
 ```ascii
-           +---------+      +-------------+
-           |   Volt  |      |   Nidus     |
-           |_________|      |_____________|
-           |  RPI 4  |      |  RPI 4      |
-           |_________|      |_____________|
-           | Apache  |      | Node-RED    |
-           | No-Proc |      | Gatling     |
-           |         |      | INA219      |
-           +---------+      +-------------+
-              ^   |             ^   |
-              |   |             |   |
-              |   |             |   |
-              |   |             |   |
-              |   v             |   v
-         +-----------------------------+
-         |       Réseau local          |
-         +---+-------------------+-----+
-             | Dashboard Node-Red|
-             +-------------------+
-                        ^
-                        |
-                        |
-                  +------------+
-                  |Utilisateur |
-                  +------------+
+                    +---------+      +-------------+
+                    |   Volt  |      |   Nidus     |
+                    |_________|      |_____________|
+                    |  RPI 4  |      |  RPI 4      |
+                    |_________|      |_____________|
+                    | Apache  |      | Node-RED    |
+                    | No-Proc |      | Gatling     |
+                    |         |      | INA219      |
+                    +---------+      +-------------+
+                        ^   |             ^   |
+                        |   |             |   |
+                        |   |             |   |
+                        |   |             |   |
+                        |   v             |   v
+                    +-----------------------------+
+                    |       Réseau local          |
+                    +---+-------------------+-----+
+                        | Dashboard Node-Red|
+                        +-------------------+
+                                    ^
+                                    |
+                                    |
+                            +------------+
+                            |Utilisateur |
+                            +------------+
 
 ```
 
@@ -166,31 +166,7 @@ Warning: Permanently added '157.26.228.77' (ED25519) to the list of known hosts.
 tobby@157.26.228.77's password: 
 Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 5.15.0-1034-raspi aarch64)
 
- * Documentation:  https://help.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/advantage
-
-  System information as of Wed Aug 23 09:29:06 CEST 2023
-
-  System load:  2.43994140625     Temperature:           39.4 C
-  Usage of /:   4.0% of 58.36GB   Processes:             158
-  Memory usage: 7%                Users logged in:       0
-  Swap usage:   0%                IPv4 address for eth0: 157.26.228.77
-
-
-Expanded Security Maintenance for Applications is not enabled.
-
-25 updates can be applied immediately.
-12 of these updates are standard security updates.
-To see these additional updates run: apt list --upgradable
-
-Enable ESM Apps to receive additional future security updates.
-See https://ubuntu.com/esm or run: sudo pro status
-
-
-Last login: Wed Aug 23 09:29:10 2023
-To run a command as administrator (user "root"), use "sudo <command>".
-See "man sudo_root" for details.
+[...]
 
 tobby@Volt:~$ ls -la
 total 28> 2022 .bash_logout
@@ -212,65 +188,17 @@ Connection to 157.26.228.77 closed.
 toblerc@LPT-UNIX-USB-CT:~$ ssh tobby@157.26.228.77
 Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 5.15.0-1034-raspi aarch64)
 
- * Documentation:  https://help.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/advantage
-
-  System information as of Wed Aug 23 09:31:44 CEST 2023
-
-  System load:  0.490234375       Temperature:           40.9 C
-  Usage of /:   4.1% of 58.36GB   Processes:             153
-  Memory usage: 6%                Users logged in:       1
-  Swap usage:   0%                IPv4 address for eth0: 157.26.228.77
-
-
-Expanded Security Maintenance for Applications is not enabled.
-
-25 updates can be applied immediately.
-12 of these updates are standard security updates.
-To see these additional updates run: apt list --upgradable
-
-Enable ESM Apps to receive additional future security updates.
-See https://ubuntu.com/esm or run: sudo pro status
-
+[...]
 
 Last login: Wed Aug 23 09:30:02 2023 from 157.26.215.31
 tobby@Volt:~$ sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo apt autzo-remove -y
 [sudo] password for tobby: 
 [...]
 tobby@Volt:~$ sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo apt auto-remove -y
-Hit:1 http://ports.ubuntu.com/ubuntu-ports jammy InRelease
-Get:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease [119 kB]
-Hit:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease
-Get:4 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease [110 kB]
-Fetched 229 kB in 2s (100 kB/s)    
-Reading package lists... Done
-Building dependency tree... Done
-Reading state information... Done
-All packages are up to date.
-Reading package lists... Done
-Building dependency tree... Done
-Reading state information... Done
-Calculating upgrade... Done
-#
-# You can verify the status of security fixes using the `pro fix` command.
-# E.g., a recent Ruby vulnerability can be checked with: `pro fix USN-6219-1`
-# For more detail see: https://ubuntu.com/security/notices/USN-6219-1
-#
-0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
-Reading package lists... Done
-Building dependency tree... Done
-Reading state information... Done
-Calculating upgrade... Done
-#
-# You can verify the status of security fixes using the `pro fix` command.
-# E.g., a recent Ruby vulnerability can be checked with: `pro fix USN-6219-1`
-# For more detail see: https://ubuntu.com/security/notices/USN-6219-1
-#
-0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
-Reading package lists... Done
-Building dependency tree... Done
-Reading state information... Done
+
+[...]
+
+
 0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
 
 ```
@@ -496,30 +424,13 @@ tobby@Nidus:~ $ ls -la
 total 104
 drwxr-xr-x 18 tobby tobby 4096 16 aoû 15:10 .
 drwxr-xr-x  3 root  root  4096 16 aoû 13:58 ..
--rw-------  1 tobby tobby  453 16 aoû 14:26 .bash_history
--rw-r--r--  1 tobby tobby  220  3 mai 04:53 .bash_logout
--rw-r--r--  1 tobby tobby 3523  3 mai 04:53 .bashrc
-drwxr-xr-x  2 tobby tobby 4096  3 mai 05:02 Bookshelf
-drwxr-xr-x  4 tobby tobby 4096 16 aoû 13:58 .cache
-drwx------  5 tobby tobby 4096 16 aoû 13:58 .config
-drwxr-xr-x  2 tobby tobby 4096 16 aoû 13:58 Desktop
-drwxr-xr-x  2 tobby tobby 4096 16 aoû 13:58 Documents
+
+[...]
+
 drwxr-xr-x  2 tobby tobby 4096 16 aoû 15:10 .gatling
-drwxr-xr-x  2 tobby tobby 4096 16 aoû 13:58 Images
-drwxr-xr-x  3 tobby tobby 4096  3 mai 05:02 .local
-drwxr-xr-x  2 tobby tobby 4096 16 aoû 13:58 Modèles
-drwxr-xr-x  2 tobby tobby 4096 16 aoû 13:58 Musique
-drwxr-xr-x  4 tobby tobby 4096 16 aoû 15:05 .node-red
-drwxr-xr-x  4 tobby tobby 4096 16 aoû 14:15 .npm
--rw-------  1 tobby tobby   22 16 aoû 14:15 .npmrc
--rw-r--r--  1 tobby tobby  807  3 mai 04:53 .profile
-drwxr-xr-x  2 tobby tobby 4096 16 aoû 13:58 Public
-drwxr-xr-x  2 tobby tobby 4096 16 aoû 14:06 .ssh
-drwxr-xr-x  2 tobby tobby 4096 16 aoû 13:58 Téléchargements
-drwxr-xr-x  2 tobby tobby 4096 16 aoû 13:58 Vidéos
--rw-------  1 tobby tobby  106 16 aoû 14:27 .Xauthority
--rw-------  1 tobby tobby 2521 16 aoû 14:27 .xsession-errors
--rw-------  1 tobby tobby 2521 16 aoû 14:02 .xsession-errors.old
+
+[...]
+
 tobby@Nidus:~ $ wget -O ~/.gatling/gatling-charts-highcharts-bundle-3.9.5-bundle.zip https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/3.9.5/gatling-charts-highcharts-bundle-3.9.5-bundle.zip
 --2023-08-16 15:12:41--  https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/3.9.5/gatling-charts-highcharts-bundle-3.9.5-bundle.zip
 Résolution de repo1.maven.org (repo1.maven.org)… 146.75.116.209, 2a04:4e42:8d::209
@@ -576,100 +487,7 @@ Select run description (optional)
 InstallVerif
 Simulation computerdatabase.ComputerDatabaseSimulation started...
 
-================================================================================
-2023-08-16 16:29:14                                           5s elapsed
----- Requests ------------------------------------------------------------------
-> Global                                                   (OK=23     KO=0     )
-> Home                                                     (OK=6      KO=0     )
-> Home Redirect 1                                          (OK=6      KO=0     )
-> Search                                                   (OK=5      KO=0     )
-> Select                                                   (OK=3      KO=0     )
-> Page 0                                                   (OK=3      KO=0     )
-
----- Users ---------------------------------------------------------------------
-[-------------------------------------                                     ]  0%
-          waiting: 5      / active: 5      / done: 0     
----- Admins --------------------------------------------------------------------
-[-------------------------------------                                     ]  0%
-          waiting: 1      / active: 1      / done: 0     
-================================================================================
-
-
-================================================================================
-2023-08-16 16:29:19                                          10s elapsed
----- Requests ------------------------------------------------------------------
-> Global                                                   (OK=71     KO=0     )
-> Home                                                     (OK=12     KO=0     )
-> Home Redirect 1                                          (OK=12     KO=0     )
-> Search                                                   (OK=11     KO=0     )
-> Select                                                   (OK=10     KO=0     )
-> Page 0                                                   (OK=9      KO=0     )
-> Page 1                                                   (OK=8      KO=0     )
-> Page 2                                                   (OK=5      KO=0     )
-> Page 3                                                   (OK=3      KO=0     )
-> Form                                                     (OK=1      KO=0     )
-
----- Users ---------------------------------------------------------------------
-[##############------------------------------------------------------------] 20%
-          waiting: 0      / active: 8      / done: 2     
----- Admins --------------------------------------------------------------------
-[--------------------------------------------------------------------------]  0%
-          waiting: 0      / active: 2      / done: 0     
-================================================================================
-
-
-================================================================================
-2023-08-16 16:29:24                                          15s elapsed
----- Requests ------------------------------------------------------------------
-> Global                                                   (OK=101    KO=2     )
-> Home                                                     (OK=12     KO=0     )
-> Home Redirect 1                                          (OK=12     KO=0     )
-> Search                                                   (OK=12     KO=0     )
-> Select                                                   (OK=12     KO=0     )
-> Page 0                                                   (OK=12     KO=0     )
-> Page 1                                                   (OK=12     KO=0     )
-> Page 2                                                   (OK=11     KO=0     )
-> Page 3                                                   (OK=10     KO=0     )
-> Form                                                     (OK=4      KO=0     )
-> Post                                                     (OK=3      KO=0     )
-> Post Redirect 1                                          (OK=1      KO=2     )
----- Errors --------------------------------------------------------------------
-> status.find.is(201), but actually found 200                         2 (100,0%)
-
----- Users ---------------------------------------------------------------------
-[###################################################-----------------------] 70%
-          waiting: 0      / active: 3      / done: 7     
----- Admins --------------------------------------------------------------------
-[#####################################-------------------------------------] 50%
-          waiting: 0      / active: 1      / done: 1     
-================================================================================
-
-
-================================================================================
-2023-08-16 16:29:26                                          17s elapsed
----- Requests ------------------------------------------------------------------
-> Global                                                   (OK=105    KO=3     )
-> Home                                                     (OK=12     KO=0     )
-> Home Redirect 1                                          (OK=12     KO=0     )
-> Search                                                   (OK=12     KO=0     )
-> Select                                                   (OK=12     KO=0     )
-> Page 0                                                   (OK=12     KO=0     )
-> Page 1                                                   (OK=12     KO=0     )
-> Page 2                                                   (OK=12     KO=0     )
-> Page 3                                                   (OK=12     KO=0     )
-> Form                                                     (OK=4      KO=0     )
-> Post                                                     (OK=4      KO=0     )
-> Post Redirect 1                                          (OK=1      KO=3     )
----- Errors --------------------------------------------------------------------
-> status.find.is(201), but actually found 200                         3 (100,0%)
-
----- Users ---------------------------------------------------------------------
-[##########################################################################]100%
-          waiting: 0      / active: 0      / done: 10    
----- Admins --------------------------------------------------------------------
-[##########################################################################]100%
-          waiting: 0      / active: 0      / done: 2     
-================================================================================
+[...]
 
 Simulation computerdatabase.ComputerDatabaseSimulation completed in 17 seconds
 Parsing log file(s)...
