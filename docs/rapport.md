@@ -1,4 +1,10 @@
 # 1. Rapport de projet
+
+![Alt text](../capture/CuruisTRex.png){width=100%}
+
+<div style="page-break-after: always;"></div>
+
+
 # 2. Sommaire
 - [1. Rapport de projet](#1-rapport-de-projet)
 - [2. Sommaire](#2-sommaire)
@@ -34,8 +40,8 @@
   - [10.1. Installation de Mosquitto sur Nidus](#101-installation-de-mosquitto-sur-nidus)
   - [10.2. Ouverture des port sur Nidus](#102-ouverture-des-port-sur-nidus)
   - [10.3. Script MQTT](#103-script-mqtt)
-    - [10.3.1. Script MQTT](#1031-script-mqtt)
-    - [10.3.2. Descriptiono détaillée du script](#1032-descriptiono-détaillée-du-script)
+    - [10.3.1. Script](#1031-script)
+    - [10.3.2. Description détaillée du script](#1032-description-détaillée-du-script)
     - [10.3.3. Conclusion](#1033-conclusion)
   - [10.4. Installation](#104-installation)
   - [10.5. Utilisation du script](#105-utilisation-du-script)
@@ -59,7 +65,10 @@
   - [13.2. En Exécution](#132-en-exécution)
   - [13.3. Résultat](#133-résultat)
   - [13.4. Purge](#134-purge)
-- [14. Sources](#14-sources)
+- [14. Remerciement](#14-remerciement)
+- [15. Sources](#15-sources)
+
+<div style="page-break-after: always;"></div>
 
 # 3. Introduction
 Le système sera conçu pour simuler des requêtes HTTP réalistes à l'aide de Gatling, mesurer la consommation électrique en utilisant l'INA219 connecté via le bus I2C, et collecter les mesures de performance à l'aide de Node-RED. Les rapports générés fourniront des informations détaillées sur les performances du système testé, y compris le temps de réponse, la consommation d'énergie par requête, l'utilisation du processeur, etc.
@@ -68,6 +77,8 @@ Le système sera conçu pour simuler des requêtes HTTP réalistes à l'aide de 
 ![](../capture/Nidus.jpg){width=100%}
 ## 4.2. Volt
 ![](../capture/Volt.jpg){width=100%}
+
+<div style="page-break-after: always;"></div>
 
 # 5. Shéma de principe
 ```ascii
@@ -98,6 +109,9 @@ Le système sera conçu pour simuler des requêtes HTTP réalistes à l'aide de 
                   +------------+
 
 ```
+
+<div style="page-break-after: always;"></div>
+
 # 6. Systèmes d'exploitation (OS)
 Dans le cadre de ce projet, plusieurs systèmes d'exploitation seront utilisés. Pour commencer, nous utiliserons Ubuntu.
 ## 6.1. Ubuntu
@@ -119,6 +133,9 @@ Adresse IP de Nidus : 157.26.251.185
 
 ## 6.4. Seconde instalation Ubuntu Server
 ![Alt text](../capture/RPI/Volt/Imager.png){width=100%}
+
+<div style="page-break-after: always;"></div>
+
 ### 6.4.1. Configuration post instalation
 ```bash
 toblerc@LPT-UNIX-USB-CT:~$ ssh tobby@157.26.228.77
@@ -283,6 +300,8 @@ Building dependency tree... Done
 
 ```
 
+<div style="page-break-after: always;"></div>
+
 # 7. Node-RED
 **Node-RED** est un outil de programmation visuelle open source conçu pour faciliter la connexion de périphériques, d'API et de services en ligne. Il propose un éditeur de flux basé sur un navigateur, permettant ainsi de connecter des nœuds à l'aide de simples glisser-déposer. Ces nœuds peuvent être exécutés dans un environnement Node.js. Ils peuvent être des fonctions JavaScript ou des modules npm, tels que node-red-contrib-gpio, node-red-contrib-sqlite, node-red-contrib-modbustcp, etc. En plus des nœuds de base fournis, Node-RED offre plus de 2000 nœuds supplémentaires créés par la communauté et prêts à être utilisés.
 
@@ -429,6 +448,10 @@ tobby@Nidus:~/.node-red/projects/banc-de-mesures-de-la-consommation-electrique $
 tobby@Nidus:~/.node-red/projects/banc-de-mesures-de-la-consommation-electrique $ chmod 600 ~/.node-red/projects/banc-de-mesures-de-la-consommation-electrique/flows_cred.json
 
 ```
+
+
+<div style="page-break-after: always;"></div>
+
 # 8. Gatling
 **Gatling** est un outil de test de charge open source basé sur Scala, conçu pour évaluer les performances des applications et des sites Web. Gatling simule des utilisateurs virtuels qui envoient des requêtes HTTP vers le système cible. Il enregistre les temps de réponse des requêtes et les présente sous forme de graphiques. Gatling est doté d'un éditeur de scénarios basé sur navigateur, permettant aux utilisateurs de créer des scénarios de test de charge à l'aide d'un langage de domaine spécifique (DSL) appelé *Gatling DSL*. Ce langage, basé sur Scala, permet de définir des scénarios de test de charge à l'aide de mots-clés tels que `exec`, `pause`, `feed`, etc.
 
@@ -660,6 +683,9 @@ Reports generated in 0s.
 Please open the following file: file:///home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/results/computerdatabasesimulation-20230816142907884/index.html
 ```
 ## 8.3. Configuration
+
+<div style="page-break-after: always;"></div>
+
 # 9. Apache et Site Web
 ## 9.1. Installation
 ```bash
@@ -672,6 +698,9 @@ J'ai créee un site web très simple reprenant le readme du projet. Et il compor
 ```bash
 scp -r /home/toblerc/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique/siteWeb/www/html tobby@Volt:/var/www/html/
 ```
+
+<div style="page-break-after: always;"></div>
+
 # 10. MQTT
 Dans notre cas, j'ai l'intention d'utiliser MQTT pour transmettre les données de consommation à Node-Red. En contournant le transfert de requêtes via SSH et l'utilisation de clés SSH, MQTT permet de gagner en performances et en sécurité. En termes de performances, MQTT est considérablement plus léger que SSH, environ dix fois plus léger.
 ## 10.1. Installation de Mosquitto sur Nidus
@@ -720,9 +749,12 @@ include_dir /etc/mosquitto/conf.d
 listener 1883
 allow_anonymous true
 ```
+
+<div style="page-break-after: always;"></div>
+
 ## 10.3. Script MQTT
 J'ai élaboré un script MQTT sophistiqué, conçu pour publier efficacement les données de consommation sur le broker MQTT. Ce script, au démarrage de la machine, entreprend un fonctionnement en boucle continue, garantissant la collecte et la publication régulières de ces données. L'objectif est d'optimiser les performances tout en garantissant la fiabilité du processus.
-### 10.3.1. Script MQTT
+### 10.3.1. Script
 ```sh
 #!/bin/bash
 ### BEGIN INIT INFO
@@ -797,7 +829,7 @@ while true; do
     sleep 1  # Attente d'une seconde
 done
 ```
-### 10.3.2. Descriptiono détaillée du script
+### 10.3.2. Description détaillée du script
 Le script commence par vérifier si l'emplacement d'installation est correct, s'assurant qu'il est placé dans le répertoire défini par **INSTALL_DIR**. Ensuite, il vérifie la présence et l'installation des dépendances requises, notamment **mosquitto-clients**, en l'installant si nécessaire.
 
 Une autre vérification importante concerne l'existence d'un lien symbolique vers **/etc/init.d**, qui est nécessaire pour exécuter le script au démarrage de la machine. Si le lien symbolique n'existe pas, le script le crée.
@@ -836,6 +868,9 @@ Service activé.
 
 ### 10.5.1. Vérification
 ![Alt text](../capture/RPI/Node-Red/MQTT.png){width=100%}
+
+<div style="page-break-after: always;"></div>
+
 # 11. INA219
 
 Dans ce chapitre, nous explorerons la puce **INA219**, qui joue un rôle essentiel dans la mesure de la consommation. Il est important de noter que nous utilisons deux puces INA219 dans ce projet : l'une pour la mesure proprement dite et l'autre en tant que pièce de rechange en cas de problème. Pour les différencier, nous avons effectué des soudures pour attribuer des adresses I2C spécifiques à chaque puce. L'adresse de la puce de mesure est réglée sur *0x40*, tandis que l'adresse de la puce de remplacement est réglée sur *0x41*.
@@ -958,6 +993,9 @@ Bus Current: -0.195 mA
 Power: 0.000 mW
 Shunt voltage: -0.010 mV
 ```
+
+<div style="page-break-after: always;"></div>
+
 # 12. Noeud Node-Red
 
 ## 12.1. INA219
@@ -998,6 +1036,8 @@ return msg;
 Dans cette section, nous abordons le **Monitoring**, une étape cruciale de notre projet. Pour cette tâche, j'ai choisi d'utiliser le protocole **MQTT**, qui présente des avantages significatifs en termes de rapidité et de légèreté par rapport au **SSH**.
 
 En commençant par la réception des données via le nœud MQTT, celles-ci sont dirigées vers un nœud de type "gauge" (_jauge_) qui affiche la valeur en temps réel. Cette représentation visuelle offre une vue instantanée de la consommation, permettant une surveillance efficace.
+
+<div style="page-break-after: always;"></div>
 
 ## 12.3. Dashboard
 
@@ -1067,6 +1107,9 @@ En effet, bien que disposer des valeurs à un instant donné soit utile, pouvoir
 En plus du nœud de graphique, nous aurons besoin du nœud **node-red-node-base64**, qui facilitera la conversion d'images en base64 et vice versa. Cette conversion est essentielle pour intégrer les images dans le document PDF.
 
 Cette combinaison de nœuds nous permettra de créer des représentations visuelles attrayantes et informatives des données, offrant ainsi une compréhension plus approfondie et une présentation visuellement engageante.
+
+<div style="page-break-after: always;"></div>
+
 # 13. Stress Test V1.0
 
 J'ai créé une page qui permet de générer un rapport en fonction de la durée et de l'exécution d'un stress test sur Nidus et/ou sur Volt. Voici le flux complet pour la génération du rapport:
@@ -1362,8 +1405,14 @@ Ce que l'on peut observer, c'est qu'après avoir appuyé sur le bouton de purge,
 - Le premier effectue la purge totale de tous les fichiers dans `/home/NodeRed/`.
 - Le second commence par un délai de quelques secondes avant de recréer les dossiers de structuration.
 
+<div style="page-break-after: always;"></div>
 
-# 14. Sources
+# 14. Remerciement 
+
+
+<div style="page-break-after: always;"></div>
+
+# 15. Sources
 
 1. **Guide d'Installation Node-Red**  
    [Installer Node-Red](https://nodered.org/docs/getting-started/raspberrypi)
