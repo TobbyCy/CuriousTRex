@@ -7,10 +7,10 @@
   - [4.1. Nidus](#41-nidus)
   - [4.2. Volt](#42-volt)
 - [5. Shéma de principe](#5-shéma-de-principe)
-- [6. OS](#6-os)
+- [6. Systèmes d'exploitation (OS)](#6-systèmes-dexploitation-os)
   - [6.1. Ubuntu](#61-ubuntu)
   - [6.2. Raspbian](#62-raspbian)
-  - [6.3. Première instalation](#63-première-instalation)
+  - [6.3. Première installation](#63-première-installation)
   - [6.4. Seconde instalation Ubuntu Server](#64-seconde-instalation-ubuntu-server)
     - [6.4.1. Configuration post instalation](#641-configuration-post-instalation)
     - [6.4.2. Instalation Apache](#642-instalation-apache)
@@ -18,11 +18,11 @@
 - [7. Node-RED](#7-node-red)
   - [7.1. Instalation](#71-instalation)
   - [7.2. Configuration](#72-configuration)
-    - [7.2.1. Instalation des plugins](#721-instalation-des-plugins)
+    - [7.2.1. Installation des plugins](#721-installation-des-plugins)
     - [7.2.2. Sécurisation de Node-Red](#722-sécurisation-de-node-red)
     - [7.2.3. Suivi Git](#723-suivi-git)
 - [8. Gatling](#8-gatling)
-  - [8.1. Instalation](#81-instalation)
+  - [8.1. Installation](#81-installation)
     - [8.1.1. Prerequis](#811-prerequis)
     - [8.1.2. Download](#812-download)
   - [8.2. Vérification de l'installation](#82-vérification-de-linstallation)
@@ -31,31 +31,35 @@
   - [9.1. Installation](#91-installation)
   - [9.2. Mise en place d'un site Web](#92-mise-en-place-dun-site-web)
 - [10. MQTT](#10-mqtt)
-  - [10.1. Instalaion de Mosquitto sur Nidus](#101-instalaion-de-mosquitto-sur-nidus)
+  - [10.1. Installation de Mosquitto sur Nidus](#101-installation-de-mosquitto-sur-nidus)
   - [10.2. Ouverture des port sur Nidus](#102-ouverture-des-port-sur-nidus)
   - [10.3. Script MQTT](#103-script-mqtt)
+    - [Script MQTT](#script-mqtt)
+    - [Descriptiono détaillée du script](#descriptiono-détaillée-du-script)
+    - [Conclusion](#conclusion)
   - [10.4. Installation](#104-installation)
   - [10.5. Utilisation du script](#105-utilisation-du-script)
     - [10.5.1. Vérification](#1051-vérification)
 - [11. INA219](#11-ina219)
-  - [11.1. Instalation physique](#111-instalation-physique)
-    - [11.1.1. Branchement SANS VOLT](#1111-branchement-sans-volt)
-    - [11.1.2. Branchement AVEC VOLT](#1112-branchement-avec-volt)
-  - [11.2. Vérification de la présence du INA219](#112-vérification-de-la-présence-du-ina219)
+    - [11.1. Installation physique](#111-installation-physique)
+      - [11.1.1. Branchement SANS VOLT](#1111-branchement-sans-volt)
+      - [11.1.2. Branchement AVEC VOLT](#1112-branchement-avec-volt)
+    - [11.2. Vérification de la présence du INA219](#112-vérification-de-la-présence-du-ina219)
   - [11.3. Obtention des données](#113-obtention-des-données)
     - [11.3.1. Test avec le script python A vide](#1131-test-avec-le-script-python-a-vide)
 - [12. Noeud Node-Red](#12-noeud-node-red)
-  - [12.3. INA219](#123-ina219)
-  - [12.4. Monitoring](#124-monitoring)
-  - [12.1. Dashboard](#121-dashboard)
-  - [PDF](#pdf)
-    - [Base](#base)
-  - [Images de chart et de tableau](#images-de-chart-et-de-tableau)
-- [Stress Test V1.0](#stress-test-v10)
-  - [Accueil](#accueil)
-  - [En Execution](#en-execution)
-  - [Résultat](#résultat)
-- [13. Sources](#13-sources)
+  - [12.1. INA219](#121-ina219)
+  - [12.2. Monitoring](#122-monitoring)
+  - [12.3. Dashboard](#123-dashboard)
+  - [12.4. PDF](#124-pdf)
+    - [12.4.1. Base](#1241-base)
+  - [12.5. Images de graphiques et de tableaux](#125-images-de-graphiques-et-de-tableaux)
+- [13. Stress Test V1.0](#13-stress-test-v10)
+  - [13.1. Écran d'Accueil](#131-écran-daccueil)
+  - [13.2. En Exécution](#132-en-exécution)
+  - [13.3. Résultat](#133-résultat)
+  - [13.4. Purge](#134-purge)
+- [14. Sources](#14-sources)
 
 # 3. Introduction
 Le système sera conçu pour simuler des requêtes HTTP réalistes à l'aide de Gatling, mesurer la consommation électrique en utilisant l'INA219 connecté via le bus I2C, et collecter les mesures de performance à l'aide de Node-RED. Les rapports générés fourniront des informations détaillées sur les performances du système testé, y compris le temps de réponse, la consommation d'énergie par requête, l'utilisation du processeur, etc.
@@ -94,24 +98,24 @@ Le système sera conçu pour simuler des requêtes HTTP réalistes à l'aide de 
                   +------------+
 
 ```
-# 6. OS
-Dans le cadre de ce projet il y auras plusieurs OS utilisée mais pour débuter nous allons utiliser Ubuntu.
+# 6. Systèmes d'exploitation (OS)
+Dans le cadre de ce projet, plusieurs systèmes d'exploitation seront utilisés. Pour commencer, nous utiliserons Ubuntu.
 ## 6.1. Ubuntu
-Ubuntu est un OS largement utilisé pour les serveurs et les ordinateurs de bureau. Ubuntu est livré avec un ensemble d'outils de développement et de productivité, y compris un navigateur Web, un éditeur de texte, des logiciels de programmation, des outils de calcul, des jeux et des logiciels de productivité. Ubuntu est un environnement de bureau léger et réactif conçu pour les ordinateurs de bureau et les serveurs.
+Ubuntu est un système d'exploitation largement utilisé pour les serveurs et les ordinateurs de bureau. Il est livré avec un ensemble d'outils de développement et de productivité, notamment un navigateur Web, un éditeur de texte, des logiciels de programmation, des outils de calcul, des jeux et des logiciels de productivité. Ubuntu propose un environnement de bureau léger et réactif, conçu tant pour les ordinateurs de bureau que pour les serveurs.
 ## 6.2. Raspbian
-Raspbian est un système d'exploitation libre basé sur Debian optimisé pour le Raspberry Pi. Depuis 2015, Raspbian est fourni avec un ensemble d'outils appelé Pixel. Pixel est un environnement de bureau qui comprend un navigateur Web, un éditeur de texte, des logiciels de programmation, des outils de calcul, des jeux et des logiciels de productivité. Pixel est un environnement de bureau léger et réactif conçu pour les ordinateurs monocarte Raspberry Pi.
-## 6.3. Première instalation
-Dans un premier temps nous allons installer Ubuntu en version desktop sur Volt. La raison dèrière ce choix est que pour tester au plus vite tous les concepts du projet il est plus simple de travailler sur un environnement de bureau.
+Raspbian est un système d'exploitation libre basé sur Debian, spécialement optimisé pour le Raspberry Pi. Depuis 2015, Raspbian est livré avec un ensemble d'outils appelé Pixel. Pixel offre un environnement de bureau comprenant un navigateur Web, un éditeur de texte, des logiciels de programmation, des outils de calcul, des jeux et des logiciels de productivité. Pixel est un environnement de bureau léger et réactif, conçu spécifiquement pour les ordinateurs monocarte Raspberry Pi.
+## 6.3. Première installation
+Dans un premier temps, nous allons installer la version bureau d'Ubuntu sur Volt. Cette décision est motivée par le fait qu'il est plus simple de travailler dans un environnement de bureau pour tester rapidement tous les concepts du projet.
 
-Sur Nidus c'est Raspbian enversion desktop qui sera installé pour les mêmes raisons que pour Volt.
+Sur Nidus, Raspbian en version bureau sera installé pour des raisons similaires à celles de Volt.
 
-La raison dèrière ce choix est que Ubuntu core est plus léger que raspbian et plus utilisée pour les serveur web et que Raspbian est plus performant sur les Raspberry pi que Ubuntu core
-Dernier point important, étant donnée que l'INA219 sera branché à Nidus, il est plus simple de mettre raspbian sur Nidus pour avoir accès au GPIO.
+Un élément crucial à noter est que, étant donné que l'INA219 sera connecté à Nidus, il est plus pratique d'installer Raspbian sur Nidus afin d'avoir accès aux broches GPIO.
 
-Dans un second temps pour avoir des mesures plus précise nous allons installer des versions core de Ubuntu et de raspbian.
+Dans un second temps, pour obtenir des mesures plus précises, nous installerons les versions « core » d'Ubuntu et de Raspbian.
 
-Adresse IP de Volt : 157.26.228.130
-Adresse IP de Nidus : 157.26.251.158
+Adresse IP de Volt : 157.26.228.77
+Adresse IP de Nidus : 157.26.251.185
+
 
 ## 6.4. Seconde instalation Ubuntu Server
 ![Alt text](../capture/RPI/Volt/Imager.png){width=100%}
@@ -279,9 +283,9 @@ Building dependency tree... Done
 
 ```
 
-
 # 7. Node-RED
-Node-RED est un outil de programmation visuelle open source conçu pour connecter des périphériques, des API et des services en ligne. Il fournit un éditeur de flux basé sur un navigateur qui facilite la connexion de nœuds en utilisant des liens glisser-déposer qui peuvent être exécutés dans un environnement Node.js. Les nœuds peuvent être des fonctions JavaScript ou des modules npm, tels que node-red-contrib-gpio, node-red-contrib-sqlite, node-red-contrib-modbustcp, etc. Node-RED est livré avec un ensemble de nœuds de base prêts à l'emploi, mais il existe maintenant plus de 2000 nœuds de la communauté qui sont disponibles pour une utilisation.
+**Node-RED** est un outil de programmation visuelle open source conçu pour faciliter la connexion de périphériques, d'API et de services en ligne. Il propose un éditeur de flux basé sur un navigateur, permettant ainsi de connecter des nœuds à l'aide de simples glisser-déposer. Ces nœuds peuvent être exécutés dans un environnement Node.js. Ils peuvent être des fonctions JavaScript ou des modules npm, tels que node-red-contrib-gpio, node-red-contrib-sqlite, node-red-contrib-modbustcp, etc. En plus des nœuds de base fournis, Node-RED offre plus de 2000 nœuds supplémentaires créés par la communauté et prêts à être utilisés.
+
 ## 7.1. Instalation
 ```bash
 tobby@Nidus:~ $ bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
@@ -393,36 +397,43 @@ Created symlink /etc/systemd/system/multi-user.target.wants/nodered.service → 
 ```
 ![Alt text](../capture/RPI/Node-Red/PostInstall.png){width=100%}
 ## 7.2. Configuration
-### 7.2.1. Instalation des plugins
-![Alt text](../capture/RPI/Node-Red/palette1.png){width=33%}
-![Alt text](../capture/RPI/Node-Red/palette2.png){width=33%}
-![Alt text](../capture/RPI/Node-Red/palette3.png){width=33%}
-![Alt text](../capture/RPI/Node-Red/palette4.png){width=100%}
-![Alt text](../capture/RPI/Node-Red/Dashboard.png){width=100%}
+### 7.2.1. Installation des plugins
+![Installation des plugins](../capture/RPI/Node-Red/palette1.png){width=33%} 
+
+![Installation des plugins](../capture/RPI/Node-Red/palette2.png){width=33%} 
+
+![Installation des plugins](../capture/RPI/Node-Red/palette3.png){width=33%} 
+
+![Installation des plugins](../capture/RPI/Node-Red/palette4.png){width=100%} 
+
+![Installation des plugins](../capture/RPI/Node-Red/Dashboard.png){width=100%}
+
+
+
 ### 7.2.2. Sécurisation de Node-Red
-La sécurisation de Node-Red se fait en modifiant le fichier settings.js, ou dans note cas en utilisant la commande `node-red admin init`qui permet par exemple de créer les couple Utilisateur mot de passe.
+Pour sécuriser Node-Red, il convient de modifier le fichier `settings.js`. Dans notre cas, nous utilisons la commande `node-red admin init`, ce qui permet, par exemple, de créer des paires utilisateur/mot de passe.
 
-Suite à celà il faudra également si celà s'avère utile ajouter un login au Dashboard.
+De plus, il est recommandé, si nécessaire, d'ajouter un login au *Dashboard*.
+
 ### 7.2.3. Suivi Git
-Pour suivre le projet sur git, il faut configurer un utiiisateur les clé SSH puis faire un clone du projet.
+Afin de suivre le projet sur Git, il est nécessaire de configurer un utilisateur, générer des clés SSH, puis effectuer un *clone* du projet.
 
+![Configuration Git](../capture/RPI/Node-Red/Git_Config.png){width=30%} ![Ouvrir le projet sur Git](../capture/RPI/Node-Red/GIT_Open.png){width=30%} ![Configuration Git](../capture/RPI/Node-Red/GIT_Setting.png){width=30%}
 
-![Alt text](../capture/RPI/Node-Red/Git_Config.png){width=30%}
-![Alt text](../capture/RPI/Node-Red/GIT_Open.png){width=30%}
-![Alt text](../capture/RPI/Node-Red/GIT_Setting.png){width=30%}
+Comme il s'agit d'un *clone*, il faudra ajouter les fichiers manquants et ajuster les droits d'accès.
 
-Comme c'est un clone il faut ajouter un fichier qui manque et modifier les droits d'accès.
 ```bash
 tobby@Nidus:~/.node-red/projects/banc-de-mesures-de-la-consommation-electrique $ touch ~/.node-red/projects/banc-de-mesures-de-la-consommation-electrique/flows_cred.json
 tobby@Nidus:~/.node-red/projects/banc-de-mesures-de-la-consommation-electrique $ chmod 600 ~/.node-red/projects/banc-de-mesures-de-la-consommation-electrique/flows_cred.json
 
 ```
 # 8. Gatling
-Gatling est un outil de test de charge open source basé sur Scala, conçu pour tester les performances des applications et des sites Web. Gatling simule des utilisateurs virtuels qui envoient des requêtes HTTP vers le système cible. Il enregistre les temps de réponse des requêtes et les présente sous forme de graphiques. Gatling est livré avec un éditeur de scénario basé sur un navigateur qui permet aux utilisateurs de créer des scénarios de test de charge en utilisant un langage de domaine spécifique (DSL) appelé Gatling DSL. Gatling DSL est un langage de programmation basé sur Scala qui permet aux utilisateurs de définir des scénarios de test de charge en utilisant des mots-clés tels que exec, pause, feed, etc.
+**Gatling** est un outil de test de charge open source basé sur Scala, conçu pour évaluer les performances des applications et des sites Web. Gatling simule des utilisateurs virtuels qui envoient des requêtes HTTP vers le système cible. Il enregistre les temps de réponse des requêtes et les présente sous forme de graphiques. Gatling est doté d'un éditeur de scénarios basé sur navigateur, permettant aux utilisateurs de créer des scénarios de test de charge à l'aide d'un langage de domaine spécifique (DSL) appelé *Gatling DSL*. Ce langage, basé sur Scala, permet de définir des scénarios de test de charge à l'aide de mots-clés tels que `exec`, `pause`, `feed`, etc.
 
-La dernière version de Gatling est la version 3.9.5 qui est compatible avec Java 8 et Java 11. Dans ce projet, nous utiliserons Java 11 pour exécuter Gatling.
+La version la plus récente de Gatling est la 3.9.5, compatible avec Java 8 et Java 11. Dans ce projet, nous opterons pour Java 11 pour exécuter Gatling.
 
-## 8.1. Instalation
+## 8.1. Installation
+
 ### 8.1.1. Prerequis
 ```bash
 tobby@Nidus:~ $ sudo apt install default-jdk
@@ -660,10 +671,8 @@ J'ai créee un site web très simple reprenant le readme du projet. Et il compor
 scp -r /home/toblerc/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique/siteWeb/www/html tobby@Volt:/var/www/html/
 ```
 # 10. MQTT
-Dans notre cas ,je souhaite utiliser le MQTT pour envoyer les données de consommation à Node-Red.
-En passant outre le tranfert de requette via le SSH et l'utilisation de clé SSH, le MQTT permet de gagner en performance et en sécurité.
-Niveau performance, le MQTT est plus léger que le SSH de l'ordre de 10 fois plus léger.
-## 10.1. Instalaion de Mosquitto sur Nidus
+Dans notre cas, j'ai l'intention d'utiliser MQTT pour transmettre les données de consommation à Node-Red. En contournant le transfert de requêtes via SSH et l'utilisation de clés SSH, MQTT permet de gagner en performances et en sécurité. En termes de performances, MQTT est considérablement plus léger que SSH, environ dix fois plus léger.
+## 10.1. Installation de Mosquitto sur Nidus
 ```bash
 tobby@Nidus:~/.ssh $ sudo apt install mosquitto
 Lecture des listes de paquets... Fait
@@ -710,11 +719,8 @@ listener 1883
 allow_anonymous true
 ```
 ## 10.3. Script MQTT
-J'ai créé un script MQTT qui permet de publier les données de consommation sur le broker MQTT.
-Le script est lancé au démarrage de la machine et tourne en boucle.
-Et verifie si les dépendances sont installées, si ce n'est pas le cas il les installe.
-Et finalement il vérifie si le lien symbolique vers init.d existe, si ce n'est pas le cas il le crée.
-
+J'ai élaboré un script MQTT sophistiqué, conçu pour publier efficacement les données de consommation sur le broker MQTT. Ce script, au démarrage de la machine, entreprend un fonctionnement en boucle continue, garantissant la collecte et la publication régulières de ces données. L'objectif est d'optimiser les performances tout en garantissant la fiabilité du processus.
+### Script MQTT
 ```sh
 #!/bin/bash
 ### BEGIN INIT INFO
@@ -788,8 +794,23 @@ while true; do
 
     sleep 1  # Attente d'une seconde
 done
-
 ```
+### Descriptiono détaillée du script
+Le script commence par vérifier si l'emplacement d'installation est correct, s'assurant qu'il est placé dans le répertoire défini par **INSTALL_DIR**. Ensuite, il vérifie la présence et l'installation des dépendances requises, notamment **mosquitto-clients**, en l'installant si nécessaire.
+
+Une autre vérification importante concerne l'existence d'un lien symbolique vers **/etc/init.d**, qui est nécessaire pour exécuter le script au démarrage de la machine. Si le lien symbolique n'existe pas, le script le crée.
+
+Ensuite, le script s'assure que le service init.d correspondant est activé. Si ce n'est pas le cas, il active le service en utilisant la commande **update-rc.d**.
+
+La section la plus importante du script est la boucle principale, où les données de consommation sont collectées et publiées en continu sur le broker MQTT. Pour chaque itération de la boucle, les taux de charge CPU, de charge RAM et le nombre de processus en cours sont mesurés et enregistrés.
+
+Ces données sont ensuite publiées sur le broker MQTT à l'aide de la commande **mosquitto_pub**. Chaque type de données est publié sur un sujet MQTT spécifique (**$MQTT_TOPIC_CPU**, **$MQTT_TOPIC_RAM**, **$MQTT_TOPIC_PROCESSES**), ce qui permet de les organiser de manière claire.
+
+Le script affiche également un message indiquant que les données ont été publiées sur MQTT, et ensuite attend une seconde avant de reprendre une nouvelle itération de la boucle.
+
+### Conclusion
+Ce script MQTT élaboré et bien structuré offre un moyen efficace de collecter et de publier les données de consommation sur le broker **MQTT**. Son fonctionnement en boucle continue, combiné à des vérifications et des actions préliminaires, garantit une gestion fiable et optimisée des données, contribuant ainsi à la réussite globale du projet.
+
 ## 10.4. Installation
 ```bash
 toblerc@LPT-UNIX-USB-CT:~/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique$ scp ./mqtt.sh tobby@volt:/usr/local/bin/mqtt.sh
@@ -814,20 +835,28 @@ Service activé.
 ### 10.5.1. Vérification
 ![Alt text](../capture/RPI/Node-Red/MQTT.png){width=100%}
 # 11. INA219
-Dans notre cas, il y a deux puce INA219, une en remplacement en cas de problème et l'autre pour la mesure de la consommation.
-Pour les diférencier, j'ai souder l'adresse I2C de la puce de mesure sur 0x40 et celle de la puce de rwemplacement sur 0x41.
-Sur le photos, la puce branchée en E1 à E6 est celle de mesure et celle branchée en E25 à E30 est celle de remplacement.
-## 11.1. Instalation physique
-### 11.1.1. Branchement SANS VOLT
 
-![Alt text](../capture/RPI/INA219/Sans_Volt.jpg){width=100%}
+Dans ce chapitre, nous explorerons la puce **INA219**, qui joue un rôle essentiel dans la mesure de la consommation. Il est important de noter que nous utilisons deux puces INA219 dans ce projet : l'une pour la mesure proprement dite et l'autre en tant que pièce de rechange en cas de problème. Pour les différencier, nous avons effectué des soudures pour attribuer des adresses I2C spécifiques à chaque puce. L'adresse de la puce de mesure est réglée sur *0x40*, tandis que l'adresse de la puce de remplacement est réglée sur *0x41*.
 
-### 11.1.2. Branchement AVEC VOLT
-![Alt text](../capture/RPI/INA219/Avec_Volt.jpg){width=100%}
+### 11.1. Installation physique
 
+L'installation physique du **INA219** implique des branchements spécifiques en fonction des scénarios : avec ou sans le dispositif Volt. Voici les détails de chaque configuration :
 
-![Alt text](../capture/RPI/INA219/Avec_Volt_Detail.jpg){width=100%}
-## 11.2. Vérification de la présence du INA219
+#### 11.1.1. Branchement SANS VOLT
+
+![Schéma de branchement sans Volt](../capture/RPI/INA219/Sans_Volt.jpg)
+
+#### 11.1.2. Branchement AVEC VOLT
+
+Le branchement avec le dispositif Volt ajoute une complexité supplémentaire. Voici un aperçu détaillé de ce branchement :
+
+![Schéma de branchement avec Volt](../capture/RPI/INA219/Avec_Volt.jpg)
+![Détail du branchement avec Volt](../capture/RPI/INA219/Avec_Volt_Detail.jpg)
+
+### 11.2. Vérification de la présence du INA219
+
+Avant de pouvoir commencer à utiliser le **INA219** pour mesurer la consommation, il est crucial de vérifier la présence de la puce et de s'assurer qu'elle est correctement détectée par le système. Cette étape est essentielle pour garantir des mesures précises et fiables tout au long du projet.
+
 ```bash
 tobby@Nidus:~ $ sudo i2cdetect -y 1
      0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
@@ -929,12 +958,17 @@ Shunt voltage: -0.010 mV
 ```
 # 12. Noeud Node-Red
 
-## 12.3. INA219
-![Alt text](../capture/RPI/Node-Red/INA219.png)
+## 12.1. INA219
+
+Dans cette section, nous explorons le composant **INA219**, un élément clé de notre projet. L'**INA219** est équipé de deux sorties qui fournissent des valeurs en milliampères et en volts, offrant ainsi des informations cruciales sur la consommation.
+
+![Image de l'INA219](../capture/RPI/Node-Red/INA219.png)
+
+Pour tirer le meilleur parti de l'INA219, j'ai mis en place une configuration sophistiquée. J'ai configuré des nœuds de fonctions spécifiques pour exclure les valeurs négatives. Ces valeurs négatives sont généralement des erreurs de lecture et doivent être traitées correctement pour garantir des données précises. Ensuite, j'ai élaboré une séquence de traitement pour afficher ces valeurs de manière compréhensible dans un libellé.
+
+En plus de cela, j'ai mis en place un nœud "join" qui joue un rôle crucial. Ce nœud fusionne les deux valeurs obtenues à partir des sorties de l'INA219 en un seul message cohérent. Ce message est ensuite acheminé vers un autre nœud de fonction spécialisé. Ce nœud effectue des calculs complexes pour obtenir les données de consommation en watts. Ces données sont ensuite affichées à la fois dans un libellé, offrant une visualisation claire des résultats, et dans un graphique, permettant une compréhension visuelle de l'évolution de la consommation.
 
 
-Pour l'INA219, il y a deux sortie qui donne les valeurs des MilliAmpère et des Volt, en sortie, j'ai mis des noeud de foctions qui vont "dropper" les valeurs négative qui sont des erreurs de lecture et je traire ensuite les valeurs pour les mettre dans un label.
-A cotée un noeud join joint le deux valeur pour n'en faire qu'un message qui est envoyée à un noeud fonction qui va calculer les watt et les envoyer dans un label et dans un chart. 
 ```javascript
 // Récupérer les valeurs de courant (mA) et de tension (V) depuis les propriétés msg.payload
 var current_mA = msg.payload.miliamps;
@@ -955,36 +989,56 @@ msg.topic = "Watt";
 // Renvoyer le message modifié
 return msg;
 ```
-## 12.4. Monitoring
-![Alt text](../capture/RPI/Node-Red/benchmark.png)
+## 12.2. Monitoring
 
+![Image de Monitoring](../capture/RPI/Node-Red/benchmark.png)
 
-Pour le monitoring, j'ai utilisé le MQTT pour échanger les donnée plus rapidement et plus légèrement que le SSH.
-Depuis le noeud de réception MQTT, les données sont envoyées dans un noeud de gauge qui affiche la valeur en temps réel.
-## 12.1. Dashboard
-Le dashboard est le regroupement de tout les noeuds qui vont permettre de visualiser les données.
-Les noeud qui permettent de visualiser les données sont les suivants :
-- button
-- dropdown
-- switch
-- slider
-- numeric
-- text input
-- date picker
-- colour picker
-- form
-- text
-- gauge
-- chart
-- audio out
-- notification
-- ui control
-- template
+Dans cette section, nous abordons le **Monitoring**, une étape cruciale de notre projet. Pour cette tâche, j'ai choisi d'utiliser le protocole **MQTT**, qui présente des avantages significatifs en termes de rapidité et de légèreté par rapport au **SSH**.
 
-Grâce à ces noeuds, il est possible de créer une interface graphique pour visualiser les données, les modifier et les envoyer et tout ça sans avoir à coder.
+En commençant par la réception des données via le nœud MQTT, celles-ci sont dirigées vers un nœud de type "gauge" (_jauge_) qui affiche la valeur en temps réel. Cette représentation visuelle offre une vue instantanée de la consommation, permettant une surveillance efficace.
 
-## PDF
-### Base
+## 12.3. Dashboard
+
+Le **Dashboard**, en tant que centre de contrôle essentiel, rassemble tous les éléments nécessaires pour une visualisation optimale des données générées.
+
+Il met à disposition un ensemble complet de nœuds spécifiques, créant une interface utilisateur intuitive et interactive. Ces nœuds proposent une gamme variée de fonctionnalités pour présenter, ajuster et transmettre les données. Voici quelques exemples des nœuds qui contribuent à cette expérience :
+
+- **Bouton (_Button_) :** Permet aux utilisateurs d'interagir et de déclencher des actions de manière directe.
+
+- **Liste déroulante (_Dropdown_) :** Offre un moyen de sélectionner parmi plusieurs options, permettant un contrôle structuré des paramètres ou des valeurs.
+
+- **Interrupteur (_Switch_) :** Fournit une transition immédiate entre deux états, souvent utilisé pour activer ou désactiver des fonctionnalités.
+
+- **Curseur (_Slider_) :** Permet un réglage précis d'une valeur numérique en glissant un curseur. Utile pour ajuster des paramètres continus.
+
+- **Champ numérique (_Numeric_) :** Fournit une interface pour entrer des valeurs numériques avec précision.
+
+- **Champ de texte (_Text input_) :** Permet aux utilisateurs d'entrer du texte, généralement pour des commentaires, des descriptions ou des valeurs personnalisées.
+
+- **Sélecteur de date (_Date picker_) :** Facilite la sélection de dates et d'heures, souvent utilisé pour des enregistrements horodatés.
+
+- **Sélecteur de couleur (_Colour picker_) :** Permet de choisir précisément une couleur pour des éléments visuels ou des codes couleur.
+
+- **Formulaire (_Form_) :** Regroupe plusieurs champs de saisie et de contrôle en une entité logique, simplifiant ainsi la collecte de données.
+
+- **Texte (_Text_) :** Affiche du texte ou des instructions pour guider l'utilisateur dans l'interprétation des données ou l'utilisation de l'interface.
+
+- **Jauge (_Gauge_) :** Présente graphiquement une valeur numérique, offrant une visualisation rapide d'un état ou d'une mesure.
+
+- **Graphique (_Chart_) :** Permet la création de divers types de graphiques pour illustrer visuellement les tendances et les relations entre les données.
+
+- **Sortie audio (_Audio out_) :** Peut être utilisée pour fournir des commentaires auditifs ou des alertes sonores.
+
+- **Notification (_Notification_) :** Affiche des messages d'information ou d'alerte à l'utilisateur pour des événements spécifiques.
+
+- **Contrôle d'interface utilisateur (_UI control_) :** Offre des éléments interactifs personnalisables pour répondre aux besoins spécifiques de l'application.
+
+- **Modèle (_Template_) :** Permet d'intégrer du contenu HTML personnalisé, offrant une flexibilité avancée pour inclure graphiques, widgets et plus encore.
+
+Ces nœuds apportent un ensemble puissant d'outils pour la création d'interfaces visuelles riches, éliminant la nécessité d'une programmation manuelle pour chaque élément. Cela encourage la collaboration efficace entre les développeurs et les utilisateurs non techniques dans la conception d'interfaces utilisateur conviviales et informatives.
+
+## 12.4. PDF
+### 12.4.1. Base
 Pour generer un PDF, il faut passer un Json dans le payload du message :
 ```json
   {
@@ -1003,59 +1057,62 @@ Pour generer un PDF, il faut passer un Json dans le payload du message :
 Qui est reçu dans le noeud pdfmake qui le passe en Base64 qui est ensuite reçu dans le noeud write file qui l'ecrie dans un fichier PDF.
 
 ![Alt text](../capture/RPI/Node-Red/PDF1.png)
-## Images de chart et de tableau
-Maintenant que generer un PDF n'est plus un soucis, il faut maintenant y mettre des images.
-En effet avoir les valeurs au moment "t" est bien mais avoir un graphique de ces valeurs est mieux.
-Pour ce faire nous allons utiliser le noeud node-red-contrib-chart-image qui va nous permettre de generer un graphique, ce noeud est basée sur le module chartjs qui permet de créer des graph a base de javascript.
-Il nous faudras aussi le noeud "node-red-node-base64" qui va nous permettre de convertir l'image en base64 et inversement.
+## 12.5. Images de graphiques et de tableaux
+Une fois que la génération de PDF est maîtrisée, il est temps de valoriser davantage les informations en y ajoutant des images.
 
-# Stress Test V1.0
-J'ai créer une page qui permet de créer un raport selon une durée et si l'on execute un stress test ou non sur Nidus et/ou sur Volt.
-Voici le flux complet pour la génération du rapport :
-![Alt text](../capture/RPI/Node-Red/RapportPDF/0.png)
+En effet, bien que disposer des valeurs à un instant donné soit utile, pouvoir visualiser ces valeurs sous forme de graphique est encore plus puissant. Pour réaliser cela, nous utiliserons le nœud **node-red-contrib-chart-image**, qui nous permettra de générer des graphiques. Ce nœud repose sur le module **Chart.js**, qui permet de créer des graphiques en utilisant du code JavaScript.
 
-Il faut être honnête, ce n'est pas très lisible, donc j'ai décidé de traiter étape par étape.
-## Accueil
-![Alt text](../capture/RPI/Node-Red/RapportPDF/1.png)
+En plus du nœud de graphique, nous aurons besoin du nœud **node-red-node-base64**, qui facilitera la conversion d'images en base64 et vice versa. Cette conversion est essentielle pour intégrer les images dans le document PDF.
 
-Au premier abord, on arrive sur un navigateur de fichier et un formulaire, ce formulaire permet de choisir la durée du test et si l'on souhaite faire un stress test sur Nidus et/ou sur Volt.
-Le contenue de la page file qui contient le formulaire est le suivant :
+Cette combinaison de nœuds nous permettra de créer des représentations visuelles attrayantes et informatives des données, offrant ainsi une compréhension plus approfondie et une présentation visuellement engageante.
+# 13. Stress Test V1.0
 
+J'ai créé une page qui permet de générer un rapport en fonction de la durée et de l'exécution d'un stress test sur Nidus et/ou sur Volt. Voici le flux complet pour la génération du rapport:
 
-![Alt text](../capture/RPI/Node-Red/RapportPDF/1.1.png)
+![Flux de Génération du Rapport](../capture/RPI/Node-Red/RapportPDF/0.png)
 
+Pour être honnête, il faut admettre que la lisibilité initiale n'est pas optimale. Par conséquent, j'ai décidé de décomposer le processus en plusieurs étapes afin d'obtenir une meilleure compréhension globale.
 
-Après le remplissage du formulaire :
+## 13.1. Écran d'Accueil
 
+![Écran d'Accueil](../capture/RPI/Node-Red/RapportPDF/1.1.png)
 
-![Alt text](../capture/RPI/Node-Red/RapportPDF/2.png)
+Au premier abord, vous serez accueilli par un navigateur de fichiers et un formulaire. Ce formulaire vous permet de spécifier la durée du test et de décider si vous souhaitez exécuter un test de stress sur Nidus et/ou sur Volt. Voici le contenu de la page "file" qui contient le formulaire:
 
-Les noeud gérant cette partie sont les suivants :
+![Contenu de la Page "file"](../capture/RPI/Node-Red/RapportPDF/1.png)
 
-![Alt text](../capture/RPI/Node-Red/RapportPDF/2.2.png)
+Après avoir rempli le formulaire:
 
-On peut y voir deux choses différente :
-- Un formulaire `Configuration du Test`
-- Un bouton `Purge` sur lequel je reviendrais plus tard
+![Formulaire Rempli](../capture/RPI/Node-Red/RapportPDF/2.png)
 
-Le formulaire contient les donnée rentrer par l'utilisateur, en sortie il vas donc envoyer ce que l'utilisateur à rempli, sur sa sortie deux fonctions sont connectée la première ajoutes les chemins des fichier comme les chart.png et le repport.pdf dans un tableau et la seconde gère le stress test selon les entrée utilisateur pour les envoyer dans un noeud `exec` qui execute la commande sur Nidus et/ou sur Volt.
+Les nœuds responsables de cette section sont les suivants:
 
-La premiere fonction envoie ensuite sur une fonction à sortie multiple qui permet d'envoyer de nombreux message complètement différent.
-## En Execution
-![Alt text](../capture/RPI/Node-Red/RapportPDF/3.png)
+![Nœuds de Gestion](../capture/RPI/Node-Red/RapportPDF/2.2.png)
 
-Pendant l'execution, une `progressbar` est affichée pour montrer l'avancement du test ave un label en dessous de lui pour avoir un chiffrement de l'avancement.
-En background, par contre un certains nombre de choses se produident :
+Deux éléments se distinguent ici:
+- Un formulaire de "Configuration du Test"
+- Un bouton "Purge" dont nous discuterons ultérieurement
 
-![Alt text](../capture/RPI/Node-Red/RapportPDF/3.3.png)
+Le formulaire recueille les données saisies par l'utilisateur. Ensuite, il transmet ces données en sortie. Deux fonctions sont connectées à cette sortie. La première fonction ajoute les chemins des fichiers, tels que "chart.png" et "report.pdf", à un tableau. La seconde fonction gère l'exécution des tests de stress en fonction des entrées de l'utilisateur, et les envoie ensuite à un nœud "exec" qui exécute les commandes sur Nidus et/ou Volt.
 
-Pour détailler: 
-- La premiere sortie de `Activate` est connectée à un `delay` qui permet de gèrer la durée du test et à une autre série de noeud qui gère la bar de progression.
-- La seconde sortie de `Activate` est connectée à un noeud MQTT amélioré qui permet de recevoir le topic auquel il doit s'inscrire donc en début de test il reçoit le topic `#/benchmark/#` et à la fin du test il reçoit le topic `/` qui lui permet de se désinscrire de la part du délay qui à garder son message en mémoire.
-De cette manière nous n'avons les information que nous souhaitons et pas tout les messages qui sont envoyés sur le broker MQTT.
-- La troisième sortie de `Activate` comme les 6 autre sortie de `Activate` font la même chose, elles envoient un message pour changer le topic MQTT.
+La première fonction transmet ensuite les données à une fonction à sorties multiples, ce qui permet d'envoyer différents messages distincts.
 
-Ensuite ces messages sont envoyés dans un noeud `join` qui permet de créer un Array de message qui est ensuite envoyé dans un noeud `function` qui permet de traiter les données notamment en définissant le topic personalisée pour chaque donnée et en calculant la moyenne des valeurs reçues :
+## 13.2. En Exécution
+
+![En Exécution](../capture/RPI/Node-Red/RapportPDF/3.png)
+
+Pendant l'exécution, une **barre de progression** est affichée pour montrer l'avancement du test, accompagnée d'une **étiquette** en dessous pour indiquer le pourcentage d'avancement. Cela permet d'obtenir une meilleure visualisation de l'état d'avancement.
+
+En arrière-plan, un certain nombre de tâches se déroulent :
+
+![Tâches en Arrière-plan](../capture/RPI/Node-Red/RapportPDF/3.3.png)
+
+Pour en donner plus de détails :
+- La première sortie du nœud **Activate** est connectée à un nœud **delay** qui ajuste la durée du test, ainsi qu'à une série d'autres nœuds qui gèrent la barre de progression.
+- La deuxième sortie du nœud **Activate** est reliée à un nœud MQTT amélioré. Celui-ci permet de souscrire aux **topics** appropriés. Au début du test, il souscrit au topic `#/benchmark/#`, puis à la fin du test, il reçoit le topic `/` pour se désinscrire. Cela permet de filtrer uniquement les informations nécessaires et d'éviter d'être submergé par les messages superflus envoyés sur le broker MQTT.
+- Les six autres sorties du nœud **Activate** ont la même fonction. Elles envoient toutes des messages pour modifier le topic MQTT.
+
+Ensuite, ces messages sont acheminés vers un nœud **join**, qui les combine en un tableau de messages. Ce tableau est ensuite transmis à un nœud **function** chargé de traiter les données. Parmi les tâches effectuées par ce nœud figurent la personnalisation des **topics** pour chaque ensemble de données et le calcul de la moyenne des valeurs reçues :
 ```javascript
 // Définir le sujet du message
 msg.topic = "volt/benchmark/cpu";
@@ -1096,15 +1153,16 @@ if (msg.payload && Array.isArray(msg.payload) && msg.payload.length > 0) {
 // Renvoyer le message modifié
 return msg;
 ```
+La partie supérieure permet d'atteindre le même résultat à l'aide de l'INA219. Cependant, puisque je ne peux pas choisir le moment où je veux récupérer les valeurs et qu'elles sont envoyées de manière continue, j'ai utilisé une astuce consistant à détourner les messages de mise à jour de la **barre de progression**. Je les ai synchronisés avec les messages de l'INA219, puis les ai dirigés vers un nœud **join** qui les regroupe. Ensuite, ces messages sont envoyés dans un nœud **switch** qui rejette les messages ne provenant pas de la barre de progression. Cela a pour effet de ne conserver que les messages de l'INA219 pendant le test.
 
-La partie suppélrieur elle permet grâce à l'INA219 d'arriver au même résultat mais comme je ne peux pas dire quand je veux récuperer les valeurs mais qu'elle viennent en continue, j'ai utilisée un subterfuge qui consiste à détourner les messages de mise à jour de la `progressbar`, de les synchroniser avec les messages de l'INA219 et de les envoyer dans un noeud `join` qui va les regrouper et les envoyer dans un noeud switch qui vas "Drop" les messages qui n'ont pas la partie de la progressbar ce qui permet de ne garder que les messages de l'INA219 pendant le test.
+Une fois les ensembles de données collectés, il est temps de les utiliser :
 
-Une fois le jeux de donnée collecter, il faut les utiliser :
+![Utilisation des Données](../capture/RPI/Node-Red/RapportPDF/3.3.3.png)
 
-![Alt text](../capture/RPI/Node-Red/RapportPDF/3.3.3.png)
+Après l'application des fonctions **rename**, deux nœuds **join** sont utilisés pour regrouper les données. L'un regroupe les tableaux de données, tandis que l'autre regroupe les moyennes calculées.
 
-Après les fonctions `rename`, il y deux noeud `join` qui permettent de regrouper les données l'une groupe les tableau de donnée et l'autre groupe les moyenne.
-On vas déja voir ce que l'on fais avec le noeud `Values` car c'est le premier à être utilisée, il permet de créer un tableau de donnée qui est ensuite envoyé dans un noeud dans des noeud de fonctions qui vont traiter ces donnée et les mettre en forme pour en faire des "line chart" sous formme de buffer png :
+Intéressons-nous d'abord au nœud **Values**, car c'est le premier à être utilisé. Il permet de créer un tableau de données qui est ensuite transmis à une série de nœuds de fonctions. Ces nœuds de fonctions traitent les données et les formatent pour créer des **graphiques linéaires** sous forme d'images PNG :
+
 ```javascript
 // Données reçues du flux précédent
 var rawData = msg.payload;
@@ -1151,12 +1209,10 @@ msg.payload = chartData;
 
 return msg;
 ```
+L'exemple ci-dessus est volontairement plus simple, car il ne contient qu'un seul ensemble de données, à savoir les watts de Volt.
+À la sortie de cette fonction, un nœud utilise ce qui a été créé pour générer un **tampon PNG**. Ce tampon est ensuite transmis à un nœud **write file** qui écrit le fichier dans le dossier spécifié par le nœud **Ajoute le nom du fichier**, situé après le formulaire. Simultanément, le nœud envoie également le tampon à un nœud **join** qui attend que tous les graphiques soient créés pour qu'ils puissent être réutilisés.
 
-L'exemple ci dessus est volontairement plus simple car il n'y a que un jeux de donnée qui est les watt de Volt.
-A la sortie de cette fonction, un noeud vas utiliser ce qui à été créer pour en faire un buffer png qui est ensuite envoyé dans un noeud write file qui va écrire le fichier dans le dossier défini par le noeud  `Ajoute le nom du fichier` qui est situé après le formulaire.
-Mais en parralèle, il vas également envoyer à un noeud `joint` qui passient jusqu'a ce que tous les graphique aient été créer et qu'ils puissent donc être réutiliser.
-
-Une fois que le signal à été reçu pour dire que les fichier ont été créer, le noeud joint nommée `Moyenne` peut envoyer ses donnée qui sont réorganisée par un noeud `change` pour être ensuite envoyée dans plusieurs noeud afin de récuperer la base 64 des charts et les envoyer en même temps que les moyennes vers la fonction `Créer le contenue du fichier` :
+Une fois que le signal indiquant que les fichiers ont été créés est reçu, le nœud **join** appelé **Moyenne** peut transmettre ses données. Ces données sont réorganisées par un nœud **change**, puis envoyées à plusieurs autres nœuds pour récupérer les images en base64 des graphiques. Ces images sont envoyées en même temps que les moyennes à la fonction **Créer le contenu du fichier** :
 
 ```javascript
 msg.payload = {
@@ -1275,15 +1331,37 @@ msg.payload = {
 return msg;
 ```
 
-Cette fonction vas créer comme pour les chart une structure utilisée par PDFMake pour créer un .pdf et l'envoyer dans un noeud `pdfmake` qui vas le convertir en base 64 et l'envoyer dans un noeud `write file` qui vas l'écrire dans le dossier défini par le noeud `Ajoute le nom du fichier` qui est situé après le formulaire.
-Le noeud final permet de mettre à jour le template html qui liste les fichier pdf et png dans le dossier défini par le noeud `Ajoute le nom du fichier` qui est situé après le formulaire et qui permet de les télécharger en un clic.
-## Résultat
+Cette fonction va créer, de manière similaire aux graphiques, une structure utilisée par PDFMake pour générer un fichier PDF. Cette structure est ensuite transmise à un nœud **pdfmake**, qui la convertit en base64 et l'envoie à un nœud **write file**. Ce dernier écrit le fichier PDF dans le dossier spécifié par le nœud **Ajoute le nom du fichier**, situé après le formulaire.
+
+Le nœud final permet de mettre à jour le modèle HTML qui répertorie les fichiers PDF et PNG dans le dossier défini par le nœud **Ajoute le nom du fichier**. Ce modèle HTML permet de les télécharger en un seul clic.
+
+## 13.3. Résultat
 ![Alt text](../capture/RPI/Node-Red/RapportPDF/4.png)
 
-4.4 AFAIRE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Pour obtenir les résultats, il suffit de cliquer sur le nom du fichier, qui sera automatiquement téléchargé. Ce processus est géré par ces nœuds :
+
+![Alt text](../capture/RPI/Node-Red/RapportPDF/4.4.png)
+
+La partie supérieure gère l'affichage des fichiers dans un modèle et ajoute aux noms de fichier des requêtes GET qui permettent de télécharger les fichiers en un seul clic. La partie inférieure gère la réception des requêtes GET et envoie le fichier demandé à un nœud **read file**, qui le lit et l'envoie ensuite à un nœud **http response**. Ce dernier envoie le fichier au client ayant effectué la requête.
 
 ![Alt text](../capture/RPI/Node-Red/RapportPDF/5.png)
-# 13. Sources
+
+## 13.4. Purge
+Au cours de mes tests, j'ai réalisé qu'un problème survient lorsque l'on génère un certain nombre de rapports, le dossier devient rapidement surchargé. Par conséquent, j'ai décidé de mettre en place un bouton permettant de purger le dossier de tous les fichiers .pdf et .png qui s'y trouvent. Cependant, pour éviter toute suppression accidentelle de fichiers importants, j'ai mis en place un système de confirmation demandant à l'utilisateur s'il est sûr de vouloir supprimer les fichiers.
+
+![Alt text](../capture/RPI/Node-Red/RapportPDF/6.png)
+![Alt text](../capture/RPI/Node-Red/RapportPDF/7.png)
+
+Voici les nœuds qui gèrent cette partie :
+
+![Alt text](../capture/RPI/Node-Red/RapportPDF/6.6.png)
+
+Ce que l'on peut observer, c'est qu'après avoir appuyé sur le bouton de purge, un message est envoyé dans un nœud `show dialog` qui affiche une fenêtre de confirmation. Si l'utilisateur appuie sur le bouton "Oui", un message est transmis à un nœud de fonction qui vérifie le contenu du message et redemande une confirmation s'il est à nouveau validé. À ce stade, deux flux sont créés :
+- Le premier effectue la purge totale de tous les fichiers dans `/home/NodeRed/`.
+- Le second commence par un délai de quelques secondes avant de recréer les dossiers de structuration.
+
+
+# 14. Sources
 
 1. **Guide d'Installation Node-Red**  
    [Installer Node-Red](https://nodered.org/docs/getting-started/raspberrypi)
