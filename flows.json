@@ -43,7 +43,7 @@
         "id": "e42b4edae71dedd4",
         "type": "ui_tab",
         "name": "Monittoring",
-        "icon": "dashboard",
+        "icon": "warning",
         "order": 3,
         "disabled": false,
         "hidden": false
@@ -266,7 +266,7 @@
         "type": "ui_link",
         "name": "Git",
         "link": "file:////home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/results/curiustrex-20230831071532718/index.html",
-        "icon": "open_in_browser",
+        "icon": "github-circle",
         "target": "iframe",
         "order": 4
     },
