@@ -3667,7 +3667,8 @@
         "wires": [
             [
                 "ccfddceb0c81ceb6",
-                "8460edb64649c3a2"
+                "8460edb64649c3a2",
+                "b975eb740154e03e"
             ]
         ]
     },
@@ -5610,6 +5611,131 @@
         "wires": [
             [
                 "ef49101dcb56820d"
+            ]
+        ]
+    },
+    {
+        "id": "b975eb740154e03e",
+        "type": "function",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "function 4",
+        "func": "msg.payload = \"/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s volt.CuriusTRex -bm --run-mode local\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 1180,
+        "wires": [
+            [
+                "e80abad9260c1ef3"
+            ]
+        ]
+    },
+    {
+        "id": "e80abad9260c1ef3",
+        "type": "exec",
+        "z": "a922dcbcf6a2e8c4",
+        "command": "",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 750,
+        "y": 1180,
+        "wires": [
+            [
+                "b3730dc732aa2abb"
+            ],
+            [
+                "28412999e77c4482"
+            ],
+            [
+                "e85375c7a644494b"
+            ]
+        ]
+    },
+    {
+        "id": "b3730dc732aa2abb",
+        "type": "debug",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "debug 13",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "28412999e77c4482",
+        "type": "debug",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "debug 14",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "e85375c7a644494b",
+        "type": "debug",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "debug 15",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "93b81e31bea6ad80",
+        "type": "inject",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 340,
+        "y": 1180,
+        "wires": [
+            [
+                "b975eb740154e03e"
             ]
         ]
     },
