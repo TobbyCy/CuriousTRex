@@ -282,16 +282,6 @@
         "className": ""
     },
     {
-        "id": "c33a1024a72aa169",
-        "type": "ui_group",
-        "name": "Default",
-        "tab": "cc6c4310cf7b61cc",
-        "order": 1,
-        "disp": true,
-        "width": "6",
-        "collapse": false
-    },
-    {
         "id": "cc6c4310cf7b61cc",
         "type": "ui_tab",
         "name": "Home",
