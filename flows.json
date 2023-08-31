@@ -5845,7 +5845,7 @@
         "y": 1220,
         "wires": [
             [
-                "74d83b382f749c50"
+                "cbe083e30bbcd848"
             ]
         ]
     },
@@ -5861,7 +5861,7 @@
         "y": 1180,
         "wires": [
             [
-                "8a453ed0388c2318"
+                "ac8d781897d82aa4"
             ]
         ]
     },
@@ -5877,7 +5877,7 @@
         "y": 1140,
         "wires": [
             [
-                "310eb1ef9598d6d6"
+                "f66f595e08543684"
             ]
         ]
     },
@@ -5894,8 +5894,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1420,
-        "y": 1140,
+        "x": 1720,
+        "y": 1300,
         "wires": []
     },
     {
@@ -5911,8 +5911,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1420,
-        "y": 1180,
+        "x": 1720,
+        "y": 1340,
         "wires": []
     },
     {
@@ -5928,8 +5928,137 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1420,
+        "x": 1720,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "f66f595e08543684",
+        "type": "change",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Assertion",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1410,
+        "y": 1140,
+        "wires": [
+            [
+                "310eb1ef9598d6d6",
+                "8d75011f3e4a61cd"
+            ]
+        ]
+    },
+    {
+        "id": "ac8d781897d82aa4",
+        "type": "change",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Global",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1430,
+        "y": 1180,
+        "wires": [
+            [
+                "8a453ed0388c2318",
+                "8d75011f3e4a61cd"
+            ]
+        ]
+    },
+    {
+        "id": "cbe083e30bbcd848",
+        "type": "change",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Stats",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1410,
         "y": 1220,
+        "wires": [
+            [
+                "74d83b382f749c50",
+                "8d75011f3e4a61cd"
+            ]
+        ]
+    },
+    {
+        "id": "8d75011f3e4a61cd",
+        "type": "join",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "3",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1630,
+        "y": 1180,
+        "wires": [
+            [
+                "dd0ab59434d9aa58"
+            ]
+        ]
+    },
+    {
+        "id": "dd0ab59434d9aa58",
+        "type": "debug",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "debug 19",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1780,
+        "y": 1180,
         "wires": []
     },
     {
