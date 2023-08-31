@@ -42,7 +42,7 @@
     {
         "id": "e42b4edae71dedd4",
         "type": "ui_tab",
-        "name": "Home",
+        "name": "Monittoring",
         "icon": "dashboard",
         "order": 3,
         "disabled": false,
@@ -229,8 +229,8 @@
         "id": "b63d1f91.68095",
         "type": "ui_tab",
         "name": "StressTest",
-        "icon": "dashboard",
-        "order": 1,
+        "icon": "error_outline",
+        "order": 2,
         "disabled": false,
         "hidden": false
     },
@@ -256,8 +256,8 @@
         "id": "1bfe03ef2a50fdb4",
         "type": "ui_tab",
         "name": "Gatling",
-        "icon": "dashboard",
-        "order": 2,
+        "icon": "error",
+        "order": 1,
         "disabled": false,
         "hidden": false
     },
@@ -280,14 +280,6 @@
         "width": "18",
         "collapse": false,
         "className": ""
-    },
-    {
-        "id": "cc6c4310cf7b61cc",
-        "type": "ui_tab",
-        "name": "Home",
-        "icon": "dashboard",
-        "disabled": false,
-        "hidden": false
     },
     {
         "id": "3f2698910c317457",
@@ -3601,7 +3593,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 580,
+        "x": 600,
         "y": 880,
         "wires": [
             [
@@ -3694,12 +3686,10 @@
         "topicType": "msg",
         "splitLayout": true,
         "className": "",
-        "x": 340,
+        "x": 300,
         "y": 880,
         "wires": [
             [
-                "ccfddceb0c81ceb6",
-                "8460edb64649c3a2",
                 "b975eb740154e03e"
             ]
         ]
@@ -4699,7 +4689,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 580,
+        "x": 600,
         "y": 920,
         "wires": [
             [
