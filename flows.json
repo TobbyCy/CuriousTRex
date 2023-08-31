@@ -4480,7 +4480,7 @@
         "type": "function",
         "z": "a922dcbcf6a2e8c4",
         "name": "Gatling line chart",
-        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload;\n\n// Extraction des données nécessaires\nvar voltCpuData = rawData[\"volt/benchmark/cpu\"];\nvar voltRamData = rawData[\"volt/benchmark/ram\"];\nvar voltProcessesData = rawData[\"volt/benchmark/processes\"];\nvar voltTempData = rawData[\"volt/benchmark/temp\"];\nvar nidusCpuData = rawData[\"nidus/benchmark/cpu\"];\nvar nidusRamData = rawData[\"nidus/benchmark/ram\"];\nvar nidusProcessesData = rawData[\"nidus/benchmark/processes\"];\nvar nidusTempData = rawData[\"nidus/benchmark/temp\"];\n\n// Création du graphique\nvar chartData = {\n    type: 'bar',\n    options: {\n        title: {\n            display: true,\n            text: 'Comparaison des performances'\n        },\n        legend: {\n            display: true\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        plugins: {\n            datalabels: {\n                display: true,\n                backgroundColor: 'whitesmoke',\n                borderRadius: 1,\n                padding: 1,\n                align: 'right',\n                anchor: function (context) {\n                    if (context.dataIndex == context.dataset.data.length - 1) {\n                        return 'center';\n                    } else {\n                        return 'end';\n                    }\n                },\n                offset: 8,\n                formatter: function (value) {\n                    return value > 0 ? value.toLocaleString() : '';\n                }\n            }\n        }\n    },\n    data: {\n        datasets: [\n            {\n                label: \"Volt CPU\",\n                backgroundColor: 'rgba(57,97,184,0.8)',\n                data: voltCpuData\n            },\n            {\n                label: \"Volt RAM\",\n                backgroundColor: 'rgba(127, 184, 57,0.8)',\n                data: voltRamData\n            },\n            {\n                label: \"Volt Processes\",\n                backgroundColor: 'rgba(184, 57, 127,0.8)',\n                data: voltProcessesData\n            },\n            {\n                label: \"Volt Temp\",\n                backgroundColor: 'rgba(184, 127, 57,0.8)',\n                data: voltTempData\n            },\n            {\n                label: \"Nidus CPU\",\n                backgroundColor: 'rgba(97, 184, 57,0.8)',\n                data: nidusCpuData\n            },\n            {\n                label: \"Nidus RAM\",\n                backgroundColor: 'rgba(57,97,127,0.8)',\n                data: nidusRamData\n            },\n            {\n                label: \"Nidus Processes\",\n                backgroundColor: 'rgba(57,127,184,0.8)',\n                data: nidusProcessesData\n            },\n            {\n                label: \"Nidus Temp\",\n                backgroundColor: 'rgba(127, 57, 184,0.8)',\n                data: nidusTempData\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
+        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload.gatling.Global;  // Utiliser les données de msg.payload.gatling.Global\nmsg.topic = \"VoltLineChart\";\n\n// Extraction des données nécessaires\nvar meanResponseTimeData = rawData.meanResponseTime;\nvar maxResponseTimeData = rawData.maxResponseTime;\nvar minResponseTimeData = rawData.minResponseTime;\n\n// Création du graphique\nvar chartData = {\n    type: 'line',  // Changement du type de graphique en \"line\"\n    options: {\n        title: {\n            display: true,\n            text: 'Comparaison des performances'\n        },\n        legend: {\n            display: true\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        plugins: {\n            datalabels: {\n                display: false  // Désactiver l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: [\"Mean Response Time\", \"Max Response Time\", \"Min Response Time\"],\n        datasets: [\n            {\n                label: \"Response Time\",\n                borderColor: 'rgba(0, 128, 255, 1)',  // Couleur de la ligne (couleur froide pour Volt)\n                fill: false,  // Désactiver le remplissage sous la ligne\n                data: [meanResponseTimeData, maxResponseTimeData, minResponseTimeData],\n                pointRadius: 0,\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -5599,7 +5599,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 590,
+        "x": 510,
         "y": 1180,
         "wires": [
             [
@@ -5619,8 +5619,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 750,
-        "y": 1180,
+        "x": 710,
+        "y": 1160,
         "wires": [
             [
                 "5c4ef43f4797fcea"
@@ -6184,9 +6184,60 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1680,
-        "y": 440,
+        "x": 1660,
+        "y": 400,
         "wires": []
+    },
+    {
+        "id": "9c9b12491f34115a",
+        "type": "chart-image",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "",
+        "width": "1920",
+        "height": "1920",
+        "x": 1910,
+        "y": 460,
+        "wires": [
+            [
+                "c021639bf321ede6"
+            ]
+        ]
+    },
+    {
+        "id": "988608530bbba437",
+        "type": "function",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "Gatling line chart",
+        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload.gatling.Global;  // Utiliser les données de msg.payload.gatling.Global\nmsg.topic = \"VoltBarChart\";\n\n// Extraction des données nécessaires\nvar groupData = [\n    rawData.group1,\n    rawData.group2,\n    rawData.group3,\n    rawData.group4\n];\n\nvar labels = [];\nvar percentages = [];\n\n// Parcourir les données des groupes et extraire les informations\nfor (var i = 1; i <= groupData.length; i++) {\n    var groupName = \"group\" + i;\n    labels.push(rawData[groupName].htmlName);\n    percentages.push(rawData[groupName].percentage);\n}\n\n// Création du graphique\nvar chartData = {\n    type: 'bar',  // Utiliser un graphique de type \"bar\"\n    options: {\n        title: {\n            display: true,\n            text: 'Répartition des performances par groupe'\n        },\n        scales: {\n            x: {\n                beginAtZero: true,\n                title: {\n                    display: true,\n                    text: 'Groupes'\n                }\n            },\n            y: {\n                beginAtZero: true,\n                title: {\n                    display: true,\n                    text: 'Pourcentage'\n                }\n            }\n        },\n        plugins: {\n            datalabels: {\n                anchor: 'end',\n                align: 'top',\n                formatter: function (value) {\n                    return value + '%';  // Ajouter le symbole de pourcentage à l'étiquette\n                }\n            }\n        }\n    },\n    data: {\n        labels: labels,\n        datasets: [\n            {\n                label: \"Pourcentage\",\n                backgroundColor: 'rgba(0, 128, 255, 0.7)',  // Couleur du remplissage des barres\n                data: percentages\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1690,
+        "y": 460,
+        "wires": [
+            [
+                "9c9b12491f34115a"
+            ]
+        ]
+    },
+    {
+        "id": "c021639bf321ede6",
+        "type": "file",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "Image dump",
+        "filename": "/home/NodeRed/png/gatling2.png",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 2170,
+        "y": 460,
+        "wires": [
+            []
+        ]
     },
     {
         "id": "9ba0d599c2412587",
