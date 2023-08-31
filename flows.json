@@ -5655,14 +5655,11 @@
         "name": "",
         "props": [
             {
-                "p": "payload"
-            },
-            {
                 "p": "topic",
                 "vt": "str"
             },
             {
-                "p": "gatling",
+                "p": "payload.gatling",
                 "v": "true",
                 "vt": "bool"
             }
@@ -5672,9 +5669,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "inject",
-        "payload": "",
-        "payloadType": "date",
-        "x": 360,
+        "x": 330,
         "y": 1220,
         "wires": [
             [
