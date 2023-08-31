@@ -282,33 +282,63 @@
         "className": ""
     },
     {
-        "id": "eb5aba4609bb4a91",
+        "id": "be3fa1648f81b7f8",
         "type": "ui_spacer",
         "z": "a922dcbcf6a2e8c4",
         "name": "spacer",
         "group": "7a02dc45cdd22958",
-        "order": 8,
+        "order": 3,
         "width": 18,
         "height": 1
     },
     {
-        "id": "d814b162a22ee785",
+        "id": "bb3da1a227fe4afe",
+        "type": "ui_spacer",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "spacer",
+        "group": "7a02dc45cdd22958",
+        "order": 5,
+        "width": 18,
+        "height": 1
+    },
+    {
+        "id": "59a81a0b376d9ac6",
         "type": "ui_spacer",
         "z": "a922dcbcf6a2e8c4",
         "name": "spacer",
         "group": "7a02dc45cdd22958",
         "order": 9,
-        "width": 18,
+        "width": 7,
         "height": 1
     },
     {
-        "id": "1d5233a45250f2a4",
+        "id": "0ab0a1bd8999e81e",
         "type": "ui_spacer",
         "z": "a922dcbcf6a2e8c4",
         "name": "spacer",
         "group": "7a02dc45cdd22958",
         "order": 11,
-        "width": 15,
+        "width": 7,
+        "height": 1
+    },
+    {
+        "id": "19991fe2a27876e3",
+        "type": "ui_spacer",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "spacer",
+        "group": "7a02dc45cdd22958",
+        "order": 12,
+        "width": 7,
+        "height": 1
+    },
+    {
+        "id": "b4a23a910ca1113f",
+        "type": "ui_spacer",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "spacer",
+        "group": "7a02dc45cdd22958",
+        "order": 13,
+        "width": 7,
         "height": 1
     },
     {
@@ -3324,7 +3354,7 @@
         "z": "a922dcbcf6a2e8c4",
         "name": "",
         "group": "7a02dc45cdd22958",
-        "order": 5,
+        "order": 6,
         "width": 4,
         "height": 2,
         "passthru": true,
@@ -3352,7 +3382,7 @@
         "z": "a922dcbcf6a2e8c4",
         "group": "7a02dc45cdd22958",
         "name": "",
-        "order": 2,
+        "order": 1,
         "width": 18,
         "height": 6,
         "format": "<div ng-bind-html=\"msg.payload\" height=\"400\" style=\"height: 400px;\"><br/>\n</div>\n<style>\n/* Applique des styles aux liens */\na[href] {\ncolor: #d93347; /* Couleur du lien */\ntext-decoration: none; /* Pas de soulignement */\n}\n\n/* Applique des styles au survol des liens */\na[href]:hover {\ncolor: #cb0505; /* Couleur du lien au survol */\ntext-decoration: underline; /* Soulignement au survol */\n}\n</style>",
@@ -3638,7 +3668,7 @@
         "name": "Configuration du Test",
         "label": "",
         "group": "7a02dc45cdd22958",
-        "order": 3,
+        "order": 2,
         "width": 0,
         "height": 0,
         "options": [
@@ -4537,7 +4567,8 @@
         "wires": [
             [
                 "a7517383bc84984d",
-                "0430440efc580a59"
+                "0430440efc580a59",
+                "be0b3e6b285f3ce7"
             ]
         ]
     },
@@ -5446,7 +5477,7 @@
         "type": "ui_text",
         "z": "a922dcbcf6a2e8c4",
         "group": "7a02dc45cdd22958",
-        "order": 6,
+        "order": 7,
         "width": 10,
         "height": 2,
         "name": "Time",
@@ -5491,7 +5522,7 @@
         "z": "a922dcbcf6a2e8c4",
         "name": "",
         "group": "7a02dc45cdd22958",
-        "order": 7,
+        "order": 8,
         "width": 4,
         "height": 2,
         "passthru": true,
@@ -5717,8 +5748,8 @@
         "group": "7a02dc45cdd22958",
         "name": "Upload Btn",
         "order": 10,
-        "width": 3,
-        "height": 1,
+        "width": 4,
+        "height": 2,
         "format": "<body>\n  <!-- Bouton pour déclencher l'importation des données -->\n  <button class=\"md-raised md-button md-ink-ripple\" onclick=\"importerDonnees()\">Télécharger</button>\n\n  <script>\n    // Conservez la portée originale\n    let restaureScope = scope;\n\n    // Fonction pour importer les données\n    function importerDonnees() {\n      // Créez un élément d'entrée de type fichier\n      let input = document.createElement('input');\n      input.type = 'file';\n      input.id = 'boutonRestaurer';\n\n      // Définissez l'événement onchange\n      input.onchange = _ => {\n        // Obtenez le nom du fichier choisi\n        let nomFichier = input.files[0].name;\n\n        // Vous pouvez utiliser cette méthode pour obtenir le fichier et effectuer les opérations respectives\n        let lecteurFichier = new FileReader();\n        lecteurFichier.readAsText(input.files[0]);\n\n        // Gérez la fin du chargement du fichier\n        lecteurFichier.onloadend = function(event){\n          // Envoyez les données lues et le nom du fichier à la portée originale\n          restaureScope.send({payload: event.target.result});\n        };\n      };\n\n      // Déclenchez le clic sur l'élément d'entrée de type fichier\n      input.click();\n    }\n  </script>\n</body>",
         "storeOutMessages": true,
         "fwdInMessages": true,
@@ -6230,7 +6261,8 @@
         "y": 460,
         "wires": [
             [
-                "c021639bf321ede6"
+                "c021639bf321ede6",
+                "be0b3e6b285f3ce7"
             ]
         ]
     },
@@ -6239,7 +6271,7 @@
         "type": "function",
         "z": "a922dcbcf6a2e8c4",
         "name": "Gatling line chart",
-        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload.gatling.Global;  // Utiliser les données de msg.payload.gatling.Global\nmsg.topic = \"VoltBarChart\";\n\n// Extraction des données nécessaires\nvar groupData = [\n    rawData.group1,\n    rawData.group2,\n    rawData.group3,\n    rawData.group4\n];\n\nvar labels = [];\nvar percentages = [];\n\n// Parcourir les données des groupes et extraire les informations\nfor (var i = 1; i <= groupData.length; i++) {\n    var groupName = \"group\" + i;\n    labels.push(rawData[groupName].htmlName);\n    percentages.push(rawData[groupName].percentage);\n}\n\n// Création du graphique\nvar chartData = {\n    type: 'bar',  // Utiliser un graphique de type \"bar\"\n    options: {\n        title: {\n            display: true,\n            text: 'Répartition des performances par groupe'\n        },\n        scales: {\n            x: {\n                beginAtZero: true,\n                title: {\n                    display: true,\n                    text: 'Groupes'\n                }\n            },\n            y: {\n                beginAtZero: true,\n                title: {\n                    display: true,\n                    text: 'Pourcentage'\n                }\n            }\n        },\n        plugins: {\n            datalabels: {\n                anchor: 'end',\n                align: 'top',\n                formatter: function (value) {\n                    return value + '%';  // Ajouter le symbole de pourcentage à l'étiquette\n                }\n            }\n        }\n    },\n    data: {\n        labels: labels,\n        datasets: [\n            {\n                label: \"Pourcentage\",\n                backgroundColor: 'rgba(0, 128, 255, 0.7)',  // Couleur du remplissage des barres\n                data: percentages\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
+        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload.gatling.Global;  // Utiliser les données de msg.payload.gatling.Global\nmsg.topic = \"VoltBarChart\";\n\n// Extraction des données nécessaires\nvar groupData = [\n    rawData.group1,\n    rawData.group2,\n    rawData.group3,\n    rawData.group4\n];\n\nvar labels = [];\nvar percentages = [];\n\n// Parcourir les données des groupes et extraire les informations\nfor (var i = 1; i <= groupData.length; i++) {\n    var groupName = \"group\" + i;\n    labels.push(rawData[groupName].htmlName);\n    percentages.push(rawData[groupName].percentage);\n}\n\n// Création du graphique\nvar chartData = {\n    type: 'bar',  // Utiliser un graphique de type \"bar\"\n    options: {\n        title: {\n            display: true,\n            text: 'Répartition des performances par groupe'\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        scales: {\n            x: {\n                beginAtZero: true,\n                title: {\n                    display: true,\n                    text: 'Groupes'\n                }\n            },\n            y: {\n                beginAtZero: true,\n                title: {\n                    display: true,\n                    text: 'Pourcentage'\n                }\n            }\n        },\n        plugins: {\n            datalabels: {\n                anchor: 'end',\n                align: 'top',\n                formatter: function (value) {\n                    return value + '%';  // Ajouter le symbole de pourcentage à l'étiquette\n                }\n            }\n        }\n    },\n    data: {\n        labels: labels,\n        datasets: [\n            {\n                label: \"Pourcentage\",\n                backgroundColor: 'rgba(0, 128, 255, 0.7)',  // Couleur du remplissage des barres\n                data: percentages\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -6269,6 +6301,22 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "be0b3e6b285f3ce7",
+        "type": "debug",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "debug 22",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2180,
+        "y": 400,
+        "wires": []
     },
     {
         "id": "9ba0d599c2412587",
