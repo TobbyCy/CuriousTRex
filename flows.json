@@ -3631,28 +3631,49 @@
                 "label": "Temps de mesure en minutes",
                 "value": "time",
                 "type": "number",
-                "required": false,
+                "required": true,
                 "rows": null
             },
             {
                 "label": "Stress test Nidus",
                 "value": "stressNidus",
                 "type": "checkbox",
-                "required": false,
+                "required": true,
                 "rows": null
             },
             {
                 "label": "Stress test Volt",
                 "value": "stressVolt",
                 "type": "checkbox",
-                "required": false,
+                "required": true,
                 "rows": null
             },
             {
                 "label": "Temps de Stress test",
                 "value": "timeStress",
                 "type": "number",
-                "required": false,
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Gatling",
+                "value": "gatling",
+                "type": "checkbox",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Temps de montée",
+                "value": "time_gatling",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Nombre d'utilisateur",
+                "value": "user_gatling",
+                "type": "text",
+                "required": true,
                 "rows": null
             }
         ],
@@ -3661,7 +3682,10 @@
             "time": "",
             "stressNidus": false,
             "stressVolt": false,
-            "timeStress": ""
+            "timeStress": "",
+            "gatling": false,
+            "time_gatling": "",
+            "user_gatling": ""
         },
         "payload": "",
         "submit": "submit",
@@ -5223,7 +5247,6 @@
         "y": 680,
         "wires": [
             [
-                "e278544433cd9ac3",
                 "2066f01c2c7ae07f",
                 "598fe1090c5b4a0f"
             ]
@@ -5258,57 +5281,6 @@
         ]
     },
     {
-        "id": "e278544433cd9ac3",
-        "type": "debug",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "debug 10",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1680,
-        "y": 460,
-        "wires": []
-    },
-    {
-        "id": "409140a7fc8b2547",
-        "type": "debug",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "debug 11",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1680,
-        "y": 500,
-        "wires": []
-    },
-    {
-        "id": "6a39a6de2e5b066a",
-        "type": "debug",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "debug 12",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2000,
-        "y": 400,
-        "wires": []
-    },
-    {
         "id": "2066f01c2c7ae07f",
         "type": "function",
         "z": "a922dcbcf6a2e8c4",
@@ -5323,8 +5295,7 @@
         "y": 540,
         "wires": [
             [
-                "045abdd5d7ffb815",
-                "409140a7fc8b2547"
+                "045abdd5d7ffb815"
             ]
         ]
     },
@@ -5340,7 +5311,6 @@
         "wires": [
             [
                 "69eacb13e42212e2",
-                "6a39a6de2e5b066a",
                 "0430440efc580a59"
             ]
         ]
@@ -5707,7 +5677,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 340,
-        "y": 1180,
+        "y": 1220,
         "wires": [
             [
                 "b975eb740154e03e"
@@ -5766,7 +5736,7 @@
         "templateScope": "local",
         "className": "",
         "x": 350,
-        "y": 1380,
+        "y": 1360,
         "wires": [
             [
                 "5e18b80e617a3db8"
@@ -5786,8 +5756,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 570,
-        "y": 1380,
+        "x": 490,
+        "y": 1360,
         "wires": []
     },
     {
