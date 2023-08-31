@@ -5670,7 +5670,7 @@
         "onceDelay": 0.1,
         "topic": "inject",
         "x": 330,
-        "y": 1220,
+        "y": 1180,
         "wires": [
             [
                 "b975eb740154e03e"
@@ -5681,14 +5681,14 @@
         "id": "5c4ef43f4797fcea",
         "type": "function",
         "z": "a922dcbcf6a2e8c4",
-        "name": "function 5",
+        "name": "Path",
         "func": "// Fonction pour extraire le chemin après \"file://\"\nvar inputPayload = msg.payload;\n\n// Recherche de l'index de \"file://\"\nvar fileIndex = inputPayload.indexOf(\"file://\");\n\n// Si \"file://\" est trouvé, extrayez le chemin après\nif (fileIndex !== -1) {\n    // Extraire le chemin après \"file://\"\n    var filePath = inputPayload.substring(fileIndex + 7); // +7 pour sauter \"file://\"\n\n    // Supprimer le fichier index.html du chemin, s'il est présent\n        filePath = filePath.substring(0, filePath.length - 12); // -11 pour enlever \"/index.html\"\n\n    // Mettre le chemin extrait dans le message de sortie\n    msg.payload = filePath;\n\n    // Tableau de noms de fichiers .json\n    var jsonFilesList = [\n        \"assertions.json\",\n        \"global_stats.json\",\n        \"stats.json\"\n    ];\n\n    // Créer un tableau de clé-valeurs pour les fichiers .json\n    var jsonFilesKeyValue = {};\n\n    // Parcourir la liste des noms de fichiers et construire les chemins complets\n    for (var i = 0; i < jsonFilesList.length; i++) {\n        var jsonFileName = jsonFilesList[i];\n        var jsonFilePath = filePath + '/js/' + jsonFileName;\n        jsonFilesKeyValue[jsonFileName] = jsonFilePath;\n    }\n\n    // Ajouter le tableau de clé-valeurs au message\n    msg.jsonFiles = jsonFilesKeyValue;\n\n    // Renvoyer le message modifié\n    return msg;\n} else {\n    // Aucun \"file://\" trouvé, renvoyer le message d'origine\n    return msg;\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 920,
+        "x": 910,
         "y": 1180,
         "wires": [
             [
@@ -5704,7 +5704,7 @@
         "type": "debug",
         "z": "a922dcbcf6a2e8c4",
         "name": "debug 14",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -5744,7 +5744,7 @@
         "type": "debug",
         "z": "a922dcbcf6a2e8c4",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -5761,7 +5761,7 @@
         "type": "debug",
         "z": "a922dcbcf6a2e8c4",
         "name": "debug 15",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
