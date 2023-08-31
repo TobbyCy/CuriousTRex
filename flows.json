@@ -3691,7 +3691,8 @@
         "wires": [
             [
                 "b975eb740154e03e",
-                "2fa3243eb334f9f9"
+                "ccfddceb0c81ceb6",
+                "8460edb64649c3a2"
             ]
         ]
     },
@@ -5594,11 +5595,12 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 540,
+        "x": 560,
         "y": 1180,
         "wires": [
             [
-                "e80abad9260c1ef3"
+                "e80abad9260c1ef3",
+                "2fa3243eb334f9f9"
             ]
         ]
     },
@@ -5642,8 +5644,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 940,
-        "y": 1180,
+        "x": 860,
+        "y": 1260,
         "wires": []
     },
     {
@@ -5691,11 +5693,14 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 940,
-        "y": 1140,
+        "x": 920,
+        "y": 1180,
         "wires": [
             [
-                "83839f0cb0323faa"
+                "83839f0cb0323faa",
+                "7a32d8f0501731ad",
+                "53ed3b7bd0332155",
+                "14a5c0936050c6ec"
             ]
         ]
     },
@@ -5712,8 +5717,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1180,
-        "y": 1140,
+        "x": 1100,
+        "y": 1100,
         "wires": []
     },
     {
@@ -5769,8 +5774,167 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 400,
-        "y": 1160,
+        "x": 760,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "7a32d8f0501731ad",
+        "type": "file in",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "Assertion Json",
+        "filename": "jsonFiles[\"assertions.json\"]",
+        "filenameType": "msg",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 1120,
+        "y": 1140,
+        "wires": [
+            [
+                "d647b33c6d2e3f19"
+            ]
+        ]
+    },
+    {
+        "id": "53ed3b7bd0332155",
+        "type": "file in",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "Global Stats Json",
+        "filename": "jsonFiles[\"global_stats.json\"]",
+        "filenameType": "msg",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 1130,
+        "y": 1180,
+        "wires": [
+            [
+                "10727eec043e4c37"
+            ]
+        ]
+    },
+    {
+        "id": "14a5c0936050c6ec",
+        "type": "file in",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "Stats Json",
+        "filename": "jsonFiles[\"stats.json\"]",
+        "filenameType": "msg",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 1110,
+        "y": 1220,
+        "wires": [
+            [
+                "65f34127c479865e"
+            ]
+        ]
+    },
+    {
+        "id": "65f34127c479865e",
+        "type": "json",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1270,
+        "y": 1220,
+        "wires": [
+            [
+                "74d83b382f749c50"
+            ]
+        ]
+    },
+    {
+        "id": "10727eec043e4c37",
+        "type": "json",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1290,
+        "y": 1180,
+        "wires": [
+            [
+                "8a453ed0388c2318"
+            ]
+        ]
+    },
+    {
+        "id": "d647b33c6d2e3f19",
+        "type": "json",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1270,
+        "y": 1140,
+        "wires": [
+            [
+                "310eb1ef9598d6d6"
+            ]
+        ]
+    },
+    {
+        "id": "310eb1ef9598d6d6",
+        "type": "debug",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "debug 16",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1420,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "8a453ed0388c2318",
+        "type": "debug",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "debug 17",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1420,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "74d83b382f749c50",
+        "type": "debug",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "debug 18",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1420,
+        "y": 1220,
         "wires": []
     },
     {
