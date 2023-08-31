@@ -1,0 +1,26 @@
+## Changelog
+
+### Version 0.1.0 - 22 aout 2023
+
+- **Ajout :** Mise en place du dépôt Git pour le suivi du projet.
+- **Ajout :** Documentation
+- **Ajout :** Configuration initiale du matériel nécessaire pour les tests.
+- **Ajout :** Installation des différents systèmes d'exploitation requis.
+- **Ajout :** Installation des programmes essentiels pour le projet.
+
+### Version 1.0.0 - 30 aout 2023
+
+- **Ajout :** Configuration de Node-Red pour le monitoring en temps réel avec MQTT et l'INA219.
+- **Ajout :** Intégration d'un formulaire permettant de générer des rapports de performances personnalisés.
+- **Ajout :** Collecte des données de performance via MQTT pendant la durée choisie par l'utilisateur.
+- **Ajout :** Intégration d'une fonctionnalité de stress test sur Nidus et/ou Volt, avec choix de la durée.
+- **Documentation :** Mise à jour de la documentation pour refléter les nouvelles fonctionnalités.
+
+### Version 2.0.0 - A Venir
+
+- **Ajout :** Intégration de la possibilité d'exécuter des tests Gatling à partir de Node-Red.
+- **Ajout :** Choix de la durée du test Gatling pour adapter aux besoins de l'utilisateur.
+- **Agrégation :** Agrégation des données collectées de la version 1.0 avec les données de test Gatling.
+- **Génération :** Génération automatique d'un rapport PDF consolidant les données de performance.
+- **Optimisation :** Optimisation du processus de génération de rapport pour une expérience utilisateur fluide.
+- **Documentation :** Mise à jour complète de la documentation technique et des guides d'utilisation.
