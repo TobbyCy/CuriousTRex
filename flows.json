@@ -5649,7 +5649,8 @@
         "y": 1180,
         "wires": [
             [
-                "b3730dc732aa2abb"
+                "b3730dc732aa2abb",
+                "5c4ef43f4797fcea"
             ],
             [
                 "28412999e77c4482"
@@ -5736,6 +5737,25 @@
         "wires": [
             [
                 "b975eb740154e03e"
+            ]
+        ]
+    },
+    {
+        "id": "5c4ef43f4797fcea",
+        "type": "function",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "function 5",
+        "func": "// Fonction pour extraire le chemin après \"file://\"\nvar inputPayload = msg.payload;\n\n// Recherche de l'index de \"file://\"\nvar fileIndex = inputPayload.indexOf(\"file://\");\n\n// Si \"file://\" est trouvé, extrayez le chemin après\nif (fileIndex !== -1) {\n    var filePath = inputPayload.substring(fileIndex + 7); // +7 pour sauter \"file://\"\n\n    // Mettre le chemin extrait dans le message de sortie\n    msg.payload = filePath;\n\n    // Renvoyer le message modifié\n    return msg;\n} else {\n    // Aucun \"file://\" trouvé, renvoyer le message d'origine\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 1120,
+        "wires": [
+            [
+                "b3730dc732aa2abb"
             ]
         ]
     },
