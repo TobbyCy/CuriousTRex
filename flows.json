@@ -5619,7 +5619,7 @@
         "type": "function",
         "z": "a922dcbcf6a2e8c4",
         "name": "function 4",
-        "func": "msg.payload = \"/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s volt.CuriusTRex -bm --run-mode local -erjo \\\" -Dusers=500 -Dramp=5\\\"\"\nreturn msg;",
+        "func": "msg.payload = \"/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s volt.CuriusTRex -bm --run-mode local -erjo \\\" -Dusers=5 -Dramp=5\\\"\"\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
