@@ -5619,7 +5619,7 @@
         "type": "function",
         "z": "a922dcbcf6a2e8c4",
         "name": "function 4",
-        "func": "msg.payload = \"/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s volt.CuriusTRex -bm --run-mode local-erjo \\\" - Dusers=500 - Dramp=30\\\"\"\nreturn msg;",
+        "func": "msg.payload = \"/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s volt.CuriusTRex -bm --run-mode local-erjo \\\" - Dusers=500 - Dramp=5\\\"\"\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -5652,8 +5652,12 @@
                 "b3730dc732aa2abb",
                 "5c4ef43f4797fcea"
             ],
-            [],
-            []
+            [
+                "b3730dc732aa2abb"
+            ],
+            [
+                "b3730dc732aa2abb"
+            ]
         ]
     },
     {
@@ -5717,9 +5721,26 @@
         "y": 1140,
         "wires": [
             [
-                "b3730dc732aa2abb"
+                "83839f0cb0323faa"
             ]
         ]
+    },
+    {
+        "id": "83839f0cb0323faa",
+        "type": "debug",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "debug 14",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1180,
+        "y": 1140,
+        "wires": []
     },
     {
         "id": "9ba0d599c2412587",
