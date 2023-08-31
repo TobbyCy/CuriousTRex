@@ -265,9 +265,9 @@
         "id": "0fa13b0866bdba70",
         "type": "ui_link",
         "name": "Git",
-        "link": "file:////home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/results/curiustrex-20230831071532718/index.html",
+        "link": "https://mylos.cifom.ch/gitlab/ToblerC/banc-de-mesures-de-la-consommation-electrique",
         "icon": "github-circle",
-        "target": "iframe",
+        "target": "newtab",
         "order": 4
     },
     {
