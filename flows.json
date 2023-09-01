@@ -3525,7 +3525,7 @@
         "bgcolor": "",
         "className": "",
         "icon": "refresh",
-        "payload": "",
+        "payload": "/home/NodeRed/png",
         "payloadType": "str",
         "topic": "refresh",
         "topicType": "str",
