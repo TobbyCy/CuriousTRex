@@ -3989,8 +3989,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 860,
-        "y": 720,
+        "x": 940,
+        "y": 600,
         "wires": [
             [
                 "9c1d83d903dfd7c6"
@@ -4098,7 +4098,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 460,
+        "x": 420,
         "y": 720,
         "wires": [
             [
@@ -4126,7 +4126,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 650,
+        "x": 690,
         "y": 720,
         "wires": [
             [
@@ -4145,7 +4145,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 530,
+        "x": 390,
         "y": 780,
         "wires": [
             [
@@ -4414,7 +4414,7 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 650,
+        "x": 690,
         "y": 680,
         "wires": [
             []
@@ -4744,8 +4744,8 @@
         "z": "a922dcbcf6a2e8c4",
         "name": "",
         "handle": "173c4031bd3a25c0",
-        "x": 450,
-        "y": 600,
+        "x": 430,
+        "y": 560,
         "wires": [
             [
                 "b26ae55967e0b99e"
@@ -5078,8 +5078,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 480,
-        "y": 680,
+        "x": 420,
+        "y": 660,
         "wires": [
             [
                 "998dbf39131946cb"
@@ -5104,7 +5104,7 @@
         "fontSize": "30",
         "color": "#e01b24",
         "x": 430,
-        "y": 640,
+        "y": 600,
         "wires": []
     },
     {
