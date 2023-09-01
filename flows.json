@@ -3995,8 +3995,8 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 1430,
-        "y": 700,
+        "x": 1570,
+        "y": 740,
         "wires": [
             [
                 "d97a7e3571e5c7a3",
@@ -5581,7 +5581,7 @@
         "joinerType": "str",
         "accumulate": false,
         "timeout": "",
-        "count": "3",
+        "count": "4",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
@@ -6153,8 +6153,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1660,
-        "y": 260,
+        "x": 1520,
+        "y": 320,
         "wires": []
     },
     {
