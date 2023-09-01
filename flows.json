@@ -43,7 +43,7 @@
         "id": "4e666803b8f3f742",
         "type": "subflow",
         "name": "MQTT Period",
-        "info": "",
+        "info": "## Entrée :\nLe sous-flux accepte des messages MQTT entrants sur un sujet spécifié. Le sujet MQTT est défini par l'utilisateur lorsqu'il utilise le sous-flux :\n- msg.topic : Le topic MQTT à écouter.\n- msg.delay : La période durant lquelle on veut écouter le topic.\n## Sortie :\nAprès une période d'écoute définie par l'utilisateur (ou un délai par défaut), le sous-flux renvoie un message contenant les informations suivantes :\n- msg.payload : Un tableau (array) contenant toutes les valeurs numériques reçues sur le sujet MQTT pendant la période d'écoute.\n- msg.moyenne : La moyenne des valeurs numériques. Cette moyenne est calculée avec précision, arrondie à deux chiffres après la virgule, et au multiple de 0.05 le plus proche.\n- msg.topic : Le sujet MQTT d'origine auquel le sous-flux était abonné.\n\n## Utilisation :\n\n- Un utilisateur connecte le sous-flux à un nœud MQTT.\n- L'utilisateur configure le sujet MQTT auquel il souhaite s'abonner en fournissant un message avec la propriété msg.topic définie sur ce sujet.\n- Le sous-flux écoute les messages sur ce sujet pendant la durée spécifiée (ou un délai par défaut).\n- Pendant cette période, il recueille toutes les valeurs numériques reçues sur ce sujet.\n- À la fin de la période d'écoute, il calcule la moyenne de ces valeurs numériques.\n- Le résultat est renvoyé sous forme de message avec les propriétés décrites ci-dessus.\n\nAinsi, ce sous-flux permet aux utilisateurs de surveiller un sujet MQTT pendant un certain temps, de collecter des données numériques à partir de ce sujet, de calculer leur moyenne, et de renvoyer ces informations pour une utilisation ultérieure. Le sous-flux peut être configuré pour utiliser un délai par défaut ou pour accepter un délai spécifique fourni par l'utilisateur.",
         "category": "",
         "in": [
             {
@@ -76,7 +76,8 @@
             "version": "1.0.0",
             "license": "GPL-3.0"
         },
-        "color": "#DDAA99"
+        "color": "#D7D7A0",
+        "icon": "node-red/status.svg"
     },
     {
         "id": "e42b4edae71dedd4",
@@ -3071,7 +3072,6 @@
         "y": 600,
         "wires": [
             [
-                "e9f03e26ef2155ab",
                 "8783fd80a6da0d24",
                 "9a3d6e47ed36af55"
             ]
@@ -3106,57 +3106,6 @@
         ]
     },
     {
-        "id": "e9f03e26ef2155ab",
-        "type": "debug",
-        "z": "8b4c08f2a705dd79",
-        "name": "debug 7",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1500,
-        "y": 380,
-        "wires": []
-    },
-    {
-        "id": "7acc3fa0a5dcc2fb",
-        "type": "debug",
-        "z": "8b4c08f2a705dd79",
-        "name": "debug 8",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1500,
-        "y": 420,
-        "wires": []
-    },
-    {
-        "id": "8ecf31daa1a605e7",
-        "type": "debug",
-        "z": "8b4c08f2a705dd79",
-        "name": "debug 9",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1820,
-        "y": 320,
-        "wires": []
-    },
-    {
         "id": "8783fd80a6da0d24",
         "type": "function",
         "z": "8b4c08f2a705dd79",
@@ -3171,8 +3120,7 @@
         "y": 460,
         "wires": [
             [
-                "df8c40fc1071e2b0",
-                "7acc3fa0a5dcc2fb"
+                "df8c40fc1071e2b0"
             ]
         ]
     },
@@ -3188,7 +3136,6 @@
         "wires": [
             [
                 "72b2cd6c7aeb1dcb",
-                "8ecf31daa1a605e7",
                 "0cb19cef3d4b79aa"
             ]
         ]
@@ -3892,7 +3839,7 @@
         "type": "function",
         "z": "a922dcbcf6a2e8c4",
         "name": "Créer le contenue du fichier",
-        "func": "msg.payload = {\n    header: function (currentPage, pageCount, pageSize) {\n        return [\n            {\n                text: \"Tobler Cyril\",\n                alignment: \"left\",\n                fontSize: 10,\n                margin: [15, 10, 0, 0]\n            },\n            {\n                text: \"Nom du projet : Confuse T-Rex\",\n                alignment: \"center\",\n                fontSize: 10,\n                margin: [0, 0, 0, 0]\n            }\n        ];\n    },\n    footer: function (currentPage, pageCount) {\n        return {\n            columns: [\n                {\n                    text: currentPage.toString() + \" / \" + pageCount,\n                    alignment: \"left\",\n                    fontSize: 10,\n                    margin: [15, 0, 0, 10]\n                },\n                {\n                    text: new Date().toLocaleDateString(\"fr-FR\"),\n                    alignment: \"right\",\n                    fontSize: 10,\n                    margin: [0, 0, 15, 10]\n                }\n            ],\n            margin: [0, 0, 0, 10]\n        };\n    },\n    content: [\n        {\n            text: \"Rapport d'utilisation\",\n            style: \"header\",\n            margin: [0, 10, 0, 0]\n        },\n        {\n            text: \"Les valeurs sont des moyennes sur les \" + Math.floor(msg.delay / (1000 * 60)) + \" dèrnière minutes\"\n        },\n        {\n            text: \"Nidus :\",\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"nidus/benchmark/cpu\"]\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"nidus/benchmark/ram\"]\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"nidus/benchmark/processes\"]\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"nidus/benchmark/temp\"]\n        },\n        {\n            image: 'nidusImage',\n            width: 500,\n            pageBreak: 'after',\n        },\n        {\n            text: \"Volt\",\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"volt/benchmark/cpu\"]\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"volt/benchmark/ram\"]\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"volt/benchmark/processes\"]\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"volt/benchmark/temp\"]\n        }, \n        {\n            text: \"MilliWatt :           \" + msg.payload.moyenne[\"volt/benchmark/watt\"]\n        },\n        {\n            image: 'voltImage',\n            width: 500,\n        }, \n        {\n            image: 'wattImage',\n            width: 500,\n            pageBreak: 'after',\n        },\n        {\n            text: \"Gatling\",\n            style: \"header2\"\n        },\n        {\n            text: \"Nom de la simulation :                 \" + msg.payload.gatling.Assertion.simulation\n        },\n        {\n            text: \"Commencée :                 \" + msg.payload.gatling.Assertion.start // à formatter\n        },\n        {\n            image: 'gatlingImage',\n            width: 500,\n\n        }, \n        {\n            image: 'gatlingGraphComplete',\n            width: 500,\n\n        },\n\n    ],\n    images: {\n        voltImage: 'data:image/png;base64,' + msg.payload.voltGraph.toString('base64'), // Utilisation du buffer pour l'image Volt\n        wattImage: 'data:image/png;base64,' + msg.payload.wattGraph.toString('base64'),  // Utilisation du buffer pour l'image Watt de volt\n        nidusImage: 'data:image/png;base64,' + msg.payload.nidusGraph.toString('base64'),  // Utilisation du buffer pour l'image Nidus\n        gatlingImage: 'data:image/png;base64,' + msg.payload.gatlingGraph.toString('base64'),  // Utilisation du buffer pour l'image Gatling\n        gatlingGraphComplete: 'data:image/png;base64,' + msg.payload.gatlingGraphComplete.toString('base64'),  // Utilisation du buffer pour l'image Gatling\n    },\n    styles: {\n        header: {\n            fontSize: 22,\n            bold: true,\n            margin: [0, 30, 0, 0]\n        },\n        header2: {\n            fontSize: 18,\n            bold: true,\n            margin: [0, 20, 0, 0]\n        }\n    }\n};\n\nreturn msg;\n",
+        "func": "// Création des données pour le rapport PDF\nmsg.payload = {\n    header: function (currentPage, pageCount, pageSize) {\n        return [\n            {\n                text: \"Tobler Cyril\", // Votre nom\n                alignment: \"left\",\n                fontSize: 10,\n                margin: [15, 10, 0, 0]\n            },\n            {\n                text: \"Nom du projet : Confuse T-Rex\", // Nom de votre projet\n                alignment: \"center\",\n                fontSize: 10,\n                margin: [0, 0, 0, 0]\n            }\n        ];\n    },\n    footer: function (currentPage, pageCount) {\n        return {\n            columns: [\n                {\n                    text: currentPage.toString() + \" / \" + pageCount, // Numéro de page actuel / Nombre total de pages\n                    alignment: \"left\",\n                    fontSize: 10,\n                    margin: [15, 0, 0, 10]\n                },\n                {\n                    text: new Date().toLocaleDateString(\"fr-FR\"), // Date actuelle au format français\n                    alignment: \"right\",\n                    fontSize: 10,\n                    margin: [0, 0, 15, 10]\n                }\n            ],\n            margin: [0, 0, 0, 10]\n        };\n    },\n    content: [\n        {\n            text: \"Rapport d'utilisation\", // Titre du rapport\n            style: \"header\",\n            margin: [0, 10, 0, 0]\n        },\n        {\n            text: \"Les valeurs sont des moyennes sur les \" + Math.floor(msg.delay / (1000 * 60)) + \" dernières minutes\" // Informations sur les valeurs\n        },\n        {\n            text: \"Nidus :\", // Section Nidus\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"nidus/benchmark/cpu\"] // Valeur CPU de Nidus\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"nidus/benchmark/ram\"] // Valeur RAM de Nidus\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"nidus/benchmark/processes\"] // Nombre de processus de Nidus\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"nidus/benchmark/temp\"] // Température CPU de Nidus\n        },\n        {\n            image: 'nidusImage', // Image de Nidus\n            width: 500,\n            pageBreak: 'after', // Saut de page après l'image\n        },\n        {\n            text: \"Volt\", // Section Volt\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"volt/benchmark/cpu\"] // Valeur CPU de Volt\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"volt/benchmark/ram\"] // Valeur RAM de Volt\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"volt/benchmark/processes\"] // Nombre de processus de Volt\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"volt/benchmark/temp\"] // Température CPU de Volt\n        },\n        {\n            text: \"MilliWatt :           \" + msg.payload.moyenne[\"volt/benchmark/watt\"] // Valeur MilliWatt de Volt\n        },\n        {\n            image: 'voltImage', // Image de Volt\n            width: 500,\n        },\n        {\n            image: 'wattImage', // Image Watt de Volt\n            width: 500,\n            pageBreak: 'after', // Saut de page après l'image\n        },\n        {\n            text: \"Gatling\", // Section Gatling\n            style: \"header2\"\n        },\n        {\n            text: \"Nom de la simulation :                 \" + msg.payload.gatling.Assertion.simulation // Nom de la simulation Gatling\n        },\n        {\n            text: \"Commencée :                 \" + msg.payload.gatling.Assertion.start // Date de début de la simulation Gatling (à formater)\n        },\n        {\n            image: 'gatlingImage', // Image Gatling\n            width: 500,\n        },\n        {\n            image: 'gatlingGraphComplete', // Image graphique complet Gatling\n            width: 500,\n        },\n    ],\n    images: {\n        voltImage: 'data:image/png;base64,' + msg.payload.voltGraph.toString('base64'), // Utilisation du buffer pour l'image Volt\n        wattImage: 'data:image/png;base64,' + msg.payload.wattGraph.toString('base64'),  // Utilisation du buffer pour l'image Watt de Volt\n        nidusImage: 'data:image/png;base64,' + msg.payload.nidusGraph.toString('base64'),  // Utilisation du buffer pour l'image Nidus\n        gatlingImage: 'data:image/png;base64,' + msg.payload.gatlingGraph.toString('base64'),  // Utilisation du buffer pour l'image Gatling\n        gatlingGraphComplete: 'data:image/png;base64,' + msg.payload.gatlingGraphComplete.toString('base64'),  // Utilisation du buffer pour l'image Gatling\n    },\n    styles: {\n        header: {\n            fontSize: 22,\n            bold: true,\n            margin: [0, 30, 0, 0]\n        },\n        header2: {\n            fontSize: 18,\n            bold: true,\n            margin: [0, 20, 0, 0]\n        }\n    }\n};\n\nreturn msg; // Renvoyer le message\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4003,8 +3950,7 @@
                 "0dc4013efbfe82f3",
                 "eac3d22677e48498",
                 "015cd0934fa7211e",
-                "988608530bbba437",
-                "269a7059c673729f"
+                "988608530bbba437"
             ]
         ]
     },
@@ -4032,8 +3978,7 @@
         "y": 820,
         "wires": [
             [
-                "08696f6284b66ed1",
-                "f0d62bba52abaa77"
+                "08696f6284b66ed1"
             ]
         ]
     },
@@ -4137,7 +4082,7 @@
         "type": "function",
         "z": "a922dcbcf6a2e8c4",
         "name": "Gatling line chart Complet",
-        "func": "// Assurez-vous que msg.payload.gatling.Log est un tableau\nvar logEntries = Array.isArray(msg.payload.gatling.Log) ? msg.payload.gatling.Log : [];\n\n// Extraction des données nécessaires depuis msg.payload.gatling.Log\nvar chartData = {\n    type: 'line',\n    options: {\n        title: {\n            display: true,\n            text: 'Comparaison des performances'\n        },\n        legend: {\n            display: true\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        plugins: {\n            datalabels: {\n                display: false\n            }\n        }\n    },\n    data: {\n        labels: logEntries.map(function (entry) {\n            if (entry.type === 'RUN') {\n                return 'Simulation Start'; // Label pour les opérations de type \"RUN\"\n            } else if (entry.type === 'REQUEST') {\n                // Calcul de la différence en millisecondes entre le début de la simulation et le début de la requête\n                var simulationStart = logEntries.find(function (item) {\n                    return item.type === 'RUN';\n                });\n                if (simulationStart) {\n                    var startTime = simulationStart.start;\n                    var requestTime = entry.start;\n                    var timeDiff = requestTime - startTime;\n                    return (timeDiff/1000).toFixed(0) + ' s';\n                } else {\n                    return 'N/A';\n                }\n            } else {\n                return ''; // Autres types d'opérations (USER, etc.) sans label\n            }\n        }),\n        datasets: [\n            {\n                label: \"Response Time\",\n                borderColor: 'rgba(0, 128, 255, 1)',\n                fill: false,\n                data: logEntries.map(function (entry) {\n                    if (entry.type === 'REQUEST') {\n                        // Calcul de la différence en millisecondes entre le début et la fin de la requête\n                        var requestStart = entry.start;\n                        var requestEnd = entry.end;\n                        var requestTime = requestEnd - requestStart;\n                        return requestTime;\n                    } else {\n                        return 0; // Valeurs pour les opérations de type \"RUN\" ou autres\n                    }\n                }),\n                pointRadius: 0,\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
+        "func": "// Assurez-vous que msg.payload.gatling.Log est un tableau\nvar logEntries = Array.isArray(msg.payload.gatling.Log) ? msg.payload.gatling.Log : [];\n\n// Création du graphique\nvar chartData = {\n    type: 'line', // Utilisez un graphique de type \"line\"\n    options: {\n        title: {\n            display: true,\n            text: 'Comparaison des performances' // Titre du graphique\n        },\n        legend: {\n            display: true // Affichez la légende du graphique\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd' // Couleur de fond du graphique\n        },\n        plugins: {\n            datalabels: {\n                display: false // Désactivez l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: logEntries.map(function (entry) {\n            if (entry.type === 'RUN') {\n                return 'Début de la Simulation'; // Label pour les opérations de type \"RUN\"\n            } else if (entry.type === 'REQUEST') {\n                // Calcul de la différence en millisecondes entre le début de la simulation et le début de la requête\n                var simulationStart = logEntries.find(function (item) {\n                    return item.type === 'RUN';\n                });\n                if (simulationStart) {\n                    var startTime = simulationStart.start;\n                    var requestTime = entry.start;\n                    var timeDiff = requestTime - startTime;\n                    return (timeDiff / 1000).toFixed(0) + ' s'; // Temps en secondes\n                } else {\n                    return 'N/A'; // Si aucune opération de type \"RUN\" n'est trouvée\n                }\n            } else {\n                return ''; // Autres types d'opérations (USER, etc.) sans label\n            }\n        }),\n        datasets: [\n            {\n                label: \"Temps de Réponse\", // Légende de l'ensemble de données\n                borderColor: 'rgba(0, 128, 255, 1)', // Couleur de la ligne du graphique\n                fill: false, // Désactivez le remplissage sous la ligne\n                data: logEntries.map(function (entry) {\n                    if (entry.type === 'REQUEST') {\n                        // Calcul de la différence en millisecondes entre le début et la fin de la requête\n                        var requestStart = entry.start;\n                        var requestEnd = entry.end;\n                        var requestTime = requestEnd - requestStart;\n                        return requestTime;\n                    } else {\n                        return 0; // Valeurs pour les opérations de type \"RUN\" ou autres\n                    }\n                }),\n                pointRadius: 0, // Diamètre des points sur le graphique\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData; // Attribuez les données du graphique au message\n\nreturn msg; // Renvoyez le message\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4147,8 +4092,7 @@
         "y": 500,
         "wires": [
             [
-                "b1f6c0a2b59f3166",
-                "add0830e76086b4a"
+                "b1f6c0a2b59f3166"
             ]
         ]
     },
@@ -4424,8 +4368,7 @@
         "y": 900,
         "wires": [
             [
-                "6b3f454dbe69b14f",
-                "be0b3e6b285f3ce7"
+                "6b3f454dbe69b14f"
             ]
         ]
     },
@@ -4500,8 +4443,7 @@
         "y": 760,
         "wires": [
             [
-                "598fe1090c5b4a0f",
-                "0de72b56201b2806"
+                "598fe1090c5b4a0f"
             ]
         ]
     },
@@ -4948,8 +4890,7 @@
         "y": 540,
         "wires": [
             [
-                "045abdd5d7ffb815",
-                "add0830e76086b4a"
+                "045abdd5d7ffb815"
             ]
         ]
     },
@@ -5356,27 +5297,8 @@
         "x": 270,
         "y": 840,
         "wires": [
-            [
-                "5e18b80e617a3db8"
-            ]
+            []
         ]
-    },
-    {
-        "id": "5e18b80e617a3db8",
-        "type": "debug",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 410,
-        "y": 840,
-        "wires": []
     },
     {
         "id": "7a32d8f0501731ad",
@@ -5591,27 +5513,9 @@
         "y": 1500,
         "wires": [
             [
-                "be1f566e551634ca",
-                "1aef7910a3a92d6e"
+                "be1f566e551634ca"
             ]
         ]
-    },
-    {
-        "id": "dd0ab59434d9aa58",
-        "type": "debug",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "debug 19",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2060,
-        "y": 1120,
-        "wires": []
     },
     {
         "id": "be1f566e551634ca",
@@ -5637,8 +5541,7 @@
         "wires": [
             [
                 "b1da83a2a3862753",
-                "c145436e5b13e4fd",
-                "2de10de146bd2e49"
+                "c145436e5b13e4fd"
             ]
         ]
     },
@@ -5658,8 +5561,7 @@
         "y": 1180,
         "wires": [
             [
-                "c9f7d6d1520e3533",
-                "dd0ab59434d9aa58"
+                "c9f7d6d1520e3533"
             ]
         ]
     },
@@ -5674,8 +5576,7 @@
         "y": 1180,
         "wires": [
             [
-                "f1ba256aaea77915",
-                "f0def6e8460c7c90"
+                "f1ba256aaea77915"
             ]
         ]
     },
@@ -5737,40 +5638,6 @@
         ]
     },
     {
-        "id": "f0def6e8460c7c90",
-        "type": "debug",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "debug 20",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2200,
-        "y": 1240,
-        "wires": []
-    },
-    {
-        "id": "2de10de146bd2e49",
-        "type": "debug",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "debug 21",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2200,
-        "y": 1300,
-        "wires": []
-    },
-    {
         "id": "9c9b12491f34115a",
         "type": "chart-image",
         "z": "a922dcbcf6a2e8c4",
@@ -5791,7 +5658,7 @@
         "type": "function",
         "z": "a922dcbcf6a2e8c4",
         "name": "Gatling bar chart",
-        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload.gatling.Global;  // Utiliser les données de msg.payload.gatling.Global\nmsg.topic = \"VoltBarChart\";\n\n// Extraction des données nécessaires\nvar groupData = [\n    rawData.group1,\n    rawData.group2,\n    rawData.group3,\n    rawData.group4\n];\n\nvar labels = [];\nvar percentages = [];\n\n// Parcourir les données des groupes et extraire les informations\nfor (var i = 1; i <= groupData.length; i++) {\n    var groupName = \"group\" + i;\n    labels.push(rawData[groupName].htmlName);\n    percentages.push(rawData[groupName].percentage);\n}\n\n// Création du graphique\nvar chartData = {\n    type: 'bar',  // Utiliser un graphique de type \"bar\"\n    options: {\n        title: {\n            display: true,\n            text: 'Répartition des performances par groupe'\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        scales: {\n            x: {\n                beginAtZero: true,\n                title: {\n                    display: true,\n                    text: 'Groupes'\n                }\n            },\n            y: {\n                beginAtZero: true,\n                title: {\n                    display: true,\n                    text: 'Pourcentage'\n                }\n            }\n        },\n        plugins: {\n            datalabels: {\n                anchor: 'end',\n                align: 'top',\n                formatter: function (value) {\n                    return value + '%';  // Ajouter le symbole de pourcentage à l'étiquette\n                }\n            }\n        }\n    },\n    data: {\n        labels: labels,\n        datasets: [\n            {\n                label: \"Pourcentage\",\n                backgroundColor: 'rgba(0, 128, 255, 0.7)',  // Couleur du remplissage des barres\n                data: percentages\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
+        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload.gatling.Global;  // Utilisez les données de msg.payload.gatling.Global\nmsg.topic = \"VoltBarChart\"; // Définir le sujet du message\n\n// Extraction des données nécessaires\nvar groupData = [\n    rawData.group1,\n    rawData.group2,\n    rawData.group3,\n    rawData.group4\n];\n\nvar labels = [];\nvar percentages = [];\n\n// Parcourir les données des groupes et extraire les informations\nfor (var i = 1; i <= groupData.length; i++) {\n    var groupName = \"group\" + i;\n    labels.push(rawData[groupName].htmlName);\n    percentages.push(rawData[groupName].percentage);\n}\n\n// Création du graphique\nvar chartData = {\n    type: 'bar',  // Utiliser un graphique de type \"bar\"\n    options: {\n        title: {\n            display: true,\n            text: 'Répartition des performances par groupe' // Titre du graphique\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd' // Couleur de fond du graphique\n        },\n        scales: {\n            x: {\n                beginAtZero: true,\n                title: {\n                    display: true,\n                    text: 'Groupes' // Titre de l'axe des X\n                }\n            },\n            y: {\n                beginAtZero: true,\n                title: {\n                    display: true,\n                    text: 'Pourcentage' // Titre de l'axe des Y\n                }\n            }\n        },\n        plugins: {\n            datalabels: {\n                anchor: 'end',\n                align: 'top',\n                formatter: function (value) {\n                    return value + '%';  // Ajouter le symbole de pourcentage à l'étiquette\n                }\n            }\n        }\n    },\n    data: {\n        labels: labels,\n        datasets: [\n            {\n                label: \"Pourcentage\", // Légende de l'ensemble de données\n                backgroundColor: 'rgba(0, 128, 255, 0.7)',  // Couleur du remplissage des barres\n                data: percentages\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData; // Attribuer les données du graphique au message\n\nreturn msg; // Renvoyer le message\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -5819,78 +5686,8 @@
         "x": 2090,
         "y": 460,
         "wires": [
-            [
-                "cda14555f45991af"
-            ]
+            []
         ]
-    },
-    {
-        "id": "be0b3e6b285f3ce7",
-        "type": "debug",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "debug 22",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2160,
-        "y": 1040,
-        "wires": []
-    },
-    {
-        "id": "0de72b56201b2806",
-        "type": "debug",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "debug 23",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2160,
-        "y": 760,
-        "wires": []
-    },
-    {
-        "id": "f0d62bba52abaa77",
-        "type": "debug",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "debug 24",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1680,
-        "y": 820,
-        "wires": []
-    },
-    {
-        "id": "cda14555f45991af",
-        "type": "debug",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "debug 25",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2300,
-        "y": 440,
-        "wires": []
     },
     {
         "id": "43e78b5d682b70c3",
@@ -5935,7 +5732,6 @@
         "y": 1580,
         "wires": [
             [
-                "110577191a0e44c6",
                 "8d75011f3e4a61cd"
             ]
         ]
@@ -5977,23 +5773,6 @@
                 "4f883d95b4ab02fd"
             ]
         ]
-    },
-    {
-        "id": "110577191a0e44c6",
-        "type": "debug",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "debug 32",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1620,
-        "y": 1580,
-        "wires": []
     },
     {
         "id": "928688dfc7e23a1b",
@@ -6106,57 +5885,6 @@
                 "598fe1090c5b4a0f"
             ]
         ]
-    },
-    {
-        "id": "1aef7910a3a92d6e",
-        "type": "debug",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "debug 33",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1820,
-        "y": 1580,
-        "wires": []
-    },
-    {
-        "id": "add0830e76086b4a",
-        "type": "debug",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "debug 34",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1760,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "269a7059c673729f",
-        "type": "debug",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "debug 35",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1520,
-        "y": 320,
-        "wires": []
     },
     {
         "id": "43c8dd92a5c31e0a",
