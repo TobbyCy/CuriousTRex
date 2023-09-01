@@ -3525,7 +3525,7 @@
         "bgcolor": "",
         "className": "",
         "icon": "refresh",
-        "payload": "/home/NodeRed/png",
+        "payload": "/home/NodeRed/pdf",
         "payloadType": "str",
         "topic": "change",
         "topicType": "str",
