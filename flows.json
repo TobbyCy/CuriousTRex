@@ -481,7 +481,7 @@
         "width": "7",
         "height": "2",
         "name": "",
-        "label": "Voltage",
+        "label": "MillliVolt",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
         "className": "",
