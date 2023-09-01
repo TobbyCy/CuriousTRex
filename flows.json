@@ -42,7 +42,7 @@
     {
         "id": "4e666803b8f3f742",
         "type": "subflow",
-        "name": "MQTT_Period",
+        "name": "MQTT Period",
         "info": "",
         "category": "",
         "in": [
@@ -72,7 +72,10 @@
             }
         ],
         "env": [],
-        "meta": {},
+        "meta": {
+            "version": "1.0.0",
+            "license": "GPL-3.0"
+        },
         "color": "#DDAA99"
     },
     {
