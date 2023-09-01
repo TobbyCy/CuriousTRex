@@ -5787,7 +5787,7 @@
         "type": "function",
         "z": "a922dcbcf6a2e8c4",
         "name": "Command_Gatling",
-        "func": "// Vérifie si msg.payload.gatling est true\nif (msg.payload.gatling) {\n    // Si msg.payload.gatling est true, vérifie si c'est un noeud inject qui l'active\n    if (msg.topic === \"inject\" && msg.payload.timegatling !== undefined && msg.payload.user_gatling !== undefined) {\n        // Crée la commande en utilisant les valeurs spécifiées\n        msg.payload = `/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s volt.CuriusTRex -bm --run-mode local -erjo \"-Dusers=${msg.payload.user_gatling} -Dramp=${msg.payload.timegatling}\"`;\n    } else {\n        // Utilise la commande d'origine car il ne s'agit pas d'un noeud inject ou les valeurs ne sont pas fournies\n        // Par défaut, utilisez la commande actuelle\n        msg.payload = \"/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s volt.CuriusTRex -bm --run-mode local -erjo \\\" -Dusers=50000 -Dramp=5\\\"\";\n    }\n\n    // Renvoie le message modifié\n    return msg;\n} else {\n    // Si msg.payload.gatling n'est pas true, renvoie simplement le message d'origine\n    return null;\n}\n",
+        "func": "// Vérifie si msg.payload.gatling est true\nif (msg.payload.gatling) {\n    // Si msg.payload.gatling est true, vérifie si c'est un noeud inject qui l'active\n    if (msg.topic === \"inject\" && msg.payload.timegatling !== undefined && msg.payload.user_gatling !== undefined) {\n        // Crée la commande en utilisant les valeurs spécifiées\n        msg.payload = `/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s volt.CuriusTRex -bm --run-mode local -erjo \"-Dusers=${msg.payload.user_gatling} -Dramp=${msg.payload.timegatling}\"`;\n    } else {\n        // Utilise la commande d'origine car il ne s'agit pas d'un noeud inject ou les valeurs ne sont pas fournies\n        // Par défaut, utilisez la commande actuelle\n        msg.payload = \"/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s volt.CuriusTRex -bm --run-mode local -erjo \\\" -Dusers=5000 -Dramp=5\\\"\";\n    }\n\n    // Renvoie le message modifié\n    return msg;\n} else {\n    // Si msg.payload.gatling n'est pas true, renvoie simplement le message d'origine\n    return null;\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -6428,23 +6428,6 @@
         "wires": []
     },
     {
-        "id": "46f07651cbc7da3b",
-        "type": "debug",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "debug 26",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1020,
-        "y": 1460,
-        "wires": []
-    },
-    {
         "id": "43e78b5d682b70c3",
         "type": "file in",
         "z": "a922dcbcf6a2e8c4",
@@ -6460,7 +6443,6 @@
         "y": 1360,
         "wires": [
             [
-                "4c3272476a7d074d",
                 "4f883d95b4ab02fd"
             ]
         ]
@@ -6488,8 +6470,7 @@
         "y": 1360,
         "wires": [
             [
-                "1c372d625e08d8fc",
-                "4e7b58dea1ab1f63"
+                "1c372d625e08d8fc"
             ]
         ]
     },
@@ -6508,8 +6489,7 @@
         "y": 1360,
         "wires": [
             [
-                "43e78b5d682b70c3",
-                "46f07651cbc7da3b"
+                "43e78b5d682b70c3"
             ]
         ]
     },
@@ -6527,101 +6507,8 @@
         "x": 1580,
         "y": 1360,
         "wires": [
-            [
-                "060a7e54aefacb2f"
-            ]
+            []
         ]
-    },
-    {
-        "id": "4c3272476a7d074d",
-        "type": "debug",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "debug 27",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1220,
-        "y": 1460,
-        "wires": []
-    },
-    {
-        "id": "4e7b58dea1ab1f63",
-        "type": "debug",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "debug 29",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1600,
-        "y": 1460,
-        "wires": []
-    },
-    {
-        "id": "060a7e54aefacb2f",
-        "type": "debug",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "debug 30",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1800,
-        "y": 1460,
-        "wires": []
-    },
-    {
-        "id": "57847cc75286a576",
-        "type": "ui_template",
-        "z": "a922dcbcf6a2e8c4",
-        "group": "7a02dc45cdd22958",
-        "name": "Upload Btn Test",
-        "order": 8,
-        "width": 4,
-        "height": 2,
-        "format": "<body>\n  <!-- Bouton pour déclencher l'importation des données -->\n  <button class=\"md-raised md-button md-ink-ripple\" onclick=\"importerDonnees()\">Télécharger2</button>\n\n  <script>\n    // Conservez la portée originale\n    let restaureScope = scope;\n\n    // Fonction pour importer les données\n    function importerDonnees() {\n      // Créez un élément d'entrée de type fichier\n      let input = document.createElement('input');\n      input.type = 'file';\n      input.id = 'boutonRestaurer';\n\n      // Définissez l'événement onchange\n      input.onchange = _ => {\n        // Obtenez le nom du fichier choisi\n        let nomFichier = input.files[0].name;\n\n        // Vous pouvez utiliser cette méthode pour obtenir le fichier et effectuer les opérations respectives\n        let lecteurFichier = new FileReader();\n        lecteurFichier.readAsText(input.files[0]);\n\n        // Gérez la fin du chargement du fichier\n        lecteurFichier.onloadend = function(event){\n          // Envoyez les données lues et le nom du fichier à la portée originale\n          restaureScope.send({payload: event.target.result});\n        };\n      };\n\n      // Déclenchez le clic sur l'élément d'entrée de type fichier\n      input.click();\n    }\n  </script>\n</body>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": false,
-        "templateScope": "local",
-        "className": "",
-        "x": 800,
-        "y": 1420,
-        "wires": [
-            [
-                "2380018c0d3f8864"
-            ]
-        ]
-    },
-    {
-        "id": "2380018c0d3f8864",
-        "type": "debug",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1230,
-        "y": 1420,
-        "wires": []
     },
     {
         "id": "53b1ad2157557248",
