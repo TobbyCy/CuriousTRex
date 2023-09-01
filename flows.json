@@ -5163,7 +5163,7 @@
         "type": "function",
         "z": "a922dcbcf6a2e8c4",
         "name": "Purge",
-        "func": "if (msg.payload === \"Valider\"){\n    msg.payload = \"rm -r /home/NodeRed/*\";\n    return msg;\n}else{\n    return null;\n}\n",
+        "func": "if (msg.payload === \"Valider\"){\n    msg.payload = \"rm -r /home/NodeRed/* && rm -r /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/results/*\";\n    return msg;\n}else{\n    return null;\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
