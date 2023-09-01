@@ -6457,25 +6457,8 @@
         "y": 1360,
         "wires": [
             [
-                "53873988b733a4b5",
-                "4c3272476a7d074d"
-            ]
-        ]
-    },
-    {
-        "id": "53873988b733a4b5",
-        "type": "json",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 1270,
-        "y": 1360,
-        "wires": [
-            [
-                "4f883d95b4ab02fd",
-                "96dc8de94fdb8d02"
+                "4c3272476a7d074d",
+                "4f883d95b4ab02fd"
             ]
         ]
     },
@@ -6560,23 +6543,6 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1220,
-        "y": 1460,
-        "wires": []
-    },
-    {
-        "id": "96dc8de94fdb8d02",
-        "type": "debug",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "debug 28",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1420,
         "y": 1460,
         "wires": []
     },
