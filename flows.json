@@ -5921,7 +5921,7 @@
                 "t": "set",
                 "p": "topic",
                 "pt": "msg",
-                "to": "Stats",
+                "to": "Log",
                 "tot": "str"
             }
         ],
