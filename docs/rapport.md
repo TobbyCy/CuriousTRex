@@ -25,6 +25,7 @@
 - [1. Rapport de projet : Banc de mesures de la consommation électrique pour application web](#1-rapport-de-projet--banc-de-mesures-de-la-consommation-électrique-pour-application-web)
 - [2. Sommaire](#2-sommaire)
 - [3. Introduction](#3-introduction)
+- [Planification](#planification)
 - [4. Instalation physique](#4-instalation-physique)
   - [4.1. Nidus](#41-nidus)
   - [4.2. Volt](#42-volt)
@@ -91,6 +92,25 @@
 
 # 3. Introduction
 Le système sera conçu pour simuler des requêtes HTTP réalistes à l'aide de Gatling, mesurer la consommation électrique en utilisant l'INA219 connecté via le bus I2C, et collecter les mesures de performance à l'aide de Node-RED. Les rapports générés fourniront des informations détaillées sur les performances du système testé, y compris le temps de réponse, la consommation d'énergie par requête, l'utilisation du processeur, etc.
+# Planification
+```mermaid
+gantt
+    dateFormat  YYYY-MM-DD
+    title       Adding GANTT diagram functionality to mermaid
+    excludes    weekends
+    %% (`excludes` accepts specific dates in YYYY-MM-DD format, days of the week ("sunday") or "weekends", but not the word "weekdays".)
+
+    section Mise en place
+    Mettre en place un nouveau Git :done, des1, 2023-08-16,2023-08-17
+    Créer un rapport :done, des2, 2023-08-16,2023-08-17
+    Rediger une comumentation initial :done, des3, 2023-08-17,2023-08-18
+    Instalation des Raspberry Pi :done, des4, 2023-08-17,2023-08-18
+    Configuration des Raspberry Pi :done, des5, 2023-08-18,2023-08-19
+    Instalation de Node-Red :done, des6, 2023-08-18,2023-08-19
+    Instalation de Gatling :done, des7, 2023-08-18,2023-08-19
+    Préparation de l'INA219 :done, des8, 2023-08-18,2023-08-19
+
+```
 # 4. Instalation physique
 ## 4.1. Nidus
 <img src="../capture/Nidus.jpg" alt="Image" width="100%" style="width:100%;">
