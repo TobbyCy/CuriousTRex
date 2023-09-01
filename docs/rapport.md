@@ -81,6 +81,9 @@
   - [13.2. En Exécution](#132-en-exécution)
   - [13.3. Résultat](#133-résultat)
   - [13.4. Purge](#134-purge)
+- [Gatling Test V2.0](#gatling-test-v20)
+  - [But](#but)
+  - [Étapes à Atteindre](#étapes-à-atteindre)
 - [14. Remerciement](#14-remerciement)
 - [15. Sources](#15-sources)
 
@@ -108,6 +111,7 @@ Le système sera conçu pour simuler des requêtes HTTP réalistes à l'aide de 
                     | Apache  |      | Node-RED    |
                     | No-Proc |      | Gatling     |
                     |         |      | INA219      |
+                    |         |      | MQTT        |
                     +---------+      +-------------+
                         ^   |             ^   |
                         |   |             |   |
@@ -125,6 +129,40 @@ Le système sera conçu pour simuler des requêtes HTTP réalistes à l'aide de 
                             +------------+
                             |Utilisateur |
                             +------------+
+
+```
+Explication : Actuellement le but est que Nidus offre tout les outil pour le monittoring incluant le MQTT, Node-Red, Gatling et l'INA219. Volt lui ne sert que de serveur web pour le site web. Le but est de pouvoir faire des test de charge sur le site web et de pouvoir mesurer la consommation électrique du serveur web.
+De fais toute intéraction de l'utilisateur se fait avec Nidus.
+Nidus envoie ses donnée de monittoring sur le serveur MQTT installé sur Nidus, et Node-Red installé sur Nidus récupère les données du serveur MQTT et les envoie dans des noeud fais pour le traiter et fournir ensuite les sortie appropié :
+- Dashboard : Pour l'utilisateur
+- PDF : Pour l'utilisateur
+Nidus peut dans un second temps lancer des stresstest via Node-Red sur lui même et sur Volt. Il peut aussi lancer des stresstest sur Volt via Gatling.
+
+```mermaid
+graph TD;
+
+subgraph "Serveur"
+    A[Site Web] -->|Requêtes| B[Node-RED];
+    B -->|MQTT| C[INA219];
+    B -->|MQTT| D[Gatling];
+end
+
+subgraph "Raspberry Pi"
+    E[Nidus] -->|I2C| G[INA219 Mesure];
+    F[Volt] -->|I2C| H[INA219 Remplacement];
+end
+
+subgraph "Utilisateur"
+    I[Dashboard Node-Red];
+end
+
+A -->|Requêtes| B;
+B -->|MQTT| C;
+B -->|MQTT| D;
+E -->|I2C| G;
+F -->|I2C| H;
+B -->|MQTT| I;
+I -->|Données Moniteur| I;
 
 ```
 
@@ -1252,6 +1290,19 @@ Ce que l'on peut observer, c'est qu'après avoir appuyé sur le bouton de purge,
 - Le second commence par un délai de quelques secondes avant de recréer les dossiers de structuration.
 
 <div style="page-break-after: always;"></div>
+
+# Gatling Test V2.0
+## But
+L'objectif de cette étape est d'intégrer Gatling aux tests de Node-Red, offrant ainsi la possibilité de réaliser à la fois des tests de charge et des tests de stress sur la même infrastructure.
+
+## Étapes à Atteindre
+1. **Exécution d'un Test Préétabli sur Gatling depuis Node-Red** : La première étape consiste à configurer et à exécuter un test préétabli à l'aide de Gatling directement depuis l'environnement Node-Red. Cela permettra de lancer les scénarios de test sur l'application ou le système cible.
+
+2. **Récupération des Résultats de Gatling et Création de Graphiques pour l'Incorporation au PDF** : Une fois le test Gatling terminé, nous devrons récupérer les résultats générés par Gatling. Ces résultats seront ensuite transformés en graphiques informatifs pour être intégrés dans le rapport PDF. Cette étape vise à rendre les données de performance facilement compréhensibles.
+
+3. **Définition de la Durée du Test Gatling depuis Node-Red** : Pour chaque test Gatling, il sera nécessaire de définir la durée de l'exécution du test directement depuis Node-Red. Cela permettra de personnaliser la durée des tests en fonction des exigences du projet.
+
+Cette intégration de Gatling aux tests Node-Red offre un moyen puissant d'évaluer les performances de l'infrastructure tout en maintenant un contrôle complet sur les scénarios de test et les paramètres de durée.
 
 # 14. Remerciement 
 Je tiens à exprimer ma profonde gratitude envers les personnes qui ont joué des rôles essentiels dans la réalisation de ce projet. Avant tout, je souhaite exprimer ma sincère reconnaissance à M. Benoit Vianin, dont la proposition du projet, le matériel fourni et les conseils avisés ont été cruciaux pour sa mise en place. Sa précieuse assistance technique a été d'une grande importance.
