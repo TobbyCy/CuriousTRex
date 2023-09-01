@@ -5827,7 +5827,7 @@
         "type": "file",
         "z": "a922dcbcf6a2e8c4",
         "name": "gatling.pass",
-        "filename": "graphPath.v",
+        "filename": "graphPath.gatling.pass",
         "filenameType": "msg",
         "appendNewline": true,
         "createDir": false,
