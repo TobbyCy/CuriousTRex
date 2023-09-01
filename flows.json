@@ -3995,8 +3995,8 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 1570,
-        "y": 740,
+        "x": 1350,
+        "y": 720,
         "wires": [
             [
                 "d97a7e3571e5c7a3",
@@ -5481,8 +5481,7 @@
         "y": 1240,
         "wires": [
             [
-                "f66f595e08543684",
-                "1aef7910a3a92d6e"
+                "f66f595e08543684"
             ]
         ]
     },
@@ -5591,7 +5590,8 @@
         "y": 1280,
         "wires": [
             [
-                "be1f566e551634ca"
+                "be1f566e551634ca",
+                "1aef7910a3a92d6e"
             ]
         ]
     },
@@ -5636,7 +5636,8 @@
         "wires": [
             [
                 "b1da83a2a3862753",
-                "c145436e5b13e4fd"
+                "c145436e5b13e4fd",
+                "2de10de146bd2e49"
             ]
         ]
     },
@@ -5701,8 +5702,7 @@
         "y": 1220,
         "wires": [
             [
-                "b1da83a2a3862753",
-                "2de10de146bd2e49"
+                "b1da83a2a3862753"
             ]
         ]
     },
@@ -5757,7 +5757,7 @@
         "type": "debug",
         "z": "a922dcbcf6a2e8c4",
         "name": "debug 21",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -6111,7 +6111,7 @@
         "type": "debug",
         "z": "a922dcbcf6a2e8c4",
         "name": "debug 33",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -6119,8 +6119,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1320,
-        "y": 1160,
+        "x": 1820,
+        "y": 1360,
         "wires": []
     },
     {
