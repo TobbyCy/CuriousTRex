@@ -590,7 +590,7 @@
         "width": "7",
         "height": "2",
         "name": "",
-        "label": "Watt",
+        "label": "MilliWatt",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
         "className": "",
@@ -598,7 +598,7 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 830,
+        "x": 840,
         "y": 160,
         "wires": []
     },
@@ -611,7 +611,7 @@
         "order": 3,
         "width": 0,
         "height": 0,
-        "label": "Watt",
+        "label": "MilliWatt",
         "chartType": "line",
         "legend": "false",
         "xformat": "HH:mm:ss",
@@ -640,7 +640,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 830,
+        "x": 840,
         "y": 220,
         "wires": [
             []
