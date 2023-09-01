@@ -3545,7 +3545,7 @@
         "name": "",
         "order": 1,
         "width": 18,
-        "height": 9,
+        "height": "6",
         "format": "<div ng-bind-html=\"msg.payload\" height=\"400\" style=\"height: 400px;\"><br/>\n</div>\n<style>\n/* Applique des styles aux liens */\na[href] {\ncolor: #d93347; /* Couleur du lien */\ntext-decoration: none; /* Pas de soulignement */\n}\n\n/* Applique des styles au survol des liens */\na[href]:hover {\ncolor: #cb0505; /* Couleur du lien au survol */\ntext-decoration: underline; /* Soulignement au survol */\n}\n</style>",
         "storeOutMessages": true,
         "fwdInMessages": true,
@@ -3989,8 +3989,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 860,
-        "y": 720,
+        "x": 940,
+        "y": 600,
         "wires": [
             [
                 "9c1d83d903dfd7c6"
@@ -4098,7 +4098,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 460,
+        "x": 420,
         "y": 720,
         "wires": [
             [
@@ -4126,7 +4126,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 650,
+        "x": 690,
         "y": 720,
         "wires": [
             [
@@ -4145,7 +4145,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 530,
+        "x": 390,
         "y": 780,
         "wires": [
             [
@@ -4157,14 +4157,14 @@
         "id": "d97a7e3571e5c7a3",
         "type": "function",
         "z": "a922dcbcf6a2e8c4",
-        "name": "Gatling line chart",
+        "name": "Gatling line chart Complet",
         "func": "// Données reçues du flux précédent\nvar rawData = msg.payload.gatling.Global;  // Utiliser les données de msg.payload.gatling.Global\nmsg.topic = \"VoltLineChart\";\n\n// Extraction des données nécessaires\nvar meanResponseTimeData = rawData.meanResponseTime;\nvar maxResponseTimeData = rawData.maxResponseTime;\nvar minResponseTimeData = rawData.minResponseTime;\n\n// Création du graphique\nvar chartData = {\n    type: 'line',  // Changement du type de graphique en \"line\"\n    options: {\n        title: {\n            display: true,\n            text: 'Comparaison des performances'\n        },\n        legend: {\n            display: true\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        plugins: {\n            datalabels: {\n                display: false  // Désactiver l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: [\"Mean Response Time\", \"Max Response Time\", \"Min Response Time\"],\n        datasets: [\n            {\n                label: \"Response Time\",\n                borderColor: 'rgba(0, 128, 255, 1)',  // Couleur de la ligne (couleur froide pour Volt)\n                fill: false,  // Désactiver le remplissage sous la ligne\n                data: [meanResponseTimeData, maxResponseTimeData, minResponseTimeData],\n                pointRadius: 0,\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1690,
+        "x": 1710,
         "y": 500,
         "wires": [
             [
@@ -4191,14 +4191,14 @@
         "id": "a7517383bc84984d",
         "type": "file",
         "z": "a922dcbcf6a2e8c4",
-        "name": "gatling1.png",
-        "filename": "/home/NodeRed/png/gatling1.png",
-        "filenameType": "str",
+        "name": "Gatling Complet",
+        "filename": "graphPath.gatling.complet",
+        "filenameType": "msg",
         "appendNewline": true,
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 2170,
+        "x": 2180,
         "y": 500,
         "wires": [
             []
@@ -4414,7 +4414,7 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 650,
+        "x": 690,
         "y": 680,
         "wires": [
             []
@@ -4744,8 +4744,8 @@
         "z": "a922dcbcf6a2e8c4",
         "name": "",
         "handle": "173c4031bd3a25c0",
-        "x": 450,
-        "y": 600,
+        "x": 430,
+        "y": 560,
         "wires": [
             [
                 "b26ae55967e0b99e"
@@ -5078,8 +5078,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 480,
-        "y": 680,
+        "x": 420,
+        "y": 660,
         "wires": [
             [
                 "998dbf39131946cb"
@@ -5104,7 +5104,7 @@
         "fontSize": "30",
         "color": "#e01b24",
         "x": 430,
-        "y": 640,
+        "y": 600,
         "wires": []
     },
     {
@@ -5827,7 +5827,7 @@
         "type": "file",
         "z": "a922dcbcf6a2e8c4",
         "name": "gatling.pass",
-        "filename": "graphPath.v",
+        "filename": "graphPath.gatling.pass",
         "filenameType": "msg",
         "appendNewline": true,
         "createDir": false,
