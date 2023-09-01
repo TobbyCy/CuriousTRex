@@ -3869,13 +3869,6 @@
                 "rows": null
             },
             {
-                "label": "Gatling",
-                "value": "gatling",
-                "type": "checkbox",
-                "required": true,
-                "rows": null
-            },
-            {
                 "label": "Temps de montée",
                 "value": "time_gatling",
                 "type": "text",
@@ -3896,7 +3889,6 @@
             "stressNidus": false,
             "stressVolt": false,
             "timeStress": "",
-            "gatling": false,
             "time_gatling": "",
             "user_gatling": ""
         },
@@ -5277,7 +5269,7 @@
         "type": "function",
         "z": "a922dcbcf6a2e8c4",
         "name": "Command_Gatling",
-        "func": "// Vérifie si msg.payload.gatling est true\nif (msg.payload.gatling) {\n    // Si msg.payload.gatling est true, vérifie si c'est un noeud inject qui l'active\n    if (msg.topic === \"inject\" && msg.payload.timegatling !== undefined && msg.payload.user_gatling !== undefined) {\n        // Crée la commande en utilisant les valeurs spécifiées\n        msg.payload = `/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s volt.CuriusTRex -bm --run-mode local -erjo \"-Dusers=${msg.payload.user_gatling} -Dramp=${msg.payload.timegatling}\"`;\n    } else {\n        // Utilise la commande d'origine car il ne s'agit pas d'un noeud inject ou les valeurs ne sont pas fournies\n        // Par défaut, utilisez la commande actuelle\n        msg.payload = \"/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s volt.CuriusTRex -bm --run-mode local -erjo \\\" -Dusers=5 -Dramp=5\\\"\";\n    }\n\n    // Renvoie le message modifié\n    return msg;\n} else {\n    // Si msg.payload.gatling n'est pas true, renvoie simplement le message d'origine\n    return null;\n}\n",
+        "func": "    if (msg.topic === \"inject\" && msg.payload.timegatling !== undefined && msg.payload.user_gatling !== undefined) {\n        // Crée la commande en utilisant les valeurs spécifiées\n        msg.payload = `/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s volt.CuriusTRex -bm --run-mode local -erjo \"-Dusers=${msg.payload.user_gatling} -Dramp=${msg.payload.timegatling}\"`;\n    } else {\n        // Utilise la commande d'origine car il ne s'agit pas d'un noeud inject ou les valeurs ne sont pas fournies\n        // Par défaut, utilisez la commande actuelle\n        msg.payload = \"/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s volt.CuriusTRex -bm --run-mode local -erjo \\\" -Dusers=5 -Dramp=5\\\"\";\n    }\n\n    // Renvoie le message modifié\n    return msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
