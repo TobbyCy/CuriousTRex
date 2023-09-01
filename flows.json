@@ -4003,7 +4003,8 @@
                 "0dc4013efbfe82f3",
                 "eac3d22677e48498",
                 "015cd0934fa7211e",
-                "988608530bbba437"
+                "988608530bbba437",
+                "269a7059c673729f"
             ]
         ]
     },
@@ -4136,7 +4137,7 @@
         "type": "function",
         "z": "a922dcbcf6a2e8c4",
         "name": "Gatling line chart Complet",
-        "func": "// Assurez-vous que msg.payload est un tableau\nvar dataPoints = Array.isArray(msg.payload) ? msg.payload : [];\n\n// Extraction des données nécessaires depuis msg.payload\ndataPoints = dataPoints.map(function (item) {\n    return {\n        type: item.type,\n        name: item.name,\n        start: item.start,\n        end: item.end,\n        status: item.status\n    };\n});\n\nmsg.topic = \"VoltLineChart\";\n\n// Création du graphique\nvar chartData = {\n    type: 'line',\n    options: {\n        title: {\n            display: true,\n            text: 'Comparaison des performances'\n        },\n        legend: {\n            display: true\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        plugins: {\n            datalabels: {\n                display: false\n            }\n        }\n    },\n    data: {\n        labels: dataPoints.map(function (item) {\n            return item.type;\n        }),\n        datasets: [\n            {\n                label: \"Response Time\",\n                borderColor: 'rgba(0, 128, 255, 1)',\n                fill: false,\n                data: dataPoints.map(function (item) {\n                    return item.start;\n                }),\n                pointRadius: 0,\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
+        "func": "// Assurez-vous que msg.payload est un tableau\nvar dataPoints = Array.isArray(msg.payload) ? msg.payload : [];\n\n// Extraction des données nécessaires depuis msg.payload\ndataPoints = dataPoints.map(function (item) {\n    return {\n        type: item.type,\n        name: item.name,\n        start: item.start,\n        end: item.end,\n        status: item.status\n    };\n});\n\nmsg.topic = \"GatlingLineChart\";\n\n// Création du graphique\nvar chartData = {\n    type: 'line',\n    options: {\n        title: {\n            display: true,\n            text: 'Comparaison des performances'\n        },\n        legend: {\n            display: true\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        plugins: {\n            datalabels: {\n                display: false\n            }\n        }\n    },\n    data: {\n        labels: dataPoints.map(function (item) {\n            return item.type;\n        }),\n        datasets: [\n            {\n                label: \"Response Time\",\n                borderColor: 'rgba(0, 128, 255, 1)',\n                fill: false,\n                data: dataPoints.map(function (item) {\n                    return item.start;\n                }),\n                pointRadius: 0,\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -6135,8 +6136,25 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1820,
-        "y": 360,
+        "x": 1760,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "269a7059c673729f",
+        "type": "debug",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "debug 35",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1660,
+        "y": 260,
         "wires": []
     },
     {
