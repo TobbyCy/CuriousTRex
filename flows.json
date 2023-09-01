@@ -3527,7 +3527,7 @@
         "icon": "refresh",
         "payload": "/home/NodeRed/png",
         "payloadType": "str",
-        "topic": "refresh",
+        "topic": "change",
         "topicType": "str",
         "x": 540,
         "y": 400,
