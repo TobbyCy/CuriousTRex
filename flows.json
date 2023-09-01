@@ -379,7 +379,7 @@
         "wires": [
             [
                 "cb799b325f94ca56",
-                "0160ad3d392208a8"
+                "347c2af536033cee"
             ]
         ]
     },
@@ -469,6 +469,33 @@
         "wires": [
             [
                 "943ce04091291544"
+            ]
+        ]
+    },
+    {
+        "id": "347c2af536033cee",
+        "type": "change",
+        "z": "4e666803b8f3f742",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "complete",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 570,
+        "y": 180,
+        "wires": [
+            [
+                "0160ad3d392208a8"
             ]
         ]
     },
