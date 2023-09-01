@@ -3499,7 +3499,7 @@
         "once": true,
         "onceDelay": 0.1,
         "topic": "change",
-        "payload": "/home/NodeRed/png",
+        "payload": "/home/NodeRed/pdf",
         "payloadType": "str",
         "x": 530,
         "y": 360,
@@ -3892,7 +3892,7 @@
         "type": "function",
         "z": "a922dcbcf6a2e8c4",
         "name": "Créer le contenue du fichier",
-        "func": "msg.payload = {\n    header: function (currentPage, pageCount, pageSize) {\n        return [\n            {\n                text: \"Tobler Cyril\",\n                alignment: \"left\",\n                fontSize: 10,\n                margin: [15, 10, 0, 0]\n            },\n            {\n                text: \"Nom du projet : Confuse T-Rex\",\n                alignment: \"center\",\n                fontSize: 10,\n                margin: [0, 0, 0, 0]\n            }\n        ];\n    },\n    footer: function (currentPage, pageCount) {\n        return {\n            columns: [\n                {\n                    text: currentPage.toString() + \" / \" + pageCount,\n                    alignment: \"left\",\n                    fontSize: 10,\n                    margin: [15, 0, 0, 10]\n                },\n                {\n                    text: new Date().toLocaleDateString(\"fr-FR\"),\n                    alignment: \"right\",\n                    fontSize: 10,\n                    margin: [0, 0, 15, 10]\n                }\n            ],\n            margin: [0, 0, 0, 10]\n        };\n    },\n    content: [\n        {\n            text: \"Rapport d'utilisation\",\n            style: \"header\",\n            margin: [0, 10, 0, 0]\n        },\n        {\n            text: \"Les valeurs sont des moyennes sur les \" + Math.floor(msg.delay / (1000 * 60)) + \" dèrnière minutes\"\n        },\n        {\n            text: \"Nidus :\",\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"nidus/benchmark/cpu\"]\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"nidus/benchmark/ram\"]\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"nidus/benchmark/processes\"]\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"nidus/benchmark/temp\"]\n        },\n        {\n            image: 'nidusImage',\n            width: 500,\n            pageBreak: 'after',\n        },\n        {\n            text: \"Volt\",\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"volt/benchmark/cpu\"]\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"volt/benchmark/ram\"]\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"volt/benchmark/processes\"]\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"volt/benchmark/temp\"]\n        }, \n        {\n            text: \"MilliWatt :           \" + msg.payload.moyenne[\"volt/benchmark/watt\"]\n        },\n        {\n            image: 'voltImage',\n            width: 500,\n        }, \n        {\n            image: 'wattImage',\n            width: 500,\n            pageBreak: 'after',\n        },\n        {\n            text: \"Gatling\",\n            style: \"header2\"\n        },\n        {\n            text: \"Nom de la simulation :                 \" + msg.payload.gatling.Assertion.simulation\n        },\n        {\n            text: \"Commencée :                 \" + msg.payload.gatling.Assertion.start // à formatter\n        },\n        {\n            image: 'gatlingImage',\n            width: 500,\n\n        },\n\n    ],\n    images: {\n        voltImage: 'data:image/png;base64,' + msg.payload.voltGraph.toString('base64'), // Utilisation du buffer pour l'image Volt\n        wattImage: 'data:image/png;base64,' + msg.payload.wattGraph.toString('base64'),  // Utilisation du buffer pour l'image Watt de volt\n        nidusImage: 'data:image/png;base64,' + msg.payload.nidusGraph.toString('base64'),  // Utilisation du buffer pour l'image Nidus\n        gatlingImage: 'data:image/png;base64,' + msg.payload.gatlingGraph.toString('base64'),  // Utilisation du buffer pour l'image Gatling\n    },\n    styles: {\n        header: {\n            fontSize: 22,\n            bold: true,\n            margin: [0, 30, 0, 0]\n        },\n        header2: {\n            fontSize: 18,\n            bold: true,\n            margin: [0, 20, 0, 0]\n        }\n    }\n};\n\nreturn msg;\n",
+        "func": "msg.payload = {\n    header: function (currentPage, pageCount, pageSize) {\n        return [\n            {\n                text: \"Tobler Cyril\",\n                alignment: \"left\",\n                fontSize: 10,\n                margin: [15, 10, 0, 0]\n            },\n            {\n                text: \"Nom du projet : Confuse T-Rex\",\n                alignment: \"center\",\n                fontSize: 10,\n                margin: [0, 0, 0, 0]\n            }\n        ];\n    },\n    footer: function (currentPage, pageCount) {\n        return {\n            columns: [\n                {\n                    text: currentPage.toString() + \" / \" + pageCount,\n                    alignment: \"left\",\n                    fontSize: 10,\n                    margin: [15, 0, 0, 10]\n                },\n                {\n                    text: new Date().toLocaleDateString(\"fr-FR\"),\n                    alignment: \"right\",\n                    fontSize: 10,\n                    margin: [0, 0, 15, 10]\n                }\n            ],\n            margin: [0, 0, 0, 10]\n        };\n    },\n    content: [\n        {\n            text: \"Rapport d'utilisation\",\n            style: \"header\",\n            margin: [0, 10, 0, 0]\n        },\n        {\n            text: \"Les valeurs sont des moyennes sur les \" + Math.floor(msg.delay / (1000 * 60)) + \" dèrnière minutes\"\n        },\n        {\n            text: \"Nidus :\",\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"nidus/benchmark/cpu\"]\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"nidus/benchmark/ram\"]\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"nidus/benchmark/processes\"]\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"nidus/benchmark/temp\"]\n        },\n        {\n            image: 'nidusImage',\n            width: 500,\n            pageBreak: 'after',\n        },\n        {\n            text: \"Volt\",\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"volt/benchmark/cpu\"]\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"volt/benchmark/ram\"]\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"volt/benchmark/processes\"]\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"volt/benchmark/temp\"]\n        }, \n        {\n            text: \"MilliWatt :           \" + msg.payload.moyenne[\"volt/benchmark/watt\"]\n        },\n        {\n            image: 'voltImage',\n            width: 500,\n        }, \n        {\n            image: 'wattImage',\n            width: 500,\n            pageBreak: 'after',\n        },\n        {\n            text: \"Gatling\",\n            style: \"header2\"\n        },\n        {\n            text: \"Nom de la simulation :                 \" + msg.payload.gatling.Assertion.simulation\n        },\n        {\n            text: \"Commencée :                 \" + msg.payload.gatling.Assertion.start // à formatter\n        },\n        {\n            image: 'gatlingImage',\n            width: 500,\n\n        }, \n        {\n            image: 'gatlingGraphComplete',\n            width: 500,\n\n        },\n\n    ],\n    images: {\n        voltImage: 'data:image/png;base64,' + msg.payload.voltGraph.toString('base64'), // Utilisation du buffer pour l'image Volt\n        wattImage: 'data:image/png;base64,' + msg.payload.wattGraph.toString('base64'),  // Utilisation du buffer pour l'image Watt de volt\n        nidusImage: 'data:image/png;base64,' + msg.payload.nidusGraph.toString('base64'),  // Utilisation du buffer pour l'image Nidus\n        gatlingImage: 'data:image/png;base64,' + msg.payload.gatlingGraph.toString('base64'),  // Utilisation du buffer pour l'image Gatling\n        gatlingGraphComplete: 'data:image/png;base64,' + msg.payload.gatlingGraphComplete.toString('base64'),  // Utilisation du buffer pour l'image Gatling\n    },\n    styles: {\n        header: {\n            fontSize: 22,\n            bold: true,\n            margin: [0, 30, 0, 0]\n        },\n        header2: {\n            fontSize: 18,\n            bold: true,\n            margin: [0, 20, 0, 0]\n        }\n    }\n};\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4414,7 +4414,7 @@
         "joinerType": "str",
         "accumulate": false,
         "timeout": "",
-        "count": "6",
+        "count": "7",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
@@ -4464,7 +4464,8 @@
                 "7cbe2c5767d519af",
                 "ac0a9fbac6663571",
                 "acd8521fb2d3d1e9",
-                "6604a1a9e5c5b180"
+                "6604a1a9e5c5b180",
+                "43c8dd92a5c31e0a"
             ]
         ]
     },
@@ -5390,7 +5391,7 @@
         "encoding": "none",
         "allProps": false,
         "x": 1120,
-        "y": 1240,
+        "y": 1460,
         "wires": [
             [
                 "d647b33c6d2e3f19"
@@ -5410,7 +5411,7 @@
         "encoding": "none",
         "allProps": false,
         "x": 1130,
-        "y": 1280,
+        "y": 1500,
         "wires": [
             [
                 "10727eec043e4c37"
@@ -5430,7 +5431,7 @@
         "encoding": "none",
         "allProps": false,
         "x": 1110,
-        "y": 1320,
+        "y": 1540,
         "wires": [
             [
                 "65f34127c479865e"
@@ -5446,7 +5447,7 @@
         "action": "",
         "pretty": false,
         "x": 1270,
-        "y": 1320,
+        "y": 1540,
         "wires": [
             [
                 "cbe083e30bbcd848"
@@ -5462,7 +5463,7 @@
         "action": "",
         "pretty": false,
         "x": 1290,
-        "y": 1280,
+        "y": 1500,
         "wires": [
             [
                 "ac8d781897d82aa4"
@@ -5478,7 +5479,7 @@
         "action": "",
         "pretty": false,
         "x": 1270,
-        "y": 1240,
+        "y": 1460,
         "wires": [
             [
                 "f66f595e08543684"
@@ -5505,7 +5506,7 @@
         "to": "",
         "reg": false,
         "x": 1410,
-        "y": 1240,
+        "y": 1460,
         "wires": [
             [
                 "8d75011f3e4a61cd"
@@ -5532,7 +5533,7 @@
         "to": "",
         "reg": false,
         "x": 1430,
-        "y": 1280,
+        "y": 1500,
         "wires": [
             [
                 "8d75011f3e4a61cd"
@@ -5559,7 +5560,7 @@
         "to": "",
         "reg": false,
         "x": 1410,
-        "y": 1320,
+        "y": 1540,
         "wires": [
             [
                 "8d75011f3e4a61cd"
@@ -5587,7 +5588,7 @@
         "reduceInitType": "",
         "reduceFixup": "",
         "x": 1630,
-        "y": 1280,
+        "y": 1500,
         "wires": [
             [
                 "be1f566e551634ca",
@@ -5632,7 +5633,7 @@
         "to": "",
         "reg": false,
         "x": 1850,
-        "y": 1280,
+        "y": 1500,
         "wires": [
             [
                 "b1da83a2a3862753",
@@ -5904,7 +5905,7 @@
         "encoding": "none",
         "allProps": false,
         "x": 1090,
-        "y": 1360,
+        "y": 1580,
         "wires": [
             [
                 "1c372d625e08d8fc"
@@ -5931,7 +5932,7 @@
         "to": "",
         "reg": false,
         "x": 1450,
-        "y": 1360,
+        "y": 1580,
         "wires": [
             [
                 "110577191a0e44c6",
@@ -5951,7 +5952,7 @@
         "finalize": "",
         "libs": [],
         "x": 960,
-        "y": 1360,
+        "y": 1580,
         "wires": [
             [
                 "43e78b5d682b70c3"
@@ -5970,7 +5971,7 @@
         "finalize": "",
         "libs": [],
         "x": 1270,
-        "y": 1360,
+        "y": 1580,
         "wires": [
             [
                 "4f883d95b4ab02fd"
@@ -5991,7 +5992,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1620,
-        "y": 1360,
+        "y": 1580,
         "wires": []
     },
     {
@@ -6120,7 +6121,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1820,
-        "y": 1360,
+        "y": 1580,
         "wires": []
     },
     {
@@ -6156,6 +6157,69 @@
         "x": 1520,
         "y": 320,
         "wires": []
+    },
+    {
+        "id": "43c8dd92a5c31e0a",
+        "type": "file in",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "Read Graph Gatling",
+        "filename": "graphPath.gatling.complet",
+        "filenameType": "msg",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 1540,
+        "y": 1260,
+        "wires": [
+            [
+                "4ffd1b52948d9cda"
+            ]
+        ]
+    },
+    {
+        "id": "4ffd1b52948d9cda",
+        "type": "base64",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "",
+        "action": "str",
+        "property": "msg.payload",
+        "x": 1780,
+        "y": 1260,
+        "wires": [
+            [
+                "d90f0834e3b1ccbc"
+            ]
+        ]
+    },
+    {
+        "id": "d90f0834e3b1ccbc",
+        "type": "change",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "gatlingGraphComplete",
+                "tot": "str",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1790,
+        "y": 1300,
+        "wires": [
+            [
+                "b1da83a2a3862753"
+            ]
+        ]
     },
     {
         "id": "9ba0d599c2412587",
