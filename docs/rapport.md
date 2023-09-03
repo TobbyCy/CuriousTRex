@@ -95,20 +95,42 @@ Le système sera conçu pour simuler des requêtes HTTP réalistes à l'aide de 
 # Planification
 ```mermaid
 gantt
-    dateFormat  YYYY-MM-DD
-    title       Adding GANTT diagram functionality to mermaid
-    excludes    weekends
-    %% (`excludes` accepts specific dates in YYYY-MM-DD format, days of the week ("sunday") or "weekends", but not the word "weekdays".)
-
+    dateFormat  YYYY-MM-DD HH:mm
+    title       Planning du Projet
+    excludes    weekends,
+    axisFormat %Y-%m-%a %H:%M
+    tickInterval 4hour
     section Mise en place
-    Mettre en place un nouveau Git :done, des1, 2023-08-16,2023-08-17
-    Créer un rapport :done, des2, 2023-08-16,2023-08-17
-    Rediger une comumentation initial :done, des3, 2023-08-17,2023-08-18
-    Instalation des Raspberry Pi :done, des4, 2023-08-17,2023-08-18
-    Configuration des Raspberry Pi :done, des5, 2023-08-18,2023-08-19
-    Instalation de Node-Red :done, des6, 2023-08-18,2023-08-19
-    Instalation de Gatling :done, des7, 2023-08-18,2023-08-19
-    Préparation de l'INA219 :done, des8, 2023-08-18,2023-08-19
+
+    Création du repository pour le projet : done, mise-en-place-a, 2023-08-16 08:00, 2023-08-16 08:40
+    Mise en place d'un répertoire de documentation : done, mise-en-place-b, 2023-08-16 08:45, 2023-08-16 10:15
+    Installation physique des Raspberry Pi : done, mise-en-place-c, 2023-08-16 10:30, 2023-08-16 14:30
+    Configuration des Raspberry Pi : done, mise-en-place-d, 2023-08-16 14:45, 2023-08-16 17:00
+    Branchement réseau : done, mise-en-place-e, 2023-08-17 08:00, 2023-08-17 08:50
+    Installation de Node-Red : done, mise-en-place-f, 2023-08-17 09:00, 2023-08-17 11:20
+    Installation de Gatling : done, mise-en-place-g, 2023-08-17 11:30, 2023-08-17 12:30
+    Lecture de documentation INA219 : done, mise-en-place-h, 2023-08-17 12:45, 2023-08-18 02:45
+    Préparation de l'INA219 : done, mise-en-place-i, 2023-08-18 03:00, 2023-08-18 15:00
+    Mise en place d'un serveur Apache : done, mise-en-place-j, 2023-08-18 15:30, 2023-08-18 17:00
+
+```
+    
+```mermaid
+gantt
+    dateFormat  YYYY-MM-DD HH:mm
+    title       Planning du Projet
+    excludes    weekends
+    axisFormat %Y-%m-%a %H:%M
+    tickInterval 4 hour
+    section Première Itération
+
+    Configuration de Node-Red : mise-en-place-d1, 2023-08-21 08:00, 2023-08-21 16:00
+    Configurer Gatling : mise-en-place-d2, 2023-08-22 08:00, 2023-08-22 16:00
+    Configuration et test de relevé de l'INA219 : mise-en-place-d3, 2023-08-23 08:00, 2023-08-23 09:00
+    Création de PDF avec Node-Red : mise-en-place-d4, 2023-08-24 08:00, 2023-08-24 08:00
+    Agrégation du lancement des tests et des relevés de l'INA219 : mise-en-place-d5, 2023-08-25 08:00, 2023-08-25 16:00
+    Réinstallation de Volt : mise-en-place-d6, 2023-08-26 08:00, 2023-08-26 10:00
+    Passage du SSH au MQTT pour la récupération des infos : mise-en-place-d7, 2023-08-27 08:00, 2023-08-27 12:00
 
 ```
 # 4. Instalation physique
