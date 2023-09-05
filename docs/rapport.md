@@ -25,80 +25,132 @@
 - [1. Rapport de projet : Banc de mesures de la consommation électrique pour application web](#1-rapport-de-projet--banc-de-mesures-de-la-consommation-électrique-pour-application-web)
 - [2. Sommaire](#2-sommaire)
 - [3. Introduction](#3-introduction)
-- [4. Instalation physique](#4-instalation-physique)
-  - [4.1. Nidus](#41-nidus)
-  - [4.2. Volt](#42-volt)
-- [5. Shéma de principe](#5-shéma-de-principe)
-- [6. Systèmes d'exploitation (OS)](#6-systèmes-dexploitation-os)
-  - [6.1. Ubuntu](#61-ubuntu)
-  - [6.2. Raspbian](#62-raspbian)
-  - [6.3. Première installation](#63-première-installation)
-  - [6.4. Seconde instalation Ubuntu Server](#64-seconde-instalation-ubuntu-server)
-    - [6.4.1. Configuration post instalation](#641-configuration-post-instalation)
-    - [6.4.2. Instalation Apache](#642-instalation-apache)
-    - [6.4.3. Script MQTT](#643-script-mqtt)
-- [7. Node-RED](#7-node-red)
-  - [7.1. Instalation](#71-instalation)
-  - [7.2. Configuration](#72-configuration)
-    - [7.2.1. Installation des plugins](#721-installation-des-plugins)
-    - [7.2.2. Sécurisation de Node-Red](#722-sécurisation-de-node-red)
-    - [7.2.3. Suivi Git](#723-suivi-git)
-- [8. Gatling](#8-gatling)
-  - [8.1. Installation](#81-installation)
-    - [8.1.1. Prerequis](#811-prerequis)
-    - [8.1.2. Download](#812-download)
-  - [8.2. Vérification de l'installation](#82-vérification-de-linstallation)
-  - [8.3. Configuration](#83-configuration)
-- [9. Apache et Site Web](#9-apache-et-site-web)
+- [4. Planification](#4-planification)
+- [5. Instalation physique](#5-instalation-physique)
+  - [5.1. Nidus](#51-nidus)
+  - [5.2. Volt](#52-volt)
+- [6. Shéma de principe](#6-shéma-de-principe)
+- [7. Systèmes d'exploitation (OS)](#7-systèmes-dexploitation-os)
+  - [7.1. Ubuntu](#71-ubuntu)
+  - [7.2. Raspbian](#72-raspbian)
+  - [7.3. Première installation](#73-première-installation)
+  - [7.4. Seconde instalation Ubuntu Server](#74-seconde-instalation-ubuntu-server)
+    - [7.4.1. Configuration post instalation](#741-configuration-post-instalation)
+    - [7.4.2. Instalation Apache](#742-instalation-apache)
+    - [7.4.3. Script MQTT](#743-script-mqtt)
+- [8. Node-RED](#8-node-red)
+  - [8.1. Instalation](#81-instalation)
+  - [8.2. Configuration](#82-configuration)
+    - [8.2.1. Installation des plugins](#821-installation-des-plugins)
+    - [8.2.2. Sécurisation de Node-Red](#822-sécurisation-de-node-red)
+    - [8.2.3. Suivi Git](#823-suivi-git)
+- [9. Gatling](#9-gatling)
   - [9.1. Installation](#91-installation)
-  - [9.2. Mise en place d'un site Web](#92-mise-en-place-dun-site-web)
-- [10. MQTT](#10-mqtt)
-  - [10.1. Installation de Mosquitto sur Nidus](#101-installation-de-mosquitto-sur-nidus)
-  - [10.2. Ouverture des port sur Nidus](#102-ouverture-des-port-sur-nidus)
-  - [10.3. Script MQTT](#103-script-mqtt)
-    - [10.3.1. Script](#1031-script)
-    - [10.3.2. Description détaillée du script](#1032-description-détaillée-du-script)
-    - [10.3.3. Conclusion](#1033-conclusion)
-  - [10.4. Installation](#104-installation)
-  - [10.5. Utilisation du script](#105-utilisation-du-script)
-    - [10.5.1. Vérification](#1051-vérification)
-- [11. INA219](#11-ina219)
-    - [11.0.1. Installation physique](#1101-installation-physique)
-      - [11.0.1.1. Branchement SANS VOLT](#11011-branchement-sans-volt)
-      - [11.0.1.2. Branchement AVEC VOLT](#11012-branchement-avec-volt)
-    - [11.0.2. Vérification de la présence du INA219](#1102-vérification-de-la-présence-du-ina219)
-  - [11.1. Obtention des données](#111-obtention-des-données)
-    - [11.1.1. Test avec le script python A vide](#1111-test-avec-le-script-python-a-vide)
-- [12. Noeud Node-Red](#12-noeud-node-red)
-  - [12.1. INA219](#121-ina219)
-  - [12.2. Monitoring](#122-monitoring)
-  - [12.3. Dashboard](#123-dashboard)
-  - [12.4. PDF](#124-pdf)
-    - [12.4.1. Base](#1241-base)
-  - [12.5. Images de graphiques et de tableaux](#125-images-de-graphiques-et-de-tableaux)
-- [13. Stress Test V1.0](#13-stress-test-v10)
-  - [13.1. Écran d'Accueil](#131-écran-daccueil)
-  - [13.2. En Exécution](#132-en-exécution)
-  - [13.3. Résultat](#133-résultat)
-  - [13.4. Purge](#134-purge)
-- [14. Remerciement](#14-remerciement)
-- [15. Sources](#15-sources)
+    - [9.1.1. Prerequis](#911-prerequis)
+    - [9.1.2. Download](#912-download)
+  - [9.2. Vérification de l'installation](#92-vérification-de-linstallation)
+  - [9.3. Scripts](#93-scripts)
+- [10. Apache et Site Web](#10-apache-et-site-web)
+  - [10.1. Installation](#101-installation)
+  - [10.2. Mise en place d'un site Web](#102-mise-en-place-dun-site-web)
+- [11. MQTT](#11-mqtt)
+  - [11.1. Installation de Mosquitto sur Nidus](#111-installation-de-mosquitto-sur-nidus)
+  - [11.2. Ouverture des port sur Nidus](#112-ouverture-des-port-sur-nidus)
+  - [11.3. Script MQTT](#113-script-mqtt)
+    - [11.3.1. Script](#1131-script)
+    - [11.3.2. Description détaillée du script](#1132-description-détaillée-du-script)
+    - [11.3.3. Conclusion](#1133-conclusion)
+  - [11.4. Installation](#114-installation)
+  - [11.5. Utilisation du script](#115-utilisation-du-script)
+    - [11.5.1. Vérification](#1151-vérification)
+- [12. INA219](#12-ina219)
+    - [12.0.1. Installation physique](#1201-installation-physique)
+      - [12.0.1.1. Branchement SANS VOLT](#12011-branchement-sans-volt)
+      - [12.0.1.2. Branchement AVEC VOLT](#12012-branchement-avec-volt)
+    - [12.0.2. Vérification de la présence du INA219](#1202-vérification-de-la-présence-du-ina219)
+  - [12.1. Obtention des données](#121-obtention-des-données)
+    - [12.1.1. Test avec le script python A vide](#1211-test-avec-le-script-python-a-vide)
+- [13. Noeud Node-Red](#13-noeud-node-red)
+  - [13.1. INA219](#131-ina219)
+  - [13.2. Monitoring](#132-monitoring)
+  - [13.3. Dashboard](#133-dashboard)
+  - [13.4. PDF](#134-pdf)
+    - [13.4.1. Base](#1341-base)
+  - [13.5. Images de graphiques et de tableaux](#135-images-de-graphiques-et-de-tableaux)
+- [14. Stress Test V1.0](#14-stress-test-v10)
+  - [14.1. Écran d'Accueil](#141-écran-daccueil)
+  - [14.2. En Exécution](#142-en-exécution)
+  - [14.3. Résultat](#143-résultat)
+  - [14.4. Purge](#144-purge)
+- [15. Gatling Test V2.0](#15-gatling-test-v20)
+  - [15.1. But](#151-but)
+  - [15.2. Étapes à Atteindre](#152-étapes-à-atteindre)
+  - [15.3. Exécution d'un Test Préétabli sur Gatling depuis Node-Red](#153-exécution-dun-test-préétabli-sur-gatling-depuis-node-red)
+  - [15.4. Envoi de Commande avec une Durée](#154-envoi-de-commande-avec-une-durée)
+  - [15.5. Récupération des Informations](#155-récupération-des-informations)
+  - [15.6. Traitement des données](#156-traitement-des-données)
+    - [15.6.1. Création des graphiques](#1561-création-des-graphiques)
+    - [15.6.2. PDF](#1562-pdf)
+  - [15.7. Refactoring](#157-refactoring)
+- [16. Remerciement](#16-remerciement)
+- [17. Sources](#17-sources)
 
 <div style="page-break-after: always;"></div>
 
 # 3. Introduction
 Le système sera conçu pour simuler des requêtes HTTP réalistes à l'aide de Gatling, mesurer la consommation électrique en utilisant l'INA219 connecté via le bus I2C, et collecter les mesures de performance à l'aide de Node-RED. Les rapports générés fourniront des informations détaillées sur les performances du système testé, y compris le temps de réponse, la consommation d'énergie par requête, l'utilisation du processeur, etc.
-# 4. Instalation physique
-## 4.1. Nidus
+# 4. Planification
+```mermaid
+gantt
+    dateFormat  YYYY-MM-DD HH:mm
+    title       Planning du Projet
+    excludes    weekends,
+    axisFormat %Y-%m-%a %H:%M
+    tickInterval 4hour
+    section Mise en place
+
+    Création du repository pour le projet : done, mise-en-place-a, 2023-08-16 08:00, 2023-08-16 08:40
+    Mise en place d'un répertoire de documentation : done, mise-en-place-b, 2023-08-16 08:45, 2023-08-16 10:15
+    Installation physique des Raspberry Pi : done, mise-en-place-c, 2023-08-16 10:30, 2023-08-16 14:30
+    Configuration des Raspberry Pi : done, mise-en-place-d, 2023-08-16 14:45, 2023-08-16 17:00
+    Branchement réseau : done, mise-en-place-e, 2023-08-17 08:00, 2023-08-17 08:50
+    Installation de Node-Red : done, mise-en-place-f, 2023-08-17 09:00, 2023-08-17 11:20
+    Installation de Gatling : done, mise-en-place-g, 2023-08-17 11:30, 2023-08-17 12:30
+    Lecture de documentation INA219 : done, mise-en-place-h, 2023-08-17 12:45, 2023-08-18 02:45
+    Préparation de l'INA219 : done, mise-en-place-i, 2023-08-18 03:00, 2023-08-18 15:00
+    Mise en place d'un serveur Apache : done, mise-en-place-j, 2023-08-18 15:30, 2023-08-18 17:00
+
+```
+    
+```mermaid
+gantt
+    dateFormat  YYYY-MM-DD HH:mm
+    title       Planning du Projet
+    excludes    weekends
+    axisFormat %Y-%m-%a %H:%M
+    tickInterval 4 hour
+    section Première Itération
+
+    Configuration de Node-Red : mise-en-place-d1, 2023-08-21 08:00, 2023-08-21 16:00
+    Configurer Gatling : mise-en-place-d2, 2023-08-22 08:00, 2023-08-22 16:00
+    Configuration et test de relevé de l'INA219 : mise-en-place-d3, 2023-08-23 08:00, 2023-08-23 09:00
+    Création de PDF avec Node-Red : mise-en-place-d4, 2023-08-24 08:00, 2023-08-24 08:00
+    Agrégation du lancement des tests et des relevés de l'INA219 : mise-en-place-d5, 2023-08-25 08:00, 2023-08-25 16:00
+    Réinstallation de Volt : mise-en-place-d6, 2023-08-26 08:00, 2023-08-26 10:00
+    Passage du SSH au MQTT pour la récupération des infos : mise-en-place-d7, 2023-08-27 08:00, 2023-08-27 12:00
+
+```
+# 5. Instalation physique
+## 5.1. Nidus
 <img src="../capture/Nidus.jpg" alt="Image" width="100%" style="width:100%;">
 
-## 4.2. Volt
+## 5.2. Volt
 <img src="../capture/Volt.jpg" alt="Image" width="100%" style="width:100%;">
 
 
 <div style="page-break-after: always;"></div>
 
-# 5. Shéma de principe
+# 6. Shéma de principe
 ```ascii
                     +---------+      +-------------+
                     |   Volt  |      |   Nidus     |
@@ -108,6 +160,7 @@ Le système sera conçu pour simuler des requêtes HTTP réalistes à l'aide de 
                     | Apache  |      | Node-RED    |
                     | No-Proc |      | Gatling     |
                     |         |      | INA219      |
+                    |         |      | MQTT        |
                     +---------+      +-------------+
                         ^   |             ^   |
                         |   |             |   |
@@ -127,16 +180,50 @@ Le système sera conçu pour simuler des requêtes HTTP réalistes à l'aide de 
                             +------------+
 
 ```
+Explication : Actuellement le but est que Nidus offre tout les outil pour le monittoring incluant le MQTT, Node-Red, Gatling et l'INA219. Volt lui ne sert que de serveur web pour le site web. Le but est de pouvoir faire des test de charge sur le site web et de pouvoir mesurer la consommation électrique du serveur web.
+De fais toute intéraction de l'utilisateur se fait avec Nidus.
+Nidus envoie ses donnée de monittoring sur le serveur MQTT installé sur Nidus, et Node-Red installé sur Nidus récupère les données du serveur MQTT et les envoie dans des noeud fais pour le traiter et fournir ensuite les sortie appropié :
+- Dashboard : Pour l'utilisateur
+- PDF : Pour l'utilisateur
+Nidus peut dans un second temps lancer des stresstest via Node-Red sur lui même et sur Volt. Il peut aussi lancer des stresstest sur Volt via Gatling.
+
+```mermaid
+graph TD;
+
+subgraph "Serveur"
+    A[Site Web] -->|Requêtes| B[Node-RED];
+    B -->|MQTT| C[INA219];
+    B -->|MQTT| D[Gatling];
+end
+
+subgraph "Raspberry Pi"
+    E[Nidus] -->|I2C| G[INA219 Mesure];
+    F[Volt] -->|I2C| H[INA219 Remplacement];
+end
+
+subgraph "Utilisateur"
+    I[Dashboard Node-Red];
+end
+
+A -->|Requêtes| B;
+B -->|MQTT| C;
+B -->|MQTT| D;
+E -->|I2C| G;
+F -->|I2C| H;
+B -->|MQTT| I;
+I -->|Données Moniteur| I;
+
+```
 
 <div style="page-break-after: always;"></div>
 
-# 6. Systèmes d'exploitation (OS)
+# 7. Systèmes d'exploitation (OS)
 Dans le cadre de ce projet, plusieurs systèmes d'exploitation seront utilisés. Pour commencer, nous utiliserons Ubuntu.
-## 6.1. Ubuntu
+## 7.1. Ubuntu
 Ubuntu est un système d'exploitation largement utilisé pour les serveurs et les ordinateurs de bureau. Il est livré avec un ensemble d'outils de développement et de productivité, notamment un navigateur Web, un éditeur de texte, des logiciels de programmation, des outils de calcul, des jeux et des logiciels de productivité. Ubuntu propose un environnement de bureau léger et réactif, conçu tant pour les ordinateurs de bureau que pour les serveurs.
-## 6.2. Raspbian
+## 7.2. Raspbian
 Raspbian est un système d'exploitation libre basé sur Debian, spécialement optimisé pour le Raspberry Pi. Depuis 2015, Raspbian est livré avec un ensemble d'outils appelé Pixel. Pixel offre un environnement de bureau comprenant un navigateur Web, un éditeur de texte, des logiciels de programmation, des outils de calcul, des jeux et des logiciels de productivité. Pixel est un environnement de bureau léger et réactif, conçu spécifiquement pour les ordinateurs monocarte Raspberry Pi.
-## 6.3. Première installation
+## 7.3. Première installation
 Dans un premier temps, nous allons installer la version bureau d'Ubuntu sur Volt. Cette décision est motivée par le fait qu'il est plus simple de travailler dans un environnement de bureau pour tester rapidement tous les concepts du projet.
 
 Sur Nidus, Raspbian en version bureau sera installé pour des raisons similaires à celles de Volt.
@@ -149,13 +236,13 @@ Adresse IP de Volt : 157.26.228.77
 Adresse IP de Nidus : 157.26.251.185
 
 
-## 6.4. Seconde instalation Ubuntu Server
+## 7.4. Seconde instalation Ubuntu Server
 <img src="../capture/RPI/Volt/Imager.png" alt="Image" width="100%" style="width:100%;">
 
 
 <div style="page-break-after: always;"></div>
 
-### 6.4.1. Configuration post instalation
+### 7.4.1. Configuration post instalation
 ```bash
 toblerc@LPT-UNIX-USB-CT:~$ ssh tobby@157.26.228.77
 The authenticity of host '157.26.228.77 (157.26.228.77)' can't be established.
@@ -202,7 +289,7 @@ tobby@Volt:~$ sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y
 0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
 
 ```
-### 6.4.2. Instalation Apache
+### 7.4.2. Instalation Apache
 ```bash
 tobby@Volt:~$ sudo apt install apache2
 Reading package lists... Done
@@ -220,7 +307,7 @@ toblerc@LPT-UNIX-USB-CT:~$ scp -r /home/toblerc/Documents/ES_2024/banc-de-mesure
 toblerc@LPT-UNIX-USB-CT:~$ 
 tobby@Volt:~$ sudo cp -r /home/tobby/html /var/www/
 ```
-### 6.4.3. Script MQTT
+### 7.4.3. Script MQTT
 ```bash
 toblerc@LPT-UNIX-USB-CT:~/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique$ scp ./mqtt.sh tobby@157.26.228.77:/home/tobby
 mqtt.sh                                                                                                                                                                         100% 2522     1.7MB/s   00:00    
@@ -249,10 +336,10 @@ Building dependency tree... Done
 
 <div style="page-break-after: always;"></div>
 
-# 7. Node-RED
+# 8. Node-RED
 **Node-RED** est un outil de programmation visuelle open source conçu pour faciliter la connexion de périphériques, d'API et de services en ligne. Il propose un éditeur de flux basé sur un navigateur, permettant ainsi de connecter des nœuds à l'aide de simples glisser-déposer. Ces nœuds peuvent être exécutés dans un environnement Node.js. Ils peuvent être des fonctions JavaScript ou des modules npm, tels que node-red-contrib-gpio, node-red-contrib-sqlite, node-red-contrib-modbustcp, etc. En plus des nœuds de base fournis, Node-RED offre plus de 2000 nœuds supplémentaires créés par la communauté et prêts à être utilisés.
 
-## 7.1. Instalation
+## 8.1. Instalation
 ```bash
 tobby@Nidus:~ $ bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
 Running Node-RED install for user tobby at /home/tobby on debian
@@ -363,8 +450,8 @@ Created symlink /etc/systemd/system/multi-user.target.wants/nodered.service → 
 ```
 <img src="../capture/RPI/Node-Red/PostInstall.png" alt="Image" width="100%" style="width:100%;">
 
-## 7.2. Configuration
-### 7.2.1. Installation des plugins
+## 8.2. Configuration
+### 8.2.1. Installation des plugins
 <img src="../capture/RPI/Node-Red/palette1.png" alt="Installation des plugins" width="30%" style="width:30%;">
 <img src="../capture/RPI/Node-Red/palette2.png" alt="Installation des plugins" width="30%" style="width:30%;">
 <img src="../capture/RPI/Node-Red/palette3.png" alt="Installation des plugins" width="30%" style="width:30%;">
@@ -374,12 +461,12 @@ Created symlink /etc/systemd/system/multi-user.target.wants/nodered.service → 
 <img src="../capture/RPI/Node-Red/Dashboard.png" alt="Installation des plugins" width="100%" style="width:100%;">
 
 
-### 7.2.2. Sécurisation de Node-Red
+### 8.2.2. Sécurisation de Node-Red
 Pour sécuriser Node-Red, il convient de modifier le fichier `settings.js`. Dans notre cas, nous utilisons la commande `node-red admin init`, ce qui permet, par exemple, de créer des paires utilisateur/mot de passe.
 
 De plus, il est recommandé, si nécessaire, d'ajouter un login au *Dashboard*.
 
-### 7.2.3. Suivi Git
+### 8.2.3. Suivi Git
 Afin de suivre le projet sur Git, il est nécessaire de configurer un utilisateur, générer des clés SSH, puis effectuer un *clone* du projet.
 
 <img src="../capture/RPI/Node-Red/Git_Config.png" alt="Configuration Git" width="30%" style="width:30%;">
@@ -398,14 +485,14 @@ tobby@Nidus:~/.node-red/projects/banc-de-mesures-de-la-consommation-electrique $
 
 <div style="page-break-after: always;"></div>
 
-# 8. Gatling
+# 9. Gatling
 **Gatling** est un outil de test de charge open source basé sur Scala, conçu pour évaluer les performances des applications et des sites Web. Gatling simule des utilisateurs virtuels qui envoient des requêtes HTTP vers le système cible. Il enregistre les temps de réponse des requêtes et les présente sous forme de graphiques. Gatling est doté d'un éditeur de scénarios basé sur navigateur, permettant aux utilisateurs de créer des scénarios de test de charge à l'aide d'un langage de domaine spécifique (DSL) appelé *Gatling DSL*. Ce langage, basé sur Scala, permet de définir des scénarios de test de charge à l'aide de mots-clés tels que `exec`, `pause`, `feed`, etc.
 
 La version la plus récente de Gatling est la 3.9.5, compatible avec Java 8 et Java 11. Dans ce projet, nous opterons pour Java 11 pour exécuter Gatling.
 
-## 8.1. Installation
+## 9.1. Installation
 
-### 8.1.1. Prerequis
+### 9.1.1. Prerequis
 ```bash
 tobby@Nidus:~ $ sudo apt install default-jdk
 tobby@Nidus:~/.node-red $ java -version
@@ -416,7 +503,7 @@ tobby@Nidus:~/.node-red $
 
 
 ```
-### 8.1.2. Download
+### 9.1.2. Download
 
 ```bash
 tobby@Nidus:~ $ mkdir .gatling
@@ -468,7 +555,7 @@ drwxr-xr-x 2 tobby tobby 12288 10 mai 11:19 lib
 drwxr-xr-x 2 tobby tobby  4096 10 mai 11:19 results
 drwxr-xr-x 5 tobby tobby  4096 10 mai 11:19 user-files
 ```
-## 8.2. Vérification de l'installation
+## 9.2. Vérification de l'installation
 ```bash
 tobby@Nidus:~/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin $ ./gatling.sh
 GATLING_HOME is set to /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5
@@ -518,18 +605,110 @@ Generating reports...
 Reports generated in 0s.
 Please open the following file: file:///home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/results/computerdatabasesimulation-20230816142907884/index.html
 ```
-## 8.3. Configuration
+## 9.3. Scripts
+Pour Gatling, j'ai d'abord choisi le Java comme language de programmation mais je me suis tournée ensuite vers le Scala car il est plus adapté à Gatling. J'ai donc créé un script Scala qui permet de faire un test de charge sur le site web. Ce script est très simple, il se contente de faire une requête GET sur la page d'accueil du site web. Il est possible de modifier le nombre d'utilisateur et le temps de test dans le script. J'ai aussi créé un script bash qui permet de lancer le script Scala. 
+
+```scala
+import io.gatling.core.Predef._
+import io.gatling.http.Predef._
+import scala.concurrent.duration._
+
+class CuriusTRex_Bash extends Simulation {
+
+  val httpProtocol = http
+    .baseUrl("http://volt.s2.rpn.ch")
+    .inferHtmlResources()
+    .acceptHeader("image/avif,image/webp,*/*")
+    .acceptEncodingHeader("gzip, deflate")
+    .acceptLanguageHeader("fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3")
+    .userAgentHeader("Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/114.0")
+
+  val headers_0 = Map(
+    "Accept" -> "text/css,*/*;q=0.1",
+    "If-Modified-Since" -> "Thu, 17 Aug 2023 08:18:41 GMT",
+    "If-None-Match" -> "\"dc3-6031a0f5b4a47-gzip\""
+  )
+
+  val headers_1 = Map(
+    "Accept" -> "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    "Upgrade-Insecure-Requests" -> "1"
+  )
+
+  val headers_4 = Map(
+    "If-Modified-Since" -> "Thu, 17 Aug 2023 07:26:33 GMT",
+    "If-None-Match" -> "\"164ac-6031954e8df3b\""
+  )
+
+  val headers_6 = Map(
+    "If-Modified-Since" -> "Thu, 17 Aug 2023 07:26:33 GMT",
+    "If-None-Match" -> "\"14c4c-6031954e8cf9b\""
+  )
+
+  val headers_7 = Map(
+    "Accept" -> "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    "If-Modified-Since" -> "Thu, 17 Aug 2023 08:08:51 GMT",
+    "If-None-Match" -> "\"2129-60319ec28bede-gzip\"",
+    "Upgrade-Insecure-Requests" -> "1"
+  )
+
+  val scn = scenario("CuriusTRex")
+    .exec(
+      http("request_0")
+        .get("/styles.css")
+        .headers(headers_0)
+    )
+    // Start
+    .exec(
+      http("request_1")
+        .get("/contact.html")
+        .headers(headers_1)
+    )
+    .exec(
+      http("request_2")
+        .get("/about.html")
+        .headers(headers_1)
+        .resources(
+          http("request_3")
+            .get("/capture/Home.jpg"),
+          http("request_4")
+            .get("/capture/Test_Complet.jpg")
+            .headers(headers_4),
+          http("request_5")
+            .get("/capture/Donn%C3%A9es.jpg"),
+          http("request_6")
+            .get("/capture/Test.jpg")
+            .headers(headers_6)
+        )
+    )
+    .exec(
+      http("request_7")
+        .get("/about.html")
+        .headers(headers_7)
+    )
+   .exec(flushHttpCache)
+   .exec(flushSessionCookies)
+   .exec(flushCookieJar)
+
+val nbUsers = java.lang.Long.getLong("users", 1).toDouble
+val myRamp = java.lang.Long.getLong("ramp", 0)
+println(s"Nombre d'utilisateurs : $nbUsers")
+println(s"Temps de montée : $myRamp")
+
+  setUp(scn.inject(constantUsersPerSec(nbUsers).during(myRamp seconds))).protocols(httpProtocol)
+}
+
+```
 
 <div style="page-break-after: always;"></div>
 
-# 9. Apache et Site Web
-## 9.1. Installation
+# 10. Apache et Site Web
+## 10.1. Installation
 ```bash
 sudo apt install apache2
 sudo systemctl status apache2
 sudo systemctl enable apache2
 ```
-## 9.2. Mise en place d'un site Web
+## 10.2. Mise en place d'un site Web
 J'ai créee un site web très simple reprenant le readme du projet. Et il comporte trois pages ainsi que du CSS.
 ```bash
 scp -r /home/toblerc/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique/siteWeb/www/html tobby@Volt:/var/www/html/
@@ -537,9 +716,9 @@ scp -r /home/toblerc/Documents/ES_2024/banc-de-mesures-de-la-consommation-electr
 
 <div style="page-break-after: always;"></div>
 
-# 10. MQTT
+# 11. MQTT
 Dans notre cas, j'ai l'intention d'utiliser MQTT pour transmettre les données de consommation à Node-Red. En contournant le transfert de requêtes via SSH et l'utilisation de clés SSH, MQTT permet de gagner en performances et en sécurité. En termes de performances, MQTT est considérablement plus léger que SSH, environ dix fois plus léger.
-## 10.1. Installation de Mosquitto sur Nidus
+## 11.1. Installation de Mosquitto sur Nidus
 ```bash
 tobby@Nidus:~/.ssh $ sudo apt install mosquitto
 Lecture des listes de paquets... Fait
@@ -563,7 +742,7 @@ tobby@Nidus:~/.ssh $ sudo systemctl status mosquitto
 aoû 22 16:01:58 Nidus systemd[1]: Starting Mosquitto MQTT Broker...
 aoû 22 16:01:58 Nidus systemd[1]: Started Mosquitto MQTT Broker.
 ```
-## 10.2. Ouverture des port sur Nidus
+## 11.2. Ouverture des port sur Nidus
 Modifier le fichier de conf comme suit :
 ```bash
 tobby@Nidus:~ $ sudo vim /etc/mosquitto/mosquitto.conf
@@ -588,9 +767,9 @@ allow_anonymous true
 
 <div style="page-break-after: always;"></div>
 
-## 10.3. Script MQTT
+## 11.3. Script MQTT
 J'ai élaboré un script MQTT sophistiqué, conçu pour publier efficacement les données de consommation sur le broker MQTT. Ce script, au démarrage de la machine, entreprend un fonctionnement en boucle continue, garantissant la collecte et la publication régulières de ces données. L'objectif est d'optimiser les performances tout en garantissant la fiabilité du processus.
-### 10.3.1. Script
+### 11.3.1. Script
 ```sh
 #!/bin/bash
 ### BEGIN INIT INFO
@@ -665,7 +844,7 @@ while true; do
     sleep 1  # Attente d'une seconde
 done
 ```
-### 10.3.2. Description détaillée du script
+### 11.3.2. Description détaillée du script
 Le script commence par vérifier si l'emplacement d'installation est correct, s'assurant qu'il est placé dans le répertoire défini par **INSTALL_DIR**. Ensuite, il vérifie la présence et l'installation des dépendances requises, notamment **mosquitto-clients**, en l'installant si nécessaire.
 
 Une autre vérification importante concerne l'existence d'un lien symbolique vers **/etc/init.d**, qui est nécessaire pour exécuter le script au démarrage de la machine. Si le lien symbolique n'existe pas, le script le crée.
@@ -678,15 +857,15 @@ Ces données sont ensuite publiées sur le broker MQTT à l'aide de la commande 
 
 Le script affiche également un message indiquant que les données ont été publiées sur MQTT, et ensuite attend une seconde avant de reprendre une nouvelle itération de la boucle.
 
-### 10.3.3. Conclusion
+### 11.3.3. Conclusion
 Ce script MQTT élaboré et bien structuré offre un moyen efficace de collecter et de publier les données de consommation sur le broker **MQTT**. Son fonctionnement en boucle continue, combiné à des vérifications et des actions préliminaires, garantit une gestion fiable et optimisée des données, contribuant ainsi à la réussite globale du projet.
 
-## 10.4. Installation
+## 11.4. Installation
 ```bash
 toblerc@LPT-UNIX-USB-CT:~/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique$ scp ./mqtt.sh tobby@volt:/usr/local/bin/mqtt.sh
 mqtt.sh                                                                                                                                                                         100% 2526     2.1MB/s   00:00 
 ```
-## 10.5. Utilisation du script
+## 11.5. Utilisation du script
 ```bash
 tobby@Volt:/usr/local/bin$ sudo ./mqtt.sh
 Installation de mosquitto-clients...
@@ -702,25 +881,25 @@ Activation du service...
 Service activé.
 ```
 
-### 10.5.1. Vérification
+### 11.5.1. Vérification
 <img src="../capture/RPI/Node-Red/MQTT.png" alt="Image" width="100%" style="width:100%;">
 
 
 <div style="page-break-after: always;"></div>
 
-# 11. INA219
+# 12. INA219
 
 Dans ce chapitre, nous explorerons la puce **INA219**, qui joue un rôle essentiel dans la mesure de la consommation. Il est important de noter que nous utilisons deux puces INA219 dans ce projet : l'une pour la mesure proprement dite et l'autre en tant que pièce de rechange en cas de problème. Pour les différencier, nous avons effectué des soudures pour attribuer des adresses I2C spécifiques à chaque puce. L'adresse de la puce de mesure est réglée sur *0x40*, tandis que l'adresse de la puce de remplacement est réglée sur *0x41*.
 
-### 11.0.1. Installation physique
+### 12.0.1. Installation physique
 
 L'installation physique du **INA219** implique des branchements spécifiques en fonction des scénarios : avec ou sans le dispositif Volt. Voici les détails de chaque configuration :
 
-#### 11.0.1.1. Branchement SANS VOLT
+#### 12.0.1.1. Branchement SANS VOLT
 
 <img src="../capture/RPI/INA219/Sans_Volt.jpg" alt="Schéma de branchement sans Volt" width="100%" style="width:100%;">
 
-#### 11.0.1.2. Branchement AVEC VOLT
+#### 12.0.1.2. Branchement AVEC VOLT
 
 Le branchement avec le dispositif Volt ajoute une complexité supplémentaire. Voici un aperçu détaillé de ce branchement :
 
@@ -728,7 +907,7 @@ Le branchement avec le dispositif Volt ajoute une complexité supplémentaire. V
 <img src="../capture/RPI/INA219/Avec_Volt_Detail.jpg" alt="Détail du branchement avec Volt" width="100%" style="width:100%;">
 
 
-### 11.0.2. Vérification de la présence du INA219
+### 12.0.2. Vérification de la présence du INA219
 
 Avant de pouvoir commencer à utiliser le **INA219** pour mesurer la consommation, il est crucial de vérifier la présence de la puce et de s'assurer qu'elle est correctement détectée par le système. Cette étape est essentielle pour garantir des mesures précises et fiables tout au long du projet.
 
@@ -755,8 +934,8 @@ tobby@Nidus:~ $ sudo i2cdetect -y 1
 60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 70: -- -- -- -- -- -- -- --    
 ```
-## 11.1. Obtention des données
-### 11.1.1. Test avec le script python A vide 
+## 12.1. Obtention des données
+### 12.1.1. Test avec le script python A vide 
 Instalation de la bibliothèque python
 ```bash
 tobby@Nidus:~ $ sudo pip3 install pi-ina219
@@ -834,9 +1013,9 @@ Shunt voltage: -0.010 mV
 
 <div style="page-break-after: always;"></div>
 
-# 12. Noeud Node-Red
+# 13. Noeud Node-Red
 
-## 12.1. INA219
+## 13.1. INA219
 
 Dans cette section, nous explorons le composant **INA219**, un élément clé de notre projet. L'**INA219** est équipé de deux sorties qui fournissent des valeurs en milliampères et en volts, offrant ainsi des informations cruciales sur la consommation.
 
@@ -868,7 +1047,7 @@ msg.topic = "Watt";
 // Renvoyer le message modifié
 return msg;
 ```
-## 12.2. Monitoring
+## 13.2. Monitoring
 
 <img src="../capture/RPI/Node-Red/benchmark.png" alt="Image de Monitoring" width="100%" style="width:100%;">
 
@@ -879,7 +1058,7 @@ En commençant par la réception des données via le nœud MQTT, celles-ci sont 
 
 <div style="page-break-after: always;"></div>
 
-## 12.3. Dashboard
+## 13.3. Dashboard
 
 Le **Dashboard**, en tant que centre de contrôle essentiel, rassemble tous les éléments nécessaires pour une visualisation optimale des données générées.
 
@@ -919,8 +1098,8 @@ Il met à disposition un ensemble complet de nœuds spécifiques, créant une in
 
 Ces nœuds apportent un ensemble puissant d'outils pour la création d'interfaces visuelles riches, éliminant la nécessité d'une programmation manuelle pour chaque élément. Cela encourage la collaboration efficace entre les développeurs et les utilisateurs non techniques dans la conception d'interfaces utilisateur conviviales et informatives.
 
-## 12.4. PDF
-### 12.4.1. Base
+## 13.4. PDF
+### 13.4.1. Base
 Pour generer un PDF, il faut passer un Json dans le payload du message :
 ```json
   {
@@ -940,7 +1119,7 @@ Qui est reçu dans le noeud pdfmake qui le passe en Base64 qui est ensuite reçu
 
 <img src="../capture/RPI/Node-Red/PDF1.png" alt="Image" width="100%" style="width:100%;">
 
-## 12.5. Images de graphiques et de tableaux
+## 13.5. Images de graphiques et de tableaux
 Une fois que la génération de PDF est maîtrisée, il est temps de valoriser davantage les informations en y ajoutant des images.
 
 En effet, bien que disposer des valeurs à un instant donné soit utile, pouvoir visualiser ces valeurs sous forme de graphique est encore plus puissant. Pour réaliser cela, nous utiliserons le nœud **node-red-contrib-chart-image**, qui nous permettra de générer des graphiques. Ce nœud repose sur le module **Chart.js**, qui permet de créer des graphiques en utilisant du code JavaScript.
@@ -951,7 +1130,7 @@ Cette combinaison de nœuds nous permettra de créer des représentations visuel
 
 <div style="page-break-after: always;"></div>
 
-# 13. Stress Test V1.0
+# 14. Stress Test V1.0
 
 J'ai créé une page qui permet de générer un rapport en fonction de la durée et de l'exécution d'un stress test sur Nidus et/ou sur Volt. Voici le flux complet pour la génération du rapport:
 
@@ -960,7 +1139,7 @@ J'ai créé une page qui permet de générer un rapport en fonction de la durée
 
 Pour être honnête, il faut admettre que la lisibilité initiale n'est pas optimale. Par conséquent, j'ai décidé de décomposer le processus en plusieurs étapes afin d'obtenir une meilleure compréhension globale.
 
-## 13.1. Écran d'Accueil
+## 14.1. Écran d'Accueil
 
 <img src="../capture/RPI/Node-Red/RapportPDF/1.1.png" alt="Écran d'Accueil" width="100%" style="width:50%;">
 
@@ -985,7 +1164,7 @@ Le formulaire recueille les données saisies par l'utilisateur. Ensuite, il tran
 
 La première fonction transmet ensuite les données à une fonction à sorties multiples, ce qui permet d'envoyer différents messages distincts.
 
-## 13.2. En Exécution
+## 14.2. En Exécution
 
 <img src="../capture/RPI/Node-Red/RapportPDF/3.png" alt="En Exécution" width="100%" style="width:100%;">
 
@@ -1105,50 +1284,55 @@ L'exemple ci-dessus est volontairement plus simple, car il ne contient qu'un seu
 Une fois que le signal indiquant que les fichiers ont été créés est reçu, le nœud **join** appelé **Moyenne** peut transmettre ses données. Ces données sont réorganisées par un nœud **change**, puis envoyées à plusieurs autres nœuds pour récupérer les images en base64 des graphiques. Ces images sont envoyées en même temps que les moyennes à la fonction **Créer le contenu du fichier** :
 
 ```javascript
+// Cette section crée un objet payload qui sera utilisé pour générer un rapport PDF.
+
 msg.payload = {
+    // Header du rapport PDF
     header: function (currentPage, pageCount, pageSize) {
         return [
             {
-                text: "Tobler Cyril",
-                alignment: "left",
-                fontSize: 10,
-                margin: [15, 10, 0, 0]
+                text: "Tobler Cyril", // Nom de l'auteur du rapport
+                alignment: "left", // Alignement du texte à gauche
+                fontSize: 10, // Taille de la police 10
+                margin: [15, 10, 0, 0] // Marge (haut, droite, bas, gauche)
             },
             {
-                text: "Nom du projet : Confuse T-Rex",
-                alignment: "center",
-                fontSize: 10,
-                margin: [0, 0, 0, 0]
+                text: "Nom du projet : Confuse T-Rex", // Nom du projet
+                alignment: "center", // Alignement du texte au centre
+                fontSize: 10, // Taille de la police 10
+                margin: [0, 0, 0, 0] // Pas de marge
             }
         ];
     },
+    // Footer du rapport PDF
     footer: function (currentPage, pageCount) {
         return {
             columns: [
                 {
-                    text: currentPage.toString() + " / " + pageCount,
+                    text: currentPage.toString() + " / " + pageCount, // Numéro de page actuel / Nombre total de pages
                     alignment: "left",
                     fontSize: 10,
                     margin: [15, 0, 0, 10]
                 },
                 {
-                    text: new Date().toLocaleDateString("fr-FR"),
+                    text: new Date().toLocaleDateString("fr-FR"), // Date actuelle au format français
                     alignment: "right",
                     fontSize: 10,
                     margin: [0, 0, 15, 10]
                 }
             ],
-            margin: [0, 0, 0, 10]
+            margin: [0, 0, 0, 10] // Marge du footer
         };
     },
+    // Contenu du rapport PDF
     content: [
         {
-            text: "Rapport d'utilisation",
-            style: "header",
-            margin: [0, 10, 0, 0]
+            text: "Rapport d'utilisation", // Titre du rapport
+            style: "header", // Style de texte "header" défini ci-dessous
+            margin: [0, 10, 0, 0] // Marge du titre
         },
         {
-            text: "Les valeurs sont des moyennes sur les " + Math.floor(msg.delay / (1000 * 60)) + " dèrnière minutes"
+            text: "Les valeurs sont des moyennes sur les " + Math.floor(msg.delay / (1000 * 60)) + " dernières minutes" // Informations sur les valeurs
         },
         {
             text: "Nidus :",
@@ -1199,25 +1383,28 @@ msg.payload = {
             width: 500
         },
     ],
+     // Images à inclure dans le rapport
     images: {
-        voltImage: 'data:image/png;base64,' + msg.payload.voltGraph.toString('base64'), // Utilisation du buffer pour l'image Volt
-        wattImage: 'data:image/png;base64,' + msg.payload.wattGraph.toString('base64'),  // Utilisation du buffer pour l'image Watt de volt
-        nidusImage: 'data:image/png;base64,' + msg.payload.nidusGraph.toString('base64'),  // Utilisation du buffer pour l'image Nidus
+        voltImage: 'data:image/png;base64,' + msg.payload.voltGraph.toString('base64'), // Image Volt au format base64
+        wattImage: 'data:image/png;base64,' + msg.payload.wattGraph.toString('base64'),  // Image Watt de Volt au format base64
+        nidusImage: 'data:image/png;base64,' + msg.payload.nidusGraph.toString('base64'),  // Image Nidus au format base64
     },
+    // Styles de texte personnalisés
     styles: {
         header: {
-            fontSize: 22,
-            bold: true,
-            margin: [0, 30, 0, 0]
+            fontSize: 22, // Taille de la police 22
+            bold: true, // Texte en gras
+            margin: [0, 30, 0, 0] // Marge du titre
         },
         header2: {
-            fontSize: 18,
-            bold: true,
-            margin: [0, 20, 0, 0]
+            fontSize: 18, // Taille de la police 18
+            bold: true, // Texte en gras
+            margin: [0, 20, 0, 0] // Marge des sous-titres
         }
     }
 };
 
+// Renvoie le message avec le payload généré
 return msg;
 ```
 
@@ -1225,7 +1412,7 @@ Cette fonction va créer, de manière similaire aux graphiques, une structure ut
 
 Le nœud final permet de mettre à jour le modèle HTML qui répertorie les fichiers PDF et PNG dans le dossier défini par le nœud **Ajoute le nom du fichier**. Ce modèle HTML permet de les télécharger en un seul clic.
 
-## 13.3. Résultat
+## 14.3. Résultat
 <img src="../capture/RPI/Node-Red/RapportPDF/4.png" alt="Alt text" width="100%" style="width:100%;">
 
 Pour obtenir les résultats, il suffit de cliquer sur le nom du fichier, qui sera automatiquement téléchargé. Ce processus est géré par ces nœuds :
@@ -1236,7 +1423,7 @@ La partie supérieure gère l'affichage des fichiers dans un modèle et ajoute a
 
 <img src="../capture/RPI/Node-Red/RapportPDF/5.png" alt="Alt text" width="100%" style="width:100%;">
 
-## 13.4. Purge
+## 14.4. Purge
 Au cours de mes tests, j'ai réalisé qu'un problème survient lorsque l'on génère un certain nombre de rapports, le dossier devient rapidement surchargé. Par conséquent, j'ai décidé de mettre en place un bouton permettant de purger le dossier de tous les fichiers .pdf et .png qui s'y trouvent. Cependant, pour éviter toute suppression accidentelle de fichiers importants, j'ai mis en place un système de confirmation demandant à l'utilisateur s'il est sûr de vouloir supprimer les fichiers.
 
 <img src="../capture/RPI/Node-Red/RapportPDF/6.png" alt="Alt text" width="100%" style="width:100%;">
@@ -1253,7 +1440,372 @@ Ce que l'on peut observer, c'est qu'après avoir appuyé sur le bouton de purge,
 
 <div style="page-break-after: always;"></div>
 
-# 14. Remerciement 
+# 15. Gatling Test V2.0
+## 15.1. But
+L'objectif de cette étape est d'intégrer Gatling aux tests de Node-Red, offrant ainsi la possibilité de réaliser à la fois des tests de charge et des tests de stress sur la même infrastructure.
+
+## 15.2. Étapes à Atteindre
+1. **Exécution d'un Test Préétabli sur Gatling depuis Node-Red** : La première étape consiste à configurer et à exécuter un test préétabli à l'aide de Gatling directement depuis l'environnement Node-Red. Cela permettra de lancer les scénarios de test sur l'application ou le système cible.
+
+2. **Récupération des Résultats de Gatling et Création de Graphiques pour l'Incorporation au PDF** : Une fois le test Gatling terminé, nous devrons récupérer les résultats générés par Gatling. Ces résultats seront ensuite transformés en graphiques informatifs pour être intégrés dans le rapport PDF. Cette étape vise à rendre les données de performance facilement compréhensibles.
+
+3. **Définition de la Durée du Test Gatling depuis Node-Red** : Pour chaque test Gatling, il sera nécessaire de définir la durée de l'exécution du test directement depuis Node-Red. Cela permettra de personnaliser la durée des tests en fonction des exigences du projet.
+
+Cette intégration de Gatling aux tests Node-Red offre un moyen puissant d'évaluer les performances de l'infrastructure tout en maintenant un contrôle complet sur les scénarios de test et les paramètres de durée.
+## 15.3. Exécution d'un Test Préétabli sur Gatling depuis Node-Red
+L'exécution d'un test préétabli sur Gatling depuis Node-Red revêt une importance cruciale pour la suite du projet. Cela permettra de lancer les scénarios de test sur l'application ou le système cible. Pour réaliser cette étape, nous allons utiliser le nœud **exec** de Node-Red, qui nous permet d'exécuter des commandes sur le système d'exploitation. Ce nœud sera utilisé pour lancer les commandes Gatling nécessaires afin de lancer les tests.
+
+Je lui transmets la commande suivante en entrée :
+```bash
+tobby@Nidus:~ $ /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s CuriusTRex -bm --run-mode local -erjo " -Dusers=5 -Dramp=5"
+```
+<img src="../capture/RPI/Node-Red/RapportPDF/8.png" alt="Alt text" width="100%" style="width:100%;">
+<img src="../capture/RPI/Node-Red/RapportPDF/8.8.png" alt="Alt text" width="100%" style="width:100%;">
+
+## 15.4. Envoi de Commande avec une Durée
+
+L'une des premières étapes essentielles est de pouvoir définir une durée pour le test. Pour accomplir cette tâche, j'ai employé un nœud **function** qui permet de spécifier la durée du test en fonction de la valeur saisie par l'utilisateur. Cette valeur est ensuite transmise à un nœud **exec** qui se charge d'exécuter la commande Gatling nécessaire. Voici le code de la fonction :
+
+
+```javascript
+msg.original = msg.payload;
+if (msg.topic !== "inject" && msg.payload.time_gatling !== undefined && msg.payload.user_gatling !== undefined) {
+    // Crée la commande en utilisant les valeurs spécifiées
+    msg.payload.time = msg.payload.time_gatling * 60;
+    msg.payload = `/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s CuriusTRex -bm --run-mode local -erjo "-Dusers=${msg.payload.user_gatling} -Dramp=${msg.payload.time_gatling}"`;
+} else {
+    // Utilise la commande d'origine car il ne s'agit pas d'un noeud inject ou les valeurs ne sont pas fournies
+    // Par défaut, utilisez la commande actuelle
+    msg.payload = "/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s CuriusTRex -bm --run-mode local -erjo \" -Dusers=5 -Dramp=5\"";
+}
+
+// Renvoie le message modifié
+return msg;
+```
+
+## 15.5. Récupération des Informations
+
+Pour obtenir les informations d'un rapport Gatling, j'ai dû entreprendre une rétro-ingénierie significative. En effet, Gatling ne propose pas de mécanisme direct pour extraire des informations depuis la ligne de commande. Il est nécessaire de collecter les données directement à partir des fichiers générés par Gatling. Voici un exemple de fichier généré par Gatling :
+
+```log
+RUN	CuriusTRex_Bash	curiustrex-bash	1693898386165	 	3.9.5
+USER	CuriusTRex	START	1693898386953
+REQUEST		request_0	1693898386949	1693898386985	OK	 
+REQUEST		request_1	1693898387009	1693898387014	OK	 
+USER	CuriusTRex	START	1693898387108
+REQUEST		request_0	1693898387107	1693898387128	OK	 
+REQUEST		request_1	1693898387132	1693898387136	OK	 
+REQUEST		styles.css	1693898387162	1693898387167	OK	 
+REQUEST		styles.css	1693898387162	1693898387167	OK	 
+REQUEST		request_2	1693898387184	1693898387189	OK	 
+REQUEST		request_2	1693898387184	1693898387189	OK	 
+REQUEST		styles.css	1693898387211	1693898387222	OK	 
+REQUEST		Home.jpg	1693898387212	1693898387228	OK	 
+REQUEST		styles.css	1693898387223	1693898387233	OK	 
+REQUEST		Données.jpg	1693898387213	1693898387234	OK	 
+REQUEST		Home.jpg	1693898387224	1693898387239	OK	 
+REQUEST		Test_Complet.jpg	1693898387215	1693898387241	OK	
+```
+On peut donc voir qu'il y a **beaucoup d'information à traiter dans ce cas particulier**, le test dure 30 secondes avec 5 utilisateurs, et le fichier `simulation.log` fait **3114 lignes**.
+
+Étant donné que les informations sont sauvegardées à chaque fois dans un fichier différent, j'ai mis en place une fonction dans un nœud qui me permet de récupérer le nom du dossier dans lequel le rapport et les logs sont sauvegardés.
+
+Ensuite, j'en fais un tableau de chemins de fichiers :
+
+
+```javascript
+// Fonction pour extraire le chemin après "file://"
+var inputPayload = msg.payload;
+
+// Recherche de l'index de "file://"
+var fileIndex = inputPayload.indexOf("file://");
+
+// Si "file://" est trouvé, extrayez le chemin après
+if (fileIndex !== -1) {
+    // Extraire le chemin après "file://"
+    var filePath = inputPayload.substring(fileIndex + 7); // +7 pour sauter "file://"
+
+    // Supprimer le fichier index.html du chemin, s'il est présent
+        filePath = filePath.substring(0, filePath.length - 12); // -11 pour enlever "/index.html"
+
+    // Mettre le chemin extrait dans le message de sortie
+    msg.payload = filePath;
+
+    // Tableau de noms de fichiers .json
+    var jsonFilesList = [
+        "assertions.json",
+        "global_stats.json",
+        "stats.json"
+    ];
+
+    // Créer un tableau de clé-valeurs pour les fichiers .json
+    var jsonFilesKeyValue = {};
+
+    // Parcourir la liste des noms de fichiers et construire les chemins complets
+    for (var i = 0; i < jsonFilesList.length; i++) {
+        var jsonFileName = jsonFilesList[i];
+        var jsonFilePath = filePath + '/js/' + jsonFileName;
+        jsonFilesKeyValue[jsonFileName] = jsonFilePath;
+    }
+
+    // Ajouter le tableau de clé-valeurs au message
+    msg.jsonFiles = jsonFilesKeyValue;
+
+    // Renvoyer le message modifié
+    return msg;
+} else {
+    // Aucun "file://" trouvé, renvoyer le message d'origine
+    return msg;
+}
+```
+Tout cela se fait à la sortie du nœud exec, lequel renvoie les informations suivantes :
+```bash
+[...]
+================================================================================
+2023-09-05 11:05:03                                          29s elapsed
+---- Requests ------------------------------------------------------------------
+> Global                                                   (OK=2816   KO=0     )
+> request_0                                                (OK=150    KO=0     )
+> request_1                                                (OK=150    KO=0     )
+> styles.css                                               (OK=450    KO=0     )
+> request_2                                                (OK=150    KO=0     )
+> Home.jpg                                                 (OK=300    KO=0     )
+> Données.jpg                                              (OK=300    KO=0     )
+> Test.jpg                                                 (OK=300    KO=0     )
+> Test_Complet.jpg                                         (OK=300    KO=0     )
+> request_3                                                (OK=150    KO=0     )
+> request_5                                                (OK=150    KO=0     )
+> request_4                                                (OK=150    KO=0     )
+> request_6                                                (OK=116    KO=0     )
+> request_7                                                (OK=150    KO=0     )
+
+---- CuriusTRex ----------------------------------------------------------------
+[##########################################################################]100%
+          waiting: 0      / active: 0      / done: 150   
+================================================================================
+
+Simulation CuriusTRex_Bash completed in 29 seconds
+Parsing log file(s)...
+Parsing log file(s) done
+Generating reports...
+
+================================================================================
+---- Global Information --------------------------------------------------------
+> request count                                       2816 (OK=2816   KO=0     )
+[...]
+---- Response Time Distribution ------------------------------------------------
+> t < 800 ms                                          2816 (100%)
+> 800 ms <= t < 1200 ms                                  0 (  0%)
+> t >= 1200 ms                                           0 (  0%)
+> failed                                                 0 (  0%)
+================================================================================
+
+Reports generated in 0s.
+Please open the following file: file:///home/toblerc/T%C3%A9l%C3%A9chargements/gatling-charts-highcharts-bundle-3.9.5/results/curiustrex-bash-20230905090433239/index.html
+```
+## 15.6. Traitement des données
+
+Une fois les chemins des fichiers définis, je lis les fichiers JSON et les transmets à un nœud **JSON** chargé de les traiter et de les renvoyer dans un format exploitable par Node-Red.
+
+En sortie, j'assemble les quatre fichiers en un seul message que j'envoie ensuite aux fonctions de création de graphiques.
+
+### 15.6.1. Création des graphiques
+
+Je crée deux graphiques, l'un utilisant le pourcentage de réussite et d'échec pour générer un bar chart :
+
+```javascript
+// Données reçues du flux précédent
+var rawData = msg.payload.gatling.Global;  // Utilisez les données de msg.payload.gatling.Global
+msg.topic = "VoltBarChart"; // Définir le sujet du message
+
+// Extraction des données nécessaires
+var groupData = [
+    rawData.group1,
+    rawData.group2,
+    rawData.group3,
+    rawData.group4
+];
+
+var labels = [];
+var percentages = [];
+
+// Parcourir les données des groupes et extraire les informations
+for (var i = 1; i <= groupData.length; i++) {
+    var groupName = "group" + i;
+    labels.push(rawData[groupName].htmlName);
+    percentages.push(rawData[groupName].percentage);
+}
+
+// Création du graphique
+var chartData = {
+    type: 'bar',  // Utiliser un graphique de type "bar"
+    options: {
+        title: {
+            display: true,
+            text: 'Répartition des performances par groupe' // Titre du graphique
+        },
+        chartArea: {
+            backgroundColor: '#d3d7dd' // Couleur de fond du graphique
+        },
+        scales: {
+            x: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Groupes' // Titre de l'axe des X
+                }
+            },
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Pourcentage' // Titre de l'axe des Y
+                }
+            }
+        },
+        plugins: {
+            datalabels: {
+                anchor: 'end',
+                align: 'top',
+                formatter: function (value) {
+                    return value + '%';  // Ajouter le symbole de pourcentage à l'étiquette
+                }
+            }
+        }
+    },
+    data: {
+        labels: labels,
+        datasets: [
+            {
+                label: "Pourcentage", // Légende de l'ensemble de données
+                backgroundColor: 'rgba(0, 128, 255, 0.7)',  // Couleur du remplissage des barres
+                data: percentages
+            }
+        ]
+    }
+};
+
+msg.payload = chartData; // Attribuer les données du graphique au message
+
+return msg; // Renvoyer le message
+```
+Le deuxième calcule le temps de réponse de chaque requête afin de créer un graphique linéaire :
+```javascript
+// Assurez-vous que msg.payload.gatling.Log est un tableau
+var logEntries = Array.isArray(msg.payload.gatling.Log) ? msg.payload.gatling.Log : [];
+
+// Création du graphique
+var chartData = {
+    type: 'line', // Utilisez un graphique de type "line"
+    options: {
+        title: {
+            display: true,
+            text: 'Comparaison des performances' // Titre du graphique
+        },
+        legend: {
+            display: true // Affichez la légende du graphique
+        },
+        chartArea: {
+            backgroundColor: '#d3d7dd' // Couleur de fond du graphique
+        },
+        plugins: {
+            datalabels: {
+                display: false // Désactivez l'affichage des étiquettes de données
+            }
+        }
+    },
+    data: {
+        labels: logEntries.map(function (entry) {
+            if (entry.type === 'RUN') {
+                return 'Début de la Simulation'; // Label pour les opérations de type "RUN"
+            } else if (entry.type === 'REQUEST') {
+                // Calcul de la différence en millisecondes entre le début de la simulation et le début de la requête
+                var simulationStart = logEntries.find(function (item) {
+                    return item.type === 'RUN';
+                });
+                if (simulationStart) {
+                    var startTime = simulationStart.start;
+                    var requestTime = entry.start;
+                    var timeDiff = requestTime - startTime;
+                    return (timeDiff / 1000).toFixed(0) + ' s'; // Temps en secondes
+                } else {
+                    return 'N/A'; // Si aucune opération de type "RUN" n'est trouvée
+                }
+            } else {
+                return ''; // Autres types d'opérations (USER, etc.) sans label
+            }
+        }),
+        datasets: [
+            {
+                label: "Temps de Réponse", // Légende de l'ensemble de données
+                borderColor: 'rgba(0, 128, 255, 1)', // Couleur de la ligne du graphique
+                fill: false, // Désactivez le remplissage sous la ligne
+                data: logEntries.map(function (entry) {
+                    if (entry.type === 'REQUEST') {
+                        // Calcul de la différence en millisecondes entre le début et la fin de la requête
+                        var requestStart = entry.start;
+                        var requestEnd = entry.end;
+                        var requestTime = requestEnd - requestStart;
+                        return requestTime;
+                    } else {
+                        return 0; // Valeurs pour les opérations de type "RUN" ou autres
+                    }
+                }),
+                pointRadius: 0, // Diamètre des points sur le graphique
+            }
+        ]
+    }
+};
+
+msg.payload = chartData; // Attribuez les données du graphique au message
+return msg; // Renvoyez le message
+```
+### 15.6.2. PDF
+Une fois les chart créer,  je les réutilise dans le noeud de création de PDF pour les ajouter au rapport :
+```javascript
+/**
+ * 
+ * Vu precedemment
+ * 
+ */
+{
+            text: "Gatling", // Section Gatling
+            style: "header2"
+        },
+        {
+            text: "Nom de la simulation :                 " + msg.payload.gatling.Assertion.simulation // Nom de la simulation Gatling
+        },
+        {
+            text: "Commencée :                 " + msg.payload.gatling.Assertion.start // Date de début de la simulation Gatling (à formater)
+        },
+        {
+            image: 'gatlingImage', // Image Gatling
+            width: 500,
+        },
+        {
+            image: 'gatlingGraphComplete', // Image graphique complet Gatling
+            width: 500,
+        },
+    ],
+    images: {
+        voltImage: 'data:image/png;base64,' + msg.payload.voltGraph.toString('base64'), // Utilisation du buffer pour l'image Volt
+        wattImage: 'data:image/png;base64,' + msg.payload.wattGraph.toString('base64'),  // Utilisation du buffer pour l'image Watt de Volt
+        nidusImage: 'data:image/png;base64,' + msg.payload.nidusGraph.toString('base64'),  // Utilisation du buffer pour l'image Nidus
+        gatlingImage: 'data:image/png;base64,' + msg.payload.gatlingGraph.toString('base64'),  // Utilisation du buffer pour l'image Gatling
+        gatlingGraphComplete: 'data:image/png;base64,' + msg.payload.gatlingGraphComplete.toString('base64'),  // Utilisation du buffer pour l'image Gatling
+    },
+/**
+ * 
+ * Vu precedemment
+ * 
+ */
+```
+## 15.7. Refactoring
+Pour finir, j'ai créer des subflow pour le noeud MQTT afin de simplifier la visualisation et le management des données :
+<img src="../capture/RPI/Node-Red/RapportPDF/9.png" alt="Alt text" width="100%" style="width:100%;">
+<img src="../capture/RPI/Node-Red/RapportPDF/10.png" alt="Alt text" width="100%" style="width:100%;">
+
+# 16. Remerciement 
 Je tiens à exprimer ma profonde gratitude envers les personnes qui ont joué des rôles essentiels dans la réalisation de ce projet. Avant tout, je souhaite exprimer ma sincère reconnaissance à M. Benoit Vianin, dont la proposition du projet, le matériel fourni et les conseils avisés ont été cruciaux pour sa mise en place. Sa précieuse assistance technique a été d'une grande importance.
 
 Je tiens également à adresser mes remerciements à M. Fabien Maire, Directeur du service Informatique du SIS2 (Service Informatique du Secondaire 2), pour son accompagnement et ses conseils tout au long de ce travail. Sa vision éclairée et son expertise ont été des facteurs clés dans la réussite de ce projet.
@@ -1271,7 +1823,7 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 
 <div style="page-break-after: always;"></div>
 
-# 15. Sources
+# 17. Sources
 
 1. **Guide d'Installation Node-Red**  
    [Installer Node-Red](https://nodered.org/docs/getting-started/raspberrypi)
