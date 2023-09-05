@@ -6598,7 +6598,7 @@
             {
                 "label": "Ventilateur activée ?",
                 "value": "flow",
-                "type": "switch",
+                "type": "checkbox",
                 "required": false,
                 "rows": null
             }
