@@ -6575,16 +6575,16 @@
                 "rows": null
             },
             {
-                "label": "Temps de Stress test en minutes",
-                "value": "timeStress",
-                "type": "number",
+                "label": "Stress test Nidus",
+                "value": "stressNidus",
+                "type": "checkbox",
                 "required": true,
                 "rows": null
             },
             {
-                "label": "Temps de test de Gatling",
-                "value": "time_gatling",
-                "type": "text",
+                "label": "Temps de Stress test en minutes",
+                "value": "timeStress",
+                "type": "number",
                 "required": true,
                 "rows": null
             },
@@ -6600,8 +6600,8 @@
             "nameFile": "",
             "time": "",
             "stressVolt": false,
+            "stressNidus": false,
             "timeStress": "",
-            "time_gatling": "",
             "user_gatling": ""
         },
         "payload": "",
@@ -8330,7 +8330,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1790,
+        "x": 1750,
         "y": 1360,
         "wires": [
             [
