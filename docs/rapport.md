@@ -92,8 +92,12 @@
     - [15.6.1. Création des graphiques](#1561-création-des-graphiques)
     - [15.6.2. PDF](#1562-pdf)
   - [15.7. Refactoring](#157-refactoring)
-- [16. Remerciement](#16-remerciement)
-- [17. Sources](#17-sources)
+- [16. Gatling V3.0](#16-gatling-v30)
+  - [16.1. UI](#161-ui)
+    - [16.1.1. Ventilateur](#1611-ventilateur)
+    - [16.1.2. UI](#1612-ui)
+- [17. Remerciement](#17-remerciement)
+- [18. Sources](#18-sources)
 
 <div style="page-break-after: always;"></div>
 
@@ -1805,7 +1809,47 @@ Pour finir, j'ai créer des subflow pour le noeud MQTT afin de simplifier la vis
 <img src="../capture/RPI/Node-Red/RapportPDF/9.png" alt="Alt text" width="100%" style="width:100%;">
 <img src="../capture/RPI/Node-Red/RapportPDF/10.png" alt="Alt text" width="100%" style="width:100%;">
 
-# 16. Remerciement 
+
+# 16. Gatling V3.0
+
+Maintenant que l'étape de "PoC" a été atteinte, il est temps de passer à la version utilisable du projet. À partir de Node-Red, vous pouvez désormais réaliser les actions suivantes :
+
+- Lancer des StressTests
+- Lancer des tests Gatling
+- Récupérer les informations de monitoring (CPU, RAM, Température, etc.)
+- Récupérer les informations de Gatling (Temps de réponse, pourcentage de réussite, etc.)
+- Joindre les informations pour créer des graphiques
+- Regrouper tout pour créer un rapport PDF
+
+Les objectifs à atteindre sont donc les suivants :
+- Passer des paramètres de test à Gatling depuis Node-Red
+- Intégrer le CSV de Gatling avec Node-Red
+- Améliorer l'interface utilisateur de Node-Red
+- Ajouter les valeurs souhaitées dans le rapport PDF
+- Modifier les graphiques pour une meilleure lisibilité
+- Ajouter la possibilité d'exporter les données au format JSON
+- Ajouter la possibilité d'importer les données au format JSON et de générer un PDF
+
+
+
+## 16.1. UI
+
+Pour l'interface utilisateur (UI), j'ai choisi de limiter le temps sélectionné à la durée du test. Ce choix s'explique par le fait qu'en principe, la durée des mesures devrait toujours correspondre à la durée de Gatling. Cependant, je laisse toujours la possibilité de définir la durée du StressTest indépendamment de Gatling.
+
+J'ai ajouté une entrée pour définir si un ventilateur est activé. Actuellement, avec des températures proches de 30 degrés à l'extérieur, le ventilateur est nécessaire pour éviter la surchauffe du Raspberry Pi. Sachant cela, je voulais avoir la possibilité de le notifier dans le rapport.
+
+À l'heure actuelle, le ventilateur est un ventilateur de bureau pris dans mon stock personnel, actionné par un bouton. Il n'est donc pas possible de le contrôler depuis Node-Red. Cependant, il est possible qu'à l'avenir, un ventilateur contrôlable soit utilisé, auquel cas il sera possible de l'activer ou de le désactiver depuis Node-Red.
+
+Pour permettre de garder un certain contrôle, j'ai ajouté les informations de monitoring directement à côté du formulaire de lancement du test. Ainsi, il est possible de voir les valeurs de monitoring en temps réel et de surveiller le déroulement du test.
+
+### 16.1.1. Ventilateur 
+<img src="../capture/RPI/Node-Red/RapportPDF/ventilateur-vintage-indola-5-scaled.jpg" alt="Alt text" width="100%" style="width:100%;">
+
+### 16.1.2. UI
+<img src="../capture/RPI/Node-Red/RapportPDF/11.png" alt="Alt text" width="100%" style="width:100%;">
+
+
+# 17. Remerciement 
 Je tiens à exprimer ma profonde gratitude envers les personnes qui ont joué des rôles essentiels dans la réalisation de ce projet. Avant tout, je souhaite exprimer ma sincère reconnaissance à M. Benoit Vianin, dont la proposition du projet, le matériel fourni et les conseils avisés ont été cruciaux pour sa mise en place. Sa précieuse assistance technique a été d'une grande importance.
 
 Je tiens également à adresser mes remerciements à M. Fabien Maire, Directeur du service Informatique du SIS2 (Service Informatique du Secondaire 2), pour son accompagnement et ses conseils tout au long de ce travail. Sa vision éclairée et son expertise ont été des facteurs clés dans la réussite de ce projet.
@@ -1823,7 +1867,7 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 
 <div style="page-break-after: always;"></div>
 
-# 17. Sources
+# 18. Sources
 
 1. **Guide d'Installation Node-Red**  
    [Installer Node-Red](https://nodered.org/docs/getting-started/raspberrypi)
