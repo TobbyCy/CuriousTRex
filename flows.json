@@ -6568,13 +6568,6 @@
                 "rows": null
             },
             {
-                "label": "Stress test Nidus",
-                "value": "stressNidus",
-                "type": "checkbox",
-                "required": true,
-                "rows": null
-            },
-            {
                 "label": "Stress test Volt",
                 "value": "stressVolt",
                 "type": "checkbox",
@@ -6606,7 +6599,6 @@
         "formValue": {
             "nameFile": "",
             "time": "",
-            "stressNidus": false,
             "stressVolt": false,
             "timeStress": "",
             "time_gatling": "",
@@ -8315,7 +8307,6 @@
         "y": 1360,
         "wires": [
             [
-                "8ff2cbbf96cb265b",
                 "7aea4a31c908237b"
             ]
         ]
@@ -8895,7 +8886,8 @@
         "y": 1320,
         "wires": [
             [
-                "b9f0658c1ceb6d1d"
+                "b9f0658c1ceb6d1d",
+                "8ff2cbbf96cb265b"
             ]
         ]
     },
