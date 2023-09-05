@@ -6591,14 +6591,14 @@
             {
                 "label": "Nombre d'utilisateur",
                 "value": "user_gatling",
-                "type": "text",
+                "type": "number",
                 "required": true,
                 "rows": null
             },
             {
                 "label": "Ventilateur activée ?",
                 "value": "flow",
-                "type": "text",
+                "type": "switch",
                 "required": false,
                 "rows": null
             }
@@ -6610,7 +6610,7 @@
             "stressNidus": false,
             "timeStress": "",
             "user_gatling": "",
-            "flow": ""
+            "flow": false
         },
         "payload": "",
         "submit": "submit",
