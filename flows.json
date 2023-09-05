@@ -6594,6 +6594,13 @@
                 "type": "text",
                 "required": true,
                 "rows": null
+            },
+            {
+                "label": "Ventilateur activée ?",
+                "value": "flow",
+                "type": "text",
+                "required": false,
+                "rows": null
             }
         ],
         "formValue": {
@@ -6602,7 +6609,8 @@
             "stressVolt": false,
             "stressNidus": false,
             "timeStress": "",
-            "user_gatling": ""
+            "user_gatling": "",
+            "flow": ""
         },
         "payload": "",
         "submit": "submit",
