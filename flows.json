@@ -6218,7 +6218,7 @@
         "z": "3ddecfbaabd60ba5",
         "name": "File Browser",
         "info": "1) Update the default folder in the Init node\n2) Update the default folder in the Reset node as well\n3) You can duplicate the Reset nodes and use them as saved shortcuts\n4) Check the Convert Timestamps function node if you want to see your dates in a different format. I just used the Javascript toISOString format.\n5) The Graph button can read any CSV file which have any number of values, but the first column always contains a timestamp column with javascript timestamp of the data point.",
-        "x": 330,
+        "x": 470,
         "y": 60,
         "wires": []
     },
@@ -6243,7 +6243,7 @@
         "topic": "change",
         "payload": "/home/NodeRed/pdf",
         "payloadType": "str",
-        "x": 330,
+        "x": 470,
         "y": 220,
         "wires": [
             [
@@ -6271,7 +6271,7 @@
         "payloadType": "str",
         "topic": "change",
         "topicType": "str",
-        "x": 340,
+        "x": 480,
         "y": 260,
         "wires": [
             [
@@ -6294,8 +6294,8 @@
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 1320,
-        "y": 260,
+        "x": 1460,
+        "y": 240,
         "wires": [
             []
         ]
@@ -6311,7 +6311,7 @@
         "syntax": "mustache",
         "template": "<table width=\"100%\">\n    <tr><th>Nom de Fichier</th><th>Taille</th><th>Créer</th><th>Changer</th></tr>\n    {{#payload}}\n        <tr>\n            <td><a href=\"/download?filename={{name}}\" target=\"blank\">{{fname}}</a></td>\n            <td>{{stat.size}}</td>\n            <td>{{stat.created}}</td>\n            <td>{{stat.changed}}</td>\n        </tr>\n    {{/payload}}\n</table>\n",
         "output": "str",
-        "x": 1160,
+        "x": 1300,
         "y": 260,
         "wires": [
             [
@@ -6330,7 +6330,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 960,
+        "x": 1100,
         "y": 260,
         "wires": [
             [
@@ -6347,7 +6347,7 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 420,
+        "x": 560,
         "y": 320,
         "wires": [
             [
@@ -6362,7 +6362,7 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 1210,
+        "x": 1350,
         "y": 320,
         "wires": []
     },
@@ -6374,7 +6374,7 @@
         "func": "msg.filename = msg.req.query.filename;\nmsg.contentdisposition = \"attachment; filename=\\\"\" + msg.req.query.filename.replace(/^.*(\\\\|\\/|\\:)/, '') + \"\\\"\";\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 670,
+        "x": 810,
         "y": 320,
         "wires": [
             [
@@ -6396,7 +6396,7 @@
         "chunk": false,
         "sendError": false,
         "encoding": "none",
-        "x": 860,
+        "x": 1000,
         "y": 320,
         "wires": [
             [
@@ -6437,7 +6437,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1030,
+        "x": 1170,
         "y": 320,
         "wires": [
             [
@@ -6456,7 +6456,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 520,
+        "x": 660,
         "y": 260,
         "wires": [
             [
@@ -6479,7 +6479,7 @@
         "depth": 0,
         "stat": true,
         "showWarnings": false,
-        "x": 730,
+        "x": 870,
         "y": 260,
         "wires": [
             [
@@ -6496,7 +6496,7 @@
         "inputProperty": "payload",
         "options": "{}",
         "outputProperty": "payload",
-        "x": 1660,
+        "x": 1800,
         "y": 680,
         "wires": [
             [
@@ -6515,7 +6515,7 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "base64",
-        "x": 1800,
+        "x": 1940,
         "y": 680,
         "wires": [
             [
@@ -6534,7 +6534,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 400,
+        "x": 540,
         "y": 740,
         "wires": [
             [
@@ -6619,7 +6619,7 @@
         "topicType": "msg",
         "splitLayout": false,
         "className": "",
-        "x": 100,
+        "x": 240,
         "y": 740,
         "wires": [
             [
@@ -6640,7 +6640,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1860,
+        "x": 2000,
         "y": 720,
         "wires": [
             [
@@ -6659,7 +6659,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 600,
+        "x": 740,
         "y": 740,
         "wires": [
             [
@@ -6709,7 +6709,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 740,
+        "x": 880,
         "y": 460,
         "wires": [
             [
@@ -6737,7 +6737,7 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 1150,
+        "x": 1290,
         "y": 580,
         "wires": [
             [
@@ -6745,7 +6745,8 @@
                 "7abd3e7a912ccedc",
                 "8e88bc82f50cac2f",
                 "5fcb7ef9b29fa1d1",
-                "4f2f7a8aa9ba24bb"
+                "4f2f7a8aa9ba24bb",
+                "7be259fe9744c2ef"
             ]
         ]
     },
@@ -6769,7 +6770,7 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 1330,
+        "x": 1470,
         "y": 680,
         "wires": [
             [
@@ -6786,7 +6787,7 @@
         "links": [
             "e30a7bb45bf64a45"
         ],
-        "x": 1895,
+        "x": 2035,
         "y": 680,
         "wires": []
     },
@@ -6798,7 +6799,7 @@
         "links": [
             "a74b27989ec4408a"
         ],
-        "x": 245,
+        "x": 385,
         "y": 260,
         "wires": [
             [
@@ -6817,7 +6818,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 220,
+        "x": 360,
         "y": 580,
         "wires": [
             [
@@ -6845,7 +6846,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 490,
+        "x": 630,
         "y": 580,
         "wires": [
             [
@@ -6864,7 +6865,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 190,
+        "x": 330,
         "y": 640,
         "wires": [
             [
@@ -6883,7 +6884,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1430,
+        "x": 1570,
         "y": 360,
         "wires": [
             [
@@ -6898,7 +6899,7 @@
         "name": "",
         "width": "1920",
         "height": "1920",
-        "x": 1650,
+        "x": 1790,
         "y": 360,
         "wires": [
             [
@@ -6917,7 +6918,7 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 1900,
+        "x": 2040,
         "y": 360,
         "wires": [
             []
@@ -6934,7 +6935,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1410,
+        "x": 1550,
         "y": 480,
         "wires": [
             [
@@ -6949,7 +6950,7 @@
         "name": "",
         "width": "1920",
         "height": "1080",
-        "x": 1630,
+        "x": 1770,
         "y": 480,
         "wires": [
             []
@@ -6966,7 +6967,7 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 1910,
+        "x": 2050,
         "y": 480,
         "wires": [
             []
@@ -6979,7 +6980,7 @@
         "name": "",
         "width": "1920",
         "height": "1920",
-        "x": 1630,
+        "x": 1770,
         "y": 520,
         "wires": [
             [
@@ -6999,7 +7000,7 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 1910,
+        "x": 2050,
         "y": 520,
         "wires": [
             []
@@ -7012,7 +7013,7 @@
         "name": "",
         "width": "1920",
         "height": "1920",
-        "x": 1630,
+        "x": 1770,
         "y": 560,
         "wires": [
             [
@@ -7032,7 +7033,7 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 1910,
+        "x": 2050,
         "y": 560,
         "wires": [
             []
@@ -7049,7 +7050,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1410,
+        "x": 1550,
         "y": 560,
         "wires": [
             [
@@ -7068,7 +7069,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1400,
+        "x": 1540,
         "y": 520,
         "wires": [
             [
@@ -7087,7 +7088,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 400,
+        "x": 540,
         "y": 780,
         "wires": [
             [
@@ -7110,7 +7111,7 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 590,
+        "x": 730,
         "y": 840,
         "wires": [
             [],
@@ -7133,7 +7134,7 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 490,
+        "x": 630,
         "y": 540,
         "wires": [
             []
@@ -7159,7 +7160,7 @@
         "reduceInit": "",
         "reduceInitType": "num",
         "reduceFixup": "",
-        "x": 1770,
+        "x": 1910,
         "y": 760,
         "wires": [
             [
@@ -7194,7 +7195,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1350,
+        "x": 1490,
         "y": 740,
         "wires": [
             [
@@ -7234,7 +7235,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1760,
+        "x": 1900,
         "y": 620,
         "wires": [
             [
@@ -7262,11 +7263,12 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1650,
+        "x": 1790,
         "y": 720,
         "wires": [
             [
-                "61d24da92c494fff"
+                "61d24da92c494fff",
+                "30f8ec37c86dd727"
             ]
         ]
     },
@@ -7282,7 +7284,7 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 1360,
+        "x": 1500,
         "y": 960,
         "wires": [
             [
@@ -7297,7 +7299,7 @@
         "name": "",
         "action": "str",
         "property": "msg.payload",
-        "x": 1580,
+        "x": 1720,
         "y": 960,
         "wires": [
             [
@@ -7317,7 +7319,7 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 1350,
+        "x": 1490,
         "y": 840,
         "wires": [
             [
@@ -7332,7 +7334,7 @@
         "name": "",
         "action": "str",
         "property": "msg.payload",
-        "x": 1580,
+        "x": 1720,
         "y": 840,
         "wires": [
             [
@@ -7360,7 +7362,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1570,
+        "x": 1710,
         "y": 800,
         "wires": [
             [
@@ -7388,7 +7390,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1570,
+        "x": 1710,
         "y": 1000,
         "wires": [
             [
@@ -7409,8 +7411,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 330,
-        "y": 1200,
+        "x": 470,
+        "y": 1120,
         "wires": []
     },
     {
@@ -7420,7 +7422,7 @@
         "name": "",
         "scope": null,
         "uncaught": false,
-        "x": 140,
+        "x": 280,
         "y": 1120,
         "wires": [
             [
@@ -7448,7 +7450,7 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 1590,
+        "x": 1730,
         "y": 620,
         "wires": [
             [
@@ -7462,7 +7464,7 @@
         "z": "3ddecfbaabd60ba5",
         "name": "",
         "handle": "173c4031bd3a25c0",
-        "x": 230,
+        "x": 370,
         "y": 420,
         "wires": [
             [
@@ -7493,7 +7495,7 @@
         "reduceInit": "",
         "reduceInitType": "num",
         "reduceFixup": "",
-        "x": 730,
+        "x": 870,
         "y": 420,
         "wires": [
             [
@@ -7512,7 +7514,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 570,
+        "x": 710,
         "y": 460,
         "wires": [
             [
@@ -7531,7 +7533,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 580,
+        "x": 720,
         "y": 420,
         "wires": [
             [
@@ -7559,7 +7561,7 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 420,
+        "x": 560,
         "y": 420,
         "wires": [
             [
@@ -7585,7 +7587,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 910,
+        "x": 1050,
         "y": 420,
         "wires": [
             [
@@ -7614,7 +7616,7 @@
         "reduceInit": "",
         "reduceInitType": "num",
         "reduceFixup": "",
-        "x": 950,
+        "x": 1090,
         "y": 460,
         "wires": [
             [
@@ -7633,7 +7635,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1160,
+        "x": 1300,
         "y": 460,
         "wires": [
             [
@@ -7662,7 +7664,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1130,
+        "x": 1270,
         "y": 420,
         "wires": [
             [
@@ -7681,7 +7683,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1400,
+        "x": 1540,
         "y": 400,
         "wires": [
             [
@@ -7696,7 +7698,7 @@
         "name": "",
         "width": "1920",
         "height": "1920",
-        "x": 1650,
+        "x": 1790,
         "y": 400,
         "wires": [
             [
@@ -7716,7 +7718,7 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 1900,
+        "x": 2040,
         "y": 400,
         "wires": [
             []
@@ -7734,7 +7736,7 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 1340,
+        "x": 1480,
         "y": 880,
         "wires": [
             [
@@ -7749,7 +7751,7 @@
         "name": "",
         "action": "str",
         "property": "msg.payload",
-        "x": 1580,
+        "x": 1720,
         "y": 880,
         "wires": [
             [
@@ -7777,7 +7779,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1570,
+        "x": 1710,
         "y": 920,
         "wires": [
             [
@@ -7796,7 +7798,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 220,
+        "x": 360,
         "y": 520,
         "wires": [
             [
@@ -7821,7 +7823,7 @@
         "font": "",
         "fontSize": "30",
         "color": "#e01b24",
-        "x": 230,
+        "x": 370,
         "y": 460,
         "wires": []
     },
@@ -7840,7 +7842,7 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 130,
+        "x": 270,
         "y": 840,
         "wires": [
             [
@@ -7868,7 +7870,7 @@
         "payloadType": "str",
         "topic": "Purge des fichier !!!",
         "topicType": "str",
-        "x": 110,
+        "x": 250,
         "y": 800,
         "wires": [
             [
@@ -7887,7 +7889,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
+        "x": 450,
         "y": 920,
         "wires": [
             [
@@ -7910,7 +7912,7 @@
         "className": "",
         "topic": "VRAIMENT ???",
         "name": "",
-        "x": 130,
+        "x": 270,
         "y": 920,
         "wires": [
             [
@@ -7930,7 +7932,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 120,
+        "x": 260,
         "y": 880,
         "wires": [
             [
@@ -7955,7 +7957,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 320,
+        "x": 460,
         "y": 960,
         "wires": [
             [
@@ -7974,7 +7976,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 450,
+        "x": 590,
         "y": 960,
         "wires": [
             [
@@ -7987,17 +7989,18 @@
         "type": "function",
         "z": "3ddecfbaabd60ba5",
         "name": "Command_Gatling",
-        "func": "    if (msg.topic === \"inject\" && msg.payload.timegatling !== undefined && msg.payload.user_gatling !== undefined) {\n        // Crée la commande en utilisant les valeurs spécifiées\n        msg.payload = `/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s CuriusTRex -bm --run-mode local -erjo \"-Dusers=${msg.payload.user_gatling} -Dramp=${msg.payload.timegatling*60}\"`;\n    } else {\n        // Utilise la commande d'origine car il ne s'agit pas d'un noeud inject ou les valeurs ne sont pas fournies\n        // Par défaut, utilisez la commande actuelle\n        msg.payload = \"/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s CuriusTRex -bm --run-mode local -erjo \\\" -Dusers=5 -Dramp=5\\\"\";\n    }\n\n    // Renvoie le message modifié\n    return msg;",
+        "func": "if (msg.topic !== \"inject\" && msg.payload.time_gatling !== undefined && msg.payload.user_gatling !== undefined) {\n        // Crée la commande en utilisant les valeurs spécifiées\n    msg.payload.time_gatling = msg.payload.time_gatling * 60;\n    msg.payload = `/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s CuriusTRex -bm --run-mode local -erjo \"-Dusers=${msg.payload.user_gatling} -Dramp=${msg.payload.time_gatling}\"`;\n    } else {\n        // Utilise la commande d'origine car il ne s'agit pas d'un noeud inject ou les valeurs ne sont pas fournies\n        // Par défaut, utilisez la commande actuelle\n        msg.payload = \"/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s CuriusTRex -bm --run-mode local -erjo \\\" -Dusers=5 -Dramp=5\\\"\";\n    }\n\n    // Renvoie le message modifié\n    return msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
+        "x": 450,
         "y": 1040,
         "wires": [
             [
-                "94a5562c2961dfd4"
+                "94a5562c2961dfd4",
+                "ba58ea260d28e5a3"
             ]
         ]
     },
@@ -8013,11 +8016,12 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 510,
+        "x": 650,
         "y": 1020,
         "wires": [
             [
-                "d11f7afdc4889557"
+                "d11f7afdc4889557",
+                "ba58ea260d28e5a3"
             ],
             [],
             []
@@ -8044,7 +8048,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "inject",
-        "x": 130,
+        "x": 270,
         "y": 1040,
         "wires": [
             [
@@ -8063,14 +8067,15 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 620,
+        "x": 760,
         "y": 1080,
         "wires": [
             [
                 "9197964b7793ca79",
                 "46daa1258fe41e08",
                 "53c70d418773723d",
-                "7964135626c90274"
+                "7964135626c90274",
+                "ba58ea260d28e5a3"
             ]
         ]
     },
@@ -8089,7 +8094,7 @@
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 70,
+        "x": 210,
         "y": 700,
         "wires": [
             [
@@ -8109,7 +8114,7 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 920,
+        "x": 1060,
         "y": 1320,
         "wires": [
             [
@@ -8129,7 +8134,7 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 930,
+        "x": 1070,
         "y": 1360,
         "wires": [
             [
@@ -8149,7 +8154,7 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 910,
+        "x": 1050,
         "y": 1400,
         "wires": [
             [
@@ -8165,7 +8170,7 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 1070,
+        "x": 1210,
         "y": 1400,
         "wires": [
             [
@@ -8181,7 +8186,7 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 1090,
+        "x": 1230,
         "y": 1360,
         "wires": [
             [
@@ -8197,7 +8202,7 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 1070,
+        "x": 1210,
         "y": 1320,
         "wires": [
             [
@@ -8224,7 +8229,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1210,
+        "x": 1350,
         "y": 1320,
         "wires": [
             [
@@ -8251,7 +8256,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1230,
+        "x": 1370,
         "y": 1360,
         "wires": [
             [
@@ -8278,7 +8283,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1210,
+        "x": 1350,
         "y": 1400,
         "wires": [
             [
@@ -8306,7 +8311,7 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 1430,
+        "x": 1570,
         "y": 1360,
         "wires": [
             [
@@ -8333,7 +8338,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1650,
+        "x": 1790,
         "y": 1360,
         "wires": [
             [
@@ -8354,7 +8359,7 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 1340,
+        "x": 1480,
         "y": 1040,
         "wires": [
             [
@@ -8369,7 +8374,7 @@
         "name": "",
         "action": "str",
         "property": "msg.payload",
-        "x": 1580,
+        "x": 1720,
         "y": 1040,
         "wires": [
             [
@@ -8397,7 +8402,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1590,
+        "x": 1730,
         "y": 1080,
         "wires": [
             [
@@ -8414,7 +8419,7 @@
         "links": [
             "476457a3a2a870ea"
         ],
-        "x": 1775,
+        "x": 1915,
         "y": 1220,
         "wires": []
     },
@@ -8426,7 +8431,7 @@
         "links": [
             "c89add291df1506b"
         ],
-        "x": 885,
+        "x": 1025,
         "y": 580,
         "wires": [
             [
@@ -8441,7 +8446,7 @@
         "name": "",
         "width": "1920",
         "height": "1920",
-        "x": 1650,
+        "x": 1790,
         "y": 320,
         "wires": [
             [
@@ -8461,7 +8466,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1400,
+        "x": 1540,
         "y": 320,
         "wires": [
             [
@@ -8480,7 +8485,7 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 1890,
+        "x": 2030,
         "y": 320,
         "wires": [
             []
@@ -8498,7 +8503,7 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 890,
+        "x": 1030,
         "y": 1440,
         "wires": [
             [
@@ -8525,7 +8530,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1250,
+        "x": 1390,
         "y": 1440,
         "wires": [
             [
@@ -8544,7 +8549,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 760,
+        "x": 900,
         "y": 1440,
         "wires": [
             [
@@ -8563,7 +8568,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1070,
+        "x": 1210,
         "y": 1440,
         "wires": [
             [
@@ -8576,7 +8581,7 @@
         "type": "subflow:4e666803b8f3f742",
         "z": "3ddecfbaabd60ba5",
         "name": "Volt CPU",
-        "x": 840,
+        "x": 980,
         "y": 620,
         "wires": [
             [
@@ -8590,7 +8595,7 @@
         "type": "subflow:4e666803b8f3f742",
         "z": "3ddecfbaabd60ba5",
         "name": "Volt RAM",
-        "x": 840,
+        "x": 980,
         "y": 660,
         "wires": [
             [
@@ -8604,7 +8609,7 @@
         "type": "subflow:4e666803b8f3f742",
         "z": "3ddecfbaabd60ba5",
         "name": "Volt Process",
-        "x": 850,
+        "x": 990,
         "y": 700,
         "wires": [
             [
@@ -8618,7 +8623,7 @@
         "type": "subflow:4e666803b8f3f742",
         "z": "3ddecfbaabd60ba5",
         "name": "Volt Température",
-        "x": 870,
+        "x": 1010,
         "y": 740,
         "wires": [
             [
@@ -8632,7 +8637,7 @@
         "type": "subflow:4e666803b8f3f742",
         "z": "3ddecfbaabd60ba5",
         "name": "Nidus CPU",
-        "x": 850,
+        "x": 990,
         "y": 780,
         "wires": [
             [
@@ -8646,7 +8651,7 @@
         "type": "subflow:4e666803b8f3f742",
         "z": "3ddecfbaabd60ba5",
         "name": "Nidus RAM",
-        "x": 850,
+        "x": 990,
         "y": 820,
         "wires": [
             [
@@ -8660,7 +8665,7 @@
         "type": "subflow:4e666803b8f3f742",
         "z": "3ddecfbaabd60ba5",
         "name": "Nidus Process",
-        "x": 860,
+        "x": 1000,
         "y": 860,
         "wires": [
             [
@@ -8674,7 +8679,7 @@
         "type": "subflow:4e666803b8f3f742",
         "z": "3ddecfbaabd60ba5",
         "name": "Nidus Température",
-        "x": 870,
+        "x": 1010,
         "y": 900,
         "wires": [
             [
@@ -8695,7 +8700,7 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 1340,
+        "x": 1480,
         "y": 1120,
         "wires": [
             [
@@ -8710,7 +8715,7 @@
         "name": "",
         "action": "str",
         "property": "msg.payload",
-        "x": 1580,
+        "x": 1720,
         "y": 1120,
         "wires": [
             [
@@ -8738,7 +8743,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1590,
+        "x": 1730,
         "y": 1160,
         "wires": [
             [
@@ -8759,8 +8764,59 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 240,
+        "x": 380,
         "y": 700,
+        "wires": []
+    },
+    {
+        "id": "ba58ea260d28e5a3",
+        "type": "debug",
+        "z": "3ddecfbaabd60ba5",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1060,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "7be259fe9744c2ef",
+        "type": "debug",
+        "z": "3ddecfbaabd60ba5",
+        "name": "Values_Chart",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1540,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "30f8ec37c86dd727",
+        "type": "debug",
+        "z": "3ddecfbaabd60ba5",
+        "name": "Values_PDF",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2090,
+        "y": 760,
         "wires": []
     },
     {
