@@ -7044,7 +7044,7 @@
         "type": "function",
         "z": "3ddecfbaabd60ba5",
         "name": "Nidus Line Chart",
-        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload;\nvar delayInSeconds = msg.delay / 1000; // Conversion en secondes\nmsg.topic = \"NidusLineChart\";\n// Extraction des données nécessaires\nvar nidusCpuData = rawData[\"nidus/benchmark/cpu\"];\nvar nidusRamData = rawData[\"nidus/benchmark/ram\"];\nvar nidusTempData = rawData[\"nidus/benchmark/temp\"];\n\n// Création du graphique\nvar chartData = {\n    type: 'line',  // Changement du type de graphique en \"line\"\n    options: {\n        scales: {\n            yAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }],\n            xAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }]\n        },\n        title: {\n            display: true,\n            text: 'Comparaison des performances'\n        },\n        legend: {\n            display: true\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        plugins: {\n            datalabels: {\n                display: false  // Désactiver l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: Array.from({ length: nidusCpuData.length }, (_, i) => {\n            // Calculer le temps en millisecondes à partir de l'index et du délai en secondes\n            var timeMillis = i * delayInSeconds * 1000;\n\n            // Convertir le temps en minutes et secondes\n            var minutes = Math.floor(timeMillis / 60000); // 60000 millisecondes équivalent à 1 minute\n            var seconds = ((timeMillis % 60000) / 1000).toFixed(0);\n\n            // Créer le label en fonction de la durée\n            if (minutes === 0) {\n                return seconds + ' s'; // Temps en secondes si inférieur à 1 minute\n            } else {\n                return minutes + ' min ' + seconds + ' s'; // Temps en minute:secondes si supérieur à 1 minute\n            }\n        }),\n\n        datasets: [\n            \n            {\n                label: \"Nidus CPU\",\n                borderColor: 'rgba(255, 69, 0, 1)',\n                fill: false,\n                data: nidusCpuData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Nidus RAM\",\n                borderColor: 'rgba(255, 165, 0, 1)',\n                fill: false,\n                data: nidusRamData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Nidus Temp\",\n                borderColor: 'rgba(255, 0, 0, 1)',\n                fill: false,\n                data: nidusTempData,\n                pointRadius: 0,\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
+        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload;\nvar delayInSeconds = msg.delay / 1000; // Conversion en secondes\nmsg.topic = \"NidusLineChart\";\n// Extraction des données nécessaires\nvar nidusCpuData = rawData[\"nidus/benchmark/cpu\"];\nvar nidusRamData = rawData[\"nidus/benchmark/ram\"];\nvar nidusTempData = rawData[\"nidus/benchmark/temp\"];\n\n// Création du graphique\nvar chartData = {\n    type: 'line',  // Changement du type de graphique en \"line\"\n    options: {\n        scales: {\n            yAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }],\n            xAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }]\n        },\n        title: {\n            display: true,\n            text: 'Comparaison des performances'\n        },\n        legend: {\n            display: true\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        plugins: {\n            datalabels: {\n                display: false  // Désactiver l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: Array.from({ length: nidusCpuData.length }, (_, i) => {\n            // Calculer le délai réel entre chaque valeur en millisecondes\n            var realDelay = msg.delay / (nidusCpuData.length - 1);\n\n            // Calculer le temps en millisecondes à partir de l'index\n            var timeMillis = i * realDelay;\n\n            // Convertir le temps en minutes et secondes\n            var minutes = Math.floor(timeMillis / 60000); // 60000 millisecondes équivalent à 1 minute\n            var seconds = ((timeMillis % 60000) / 1000).toFixed(0);\n\n            // Créer le label en fonction de la durée\n            if (minutes === 0) {\n                return seconds + ' s'; // Temps en secondes si inférieur à 1 minute\n            } else {\n                return minutes + ' min ' + seconds + ' s'; // Temps en minute:secondes si supérieur à 1 minute\n            }\n        }),\n\n\n        datasets: [\n            \n            {\n                label: \"Nidus CPU\",\n                borderColor: 'rgba(255, 69, 0, 1)',\n                fill: false,\n                data: nidusCpuData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Nidus RAM\",\n                borderColor: 'rgba(255, 165, 0, 1)',\n                fill: false,\n                data: nidusRamData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Nidus Temp\",\n                borderColor: 'rgba(255, 0, 0, 1)',\n                fill: false,\n                data: nidusTempData,\n                pointRadius: 0,\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -9256,7 +9256,8 @@
         "wires": [
             [
                 "0e5e9ecd9dbcb063",
-                "a1ee7a35777f3582"
+                "a1ee7a35777f3582",
+                "676a2b3ea9bdba7f"
             ]
         ]
     },
@@ -9419,6 +9420,34 @@
                 "37921000de8bd742"
             ]
         ]
+    },
+    {
+        "id": "676a2b3ea9bdba7f",
+        "type": "ui_gauge",
+        "z": "6960c25d19217e0b",
+        "name": "",
+        "group": "a73ce2171360eee8",
+        "order": 1,
+        "width": 4,
+        "height": 4,
+        "gtype": "wave",
+        "title": "MilliWatt",
+        "label": "MilliWatt",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "10000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 480,
+        "y": 260,
+        "wires": []
     },
     {
         "id": "dce34fa7.56d7d",
