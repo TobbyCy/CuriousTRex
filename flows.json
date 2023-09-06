@@ -6877,14 +6877,14 @@
         "id": "9a915e3fcad82fe5",
         "type": "function",
         "z": "3ddecfbaabd60ba5",
-        "name": "Gatling line chart Complet",
+        "name": "Gatling line chart Time_Response",
         "func": "// Assurez-vous que msg.payload.gatling.Log est un tableau\nvar logEntries = Array.isArray(msg.payload.gatling.Log) ? msg.payload.gatling.Log : [];\n\n// Création du graphique\nvar chartData = {\n    \n    type: 'line', // Utilisez un graphique de type \"line\"\n    options: {\n        scales: {\n            yAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }],\n            xAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }]\n        },\n        dataset :{\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n        },\n        title: {\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n            display: true,\n            text: 'Comparaison des performances' // Titre du graphique\n        },\n        legend: {\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n            display: true // Affichez la légende du graphique\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd' // Couleur de fond du graphique\n        },\n        plugins: {\n            datalabels: {\n                display: false // Désactivez l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: logEntries.map(function (entry) {\n            if (entry.type === 'RUN') {\n                return 'Début de la Simulation'; // Label pour les opérations de type \"RUN\"\n            } else if (entry.type === 'REQUEST') {\n                // Calcul de la différence en millisecondes entre le début de la simulation et le début de la requête\n                var simulationStart = logEntries.find(function (item) {\n                    return item.type === 'RUN';\n                });\n                if (simulationStart) {\n                    var startTime = simulationStart.start;\n                    var requestTime = entry.start;\n                    var timeDiff = requestTime - startTime;\n                    return (timeDiff / 1000).toFixed(0) + ' s'; // Temps en secondes\n                } else {\n                    return 'N/A'; // Si aucune opération de type \"RUN\" n'est trouvée\n                }\n            } else {\n                return ''; // Autres types d'opérations (USER, etc.) sans label\n            }\n        }),\n        datasets: [\n            {\n                label: \"Temps de Réponse\", // Légende de l'ensemble de données\n                borderColor: 'rgba(0, 128, 255, 1)', // Couleur de la ligne du graphique\n                fill: false, // Désactivez le remplissage sous la ligne\n                data: logEntries.map(function (entry) {\n                    if (entry.type === 'REQUEST') {\n                        // Calcul de la différence en millisecondes entre le début et la fin de la requête\n                        var requestStart = entry.start;\n                        var requestEnd = entry.end;\n                        var requestTime = requestEnd - requestStart;\n                        return requestTime;\n                    } else {\n                        return 0; // Valeurs pour les opérations de type \"RUN\" ou autres\n                    }\n                }),\n                pointRadius: 0, // Diamètre des points sur le graphique\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData; // Attribuez les données du graphique au message\n\nreturn msg; // Renvoyez le message\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1570,
+        "x": 1600,
         "y": 360,
         "wires": [
             [
@@ -6899,7 +6899,7 @@
         "name": "",
         "width": "1920",
         "height": "1920",
-        "x": 1790,
+        "x": 1830,
         "y": 360,
         "wires": [
             [
@@ -6918,7 +6918,7 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 2040,
+        "x": 2060,
         "y": 360,
         "wires": [
             []
@@ -6929,7 +6929,7 @@
         "type": "function",
         "z": "3ddecfbaabd60ba5",
         "name": "Vertical Line Chart",
-        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload;\nvar delayInSeconds = msg.delay / 1000; // Conversion en secondes\n\n// Extraction des données nécessaires\nvar voltCpuData = rawData[\"volt/benchmark/cpu\"];\nvar voltRamData = rawData[\"volt/benchmark/ram\"];\nvar voltProcessesData = rawData[\"volt/benchmark/processes\"];\nvar voltTempData = rawData[\"volt/benchmark/temp\"];\nvar nidusCpuData = rawData[\"nidus/benchmark/cpu\"];\nvar nidusRamData = rawData[\"nidus/benchmark/ram\"];\nvar nidusProcessesData = rawData[\"nidus/benchmark/processes\"];\nvar nidusTempData = rawData[\"nidus/benchmark/temp\"];\n\n// Création du graphique\nvar chartData = {\n    type: 'line',  // Changement du type de graphique en \"line\"\n    options: {\n        scales: {\n            yAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }],\n            xAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }]\n        },\n        title: {\n            display: true,\n            text: 'Comparaison des performances'\n        },\n        legend: {\n            display: true\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        plugins: {\n            datalabels: {\n                display: false  // Désactiver l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: Array.from({ length: voltCpuData.length }, (_, i) => (i * delayInSeconds).toFixed(1)),  // Temps en secondes\n        datasets: [\n            {\n                label: \"Volt CPU\",\n                borderColor: 'rgba(0, 128, 255, 1)',  // Couleur de la ligne (couleur froide pour Volt)\n                fill: false,  // Désactiver le remplissage sous la ligne\n                data: voltCpuData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Volt RAM\",\n                borderColor: 'rgba(0, 255, 128, 1)',\n                fill: false,\n                data: voltRamData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Volt Temp\",\n                borderColor: 'rgba(255, 193, 37, 1)',\n                fill: false,\n                data: voltTempData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Nidus CPU\",\n                borderColor: 'rgba(255, 69, 0, 1)',\n                fill: false,\n                data: nidusCpuData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Nidus RAM\",\n                borderColor: 'rgba(255, 165, 0, 1)',\n                fill: false,\n                data: nidusRamData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Nidus Temp\",\n                borderColor: 'rgba(255, 0, 0, 1)',\n                fill: false,\n                data: nidusTempData,\n                pointRadius: 0,\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
+        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload;\nvar delayInSeconds = msg.delay / 1000; // Conversion en secondes\n\n// Extraction des données nécessaires\nvar voltCpuData = rawData[\"volt/benchmark/cpu\"];\nvar voltRamData = rawData[\"volt/benchmark/ram\"];\nvar voltProcessesData = rawData[\"volt/benchmark/processes\"];\nvar voltTempData = rawData[\"volt/benchmark/temp\"];\nvar nidusCpuData = rawData[\"nidus/benchmark/cpu\"];\nvar nidusRamData = rawData[\"nidus/benchmark/ram\"];\nvar nidusProcessesData = rawData[\"nidus/benchmark/processes\"];\nvar nidusTempData = rawData[\"nidus/benchmark/temp\"];\n\n// Création du graphique\nvar chartData = {\n    type: 'line',  // Changement du type de graphique en \"line\"\n    options: {\n        scales: {\n            yAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }],\n            xAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }]\n        },\n        title: {\n            display: true,\n            text: 'Comparaison des performances'\n        },\n        legend: {\n            display: true\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        plugins: {\n            datalabels: {\n                display: false  // Désactiver l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels:Array.from({ length: voltCpuData.length }, (_, i) => (i * delayInSeconds).toFixed(1)),  // Temps en secondes\n        \n        datasets: [\n            {\n                label: \"Volt CPU\",\n                borderColor: 'rgba(0, 128, 255, 1)',  // Couleur de la ligne (couleur froide pour Volt)\n                fill: false,  // Désactiver le remplissage sous la ligne\n                data: voltCpuData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Volt RAM\",\n                borderColor: 'rgba(0, 255, 128, 1)',\n                fill: false,\n                data: voltRamData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Volt Temp\",\n                borderColor: 'rgba(255, 193, 37, 1)',\n                fill: false,\n                data: voltTempData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Nidus CPU\",\n                borderColor: 'rgba(255, 69, 0, 1)',\n                fill: false,\n                data: nidusCpuData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Nidus RAM\",\n                borderColor: 'rgba(255, 165, 0, 1)',\n                fill: false,\n                data: nidusRamData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Nidus Temp\",\n                borderColor: 'rgba(255, 0, 0, 1)',\n                fill: false,\n                data: nidusTempData,\n                pointRadius: 0,\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -7698,7 +7698,7 @@
         "name": "",
         "width": "1920",
         "height": "1920",
-        "x": 1790,
+        "x": 1830,
         "y": 400,
         "wires": [
             [
@@ -8072,8 +8072,7 @@
                 "9197964b7793ca79",
                 "46daa1258fe41e08",
                 "53c70d418773723d",
-                "7964135626c90274",
-                "ba58ea260d28e5a3"
+                "7964135626c90274"
             ]
         ]
     },
@@ -8116,8 +8115,7 @@
         "y": 1320,
         "wires": [
             [
-                "11d925bcc7cda83a",
-                "4c8bcf5e44d6df38"
+                "11d925bcc7cda83a"
             ]
         ]
     },
@@ -8232,8 +8230,7 @@
         "y": 1320,
         "wires": [
             [
-                "5f7d9a95d0c65757",
-                "dc6cc4bdbe609ad3"
+                "5f7d9a95d0c65757"
             ]
         ]
     },
@@ -8446,7 +8443,7 @@
         "name": "",
         "width": "1920",
         "height": "1920",
-        "x": 1790,
+        "x": 1830,
         "y": 320,
         "wires": [
             [
@@ -8485,7 +8482,7 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 2030,
+        "x": 2050,
         "y": 320,
         "wires": [
             []
@@ -8769,23 +8766,6 @@
         "wires": []
     },
     {
-        "id": "ba58ea260d28e5a3",
-        "type": "debug",
-        "z": "3ddecfbaabd60ba5",
-        "name": "debug 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1140,
-        "y": 1120,
-        "wires": []
-    },
-    {
         "id": "7be259fe9744c2ef",
         "type": "debug",
         "z": "3ddecfbaabd60ba5",
@@ -8820,57 +8800,6 @@
         "wires": []
     },
     {
-        "id": "4c8bcf5e44d6df38",
-        "type": "debug",
-        "z": "3ddecfbaabd60ba5",
-        "name": "debug 3",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1140,
-        "y": 1240,
-        "wires": []
-    },
-    {
-        "id": "dc6cc4bdbe609ad3",
-        "type": "debug",
-        "z": "3ddecfbaabd60ba5",
-        "name": "debug 4",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1460,
-        "y": 1240,
-        "wires": []
-    },
-    {
-        "id": "b9f0658c1ceb6d1d",
-        "type": "debug",
-        "z": "3ddecfbaabd60ba5",
-        "name": "debug 5",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1720,
-        "y": 1280,
-        "wires": []
-    },
-    {
         "id": "7aea4a31c908237b",
         "type": "change",
         "z": "3ddecfbaabd60ba5",
@@ -8894,7 +8823,6 @@
         "y": 1320,
         "wires": [
             [
-                "b9f0658c1ceb6d1d",
                 "8ff2cbbf96cb265b"
             ]
         ]
