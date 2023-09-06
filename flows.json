@@ -6906,8 +6906,7 @@
         "wires": [
             [
                 "3de8c7b1973545bb",
-                "648931f9266586ae",
-                "716e30395513dde2"
+                "648931f9266586ae"
             ]
         ]
     },
@@ -8455,8 +8454,7 @@
         "wires": [
             [
                 "96510d6bc4a88a3c",
-                "648931f9266586ae",
-                "716e30395513dde2"
+                "648931f9266586ae"
             ]
         ]
     },
@@ -8795,7 +8793,7 @@
         "type": "debug",
         "z": "3ddecfbaabd60ba5",
         "name": "Values_PDF",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -8840,7 +8838,7 @@
         "type": "function",
         "z": "3ddecfbaabd60ba5",
         "name": "Gatling line chart By_Seconds",
-        "func": "// Assurez-vous que msg.payload.gatling.Log est un tableau\nvar logEntries = Array.isArray(msg.payload.gatling.Log) ? msg.payload.gatling.Log : [];\n\n// Création du graphique\nvar chartData = {\n    \n    type: 'line', // Utilisez un graphique de type \"line\"\n    options: {\n        scales: {\n            yAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }],\n            xAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }]\n        },\n        dataset :{\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n        },\n        title: {\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n            display: true,\n            text: 'Nombre de Requêtes Simultanées', // Titre du graphique\n            fontSize: 40\n        },\n        legend: {\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n            display: true // Affichez la légende du graphique\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd' // Couleur de fond du graphique\n        },\n        plugins: {\n            datalabels: {\n                display: false // Désactivez l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: logEntries.map(function (entry) {\n            if (entry.type === 'RUN') {\n                return 'Début de la Simulation'; // Label pour les opérations de type \"RUN\"\n            } else if (entry.type === 'REQUEST') {\n                // Calcul de la différence en millisecondes entre le début de la simulation et le début de la requête\n                var simulationStart = logEntries.find(function (item) {\n                    return item.type === 'RUN';\n                });\n                if (simulationStart) {\n                    var startTime = simulationStart.start;\n                    var requestTime = entry.start;\n                    var timeDiff = requestTime - startTime;\n\n                    // Si le temps de la simulation dépasse 1 minute\n                    if (timeDiff >= 60000) { // 60000 millisecondes équivalent à 1 minute\n                        var minutes = Math.floor(timeDiff / 60000);\n                        var seconds = ((timeDiff % 60000) / 1000).toFixed(0);\n                        return minutes + ' min ' + seconds + ' s';\n                    } else {\n                        return (timeDiff / 1000).toFixed(0) + ' s'; // Temps en secondes\n                    }\n                } else {\n                    return 'N/A'; // Si aucune opération de type \"RUN\" n'est trouvée\n                }\n            } else {\n                return ''; // Autres types d'opérations (USER, etc.) sans label\n            }\n        }),\n\n        datasets: {\n            label: \"Requêtes Simultanées\", // Légende de l'ensemble de données\n            borderColor: 'rgba(0, 128, 255, 1)', // Couleur de la ligne du graphique\n            fill: false, // Désactivez le remplissage sous la ligne\n            data: logEntries.map(function (entry) {\n                if (entry.type === 'REQUEST') {\n                    // Calculez le nombre de requêtes simultanées à chaque seconde\n                    var timeInSeconds = (entry.start - logEntries[0].start) / 1000; // Temps en secondes depuis le début\n                    var concurrentRequests = logEntries.reduce(function (total, e) {\n                        if (e.type === 'REQUEST' && e.start <= entry.start && e.end >= entry.start) {\n                            return total + 1;\n                        } else {\n                            return total;\n                        }\n                    }, 0);\n                    return { x: timeInSeconds.toFixed(0), y: concurrentRequests };\n                } else {\n                    return { x: 0, y: 0 }; // Valeurs pour les autres types d'opérations\n                }\n            }),\n            pointRadius: 0, // Diamètre des points sur le graphique\n        },\n    }}\n\nmsg.payload = chartData; // Attribuez les données du graphique au message\nmsg.topic = \"bySeconds\";\nreturn msg; // Renvoyez le message\n",
+        "func": "// Assurez-vous que msg.payload.gatling.Log est un tableau\nvar logEntries = Array.isArray(msg.payload.gatling.Log) ? msg.payload.gatling.Log : [];\n\n// Création du graphique\nvar chartData = {\n    \n    type: 'line', // Utilisez un graphique de type \"line\"\n    options: {\n        scales: {\n            yAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }],\n            xAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }]\n        },\n        dataset :{\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n        },\n        title: {\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n            display: true,\n            text: 'Nombre de Requêtes Simultanées', // Titre du graphique\n            fontSize: 40\n        },\n        legend: {\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n            display: true // Affichez la légende du graphique\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd' // Couleur de fond du graphique\n        },\n        plugins: {\n            datalabels: {\n                display: false // Désactivez l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: logEntries.map(function (entry) {\n            if (entry.type === 'RUN') {\n                return 'Début de la Simulation'; // Label pour les opérations de type \"RUN\"\n            } else if (entry.type === 'REQUEST') {\n                // Calcul de la différence en millisecondes entre le début de la simulation et le début de la requête\n                var simulationStart = logEntries.find(function (item) {\n                    return item.type === 'RUN';\n                });\n                if (simulationStart) {\n                    var startTime = simulationStart.start;\n                    var requestTime = entry.start;\n                    var timeDiff = requestTime - startTime;\n\n                    // Si le temps de la simulation dépasse 1 minute\n                    if (timeDiff >= 60000) { // 60000 millisecondes équivalent à 1 minute\n                        var minutes = Math.floor(timeDiff / 60000);\n                        var seconds = ((timeDiff % 60000) / 1000).toFixed(0);\n                        return minutes + ' min ' + seconds + ' s';\n                    } else {\n                        return (timeDiff / 1000).toFixed(0) + ' s'; // Temps en secondes\n                    }\n                } else {\n                    return 'N/A'; // Si aucune opération de type \"RUN\" n'est trouvée\n                }\n            } else {\n                return ''; // Autres types d'opérations (USER, etc.) sans label\n            }\n        }),\n\n        datasets: {\n            label: \"Requêtes Simultanées\", // Légende de l'ensemble de données\n            borderColor: 'rgba(0, 128, 255, 1)', // Couleur de la ligne du graphique\n            fill: false, // Désactivez le remplissage sous la ligne\n            data: logEntries.map(function (entry) {\n                if (entry.type === 'REQUEST') {\n                    // Calculez le nombre de requêtes simultanées à chaque seconde\n                    var timeInSeconds = (entry.start - logEntries[0].start) / 1000; // Temps en secondes depuis le début\n                    var concurrentRequests = logEntries.reduce(function (total, e) {\n                        if (e.type === 'REQUEST' && e.start <= entry.start && e.end >= entry.start) {\n                            return total + 1;\n                        } else {\n                            return total;\n                        }\n                    }, 0);\n                    return {concurrentRequests };\n                } else {\n                    return { x: 0, y: 0 }; // Valeurs pour les autres types d'opérations\n                }\n            }),\n            pointRadius: 0, // Diamètre des points sur le graphique\n        },\n    }}\n\nmsg.payload = chartData; // Attribuez les données du graphique au message\nmsg.topic = \"bySeconds\";\nreturn msg; // Renvoyez le message\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -8867,8 +8865,7 @@
         "wires": [
             [
                 "c17822d4517e2dae",
-                "648931f9266586ae",
-                "716e30395513dde2"
+                "648931f9266586ae"
             ]
         ]
     },
@@ -8966,8 +8963,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2140,
-        "y": 160,
+        "x": 2080,
+        "y": 180,
         "wires": []
     },
     {
@@ -8975,7 +8972,7 @@
         "type": "debug",
         "z": "3ddecfbaabd60ba5",
         "name": "debug 3",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -8992,7 +8989,7 @@
         "type": "debug",
         "z": "3ddecfbaabd60ba5",
         "name": "debug 4",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -9009,7 +9006,7 @@
         "type": "debug",
         "z": "3ddecfbaabd60ba5",
         "name": "debug 5",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
