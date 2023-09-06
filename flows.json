@@ -9430,7 +9430,7 @@
         "order": 1,
         "width": 4,
         "height": 4,
-        "gtype": "wave",
+        "gtype": "compass",
         "title": "MilliWatt",
         "label": "MilliWatt",
         "format": "{{value}}",
