@@ -6294,8 +6294,8 @@
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 1460,
-        "y": 240,
+        "x": 1320,
+        "y": 220,
         "wires": [
             []
         ]
@@ -6528,7 +6528,7 @@
         "type": "function",
         "z": "3ddecfbaabd60ba5",
         "name": "Ajoute le chemin du fichier ",
-        "func": "var now = new Date();\nvar jour = (\"0\" + now.getDate()).slice(-2);\nvar mois = (\"0\" + (now.getMonth() + 1)).slice(-2);\n\n// Récupérer le nom de fichier de msg.payload.nameFile, ou utiliser \"default\" si absent\nvar nameFile = msg.payload.nameFile || \"default\";\n// Remplacer les caractères interdits dans le nom de fichier par des underscores\nnameFile = nameFile.replace(/[\\\\/:\"*?<>|]+/g, \"_\");\n\n// Construire le chemin du fichier PDF\nmsg.filePath = \"/home/NodeRed/pdf/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \".pdf\";\n\n// Construire les chemins des fichiers graphiques\nmsg.graphPath = {\n    volt: {\n        complet: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"VOLT.png\",\n        cpu: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vcpu.png\",\n        ram: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vram.png\",\n        proc: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vproc.png\",\n        temp: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vtemp.png\",\n        watt: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vwatt.png\"\n    },\n    nidus: {\n        complet: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"NIDUS.png\",\n        cpu: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ncpu.png\",\n        ram: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nram.png\",\n        proc: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nproc.png\",\n        temp: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ntemp.png\"\n    },\n    gatling: {\n        complet: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"gatling.png\",\n        pass: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"pass.png\",\n        //ram: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nram.png\",\n        //proc: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nproc.png\",\n        //temp: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ntemp.png\"\n    }\n};\n\n// Renvoyer le message modifié\nreturn msg;\n",
+        "func": "var now = new Date();\nvar jour = (\"0\" + now.getDate()).slice(-2);\nvar mois = (\"0\" + (now.getMonth() + 1)).slice(-2);\n\n// Récupérer le nom de fichier de msg.payload.nameFile, ou utiliser \"default\" si absent\nvar nameFile = msg.payload.nameFile || \"default\";\n// Remplacer les caractères interdits dans le nom de fichier par des underscores\nnameFile = nameFile.replace(/[\\\\/:\"*?<>|]+/g, \"_\");\n\n// Construire le chemin du fichier PDF\nmsg.filePath = \"/home/NodeRed/pdf/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \".pdf\";\n\n// Construire les chemins des fichiers graphiques\nmsg.graphPath = {\n    volt: {\n        complet: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"VOLT.png\",\n        cpu: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vcpu.png\",\n        ram: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vram.png\",\n        proc: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vproc.png\",\n        temp: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vtemp.png\",\n        watt: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vwatt.png\"\n    },\n    nidus: {\n        complet: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"NIDUS.png\",\n        cpu: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ncpu.png\",\n        ram: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nram.png\",\n        proc: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nproc.png\",\n        temp: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ntemp.png\"\n    },\n    gatling: {\n        complet: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"gatling.png\",\n        pass: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"pass.png\",\n        bySeconds: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"bySeconds.png\",\n        //proc: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nproc.png\",\n        //temp: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ntemp.png\"\n    }\n};\n\n// Renvoyer le message modifié\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -6634,7 +6634,7 @@
         "type": "function",
         "z": "3ddecfbaabd60ba5",
         "name": "Créer le contenue du fichier",
-        "func": "//Formatage du ventilateur\nvar ventilateur = msg.payload.gatling.Original.flow ? \"Ventilateur activé\" : \"Ventilateur non-activé\";\n// Formatage de la date de début\nvar timestamp = msg.payload.gatling.Assertion.start;\n\n// Créez un objet Date à partir du timestamp\nvar date = new Date(timestamp);\n\n// Définissez le format de date souhaité\nvar options = {\n    weekday: 'long',\n    year: 'numeric',\n    month: 'long',\n    day: 'numeric',\n    hour: '2-digit',\n    minute: '2-digit'\n};\n\n// Formatez la date en une chaîne de caractères\nvar formattedDate = date.toLocaleDateString(\"fr-FR\", options);\n\n\n// Création des données pour le rapport PDF\nmsg.payload = {\n    header: function (currentPage, pageCount, pageSize) {\n        return [\n            {\n                text: \"Tobler Cyril\", // Votre nom\n                alignment: \"left\",\n                fontSize: 10,\n                margin: [15, 10, 0, 0]\n            },\n            {\n                text: \"Nom du projet : Confuse T-Rex\", // Nom de votre projet\n                alignment: \"center\",\n                fontSize: 10,\n                margin: [0, 0, 0, 0]\n            }\n        ];\n    },\n    footer: function (currentPage, pageCount) {\n        return {\n            columns: [\n                {\n                    text: currentPage.toString() + \" / \" + pageCount, // Numéro de page actuel / Nombre total de pages\n                    alignment: \"left\",\n                    fontSize: 10,\n                    margin: [15, 0, 0, 10]\n                },\n                {\n                    text: new Date().toLocaleDateString(\"fr-FR\"), // Date actuelle au format français\n                    alignment: \"right\",\n                    fontSize: 10,\n                    margin: [0, 0, 15, 10]\n                }\n            ],\n            margin: [0, 0, 0, 10]\n        };\n    },\n    content: [\n        {\n            text: \"Rapport d'utilisation : \" + msg.original.nameFile , // Titre du rapport\n            style: \"header\",\n            margin: [0, 10, 0, 0]\n        },\n        {\n            text: \"Les valeurs sont des moyennes sur les \" + Math.floor(msg.delay / (1000 * 60)) + \" dernières minutes\" // Informations sur les valeurs\n        }, \n        {\n            text: ventilateur\n        },\n        {\n            text: \"Nidus :\", // Section Nidus\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"nidus/benchmark/cpu\"] // Valeur CPU de Nidus\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"nidus/benchmark/ram\"] // Valeur RAM de Nidus\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"nidus/benchmark/processes\"] // Nombre de processus de Nidus\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"nidus/benchmark/temp\"] // Température CPU de Nidus\n        },\n        {\n            image: 'nidusImage', // Image de Nidus\n            width: 500,\n            pageBreak: 'after', // Saut de page après l'image\n        },\n        {\n            text: \"Volt\", // Section Volt\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"volt/benchmark/cpu\"] // Valeur CPU de Volt\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"volt/benchmark/ram\"] // Valeur RAM de Volt\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"volt/benchmark/processes\"] // Nombre de processus de Volt\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"volt/benchmark/temp\"] // Température CPU de Volt\n        },\n        {\n            text: \"MilliWatt :           \" + msg.payload.moyenne[\"volt/benchmark/watt\"] // Valeur MilliWatt de Volt\n        },\n        {\n            image: 'voltImage', // Image de Volt\n            width: 500,\n        },\n        {\n            image: 'wattImage', // Image Watt de Volt\n            width: 500,\n            pageBreak: 'after', // Saut de page après l'image\n        },\n        {\n            text: \"Gatling\", // Section Gatling\n            style: \"header2\"\n        },\n        {\n            text: \"Nom de la simulation :                 \" + msg.payload.gatling.Assertion.simulation // Nom de la simulation Gatling\n        },\n        {\n            text: \"Commencée :                            \" + formattedDate // Date de début de la simulation Gatling (à formater)\n        },\n        {\n            text: \"Nombre d'utilisateur :                 \" + msg.original.user_gatling // Nom de la simulation Gatling\n        },\n        {\n            text: \"Durée prévu :                          \" + msg.payload.gatling.Original.time/60 + \"Min\" // Nom de la simulation Gatling\n        },\n        {\n            image: 'gatlingImage', // Image Gatling\n            width: 500,\n        },\n        {\n            image: 'gatlingGraphComplete', // Image graphique complet Gatling\n            width: 500,\n        },\n    ],\n    images: {\n        voltImage: 'data:image/png;base64,' + msg.payload.voltGraph.toString('base64'), // Utilisation du buffer pour l'image Volt\n        wattImage: 'data:image/png;base64,' + msg.payload.wattGraph.toString('base64'),  // Utilisation du buffer pour l'image Watt de Volt\n        nidusImage: 'data:image/png;base64,' + msg.payload.nidusGraph.toString('base64'),  // Utilisation du buffer pour l'image Nidus\n        gatlingImage: 'data:image/png;base64,' + msg.payload.gatlingGraph.toString('base64'),  // Utilisation du buffer pour l'image Gatling\n        gatlingGraphComplete: 'data:image/png;base64,' + msg.payload.gatlingGraphComplete.toString('base64'),  // Utilisation du buffer pour l'image Gatling\n    },\n    styles: {\n        header: {\n            fontSize: 22,\n            bold: true,\n            margin: [0, 30, 0, 0]\n        },\n        header2: {\n            fontSize: 18,\n            bold: true,\n            margin: [0, 20, 0, 0]\n        }\n    }\n};\n\nreturn msg; // Renvoyer le message\n",
+        "func": "//Formatage du ventilateur\nvar ventilateur = msg.payload.gatling.Original.flow ? \"Ventilateur activé\" : \"Ventilateur non-activé\";\n// Formatage de la date de début\nvar timestamp = msg.payload.gatling.Assertion.start;\n\n// Créez un objet Date à partir du timestamp\nvar date = new Date(timestamp);\n\n// Définissez le format de date souhaité\nvar options = {\n    weekday: 'long',\n    year: 'numeric',\n    month: 'long',\n    day: 'numeric',\n    hour: '2-digit',\n    minute: '2-digit'\n};\n\n// Formatez la date en une chaîne de caractères\nvar formattedDate = date.toLocaleDateString(\"fr-FR\", options);\n\n\n// Création des données pour le rapport PDF\nmsg.payload = {\n    header: function (currentPage, pageCount, pageSize) {\n        return [\n            {\n                text: \"Tobler Cyril\", // Votre nom\n                alignment: \"left\",\n                fontSize: 10,\n                margin: [15, 10, 0, 0]\n            },\n            {\n                text: \"Nom du projet : Confuse T-Rex\", // Nom de votre projet\n                alignment: \"center\",\n                fontSize: 10,\n                margin: [0, 0, 0, 0]\n            }\n        ];\n    },\n    footer: function (currentPage, pageCount) {\n        return {\n            columns: [\n                {\n                    text: currentPage.toString() + \" / \" + pageCount, // Numéro de page actuel / Nombre total de pages\n                    alignment: \"left\",\n                    fontSize: 10,\n                    margin: [15, 0, 0, 10]\n                },\n                {\n                    text: new Date().toLocaleDateString(\"fr-FR\"), // Date actuelle au format français\n                    alignment: \"right\",\n                    fontSize: 10,\n                    margin: [0, 0, 15, 10]\n                }\n            ],\n            margin: [0, 0, 0, 10]\n        };\n    },\n    content: [\n        {\n            text: \"Rapport d'utilisation : \" + msg.original.nameFile , // Titre du rapport\n            style: \"header\",\n            margin: [0, 10, 0, 0]\n        },\n        {\n            text: \"Les valeurs sont des moyennes sur les \" + Math.floor(msg.delay / (1000 * 60)) + \" dernières minutes\" // Informations sur les valeurs\n        }, \n        {\n            text: ventilateur\n        },\n        {\n            text: \"Nidus :\", // Section Nidus\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"nidus/benchmark/cpu\"] // Valeur CPU de Nidus\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"nidus/benchmark/ram\"] // Valeur RAM de Nidus\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"nidus/benchmark/processes\"] // Nombre de processus de Nidus\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"nidus/benchmark/temp\"] // Température CPU de Nidus\n        },\n        {\n            image: 'nidusImage', // Image de Nidus\n            width: 500,\n            pageBreak: 'after', // Saut de page après l'image\n        },\n        {\n            text: \"Volt\", // Section Volt\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"volt/benchmark/cpu\"] // Valeur CPU de Volt\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"volt/benchmark/ram\"] // Valeur RAM de Volt\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"volt/benchmark/processes\"] // Nombre de processus de Volt\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"volt/benchmark/temp\"] // Température CPU de Volt\n        },\n        {\n            text: \"MilliWatt :           \" + msg.payload.moyenne[\"volt/benchmark/watt\"] // Valeur MilliWatt de Volt\n        },\n        {\n            image: 'voltImage', // Image de Volt\n            width: 500,\n        },\n        {\n            image: 'wattImage', // Image Watt de Volt\n            width: 500,\n            pageBreak: 'after', // Saut de page après l'image\n        },\n        {\n            text: \"Gatling\", // Section Gatling\n            style: \"header2\"\n        },\n        {\n            text: \"Nom de la simulation :                 \" + msg.payload.gatling.Assertion.simulation // Nom de la simulation Gatling\n        },\n        {\n            text: \"Commencée :                            \" + formattedDate // Date de début de la simulation Gatling (à formater)\n        },\n        {\n            text: \"Nombre d'utilisateur :                 \" + msg.original.user_gatling // Nom de la simulation Gatling\n        },\n        {\n            text: \"Durée prévu :                          \" + msg.payload.gatling.Original.time/60 + \"Min\" // Nom de la simulation Gatling\n        },\n        {\n            image: 'gatlingImage', // Image Gatling\n            width: 500,\n        },\n        {\n            image: 'gatlingGraphComplete', // Image graphique complet Gatling\n            width: 500,\n        }, \n        {\n            image: 'gatlingGraphBySeconds', // Image graphique complet Gatling\n            width: 500,\n        },\n    ],\n    images: {\n        voltImage: 'data:image/png;base64,' + msg.payload.voltGraph.toString('base64'), // Utilisation du buffer pour l'image Volt\n        wattImage: 'data:image/png;base64,' + msg.payload.wattGraph.toString('base64'),  // Utilisation du buffer pour l'image Watt de Volt\n        nidusImage: 'data:image/png;base64,' + msg.payload.nidusGraph.toString('base64'),  // Utilisation du buffer pour l'image Nidus\n        gatlingImage: 'data:image/png;base64,' + msg.payload.gatlingGraph.toString('base64'),  // Utilisation du buffer pour l'image Gatling\n        gatlingGraphComplete: 'data:image/png;base64,' + msg.payload.gatlingGraphComplete.toString('base64'),  // Utilisation du buffer pour l'image Gatling\n        gatlingGraphBySeconds: 'data:image/png;base64,' + msg.payload.gatlingGraphBySeconds.toString('base64'),  // Utilisation du buffer pour l'image Gatling\n    },\n    styles: {\n        header: {\n            fontSize: 22,\n            bold: true,\n            margin: [0, 30, 0, 0]\n        },\n        header2: {\n            fontSize: 18,\n            bold: true,\n            margin: [0, 20, 0, 0]\n        }\n    }\n};\n\nreturn msg; // Renvoyer le message\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -7154,7 +7154,7 @@
         "joinerType": "str",
         "accumulate": false,
         "timeout": "",
-        "count": "7",
+        "count": "8",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
@@ -7204,7 +7204,8 @@
                 "34a2fc5b8d7b23f5",
                 "2e398589767e8c31",
                 "7abe58379969346a",
-                "27d07c312e196c9d"
+                "27d07c312e196c9d",
+                "cb58717ad99b6f27"
             ]
         ]
     },
@@ -7684,7 +7685,7 @@
         "finalize": "",
         "libs": [],
         "x": 1540,
-        "y": 400,
+        "y": 440,
         "wires": [
             [
                 "73659a47db81fffa"
@@ -7699,7 +7700,7 @@
         "width": "1920",
         "height": "1920",
         "x": 1830,
-        "y": 400,
+        "y": 440,
         "wires": [
             [
                 "f53a9c270f0476dd",
@@ -7719,7 +7720,7 @@
         "overwriteFile": "true",
         "encoding": "none",
         "x": 2040,
-        "y": 400,
+        "y": 440,
         "wires": [
             []
         ]
@@ -8444,7 +8445,7 @@
         "width": "1920",
         "height": "1920",
         "x": 1830,
-        "y": 320,
+        "y": 280,
         "wires": [
             [
                 "96510d6bc4a88a3c",
@@ -8464,7 +8465,7 @@
         "finalize": "",
         "libs": [],
         "x": 1540,
-        "y": 320,
+        "y": 280,
         "wires": [
             [
                 "e83ee25f95ec96b8"
@@ -8483,7 +8484,7 @@
         "overwriteFile": "true",
         "encoding": "none",
         "x": 2050,
-        "y": 320,
+        "y": 280,
         "wires": [
             []
         ]
@@ -8778,8 +8779,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1540,
-        "y": 280,
+        "x": 1520,
+        "y": 160,
         "wires": []
     },
     {
@@ -8824,6 +8825,120 @@
         "wires": [
             [
                 "8ff2cbbf96cb265b"
+            ]
+        ]
+    },
+    {
+        "id": "035632eacefbd3cd",
+        "type": "function",
+        "z": "3ddecfbaabd60ba5",
+        "name": "Gatling line chart By_Seconds",
+        "func": "// Assurez-vous que msg.payload.gatling.Log est un tableau\nvar logEntries = Array.isArray(msg.payload.gatling.Log) ? msg.payload.gatling.Log : [];\n\n// Création du graphique\nvar chartData = {\n    \n    type: 'line', // Utilisez un graphique de type \"line\"\n    options: {\n        scales: {\n            yAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }],\n            xAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }]\n        },\n        dataset :{\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n        },\n        title: {\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n            display: true,\n            text: 'Nombre de Requêtes Simultanées', // Titre du graphique\n            fontSize: 40\n        },\n        legend: {\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n            display: true // Affichez la légende du graphique\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd' // Couleur de fond du graphique\n        },\n        plugins: {\n            datalabels: {\n                display: false // Désactivez l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: logEntries.map(function (entry) {\n            if (entry.type === 'RUN') {\n                return 'Début de la Simulation'; // Label pour les opérations de type \"RUN\"\n            } else if (entry.type === 'REQUEST') {\n                // Calcul de la différence en millisecondes entre le début de la simulation et le début de la requête\n                var simulationStart = logEntries.find(function (item) {\n                    return item.type === 'RUN';\n                });\n                if (simulationStart) {\n                    var startTime = simulationStart.start;\n                    var requestTime = entry.start;\n                    var timeDiff = requestTime - startTime;\n\n                    // Si le temps de la simulation dépasse 1 minute\n                    if (timeDiff >= 60000) { // 60000 millisecondes équivalent à 1 minute\n                        var minutes = Math.floor(timeDiff / 60000);\n                        var seconds = ((timeDiff % 60000) / 1000).toFixed(0);\n                        return minutes + ' min ' + seconds + ' s';\n                    } else {\n                        return (timeDiff / 1000).toFixed(0) + ' s'; // Temps en secondes\n                    }\n                } else {\n                    return 'N/A'; // Si aucune opération de type \"RUN\" n'est trouvée\n                }\n            } else {\n                return ''; // Autres types d'opérations (USER, etc.) sans label\n            }\n        }),\n\n        datasets: {\n            label: \"Requêtes Simultanées\", // Légende de l'ensemble de données\n            borderColor: 'rgba(0, 128, 255, 1)', // Couleur de la ligne du graphique\n            fill: false, // Désactivez le remplissage sous la ligne\n            data: logEntries.map(function (entry) {\n                if (entry.type === 'REQUEST') {\n                    // Calculez le nombre de requêtes simultanées à chaque seconde\n                    var timeInSeconds = (entry.start - logEntries[0].start) / 1000; // Temps en secondes depuis le début\n                    var concurrentRequests = logEntries.reduce(function (total, e) {\n                        if (e.type === 'REQUEST' && e.start <= entry.start && e.end >= entry.start) {\n                            return total + 1;\n                        } else {\n                            return total;\n                        }\n                    }, 0);\n                    return { x: timeInSeconds.toFixed(0), y: concurrentRequests };\n                } else {\n                    return { x: 0, y: 0 }; // Valeurs pour les autres types d'opérations\n                }\n            }),\n            pointRadius: 0, // Diamètre des points sur le graphique\n        },\n    }}\n\nmsg.payload = chartData; // Attribuez les données du graphique au message\n\nreturn msg; // Renvoyez le message\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1590,
+        "y": 400,
+        "wires": [
+            [
+                "a83bcdc5677662ee"
+            ]
+        ]
+    },
+    {
+        "id": "a83bcdc5677662ee",
+        "type": "chart-image",
+        "z": "3ddecfbaabd60ba5",
+        "name": "",
+        "width": "1920",
+        "height": "1920",
+        "x": 1830,
+        "y": 400,
+        "wires": [
+            [
+                "c17822d4517e2dae"
+            ]
+        ]
+    },
+    {
+        "id": "c17822d4517e2dae",
+        "type": "file",
+        "z": "3ddecfbaabd60ba5",
+        "name": "Gatling RequeteParSeconde",
+        "filename": "graphPath.gatling.bySeconds",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 2100,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cb58717ad99b6f27",
+        "type": "file in",
+        "z": "3ddecfbaabd60ba5",
+        "name": "Read Graph Gatling",
+        "filename": "graphPath.gatling.bySeconds",
+        "filenameType": "msg",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 1480,
+        "y": 1200,
+        "wires": [
+            [
+                "26990d2e7aea2b2c"
+            ]
+        ]
+    },
+    {
+        "id": "26990d2e7aea2b2c",
+        "type": "base64",
+        "z": "3ddecfbaabd60ba5",
+        "name": "",
+        "action": "str",
+        "property": "msg.payload",
+        "x": 1720,
+        "y": 1200,
+        "wires": [
+            [
+                "9e06d1cd375a5890"
+            ]
+        ]
+    },
+    {
+        "id": "9e06d1cd375a5890",
+        "type": "change",
+        "z": "3ddecfbaabd60ba5",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "gatlingGraphBySeconds",
+                "tot": "str",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1730,
+        "y": 1240,
+        "wires": [
+            [
+                "3f9aa754e519b6bf"
             ]
         ]
     },
