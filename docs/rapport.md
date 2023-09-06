@@ -92,8 +92,12 @@
     - [15.6.1. Création des graphiques](#1561-création-des-graphiques)
     - [15.6.2. PDF](#1562-pdf)
   - [15.7. Refactoring](#157-refactoring)
-- [16. Remerciement](#16-remerciement)
-- [17. Sources](#17-sources)
+- [16. Gatling V3.0](#16-gatling-v30)
+  - [16.1. UI](#161-ui)
+    - [16.1.1. Ventilateur](#1611-ventilateur)
+    - [16.1.2. UI](#1612-ui)
+- [17. Remerciement](#17-remerciement)
+- [18. Sources](#18-sources)
 
 <div style="page-break-after: always;"></div>
 
@@ -140,6 +144,10 @@ gantt
     Passage du SSH au MQTT pour la récupération des infos : mise-en-place-d7, 2023-08-27 08:00, 2023-08-27 12:00
 
 ```
+
+
+<div style="page-break-after: always;"></div>
+
 # 5. Instalation physique
 ## 5.1. Nidus
 <img src="../capture/Nidus.jpg" alt="Image" width="100%" style="width:100%;">
@@ -185,6 +193,7 @@ De fais toute intéraction de l'utilisateur se fait avec Nidus.
 Nidus envoie ses donnée de monittoring sur le serveur MQTT installé sur Nidus, et Node-Red installé sur Nidus récupère les données du serveur MQTT et les envoie dans des noeud fais pour le traiter et fournir ensuite les sortie appropié :
 - Dashboard : Pour l'utilisateur
 - PDF : Pour l'utilisateur
+
 Nidus peut dans un second temps lancer des stresstest via Node-Red sur lui même et sur Volt. Il peut aussi lancer des stresstest sur Volt via Gatling.
 
 ```mermaid
@@ -235,6 +244,8 @@ Dans un second temps, pour obtenir des mesures plus précises, nous installerons
 Adresse IP de Volt : 157.26.228.77
 Adresse IP de Nidus : 157.26.251.185
 
+
+<div style="page-break-after: always;"></div>
 
 ## 7.4. Seconde instalation Ubuntu Server
 <img src="../capture/RPI/Volt/Imager.png" alt="Image" width="100%" style="width:100%;">
@@ -450,6 +461,9 @@ Created symlink /etc/systemd/system/multi-user.target.wants/nodered.service → 
 ```
 <img src="../capture/RPI/Node-Red/PostInstall.png" alt="Image" width="100%" style="width:100%;">
 
+
+<div style="page-break-after: always;"></div>
+
 ## 8.2. Configuration
 ### 8.2.1. Installation des plugins
 <img src="../capture/RPI/Node-Red/palette1.png" alt="Installation des plugins" width="30%" style="width:30%;">
@@ -479,7 +493,6 @@ Comme il s'agit d'un *clone*, il faudra ajouter les fichiers manquants et ajuste
 ```bash
 tobby@Nidus:~/.node-red/projects/banc-de-mesures-de-la-consommation-electrique $ touch ~/.node-red/projects/banc-de-mesures-de-la-consommation-electrique/flows_cred.json
 tobby@Nidus:~/.node-red/projects/banc-de-mesures-de-la-consommation-electrique $ chmod 600 ~/.node-red/projects/banc-de-mesures-de-la-consommation-electrique/flows_cred.json
-
 ```
 
 
@@ -860,6 +873,9 @@ Le script affiche également un message indiquant que les données ont été pub
 ### 11.3.3. Conclusion
 Ce script MQTT élaboré et bien structuré offre un moyen efficace de collecter et de publier les données de consommation sur le broker **MQTT**. Son fonctionnement en boucle continue, combiné à des vérifications et des actions préliminaires, garantit une gestion fiable et optimisée des données, contribuant ainsi à la réussite globale du projet.
 
+
+<div style="page-break-after: always;"></div>
+
 ## 11.4. Installation
 ```bash
 toblerc@LPT-UNIX-USB-CT:~/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique$ scp ./mqtt.sh tobby@volt:/usr/local/bin/mqtt.sh
@@ -1098,6 +1114,9 @@ Il met à disposition un ensemble complet de nœuds spécifiques, créant une in
 
 Ces nœuds apportent un ensemble puissant d'outils pour la création d'interfaces visuelles riches, éliminant la nécessité d'une programmation manuelle pour chaque élément. Cela encourage la collaboration efficace entre les développeurs et les utilisateurs non techniques dans la conception d'interfaces utilisateur conviviales et informatives.
 
+
+<div style="page-break-after: always;"></div>
+
 ## 13.4. PDF
 ### 13.4.1. Base
 Pour generer un PDF, il faut passer un Json dans le payload du message :
@@ -1119,6 +1138,9 @@ Qui est reçu dans le noeud pdfmake qui le passe en Base64 qui est ensuite reçu
 
 <img src="../capture/RPI/Node-Red/PDF1.png" alt="Image" width="100%" style="width:100%;">
 
+
+<div style="page-break-after: always;"></div>
+
 ## 13.5. Images de graphiques et de tableaux
 Une fois que la génération de PDF est maîtrisée, il est temps de valoriser davantage les informations en y ajoutant des images.
 
@@ -1138,6 +1160,9 @@ J'ai créé une page qui permet de générer un rapport en fonction de la durée
 
 
 Pour être honnête, il faut admettre que la lisibilité initiale n'est pas optimale. Par conséquent, j'ai décidé de décomposer le processus en plusieurs étapes afin d'obtenir une meilleure compréhension globale.
+
+
+<div style="page-break-after: always;"></div>
 
 ## 14.1. Écran d'Accueil
 
@@ -1163,6 +1188,9 @@ Deux éléments se distinguent ici:
 Le formulaire recueille les données saisies par l'utilisateur. Ensuite, il transmet ces données en sortie. Deux fonctions sont connectées à cette sortie. La première fonction ajoute les chemins des fichiers, tels que "chart.png" et "report.pdf", à un tableau. La seconde fonction gère l'exécution des tests de stress en fonction des entrées de l'utilisateur, et les envoie ensuite à un nœud "exec" qui exécute les commandes sur Nidus et/ou Volt.
 
 La première fonction transmet ensuite les données à une fonction à sorties multiples, ce qui permet d'envoyer différents messages distincts.
+
+
+<div style="page-break-after: always;"></div>
 
 ## 14.2. En Exécution
 
@@ -1412,6 +1440,9 @@ Cette fonction va créer, de manière similaire aux graphiques, une structure ut
 
 Le nœud final permet de mettre à jour le modèle HTML qui répertorie les fichiers PDF et PNG dans le dossier défini par le nœud **Ajoute le nom du fichier**. Ce modèle HTML permet de les télécharger en un seul clic.
 
+
+<div style="page-break-after: always;"></div>
+
 ## 14.3. Résultat
 <img src="../capture/RPI/Node-Red/RapportPDF/4.png" alt="Alt text" width="100%" style="width:100%;">
 
@@ -1422,6 +1453,9 @@ Pour obtenir les résultats, il suffit de cliquer sur le nom du fichier, qui ser
 La partie supérieure gère l'affichage des fichiers dans un modèle et ajoute aux noms de fichier des requêtes GET qui permettent de télécharger les fichiers en un seul clic. La partie inférieure gère la réception des requêtes GET et envoie le fichier demandé à un nœud **read file**, qui le lit et l'envoie ensuite à un nœud **http response**. Ce dernier envoie le fichier au client ayant effectué la requête.
 
 <img src="../capture/RPI/Node-Red/RapportPDF/5.png" alt="Alt text" width="100%" style="width:100%;">
+
+
+<div style="page-break-after: always;"></div>
 
 ## 14.4. Purge
 Au cours de mes tests, j'ai réalisé qu'un problème survient lorsque l'on génère un certain nombre de rapports, le dossier devient rapidement surchargé. Par conséquent, j'ai décidé de mettre en place un bouton permettant de purger le dossier de tous les fichiers .pdf et .png qui s'y trouvent. Cependant, pour éviter toute suppression accidentelle de fichiers importants, j'ai mis en place un système de confirmation demandant à l'utilisateur s'il est sûr de vouloir supprimer les fichiers.
@@ -1452,6 +1486,9 @@ L'objectif de cette étape est d'intégrer Gatling aux tests de Node-Red, offran
 3. **Définition de la Durée du Test Gatling depuis Node-Red** : Pour chaque test Gatling, il sera nécessaire de définir la durée de l'exécution du test directement depuis Node-Red. Cela permettra de personnaliser la durée des tests en fonction des exigences du projet.
 
 Cette intégration de Gatling aux tests Node-Red offre un moyen puissant d'évaluer les performances de l'infrastructure tout en maintenant un contrôle complet sur les scénarios de test et les paramètres de durée.
+
+<div style="page-break-after: always;"></div>
+
 ## 15.3. Exécution d'un Test Préétabli sur Gatling depuis Node-Red
 L'exécution d'un test préétabli sur Gatling depuis Node-Red revêt une importance cruciale pour la suite du projet. Cela permettra de lancer les scénarios de test sur l'application ou le système cible. Pour réaliser cette étape, nous allons utiliser le nœud **exec** de Node-Red, qui nous permet d'exécuter des commandes sur le système d'exploitation. Ce nœud sera utilisé pour lancer les commandes Gatling nécessaires afin de lancer les tests.
 
@@ -1461,6 +1498,9 @@ tobby@Nidus:~ $ /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/
 ```
 <img src="../capture/RPI/Node-Red/RapportPDF/8.png" alt="Alt text" width="100%" style="width:100%;">
 <img src="../capture/RPI/Node-Red/RapportPDF/8.8.png" alt="Alt text" width="100%" style="width:100%;">
+
+
+<div style="page-break-after: always;"></div>
 
 ## 15.4. Envoi de Commande avec une Durée
 
@@ -1482,6 +1522,9 @@ if (msg.topic !== "inject" && msg.payload.time_gatling !== undefined && msg.payl
 // Renvoie le message modifié
 return msg;
 ```
+
+
+<div style="page-break-after: always;"></div>
 
 ## 15.5. Récupération des Informations
 
@@ -1509,6 +1552,9 @@ REQUEST		Test_Complet.jpg	1693898387215	1693898387241	OK
 On peut donc voir qu'il y a **beaucoup d'information à traiter dans ce cas particulier**, le test dure 30 secondes avec 5 utilisateurs, et le fichier `simulation.log` fait **3114 lignes**.
 
 Étant donné que les informations sont sauvegardées à chaque fois dans un fichier différent, j'ai mis en place une fonction dans un nœud qui me permet de récupérer le nom du dossier dans lequel le rapport et les logs sont sauvegardés.
+
+
+<div style="page-break-after: always;"></div>
 
 Ensuite, j'en fais un tableau de chemins de fichiers :
 
@@ -1558,26 +1604,17 @@ if (fileIndex !== -1) {
     return msg;
 }
 ```
+
+<div style="page-break-after: always;"></div>
+
+
 Tout cela se fait à la sortie du nœud exec, lequel renvoie les informations suivantes :
 ```bash
 [...]
 ================================================================================
 2023-09-05 11:05:03                                          29s elapsed
 ---- Requests ------------------------------------------------------------------
-> Global                                                   (OK=2816   KO=0     )
-> request_0                                                (OK=150    KO=0     )
-> request_1                                                (OK=150    KO=0     )
-> styles.css                                               (OK=450    KO=0     )
-> request_2                                                (OK=150    KO=0     )
-> Home.jpg                                                 (OK=300    KO=0     )
-> Données.jpg                                              (OK=300    KO=0     )
-> Test.jpg                                                 (OK=300    KO=0     )
-> Test_Complet.jpg                                         (OK=300    KO=0     )
-> request_3                                                (OK=150    KO=0     )
-> request_5                                                (OK=150    KO=0     )
-> request_4                                                (OK=150    KO=0     )
-> request_6                                                (OK=116    KO=0     )
-> request_7                                                (OK=150    KO=0     )
+[...]
 
 ---- CuriusTRex ----------------------------------------------------------------
 [##########################################################################]100%
@@ -1591,7 +1628,6 @@ Generating reports...
 
 ================================================================================
 ---- Global Information --------------------------------------------------------
-> request count                                       2816 (OK=2816   KO=0     )
 [...]
 ---- Response Time Distribution ------------------------------------------------
 > t < 800 ms                                          2816 (100%)
@@ -1603,6 +1639,9 @@ Generating reports...
 Reports generated in 0s.
 Please open the following file: file:///home/toblerc/T%C3%A9l%C3%A9chargements/gatling-charts-highcharts-bundle-3.9.5/results/curiustrex-bash-20230905090433239/index.html
 ```
+
+<div style="page-break-after: always;"></div>
+
 ## 15.6. Traitement des données
 
 Une fois les chemins des fichiers définis, je lis les fichiers JSON et les transmets à un nœud **JSON** chargé de les traiter et de les renvoyer dans un format exploitable par Node-Red.
@@ -1805,7 +1844,51 @@ Pour finir, j'ai créer des subflow pour le noeud MQTT afin de simplifier la vis
 <img src="../capture/RPI/Node-Red/RapportPDF/9.png" alt="Alt text" width="100%" style="width:100%;">
 <img src="../capture/RPI/Node-Red/RapportPDF/10.png" alt="Alt text" width="100%" style="width:100%;">
 
-# 16. Remerciement 
+
+<div style="page-break-after: always;"></div>
+
+# 16. Gatling V3.0
+
+Maintenant que l'étape de "PoC" a été atteinte, il est temps de passer à la version utilisable du projet. À partir de Node-Red, vous pouvez désormais réaliser les actions suivantes :
+
+- Lancer des StressTests
+- Lancer des tests Gatling
+- Récupérer les informations de monitoring (CPU, RAM, Température, etc.)
+- Récupérer les informations de Gatling (Temps de réponse, pourcentage de réussite, etc.)
+- Joindre les informations pour créer des graphiques
+- Regrouper tout pour créer un rapport PDF
+
+Les objectifs à atteindre sont donc les suivants :
+- Passer des paramètres de test à Gatling depuis Node-Red
+- Intégrer le CSV de Gatling avec Node-Red
+- Améliorer l'interface utilisateur de Node-Red
+- Ajouter les valeurs souhaitées dans le rapport PDF
+- Modifier les graphiques pour une meilleure lisibilité
+- Ajouter la possibilité d'exporter les données au format JSON
+- Ajouter la possibilité d'importer les données au format JSON et de générer un PDF
+
+
+
+## 16.1. UI
+
+Pour l'interface utilisateur (UI), j'ai choisi de limiter le temps sélectionné à la durée du test. Ce choix s'explique par le fait qu'en principe, la durée des mesures devrait toujours correspondre à la durée de Gatling. Cependant, je laisse toujours la possibilité de définir la durée du StressTest indépendamment de Gatling.
+
+J'ai ajouté une entrée pour définir si un ventilateur est activé. Actuellement, avec des températures proches de 30 degrés à l'extérieur, le ventilateur est nécessaire pour éviter la surchauffe du Raspberry Pi. Sachant cela, je voulais avoir la possibilité de le notifier dans le rapport.
+
+À l'heure actuelle, le ventilateur est un ventilateur de bureau pris dans mon stock personnel, actionné par un bouton. Il n'est donc pas possible de le contrôler depuis Node-Red. Cependant, il est possible qu'à l'avenir, un ventilateur contrôlable soit utilisé, auquel cas il sera possible de l'activer ou de le désactiver depuis Node-Red.
+
+Pour permettre de garder un certain contrôle, j'ai ajouté les informations de monitoring directement à côté du formulaire de lancement du test. Ainsi, il est possible de voir les valeurs de monitoring en temps réel et de surveiller le déroulement du test.
+
+### 16.1.1. Ventilateur 
+<img src="../capture/RPI/Node-Red/RapportPDF/ventilateur-vintage-indola-5-scaled.jpg" alt="Alt text" width="100%" style="width:100%;">
+
+### 16.1.2. UI
+<img src="../capture/RPI/Node-Red/RapportPDF/11.png" alt="Alt text" width="100%" style="width:100%;">
+
+
+<div style="page-break-after: always;"></div>
+
+# 17. Remerciement 
 Je tiens à exprimer ma profonde gratitude envers les personnes qui ont joué des rôles essentiels dans la réalisation de ce projet. Avant tout, je souhaite exprimer ma sincère reconnaissance à M. Benoit Vianin, dont la proposition du projet, le matériel fourni et les conseils avisés ont été cruciaux pour sa mise en place. Sa précieuse assistance technique a été d'une grande importance.
 
 Je tiens également à adresser mes remerciements à M. Fabien Maire, Directeur du service Informatique du SIS2 (Service Informatique du Secondaire 2), pour son accompagnement et ses conseils tout au long de ce travail. Sa vision éclairée et son expertise ont été des facteurs clés dans la réussite de ce projet.
@@ -1823,7 +1906,7 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 
 <div style="page-break-after: always;"></div>
 
-# 17. Sources
+# 18. Sources
 
 1. **Guide d'Installation Node-Red**  
    [Installer Node-Red](https://nodered.org/docs/getting-started/raspberrypi)
