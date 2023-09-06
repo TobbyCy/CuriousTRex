@@ -6241,7 +6241,7 @@
         "once": true,
         "onceDelay": 0.1,
         "topic": "change",
-        "payload": "/home/NodeRed/png",
+        "payload": "/home/NodeRed/pdf",
         "payloadType": "str",
         "x": 470,
         "y": 180,
