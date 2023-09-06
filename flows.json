@@ -8027,7 +8027,9 @@
             [
                 "d11f7afdc4889557"
             ],
-            [],
+            [
+                "752215d4be43422d"
+            ],
             []
         ]
     },
@@ -9016,6 +9018,23 @@
         "statusType": "auto",
         "x": 2080,
         "y": 860,
+        "wires": []
+    },
+    {
+        "id": "752215d4be43422d",
+        "type": "debug",
+        "z": "3ddecfbaabd60ba5",
+        "name": "ERROR_Gatling",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 960,
         "wires": []
     },
     {
