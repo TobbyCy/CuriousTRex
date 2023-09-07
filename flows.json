@@ -56,6 +56,14 @@
         "env": []
     },
     {
+        "id": "d3f49513ee177da2",
+        "type": "tab",
+        "label": "JSON_V3.0",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "4e666803b8f3f742",
         "type": "subflow",
         "name": "MQTT Period",
@@ -100,7 +108,7 @@
         "type": "ui_tab",
         "name": "Monittoring",
         "icon": "warning",
-        "order": 4,
+        "order": 5,
         "disabled": false,
         "hidden": false
     },
@@ -184,7 +192,7 @@
             }
         },
         "site": {
-            "name": "Node-RED Dashboard",
+            "name": "Curius T-Rex",
             "hideToolbar": "false",
             "allowSwipe": "false",
             "lockMenu": "false",
@@ -286,7 +294,7 @@
         "type": "ui_tab",
         "name": "StressTest_V1.0",
         "icon": "error_outline",
-        "order": 3,
+        "order": 4,
         "disabled": false,
         "hidden": false
     },
@@ -313,7 +321,7 @@
         "type": "ui_tab",
         "name": "Gatling_PoC_V2.0",
         "icon": "error",
-        "order": 2,
+        "order": 3,
         "disabled": false,
         "hidden": false
     },
@@ -324,7 +332,7 @@
         "link": "https://mylos.cifom.ch/gitlab/ToblerC/banc-de-mesures-de-la-consommation-electrique",
         "icon": "github-circle",
         "target": "newtab",
-        "order": 5
+        "order": 6
     },
     {
         "id": "7a02dc45cdd22958",
@@ -469,6 +477,26 @@
         "order": 11,
         "width": 8,
         "height": 1
+    },
+    {
+        "id": "e4a2f7f90a33741d",
+        "type": "ui_tab",
+        "name": "JSON_V3.0",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "9848c7d7e57dbdee",
+        "type": "ui_group",
+        "name": "JSON",
+        "tab": "e4a2f7f90a33741d",
+        "order": 1,
+        "disp": true,
+        "width": "20",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "943ce04091291544",
@@ -6787,7 +6815,8 @@
         "name": "End_PDF",
         "mode": "link",
         "links": [
-            "e30a7bb45bf64a45"
+            "e30a7bb45bf64a45",
+            "61ea260f9c0b6ef6"
         ],
         "x": 2035,
         "y": 680,
@@ -8089,29 +8118,6 @@
         ]
     },
     {
-        "id": "1ff3f3ba1cab43a1",
-        "type": "ui_template",
-        "z": "3ddecfbaabd60ba5",
-        "group": "7db53a0c4211bca9",
-        "name": "Upload Btn",
-        "order": 8,
-        "width": 5,
-        "height": 2,
-        "format": "<body>\n  <!-- Bouton pour déclencher l'importation des données -->\n  <button class=\"md-raised md-button md-ink-ripple\" onclick=\"importerDonnees()\">Télécharger</button>\n\n  <script>\n    // Conservez la portée originale\n    let restaureScope = scope;\n\n    // Fonction pour importer les données\n    function importerDonnees() {\n      // Créez un élément d'entrée de type fichier\n      let input = document.createElement('input');\n      input.type = 'file';\n      input.id = 'boutonRestaurer';\n\n      // Définissez l'événement onchange\n      input.onchange = _ => {\n        // Obtenez le nom du fichier choisi\n        let nomFichier = input.files[0].name;\n\n        // Vous pouvez utiliser cette méthode pour obtenir le fichier et effectuer les opérations respectives\n        let lecteurFichier = new FileReader();\n        lecteurFichier.readAsText(input.files[0]);\n\n        // Gérez la fin du chargement du fichier\n        lecteurFichier.onloadend = function(event){\n          // Envoyez les données lues et le nom du fichier à la portée originale\n          restaureScope.send({payload: event.target.result});\n        };\n      };\n\n      // Déclenchez le clic sur l'élément d'entrée de type fichier\n      input.click();\n    }\n  </script>\n</body>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": false,
-        "templateScope": "local",
-        "className": "",
-        "x": 210,
-        "y": 700,
-        "wires": [
-            [
-                "288a58eab8860f59"
-            ]
-        ]
-    },
-    {
         "id": "9197964b7793ca79",
         "type": "file in",
         "z": "3ddecfbaabd60ba5",
@@ -8127,7 +8133,8 @@
         "y": 1320,
         "wires": [
             [
-                "11d925bcc7cda83a"
+                "11d925bcc7cda83a",
+                "debd3e6aa42b46f3"
             ]
         ]
     },
@@ -8242,7 +8249,8 @@
         "y": 1320,
         "wires": [
             [
-                "5f7d9a95d0c65757"
+                "5f7d9a95d0c65757",
+                "8fe707821cdbec6e"
             ]
         ]
     },
@@ -8269,7 +8277,8 @@
         "y": 1360,
         "wires": [
             [
-                "5f7d9a95d0c65757"
+                "5f7d9a95d0c65757",
+                "8fe707821cdbec6e"
             ]
         ]
     },
@@ -8296,7 +8305,8 @@
         "y": 1400,
         "wires": [
             [
-                "5f7d9a95d0c65757"
+                "5f7d9a95d0c65757",
+                "8fe707821cdbec6e"
             ]
         ]
     },
@@ -8324,7 +8334,8 @@
         "y": 1360,
         "wires": [
             [
-                "7aea4a31c908237b"
+                "7aea4a31c908237b",
+                "392721ce831207db"
             ]
         ]
     },
@@ -8352,7 +8363,8 @@
         "wires": [
             [
                 "3f9aa754e519b6bf",
-                "c89add291df1506b"
+                "c89add291df1506b",
+                "9be4361d76b75f12"
             ]
         ]
     },
@@ -8761,23 +8773,6 @@
         ]
     },
     {
-        "id": "288a58eab8860f59",
-        "type": "debug",
-        "z": "3ddecfbaabd60ba5",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 380,
-        "y": 700,
-        "wires": []
-    },
-    {
         "id": "7be259fe9744c2ef",
         "type": "debug",
         "z": "3ddecfbaabd60ba5",
@@ -9056,6 +9051,74 @@
         "statusType": "auto",
         "x": 1220,
         "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "debd3e6aa42b46f3",
+        "type": "debug",
+        "z": "3ddecfbaabd60ba5",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1240,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "8fe707821cdbec6e",
+        "type": "debug",
+        "z": "3ddecfbaabd60ba5",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1480,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "392721ce831207db",
+        "type": "debug",
+        "z": "3ddecfbaabd60ba5",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1680,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "9be4361d76b75f12",
+        "type": "debug",
+        "z": "3ddecfbaabd60ba5",
+        "name": "debug 10",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1920,
+        "y": 1360,
         "wires": []
     },
     {
@@ -10029,5 +10092,326 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "657bef1570c223b8",
+        "type": "inject",
+        "z": "d3f49513ee177da2",
+        "name": "Init",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "300",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "change",
+        "payload": "/home/NodeRed/json",
+        "payloadType": "str",
+        "x": 250,
+        "y": 100,
+        "wires": [
+            [
+                "b541a4c9d0c4c88b"
+            ]
+        ]
+    },
+    {
+        "id": "c8b72a9645297de5",
+        "type": "ui_button",
+        "z": "d3f49513ee177da2",
+        "name": "",
+        "group": "9848c7d7e57dbdee",
+        "order": 2,
+        "width": 4,
+        "height": 2,
+        "passthru": true,
+        "label": "Refresh",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "refresh",
+        "payload": "/home/NodeRed/json",
+        "payloadType": "str",
+        "topic": "change",
+        "topicType": "str",
+        "x": 260,
+        "y": 180,
+        "wires": [
+            [
+                "b541a4c9d0c4c88b"
+            ]
+        ]
+    },
+    {
+        "id": "c567b2b02f6d2abf",
+        "type": "ui_template",
+        "z": "d3f49513ee177da2",
+        "group": "9848c7d7e57dbdee",
+        "name": "",
+        "order": 1,
+        "width": "20",
+        "height": "8",
+        "format": "<div ng-bind-html=\"msg.payload\" height=\"400\" style=\"height: 400px;\"><br/>\n</div>\n<style>\n/* Applique des styles aux liens */\na[href] {\ncolor: #d93347; /* Couleur du lien */\ntext-decoration: none; /* Pas de soulignement */\n}\n\n/* Applique des styles au survol des liens */\na[href]:hover {\ncolor: #cb0505; /* Couleur du lien au survol */\ntext-decoration: underline; /* Soulignement au survol */\n}\n</style>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 1100,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "87a0a41c8c8d3310",
+        "type": "template",
+        "z": "d3f49513ee177da2",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<table width=\"100%\">\n    <tr><th>Nom de Fichier</th><th>Taille</th><th>Créer</th><th>Changer</th></tr>\n    {{#payload}}\n        <tr>\n            <td><a href=\"/download?filename={{name}}\" target=\"blank\">{{fname}}</a></td>\n            <td>{{stat.size}}</td>\n            <td>{{stat.created}}</td>\n            <td>{{stat.changed}}</td>\n        </tr>\n    {{/payload}}\n</table>\n",
+        "output": "str",
+        "x": 1080,
+        "y": 180,
+        "wires": [
+            [
+                "c567b2b02f6d2abf"
+            ]
+        ]
+    },
+    {
+        "id": "e82612444b7ffefa",
+        "type": "function",
+        "z": "d3f49513ee177da2",
+        "name": "Convert timestamps",
+        "func": "// Fonction pour formater une date en fonction de la timezone de Zurich\nfunction formatToZurichTimezone(date) {\n    var options = {\n        year: 'numeric',\n        month: '2-digit',\n        day: '2-digit',\n        hour: '2-digit',\n        minute: '2-digit',\n        second: '2-digit',\n        timeZone: 'Europe/Zurich'\n    };\n    return new Intl.DateTimeFormat('fr-CH', options).format(date);\n}\n\n// Parcourir chaque élément dans le tableau \"payload\" du message\nfor (var i = 0; i < msg.payload.length; i++) {\n    // Convertir les propriétés de date/heure dans l'objet \"stat\" au format de Zurich\n    msg.payload[i].stat.created = formatToZurichTimezone(new Date(msg.payload[i].stat.created));\n    msg.payload[i].stat.changed = formatToZurichTimezone(new Date(msg.payload[i].stat.changed));\n    msg.payload[i].stat.accessed = formatToZurichTimezone(new Date(msg.payload[i].stat.accessed));\n    msg.payload[i].stat.statusChanged = formatToZurichTimezone(new Date(msg.payload[i].stat.statusChanged));\n\n    // Extraire le nom de fichier à partir de la propriété \"name\" et mettre à jour \"fname\"\n    msg.payload[i].fname = msg.payload[i].name.replace(/^.*(\\\\|\\/|\\:)/, '');\n}\n\nreturn msg; // Renvoyer le message modifié\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 180,
+        "wires": [
+            [
+                "87a0a41c8c8d3310"
+            ]
+        ]
+    },
+    {
+        "id": "ec2e1b03b620f090",
+        "type": "http in",
+        "z": "d3f49513ee177da2",
+        "name": "",
+        "url": "/download",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 340,
+        "y": 240,
+        "wires": [
+            [
+                "078656573a2256d9"
+            ]
+        ]
+    },
+    {
+        "id": "5f87111e0da70820",
+        "type": "http response",
+        "z": "d3f49513ee177da2",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1130,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "078656573a2256d9",
+        "type": "function",
+        "z": "d3f49513ee177da2",
+        "name": "Get the file name",
+        "func": "msg.filename = msg.req.query.filename;\nmsg.contentdisposition = \"attachment; filename=\\\"\" + msg.req.query.filename.replace(/^.*(\\\\|\\/|\\:)/, '') + \"\\\"\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 590,
+        "y": 240,
+        "wires": [
+            [
+                "cff08753494e0ec5"
+            ]
+        ],
+        "outputLabels": [
+            "Folder selected",
+            "File selected"
+        ]
+    },
+    {
+        "id": "cff08753494e0ec5",
+        "type": "file in",
+        "z": "d3f49513ee177da2",
+        "name": "",
+        "filename": "",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 780,
+        "y": 240,
+        "wires": [
+            [
+                "c8c1de185f0a1ac0"
+            ]
+        ]
+    },
+    {
+        "id": "c8c1de185f0a1ac0",
+        "type": "change",
+        "z": "d3f49513ee177da2",
+        "name": "Set Headers",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "headers.content-type",
+                "pt": "msg",
+                "to": "text/csv",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.Content-Disposition",
+                "pt": "msg",
+                "to": "contentdisposition",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 950,
+        "y": 240,
+        "wires": [
+            [
+                "5f87111e0da70820"
+            ]
+        ]
+    },
+    {
+        "id": "b541a4c9d0c4c88b",
+        "type": "function",
+        "z": "d3f49513ee177da2",
+        "name": "Folder handling",
+        "func": "// Récupérer la valeur de la variable \"folder\" depuis le contexte\nlet folder = context.get(\"folder\");\n// Si la variable \"folder\" n'est pas définie, l'initialiser avec \"/\"\nif (folder === undefined) {\n    folder = \"/\";\n    context.set(\"folder\", folder); // Enregistrer la valeur dans le contexte\n}\n\n// Récupérer la valeur de la variable \"hidden\" depuis le contexte\nlet hidden = context.get(\"hidden\");\n// Si la variable \"hidden\" n'est pas définie, l'initialiser avec \"false\"\nif (hidden === undefined) {\n    hidden = false;\n    context.set(\"hidden\", hidden); // Enregistrer la valeur dans le contexte\n}\n\n// Si le sujet du message est \"up\"\nif (msg.topic === \"up\") {\n    var the_arr = folder.split('/');\n    the_arr.pop(); // Supprimer le dernier élément du tableau\n    folder = the_arr.join('/'); // Rejoindre les éléments du tableau pour former le nouveau chemin\n    context.set(\"folder\", folder); // Enregistrer le nouveau chemin dans le contexte\n}\n\n// Si le sujet du message est \"change\"\nif (msg.topic === \"change\") {\n    folder = msg.payload; // Mettre à jour la valeur de \"folder\" avec le contenu du champ \"payload\"\n    context.set(\"folder\", folder); // Enregistrer la nouvelle valeur dans le contexte\n}\n\n// Si le sujet du message est \"hidden\"\nif (msg.topic === \"hidden\") {\n    hidden = msg.payload; // Mettre à jour la valeur de \"hidden\" avec le contenu du champ \"payload\"\n    context.set(\"hidden\", hidden); // Enregistrer la nouvelle valeur dans le contexte\n}\n\n// Construire un objet JSON contenant les valeurs actuelles de \"folder\" et \"hidden\"\nmsg.payload = { \"start\": folder, \"hidden\": hidden };\n\nreturn msg; // Renvoyer le message modifié\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 180,
+        "wires": [
+            [
+                "5deb3f7a069e94db"
+            ]
+        ]
+    },
+    {
+        "id": "5deb3f7a069e94db",
+        "type": "fs-file-lister",
+        "z": "d3f49513ee177da2",
+        "name": "Files",
+        "start": "/home/pi",
+        "pattern": "*.*",
+        "folders": "*",
+        "hidden": false,
+        "lstype": "files",
+        "path": true,
+        "single": true,
+        "depth": 0,
+        "stat": true,
+        "showWarnings": false,
+        "x": 650,
+        "y": 180,
+        "wires": [
+            [
+                "e82612444b7ffefa"
+            ]
+        ]
+    },
+    {
+        "id": "61ea260f9c0b6ef6",
+        "type": "link in",
+        "z": "d3f49513ee177da2",
+        "name": "From_PDF",
+        "links": [
+            "a74b27989ec4408a"
+        ],
+        "x": 165,
+        "y": 180,
+        "wires": [
+            [
+                "c8b72a9645297de5"
+            ]
+        ]
+    },
+    {
+        "id": "1ff3f3ba1cab43a1",
+        "type": "ui_template",
+        "z": "d3f49513ee177da2",
+        "group": "9848c7d7e57dbdee",
+        "name": "Upload Btn",
+        "order": 8,
+        "width": 5,
+        "height": 2,
+        "format": "<body>\n  <!-- Bouton pour déclencher l'importation des données -->\n  <button class=\"md-raised md-button md-ink-ripple\" onclick=\"importerDonnees()\">Télécharger</button>\n\n  <script>\n    // Conservez la portée originale\n    let restaureScope = scope;\n\n    // Fonction pour importer les données\n    function importerDonnees() {\n      // Créez un élément d'entrée de type fichier\n      let input = document.createElement('input');\n      input.type = 'file';\n      input.id = 'boutonRestaurer';\n\n      // Définissez l'événement onchange\n      input.onchange = _ => {\n        // Obtenez le nom du fichier choisi\n        let nomFichier = input.files[0].name;\n\n        // Vous pouvez utiliser cette méthode pour obtenir le fichier et effectuer les opérations respectives\n        let lecteurFichier = new FileReader();\n        lecteurFichier.readAsText(input.files[0]);\n\n        // Gérez la fin du chargement du fichier\n        lecteurFichier.onloadend = function(event){\n          // Envoyez les données lues et le nom du fichier à la portée originale\n          restaureScope.send({payload: event.target.result});\n        };\n      };\n\n      // Déclenchez le clic sur l'élément d'entrée de type fichier\n      input.click();\n    }\n  </script>\n</body>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 230,
+        "y": 320,
+        "wires": [
+            [
+                "288a58eab8860f59"
+            ]
+        ]
+    },
+    {
+        "id": "288a58eab8860f59",
+        "type": "debug",
+        "z": "d3f49513ee177da2",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 320,
+        "wires": []
     }
 ]
