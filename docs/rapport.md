@@ -25,169 +25,350 @@
 - [1. Rapport de projet : Banc de mesures de la consommation électrique pour application web](#1-rapport-de-projet--banc-de-mesures-de-la-consommation-électrique-pour-application-web)
 - [2. Sommaire](#2-sommaire)
 - [3. Introduction](#3-introduction)
-- [4. Planification](#4-planification)
-- [5. Instalation physique](#5-instalation-physique)
-  - [5.1. Nidus](#51-nidus)
-  - [5.2. Volt](#52-volt)
-- [6. Shéma de principe](#6-shéma-de-principe)
-- [7. Systèmes d'exploitation (OS)](#7-systèmes-dexploitation-os)
-  - [7.1. Ubuntu](#71-ubuntu)
-  - [7.2. Raspbian](#72-raspbian)
-  - [7.3. Première installation](#73-première-installation)
-  - [7.4. Seconde instalation Ubuntu Server](#74-seconde-instalation-ubuntu-server)
-    - [7.4.1. Configuration post instalation](#741-configuration-post-instalation)
-    - [7.4.2. Instalation Apache](#742-instalation-apache)
-    - [7.4.3. Script MQTT](#743-script-mqtt)
-- [8. Node-RED](#8-node-red)
-  - [8.1. Instalation](#81-instalation)
-  - [8.2. Configuration](#82-configuration)
-    - [8.2.1. Installation des plugins](#821-installation-des-plugins)
-    - [8.2.2. Sécurisation de Node-Red](#822-sécurisation-de-node-red)
-    - [8.2.3. Suivi Git](#823-suivi-git)
-- [9. Gatling](#9-gatling)
-  - [9.1. Installation](#91-installation)
-    - [9.1.1. Prerequis](#911-prerequis)
-    - [9.1.2. Download](#912-download)
-  - [9.2. Vérification de l'installation](#92-vérification-de-linstallation)
-  - [9.3. Scripts](#93-scripts)
-- [10. Apache et Site Web](#10-apache-et-site-web)
-  - [10.1. Installation](#101-installation)
-  - [10.2. Mise en place d'un site Web](#102-mise-en-place-dun-site-web)
-- [11. MQTT](#11-mqtt)
-  - [11.1. Installation de Mosquitto sur Nidus](#111-installation-de-mosquitto-sur-nidus)
-  - [11.2. Ouverture des port sur Nidus](#112-ouverture-des-port-sur-nidus)
-  - [11.3. Script MQTT](#113-script-mqtt)
-    - [11.3.1. Script](#1131-script)
-    - [11.3.2. Description détaillée du script](#1132-description-détaillée-du-script)
-    - [11.3.3. Conclusion](#1133-conclusion)
-  - [11.4. Installation](#114-installation)
-  - [11.5. Utilisation du script](#115-utilisation-du-script)
-    - [11.5.1. Vérification](#1151-vérification)
-- [12. INA219](#12-ina219)
-    - [12.0.1. Installation physique](#1201-installation-physique)
-      - [12.0.1.1. Branchement SANS VOLT](#12011-branchement-sans-volt)
-      - [12.0.1.2. Branchement AVEC VOLT](#12012-branchement-avec-volt)
-    - [12.0.2. Vérification de la présence du INA219](#1202-vérification-de-la-présence-du-ina219)
-  - [12.1. Obtention des données](#121-obtention-des-données)
-    - [12.1.1. Test avec le script python A vide](#1211-test-avec-le-script-python-a-vide)
-- [13. Noeud Node-Red](#13-noeud-node-red)
-  - [13.1. INA219](#131-ina219)
-  - [13.2. Monitoring](#132-monitoring)
-  - [13.3. Dashboard](#133-dashboard)
-  - [13.4. PDF](#134-pdf)
-    - [13.4.1. Base](#1341-base)
-  - [13.5. Images de graphiques et de tableaux](#135-images-de-graphiques-et-de-tableaux)
-- [14. Stress Test V1.0](#14-stress-test-v10)
-  - [14.1. Écran d'Accueil](#141-écran-daccueil)
-  - [14.2. En Exécution](#142-en-exécution)
-  - [14.3. Résultat](#143-résultat)
-  - [14.4. Purge](#144-purge)
-- [15. Gatling Test V2.0](#15-gatling-test-v20)
-  - [15.1. But](#151-but)
-  - [15.2. Étapes à Atteindre](#152-étapes-à-atteindre)
-  - [15.3. Exécution d'un Test Préétabli sur Gatling depuis Node-Red](#153-exécution-dun-test-préétabli-sur-gatling-depuis-node-red)
-  - [15.4. Envoi de Commande avec une Durée](#154-envoi-de-commande-avec-une-durée)
-  - [15.5. Récupération des Informations](#155-récupération-des-informations)
-  - [15.6. Traitement des données](#156-traitement-des-données)
-    - [15.6.1. Création des graphiques](#1561-création-des-graphiques)
-    - [15.6.2. PDF](#1562-pdf)
-  - [15.7. Refactoring](#157-refactoring)
-- [16. Gatling V3.0](#16-gatling-v30)
-  - [16.1. UI](#161-ui)
-    - [16.1.1. Ventilateur](#1611-ventilateur)
-    - [16.1.2. UI](#1612-ui)
-- [17. Remerciement](#17-remerciement)
-- [18. Sources](#18-sources)
+- [4. Objectifs](#4-objectifs)
+  - [4.1. Objectif principal](#41-objectif-principal)
+  - [4.2. Objectifs spécifiques](#42-objectifs-spécifiques)
+    - [4.2.1. Génération de trafic web](#421-génération-de-trafic-web)
+    - [4.2.2. Mesure de la consommation](#422-mesure-de-la-consommation)
+    - [4.2.3. Génération de rapports sur la performance](#423-génération-de-rapports-sur-la-performance)
+- [5. Caractéristiques](#5-caractéristiques)
+  - [5.1. Génération de trafic web](#51-génération-de-trafic-web)
+  - [5.2. Mesure de la consommation électrique (INA219)](#52-mesure-de-la-consommation-électrique-ina219)
+  - [5.3. Mesure de la consommation](#53-mesure-de-la-consommation)
+- [6. Matériel](#6-matériel)
+  - [6.1. Nomenclature](#61-nomenclature)
+  - [6.2. Volt](#62-volt)
+  - [6.3. Nidus](#63-nidus)
+  - [6.4. INA219](#64-ina219)
+  - [6.5. RJ45](#65-rj45)
+- [7. Budget](#7-budget)
+- [8. Planification](#8-planification)
+- [9. Instalation physique](#9-instalation-physique)
+  - [9.1. Nidus](#91-nidus)
+    - [9.1.1. TODO Capture quand installation definitive](#911-todo-capture-quand-installation-definitive)
+  - [9.2. Volt](#92-volt)
+    - [9.2.1. TODO Capture quand installation definitive](#921-todo-capture-quand-installation-definitive)
+- [10. Shéma de principe](#10-shéma-de-principe)
+- [11. Systèmes d'exploitation (OS)](#11-systèmes-dexploitation-os)
+  - [11.1. Ubuntu](#111-ubuntu)
+  - [11.2. Raspbian](#112-raspbian)
+  - [11.3. Première installation](#113-première-installation)
+  - [11.4. Seconde instalation Ubuntu Server](#114-seconde-instalation-ubuntu-server)
+    - [11.4.1. Configuration post instalation](#1141-configuration-post-instalation)
+    - [11.4.2. Instalation Apache](#1142-instalation-apache)
+    - [11.4.3. Script MQTT](#1143-script-mqtt)
+- [12. Node-RED](#12-node-red)
+  - [12.1. Instalation](#121-instalation)
+  - [12.2. Configuration](#122-configuration)
+    - [12.2.1. Installation des plugins](#1221-installation-des-plugins)
+    - [12.2.2. Sécurisation de Node-Red](#1222-sécurisation-de-node-red)
+    - [12.2.3. Suivi Git](#1223-suivi-git)
+- [13. Gatling](#13-gatling)
+  - [13.1. Installation](#131-installation)
+    - [13.1.1. Prerequis](#1311-prerequis)
+    - [13.1.2. Download](#1312-download)
+  - [13.2. Vérification de l'installation](#132-vérification-de-linstallation)
+  - [13.3. Scripts](#133-scripts)
+- [14. Apache et Site Web](#14-apache-et-site-web)
+  - [14.1. Installation](#141-installation)
+  - [14.2. Mise en place d'un site Web](#142-mise-en-place-dun-site-web)
+- [15. MQTT](#15-mqtt)
+  - [15.1. Installation de Mosquitto sur Nidus](#151-installation-de-mosquitto-sur-nidus)
+  - [15.2. Ouverture des port sur Nidus](#152-ouverture-des-port-sur-nidus)
+  - [15.3. Script MQTT](#153-script-mqtt)
+    - [15.3.1. Script](#1531-script)
+    - [15.3.2. Description détaillée du script](#1532-description-détaillée-du-script)
+    - [15.3.3. Conclusion](#1533-conclusion)
+  - [15.4. Installation](#154-installation)
+  - [15.5. Utilisation du script](#155-utilisation-du-script)
+    - [15.5.1. Vérification](#1551-vérification)
+- [16. INA219](#16-ina219)
+    - [16.0.1. Installation physique](#1601-installation-physique)
+      - [16.0.1.1. Branchement SANS VOLT](#16011-branchement-sans-volt)
+      - [16.0.1.2. Branchement AVEC VOLT](#16012-branchement-avec-volt)
+    - [16.0.2. Vérification de la présence du INA219](#1602-vérification-de-la-présence-du-ina219)
+  - [16.1. Obtention des données](#161-obtention-des-données)
+    - [16.1.1. Test avec le script python A vide](#1611-test-avec-le-script-python-a-vide)
+- [17. Noeud Node-Red](#17-noeud-node-red)
+  - [17.1. Dashboard](#171-dashboard)
+  - [17.2. INA219](#172-ina219)
+  - [17.3. Monitoring](#173-monitoring)
+  - [17.4. PDF](#174-pdf)
+    - [17.4.1. Base](#1741-base)
+  - [17.5. Images de graphiques et de tableaux](#175-images-de-graphiques-et-de-tableaux)
+- [18. Stress Test V1.0](#18-stress-test-v10)
+  - [18.1. Écran d'Accueil](#181-écran-daccueil)
+  - [18.2. En Exécution](#182-en-exécution)
+  - [18.3. Résultat](#183-résultat)
+  - [18.4. Purge](#184-purge)
+- [19. Gatling Test V2.0](#19-gatling-test-v20)
+  - [19.1. But](#191-but)
+  - [19.2. Étapes à Atteindre](#192-étapes-à-atteindre)
+  - [19.3. Exécution d'un Test Préétabli sur Gatling depuis Node-Red](#193-exécution-dun-test-préétabli-sur-gatling-depuis-node-red)
+  - [19.4. Envoi de Commande avec une Durée](#194-envoi-de-commande-avec-une-durée)
+  - [19.5. Récupération des Informations](#195-récupération-des-informations)
+  - [19.6. Traitement des données](#196-traitement-des-données)
+    - [19.6.1. Création des graphiques](#1961-création-des-graphiques)
+    - [19.6.2. PDF](#1962-pdf)
+  - [19.7. Refactoring](#197-refactoring)
+- [20. Gatling V3.0](#20-gatling-v30)
+  - [20.1. UI](#201-ui)
+    - [20.1.1. Ventilateur](#2011-ventilateur)
+    - [20.1.2. UI](#2012-ui)
+- [21. Remerciement](#21-remerciement)
+- [22. Sources](#22-sources)
 
 <div style="page-break-after: always;"></div>
 
 # 3. Introduction
-Le système sera conçu pour simuler des requêtes HTTP réalistes à l'aide de Gatling, mesurer la consommation électrique en utilisant l'INA219 connecté via le bus I2C, et collecter les mesures de performance à l'aide de Node-RED. Les rapports générés fourniront des informations détaillées sur les performances du système testé, y compris le temps de réponse, la consommation d'énergie par requête, l'utilisation du processeur, etc.
-# 4. Planification
+Le développement de sites web et d'applications web requiert une attention particulière à la performance et à la consommation des ressources. Afin de réduire l’impact écologique des solutions digitale et d’optimiser la charge des systèmes, il est essentiel de mesurer et d'analyser la consommation de ces systèmes dans des conditions de charge réalistes. Dans ce contexte, il est nécessaire de mettre en place un banc de mesures de la consommation capable de générer du trafic web, de mesurer la consommation électrique et de fournir des rapports sur la performance du code ou de l'architecture testée.
+# 4. Objectifs
+## 4.1. Objectif principal
+
+L'objectif principal de ce projet est de concevoir et développer un banc de mesures de la consommation électrique pour site web ou application web. Ce banc de mesures devra être capable de générer du trafic web, de mesurer la consommation des ressources et de générer des rapports détaillés sur la performance du code ou de l'architecture testée par rapport à une référence.
+
+## 4.2. Objectifs spécifiques
+
+Les objectifs spécifiques du projet sont les suivants :
+
+### 4.2.1. Génération de trafic web
+
+Le système devra être en mesure de simuler le trafic web en générant des requêtes HTTP réalistes. Il devra pouvoir reproduire des scénarios de charge variable afin d'évaluer les performances du site web ou de l'application web dans des conditions réelles.
+
+### 4.2.2. Mesure de la consommation
+
+Le banc de mesures devra être équipé d'un mécanisme de mesure précis et fiable de la consommation des ressources, telles que la consommation d'énergie, l'utilisation du processeur, la consommation de mémoire et la consommation du réseau.
+
+### 4.2.3. Génération de rapports sur la performance
+
+Le système devra être capable de collecter les données de mesure et de générer des rapports détaillés sur la performance du code ou de l'architecture testée. Les rapports devront inclure des métriques telles que le temps de réponse, la consommation d'énergie par requête, l'utilisation du processeur, etc.
+
+<div style="page-break-after: always;"></div>
+
+# 5. Caractéristiques 
+Le banc de mesures de la consommation pour site web ou application web devra présenter les caractéristiques suivantes :
+
+## 5.1. Génération de trafic web
+
+Utilisation de l'outil Gatling comme générateur de trafic web. Gatling permettra de simuler des requêtes HTTP réalistes, de configurer des scénarios de charge et d'évaluer les performances du système testé.
+
+**Gatling** est un outil de test de charge open source basé sur Scala, conçu pour évaluer les performances des applications et des sites Web. Gatling simule des utilisateurs virtuels qui envoient des requêtes HTTP vers le système cible.
+
+
+
+## 5.2. Mesure de la consommation électrique (INA219)
+
+Utilisation d'un chip INA219 ou autre connectée via le bus I2C pour mesurer la consommation de manière précise et fiable. La chip INA219 fournira des informations détaillées sur la consommation d'énergie en mesurant la tension et le courant du système testé.
+
+## 5.3. Mesure de la consommation
+
+Utilisation d’un serveur Node-Red pour son environnement low-code pour les applications évènementielles. Il facilitera le relever des mesures de consommation des ressources. du banc de tests (consommation d'énergie, utilisation du processeur, consommation de mémoire, bande passante et temps de réponses, ...).
+
+<div style="page-break-after: always;"></div>
+
+# 6. Matériel
+- 2x Radiateur pour Raspberry Pi 4
+- 2x Raspberry Pi 4 /4GB RAM / 64GB SD
+- 2x Bloc d'alimentation Raspberry Pi 4
+- 2x Carte Micro SD 64GB
+- 2x cable RJ45 violet
+- 1x cable Micro HDMI - HDMI
+- 1x Plaque d'essai
+- 1x set de câbles de connexion
+- 2x Platine de mesure INA219
+- 2x câble USB-C Femelle 
+- 2x câble USB-C Mâle
+
+## 6.1. Nomenclature
+
+Pour simplifier la lecture du rapport ainsi que le travail, les Raspberry Pi seront nommés comme suit :
+- Volt : Serveur Web
+- Nidus : Serveur de monitoring
+
+Au niveau des hostname, les Raspberry Pi seront nommés comme suit :
+- Volt : volt.s2.rpn.ch
+- Nidus : nidus.s2.rpn.ch
+
+En plus des raspberry il y a ma machine de développement qui se trouve être mon laptop personnel qui tourne sous un Kubuntu 22.04. Cette machine est nommé comme suit :
+- LPT-UNIX-USB-CT
+
+<div style="page-break-after: always;"></div>
+
+## 6.2. Volt
+
+Au niveau de la répartition du materiel, Volt est composé de :
+1. Cable HDMI - Micro HDMI
+2. Raspberry PI 4
+3. Bloc d'alimentation pour Raspberry PI 4
+4. Carte Micro SD 64GB
+5. Radiateur pour Raspberry Pi 4
+6. Set de vis et de gomme pour le radiateur
+
+
+
+<img src="../capture/Volt.jpg" alt="Image" width="80%" style="width:80%;">
+
+<div style="page-break-after: always;"></div>
+
+## 6.3. Nidus
+
+Le materiel de Nidus est composé de :
+
+1. Set de cable de connexion
+2. Plaque d'essai
+3. Alimentation pour Raspberry Pi 4
+4. Rallonge USB-C coupé en deux
+5. INA219
+6. Raspberry Pi 4 et sa carte Micro SD 64GB
+7. Radiateur pour Raspberry Pi 4
+8. Set de vis et de gomme pour le radiateur
+
+
+<img src="../capture/Nidus.jpg" alt="Image" width="100%" style="width:100%;">
+
+<div style="page-break-after: always;"></div>
+
+## 6.4. INA219
+Il s'agit d'une seconde puce INA219 qui a été commandé pour le projet, pour pouvoir changer la puce INA219 en cas de problème. Au cas ou le projet prend de l'ampleur, il est aussi possible à terme de mettre plusieurs INA219 sur le même bus I2C.
+
+<img src="../capture/INA219-2.jpg" alt="Image" width="100%" style="width:100%;">
+
+<div style="page-break-after: always;"></div>
+
+## 6.5. RJ45
+En reserve, deux cable RJ45 violet ont été commandé pour le projet.
+
+<img src="../capture/RJ45.jpg" alt="Image" width="100%" style="width:100%;">
+
+<div style="page-break-after: always;"></div>
+
+# 7. Budget
+En ce qui concerne le budget, je vais fournir les prix de Digitec/Galaxus pour donner une idée des coûts si l'on souhaite reproduire le projet. Dans mon cas, c'est M. Viannin qui a effectué les achats auprès de ces fournisseurs. Il est possible que les prix ne correspondent pas exactement à ceux que j'ai indiqués.
+
+| Matériel                                                                                                                                                                                                                            | Quantité | Prix Par Unité | Prix Total |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | -------------- | ---------- |
+| [Raspberry Pi Câble officiel blanc Micro-HDMI vers HDMI 1M pour Raspberry Pi 4](https://www.digitec.ch/fr/s1/product/raspberry-pi-cable-officiel-blanc-micro-hdmi-vers-hdmi-1m-pour-raspberry-pi-4-type-a-accessoires-ele-24227466) | 1X       | 12.90          | 12.90      |
+| [RASPBERRY Radiateur](https://www.digitec.ch/fr/s1/product/intertech-raspberry-boitier-ods-721-pi4-modele-b-divers-accessoires-electroniques-boitier-18233601)                                                                      | 2X       | 25.80          | 51.60      |
+| [Raspberry Pi 4 4G Modèle B ARMv8](https://www.digitec.ch/fr/s1/product/raspberry-pi-4-2g-modele-b-armv8-carte-de-developpement-kit-11267870)                                                                                       | 2X       | 87.–           | 174.–      |
+| [Official Raspberry Pi 4 Power Adapter](https://www.digitec.ch/fr/s1/product/raspberry-pi-official-raspberry-pi-4-power-adapter-carte-de-developpement-kit-11268330)                                                                | 2X       | 13.90          | 27.80      |
+| [microSDXC, 64 Go, U3, UHS-I  ](https://www.digitec.ch/fr/s1/product/sandisk-microsdxc-high-endurance-monitoring-microsdxc-64-go-u3-uhs-i-carte-memoire-11141387)                                                                   | 2X       | 14.90          | 29.80      |
+| [Carte enfichable à grille de trous Breadboard ZY-60](https://www.digitec.ch/fr/s1/product/oem-carte-enfichable-a-grille-de-trous-breadboard-zy-60-planche-a-pain-accessoires-electroniques-boi-5999412)                            | 1X       | 18.90          | 18.90      |
+| [INA219 ](https://www.digitec.ch/fr/s1/product/adafruit-ina219-detecteur-module-electronique-8027636)                                                                                                                               | 2X       | 17.90          | 35.80      |
+| [MikroElektronika Fils de connexion](https://www.digitec.ch/fr/s1/product/mikroelektronika-fils-de-connexion-pour-perfboard-cable-prise-electronique-10125053)                                                                      | 1X       | 13.-           | 13.-       |
+| [Cable RJ45 violet court](https://www.digitec.ch/fr/s1/product/violet-015-metre-lszh-uutp-cat6-datacenter-slimline-patch-cable-snagless-with-rj45-connectors-uutp-u-24167092)                                                       | 2X       | 9.75           | 19.50      |
+| [Cable USB-C Mâle-Femelle](https://www.digitec.ch/fr/s1/product/renkforce-cable-usb-32-gen2x2-usb-c-male-usb-c-femelle-200-m-noir-gaine-pvc-2-m-cable-usb-24206671)                                                                 | 2X       | 14.95          | 29.90      |
+| **Total**                                                                                                                                                                                                                              |          |                | 433.20     |
+
+Une fois le matériel pris en compte, je tiens également à calculer le coût horaire de travail. Pour cela, je prends le salaire d'un technicien en informatique, soit 30.- de l'heure. Je prends également en compte le temps de travail, soit 300 périodes de 45 minutes, ce qui équivaut à 225 heures. Cela nous donne un total de 6750.- de salaire. En ajoutant le coût du matériel, nous arrivons à un total de 7183.- .
+
+Bien sûr, dans le cadre de ce projet, le salaire n'est pas pris en compte, mais il est important de le considérer si l'on souhaite reproduire le projet dans un contexte professionnel.
+
+
+<div style="page-break-after: always;"></div>
+
+# 8. Planification
 ```mermaid
 gantt
-    dateFormat  YYYY-MM-DD HH:mm
-    title       Planning du Projet
-    excludes    weekends,
-    axisFormat %Y-%m-%a %H:%M
-    tickInterval 4hour
+    dateFormat  YYYY-MM-DD
+    title       Mise en place
+    excludes    weekends
+    axisFormat %d-%m
+    tickInterval 1day
     section Mise en place
 
-    Création du repository pour le projet : done, mise-en-place-a, 2023-08-16 08:00, 2023-08-16 08:40
-    Mise en place d'un répertoire de documentation : done, mise-en-place-b, 2023-08-16 08:45, 2023-08-16 10:15
-    Installation physique des Raspberry Pi : done, mise-en-place-c, 2023-08-16 10:30, 2023-08-16 14:30
-    Configuration des Raspberry Pi : done, mise-en-place-d, 2023-08-16 14:45, 2023-08-16 17:00
-    Branchement réseau : done, mise-en-place-e, 2023-08-17 08:00, 2023-08-17 08:50
-    Installation de Node-Red : done, mise-en-place-f, 2023-08-17 09:00, 2023-08-17 11:20
-    Installation de Gatling : done, mise-en-place-g, 2023-08-17 11:30, 2023-08-17 12:30
-    Lecture de documentation INA219 : done, mise-en-place-h, 2023-08-17 12:45, 2023-08-18 02:45
-    Préparation de l'INA219 : done, mise-en-place-i, 2023-08-18 03:00, 2023-08-18 15:00
-    Mise en place d'un serveur Apache : done, mise-en-place-j, 2023-08-18 15:30, 2023-08-18 17:00
+    Création du repository pour le projet : mise-en-place-a, 2023-08-14, 12h
+    Mise en place d'un répertoire de documentation : mise-en-place-b, after mise-en-place-a, 12h
+    Installation physique des Raspberry Pi : mise-en-place-c, after mise-en-place-b, 6h
+    Configuration des Raspberry Pi : mise-en-place-d, after mise-en-place-c, 12h
+    Branchement réseau : mise-en-place-e, after mise-en-place-d, 6h
+    Installation de Node-Red : mise-en-place-f, after mise-en-place-e, 12h
+    Installation de Gatling : mise-en-place-g, after mise-en-place-f, 12h
+    Lecture de documentation INA219 : mise-en-place-h, after mise-en-place-g, 12h
+    Préparation de l'INA219 : mise-en-place-i, after mise-en-place-h, 36h
+    Mise en place d'un serveur Apache : mise-en-place-j, after mise-en-place-i, 12h
+    Documentation de l'installation : milestone, mise-en-place-k, after mise-en-place-j, 12h
+
+
 
 ```
     
 ```mermaid
 gantt
-    dateFormat  YYYY-MM-DD HH:mm
-    title       Planning du Projet
+    dateFormat  YYYY-MM-DD
+    title       V1.0
     excludes    weekends
-    axisFormat %Y-%m-%a %H:%M
-    tickInterval 4 hour
+    axisFormat %d-%m
+    tickInterval 1day
     section Première Itération
 
-    Configuration de Node-Red : mise-en-place-d1, 2023-08-21 08:00, 2023-08-21 16:00
-    Configurer Gatling : mise-en-place-d2, 2023-08-22 08:00, 2023-08-22 16:00
-    Configuration et test de relevé de l'INA219 : mise-en-place-d3, 2023-08-23 08:00, 2023-08-23 09:00
-    Création de PDF avec Node-Red : mise-en-place-d4, 2023-08-24 08:00, 2023-08-24 08:00
-    Agrégation du lancement des tests et des relevés de l'INA219 : mise-en-place-d5, 2023-08-25 08:00, 2023-08-25 16:00
-    Réinstallation de Volt : mise-en-place-d6, 2023-08-26 08:00, 2023-08-26 10:00
-    Passage du SSH au MQTT pour la récupération des infos : mise-en-place-d7, 2023-08-27 08:00, 2023-08-27 12:00
+    Configuration de Node-Red  : V1-d1, 2023-08-21, 12h
+    Configurer Gatling  : V1-d2, after V1-d1, 12h
+    Configuration et test de relevé de l'INA219  : V1-d3, after V1-d2, 12h
+    Création de PDF avec Node-Red : V1-d4, after V1-d3, 12h
+    Agrégation du lancement des tests et des relevés de l'INA219 : V1-d5, after V1-d4, 12h
+    Réinstallation de Volt : V1-d6, after V1-d5, 12h
+    Passage du SSH au MQTT pour la récupération des infos : V1-d7, after V1-d6, 12h
+    Création d'un graphique avec Node-Red : V1-d8, after V1-d7, 18h
+    Ajout des graphique au PDF : V1-d9, after V1-d8, 18h
+    Documentation de la première itération : milestone, V1-d10, after V1-d9, 0h
+    
 
 ```
+
+```mermaid
+gantt
+    dateFormat  YYYY-MM-DD
+    title       V2.0
+    excludes    weekends
+    axisFormat %d-%m
+    tickInterval 1day
+    section Deuxième Itération
+
+    Execution d'un test préétabli sur Gatling depuis Node-Red : V2-d1, 2023-08-28, 1d
+    Envoi de commande avec une durée : V2-d2, after V2-d1, 1d
+    Récupération des informations : V2-d3, after V2-d2, 1d
+    Traitement des données : V2-d4, after V2-d3, 1d
+    Création des graphiques : V2-d5, after V2-d4, 23h
+    Documentation de la deuxième itération : milestone, V2-d6, after V2-d5, 1h
+
+```
+
+```mermaid
+gantt
+    dateFormat  YYYY-MM-DD
+    title       V3.0
+    excludes    weekends
+    axisFormat %d-%m
+    tickInterval 1day
+    section Troisième Itération
+
+    Correction des graphiques : V3-d1, 2023-09-04, 12h
+    Modification de la simulation en Scala : V3-d2, after V3-d1, 12h
+    Ajout de graphiques : V3-d3, after V3-d2, 1d
+    Mise à jour de la documentation : V3-d4, after V3-d3, 1d
+    Ajouter la possibilité d'exporter les données au format JSON : V3-d5, after V3-d4, 12h
+    Ajouter la possibilité d'importer les données au format JSON et de générer un PDF : V3-d6, after V3-d5, 12h
+    Intégrer le CSV de Gatling avec Node-Red : V3-d7, after V3-d6, 23h
+    Documentation de la troisième itération : milestone, V3-d8, after V3-d7, 1h    
+```
+
+<div style="page-break-after: always;"></div>
+
+# 9. Instalation physique
+## 9.1. Nidus
+
+### 9.1.1. TODO Capture quand installation definitive
+
+
+## 9.2. Volt
+
+### 9.2.1. TODO Capture quand installation definitive
 
 
 <div style="page-break-after: always;"></div>
 
-# 5. Instalation physique
-## 5.1. Nidus
-<img src="../capture/Nidus.jpg" alt="Image" width="100%" style="width:100%;">
+# 10. Shéma de principe
 
-## 5.2. Volt
-<img src="../capture/Volt.jpg" alt="Image" width="100%" style="width:100%;">
-
-
-<div style="page-break-after: always;"></div>
-
-# 6. Shéma de principe
-```ascii
-                    +---------+      +-------------+
-                    |   Volt  |      |   Nidus     |
-                    |_________|      |_____________|
-                    |  RPI 4  |      |  RPI 4      |
-                    |_________|      |_____________|
-                    | Apache  |      | Node-RED    |
-                    | No-Proc |      | Gatling     |
-                    |         |      | INA219      |
-                    |         |      | MQTT        |
-                    +---------+      +-------------+
-                        ^   |             ^   |
-                        |   |             |   |
-                        |   |             |   |
-                        |   |             |   |
-                        |   v             |   v
-                    +-----------------------------+
-                    |       Réseau local          |
-                    +---+-------------------+-----+
-                        | Dashboard Node-Red|
-                        +-------------------+
-                                    ^
-                                    |
-                                    |
-                            +------------+
-                            |Utilisateur |
-                            +------------+
-
-```
 Explication : Actuellement le but est que Nidus offre tout les outil pour le monittoring incluant le MQTT, Node-Red, Gatling et l'INA219. Volt lui ne sert que de serveur web pour le site web. Le but est de pouvoir faire des test de charge sur le site web et de pouvoir mesurer la consommation électrique du serveur web.
 De fais toute intéraction de l'utilisateur se fait avec Nidus.
 Nidus envoie ses donnée de monittoring sur le serveur MQTT installé sur Nidus, et Node-Red installé sur Nidus récupère les données du serveur MQTT et les envoie dans des noeud fais pour le traiter et fournir ensuite les sortie appropié :
@@ -196,43 +377,17 @@ Nidus envoie ses donnée de monittoring sur le serveur MQTT installé sur Nidus,
 
 Nidus peut dans un second temps lancer des stresstest via Node-Red sur lui même et sur Volt. Il peut aussi lancer des stresstest sur Volt via Gatling.
 
-```mermaid
-graph TD;
-
-subgraph "Serveur"
-    A[Site Web] -->|Requêtes| B[Node-RED];
-    B -->|MQTT| C[INA219];
-    B -->|MQTT| D[Gatling];
-end
-
-subgraph "Raspberry Pi"
-    E[Nidus] -->|I2C| G[INA219 Mesure];
-    F[Volt] -->|I2C| H[INA219 Remplacement];
-end
-
-subgraph "Utilisateur"
-    I[Dashboard Node-Red];
-end
-
-A -->|Requêtes| B;
-B -->|MQTT| C;
-B -->|MQTT| D;
-E -->|I2C| G;
-F -->|I2C| H;
-B -->|MQTT| I;
-I -->|Données Moniteur| I;
-
-```
+<img src="./UML/uml.png" alt="Image" width="800%" style="width:80%;">
 
 <div style="page-break-after: always;"></div>
 
-# 7. Systèmes d'exploitation (OS)
+# 11. Systèmes d'exploitation (OS)
 Dans le cadre de ce projet, plusieurs systèmes d'exploitation seront utilisés. Pour commencer, nous utiliserons Ubuntu.
-## 7.1. Ubuntu
+## 11.1. Ubuntu
 Ubuntu est un système d'exploitation largement utilisé pour les serveurs et les ordinateurs de bureau. Il est livré avec un ensemble d'outils de développement et de productivité, notamment un navigateur Web, un éditeur de texte, des logiciels de programmation, des outils de calcul, des jeux et des logiciels de productivité. Ubuntu propose un environnement de bureau léger et réactif, conçu tant pour les ordinateurs de bureau que pour les serveurs.
-## 7.2. Raspbian
+## 11.2. Raspbian
 Raspbian est un système d'exploitation libre basé sur Debian, spécialement optimisé pour le Raspberry Pi. Depuis 2015, Raspbian est livré avec un ensemble d'outils appelé Pixel. Pixel offre un environnement de bureau comprenant un navigateur Web, un éditeur de texte, des logiciels de programmation, des outils de calcul, des jeux et des logiciels de productivité. Pixel est un environnement de bureau léger et réactif, conçu spécifiquement pour les ordinateurs monocarte Raspberry Pi.
-## 7.3. Première installation
+## 11.3. Première installation
 Dans un premier temps, nous allons installer la version bureau d'Ubuntu sur Volt. Cette décision est motivée par le fait qu'il est plus simple de travailler dans un environnement de bureau pour tester rapidement tous les concepts du projet.
 
 Sur Nidus, Raspbian en version bureau sera installé pour des raisons similaires à celles de Volt.
@@ -241,19 +396,20 @@ Un élément crucial à noter est que, étant donné que l'INA219 sera connecté
 
 Dans un second temps, pour obtenir des mesures plus précises, nous installerons les versions « core » d'Ubuntu et de Raspbian.
 
-Adresse IP de Volt : 157.26.228.77
-Adresse IP de Nidus : 157.26.251.185
+- Adresse IP de Volt : 157.26.228.77
+- Adresse IP de Nidus : 157.26.251.185
 
 
 <div style="page-break-after: always;"></div>
 
-## 7.4. Seconde instalation Ubuntu Server
+## 11.4. Seconde instalation Ubuntu Server
 <img src="../capture/RPI/Volt/Imager.png" alt="Image" width="100%" style="width:100%;">
 
 
 <div style="page-break-after: always;"></div>
 
-### 7.4.1. Configuration post instalation
+### 11.4.1. Configuration post instalation
+- Première connexion en SSH
 ```bash
 toblerc@LPT-UNIX-USB-CT:~$ ssh tobby@157.26.228.77
 The authenticity of host '157.26.228.77 (157.26.228.77)' can't be established.
@@ -265,60 +421,53 @@ tobby@157.26.228.77's password:
 Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 5.15.0-1034-raspi aarch64)
 
 [...]
-
-tobby@Volt:~$ ls -la
-total 28> 2022 .bash_logout
--rw-r--r-- 1 tobby tobby 3771 Jan  6  2022 .bashrc
-drwx------ 2 tobby tobby 4096 Aug 23 09:29 .cache
--rw-r--r-- 1 tobby tobby  807 Jan  6  2022 .profile
-drwx------ 2 tobby tobby 4096 Aug 23 09:30 .ssh
+```
+- Copie des clé SSH pour permettre la connexion sans mot de passe
+```bash
 tobby@Volt:~$ cd .ssh/
-tobby@Volt:~/.ssh$ ls -la
-total 8
-drwx------ 2 tobby tobby 4096 Aug 23 09:30 .
-drwxr-x--- 4 tobby tobby 4096 Aug 23 09:30 ..
--rw------- 1 tobby tobby    0 Aug 23 09:30 authorized_keys
 tobby@Volt:~/.ssh$ sudo vi authorized_keys 
 [sudo] password for tobby: 
+``` 
+- Vérification en se déconnectant et en se reconnectant
+```bash
 tobby@Volt:~/.ssh$ exit
 logout
 Connection to 157.26.228.77 closed.
 toblerc@LPT-UNIX-USB-CT:~$ ssh tobby@157.26.228.77
 Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 5.15.0-1034-raspi aarch64)
-
 [...]
-
 Last login: Wed Aug 23 09:30:02 2023 from 157.26.215.31
+```
+- Mise à jour du système
+```bash
 tobby@Volt:~$ sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo apt autzo-remove -y
 [sudo] password for tobby: 
 [...]
-tobby@Volt:~$ sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo apt auto-remove -y
-
-[...]
-
-
-0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
-
 ```
-### 7.4.2. Instalation Apache
+- Vérification
+```bash
+tobby@Volt:~$ sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo apt auto-remove -y
+[...]
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+```
+
+<div style="page-break-after: always;"></div>
+
+### 11.4.2. Instalation Apache
+- Instalation de Apache
 ```bash
 tobby@Volt:~$ sudo apt install apache2
-Reading package lists... Done
-Building dependency tree... Done
-Reading state information... Done
-The following additional packages will be installed:
-  apache2-bin apache2-data apache2-utils bzip2 libapr1 li
 [...]
-
 ```
 
+Copie du site web entre la machine de développement et Volt
 ```bash
 toblerc@LPT-UNIX-USB-CT:~$ scp -r /home/toblerc/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique/siteWeb/www/html tobby@157.26.228.77://home/tobby
 [...]   
 toblerc@LPT-UNIX-USB-CT:~$ 
 tobby@Volt:~$ sudo cp -r /home/tobby/html /var/www/
 ```
-### 7.4.3. Script MQTT
+### 11.4.3. Script MQTT
 ```bash
 toblerc@LPT-UNIX-USB-CT:~/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique$ scp ./mqtt.sh tobby@157.26.228.77:/home/tobby
 mqtt.sh                                                                                                                                                                         100% 2522     1.7MB/s   00:00    
@@ -347,10 +496,10 @@ Building dependency tree... Done
 
 <div style="page-break-after: always;"></div>
 
-# 8. Node-RED
+# 12. Node-RED
 **Node-RED** est un outil de programmation visuelle open source conçu pour faciliter la connexion de périphériques, d'API et de services en ligne. Il propose un éditeur de flux basé sur un navigateur, permettant ainsi de connecter des nœuds à l'aide de simples glisser-déposer. Ces nœuds peuvent être exécutés dans un environnement Node.js. Ils peuvent être des fonctions JavaScript ou des modules npm, tels que node-red-contrib-gpio, node-red-contrib-sqlite, node-red-contrib-modbustcp, etc. En plus des nœuds de base fournis, Node-RED offre plus de 2000 nœuds supplémentaires créés par la communauté et prêts à être utilisés.
 
-## 8.1. Instalation
+## 12.1. Instalation
 ```bash
 tobby@Nidus:~ $ bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
 Running Node-RED install for user tobby at /home/tobby on debian
@@ -370,43 +519,8 @@ This can take 20-30 minutes on the slower Pi versions - please wait.
   Add shortcut commands               ✔
   Update systemd script               ✔
                                       
+[...]
 
-Any errors will be logged to   /var/log/nodered-install.log
-All done.
-You can now start Node-RED with the command  node-red-start
-  or using the icon under   Menu / Programming / Node-RED
-Then point your browser to localhost:1880 or http://{your_pi_ip-address}:1880
-
-Started :  mer 16 aoû 2023 14:12:19 CEST 
-Finished:  mer 16 aoû 2023 14:16:01 CEST
- 
-**********************************************************************************
- ### WARNING ###
- DO NOT EXPOSE NODE-RED TO THE OPEN INTERNET WITHOUT SECURING IT FIRST
- 
- Even if your Node-RED doesn't have anything valuable, (automated) attacks will
- happen and could provide a foothold in your local network
- 
- Follow the guide at https://nodered.org/docs/user-guide/runtime/securing-node-red
- to setup security.
- 
- ### ADDITIONAL RECOMMENDATIONS ###
-  - Remove the /etc/sudoers.d/010_pi-nopasswd file to require entering your password
-    when performing any sudo/root commands:
- 
-      sudo rm -f /etc/sudoers.d/010_pi-nopasswd
- 
-  - You can customise the initial settings by running:
- 
-      node-red admin init
- 
-  - After running Node-RED for the first time, change the ownership of the settings
-    file to 'root' to prevent unauthorised changes:
- 
-      sudo chown root:root ~/.node-red/settings.js
- 
-**********************************************************************************
- 
   Would you like to customise the settings now (y/N) ? y
 
 Node-RED Settings File initialisation
@@ -430,42 +544,20 @@ User Security
 ✔ Password · ******** (Pa$$w.rd)
 ✔ User permissions · read-only access
 ✔ Add another user? · No
-
-Projects
-========
-The Projects feature allows you to version control your flow using a local git repository.
-
-✔ Do you want to enable the Projects feature? · No
-
-Flow File settings
-==================
-✔ Enter a name for your flows file · flows.json
-✔ Provide a passphrase to encrypt your credentials file · 
-
-Editor settings
-===============
-✔ Select a theme for the editor. To use any theme other than "default", you will need to install @node-red-contrib-themes/theme-collection in your Node-RED user directory. · dark
-✔ Select the text editor component to use in the Node-RED Editor · monaco (default)
-
-Node settings
-=============
-✔ Allow Function nodes to load external modules? (functionExternalModules) · Yes
-
-
-Settings file written to /home/tobby/.node-red/settings.js
-To use the 'dark' editor theme, remember to install @node-red-contrib-themes/theme-collection in your Node-RED user directory
-
+[...]
+```
+- Activation de Node-Red comme service
+```bash
 tobby@Nidus:~ $ sudo systemctl enable nodered.service
 Created symlink /etc/systemd/system/multi-user.target.wants/nodered.service → /lib/systemd/system/nodered.service.
-
 ```
 <img src="../capture/RPI/Node-Red/PostInstall.png" alt="Image" width="100%" style="width:100%;">
 
 
 <div style="page-break-after: always;"></div>
 
-## 8.2. Configuration
-### 8.2.1. Installation des plugins
+## 12.2. Configuration
+### 12.2.1. Installation des plugins
 <img src="../capture/RPI/Node-Red/palette1.png" alt="Installation des plugins" width="30%" style="width:30%;">
 <img src="../capture/RPI/Node-Red/palette2.png" alt="Installation des plugins" width="30%" style="width:30%;">
 <img src="../capture/RPI/Node-Red/palette3.png" alt="Installation des plugins" width="30%" style="width:30%;">
@@ -475,12 +567,12 @@ Created symlink /etc/systemd/system/multi-user.target.wants/nodered.service → 
 <img src="../capture/RPI/Node-Red/Dashboard.png" alt="Installation des plugins" width="100%" style="width:100%;">
 
 
-### 8.2.2. Sécurisation de Node-Red
+### 12.2.2. Sécurisation de Node-Red
 Pour sécuriser Node-Red, il convient de modifier le fichier `settings.js`. Dans notre cas, nous utilisons la commande `node-red admin init`, ce qui permet, par exemple, de créer des paires utilisateur/mot de passe.
 
 De plus, il est recommandé, si nécessaire, d'ajouter un login au *Dashboard*.
 
-### 8.2.3. Suivi Git
+### 12.2.3. Suivi Git
 Afin de suivre le projet sur Git, il est nécessaire de configurer un utilisateur, générer des clés SSH, puis effectuer un *clone* du projet.
 
 <img src="../capture/RPI/Node-Red/Git_Config.png" alt="Configuration Git" width="30%" style="width:30%;">
@@ -498,57 +590,55 @@ tobby@Nidus:~/.node-red/projects/banc-de-mesures-de-la-consommation-electrique $
 
 <div style="page-break-after: always;"></div>
 
-# 9. Gatling
+# 13. Gatling
 **Gatling** est un outil de test de charge open source basé sur Scala, conçu pour évaluer les performances des applications et des sites Web. Gatling simule des utilisateurs virtuels qui envoient des requêtes HTTP vers le système cible. Il enregistre les temps de réponse des requêtes et les présente sous forme de graphiques. Gatling est doté d'un éditeur de scénarios basé sur navigateur, permettant aux utilisateurs de créer des scénarios de test de charge à l'aide d'un langage de domaine spécifique (DSL) appelé *Gatling DSL*. Ce langage, basé sur Scala, permet de définir des scénarios de test de charge à l'aide de mots-clés tels que `exec`, `pause`, `feed`, etc.
 
 La version la plus récente de Gatling est la 3.9.5, compatible avec Java 8 et Java 11. Dans ce projet, nous opterons pour Java 11 pour exécuter Gatling.
 
-## 9.1. Installation
+## 13.1. Installation
 
-### 9.1.1. Prerequis
+### 13.1.1. Prerequis
+- Instalarion de Java 11
 ```bash
 tobby@Nidus:~ $ sudo apt install default-jdk
+```
+- Vérification de la version de Java
+```bash
 tobby@Nidus:~/.node-red $ java -version
 openjdk version "11.0.18" 2023-01-17
 OpenJDK Runtime Environment (build 11.0.18+10-post-Debian-1deb11u1)
 OpenJDK 64-Bit Server VM (build 11.0.18+10-post-Debian-1deb11u1, mixed mode)
-tobby@Nidus:~/.node-red $ 
-
-
 ```
-### 9.1.2. Download
-
+### 13.1.2. Download
+- Création du répertoire d'installation
 ```bash
+
 tobby@Nidus:~ $ mkdir .gatling
+```
+- Vérification de la création du répertoire
+```bash
 tobby@Nidus:~ $ ls -la
 total 104
 drwxr-xr-x 18 tobby tobby 4096 16 aoû 15:10 .
 drwxr-xr-x  3 root  root  4096 16 aoû 13:58 ..
-
 [...]
-
 drwxr-xr-x  2 tobby tobby 4096 16 aoû 15:10 .gatling
-
 [...]
-
+```
+- Téléchargement de Gatling
+```bash
 tobby@Nidus:~ $ wget -O ~/.gatling/gatling-charts-highcharts-bundle-3.9.5-bundle.zip https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/3.9.5/gatling-charts-highcharts-bundle-3.9.5-bundle.zip
---2023-08-16 15:12:41--  https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/3.9.5/gatling-charts-highcharts-bundle-3.9.5-bundle.zip
-Résolution de repo1.maven.org (repo1.maven.org)… 146.75.116.209, 2a04:4e42:8d::209
-Connexion à repo1.maven.org (repo1.maven.org)|146.75.116.209|:443… connecté.
-requête HTTP transmise, en attente de la réponse… 200 OK
-Taille : 77080673 (74M) [application/zip]
-Sauvegarde en : « /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5-bundle.zip »
-
-/home/tobby/.gatling/gatling-charts-highcharts-bundl 100%[====================================================================================================================>]  73.51M  11.0MB/s    ds 5.8s    
-
+[...]
 2023-08-16 15:12:47 (12.8 MB/s) — « /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5-bundle.zip » sauvegardé [77080673/77080673]
-
+```
+- Dezippage de Gatling
+```bash
 tobby@Nidus:~ $ unzip ~/.gatling/gatling-charts-highcharts-bundle-3.9.5-bundle.zip -d ~/.gatling/
 Archive:  /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5-bundle.zip
-
 [...]
-
-  inflating: /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/LICENSE  
+```
+- Vérification du dézippage
+```bash
 tobby@Nidus:~ $ cd .gatling/
 tobby@Nidus:~/.gatling $ ls -la
 total 75288
@@ -568,7 +658,13 @@ drwxr-xr-x 2 tobby tobby 12288 10 mai 11:19 lib
 drwxr-xr-x 2 tobby tobby  4096 10 mai 11:19 results
 drwxr-xr-x 5 tobby tobby  4096 10 mai 11:19 user-files
 ```
-## 9.2. Vérification de l'installation
+
+<div style="page-break-after: always;"></div>
+
+## 13.2. Vérification de l'installation
+Pour vérifier l'installation de Gatling, il suffit de lancer le script `gatling.sh` situé dans le répertoire `bin` de Gatling. Ce faisant, Gatling affichera un menu permettant de choisir entre plusieurs options. Dans notre cas, nous choisirons l'option 1, qui permet de lancer une simulation de test de charge.
+Ensuite, il y a la possibilité de choisir la simulation à exécuter. Dans notre cas, il n'y a qu'une seule simulation, donc nous n'avons pas besoin de la choisir.
+Cette simulation est celle créer par Gatling et vas aller tester un serveur web de test de Gatling.
 ```bash
 tobby@Nidus:~/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin $ ./gatling.sh
 GATLING_HOME is set to /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5
@@ -618,7 +714,7 @@ Generating reports...
 Reports generated in 0s.
 Please open the following file: file:///home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/results/computerdatabasesimulation-20230816142907884/index.html
 ```
-## 9.3. Scripts
+## 13.3. Scripts
 Pour Gatling, j'ai d'abord choisi le Java comme language de programmation mais je me suis tournée ensuite vers le Scala car il est plus adapté à Gatling. J'ai donc créé un script Scala qui permet de faire un test de charge sur le site web. Ce script est très simple, il se contente de faire une requête GET sur la page d'accueil du site web. Il est possible de modifier le nombre d'utilisateur et le temps de test dans le script. J'ai aussi créé un script bash qui permet de lancer le script Scala. 
 
 ```scala
@@ -629,14 +725,14 @@ import scala.concurrent.duration._
 class CuriusTRex_Bash extends Simulation {
 
   val httpProtocol = http
-    .baseUrl("http://volt.s2.rpn.ch")
-    .inferHtmlResources()
-    .acceptHeader("image/avif,image/webp,*/*")
-    .acceptEncodingHeader("gzip, deflate")
-    .acceptLanguageHeader("fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3")
-    .userAgentHeader("Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/114.0")
+    .baseUrl("http://volt.s2.rpn.ch")// Il s'agit de l'adresse du site web
+    .inferHtmlResources()// Permet de récupérer les ressources HTML
+    .acceptHeader("image/avif,image/webp,*/*") // Accepte les images
+    .acceptEncodingHeader("gzip, deflate") // Accepte la compression
+    .acceptLanguageHeader("fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3") // Accepte les langues
+    .userAgentHeader("Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/114.0") // User Agent
 
-  val headers_0 = Map(
+  val headers_0 = Map( 
     "Accept" -> "text/css,*/*;q=0.1",
     "If-Modified-Since" -> "Thu, 17 Aug 2023 08:18:41 GMT",
     "If-None-Match" -> "\"dc3-6031a0f5b4a47-gzip\""
@@ -714,28 +810,55 @@ println(s"Temps de montée : $myRamp")
 
 <div style="page-break-after: always;"></div>
 
-# 10. Apache et Site Web
-## 10.1. Installation
+# 14. Apache et Site Web
+## 14.1. Installation
+Pour installer et activé Apache, il suffit d'exécuter les commandes suivantes :
 ```bash
 sudo apt install apache2
-sudo systemctl status apache2
 sudo systemctl enable apache2
 ```
-## 10.2. Mise en place d'un site Web
+- Vérication de l'installation
+```bash
+sudo systemctl status apache2
+```
+
+## 14.2. Mise en place d'un site Web
 J'ai créee un site web très simple reprenant le readme du projet. Et il comporte trois pages ainsi que du CSS.
+
+E premier lieux je le copie donc sur le serveur web avec la commande suivante :
 ```bash
 scp -r /home/toblerc/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique/siteWeb/www/html tobby@Volt:/var/www/html/
 ```
 
 <div style="page-break-after: always;"></div>
 
-# 11. MQTT
-Dans notre cas, j'ai l'intention d'utiliser MQTT pour transmettre les données de consommation à Node-Red. En contournant le transfert de requêtes via SSH et l'utilisation de clés SSH, MQTT permet de gagner en performances et en sécurité. En termes de performances, MQTT est considérablement plus léger que SSH, environ dix fois plus léger.
-## 11.1. Installation de Mosquitto sur Nidus
+# 15. MQTT
+
+Le MQTT, ou Message Queuing Telemetry Transport, est un protocole de messagerie exceptionnellement léger qui repose sur le protocole TCP/IP. Sa conception vise à répondre aux besoins des appareils dotés de ressources limitées en termes de calcul et de bande passante, en en faisant un choix privilégié pour l'Internet des objets (IoT). L'architecture de ce protocole repose sur le principe fondamental de publication et d'abonnement.
+
+Au cœur du MQTT se trouve un élément essentiel : le broker MQTT. Celui-ci joue le rôle de médiateur en recevant les messages émis par les clients puis en les diffusant aux clients abonnés. 
+
+Le protocole MQTT s'appuie sur le protocole TCP/IP et utilise deux ports principaux : le port 1883 pour les communications non sécurisées et le port 8883 pour les communications sécurisées. La sécurité des communications MQTT est assurée par le protocole TLS/SSL.
+
+Il existe deux catégories de clients MQTT : les clients légers et les clients complets. Les clients MQTT légers ne prennent pas en charge le protocole TLS/SSL, tandis que les clients MQTT complets le prennent en charge. Les clients MQTT légers sont fréquemment utilisés pour les dispositifs IoT en raison de leur faible empreinte mémoire et de leur simplicité, tandis que les clients MQTT complets sont davantage adaptés aux applications de bureau.
+
+Ma décision d'utiliser MQTT découle de mon expérience antérieure. J'ai eu l'occasion d'employer ce protocole lors de mon travail de diplôme pour mon CFC. À l'époque, j'utilisais MQTT pour l'échange de données entre un Raspberry Pi et les puces de développement de [Microchip](https://www.microchip.com/en-us/development-tool/ac164160). Cette expérience m'a permis de développer une solide compréhension de MQTT.
+
+En utilisant MQTT, nous évitons la complexité liée au transfert de requêtes via SSH ainsi que l'utilisation de clés SSH. Cela se traduit par un gain significatif en termes de performances et de sécurité. Sur le plan des performances, MQTT se distingue par sa légèreté, étant environ dix fois plus léger que SSH. Cette légèreté en fait un choix judicieux pour la transmission de données de consommation.
+
+Au niveau du soft que j'ai choisi de mettre en place, il s'agit de [Mosquitto](https://mosquitto.org/), un broker MQTT open source. Il est disponible sur les dépôts officiels de Debian, ce qui facilite son installation. De plus, il est très simple à configurer et j'ai déjà eu l'occasion de l'utiliser dans le cadre de mon travail de diplôme de CFC. 
+
+<div style="page-break-after: always;"></div>
+
+## 15.1. Installation de Mosquitto sur Nidus
+- Instalation du paquet Mosquitto
 ```bash
 tobby@Nidus:~/.ssh $ sudo apt install mosquitto
 Lecture des listes de paquets... Fait
 [...]
+```
+- Vérification du status de Mosquitto
+```bash
 tobby@Nidus:~/.ssh $ sudo systemctl status mosquitto
 ● mosquitto.service - Mosquitto MQTT Broker
      Loaded: loaded (/lib/systemd/system/mosquitto.service; enabled; vendor preset: enabled)
@@ -755,10 +878,18 @@ tobby@Nidus:~/.ssh $ sudo systemctl status mosquitto
 aoû 22 16:01:58 Nidus systemd[1]: Starting Mosquitto MQTT Broker...
 aoû 22 16:01:58 Nidus systemd[1]: Started Mosquitto MQTT Broker.
 ```
-## 11.2. Ouverture des port sur Nidus
-Modifier le fichier de conf comme suit :
+
+<div style="page-break-after: always;"></div>
+
+## 15.2. Ouverture des port sur Nidus
+Pour que le broker MQTT soit accessible depuis l'extérieur, il faut ouvrir les ports 1883 sur Nidus. Dans le fichier de configuration de Mosquitto, il faut aussi autoriser les connexions anonymes.
+
+Il faut donc modifier le fichier de conf comme suit :
 ```bash
 tobby@Nidus:~ $ sudo vim /etc/mosquitto/mosquitto.conf
+```
+- Vérification du fichier de conf
+```bash
 tobby@Nidus:~ $ sudo cat /etc/mosquitto/mosquitto.conf 
 # Place your local configuration in /etc/mosquitto/conf.d/
 #
@@ -780,9 +911,15 @@ allow_anonymous true
 
 <div style="page-break-after: always;"></div>
 
-## 11.3. Script MQTT
-J'ai élaboré un script MQTT sophistiqué, conçu pour publier efficacement les données de consommation sur le broker MQTT. Ce script, au démarrage de la machine, entreprend un fonctionnement en boucle continue, garantissant la collecte et la publication régulières de ces données. L'objectif est d'optimiser les performances tout en garantissant la fiabilité du processus.
-### 11.3.1. Script
+## 15.3. Script MQTT
+J'ai développé un script MQTT relativement sophistiqué, spécialement conçu pour publier efficacement les données de consommation sur le broker MQTT. Ce script, lors du démarrage de la machine, s'exécute en boucle continue, assurant ainsi une collecte et une publication régulières de ces données. Son objectif principal est d'optimiser les performances tout en garantissant la fiabilité du processus.
+
+Comme nous l'avons évoqué à plusieurs reprises, l'objectif de ce banc de test est de minimiser les exigences envers Volt. Idéalement, il devrait être possible de simplement flasher une image sur une carte SD, de l'insérer dans Volt, et de connecter le banc de test sans contraintes majeures liées à un système d'exploitation spécifique ou à une configuration particulière.
+
+Cependant, il est presque impossible de créer un système entièrement "plug and play". Par conséquent, le script ci-dessous accomplit une tâche cruciale en mettant en place toutes les dépendances et configurations nécessaires pour assurer le bon fonctionnement du script et l'envoi réussi des données vers le broker MQTT.
+
+
+### 15.3.1. Script
 ```sh
 #!/bin/bash
 ### BEGIN INIT INFO
@@ -802,12 +939,9 @@ J'ai élaboré un script MQTT sophistiqué, conçu pour publier efficacement les
 # Pour le copier depuis Nidus vers Volt :
 # scp ./mqtt.sh tobby@volt:/usr/local/bin/mqtt.sh
 # Emplacement du script (doit être dans /usr/local/bin)
-INSTALL_DIR="/usr/local/bin"
-# Nom du script
-SCRIPT_NAME="mqtt.sh"
-# Adresse du broker MQTT
-MQTT_BROKER="nidus"
-# Sujets MQTT pour les différentes données
+INSTALL_DIR="/usr/local/bin" # Nom du script
+SCRIPT_NAME="mqtt.sh" # Adresse du broker MQTT
+MQTT_BROKER="nidus" # Sujets MQTT pour les différentes données
 MQTT_TOPIC_CPU="benchmark/cpu"
 MQTT_TOPIC_RAM="benchmark/ram"
 MQTT_TOPIC_PROCESSES="benchmark/processes"
@@ -857,7 +991,7 @@ while true; do
     sleep 1  # Attente d'une seconde
 done
 ```
-### 11.3.2. Description détaillée du script
+### 15.3.2. Description détaillée du script
 Le script commence par vérifier si l'emplacement d'installation est correct, s'assurant qu'il est placé dans le répertoire défini par **INSTALL_DIR**. Ensuite, il vérifie la présence et l'installation des dépendances requises, notamment **mosquitto-clients**, en l'installant si nécessaire.
 
 Une autre vérification importante concerne l'existence d'un lien symbolique vers **/etc/init.d**, qui est nécessaire pour exécuter le script au démarrage de la machine. Si le lien symbolique n'existe pas, le script le crée.
@@ -870,18 +1004,18 @@ Ces données sont ensuite publiées sur le broker MQTT à l'aide de la commande 
 
 Le script affiche également un message indiquant que les données ont été publiées sur MQTT, et ensuite attend une seconde avant de reprendre une nouvelle itération de la boucle.
 
-### 11.3.3. Conclusion
+### 15.3.3. Conclusion
 Ce script MQTT élaboré et bien structuré offre un moyen efficace de collecter et de publier les données de consommation sur le broker **MQTT**. Son fonctionnement en boucle continue, combiné à des vérifications et des actions préliminaires, garantit une gestion fiable et optimisée des données, contribuant ainsi à la réussite globale du projet.
 
 
 <div style="page-break-after: always;"></div>
 
-## 11.4. Installation
+## 15.4. Installation
 ```bash
 toblerc@LPT-UNIX-USB-CT:~/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique$ scp ./mqtt.sh tobby@volt:/usr/local/bin/mqtt.sh
 mqtt.sh                                                                                                                                                                         100% 2526     2.1MB/s   00:00 
 ```
-## 11.5. Utilisation du script
+## 15.5. Utilisation du script
 ```bash
 tobby@Volt:/usr/local/bin$ sudo ./mqtt.sh
 Installation de mosquitto-clients...
@@ -897,25 +1031,25 @@ Activation du service...
 Service activé.
 ```
 
-### 11.5.1. Vérification
+### 15.5.1. Vérification
 <img src="../capture/RPI/Node-Red/MQTT.png" alt="Image" width="100%" style="width:100%;">
 
 
 <div style="page-break-after: always;"></div>
 
-# 12. INA219
+# 16. INA219
 
 Dans ce chapitre, nous explorerons la puce **INA219**, qui joue un rôle essentiel dans la mesure de la consommation. Il est important de noter que nous utilisons deux puces INA219 dans ce projet : l'une pour la mesure proprement dite et l'autre en tant que pièce de rechange en cas de problème. Pour les différencier, nous avons effectué des soudures pour attribuer des adresses I2C spécifiques à chaque puce. L'adresse de la puce de mesure est réglée sur *0x40*, tandis que l'adresse de la puce de remplacement est réglée sur *0x41*.
 
-### 12.0.1. Installation physique
+### 16.0.1. Installation physique
 
 L'installation physique du **INA219** implique des branchements spécifiques en fonction des scénarios : avec ou sans le dispositif Volt. Voici les détails de chaque configuration :
 
-#### 12.0.1.1. Branchement SANS VOLT
+#### 16.0.1.1. Branchement SANS VOLT
 
 <img src="../capture/RPI/INA219/Sans_Volt.jpg" alt="Schéma de branchement sans Volt" width="100%" style="width:100%;">
 
-#### 12.0.1.2. Branchement AVEC VOLT
+#### 16.0.1.2. Branchement AVEC VOLT
 
 Le branchement avec le dispositif Volt ajoute une complexité supplémentaire. Voici un aperçu détaillé de ce branchement :
 
@@ -923,7 +1057,7 @@ Le branchement avec le dispositif Volt ajoute une complexité supplémentaire. V
 <img src="../capture/RPI/INA219/Avec_Volt_Detail.jpg" alt="Détail du branchement avec Volt" width="100%" style="width:100%;">
 
 
-### 12.0.2. Vérification de la présence du INA219
+### 16.0.2. Vérification de la présence du INA219
 
 Avant de pouvoir commencer à utiliser le **INA219** pour mesurer la consommation, il est crucial de vérifier la présence de la puce et de s'assurer qu'elle est correctement détectée par le système. Cette étape est essentielle pour garantir des mesures précises et fiables tout au long du projet.
 
@@ -950,23 +1084,12 @@ tobby@Nidus:~ $ sudo i2cdetect -y 1
 60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 70: -- -- -- -- -- -- -- --    
 ```
-## 12.1. Obtention des données
-### 12.1.1. Test avec le script python A vide 
+## 16.1. Obtention des données
+### 16.1.1. Test avec le script python A vide 
 Instalation de la bibliothèque python
 ```bash
 tobby@Nidus:~ $ sudo pip3 install pi-ina219
-Looking in indexes: https://pypi.org/simple, https://www.piwheels.org/simple
-Collecting pi-ina219
-  Downloading pi_ina219-1.4.1-py2.py3-none-any.whl (10 kB)
-Collecting Adafruit-GPIO
-  Downloading https://www.piwheels.org/simple/adafruit-gpio/Adafruit_GPIO-1.0.3-py3-none-any.whl (38 kB)
-Collecting mock
-  Downloading https://www.piwheels.org/simple/mock/mock-5.1.0-py3-none-any.whl (30 kB)
-Collecting adafruit-pureio
-  Downloading https://www.piwheels.org/simple/adafruit-pureio/Adafruit_PureIO-1.1.11-py3-none-any.whl (10 kB)
-Requirement already satisfied: spidev in /usr/lib/python3/dist-packages (from Adafruit-GPIO->pi-ina219) (3.5)
-Installing collected packages: adafruit-pureio, mock, Adafruit-GPIO, pi-ina219
-Successfully installed Adafruit-GPIO-1.0.3 adafruit-pureio-1.1.11 mock-5.1.0 pi-ina219-1.4.1
+[...]
 ```
 Vérification de la présence de l'INA219
 ```
@@ -981,16 +1104,23 @@ tobby@Nidus:~ $ i2cdetect -y 1
 60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 70: -- -- -- -- -- -- -- --      
 ``` 
-Création du script python
+- Création du dossier py et du script python
 ```bash
 tobby@Nidus:~/Documents $ mkdir py
 tobby@Nidus:~/Documents $ cd py
 tobby@Nidus:~/Documents/py $ touch my_ina219.py
+```
+- Vérification de la présence du script
+```bash
 tobby@Nidus:~/Documents/py $ ls -la
 total 8
 drwxr-xr-x 2 tobby tobby 4096 22 aoû 10:19 .
 drwxr-xr-x 3 tobby tobby 4096 22 aoû 10:18 ..
 -rw-r--r-- 1 tobby tobby    0 22 aoû 10:19 my_ina219.py
+```
+
+- Modification du script
+```bash
 tobby@Nidus:~/Documents/py $ sudo vi ./my_ina219.py
 ``` 
 ```python
@@ -1029,52 +1159,9 @@ Shunt voltage: -0.010 mV
 
 <div style="page-break-after: always;"></div>
 
-# 13. Noeud Node-Red
+# 17. Noeud Node-Red
 
-## 13.1. INA219
-
-Dans cette section, nous explorons le composant **INA219**, un élément clé de notre projet. L'**INA219** est équipé de deux sorties qui fournissent des valeurs en milliampères et en volts, offrant ainsi des informations cruciales sur la consommation.
-
-<img src="../capture/RPI/Node-Red/INA219.png" alt="Image de l'INA219" width="100%" style="width:100%;">
-
-
-Pour tirer le meilleur parti de l'INA219, j'ai mis en place une configuration sophistiquée. J'ai configuré des nœuds de fonctions spécifiques pour exclure les valeurs négatives. Ces valeurs négatives sont généralement des erreurs de lecture et doivent être traitées correctement pour garantir des données précises. Ensuite, j'ai élaboré une séquence de traitement pour afficher ces valeurs de manière compréhensible dans un libellé.
-
-En plus de cela, j'ai mis en place un nœud "join" qui joue un rôle crucial. Ce nœud fusionne les deux valeurs obtenues à partir des sorties de l'INA219 en un seul message cohérent. Ce message est ensuite acheminé vers un autre nœud de fonction spécialisé. Ce nœud effectue des calculs complexes pour obtenir les données de consommation en watts. Ces données sont ensuite affichées à la fois dans un libellé, offrant une visualisation claire des résultats, et dans un graphique, permettant une compréhension visuelle de l'évolution de la consommation.
-
-
-```javascript
-// Récupérer les valeurs de courant (mA) et de tension (V) depuis les propriétés msg.payload
-var current_mA = msg.payload.miliamps;
-var voltage_V = msg.payload.voltage;
-
-// Calculer la puissance en watts (W)
-var power_W = (current_mA / 1000) * voltage_V;  // Convertir le courant en ampères
-
-// Vérifier si la tension est négative
-if (voltage_V < 0.5) {
-    // Si la tension est négative, ne rien faire et retourner le message inchangé
-    return null;
-}
-
-// Créer un nouvel objet msg avec la puissance en watts comme payload
-msg.payload = power_W;
-msg.topic = "Watt";
-// Renvoyer le message modifié
-return msg;
-```
-## 13.2. Monitoring
-
-<img src="../capture/RPI/Node-Red/benchmark.png" alt="Image de Monitoring" width="100%" style="width:100%;">
-
-
-Dans cette section, nous abordons le **Monitoring**, une étape cruciale de notre projet. Pour cette tâche, j'ai choisi d'utiliser le protocole **MQTT**, qui présente des avantages significatifs en termes de rapidité et de légèreté par rapport au **SSH**.
-
-En commençant par la réception des données via le nœud MQTT, celles-ci sont dirigées vers un nœud de type "gauge" (_jauge_) qui affiche la valeur en temps réel. Cette représentation visuelle offre une vue instantanée de la consommation, permettant une surveillance efficace.
-
-<div style="page-break-after: always;"></div>
-
-## 13.3. Dashboard
+## 17.1. Dashboard
 
 Le **Dashboard**, en tant que centre de contrôle essentiel, rassemble tous les éléments nécessaires pour une visualisation optimale des données générées.
 
@@ -1117,8 +1204,51 @@ Ces nœuds apportent un ensemble puissant d'outils pour la création d'interface
 
 <div style="page-break-after: always;"></div>
 
-## 13.4. PDF
-### 13.4.1. Base
+## 17.2. INA219
+
+Dans cette section, nous explorons le composant **INA219**, un élément clé de notre projet. L'**INA219** est équipé de deux sorties qui fournissent des valeurs en milliampères et en volts, offrant ainsi des informations cruciales sur la consommation.
+
+<img src="../capture/RPI/Node-Red/INA219.png" alt="Image de l'INA219" width="100%" style="width:100%;">
+
+
+Pour tirer le meilleur parti de l'INA219, j'ai mis en place une configuration sophistiquée. J'ai configuré des nœuds de fonctions spécifiques pour exclure les valeurs négatives. Ces valeurs négatives sont généralement des erreurs de lecture et doivent être traitées correctement pour garantir des données précises. Ensuite, j'ai élaboré une séquence de traitement pour afficher ces valeurs de manière compréhensible dans un libellé.
+
+En plus de cela, j'ai mis en place un nœud "join" qui joue un rôle crucial. Ce nœud fusionne les deux valeurs obtenues à partir des sorties de l'INA219 en un seul message cohérent. Ce message est ensuite acheminé vers un autre nœud de fonction spécialisé. Ce nœud effectue des calculs complexes pour obtenir les données de consommation en watts. Ces données sont ensuite affichées à la fois dans un libellé, offrant une visualisation claire des résultats, et dans un graphique, permettant une compréhension visuelle de l'évolution de la consommation.
+
+
+```javascript
+// Récupérer les valeurs de courant (mA) et de tension (V) depuis les propriétés msg.payload
+var current_mA = msg.payload.miliamps;
+var voltage_V = msg.payload.voltage;
+
+// Calculer la puissance en watts (W)
+var power_W = (current_mA / 1000) * voltage_V;  // Convertir le courant en ampères
+
+// Vérifier si la tension est négative
+if (voltage_V < 0.5) {
+    // Si la tension est négative, ne rien faire et retourner le message inchangé
+    return null;
+}
+
+// Créer un nouvel objet msg avec la puissance en watts comme payload
+msg.payload = power_W;
+msg.topic = "Watt";
+// Renvoyer le message modifié
+return msg;
+```
+## 17.3. Monitoring
+
+<img src="../capture/RPI/Node-Red/benchmark.png" alt="Image de Monitoring" width="100%" style="width:100%;">
+
+
+Dans cette section, nous abordons le **Monitoring**, une étape cruciale de notre projet. Pour cette tâche, j'ai choisi d'utiliser le protocole **MQTT**, qui présente des avantages significatifs en termes de rapidité et de légèreté par rapport au **SSH**.
+
+En commençant par la réception des données via le nœud MQTT, celles-ci sont dirigées vers un nœud de type "gauge" (_jauge_) qui affiche la valeur en temps réel. Cette représentation visuelle offre une vue instantanée de la consommation, permettant une surveillance efficace.
+
+<div style="page-break-after: always;"></div>
+
+## 17.4. PDF
+### 17.4.1. Base
 Pour generer un PDF, il faut passer un Json dans le payload du message :
 ```json
   {
@@ -1141,7 +1271,7 @@ Qui est reçu dans le noeud pdfmake qui le passe en Base64 qui est ensuite reçu
 
 <div style="page-break-after: always;"></div>
 
-## 13.5. Images de graphiques et de tableaux
+## 17.5. Images de graphiques et de tableaux
 Une fois que la génération de PDF est maîtrisée, il est temps de valoriser davantage les informations en y ajoutant des images.
 
 En effet, bien que disposer des valeurs à un instant donné soit utile, pouvoir visualiser ces valeurs sous forme de graphique est encore plus puissant. Pour réaliser cela, nous utiliserons le nœud **node-red-contrib-chart-image**, qui nous permettra de générer des graphiques. Ce nœud repose sur le module **Chart.js**, qui permet de créer des graphiques en utilisant du code JavaScript.
@@ -1152,7 +1282,7 @@ Cette combinaison de nœuds nous permettra de créer des représentations visuel
 
 <div style="page-break-after: always;"></div>
 
-# 14. Stress Test V1.0
+# 18. Stress Test V1.0
 
 J'ai créé une page qui permet de générer un rapport en fonction de la durée et de l'exécution d'un stress test sur Nidus et/ou sur Volt. Voici le flux complet pour la génération du rapport:
 
@@ -1164,7 +1294,7 @@ Pour être honnête, il faut admettre que la lisibilité initiale n'est pas opti
 
 <div style="page-break-after: always;"></div>
 
-## 14.1. Écran d'Accueil
+## 18.1. Écran d'Accueil
 
 <img src="../capture/RPI/Node-Red/RapportPDF/1.1.png" alt="Écran d'Accueil" width="100%" style="width:50%;">
 
@@ -1192,7 +1322,7 @@ La première fonction transmet ensuite les données à une fonction à sorties m
 
 <div style="page-break-after: always;"></div>
 
-## 14.2. En Exécution
+## 18.2. En Exécution
 
 <img src="../capture/RPI/Node-Red/RapportPDF/3.png" alt="En Exécution" width="100%" style="width:100%;">
 
@@ -1443,7 +1573,7 @@ Le nœud final permet de mettre à jour le modèle HTML qui répertorie les fich
 
 <div style="page-break-after: always;"></div>
 
-## 14.3. Résultat
+## 18.3. Résultat
 <img src="../capture/RPI/Node-Red/RapportPDF/4.png" alt="Alt text" width="100%" style="width:100%;">
 
 Pour obtenir les résultats, il suffit de cliquer sur le nom du fichier, qui sera automatiquement téléchargé. Ce processus est géré par ces nœuds :
@@ -1457,7 +1587,7 @@ La partie supérieure gère l'affichage des fichiers dans un modèle et ajoute a
 
 <div style="page-break-after: always;"></div>
 
-## 14.4. Purge
+## 18.4. Purge
 Au cours de mes tests, j'ai réalisé qu'un problème survient lorsque l'on génère un certain nombre de rapports, le dossier devient rapidement surchargé. Par conséquent, j'ai décidé de mettre en place un bouton permettant de purger le dossier de tous les fichiers .pdf et .png qui s'y trouvent. Cependant, pour éviter toute suppression accidentelle de fichiers importants, j'ai mis en place un système de confirmation demandant à l'utilisateur s'il est sûr de vouloir supprimer les fichiers.
 
 <img src="../capture/RPI/Node-Red/RapportPDF/6.png" alt="Alt text" width="100%" style="width:100%;">
@@ -1474,11 +1604,11 @@ Ce que l'on peut observer, c'est qu'après avoir appuyé sur le bouton de purge,
 
 <div style="page-break-after: always;"></div>
 
-# 15. Gatling Test V2.0
-## 15.1. But
+# 19. Gatling Test V2.0
+## 19.1. But
 L'objectif de cette étape est d'intégrer Gatling aux tests de Node-Red, offrant ainsi la possibilité de réaliser à la fois des tests de charge et des tests de stress sur la même infrastructure.
 
-## 15.2. Étapes à Atteindre
+## 19.2. Étapes à Atteindre
 1. **Exécution d'un Test Préétabli sur Gatling depuis Node-Red** : La première étape consiste à configurer et à exécuter un test préétabli à l'aide de Gatling directement depuis l'environnement Node-Red. Cela permettra de lancer les scénarios de test sur l'application ou le système cible.
 
 2. **Récupération des Résultats de Gatling et Création de Graphiques pour l'Incorporation au PDF** : Une fois le test Gatling terminé, nous devrons récupérer les résultats générés par Gatling. Ces résultats seront ensuite transformés en graphiques informatifs pour être intégrés dans le rapport PDF. Cette étape vise à rendre les données de performance facilement compréhensibles.
@@ -1489,7 +1619,7 @@ Cette intégration de Gatling aux tests Node-Red offre un moyen puissant d'éval
 
 <div style="page-break-after: always;"></div>
 
-## 15.3. Exécution d'un Test Préétabli sur Gatling depuis Node-Red
+## 19.3. Exécution d'un Test Préétabli sur Gatling depuis Node-Red
 L'exécution d'un test préétabli sur Gatling depuis Node-Red revêt une importance cruciale pour la suite du projet. Cela permettra de lancer les scénarios de test sur l'application ou le système cible. Pour réaliser cette étape, nous allons utiliser le nœud **exec** de Node-Red, qui nous permet d'exécuter des commandes sur le système d'exploitation. Ce nœud sera utilisé pour lancer les commandes Gatling nécessaires afin de lancer les tests.
 
 Je lui transmets la commande suivante en entrée :
@@ -1502,7 +1632,7 @@ tobby@Nidus:~ $ /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/
 
 <div style="page-break-after: always;"></div>
 
-## 15.4. Envoi de Commande avec une Durée
+## 19.4. Envoi de Commande avec une Durée
 
 L'une des premières étapes essentielles est de pouvoir définir une durée pour le test. Pour accomplir cette tâche, j'ai employé un nœud **function** qui permet de spécifier la durée du test en fonction de la valeur saisie par l'utilisateur. Cette valeur est ensuite transmise à un nœud **exec** qui se charge d'exécuter la commande Gatling nécessaire. Voici le code de la fonction :
 
@@ -1526,7 +1656,7 @@ return msg;
 
 <div style="page-break-after: always;"></div>
 
-## 15.5. Récupération des Informations
+## 19.5. Récupération des Informations
 
 Pour obtenir les informations d'un rapport Gatling, j'ai dû entreprendre une rétro-ingénierie significative. En effet, Gatling ne propose pas de mécanisme direct pour extraire des informations depuis la ligne de commande. Il est nécessaire de collecter les données directement à partir des fichiers générés par Gatling. Voici un exemple de fichier généré par Gatling :
 
@@ -1642,13 +1772,13 @@ Please open the following file: file:///home/toblerc/T%C3%A9l%C3%A9chargements/g
 
 <div style="page-break-after: always;"></div>
 
-## 15.6. Traitement des données
+## 19.6. Traitement des données
 
 Une fois les chemins des fichiers définis, je lis les fichiers JSON et les transmets à un nœud **JSON** chargé de les traiter et de les renvoyer dans un format exploitable par Node-Red.
 
 En sortie, j'assemble les quatre fichiers en un seul message que j'envoie ensuite aux fonctions de création de graphiques.
 
-### 15.6.1. Création des graphiques
+### 19.6.1. Création des graphiques
 
 Je crée deux graphiques, l'un utilisant le pourcentage de réussite et d'échec pour générer un bar chart :
 
@@ -1799,7 +1929,7 @@ var chartData = {
 msg.payload = chartData; // Attribuez les données du graphique au message
 return msg; // Renvoyez le message
 ```
-### 15.6.2. PDF
+### 19.6.2. PDF
 Une fois les chart créer,  je les réutilise dans le noeud de création de PDF pour les ajouter au rapport :
 ```javascript
 /**
@@ -1839,7 +1969,7 @@ Une fois les chart créer,  je les réutilise dans le noeud de création de PDF 
  * 
  */
 ```
-## 15.7. Refactoring
+## 19.7. Refactoring
 Pour finir, j'ai créer des subflow pour le noeud MQTT afin de simplifier la visualisation et le management des données :
 <img src="../capture/RPI/Node-Red/RapportPDF/9.png" alt="Alt text" width="100%" style="width:100%;">
 <img src="../capture/RPI/Node-Red/RapportPDF/10.png" alt="Alt text" width="100%" style="width:100%;">
@@ -1847,7 +1977,7 @@ Pour finir, j'ai créer des subflow pour le noeud MQTT afin de simplifier la vis
 
 <div style="page-break-after: always;"></div>
 
-# 16. Gatling V3.0
+# 20. Gatling V3.0
 
 Maintenant que l'étape de "PoC" a été atteinte, il est temps de passer à la version utilisable du projet. À partir de Node-Red, vous pouvez désormais réaliser les actions suivantes :
 
@@ -1869,7 +1999,7 @@ Les objectifs à atteindre sont donc les suivants :
 
 
 
-## 16.1. UI
+## 20.1. UI
 
 Pour l'interface utilisateur (UI), j'ai choisi de limiter le temps sélectionné à la durée du test. Ce choix s'explique par le fait qu'en principe, la durée des mesures devrait toujours correspondre à la durée de Gatling. Cependant, je laisse toujours la possibilité de définir la durée du StressTest indépendamment de Gatling.
 
@@ -1879,16 +2009,18 @@ J'ai ajouté une entrée pour définir si un ventilateur est activé. Actuelleme
 
 Pour permettre de garder un certain contrôle, j'ai ajouté les informations de monitoring directement à côté du formulaire de lancement du test. Ainsi, il est possible de voir les valeurs de monitoring en temps réel et de surveiller le déroulement du test.
 
-### 16.1.1. Ventilateur 
+### 20.1.1. Ventilateur 
 <img src="../capture/RPI/Node-Red/RapportPDF/ventilateur-vintage-indola-5-scaled.jpg" alt="Alt text" width="100%" style="width:100%;">
 
-### 16.1.2. UI
+### 20.1.2. UI
 <img src="../capture/RPI/Node-Red/RapportPDF/11.png" alt="Alt text" width="100%" style="width:100%;">
+
+
 
 
 <div style="page-break-after: always;"></div>
 
-# 17. Remerciement 
+# 21. Remerciement 
 Je tiens à exprimer ma profonde gratitude envers les personnes qui ont joué des rôles essentiels dans la réalisation de ce projet. Avant tout, je souhaite exprimer ma sincère reconnaissance à M. Benoit Vianin, dont la proposition du projet, le matériel fourni et les conseils avisés ont été cruciaux pour sa mise en place. Sa précieuse assistance technique a été d'une grande importance.
 
 Je tiens également à adresser mes remerciements à M. Fabien Maire, Directeur du service Informatique du SIS2 (Service Informatique du Secondaire 2), pour son accompagnement et ses conseils tout au long de ce travail. Sa vision éclairée et son expertise ont été des facteurs clés dans la réussite de ce projet.
@@ -1906,7 +2038,7 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 
 <div style="page-break-after: always;"></div>
 
-# 18. Sources
+# 22. Sources
 
 1. **Guide d'Installation Node-Red**  
    [Installer Node-Red](https://nodered.org/docs/getting-started/raspberrypi)
