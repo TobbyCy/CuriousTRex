@@ -468,17 +468,24 @@ toblerc@LPT-UNIX-USB-CT:~$
 tobby@Volt:~$ sudo cp -r /home/tobby/html /var/www/
 ```
 ### 11.4.3. Script MQTT
+- Copie du script MQTT depuis la machine de développement vers Volt
 ```bash
 toblerc@LPT-UNIX-USB-CT:~/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique$ scp ./mqtt.sh tobby@157.26.228.77:/home/tobby
 mqtt.sh                                                                                                                                                                         100% 2522     1.7MB/s   00:00    
-toblerc@LPT-UNIX-USB-CT:~/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique$ 
+```
+- Copie du script MQTT dans le dossier /usr/local/bin/
+```bash
 tobby@Volt:~$ sudo cp ./mqtt.sh /usr/local/bin/
+```
+- Vérification
+```bash
 tobby@Volt:~$ ls -la /usr/local/bin/
 total 12
 drwxr-xr-x  2 root root 4096 Aug 23 10:26 .
 drwxr-xr-x 10 root root 4096 Aug  7 17:23 ..
 -rw-r--r--  1 root root 2522 Aug 23 10:26 mqtt.sh
 ```
+- Execution du script
 ```bash
 tobby@Volt:/usr/local/bin$ sudo ./mqtt.sh 
 Installation de mosquitto-clients...
@@ -491,7 +498,8 @@ Reading package lists... Done
 Reading package lists... Done
 Building dependency tree... Done
 [...]
-
+Activation du service...
+Service activé.
 ```
 
 <div style="page-break-after: always;"></div>
@@ -500,6 +508,8 @@ Building dependency tree... Done
 **Node-RED** est un outil de programmation visuelle open source conçu pour faciliter la connexion de périphériques, d'API et de services en ligne. Il propose un éditeur de flux basé sur un navigateur, permettant ainsi de connecter des nœuds à l'aide de simples glisser-déposer. Ces nœuds peuvent être exécutés dans un environnement Node.js. Ils peuvent être des fonctions JavaScript ou des modules npm, tels que node-red-contrib-gpio, node-red-contrib-sqlite, node-red-contrib-modbustcp, etc. En plus des nœuds de base fournis, Node-RED offre plus de 2000 nœuds supplémentaires créés par la communauté et prêts à être utilisés.
 
 ## 12.1. Instalation
+L'instalation de Node-Red se fait via le script officiel de Node-Red. Ce script permet d'installer Node-Red et Node.js, de configurer Node-Red et de l'activer comme service.
+Qui plus est on peut définir des utilisateurs et des mots de passe pour sécuriser Node-Red.
 ```bash
 tobby@Nidus:~ $ bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
 Running Node-RED install for user tobby at /home/tobby on debian
@@ -570,7 +580,7 @@ Created symlink /etc/systemd/system/multi-user.target.wants/nodered.service → 
 ### 12.2.2. Sécurisation de Node-Red
 Pour sécuriser Node-Red, il convient de modifier le fichier `settings.js`. Dans notre cas, nous utilisons la commande `node-red admin init`, ce qui permet, par exemple, de créer des paires utilisateur/mot de passe.
 
-De plus, il est recommandé, si nécessaire, d'ajouter un login au *Dashboard*.
+De plus, il est recommandé, si nécessaire, d'ajouter un login au *Dashboard*. #TODO
 
 ### 12.2.3. Suivi Git
 Afin de suivre le projet sur Git, il est nécessaire de configurer un utilisateur, générer des clés SSH, puis effectuer un *clone* du projet.
