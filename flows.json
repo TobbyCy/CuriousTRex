@@ -6930,7 +6930,8 @@
         "wires": [
             [
                 "3de8c7b1973545bb",
-                "648931f9266586ae"
+                "648931f9266586ae",
+                "f17409208b3c21e8"
             ]
         ]
     },
@@ -6948,7 +6949,9 @@
         "x": 2260,
         "y": 340,
         "wires": [
-            []
+            [
+                "c1b5d9552a6292e9"
+            ]
         ]
     },
     {
@@ -8421,7 +8424,8 @@
         "wires": [
             [
                 "96510d6bc4a88a3c",
-                "648931f9266586ae"
+                "648931f9266586ae",
+                "f17409208b3c21e8"
             ]
         ]
     },
@@ -8458,7 +8462,9 @@
         "x": 2250,
         "y": 300,
         "wires": [
-            []
+            [
+                "c1b5d9552a6292e9"
+            ]
         ]
     },
     {
@@ -8726,7 +8732,7 @@
         "type": "debug",
         "z": "3ddecfbaabd60ba5",
         "name": "Values_Chart",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -8743,7 +8749,7 @@
         "type": "debug",
         "z": "3ddecfbaabd60ba5",
         "name": "Values_PDF",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -8814,7 +8820,8 @@
         "wires": [
             [
                 "c17822d4517e2dae",
-                "648931f9266586ae"
+                "648931f9266586ae",
+                "f17409208b3c21e8"
             ]
         ]
     },
@@ -8832,7 +8839,9 @@
         "x": 2300,
         "y": 380,
         "wires": [
-            []
+            [
+                "c1b5d9552a6292e9"
+            ]
         ]
     },
     {
@@ -8938,7 +8947,7 @@
         "type": "debug",
         "z": "3ddecfbaabd60ba5",
         "name": "debug 4",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -8955,7 +8964,7 @@
         "type": "debug",
         "z": "3ddecfbaabd60ba5",
         "name": "debug 5",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -8989,7 +8998,7 @@
         "type": "debug",
         "z": "3ddecfbaabd60ba5",
         "name": "debug 6",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -9006,7 +9015,7 @@
         "type": "debug",
         "z": "3ddecfbaabd60ba5",
         "name": "debug 7",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -9023,7 +9032,7 @@
         "type": "debug",
         "z": "3ddecfbaabd60ba5",
         "name": "debug 8",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -9040,7 +9049,7 @@
         "type": "debug",
         "z": "3ddecfbaabd60ba5",
         "name": "debug 9",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -9057,7 +9066,7 @@
         "type": "debug",
         "z": "3ddecfbaabd60ba5",
         "name": "debug 10",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -9097,6 +9106,40 @@
                 "716e30395513dde2"
             ]
         ]
+    },
+    {
+        "id": "f17409208b3c21e8",
+        "type": "debug",
+        "z": "3ddecfbaabd60ba5",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2260,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "c1b5d9552a6292e9",
+        "type": "debug",
+        "z": "3ddecfbaabd60ba5",
+        "name": "debug 12",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2520,
+        "y": 340,
+        "wires": []
     },
     {
         "id": "9ba0d599c2412587",
