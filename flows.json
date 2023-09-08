@@ -8479,11 +8479,12 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 1030,
+        "x": 1050,
         "y": 1440,
         "wires": [
             [
-                "8cf6c16261947a90"
+                "8cf6c16261947a90",
+                "fb916f6d288fd361"
             ]
         ]
     },
@@ -9165,6 +9166,42 @@
                 "3f9aa754e519b6bf"
             ]
         ]
+    },
+    {
+        "id": "fb916f6d288fd361",
+        "type": "function",
+        "z": "3ddecfbaabd60ba5",
+        "name": "function 7",
+        "func": "// Fonction pour analyser les lignes du journal Gatling\nvar lines = msg.payload.split('\\n'); // Divise la charge utile en lignes individuelles et les stocke dans un tableau\nvar aggregatedLogs = {}; // Initialise un objet vide pour stocker les journaux agrégés\n\nfor (var i = 0; i < lines.length; i++) { // Parcourt chaque ligne du journal\n    var line = lines[i].trim(); // Supprime les espaces inutiles autour de la ligne\n\n    if (line !== \"\") { // Vérifie si la ligne n'est pas vide\n        var parts = line.split('\\t'); // Divise la ligne en morceaux en utilisant la tabulation comme séparateur\n        var logType = parts[0]; // Type de journal\n        var logName = parts[1]; // Nom de la requête\n\n        // Initialise un objet de journal agrégé si ce n'est pas déjà fait\n        if (!aggregatedLogs[logName]) {\n            aggregatedLogs[logName] = {\n                type: logType,\n                name: logName,\n                start: parseInt(parts[3]), // Heure de début convertie en nombre entier\n                end: parseInt(parts[4]), // Heure de fin convertie en nombre entier\n                status: parts[5], // Statut de la requête\n                error: parts[6], // Message d'erreur en cas d'échec\n                count: 0 // Compteur pour le nombre d'occurrences\n            };\n        }\n\n        // Met à jour les valeurs agrégées\n        aggregatedLogs[logName].count++;\n        aggregatedLogs[logName].end = parseInt(parts[4]); // Met à jour l'heure de fin (peut-être la dernière occurrence)\n    }\n}\n\n// Convertit l'objet agrégé en un tableau\nvar aggregatedLogsArray = Object.values(aggregatedLogs);\n\n// Envoyer les journaux agrégés en sortie\nmsg.payload = aggregatedLogsArray; // Stocke les journaux agrégés dans msg.payload\nreturn msg; // Renvoie le message modifié avec les journaux agrégés\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1180,
+        "y": 1480,
+        "wires": [
+            [
+                "69a8955c7555b481"
+            ]
+        ]
+    },
+    {
+        "id": "69a8955c7555b481",
+        "type": "debug",
+        "z": "3ddecfbaabd60ba5",
+        "name": "debug 13",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1380,
+        "y": 1500,
+        "wires": []
     },
     {
         "id": "9ba0d599c2412587",
