@@ -9255,7 +9255,7 @@
         "type": "function",
         "z": "3ddecfbaabd60ba5",
         "name": "function 8",
-        "func": "\nreturn msg;",
+        "func": "var count = global.get('count') || 0;\nmsg.payload = count;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
