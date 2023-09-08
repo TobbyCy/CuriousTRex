@@ -6749,7 +6749,7 @@
         "id": "4e2b38fbcc7da674",
         "type": "join",
         "z": "3ddecfbaabd60ba5",
-        "name": "Values",
+        "name": "Values_Volt",
         "mode": "custom",
         "build": "object",
         "property": "payload",
@@ -6759,23 +6759,18 @@
         "joinerType": "str",
         "accumulate": false,
         "timeout": "",
-        "count": "9",
+        "count": "4",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 1290,
-        "y": 580,
+        "x": 1330,
+        "y": 560,
         "wires": [
             [
-                "9a915e3fcad82fe5",
-                "7abd3e7a912ccedc",
                 "8e88bc82f50cac2f",
-                "5fcb7ef9b29fa1d1",
-                "4f2f7a8aa9ba24bb",
                 "7be259fe9744c2ef",
-                "035632eacefbd3cd",
                 "716e30395513dde2"
             ]
         ]
@@ -6915,8 +6910,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1600,
-        "y": 360,
+        "x": 1800,
+        "y": 340,
         "wires": [
             [
                 "1a702c563ebe672c"
@@ -6930,8 +6925,8 @@
         "name": "",
         "width": "1920",
         "height": "1920",
-        "x": 1830,
-        "y": 360,
+        "x": 2030,
+        "y": 340,
         "wires": [
             [
                 "3de8c7b1973545bb",
@@ -6950,57 +6945,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 2060,
-        "y": 360,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "7abd3e7a912ccedc",
-        "type": "function",
-        "z": "3ddecfbaabd60ba5",
-        "name": "Vertical Line Chart",
-        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload;\nvar delayInSeconds = msg.delay / 1000; // Conversion en secondes\n\n// Extraction des données nécessaires\nvar voltCpuData = rawData[\"volt/benchmark/cpu\"];\nvar voltRamData = rawData[\"volt/benchmark/ram\"];\nvar voltProcessesData = rawData[\"volt/benchmark/processes\"];\nvar voltTempData = rawData[\"volt/benchmark/temp\"];\nvar nidusCpuData = rawData[\"nidus/benchmark/cpu\"];\nvar nidusRamData = rawData[\"nidus/benchmark/ram\"];\nvar nidusProcessesData = rawData[\"nidus/benchmark/processes\"];\nvar nidusTempData = rawData[\"nidus/benchmark/temp\"];\n\n// Création du graphique\nvar chartData = {\n    type: 'line',  // Changement du type de graphique en \"line\"\n    options: {\n        scales: {\n            yAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }],\n            xAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }]\n        },\n        title: {\n            display: true,\n            text: 'Comparaison des performances'\n        },\n        legend: {\n            display: true\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        plugins: {\n            datalabels: {\n                display: false  // Désactiver l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels:Array.from({ length: voltCpuData.length }, (_, i) => (i * delayInSeconds).toFixed(1)),  // Temps en secondes\n        \n        datasets: [\n            {\n                label: \"Volt CPU\",\n                borderColor: 'rgba(0, 128, 255, 1)',  // Couleur de la ligne (couleur froide pour Volt)\n                fill: false,  // Désactiver le remplissage sous la ligne\n                data: voltCpuData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Volt RAM\",\n                borderColor: 'rgba(0, 255, 128, 1)',\n                fill: false,\n                data: voltRamData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Volt Temp\",\n                borderColor: 'rgba(255, 193, 37, 1)',\n                fill: false,\n                data: voltTempData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Nidus CPU\",\n                borderColor: 'rgba(255, 69, 0, 1)',\n                fill: false,\n                data: nidusCpuData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Nidus RAM\",\n                borderColor: 'rgba(255, 165, 0, 1)',\n                fill: false,\n                data: nidusRamData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Nidus Temp\",\n                borderColor: 'rgba(255, 0, 0, 1)',\n                fill: false,\n                data: nidusTempData,\n                pointRadius: 0,\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1550,
-        "y": 480,
-        "wires": [
-            [
-                "97f0d2ca59edaebb"
-            ]
-        ]
-    },
-    {
-        "id": "97f0d2ca59edaebb",
-        "type": "chart-image",
-        "z": "3ddecfbaabd60ba5",
-        "name": "",
-        "width": "1920",
-        "height": "1080",
-        "x": 1770,
-        "y": 480,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "506deca00d6d721a",
-        "type": "file",
-        "z": "3ddecfbaabd60ba5",
-        "name": "Image dump",
-        "filename": "/home/NodeRed/line.png",
-        "filenameType": "msg",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "true",
-        "encoding": "none",
-        "x": 2050,
-        "y": 480,
+        "x": 2260,
+        "y": 340,
         "wires": [
             []
         ]
@@ -7012,8 +6958,8 @@
         "name": "",
         "width": "1920",
         "height": "1920",
-        "x": 1770,
-        "y": 520,
+        "x": 1970,
+        "y": 540,
         "wires": [
             [
                 "dd1e6a5c8dd54193",
@@ -7032,8 +6978,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 2050,
-        "y": 520,
+        "x": 2250,
+        "y": 540,
         "wires": [
             []
         ]
@@ -7045,8 +6991,8 @@
         "name": "",
         "width": "1920",
         "height": "1920",
-        "x": 1770,
-        "y": 560,
+        "x": 1970,
+        "y": 580,
         "wires": [
             [
                 "306f405893baae9d",
@@ -7065,8 +7011,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 2050,
-        "y": 560,
+        "x": 2250,
+        "y": 580,
         "wires": [
             []
         ]
@@ -7082,8 +7028,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1550,
-        "y": 560,
+        "x": 1750,
+        "y": 580,
         "wires": [
             [
                 "22465f6cd8c94555"
@@ -7101,8 +7047,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1540,
-        "y": 520,
+        "x": 1740,
+        "y": 540,
         "wires": [
             [
                 "174a1101b2f9c22a"
@@ -7718,8 +7664,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1540,
-        "y": 440,
+        "x": 1740,
+        "y": 460,
         "wires": [
             [
                 "73659a47db81fffa"
@@ -7733,8 +7679,8 @@
         "name": "",
         "width": "1920",
         "height": "1920",
-        "x": 1830,
-        "y": 440,
+        "x": 2030,
+        "y": 460,
         "wires": [
             [
                 "f53a9c270f0476dd",
@@ -7753,8 +7699,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 2040,
-        "y": 440,
+        "x": 2240,
+        "y": 460,
         "wires": [
             []
         ]
@@ -8452,11 +8398,14 @@
         "links": [
             "c89add291df1506b"
         ],
-        "x": 1025,
-        "y": 580,
+        "x": 1465,
+        "y": 320,
         "wires": [
             [
-                "4e2b38fbcc7da674"
+                "4f2f7a8aa9ba24bb",
+                "9a915e3fcad82fe5",
+                "035632eacefbd3cd",
+                "716e30395513dde2"
             ]
         ]
     },
@@ -8467,8 +8416,8 @@
         "name": "",
         "width": "1920",
         "height": "1920",
-        "x": 1830,
-        "y": 280,
+        "x": 2030,
+        "y": 300,
         "wires": [
             [
                 "96510d6bc4a88a3c",
@@ -8487,8 +8436,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1540,
-        "y": 280,
+        "x": 1740,
+        "y": 300,
         "wires": [
             [
                 "e83ee25f95ec96b8"
@@ -8506,8 +8455,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 2050,
-        "y": 280,
+        "x": 2250,
+        "y": 300,
         "wires": [
             []
         ]
@@ -8603,7 +8552,7 @@
         "z": "3ddecfbaabd60ba5",
         "name": "Volt CPU",
         "x": 980,
-        "y": 620,
+        "y": 600,
         "wires": [
             [
                 "4e2b38fbcc7da674",
@@ -8617,7 +8566,7 @@
         "z": "3ddecfbaabd60ba5",
         "name": "Volt RAM",
         "x": 980,
-        "y": 660,
+        "y": 640,
         "wires": [
             [
                 "4e2b38fbcc7da674",
@@ -8631,7 +8580,7 @@
         "z": "3ddecfbaabd60ba5",
         "name": "Volt Process",
         "x": 990,
-        "y": 700,
+        "y": 680,
         "wires": [
             [
                 "4e2b38fbcc7da674",
@@ -8645,7 +8594,7 @@
         "z": "3ddecfbaabd60ba5",
         "name": "Volt Température",
         "x": 1010,
-        "y": 740,
+        "y": 720,
         "wires": [
             [
                 "4e2b38fbcc7da674",
@@ -8662,8 +8611,8 @@
         "y": 780,
         "wires": [
             [
-                "4e2b38fbcc7da674",
-                "47bc06039d5e9985"
+                "47bc06039d5e9985",
+                "14ee02e87481c6b6"
             ]
         ]
     },
@@ -8676,8 +8625,8 @@
         "y": 820,
         "wires": [
             [
-                "4e2b38fbcc7da674",
-                "47bc06039d5e9985"
+                "47bc06039d5e9985",
+                "14ee02e87481c6b6"
             ]
         ]
     },
@@ -8690,8 +8639,8 @@
         "y": 860,
         "wires": [
             [
-                "4e2b38fbcc7da674",
-                "47bc06039d5e9985"
+                "47bc06039d5e9985",
+                "14ee02e87481c6b6"
             ]
         ]
     },
@@ -8704,8 +8653,8 @@
         "y": 900,
         "wires": [
             [
-                "4e2b38fbcc7da674",
-                "47bc06039d5e9985"
+                "47bc06039d5e9985",
+                "14ee02e87481c6b6"
             ]
         ]
     },
@@ -8845,12 +8794,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1590,
-        "y": 400,
+        "x": 1790,
+        "y": 380,
         "wires": [
             [
-                "a83bcdc5677662ee",
-                "716e30395513dde2"
+                "a83bcdc5677662ee"
             ]
         ]
     },
@@ -8861,8 +8809,8 @@
         "name": "",
         "width": "1920",
         "height": "1920",
-        "x": 1830,
-        "y": 400,
+        "x": 2030,
+        "y": 380,
         "wires": [
             [
                 "c17822d4517e2dae",
@@ -8881,8 +8829,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 2100,
-        "y": 400,
+        "x": 2300,
+        "y": 380,
         "wires": [
             []
         ]
@@ -8964,8 +8912,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1820,
-        "y": 160,
+        "x": 1800,
+        "y": 180,
         "wires": []
     },
     {
@@ -9120,6 +9068,35 @@
         "x": 1920,
         "y": 1360,
         "wires": []
+    },
+    {
+        "id": "14ee02e87481c6b6",
+        "type": "join",
+        "z": "3ddecfbaabd60ba5",
+        "name": "Values_Nidus",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "4",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1340,
+        "y": 600,
+        "wires": [
+            [
+                "5fcb7ef9b29fa1d1",
+                "716e30395513dde2"
+            ]
+        ]
     },
     {
         "id": "9ba0d599c2412587",
