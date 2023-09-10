@@ -225,7 +225,7 @@ En plus des raspberry il y a ma machine de développement qui se trouve être mo
 
 <br><br><br><br><br>
 <div style="text-align:center;">
-<img src="./LogoOpenSuse.jpg" alt="Image" width="60%" style="width:100%;">
+<img src="./LogoOpenSuse.jpg" alt="Image" width="100%" style="width:60%;">
 </div>
 <div style="page-break-after: always;"></div>
 
