@@ -224,9 +224,9 @@ En plus des raspberry il y a ma machine de développement qui se trouve être mo
 - LPT-UNIX-USB-CT
 
 <br><br><br><br><br>
-
-<img src="./LogoOpenSuse.jpg" alt="Image" width="100%" style="width:100%;">
-
+<div style="text-align:center;">
+<img src="./LogoOpenSuse.jpg" alt="Image" width="60%" style="width:100%;">
+</div>
 <div style="page-break-after: always;"></div>
 
 ## 6.2. Volt
@@ -242,7 +242,7 @@ Au niveau de la répartition du materiel, Volt est composé de :
 ---
 
 <div style="text-align:center;">
-    <img src="../capture/Volt.jpg" alt="Image" width="80%" style="width:80%;margin-left: auto;margin-right: auto;">
+    <img src="../capture/Volt.jpg" alt="Image" width="80%" style="width:80%;">
 </div>
 <div style="page-break-after: always;"></div>
 
