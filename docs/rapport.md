@@ -241,9 +241,8 @@ Au niveau de la répartition du materiel, Volt est composé de :
 
 ---
 
-<img src="../capture/Volt.jpg" alt="Image" width="80%" style="width:80%;">
 <div style="text-align:center;">
-    <img src="../capture/Volt.jpg" alt="Image" width="80%" style="width:80%;">
+    <img src="../capture/Volt.jpg" alt="Image" width="80%" style="width:80%;margin-left: auto;margin-right: auto;">
 </div>
 <div style="page-break-after: always;"></div>
 
