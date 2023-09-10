@@ -33,7 +33,7 @@
     - [4.2.3. Génération de rapports sur la performance](#423-génération-de-rapports-sur-la-performance)
 - [5. Caractéristiques](#5-caractéristiques)
   - [5.1. Génération de trafic web](#51-génération-de-trafic-web)
-  - [5.2. Mesure de la consommation électrique (INA219)](#52-mesure-de-la-consommation-électrique-ina219)
+  - [5.2. Mesure de la consommation électrique (**INA219**)](#52-mesure-de-la-consommation-électrique-ina219)
   - [5.3. Mesure de la consommation](#53-mesure-de-la-consommation)
 - [6. Matériel](#6-matériel)
   - [6.1. Nomenclature](#61-nomenclature)
@@ -64,13 +64,17 @@
   - [12.3. TWI ou TWSI](#123-twi-ou-twsi)
 - [13. Node-RED](#13-node-red)
   - [13.1. Introduction](#131-introduction)
-    - [13.1.1. La Programmation de Flux](#1311-la-programmation-de-flux)
-    - [13.1.2. FlowFuse](#1312-flowfuse)
-  - [13.2. Instalation](#132-instalation)
-  - [13.3. Configuration](#133-configuration)
-    - [13.3.1. Installation des plugins](#1331-installation-des-plugins)
-    - [13.3.2. Sécurisation de Node-Red](#1332-sécurisation-de-node-red)
-    - [13.3.3. Suivi Git](#1333-suivi-git)
+  - [13.2. Node.js](#132-nodejs)
+  - [13.3. FlowFuse](#133-flowfuse)
+  - [13.4. La Programmation par Flux](#134-la-programmation-par-flux)
+    - [13.4.1. Comprendre les Flux](#1341-comprendre-les-flux)
+    - [13.4.2. Différences avec la Programmation Orientée Objet](#1342-différences-avec-la-programmation-orientée-objet)
+    - [13.4.3. Conclusion](#1343-conclusion)
+  - [13.5. Instalation](#135-instalation)
+  - [13.6. Configuration](#136-configuration)
+    - [13.6.1. Installation des plugins](#1361-installation-des-plugins)
+    - [13.6.2. Sécurisation de Node-Red](#1362-sécurisation-de-node-red)
+    - [13.6.3. Suivi Git](#1363-suivi-git)
 - [14. Gatling](#14-gatling)
   - [14.1. Installation](#141-installation)
     - [14.1.1. Prerequis](#1411-prerequis)
@@ -96,7 +100,7 @@
     - [17.1.2. Branchement AVEC VOLT](#1712-branchement-avec-volt)
     - [17.1.3. Vérification de la présence du INA219](#1713-vérification-de-la-présence-du-ina219)
   - [17.2. Obtention des données](#172-obtention-des-données)
-    - [17.2.1. Test avec le script python A vide](#1721-test-avec-le-script-python-a-vide)
+    - [17.2.1. Test avec le un script python](#1721-test-avec-le-un-script-python)
 - [18. Noeud Node-Red](#18-noeud-node-red)
   - [18.1. Dashboard](#181-dashboard)
   - [18.2. INA219](#182-ina219)
@@ -187,7 +191,7 @@ Utilisation de l'outil Gatling comme générateur de trafic web. Gatling permett
 
 
 
-## 5.2. Mesure de la consommation électrique (INA219)
+## 5.2. Mesure de la consommation électrique (**INA219**)
 
 Utilisation d'un chip INA219 ou autre connectée via le bus I2C pour mesurer la consommation de manière précise et fiable. La chip INA219 fournira des informations détaillées sur la consommation d'énergie en mesurant la tension et le courant du système testé.
 
@@ -198,30 +202,30 @@ Utilisation d’un serveur Node-Red pour son environnement low-code pour les app
 <div style="page-break-after: always;"></div>
 
 # 6. Matériel
-- 2x Radiateur pour Raspberry Pi 4
-- 2x Raspberry Pi 4 /4GB RAM / 64GB SD
-- 2x Bloc d'alimentation Raspberry Pi 4
-- 2x Carte Micro SD 64GB
-- 2x cable RJ45 violet
-- 1x cable Micro HDMI - HDMI
-- 1x Plaque d'essai
-- 1x set de câbles de connexion
-- 2x Platine de mesure INA219
-- 2x câble USB-C Femelle 
-- 2x câble USB-C Mâle
+- **2x** Radiateur pour Raspberry Pi 4
+- **2x** Raspberry Pi 4 /4GB RAM / 64GB SD
+- **2x** Bloc d'alimentation Raspberry Pi 4
+- **2x** Carte Micro SD 64GB
+- **2x** cable RJ45 rose
+- **1x** cable Micro HDMI - HDMI
+- **1x** Plaque d'essai
+- **1x** set de câbles de connexion
+- **2x** Platine de mesure INA219
+- **2x** câble USB-C Femelle 
+- **2x** câble USB-C Mâle
 
 ## 6.1. Nomenclature
 
 Pour simplifier la lecture du rapport ainsi que le travail, les Raspberry Pi seront nommés comme suit :
-- Volt : Serveur Web
-- Nidus : Serveur de monitoring
+- **Volt** : Serveur Web
+- **Nidus** : Serveur de monitoring
 
 Au niveau des hostname, les Raspberry Pi seront nommés comme suit :
-- Volt : volt.s2.rpn.ch
-- Nidus : nidus.s2.rpn.ch
+- **Volt** : volt.s2.rpn.ch
+- **Nidus** : nidus.s2.rpn.ch
 
 En plus des raspberry il y a ma machine de développement qui se trouve être mon laptop personnel qui tourne sous un Kubuntu 22.04. Cette machine est nommé comme suit :
-- LPT-UNIX-USB-CT
+- **LPT-UNIX-USB-CT**
 
 <br><br><br><br><br>
 <div style="text-align:center;">
@@ -232,17 +236,17 @@ En plus des raspberry il y a ma machine de développement qui se trouve être mo
 ## 6.2. Volt
 
 Au niveau de la répartition du materiel, Volt est composé de :
-1. Cable HDMI - Micro HDMI
-2. Raspberry PI 4
-3. Bloc d'alimentation pour Raspberry PI 4
-4. Carte Micro SD 64GB
-5. Radiateur pour Raspberry Pi 4
-6. Set de vis et de gomme pour le radiateur
+- **1.** Cable HDMI - Micro HDMI
+- **2.** Raspberry PI 4
+- **3.** Bloc d'alimentation pour Raspberry PI 4
+- **4.** Carte Micro SD 64GB
+- **5.** Radiateur pour Raspberry Pi 4
+- **6.** Set de vis et de gomme pour le radiateur
 
 ---
 
 <div style="text-align:center;">
-    <img src="../capture/Volt.jpg" alt="Image" width="80%" style="width:80%;">
+    <img src="../capture/Volt.jpg" alt="Image" width="100%" style="width:80%;">
 </div>
 <div style="page-break-after: always;"></div>
 
@@ -250,14 +254,14 @@ Au niveau de la répartition du materiel, Volt est composé de :
 
 Le materiel de Nidus est composé de :
 
-1. Set de cable de connexion
-2. Plaque d'essai
-3. Alimentation pour Raspberry Pi 4
-4. Rallonge USB-C coupé en deux
-5. INA219
-6. Raspberry Pi 4 et sa carte Micro SD 64GB
-7. Radiateur pour Raspberry Pi 4
-8. Set de vis et de gomme pour le radiateur
+- **1.** Set de cable de connexion
+- **2.** Plaque d'essai
+- **3.** Alimentation pour Raspberry Pi 4
+- **4.** Rallonge USB-C coupé en deux
+- **5.** INA219
+- **6.** Raspberry Pi 4 et sa carte Micro SD 64GB
+- **7.** Radiateur pour Raspberry Pi 4
+- **8.** Set de vis et de gomme pour le radiateur
 
 ---
 
@@ -266,40 +270,41 @@ Le materiel de Nidus est composé de :
 <div style="page-break-after: always;"></div>
 
 ## 6.4. INA219
-Il s'agit d'une seconde puce INA219 qui a été commandé pour le projet, pour pouvoir changer la puce INA219 en cas de problème. Au cas ou le projet prend de l'ampleur, il est aussi possible à terme de mettre plusieurs INA219 sur le même bus I2C.
+Il s'agit d'une seconde puce **INA219** qui a été commandé pour le projet, pour pouvoir changer la puce **INA219** en cas de problème. Au cas ou le projet prend de l'ampleur, il est aussi possible à terme de mettre plusieurs INA219 sur le même bus **I2C**.
 
----
 
-<img src="../capture/INA219-2.jpg" alt="Image" width="100%" style="width:100%;">
-
-<div style="page-break-after: always;"></div>
+<div style="text-align:center;">
+<img src="../capture/INA219-2.jpg" alt="Image" width="100%" style="width:50%;">
+</div>
+<br><br><br>
 
 ## 6.5. RJ45
-En reserve, deux cable RJ45 violet ont été commandé pour le projet.
+En reserve, deux cable **RJ45** rose ont été commandé pour le projet.
 
----
 
-<img src="../capture/RJ45.jpg" alt="Image" width="100%" style="width:100%;">
+<div style="text-align:center;">
+<img src="../capture/RJ45.jpg" alt="Image" width="100%" style="width:50%;">
+</div>
 
 <div style="page-break-after: always;"></div>
 
 # 7. Budget
-En ce qui concerne le budget, je vais fournir les prix de Digitec/Galaxus pour donner une idée des coûts si l'on souhaite reproduire le projet. Dans mon cas, c'est M. Viannin qui a effectué les achats auprès de ces fournisseurs. Il est possible que les prix ne correspondent pas exactement à ceux que j'ai indiqués.
+En ce qui concerne le budget, je vais fournir les prix de **Digitec/Galaxus** pour donner une idée des coûts si l'on souhaite reproduire le projet. Dans mon cas, c'est M. Viannin qui a effectué les achats auprès de ces fournisseurs. Il est possible que les prix ne correspondent pas exactement à ceux que j'ai indiqués.
 
 ---
 
 | Matériel                                                                                                                                                                                                                            | Quantité | Prix Par Unité | Prix Total |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | -------------- | ---------- |
-| [Raspberry Pi Câble officiel blanc Micro-HDMI vers HDMI 1M pour Raspberry Pi 4](https://www.digitec.ch/fr/s1/product/raspberry-pi-cable-officiel-blanc-micro-hdmi-vers-hdmi-1m-pour-raspberry-pi-4-type-a-accessoires-ele-24227466) | 1X       | 12.90          | 12.90      |
-| [RASPBERRY Radiateur](https://www.digitec.ch/fr/s1/product/intertech-raspberry-boitier-ods-721-pi4-modele-b-divers-accessoires-electroniques-boitier-18233601)                                                                      | 2X       | 25.80          | 51.60      |
-| [Raspberry Pi 4 4G Modèle B ARMv8](https://www.digitec.ch/fr/s1/product/raspberry-pi-4-2g-modele-b-armv8-carte-de-developpement-kit-11267870)                                                                                       | 2X       | 87.–           | 174.–      |
-| [Official Raspberry Pi 4 Power Adapter](https://www.digitec.ch/fr/s1/product/raspberry-pi-official-raspberry-pi-4-power-adapter-carte-de-developpement-kit-11268330)                                                                | 2X       | 13.90          | 27.80      |
-| [microSDXC, 64 Go, U3, UHS-I  ](https://www.digitec.ch/fr/s1/product/sandisk-microsdxc-high-endurance-monitoring-microsdxc-64-go-u3-uhs-i-carte-memoire-11141387)                                                                   | 2X       | 14.90          | 29.80      |
-| [Carte enfichable à grille de trous Breadboard ZY-60](https://www.digitec.ch/fr/s1/product/oem-carte-enfichable-a-grille-de-trous-breadboard-zy-60-planche-a-pain-accessoires-electroniques-boi-5999412)                            | 1X       | 18.90          | 18.90      |
-| [INA219 ](https://www.digitec.ch/fr/s1/product/adafruit-ina219-detecteur-module-electronique-8027636)                                                                                                                               | 2X       | 17.90          | 35.80      |
-| [MikroElektronika Fils de connexion](https://www.digitec.ch/fr/s1/product/mikroelektronika-fils-de-connexion-pour-perfboard-cable-prise-electronique-10125053)                                                                      | 1X       | 13.-           | 13.-       |
-| [Cable RJ45 violet court](https://www.digitec.ch/fr/s1/product/violet-015-metre-lszh-uutp-cat6-datacenter-slimline-patch-cable-snagless-with-rj45-connectors-uutp-u-24167092)                                                       | 2X       | 9.75           | 19.50      |
-| [Cable USB-C Mâle-Femelle](https://www.digitec.ch/fr/s1/product/renkforce-cable-usb-32-gen2x2-usb-c-male-usb-c-femelle-200-m-noir-gaine-pvc-2-m-cable-usb-24206671)                                                                 | 2X       | 14.95          | 29.90      |
+| [**Raspberry Pi Câble officiel blanc Micro-HDMI vers HDMI 1M pour Raspberry Pi 4**](https://www.digitec.ch/fr/s1/product/raspberry-pi-cable-officiel-blanc-micro-hdmi-vers-hdmi-1m-pour-raspberry-pi-4-type-a-accessoires-ele-24227466) | 1X       | 12.90          | 12.90      |
+| [**RASPBERRY Radiateur**](https://www.digitec.ch/fr/s1/product/intertech-raspberry-boitier-ods-721-pi4-modele-b-divers-accessoires-electroniques-boitier-18233601)                                                                      | 2X       | 25.80          | 51.60      |
+| [**Raspberry Pi 4 4G Modèle B ARMv8**](https://www.digitec.ch/fr/s1/product/raspberry-pi-4-2g-modele-b-armv8-carte-de-developpement-kit-11267870)                                                                                       | 2X       | 87.–           | 174.–      |
+| [**Official Raspberry Pi 4 Power Adapter**](https://www.digitec.ch/fr/s1/product/raspberry-pi-official-raspberry-pi-4-power-adapter-carte-de-developpement-kit-11268330)                                                                | 2X       | 13.90          | 27.80      |
+| [**microSDXC, 64 Go, U3, UHS-I**](https://www.digitec.ch/fr/s1/product/sandisk-microsdxc-high-endurance-monitoring-microsdxc-64-go-u3-uhs-i-carte-memoire-11141387)                                                                   | 2X       | 14.90          | 29.80      |
+| [**Carte enfichable à grille de trous Breadboard ZY-60**](https://www.digitec.ch/fr/s1/product/oem-carte-enfichable-a-grille-de-trous-breadboard-zy-60-planche-a-pain-accessoires-electroniques-boi-5999412)                            | 1X       | 18.90          | 18.90      |
+| [**INA219**](https://www.digitec.ch/fr/s1/product/adafruit-ina219-detecteur-module-electronique-8027636)                                                                                                                               | 2X       | 17.90          | 35.80      |
+| [**MikroElektronika Fils de connexion**](https://www.digitec.ch/fr/s1/product/mikroelektronika-fils-de-connexion-pour-perfboard-cable-prise-electronique-10125053)                                                                      | 1X       | 13.-           | 13.-       |
+| [**Cable RJ45 violet court**](https://www.digitec.ch/fr/s1/product/violet-015-metre-lszh-uutp-cat6-datacenter-slimline-patch-cable-snagless-with-rj45-connectors-uutp-u-24167092)                                                       | 2X       | 9.75           | 19.50      |
+| [**Cable USB-C Mâle-Femelle**](https://www.digitec.ch/fr/s1/product/renkforce-cable-usb-32-gen2x2-usb-c-male-usb-c-femelle-200-m-noir-gaine-pvc-2-m-cable-usb-24206671)                                                                 | 2X       | 14.95          | 29.90      |
 | **Total**                                                                                                                                                                                                                              |          |                | 433.20     |
 
 ---
@@ -414,13 +419,13 @@ gantt
 
 # 10. Shéma de principe
 
-Explication : Actuellement le but est que Nidus offre tout les outil pour le monittoring incluant le MQTT, Node-Red, Gatling et l'INA219. Volt lui ne sert que de serveur web pour le site web. Le but est de pouvoir faire des test de charge sur le site web et de pouvoir mesurer la consommation électrique du serveur web.
-De fais toute intéraction de l'utilisateur se fait avec Nidus.
-Nidus envoie ses donnée de monittoring sur le serveur MQTT installé sur Nidus, et Node-Red installé sur Nidus récupère les données du serveur MQTT et les envoie dans des noeud fais pour le traiter et fournir ensuite les sortie appropié :
-- Dashboard : Pour l'utilisateur
-- PDF : Pour l'utilisateur
+Le but est que **Nidus** offre tout les outil pour le monittoring incluant le **MQTT**, **Node-Red**, **Gatling** et l'**INA219**. **Volt** lui ne sert que de serveur web pour le site web. Le but est de pouvoir faire des test de charge sur le site web et de pouvoir mesurer la consommation électrique du serveur web.
+De fais toute intéraction de l'utilisateur se fait avec **Nidus**.
+**Nidus** et **Volt** envoie leurs donnée de monittoring sur le serveur **MQTT** installé sur **Nidus**, et **Node-Red** installé sur **Nidus** récupère les données du serveur **MQTT** et les envoie dans des noeud fais pour le traiter et fournir ensuite les sortie appropié :
+- **Dashboard** : Pour l'utilisateur
+- **PDF** : Pour l'utilisateur
 
-Nidus peut dans un second temps lancer des stresstest via Node-Red sur lui même et sur Volt. Il peut aussi lancer des stresstest sur Volt via Gatling.
+**Nidus** peut dans un second temps lancer des stresstest via **Node-Red** sur lui même et sur **Volt**. Il peut aussi lancer des stresstest sur **Volt** via **Gatling**.
 
 ## 10.1. Shéma de principe visuel
 
@@ -431,23 +436,23 @@ Nidus peut dans un second temps lancer des stresstest via Node-Red sur lui même
 # 11. Systèmes d'exploitation (OS)
 Dans le cadre de ce projet, plusieurs systèmes d'exploitation seront utilisés. Pour commencer, nous utiliserons Ubuntu.
 ## 11.1. Ubuntu
-Ubuntu est un système d'exploitation largement utilisé pour les serveurs et les ordinateurs de bureau. Il est livré avec un ensemble d'outils de développement et de productivité, notamment un navigateur Web, un éditeur de texte, des logiciels de programmation, des outils de calcul, des jeux et des logiciels de productivité. Ubuntu propose un environnement de bureau léger et réactif, conçu tant pour les ordinateurs de bureau que pour les serveurs.
+*Ubuntu* est un système d'exploitation largement utilisé pour les serveurs et les ordinateurs de bureau. Il est livré avec un ensemble d'outils de développement et de productivité, notamment un navigateur Web, un éditeur de texte, des logiciels de programmation, des outils de calcul, des jeux et des logiciels de productivité. *Ubuntu* propose un environnement de bureau léger et réactif, conçu tant pour les ordinateurs de bureau que pour les serveurs.
 ## 11.2. Raspberry Pi OS (Raspbian)
 Raspbian est un système d'exploitation libre basé sur Debian, spécialement optimisé pour le Raspberry Pi. Depuis 2015, Raspbian est livré avec un ensemble d'outils appelé Pixel. Pixel offre un environnement de bureau comprenant un navigateur Web, un éditeur de texte, des logiciels de programmation, des outils de calcul, des jeux et des logiciels de productivité. Pixel est un environnement de bureau léger et réactif, conçu spécifiquement pour les ordinateurs monocarte Raspberry Pi.
 
-Jusqu'en 2020, Raspberry Pi OS était connu sous le nom de Raspbian. Le nom a été changé pour plus de clarté et pour éviter toute confusion cependant malgré cela, ayant déja beaucoup travaillé avec Raspbian, et le fais que les blog et rapport continue d'utiliser le nom de Raspbian, je vais me permettre de faire de même et de garder le nom de Raspbian pour le reste du rapport.
+Jusqu'en 2020, **Raspberry Pi OS** était connu sous le nom de **Raspbian**. Le nom a été changé pour plus de clarté et pour éviter toute confusion cependant malgré cela, ayant déja beaucoup travaillé avec Raspbian, et le fais que les blog et rapport continue d'utiliser le nom de Raspbian, je vais me permettre de faire de même et de garder le nom de Raspbian pour le reste du rapport.
 
 ## 11.3. Première installation
 Dans un premier temps, nous allons installer la version bureau d'Ubuntu sur Volt. Cette décision est motivée par le fait qu'il est plus simple de travailler dans un environnement de bureau pour tester rapidement tous les concepts du projet.
 
 Sur Nidus, Raspbian en version bureau sera installé pour des raisons similaires à celles de Volt.
 
-Un élément crucial à noter est que, étant donné que l'INA219 sera connecté à Nidus, il est plus pratique d'installer Raspbian sur Nidus afin d'avoir accès aux broches GPIO.
+Un élément crucial à noter est que, étant donné que l'INA219 sera connecté à Nidus, il est plus pratique d'installer Raspbian sur Nidus afin d'avoir accès aux broches GPIO notamment grâce à Node-Red mieux implémenté sur Raspbian.
 
-Dans un second temps, pour obtenir des mesures plus précises, nous installerons les versions « core » d'Ubuntu et de Raspbian.
+Dans un second temps, pour obtenir des mesures plus précises, nous installerons les versions « **core** » d'Ubuntu et de Raspbian.
 
-- Adresse IP de Volt : 157.26.228.77
-- Adresse IP de Nidus : 157.26.251.185
+- Adresse IP de **Volt** : 157.26.228.77
+- Adresse IP de **Nidus** : 157.26.251.185
 
 
 <div style="page-break-after: always;"></div>
@@ -594,19 +599,53 @@ Il est important de noter que le bus I²C est également connu sous d'autres nom
 
 # 13. Node-RED
 ## 13.1. Introduction
-**Node-RED** est un outil de programmation visuelle open source conçu pour simplifier la connectivité entre les périphériques, les API et les services en ligne. Il offre un éditeur de flux basé sur un navigateur, permettant de connecter des nœuds simplement en les faisant glisser et déposer. Ces nœuds peuvent s'exécuter dans un environnement Node.js. Ils peuvent être des fonctions JavaScript ou des modules npm, tels que node-red-contrib-gpio, node-red-contrib-sqlite, node-red-contrib-modbustcp, etc. En plus des nœuds de base, Node-RED propose une bibliothèque de plus de 2000 nœuds supplémentaires créés par la communauté et prêts à l'emploi.
+**Node-RED** est un outil de programmation visuelle open source conçu pour simplifier la connectivité entre les périphériques, les **API** et les services en ligne. Il offre un éditeur de flux basé sur un navigateur, permettant de connecter des nœuds simplement en les faisant glisser et déposer. Ces nœuds peuvent s'exécuter dans un environnement **Node.js**. Ils peuvent être des fonctions **JavaScript** ou des modules **npm**(gestionaire de paquet JavaScript), tels que node-red-contrib-gpio, node-red-contrib-sqlite, node-red-contrib-modbustcp, etc. En plus des nœuds de base, Node-RED propose une bibliothèque de plus de 2000 nœuds supplémentaires créés par la communauté et prêts à l'emploi.
 
-### 13.1.1. La Programmation de Flux
+## 13.2. Node.js
 
-La programmation de flux est le cœur de Node-RED. Elle permet de créer des applications en assemblant des nœuds qui représentent des fonctions ou des services. Les flux de données sont gérés visuellement, ce qui rend le développement plus accessible, même pour ceux qui ne sont pas des programmeurs expérimentés. En reliant des nœuds entre eux, il est possible de spécifier comment les données doivent circuler et être transformées tout au long de l'application.
+Node.js est une plateforme logicielle libre qui révolutionne le développement web en utilisant JavaScript côté serveur. Elle est conçue pour des applications réseau événementielles hautement concurrentes, tirant parti de la machine virtuelle V8 de Google et de la bibliothèque libuv. Node.js offre un environnement asynchrone idéal pour le développement de serveurs HTTP. Des entreprises de premier plan comme Netflix, Microsoft et PayPal font confiance à Node.js pour leurs projets web à grande échelle.
 
-### 13.1.2. [FlowFuse](https://flowfuse.com/)
+Node-RED repose sur Node.js en raison des avantages qu'offre cette plateforme. Node.js est connu pour sa performance exceptionnelle et son modèle asynchrone, ce qui en fait un choix idéal pour les applications réseau événementielles à haute concurrence comme Node-RED.
+
+## 13.3. [FlowFuse](https://flowfuse.com/)
 
 FlowFuse est une entreprise spécialisée dans l'hébergement et le DevOps pour Node-RED. Elle permet de professionnaliser l'utilisation de Node-RED, en le sortant des projets de preuve de concept pour le déployer dans des environnements de production. FlowFuse offre des services d'hébergement sécurisé, de surveillance, de sauvegarde et de mise à l'échelle pour Node-RED, ce qui en fait une solution idéale pour les entreprises cherchant à tirer pleinement parti de cet outil puissant de programmation visuelle. Avec FlowFuse, Node-RED peut être utilisé de manière fiable et professionnelle pour des applications de grande envergure.
 
-Node-RED est bien plus qu'un simple outil de prototypage. C'est une solution flexible et puissante pour la création d'applications IoT, d'automatisation domestique, de traitement des données et bien plus encore. Que vous souhaitiez simplement expérimenter avec des idées de projet ou déployer des solutions dans un environnement de production, Node-RED et des entreprises comme FlowFuse vous permettent d'aller plus loin dans la réalisation de vos objectifs.
+Node-RED est bien plus qu'un simple outil de prototypage. C'est une solution flexible et puissante pour la création d'applications IoT, d'automatisation domestique, de traitement des données et bien plus encore. 
 
-## 13.2. Instalation
+A terme il peut être interessant d'utiliser FlowFuse pour le projet, mais pour le moment, nous allons utiliser Node-RED en local sur Nidus.
+
+<div style="page-break-after: always;"></div>
+
+## 13.4. La Programmation par Flux
+La programmation par flux, également connue sous le nom de programmation réactive, est un paradigme de programmation qui se différencie considérablement de la programmation orientée objet traditionnelle. Cette approche est de plus en plus populaire dans le développement de logiciels, en particulier pour la gestion d'événements asynchrones et la manipulation de flux de données en temps réel.
+
+### 13.4.1. Comprendre les Flux
+
+Dans la programmation par flux, les données sont considérées comme des flux continus plutôt que des objets statiques. Un flux est essentiellement une séquence d'événements ou de données qui peuvent être observés et réagis en temps réel. Voici quelques points importants à retenir :
+
+- **Flux de données**: Les flux représentent des flux de données asynchrones. Les données peuvent être émises en continu ou à intervalles irréguliers.
+
+- **Observateurs**: La programmation par flux repose sur le concept d'observateurs. Un observateur surveille un flux et réagit lorsque de nouvelles données sont disponibles.
+
+- **Opérations sur les Flux**: Vous pouvez effectuer diverses opérations sur les flux, telles que la transformation, le filtrage et la combinaison des données. Ces opérations sont généralement non destructives, ce qui signifie que le flux d'origine reste intact.
+
+### 13.4.2. Différences avec la Programmation Orientée Objet
+
+Dans le cadre de la formation CFC et de la formation ES, nous avons principalement travaillé avec la programmation orientée objet (**POO**). La programmation par flux est un paradigme de programmation différent, qui présente plusieurs différences clés avec la **POO** :
+
+**1. Traitement Asynchrone**: En programmation par flux, les opérations sont généralement asynchrones. Les données sont émises en continu, et les observateurs réagissent dès que de nouvelles données sont disponibles. En revanche, en **POO**, les opérations sont souvent synchrones, ce qui signifie qu'elles s'exécutent séquentiellement.
+
+**2. Gestion des Événements**: La programmation par flux est idéale pour la gestion d'événements, comme la surveillance des capteurs en temps réel ou la gestion des interactions utilisateur. En **POO**, la gestion des événements peut être plus complexe et moins réactive.
+
+**3. Réactivité**: La programmation par flux est intrinsèquement réactive. Elle réagit aux données au fur et à mesure de leur arrivée. En revanche, en **POO**, la réactivité dépend souvent de la mise en œuvre spécifique.
+
+### 13.4.3. Conclusion
+La programmation par flux est le cœur de Node-RED. Elle permet de créer des applications en assemblant des nœuds qui représentent des fonctions ou des services. Les flux de données sont gérés visuellement, ce qui rend le développement plus accessible, même pour ceux qui ne sont pas des programmeurs expérimentés. En reliant des nœuds entre eux, il est possible de spécifier comment les données doivent circuler et être transformées tout au long de l'application.
+
+<div style="page-break-after: always;"></div>
+
+## 13.5. Instalation
 L'instalation de Node-Red se fait via le script officiel de Node-Red. Ce script permet d'installer Node-Red et Node.js, de configurer Node-Red et de l'activer comme service.
 Qui plus est on peut définir des utilisateurs et des mots de passe pour sécuriser Node-Red.
 ```bash
@@ -665,8 +704,10 @@ Created symlink /etc/systemd/system/multi-user.target.wants/nodered.service → 
 
 <div style="page-break-after: always;"></div>
 
-## 13.3. Configuration
-### 13.3.1. Installation des plugins
+## 13.6. Configuration
+### 13.6.1. Installation des plugins
+#TODO
+
 <img src="../capture/RPI/Node-Red/palette1.png" alt="Installation des plugins" width="30%" style="width:30%;">
 <img src="../capture/RPI/Node-Red/palette2.png" alt="Installation des plugins" width="30%" style="width:30%;">
 <img src="../capture/RPI/Node-Red/palette3.png" alt="Installation des plugins" width="30%" style="width:30%;">
@@ -676,12 +717,14 @@ Created symlink /etc/systemd/system/multi-user.target.wants/nodered.service → 
 <img src="../capture/RPI/Node-Red/Dashboard.png" alt="Installation des plugins" width="100%" style="width:100%;">
 
 
-### 13.3.2. Sécurisation de Node-Red
+### 13.6.2. Sécurisation de Node-Red
 Pour sécuriser Node-Red, il convient de modifier le fichier `settings.js`. Dans notre cas, nous utilisons la commande `node-red admin init`, ce qui permet, par exemple, de créer des paires utilisateur/mot de passe.
 
-De plus, il est recommandé, si nécessaire, d'ajouter un login au *Dashboard*. #TODO
+De plus, il est recommandé, si nécessaire, d'ajouter un login au *Dashboard*. 
 
-### 13.3.3. Suivi Git
+#TODO
+
+### 13.6.3. Suivi Git
 Afin de suivre le projet sur Git, il est nécessaire de configurer un utilisateur, générer des clés SSH, puis effectuer un *clone* du projet.
 
 <img src="../capture/RPI/Node-Red/Git_Config.png" alt="Configuration Git" width="30%" style="width:30%;">
@@ -771,9 +814,10 @@ drwxr-xr-x 5 tobby tobby  4096 10 mai 11:19 user-files
 <div style="page-break-after: always;"></div>
 
 ## 14.2. Vérification de l'installation
-Pour vérifier l'installation de Gatling, il suffit de lancer le script `gatling.sh` situé dans le répertoire `bin` de Gatling. Ce faisant, Gatling affichera un menu permettant de choisir entre plusieurs options. Dans notre cas, nous choisirons l'option 1, qui permet de lancer une simulation de test de charge.
-Ensuite, il y a la possibilité de choisir la simulation à exécuter. Dans notre cas, il n'y a qu'une seule simulation, donc nous n'avons pas besoin de la choisir.
-Cette simulation est celle créer par Gatling et vas aller tester un serveur web de test de Gatling.
+Pour vérifier l'installation de Gatling, j'ai simplement exécuté le script `gatling.sh` situé dans le répertoire `bin` de Gatling. Lorsque j'ai lancé ce script, Gatling a affiché un menu proposant plusieurs options. Dans mon cas, j'ai choisi l'option 1, qui permet de lancer une simulation de test de charge.
+
+Ensuite, j'ai eu la possibilité de choisir la simulation à exécuter, comme il n'y a qu'une seule simulation, je n'ai pas eu besoin de faire de choix supplémentaires. Cette simulation est fournie par Gatling et elle teste un serveur web de test fourni par Gatling.
+
 ```bash
 tobby@Nidus:~/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin $ ./gatling.sh
 GATLING_HOME is set to /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5
@@ -945,19 +989,19 @@ scp -r /home/toblerc/Documents/ES_2024/banc-de-mesures-de-la-consommation-electr
 
 # 16. MQTT
 
-Le MQTT, ou Message Queuing Telemetry Transport, est un protocole de messagerie exceptionnellement léger qui repose sur le protocole TCP/IP. Sa conception vise à répondre aux besoins des appareils dotés de ressources limitées en termes de calcul et de bande passante, en en faisant un choix privilégié pour l'Internet des objets (IoT). L'architecture de ce protocole repose sur le principe fondamental de publication et d'abonnement.
+Le MQTT, ou **Message Queuing Telemetry Transport**, est un protocole de messagerie exceptionnellement léger qui repose sur le protocole **TCP/IP**. Sa conception vise à répondre aux besoins des appareils dotés de ressources limitées en termes de calcul et de bande passante, en en faisant un choix privilégié pour l'Internet des objets (**IoT**). L'architecture de ce protocole repose sur le principe fondamental de publication et d'abonnement.
 
-Au cœur du MQTT se trouve un élément essentiel : le broker MQTT. Celui-ci joue le rôle de médiateur en recevant les messages émis par les clients puis en les diffusant aux clients abonnés. 
+Au cœur du MQTT se trouve un élément essentiel : le **broker MQTT**. Celui-ci joue le rôle de médiateur en recevant les messages émis par les clients puis en les diffusant aux clients abonnés. 
 
 Le protocole MQTT s'appuie sur le protocole TCP/IP et utilise deux ports principaux : le port 1883 pour les communications non sécurisées et le port 8883 pour les communications sécurisées. La sécurité des communications MQTT est assurée par le protocole TLS/SSL.
 
-Il existe deux catégories de clients MQTT : les clients légers et les clients complets. Les clients MQTT légers ne prennent pas en charge le protocole TLS/SSL, tandis que les clients MQTT complets le prennent en charge. Les clients MQTT légers sont fréquemment utilisés pour les dispositifs IoT en raison de leur faible empreinte mémoire et de leur simplicité, tandis que les clients MQTT complets sont davantage adaptés aux applications de bureau.
+Il existe deux catégories de clients MQTT : les clients légers et les clients complets. Les clients MQTT légers ne prennent pas en charge le protocole **TLS/SSL**, tandis que les clients MQTT complets le prennent en charge. Les clients MQTT légers sont fréquemment utilisés pour les dispositifs IoT en raison de leur faible empreinte mémoire et de leur simplicité, tandis que les clients MQTT complets sont davantage adaptés aux applications de bureau.
 
-Ma décision d'utiliser MQTT découle de mon expérience antérieure. J'ai eu l'occasion d'employer ce protocole lors de mon travail de diplôme pour mon CFC. À l'époque, j'utilisais MQTT pour l'échange de données entre un Raspberry Pi et les puces de développement de [Microchip](https://www.microchip.com/en-us/development-tool/ac164160). Cette expérience m'a permis de développer une solide compréhension de MQTT.
+Ma décision d'utiliser MQTT découle de mon expérience antérieure. J'ai eu l'occasion d'employer ce protocole lors de mon travail de diplôme pour mon CFC. À l'époque, j'utilisais MQTT pour l'échange de données entre un Raspberry Pi et les puces de développement de [**Microchip**](https://www.microchip.com/en-us/development-tool/ac164160). Cette expérience m'a permis de développer une solide compréhension de MQTT.
 
 En utilisant le MQTT, nous évitons la complexité liée au transfert de requêtes via SSH ainsi que l'utilisation de clés SSH. Cela se traduit par un gain significatif en termes de performances et de sécurité. Sur le plan des performances, MQTT se distingue par sa légèreté, étant environ dix fois plus léger que SSH. Cette légèreté en fait un choix judicieux pour la transmission de données de consommation.
 
-Au niveau du soft que j'ai choisi de mettre en place, il s'agit de [Mosquitto](https://mosquitto.org/), un broker MQTT open source. Il est disponible sur les dépôts officiels de Debian, ce qui facilite son installation. De plus, il est très simple à configurer et j'ai déjà eu l'occasion de l'utiliser dans le cadre de mon travail de diplôme de CFC. 
+Au niveau du soft que j'ai choisi de mettre en place, il s'agit de [**Mosquitto**](https://mosquitto.org/), un broker MQTT open source. Il est disponible sur les dépôts officiels de Debian, ce qui facilite son installation. De plus, il est très simple à configurer et j'ai déjà eu l'occasion de l'utiliser dans le cadre de mon travail de diplôme de CFC. 
 
 <div style="page-break-after: always;"></div>
 
@@ -993,7 +1037,7 @@ aoû 22 16:01:58 Nidus systemd[1]: Started Mosquitto MQTT Broker.
 <div style="page-break-after: always;"></div>
 
 ## 16.2. Ouverture des port sur Nidus
-Pour que le broker MQTT soit accessible depuis l'extérieur, il faut ouvrir les ports 1883 sur Nidus. Dans le fichier de configuration de Mosquitto, il faut aussi autoriser les connexions anonymes.
+Pour que le broker MQTT soit accessible depuis l'extérieur, il faut ouvrir les ports **1883** sur Nidus. Dans le fichier de configuration de Mosquitto, il faut aussi autoriser les connexions anonymes.
 
 Il faut donc modifier le fichier de conf comme suit :
 ```bash
@@ -1151,19 +1195,19 @@ Service activé.
 
 # 17. INA219
 
-Dans ce chapitre, nous explorerons la puce **INA219**, qui joue un rôle essentiel dans la mesure de la consommation. Il est important de noter que nous utilisons deux puces INA219 dans ce projet : l'une pour la mesure proprement dite et l'autre en tant que pièce de rechange en cas de problème. Pour les différencier, nous avons effectué des soudures pour attribuer des adresses I2C spécifiques à chaque puce. L'adresse de la puce de mesure est réglée sur *0x40*, tandis que l'adresse de la puce de remplacement est réglée sur *0x41*.
+Il est important de noter que deux puces INA219 sont utilisée dans ce projet : l'une pour la mesure proprement dite et l'autre en tant que pièce de rechange en cas de problème. Pour les différencier, nous avons avec M. Singelé effectué des soudures pour attribuer des adresses I2C spécifiques à chaque puce. L'adresse de la puce de mesure est réglée sur *0x40*, tandis que l'adresse de la puce de remplacement est réglée sur *0x41*.
 
 ## 17.1. Installation physique
 
-L'installation physique du **INA219** implique des branchements spécifiques en fonction des scénarios : avec ou sans le dispositif Volt. Voici les détails de chaque configuration :
+L'installation physique du **INA219** implique des branchements spécifiques en fonction des scénarios : avec ou sans la dérivation de l'alimentation de Volt. Voici les détails de chaque configuration :
 
 ### 17.1.1. Branchement SANS VOLT
 
 Pour le branchement à vide, il suffit de connecter le **INA219** au Raspberry Pi à l'aide d'un câble I2C. Voici un aperçu détaillé de ce branchement :
-- Cable Jaune : 3.3V
-- Cable Bleu : Terre
-- Cable Rouge : SDA
-- Cable Bleu : SCL
+- Cable Jaune : **3.3V**
+- Cable Bleu : **Terre**
+- Cable Rouge : **SDA**
+- Cable Bleu : **SCL**
 
 
 <img src="../capture/RPI/INA219/Sans_Volt.jpg" alt="Schéma de branchement sans Volt" width="100%" style="width:100%;">
@@ -1210,7 +1254,7 @@ tobby@Nidus:~ $ sudo i2cdetect -y 1
 <div style="page-break-after: always;"></div>
 
 ## 17.2. Obtention des données
-### 17.2.1. Test avec le script python A vide 
+### 17.2.1. Test avec le un script python
 Instalation de la bibliothèque python
 ```bash
 tobby@Nidus:~ $ sudo pip3 install pi-ina219
@@ -1350,7 +1394,7 @@ Dans cette section, nous explorons le composant **INA219**, un élément clé de
 
 Pour tirer le meilleur parti de l'INA219, j'ai mis en place une configuration sophistiquée. J'ai configuré des nœuds de fonctions spécifiques pour exclure les valeurs négatives. Ces valeurs négatives sont généralement des erreurs de lecture et doivent être traitées correctement pour garantir des données précises. Ensuite, j'ai élaboré une séquence de traitement pour afficher ces valeurs de manière compréhensible dans un libellé.
 
-En plus de cela, j'ai mis en place un nœud "join" qui joue un rôle crucial. Ce nœud fusionne les deux valeurs obtenues à partir des sorties de l'INA219 en un seul message cohérent. Ce message est ensuite acheminé vers un autre nœud de fonction spécialisé. Ce nœud effectue des calculs complexes pour obtenir les données de consommation en watts. Ces données sont ensuite affichées à la fois dans un libellé, offrant une visualisation claire des résultats, et dans un graphique, permettant une compréhension visuelle de l'évolution de la consommation.
+En plus de cela, j'ai mis en place un nœud 'join' qui joue un rôle crucial. Ce nœud fusionne les deux valeurs obtenues à partir des sorties de l'INA219 en un seul message cohérent. Ce message est ensuite acheminé vers un autre nœud de fonction spécialisé. Ce nœud effectue des calculs pour obtenir les données de consommation en watts. Ces données sont ensuite affichées à la fois dans un libellé, offrant une visualisation claire des résultats, et dans un graphique, permettant une compréhension visuelle de l'évolution de la consommation.
 
 
 ```javascript
@@ -1373,10 +1417,13 @@ msg.topic = "Watt";
 // Renvoyer le message modifié
 return msg;
 ```
+
+<div style="page-break-after: always;"></div>
+
 ## 18.3. Monitoring
-
+<div style="text-align:center;">
 <img src="../capture/RPI/Node-Red/benchmark.png" alt="Image de Monitoring" width="50%" style="width:50%;">
-
+</div>
 
 Dans cette section, nous abordons le **Monitoring**, une étape cruciale de notre projet. Pour cette tâche, j'ai choisi d'utiliser le protocole **MQTT**, qui présente des avantages significatifs en termes de rapidité et de légèreté par rapport au **SSH**.
 
@@ -1432,9 +1479,9 @@ Pour être honnête, il faut admettre que la lisibilité initiale n'est pas opti
 <div style="page-break-after: always;"></div>
 
 ## 19.1. Écran d'Accueil
-
+<div style="text-align:center;">
 <img src="../capture/RPI/Node-Red/RapportPDF/1.1.png" alt="Écran d'Accueil" width="100%" style="width:50%;">
-
+</div>
 Au premier abord, vous serez accueilli par un navigateur de fichiers et un formulaire. Ce formulaire vous permet de spécifier la durée du test et de décider si vous souhaitez exécuter un test de stress sur Nidus et/ou sur Volt. Voici le contenu de la page "file" qui contient le formulaire:
 
 <img src="../capture/RPI/Node-Red/RapportPDF/1.png" alt="Contenu de la Page 'file'" width="100%" style="width:100%;">
@@ -1450,7 +1497,7 @@ Les nœuds responsables de cette section sont les suivants:
 
 Deux éléments se distinguent ici:
 - Un formulaire de "Configuration du Test"
-- Un bouton "Purge" dont nous discuterons ultérieurement
+- Un bouton "Purge" sur lequel je reviendrai plus tard
 
 Le formulaire recueille les données saisies par l'utilisateur. Ensuite, il transmet ces données en sortie. Deux fonctions sont connectées à cette sortie. La première fonction ajoute les chemins des fichiers, tels que "chart.png" et "report.pdf", à un tableau. La seconde fonction gère l'exécution des tests de stress en fonction des entrées de l'utilisateur, et les envoie ensuite à un nœud "exec" qui exécute les commandes sur Nidus et/ou Volt.
 
@@ -1728,7 +1775,11 @@ La partie supérieure gère l'affichage des fichiers dans un modèle et ajoute a
 Au cours de mes tests, j'ai réalisé qu'un problème survient lorsque l'on génère un certain nombre de rapports, le dossier devient rapidement surchargé. Par conséquent, j'ai décidé de mettre en place un bouton permettant de purger le dossier de tous les fichiers .pdf et .png qui s'y trouvent. Cependant, pour éviter toute suppression accidentelle de fichiers importants, j'ai mis en place un système de confirmation demandant à l'utilisateur s'il est sûr de vouloir supprimer les fichiers.
 
 <img src="../capture/RPI/Node-Red/RapportPDF/6.png" alt="Alt text" width="100%" style="width:100%;">
+<div style="text-align:center;">
 <img src="../capture/RPI/Node-Red/RapportPDF/7.png" alt="Alt text" width="50%" style="width:50%;">
+</div>
+
+<div style="page-break-after: always;"></div
 
 Voici les nœuds qui gèrent cette partie :
 
@@ -2112,7 +2163,10 @@ Une fois les chart créer,  je les réutilise dans le noeud de création de PDF 
 
 ## 20.7. Refactoring
 Pour finir, j'ai créer des subflow pour le noeud MQTT afin de simplifier la visualisation et le management des données :
+<div style="text-align:center;">
 <img src="../capture/RPI/Node-Red/RapportPDF/9.png" alt="Alt text" width="50%" style="width:50%;">
+<div>
+<br>
 <img src="../capture/RPI/Node-Red/RapportPDF/10.png" alt="Alt text" width="100%" style="width:100%;">
 
 
@@ -2149,10 +2203,12 @@ J'ai ajouté une entrée pour définir si un ventilateur est activé. Actuelleme
 À l'heure actuelle, le ventilateur est un ventilateur de bureau pris dans mon stock personnel, actionné par un bouton. Il n'est donc pas possible de le contrôler depuis Node-Red. Cependant, il est possible qu'à l'avenir, un ventilateur contrôlable soit utilisé, auquel cas il sera possible de l'activer ou de le désactiver depuis Node-Red.
 
 Pour permettre de garder un certain contrôle, j'ai ajouté les informations de monitoring directement à côté du formulaire de lancement du test. Ainsi, il est possible de voir les valeurs de monitoring en temps réel et de surveiller le déroulement du test.
+<div style="page-break-after: always;"></div>
 
 ### 21.1.1. Ventilateur 
+<div style="text-align:center;">
 <img src="../capture/RPI/Node-Red/RapportPDF/ventilateur-vintage-indola-5-scaled.jpg" alt="Alt text" width="50%" style="width:50%;">
-
+</div>
 ### 21.1.2. UI
 <img src="../capture/RPI/Node-Red/RapportPDF/11.png" alt="Alt text" width="100%" style="width:100%;">
 
