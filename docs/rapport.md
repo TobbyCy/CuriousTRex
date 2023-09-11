@@ -43,6 +43,14 @@
   - [6.5. RJ45](#65-rj45)
 - [7. Budget](#7-budget)
 - [8. Planification](#8-planification)
+  - [Mise en place](#mise-en-place)
+    - [9.1.1. But](#911-but)
+  - [Première itération](#première-itération)
+    - [9.2.1. But](#921-but)
+  - [Deuxième itération](#deuxième-itération)
+    - [9.3.1. But](#931-but)
+  - [Troisième itération](#troisième-itération)
+    - [9.4.1. But](#941-but)
 - [9. Instalation physique](#9-instalation-physique)
   - [9.1. Nidus](#91-nidus)
     - [9.1.1. TODO Capture quand installation definitive](#911-todo-capture-quand-installation-definitive)
@@ -141,15 +149,16 @@
   - [23.4. INA219](#234-ina219)
   - [23.5. Gatling](#235-gatling)
 - [24. Améliorations Futures](#24-améliorations-futures)
-  - [24.1. Base de Données](#241-base-de-données)
-  - [24.2. Utilisation de FlowFuse](#242-utilisation-de-flowfuse)
-  - [24.3. Analyse des Données](#243-analyse-des-données)
-  - [24.4. Tests de Cluster](#244-tests-de-cluster)
-  - [24.5. Intégration de Services Cloud](#245-intégration-de-services-cloud)
-  - [24.6. Sécurité Renforcée](#246-sécurité-renforcée)
-  - [24.7. Intégration de l'Apprentissage Automatique](#247-intégration-de-lapprentissage-automatique)
-  - [24.8. Support Multilingue](#248-support-multilingue)
-  - [24.9. Optimisation d'une distribution Ubuntu](#249-optimisation-dune-distribution-ubuntu)
+  - [24.1. Amélioration du calcul de la bar de chargement](#241-amélioration-du-calcul-de-la-bar-de-chargement)
+  - [24.2. Base de Données](#242-base-de-données)
+  - [24.3. Utilisation de FlowFuse](#243-utilisation-de-flowfuse)
+  - [24.4. Analyse des Données](#244-analyse-des-données)
+  - [24.5. Tests de Cluster](#245-tests-de-cluster)
+  - [24.6. Intégration de Services Cloud](#246-intégration-de-services-cloud)
+  - [24.7. Sécurité Renforcée](#247-sécurité-renforcée)
+  - [24.8. Intégration de l'Apprentissage Automatique](#248-intégration-de-lapprentissage-automatique)
+  - [24.9. Support Multilingue](#249-support-multilingue)
+  - [24.10. Optimisation d'une distribution Ubuntu](#2410-optimisation-dune-distribution-ubuntu)
 - [25. Remerciement](#25-remerciement)
 - [26. Sources](#26-sources)
 
@@ -317,6 +326,9 @@ Bien sûr, dans le cadre de ce projet, le salaire n'est pas pris en compte, mais
 <div style="page-break-after: always;"></div>
 
 # 8. Planification
+## Mise en place
+### 9.1.1. But 
+Le but de ce jalon est de mettre en place l'environnement de test et de configurer les outils nécessaires pour effectuer les mesures. Tout ce qui est nécessaire pour effectuer les tests de performance doit être installé et configuré,  Node-RED, Gatling et l'INA219. Les Raspberry Pi doivent être installés dans l'environnement prévu et configurés avec les paramètres de base.
 ```mermaid
 gantt
     dateFormat  YYYY-MM-DD
@@ -341,7 +353,13 @@ gantt
 
 
 ```
-    
+## Première itération
+### 9.2.1. But
+Mettre en places un "proof of concept" qui se baseras simplement sur la génération d'un rapport PDF par node-red via les informations de monitoring d'une machine mise sous pression par SSH.
+
+Cette "PoC" ne permettras pas de :
+1. L'impossibilité de sélectionner le serveur à tester.
+2. L'incapacité à comparer les performances entre différents serveurs.
 ```mermaid
 gantt
     dateFormat  YYYY-MM-DD
@@ -364,7 +382,9 @@ gantt
     
 
 ```
-
+## Deuxième itération
+### 9.3.1. But
+Ajout de Gatling aux test de charges avec récupérations des informations des logs de Gatling et de l'INA219. 
 ```mermaid
 gantt
     dateFormat  YYYY-MM-DD
@@ -382,6 +402,9 @@ gantt
     Documentation de la deuxième itération : milestone, V2-d6, after V2-d5, 1h
 
 ```
+## Troisième itération
+### 9.4.1. But
+La troisième itération a pour but de rendre le projet utilisable notamment en modifiant les visuels des graphique pour les rendre plus lisible, en modifiant le script Gatlignqui utilise le scala en lieux et place du java en ajoutant de nouveau graphique et enfin en ajoutant la possibilité d'exporter les données au format JSON et d'importer les données au format JSON et de générer un PDF.
 
 ```mermaid
 gantt
@@ -2360,33 +2383,36 @@ Le travail de diplôme est limité à une durée fixe de 6 semaines, mais après
 
 Personnellement, je crois qu'à notre époque, l'optimisation des ressources pour des raisons de performance est souvent mise en avant, mais l'optimisation de la consommation d'énergie est négligée. C'est pourquoi je pense que ce projet a un grand potentiel pour devenir un outil de référence pour les développeurs, en mettant l'accent sur l'efficacité énergétique.
 
-## 24.1. Base de Données
+## 24.1. Amélioration du calcul de la bar de chargement
+Actuellement, la barre de chargement est calculé par rapport au temps défini par l'utilisateur lors de la création du test. Cependant, il serait plus intéressant de calculer la barre de chargement par rapport au temps de la simulation Gatling. Cela permettrait d'avoir une barre de chargement plus précise et plus réaliste.
+
+## 24.2. Base de Données
 L'ajout d'une base de données permettrait de stocker les données de monitoring et de Gatling. Cela aurait plusieurs avantages, notamment la conservation d'un historique des données pour des analyses futures. De plus, cela réduirait la charge de travail de Node-Red, car les données seraient stockées dans une base de données plutôt que dans des fichiers.
 
-## 24.2. Utilisation de FlowFuse
+## 24.3. Utilisation de FlowFuse
 L'adoption de FlowFuse offrirait une solution pour dépasser les limitations en termes de puissance de calcul et de mémoire du Raspberry Pi. Cela permettrait également de réduire la charge de travail, notamment lors de la création de rapports, en offrant des ressources supplémentaires pour traiter les données.
 
-## 24.3. Analyse des Données
+## 24.4. Analyse des Données
 Faire appel à des experts en analyse de données et en création de rapports améliorerait la précision et la qualité des rapports générés. Cela rendrait également les rapports plus professionnels, ce qui serait essentiel pour des utilisations en entreprise.
 
-## 24.4. Tests de Cluster
+## 24.5. Tests de Cluster
 À terme, il serait extrêmement intéressant de pouvoir tester un cluster de Raspberry Pi. Cela permettrait notamment de répartir la charge des serveurs, par exemple un pour le serveur web, un pour la base de données, un pour le proxy et un pour le load balancer. De telles expériences permettraient de tester la scalabilité de l'application et sa capacité à gérer des charges plus importantes.
 
 De plus, avec la possibilité de tester un cluster de Raspberry Pi, il serait également envisageable de tester des clusters Kubernetes pour évaluer si l'application est capable de gérer un environnement de conteneurs orchestrateurs.
 
-## 24.5. Intégration de Services Cloud
+## 24.6. Intégration de Services Cloud
 Permettre l'intégration avec des services cloud populaires tels que AWS, Azure ou Google Cloud pour le stockage des données et l'analyse avancée.
 
-## 24.6. Sécurité Renforcée
+## 24.7. Sécurité Renforcée
 Renforcer la sécurité de l'ensemble du système, en mettant en place des mécanismes de chiffrement des données, d'authentification forte et de protection contre les vulnérabilités.
 
-## 24.7. Intégration de l'Apprentissage Automatique
+## 24.8. Intégration de l'Apprentissage Automatique
 Explorer l'intégration de l'apprentissage automatique pour l'analyse prédictive des données, ce qui pourrait permettre de détecter des tendances et des anomalies.
 
-## 24.8. Support Multilingue
+## 24.9. Support Multilingue
 Ajouter la prise en charge de plusieurs langues pour rendre l'application accessible à un public international.
 
-## 24.9. Optimisation d'une distribution Ubuntu
+## 24.10. Optimisation d'une distribution Ubuntu
 Fournir une distribution Ubuntu optimisée au maximum, n'ayant que le strict minimum en termes de service et de logiciel. Cela permettrait de réduire la consommation de ressources et de faciliter le développement. Cette optimisation permettrait notamment de réduire les biais de performance liés à l'OS et de pouvoir comparer les performances plus en détail.
 
 
