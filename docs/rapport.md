@@ -43,14 +43,14 @@
   - [6.5. RJ45](#65-rj45)
 - [7. Budget](#7-budget)
 - [8. Planification](#8-planification)
-  - [Mise en place](#mise-en-place)
-    - [9.1.1. But](#911-but)
-  - [Première itération](#première-itération)
-    - [9.2.1. But](#921-but)
-  - [Deuxième itération](#deuxième-itération)
-    - [9.3.1. But](#931-but)
-  - [Troisième itération](#troisième-itération)
-    - [9.4.1. But](#941-but)
+  - [8.1. Mise en place](#81-mise-en-place)
+    - [8.1.1. But](#811-but)
+  - [8.2. Première itération](#82-première-itération)
+    - [8.2.1. But](#821-but)
+  - [8.3. Deuxième itération](#83-deuxième-itération)
+    - [8.3.1. But](#831-but)
+  - [8.4. Troisième itération](#84-troisième-itération)
+    - [8.4.1. But](#841-but)
 - [9. Instalation physique](#9-instalation-physique)
   - [9.1. Nidus](#91-nidus)
     - [9.1.1. TODO Capture quand installation definitive](#911-todo-capture-quand-installation-definitive)
@@ -58,6 +58,7 @@
     - [9.2.1. TODO Capture quand installation definitive](#921-todo-capture-quand-installation-definitive)
 - [10. Shéma de principe](#10-shéma-de-principe)
   - [10.1. Shéma de principe visuel](#101-shéma-de-principe-visuel)
+  - [10.2. Diagrame de séquence](#102-diagrame-de-séquence)
 - [11. Systèmes d'exploitation (OS)](#11-systèmes-dexploitation-os)
   - [11.1. Ubuntu](#111-ubuntu)
   - [11.2. Raspberry Pi OS (Raspbian)](#112-raspberry-pi-os-raspbian)
@@ -159,8 +160,18 @@
   - [24.8. Intégration de l'Apprentissage Automatique](#248-intégration-de-lapprentissage-automatique)
   - [24.9. Support Multilingue](#249-support-multilingue)
   - [24.10. Optimisation d'une distribution Ubuntu](#2410-optimisation-dune-distribution-ubuntu)
-- [25. Remerciement](#25-remerciement)
-- [26. Sources](#26-sources)
+- [26. Licences](#26-licences)
+  - [26.1. Licence Principale du Projet](#261-licence-principale-du-projet)
+  - [26.2. Licences des Dépendances](#262-licences-des-dépendances)
+- [27. Remerciement](#27-remerciement)
+- [28. Sources](#28-sources)
+  - [28.1. Node-RED et Extensions](#281-node-red-et-extensions)
+  - [28.2. Bibliothèques et Outils Externes](#282-bibliothèques-et-outils-externes)
+  - [28.3. Tutoriels et Documentation Technique](#283-tutoriels-et-documentation-technique)
+  - [28.4. Gatling](#284-gatling)
+  - [28.5. Autres Outils et Ressources](#285-autres-outils-et-ressources)
+  - [28.6. Articles de Recherche](#286-articles-de-recherche)
+  - [28.7. Outils Supplémentaires](#287-outils-supplémentaires)
 
 <div style="page-break-after: always;"></div>
 
@@ -326,8 +337,8 @@ Bien sûr, dans le cadre de ce projet, le salaire n'est pas pris en compte, mais
 <div style="page-break-after: always;"></div>
 
 # 8. Planification
-## Mise en place
-### 9.1.1. But 
+## 8.1. Mise en place
+### 8.1.1. But 
 Le but de ce jalon est de mettre en place l'environnement de test et de configurer les outils nécessaires pour effectuer les mesures. Tout ce qui est nécessaire pour effectuer les tests de performance doit être installé et configuré,  Node-RED, Gatling et l'INA219. Les Raspberry Pi doivent être installés dans l'environnement prévu et configurés avec les paramètres de base.
 ```mermaid
 gantt
@@ -353,8 +364,8 @@ gantt
 
 
 ```
-## Première itération
-### 9.2.1. But
+## 8.2. Première itération
+### 8.2.1. But
 Mettre en places un "proof of concept" qui se baseras simplement sur la génération d'un rapport PDF par node-red via les informations de monitoring d'une machine mise sous pression par SSH.
 
 Cette "PoC" ne permettras pas de :
@@ -382,8 +393,8 @@ gantt
     
 
 ```
-## Deuxième itération
-### 9.3.1. But
+## 8.3. Deuxième itération
+### 8.3.1. But
 Ajout de Gatling aux test de charges avec récupérations des informations des logs de Gatling et de l'INA219. 
 ```mermaid
 gantt
@@ -402,8 +413,8 @@ gantt
     Documentation de la deuxième itération : milestone, V2-d6, after V2-d5, 1h
 
 ```
-## Troisième itération
-### 9.4.1. But
+## 8.4. Troisième itération
+### 8.4.1. But
 La troisième itération a pour but de rendre le projet utilisable notamment en modifiant les visuels des graphique pour les rendre plus lisible, en modifiant le script Gatlignqui utilise le scala en lieux et place du java en ajoutant de nouveau graphique et enfin en ajoutant la possibilité d'exporter les données au format JSON et d'importer les données au format JSON et de générer un PDF.
 
 ```mermaid
@@ -453,6 +464,10 @@ De fais toute intéraction de l'utilisateur se fait avec **Nidus**.
 ## 10.1. Shéma de principe visuel
 
 <img src="./UML/uml.png" alt="Image" width="100%" style="width:100%;">
+
+## 10.2. Diagrame de séquence
+
+<img src="./UML/mermaid-diagram-2023-09-11-112036.svg" alt="Image" width="100%" style="width:100%;">
 
 <div style="page-break-after: always;"></div>
 
@@ -2188,7 +2203,7 @@ Une fois les chart créer,  je les réutilise dans le noeud de création de PDF 
 Pour finir, j'ai créer des subflow pour le noeud MQTT afin de simplifier la visualisation et le management des données :
 <div style="text-align:center;">
 <img src="../capture/RPI/Node-Red/RapportPDF/9.png" alt="Alt text" width="50%" style="width:50%;">
-<div>
+</div>
 <br>
 <img src="../capture/RPI/Node-Red/RapportPDF/10.png" alt="Alt text" width="100%" style="width:100%;">
 
@@ -2415,10 +2430,47 @@ Ajouter la prise en charge de plusieurs langues pour rendre l'application access
 ## 24.10. Optimisation d'une distribution Ubuntu
 Fournir une distribution Ubuntu optimisée au maximum, n'ayant que le strict minimum en termes de service et de logiciel. Cela permettrait de réduire la consommation de ressources et de faciliter le développement. Cette optimisation permettrait notamment de réduire les biais de performance liés à l'OS et de pouvoir comparer les performances plus en détail.
 
+<div style="page-break-after: always;"></div> 
+
+# 26. Licences
+
+Ce chapitre présente les licences associées à ce projet, y compris la licence principale du projet, la GPL V3.0, ainsi que les licences des dépendances utilisées.
+
+## 26.1. Licence Principale du Projet
+
+Le projet principal est sous licence **GNU General Public License Version 3.0 (GPL-3.0)**. Cette licence open source garantit les droits de l'utilisateur à exécuter, étudier, modifier et redistribuer le logiciel.
+
+Pour plus de détails sur la licence **GPL V3.0**, voici [le texte complet de la licence](https://www.gnu.org/licenses/gpl-3.0.html).
+
+## 26.2. Licences des Dépendances
+
+Le projet utilise plusieurs dépendances, chacune étant sous une licence spécifique. Voici un aperçu des licences des dépendances :
+
+1. [**Licence MIT**](https://opensource.org/license/mit/)
+   - **Chart.js, PDMMake2, PDF Make, pi-ina219,**
+   - Cette licence permet une utilisation, une modification et une redistribution libres du logiciel, tant que les avis de droits d'auteur sont conservés.
+
+2. [**Licence Apache 2.0**](https://opensource.org/license/apache-2-0/)
+   - **Node-Red, Dashboard, MQTT+, File System Node-Red, Base64 Node-Red, Gatling, FlowFuse,**
+   - Cette licence permet une utilisation, une modification et une redistribution libres du logiciel, avec des dispositions spécifiques pour les brevets et les contributions.
+
+3. [**Licence ISC (Internet Systems Consortium)**](https://opensource.org/license/isc-license-txt/)
+   - **INA219 Node-Red**
+   - Cette licence permet une utilisation, une modification et une redistribution libres du logiciel, avec une responsabilité limitée.
+
+4. [**Licence BSD-2-Clause**](https://opensource.org/license/bsd-2-clause/)
+   - **Chart-Image Node-Red**
+   - Cette licence permet une utilisation, une modification et une redistribution libres du logiciel, tant que les avis de droits d'auteur sont conservés.
+
+5. [**Licence EPL/EDL (Eclipse Public License / Eclipse Distribution License)**](https://opensource.org/license/epl-2-0/)
+   - **Mosquitto**
+   - Cette licence est spécifique à la fondation Eclipse et permet une utilisation, une modification et une redistribution libres du logiciel, avec des exigences spécifiques pour les distributions.
+
+
 
 <div style="page-break-after: always;"></div>
 
-# 25. Remerciement 
+# 27. Remerciement 
 Je tiens à exprimer ma profonde gratitude envers les personnes qui ont joué des rôles essentiels dans la réalisation de ce projet. Avant tout, je souhaite exprimer ma sincère reconnaissance à M. Benoit Vianin, dont la proposition du projet, le matériel fourni et les conseils avisés ont été cruciaux pour sa mise en place. Sa précieuse assistance technique a été d'une grande importance.
 
 Je tiens également à adresser mes remerciements à M. Fabien Maire, Directeur du service Informatique du SIS2 (Service Informatique du Secondaire 2), pour son accompagnement et ses conseils tout au long de ce travail. Sa vision éclairée et son expertise ont été des facteurs clés dans la réussite de ce projet.
@@ -2440,50 +2492,111 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 
 <div style="page-break-after: always;"></div> 
 
-# 26. Sources
 
-1. **Guide d'Installation Node-Red**  
-   [Installer Node-Red](https://nodered.org/docs/getting-started/raspberrypi)
+# 28. Sources
 
-2. **Guide de Sécurisation de Node-Red**  
-   [Sécurisation de Node-Red](https://nodered.org/docs/user-guide/runtime/securing-node-red)
+## 28.1. Node-RED et Extensions
 
-3. **Tutoriel de Base Rototron**  
-   [Tutoriel Rototron](https://www.rototron.info/raspberry-pi-ina219-tutorial/)
+1. [**Guide d'Installation Node-Red, Version: 18.17.1, Licence: Apache-2.0**](https://nodered.org/docs/getting-started/raspberrypi)
+   > Guide officiel pour installer Node-Red sur Raspberry Pi.
 
-4. **Documentation Technique de l'INA219**  
-   [Documentation INA219](https://www.ti.com/lit/ds/symlink/ina219.pdf)
+2. [**Guide de Sécurisation de Node-Red**](https://nodered.org/docs/user-guide/runtime/securing-node-red)
+   > Guide officiel pour sécuriser votre installation Node-Red.
 
-5. **Recherche de M. Lamber**  
-   [Profil de Consommation par M. Lamber](https://www.researchgate.net/publication/350387196_Power_Consumption_Profiling_of_a_Lightweight_Development_Board_Sensing_with_the_INA219_and_Teensy_40_Microcontroller)
+3. [**Dashboard Node-Red, Version: 3.6.0, Licence: Apache-2.0**](https://flows.nodered.org/node/node-red-dashboard)
+   > Extension pour créer des tableaux de bord dans Node-Red.
 
-6. **Recherche de M. Pol J. Planas Pulido**  
-   [Profil de Consommation par M. Pol J. Planas Pulido](https://upcommons.upc.edu/bitstream/handle/2117/180533/tfg-report-pol-planas.pdf?sequence=1&isAllowed=y)
+4. [**MQTT +, Version: 0.0.7, Licence: Apache-2.0** ](https://flows.nodered.org/node/node-red-contrib-mqtt-plus)
+   > Extension MQTT pour Node-Red.
 
-7. **Bibliothèque Python pour l'INA219**  
-   [Bibliothèque pi-ina219](https://pypi.org/project/pi-ina219/)
+5. [**File system Node-Red, Version: 1.4.1, Licence: Apache-2.0**](https://flows.nodered.org/node/node-red-contrib-fs)
+   > Extension pour gérer les fichiers du serveur dans Node-Red.
 
-8. **Forum Problème de Détection I2C**  
-   [Forum Raspberry Pi](https://forums.raspberrypi.com/viewtopic.php?t=272351#p1652031)
+6. [**INA219 Node-Red, Version: 0.7.6, Licence: ISC**](https://flows.nodered.org/node/node-red-contrib-easybotics-ina219-sensor)
+   > Extension pour utiliser le capteur de courant INA219 dans Node-Red.
 
-9. **Tutoriel Mise en Place INA219**  
-   [Tutoriel INA219](https://binaryfury.wann.net/2014/04/solarbatteryload-power-logging-with-raspberry-pi-and-ina219/)
+7. [**Base64, Version: 0.3.0, Licence: Apache-2.0**](https://flows.nodered.org/node/node-red-node-base64)
+   > Extension pour le codage et le décodage Base64 dans Node-Red.
 
-10. **Tutoriel Création d'un Enregistreur de Consommation**  
-    [Tutoriel Enregistreur de Consommation](https://www.hackster.io/Sparky/diy-power-logger-using-i2c-python-9a39e0)
+8. [**Chart Image Node-Red, Version: 1.2.0,Licence: BSD-2-Clause**](https://flows.nodered.org/node/node-red-contrib-chart-image)
+   > Extension pour créer des graphiques dans Node-Red.
 
-11. **Tutoriel Complet avec Arduino**  
-    [Tutoriel Complet avec Arduino](https://electropeak.com/learn/interfacing-ina219-current-sensor-module-with-arduino/)
+## 28.2. Bibliothèques et Outils Externes
 
-12. **Téléchargement Gatling**  
-    [Téléchargement Gatling](https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/3.9.5/gatling-charts-highcharts-bundle-3.9.5-bundle.zip)
+9. [**Chart.js, Version: 4.4.0, Licence: MIT**](https://www.chartjs.org/)
+   > Bibliothèque JavaScript pour créer des graphiques interactifs.
 
-13. **Tutoriel Avancé Gatling**  
-    [Tutoriel Avancé Gatling](https://gatling.io/docs/gatling/tutorials/advanced/)
+10. [**PDF Make2 Node-Red, Version: 2.0.0, Licence: MIT**](https://flows.nodered.org/node/node-red-contrib-pdfmake2)
+    > Extension pour générer des fichiers PDF dans Node-Red.
 
-14. **Tutoriel de Démarrage Rapide Gatling**  
-    [Tutoriel de Démarrage Rapide Gatling](https://gatling.io/docs/gatling/tutorials/quickstart/)
+11. [**PDF Make, Version  0.2.x, Licence: MIT**](https://github.com/bpampuch/pdfmake)
+    > Bibliothèque JavaScript pour générer des fichiers PDF.
 
-15. **Tutoriel sur l'utilisation de S1seven**  
-    [Tutoriel S1seven](https://www.s1seven.com/blog/use-s1sevens-certificate-tools-to-convert-a-json-certificate-to-a-pdf/)
+12. [**Mosquitto, Verion 2.0.17, Licence : EPL/EDL**](https://mosquitto.org/)
+    > Serveur MQTT open source.
+13. [**R. A. Light, "Mosquitto: server and client implementation of the MQTT protocol," The Journal of Open Source Software, vol. 2, no. 13, May 2017, DOI: 10.21105/joss.00260.**](https://joss.theoj.org/papers/10.21105/joss.00265)
+    > Article du journal de l'open sources software sur Mosquitto.
 
+<div style="page-break-after: always;"></div> 
+
+## 28.3. Tutoriels et Documentation Technique
+
+14. [**Tutoriel de Base Rototron**](https://www.rototron.info/raspberry-pi-ina219-tutorial/)
+    > Tutoriel de base pour utiliser l'INA219 avec Raspberry Pi.
+
+15. [**Documentation Technique de l'INA219**](https://www.ti.com/lit/ds/symlink/ina219.pdf)
+    > Documentation technique officielle du capteur INA219 de Texas Instruments.
+
+16. [**Bibliothèque Python pour l'INA219 pi-ina219, Verion 1.4.1, Licence : MIT**](https://pypi.org/project/pi-ina219/)
+    > Bibliothèque Python pour utiliser l'INA219 avec Raspberry Pi.
+
+17. [**Forum Problème de Détection I2C**  ](https://forums.raspberrypi.com/viewtopic.php?t=272351#p1652031)
+    > Forum de la communauté Raspberry Pi pour résoudre les problèmes de détection I2C.
+
+18. [**Tutoriel Mise en Place INA219** ](https://binaryfury.wann.net/2014/04/solarbatteryload-power-logging-with-raspberry-pi-and-ina219/)
+    > Tutoriel sur la mise en place de l'INA219 pour la surveillance de l'énergie solaire.
+
+19. [**Tutoriel Création d'un Enregistreur de Consommation**](https://www.hackster.io/Sparky/diy-power-logger-using-i2c-python-9a39e0)
+    > Tutoriel pour créer un enregistreur de consommation d'énergie DIY.
+
+20. [**Tutoriel Complet avec Arduino**](https://electropeak.com/learn/interfacing-ina219-current-sensor-module-with-arduino/)
+    > Tutoriel complet sur l'utilisation de l'INA219 avec Arduino.
+
+## 28.4. Gatling
+
+20. [**Téléchargement Gatling, Verion 3.9.5, Licence : Apache-2.0**](https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/3.9.5/gatling-charts-highcharts-bundle-3.9.5-bundle.zip)
+    > Lien de téléchargement de l'outil Gatling pour la performance des applications.
+
+21. [**Tutoriel Avancé Gatling**](https://gatling.io/docs/gatling/tutorials/advanced/)
+    > Tutoriel avancé pour utiliser Gatling dans des scénarios plus complexes.
+
+22. [**Tutoriel de Démarrage Rapide Gatling**](https://gatling.io/docs/gatling/tutorials/quickstart/)
+    > Tutoriel rapide pour commencer à utiliser Gatling.
+
+## 28.5. Autres Outils et Ressources
+
+23. [**Tutoriel sur l'utilisation de S1seven**](https://www.s1seven.com/blog/use-s1sevens-certificate-tools-to-convert-a-json-certificate-to-a-pdf/)
+    > Tutoriel pour utiliser les outils de conversion de certificat JSON en PDF (n'est pas utilisée).
+
+24. [**FlowFuse, Version: 1.11.2, Licence : Apache-2.0**](https://www.flowfuse.io/)
+    > Plateforme de DevOps pour le développement et la mise en place d'application avec Node-Red
+
+<div style="page-break-after: always;"></div> 
+
+## 28.6. Articles de Recherche
+
+25. [**Yewan Wang, David Nörtershäuser, Stéphane Masson, Jean-Marc Menaud. Etude de l’influence de la température du processeur sur la consommation des serveurs. ComPAS 2018 - Conférence.d’informatique en Parallélisme, Architecture et Système, Jul 2018, Toulouse, France. pp.1-8.**](https://imt-atlantique.hal.science/hal-01807805/)
+    > Article de recherche sur l'influence de la température du processeur sur la consommation des serveurs.
+
+26. [**Profil de Consommation d'une carte de développement par M. Lamber**](https://www.researchgate.net/publication/350387196_Power_Consumption_Profiling_of_a_Lightweight_Development_Board_Sensing_with_the_INA219_and_Teensy_40_Microcontroller)
+    > Recherche sur le profil de consommation avec INA219 et Teensy 4.0.
+
+27. [**Profil de Consommation par M. Pol J. Planas Pulido**](https://upcommons.upc.edu/bitstream/handle/2117/180533/tfg-report-pol-planas.pdf?sequence=1&isAllowed=y)
+    > Recherche sur le profil de consommation avec INA219.
+
+## 28.7. Outils Supplémentaires
+
+29. [**MicroChip AVR**](https://www.microchip.com/en-us/development-tool/ac164160)
+    > Puce de développement Microchip AVR.
+30. [**Index des Licences Utilisées**](https://opensource.org/licenses/alphabetical)
+    > Index des licences open source.
