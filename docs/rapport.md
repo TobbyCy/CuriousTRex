@@ -33,7 +33,7 @@
     - [4.2.3. Génération de rapports sur la performance](#423-génération-de-rapports-sur-la-performance)
 - [5. Caractéristiques](#5-caractéristiques)
   - [5.1. Génération de trafic web](#51-génération-de-trafic-web)
-  - [5.2. Mesure de la consommation électrique (**INA219**)](#52-mesure-de-la-consommation-électrique-ina219)
+  - [5.2. Mesure de la consommation électrique (INA219)](#52-mesure-de-la-consommation-électrique-ina219)
   - [5.3. Mesure de la consommation](#53-mesure-de-la-consommation)
 - [6. Matériel](#6-matériel)
   - [6.1. Nomenclature](#61-nomenclature)
@@ -53,9 +53,12 @@
     - [8.4.1. But](#841-but)
 - [9. Instalation physique](#9-instalation-physique)
   - [9.1. Nidus](#91-nidus)
-    - [9.1.1. TODO Capture quand installation definitive](#911-todo-capture-quand-installation-definitive)
   - [9.2. Volt](#92-volt)
-    - [9.2.1. TODO Capture quand installation definitive](#921-todo-capture-quand-installation-definitive)
+  - [9.3. Situation finale](#93-situation-finale)
+  - [9.4. Suite](#94-suite)
+    - [9.4.1. Plaque de plexiglas avec des vis](#941-plaque-de-plexiglas-avec-des-vis)
+    - [9.4.2. Boîtier en plastique](#942-boîtier-en-plastique)
+    - [9.4.3. Conclusion](#943-conclusion)
 - [10. Shéma de principe](#10-shéma-de-principe)
   - [10.1. Shéma de principe visuel](#101-shéma-de-principe-visuel)
   - [10.2. Diagrame de séquence](#102-diagrame-de-séquence)
@@ -83,7 +86,8 @@
   - [13.6. Configuration](#136-configuration)
     - [13.6.1. Installation des plugins](#1361-installation-des-plugins)
     - [13.6.2. Sécurisation de Node-Red](#1362-sécurisation-de-node-red)
-    - [13.6.3. Suivi Git](#1363-suivi-git)
+    - [13.6.3. Sécurisation du Dashboard](#1363-sécurisation-du-dashboard)
+    - [13.6.4. Suivi Git](#1364-suivi-git)
 - [14. Gatling](#14-gatling)
   - [14.1. Installation](#141-installation)
     - [14.1.1. Prerequis](#1411-prerequis)
@@ -104,12 +108,13 @@
   - [16.5. Utilisation du script](#165-utilisation-du-script)
     - [16.5.1. Vérification](#1651-vérification)
 - [17. INA219](#17-ina219)
-  - [17.1. Installation physique](#171-installation-physique)
-    - [17.1.1. Branchement SANS VOLT](#1711-branchement-sans-volt)
-    - [17.1.2. Branchement AVEC VOLT](#1712-branchement-avec-volt)
-    - [17.1.3. Vérification de la présence du INA219](#1713-vérification-de-la-présence-du-ina219)
-  - [17.2. Obtention des données](#172-obtention-des-données)
-    - [17.2.1. Test avec le un script python](#1721-test-avec-le-un-script-python)
+  - [17.1. GPIO](#171-gpio)
+  - [17.2. Installation physique](#172-installation-physique)
+    - [17.2.1. Branchement SANS VOLT](#1721-branchement-sans-volt)
+    - [17.2.2. Branchement AVEC VOLT](#1722-branchement-avec-volt)
+    - [17.2.3. Vérification de la présence du INA219](#1723-vérification-de-la-présence-du-ina219)
+  - [17.3. Obtention des données](#173-obtention-des-données)
+    - [17.3.1. Test avec le un script python](#1731-test-avec-le-un-script-python)
 - [18. Noeud Node-Red](#18-noeud-node-red)
   - [18.1. Dashboard](#181-dashboard)
   - [18.2. INA219](#182-ina219)
@@ -139,6 +144,9 @@
 - [22. Problèmes](#22-problèmes)
   - [22.1. Problème de Détection I2C](#221-problème-de-détection-i2c)
   - [22.2. Problème de Performance](#222-problème-de-performance)
+    - [22.2.1. Solutions testées :](#2221-solutions-testées-)
+    - [22.2.2. Solutions possibles :](#2222-solutions-possibles-)
+    - [22.2.3. Solution choisie :](#2223-solution-choisie-)
   - [22.3. Température](#223-température)
     - [22.3.1. Sans ventilateur](#2231-sans-ventilateur)
     - [22.3.2. Avec Ventilateur](#2232-avec-ventilateur)
@@ -160,18 +168,18 @@
   - [24.8. Intégration de l'Apprentissage Automatique](#248-intégration-de-lapprentissage-automatique)
   - [24.9. Support Multilingue](#249-support-multilingue)
   - [24.10. Optimisation d'une distribution Ubuntu](#2410-optimisation-dune-distribution-ubuntu)
-- [26. Licences](#26-licences)
-  - [26.1. Licence Principale du Projet](#261-licence-principale-du-projet)
-  - [26.2. Licences des Dépendances](#262-licences-des-dépendances)
-- [27. Remerciement](#27-remerciement)
-- [28. Sources](#28-sources)
-  - [28.1. Node-RED et Extensions](#281-node-red-et-extensions)
-  - [28.2. Bibliothèques et Outils Externes](#282-bibliothèques-et-outils-externes)
-  - [28.3. Tutoriels et Documentation Technique](#283-tutoriels-et-documentation-technique)
-  - [28.4. Gatling](#284-gatling)
-  - [28.5. Autres Outils et Ressources](#285-autres-outils-et-ressources)
-  - [28.6. Articles de Recherche](#286-articles-de-recherche)
-  - [28.7. Outils Supplémentaires](#287-outils-supplémentaires)
+- [25. Licences](#25-licences)
+  - [25.1. Licence Principale du Projet](#251-licence-principale-du-projet)
+  - [25.2. Licences des Dépendances](#252-licences-des-dépendances)
+- [26. Remerciement](#26-remerciement)
+- [27. Sources](#27-sources)
+  - [27.1. Node-RED et Extensions](#271-node-red-et-extensions)
+  - [27.2. Bibliothèques et Outils Externes](#272-bibliothèques-et-outils-externes)
+  - [27.3. Tutoriels et Documentation Technique](#273-tutoriels-et-documentation-technique)
+  - [27.4. Gatling](#274-gatling)
+- [28. Autres Outils et Ressources](#28-autres-outils-et-ressources)
+  - [28.1. Articles de Recherche](#281-articles-de-recherche)
+  - [28.2. Outils Supplémentaires](#282-outils-supplémentaires)
 
 <div style="page-break-after: always;"></div>
 
@@ -211,7 +219,7 @@ Utilisation de l'outil Gatling comme générateur de trafic web. Gatling permett
 
 
 
-## 5.2. Mesure de la consommation électrique (**INA219**)
+## 5.2. Mesure de la consommation électrique (INA219)
 
 Utilisation d'un chip INA219 ou autre connectée via le bus I2C pour mesurer la consommation de manière précise et fiable. La chip INA219 fournira des informations détaillées sur la consommation d'énergie en mesurant la tension et le courant du système testé.
 
@@ -364,6 +372,9 @@ gantt
 
 
 ```
+
+<div style="page-break-after: always;"></div>
+
 ## 8.2. Première itération
 ### 8.2.1. But
 Mettre en places un "proof of concept" qui se baseras simplement sur la génération d'un rapport PDF par node-red via les informations de monitoring d'une machine mise sous pression par SSH.
@@ -393,6 +404,9 @@ gantt
     
 
 ```
+
+<div style="page-break-after: always;"></div>
+
 ## 8.3. Deuxième itération
 ### 8.3.1. But
 Ajout de Gatling aux test de charges avec récupérations des informations des logs de Gatling et de l'INA219. 
@@ -413,6 +427,7 @@ gantt
     Documentation de la deuxième itération : milestone, V2-d6, after V2-d5, 1h
 
 ```
+
 ## 8.4. Troisième itération
 ### 8.4.1. But
 La troisième itération a pour but de rendre le projet utilisable notamment en modifiant les visuels des graphique pour les rendre plus lisible, en modifiant le script Gatlignqui utilise le scala en lieux et place du java en ajoutant de nouveau graphique et enfin en ajoutant la possibilité d'exporter les données au format JSON et d'importer les données au format JSON et de générer un PDF.
@@ -439,15 +454,52 @@ gantt
 <div style="page-break-after: always;"></div>
 
 # 9. Instalation physique
+Pour différencier physiquement les deux Raspberry Pi, j'ai décidé de d'utiliser un stylo effaçable de tableau blanc pour "colorier" la parti du radiateur au dessus de la carte SD `Vert` pour Volt et `Rouge` pour Nidus.
 ## 9.1. Nidus
 
-### 9.1.1. TODO Capture quand installation definitive
-
+<div style="text-align:center;">
+<img src="../capture/RPI/INA219/FinalNidus.jpg" alt="Image" width="100%" style="width:50%;">
+</div>
 
 ## 9.2. Volt
+<div style="text-align:center;">
+<img src="../capture/RPI/INA219/FinalVolt.jpg" alt="Image" width="100%" style="width:50%;">
+</div>
 
-### 9.2.1. TODO Capture quand installation definitive
+<div style="page-break-after: always;"></div>
 
+## 9.3. Situation finale
+- A l'état final, voici à quoi ressemble la configuration, avec **Nidus** en haut et **Volt** en bas. Actuellement dû au statut de preuve de concept, l'installation est un peu chaotique, mais une fois le projet terminé, il sera possible de faire une installation plus propre.
+<div style="text-align:center;">
+<img src="../capture/RPI/INA219/FinalComplet.jpg" alt="Image" width="100%" style="width:80%;">
+</div>
+
+<div style="page-break-after: always;"></div>
+
+## 9.4. Suite
+En début de projet, il à été rapidement pensé de mettre les deux Raspberry Pi dans un boîtier, mais après réflexion et celà reste une reflexion d'actualitée, en y regardant j'ai trouvé deux modèles qui dommine le marché et qui sont les suivant :
+
+### 9.4.1. Plaque de plexiglas avec des vis
+<div style="text-align:center;">
+<img src="../capture/RPI/Node-Red/RapportPDF/Cluster_Not.jpg" alt="Image" width="100%" style="width:70%;">
+</div>
+
+<div style="page-break-after: always;"></div>
+
+### 9.4.2. Boîtier en plastique
+<div style="text-align:center;">
+<img src="../capture/RPI/Node-Red/RapportPDF/Cluster_Yes1.jpg" alt="Image" width="100%" style="width:40%;">
+</div>
+<div style="text-align:center;">
+<img src="../capture/RPI/Node-Red/RapportPDF/Cluster_Yes2.jpg" alt="Image" width="100%" style="width:65%;">
+</div>
+
+### 9.4.3. Conclusion
+Au niveau du choix du type de boîtier, je pense que le boîtier en plastique est plus adapté pour le projet :
+1. Il est possible de mettre tout le matériel dans le boîtier.
+2. Il dispose de base d'un ventilateur compatible avec le Raspberry Pi 4.
+3. Il dispose d'un emplacement pour un disque dur 2.5" qui permettra de stocker les données de monitoring.
+4. Il a des poignées pour le transporter facilement.
 
 <div style="page-break-after: always;"></div>
 
@@ -647,11 +699,14 @@ Node-RED repose sur Node.js en raison des avantages qu'offre cette plateforme. N
 
 ## 13.3. [FlowFuse](https://flowfuse.com/)
 
-FlowFuse est une entreprise spécialisée dans l'hébergement et le DevOps pour Node-RED. Elle permet de professionnaliser l'utilisation de Node-RED, en le sortant des projets de preuve de concept pour le déployer dans des environnements de production. FlowFuse offre des services d'hébergement sécurisé, de surveillance, de sauvegarde et de mise à l'échelle pour Node-RED, ce qui en fait une solution idéale pour les entreprises cherchant à tirer pleinement parti de cet outil puissant de programmation visuelle. Avec FlowFuse, Node-RED peut être utilisé de manière fiable et professionnelle pour des applications de grande envergure.
+FlowFuse est une entreprise spécialisée dans l'hébergement et le DevOps pour Node-RED. Elle permet de professionnaliser l'utilisation de Node-RED, en le sortant des projets de preuve de concept pour le déployer dans des environnements de production. FlowFuse offre des services d'hébergement sécurisé, de surveillance, de sauvegarde et de mise à l'échelle pour Node-RED, ce qui en fait une solution idéale pour les entreprises cherchant à tirer pleinement parti de cet outil puissant de programmation visuelle.
 
-Node-RED est bien plus qu'un simple outil de prototypage. C'est une solution flexible et puissante pour la création d'applications IoT, d'automatisation domestique, de traitement des données et bien plus encore. 
+Node-RED est bien plus qu'un simple outil de prototypage. C'est une solution flexible et puissante pour la création d'applications IoT, d'automatisation domestique, de traitement des données et bien plus encore.
 
-A terme il peut être interessant d'utiliser FlowFuse pour le projet, mais pour le moment, nous allons utiliser Node-RED en local sur Nidus.
+À terme, il serait intéressant de pouvoir utiliser FlowFuse pour héberger le projet, notamment pour permettre une meilleure scalabilité, une meilleure sécurité et une meilleure fiabilité.
+
+Cependant, durant ce projet, je n'implémenterai pas cette solution pour plusieurs raisons. La première est de permettre au plus grand nombre de pouvoir reproduire le projet. La deuxième est que FlowFuse est une solution payante, et que je ne peux pas me permettre de payer pour ce projet. La troisième est que FlowFuse est une solution qui nécessite un certain nombre de configurations, et dans l'optique de preuve de concept, je veux privilégier la simplicité et la rapidité de mise en place.
+
 
 <div style="page-break-after: always;"></div>
 
@@ -737,6 +792,11 @@ User Security
 tobby@Nidus:~ $ sudo systemctl enable nodered.service
 Created symlink /etc/systemd/system/multi-user.target.wants/nodered.service → /lib/systemd/system/nodered.service.
 ```
+
+- Vérification
+Une fois l'instalation terminé, il est possible de vérifier que Node-Red est bien installé et qu'il fonctionne correctement.
+Pour ce faire je vais simplement me connecter à l'interface web de Node-Red.
+
 <img src="../capture/RPI/Node-Red/PostInstall.png" alt="Image" width="100%" style="width:100%;">
 
 
@@ -744,25 +804,53 @@ Created symlink /etc/systemd/system/multi-user.target.wants/nodered.service → 
 
 ## 13.6. Configuration
 ### 13.6.1. Installation des plugins
-#TODO
+Les plugins ou palette de Node-Red permettent d'ajouter des fonctionnalité à Node-Red. C'est vraiment un aspect important de Node-Red car il permet d'ajouter des fonctionnalité sans avoir à les programmer soit même. On peut donc gagner un temps énorme en utilisant les palettes.
 
-<img src="../capture/RPI/Node-Red/palette1.png" alt="Installation des plugins" width="30%" style="width:30%;">
-<img src="../capture/RPI/Node-Red/palette2.png" alt="Installation des plugins" width="30%" style="width:30%;">
-<img src="../capture/RPI/Node-Red/palette3.png" alt="Installation des plugins" width="30%" style="width:30%;">
+- Pour commencer, sur la page d'accueil de Node-Red, il faut cliquer sur le menu en haut à droite, puis sur « Manage palette ».
+<div style="text-align:center;">
+<img src="../capture/RPI/Node-Red/palette1.jpeg" alt="Installation des plugins" width="50%" style="width:50%;">
+</div>
 
-<img src="../capture/RPI/Node-Red/palette4.png" alt="Installation des plugins" width="100%" style="width:100%;">
+<div style="page-break-after: always;"></div>
 
+- Une fois sur la page de gestion des palette, il y a deux pages, une pour les palettes installées et une pour les palettes disponibles. Pour installer une palette, il suffit de la chercher dans la page Install en haut a droit puis soit de défiler jusqu'à la palette souhaitée, soit de la chercher dans la barre de recherche. Une fois la palette trouvée, il suffit de cliquer sur le bouton « install ». Dans ce cas, j'installe la palette « node-red-dashboard » qui permet de créer des dashboard pour Node-Red.
+
+<img src="../capture/RPI/Node-Red/palette2.jpeg" alt="Installation des plugins" width="45%" style="width:49%;">
+<img src="../capture/RPI/Node-Red/palette3.jpeg" alt="Installation des plugins" width="45%" style="width:49%;">
+
+- Une fois la procédure lancé, une popup s'ouvre pour confirmer l'installation de la palette. Il suffit de cliquer sur « install » ou sur "Open node information" pour avoir plus d'information sur la palette.
+
+<div style="text-align:center;">
+<img src="../capture/RPI/Node-Red/palette4.jpeg" alt="Installation des plugins" width="70%" style="width:70%;">
+</div>
+
+<div style="page-break-after: always;"></div>
+
+- Pour finir, après l'instalation de la palette, on peut vérifier si l'intallation c'est bien passé en ouvrant dans un nouvel onglet le dashboard de Node-Red. Pour ce faire, il faut aller sur l'adresse de Node-Red le `http://"Hostname":1880` et ajouter `/ui` à la fin de l'adresse. Dans mon cas, l'adresse est `http://nidus.s2.rpn.ch:1880/ui`.
+
+<div style="text-align:center;">
 <img src="../capture/RPI/Node-Red/Dashboard.png" alt="Installation des plugins" width="100%" style="width:100%;">
+</div>
 
 
 ### 13.6.2. Sécurisation de Node-Red
 Pour sécuriser Node-Red, il convient de modifier le fichier `settings.js`. Dans notre cas, nous utilisons la commande `node-red admin init`, ce qui permet, par exemple, de créer des paires utilisateur/mot de passe.
 
-De plus, il est recommandé, si nécessaire, d'ajouter un login au *Dashboard*. 
+### 13.6.3. Sécurisation du Dashboard
+Pour des raisons de sécurité, il est nécessaire de sécuriser le Dashboard. Pour ce faire, il faut modifier le fichier `settings.js` et décommenter les lignes suivantes puis les modifier, de la même manière que les adminAuth :
+```json
+    /** To password protect the node-defined HTTP endpoints (httpNodeRoot),
+     * including node-red-dashboard, or the static content (httpStatic), the
+     * following properties can be used.
+     * The `pass` field is a bcrypt hash of the password.
+     * See http://nodered.org/docs/security.html#generating-the-password-hash
+     */
+    httpNodeAuth: {user:"user",pass:"$2b$08$.uHgpN7VE5BhIID1ycxRC.5uyM5xwaTw0Q0NFUxzyOG3UMQ.ixPWK"},
+```
 
-#TODO
+<div style="page-break-after: always;"></div>
 
-### 13.6.3. Suivi Git
+### 13.6.4. Suivi Git
 Afin de suivre le projet sur Git, il est nécessaire de configurer un utilisateur, générer des clés SSH, puis effectuer un *clone* du projet.
 
 <img src="../capture/RPI/Node-Red/Git_Config.png" alt="Configuration Git" width="30%" style="width:30%;">
@@ -770,7 +858,7 @@ Afin de suivre le projet sur Git, il est nécessaire de configurer un utilisateu
 <img src="../capture/RPI/Node-Red/GIT_Setting.png" alt="Configuration Git" width="30%" style="width:30%;">
 
 
-Comme il s'agit d'un *clone*, il faudra ajouter les fichiers manquants et ajuster les droits d'accès.
+Comme il s'agit d'un *clone*, il faudra ajouter les fichiers manquants et ajuster les droits d'accès en tout cas pour l'initialisation.
 
 ```bash
 tobby@Nidus:~/.node-red/projects/banc-de-mesures-de-la-consommation-electrique $ touch ~/.node-red/projects/banc-de-mesures-de-la-consommation-electrique/flows_cred.json
@@ -873,9 +961,7 @@ computerdatabase.ComputerDatabaseSimulation is the only simulation, executing it
 Select run description (optional)
 InstallVerif
 Simulation computerdatabase.ComputerDatabaseSimulation started...
-
 [...]
-
 Simulation computerdatabase.ComputerDatabaseSimulation completed in 17 seconds
 Parsing log file(s)...
 Parsing log file(s) done
@@ -1235,11 +1321,60 @@ Service activé.
 
 Il est important de noter que deux puces INA219 sont utilisée dans ce projet : l'une pour la mesure proprement dite et l'autre en tant que pièce de rechange en cas de problème. Pour les différencier, nous avons avec M. Singelé effectué des soudures pour attribuer des adresses I2C spécifiques à chaque puce. L'adresse de la puce de mesure est réglée sur *0x40*, tandis que l'adresse de la puce de remplacement est réglée sur *0x41*.
 
-## 17.1. Installation physique
+## 17.1. GPIO
+Avant toute chose il faut définir quel est la configuration des GPIO du raspberry pi utilisée et autant l'on peu se fier à la documentation de la fondation raspberry pi autant il existe une commande qui nous permet de vérifier celà  et le (1) nous donne le sens de lecture:
+```bash
+tobby@Nidus:/home/NodeRed/pdf $ pinout
++--------------------------------+
+| oooooooooooooooooooo J8   +======
+| 1ooooooooooooooooooo  PoE |   Net
+|  Wi                    1o +======
+|  Fi  Pi Model 4B  V1.2 oo      |
+|        +----+ +---+         +====
+| |D|    |SoC | |RAM|         |USB3
+| |S|    |    | |   |         +====
+| |I|    +----+ +---+            |
+|                   |C|       +====
+|                   |S|       |USB2
+| pwr   |hd|   |hd| |I||A|    +====
++-| |---|m0|---|m1|----|V|-------+
+
+Revision           : c03112
+SoC                : BCM2711
+RAM                : 4GB
+Storage            : MicroSD
+USB ports          : 4 (of which 2 USB3)
+Ethernet ports     : 1 (1000Mbps max. speed)
+[...]
+
+J8:
+   3V3  (1) (2)  5V    
+ GPIO2  (3) (4)  5V    
+ GPIO3  (5) (6)  GND   
+ GPIO4  (7) (8)  GPIO14
+   GND  (9) (10) GPIO15
+GPIO17 (11) (12) GPIO18
+GPIO27 (13) (14) GND   
+GPIO22 (15) (16) GPIO23
+   3V3 (17) (18) GPIO24
+GPIO10 (19) (20) GND   
+ GPIO9 (21) (22) GPIO25
+GPIO11 (23) (24) GPIO8 
+   GND (25) (26) GPIO7 
+ GPIO0 (27) (28) GPIO1 
+ GPIO5 (29) (30) GND   
+ GPIO6 (31) (32) GPIO12
+GPIO13 (33) (34) GND   
+GPIO19 (35) (36) GPIO16
+GPIO26 (37) (38) GPIO20
+   GND (39) (40) GPIO21
+```
+
+## 17.2. Installation physique
 
 L'installation physique du **INA219** implique des branchements spécifiques en fonction des scénarios : avec ou sans la dérivation de l'alimentation de Volt. Voici les détails de chaque configuration :
 
-### 17.1.1. Branchement SANS VOLT
+### 17.2.1. Branchement SANS VOLT
 
 Pour le branchement à vide, il suffit de connecter le **INA219** au Raspberry Pi à l'aide d'un câble I2C. Voici un aperçu détaillé de ce branchement :
 - Cable Jaune : **3.3V**
@@ -1252,7 +1387,7 @@ Pour le branchement à vide, il suffit de connecter le **INA219** au Raspberry P
 
 <div style="page-break-after: always;"></div>
 
-### 17.1.2. Branchement AVEC VOLT
+### 17.2.2. Branchement AVEC VOLT
 
 Le branchement avec le dispositif Volt ajoute une complexité supplémentaire. Voici un aperçu détaillé de ce branchement :
 
@@ -1261,7 +1396,7 @@ Le branchement avec le dispositif Volt ajoute une complexité supplémentaire. V
 
 <div style="page-break-after: always;"></div>
 
-### 17.1.3. Vérification de la présence du INA219
+### 17.2.3. Vérification de la présence du INA219
 
 Avant de pouvoir commencer à utiliser le **INA219** pour mesurer la consommation, il est crucial de vérifier la présence de la puce et de s'assurer qu'elle est correctement détectée par le système. Cette étape est essentielle pour garantir des mesures précises et fiables tout au long du projet.
 
@@ -1291,8 +1426,8 @@ tobby@Nidus:~ $ sudo i2cdetect -y 1
 
 <div style="page-break-after: always;"></div>
 
-## 17.2. Obtention des données
-### 17.2.1. Test avec le un script python
+## 17.3. Obtention des données
+### 17.3.1. Test avec le un script python
 Instalation de la bibliothèque python
 ```bash
 tobby@Nidus:~ $ sudo pip3 install pi-ina219
@@ -2277,6 +2412,8 @@ Voici les tests que j'ai effectués :
 - Vérification de la présence de modules noyau I2C (`lsmod | grep i2c`)
 - Vérification avec un oscilloscope
 
+<div style="page-break-after: always;"></div>
+
 Malheureusement, aucun de ces tests n'a abouti à une solution. J'ai donc pris la décision de repartir de zéro en effectuant une installation propre, sans Node-Red ni Gatling. À ce moment-là, j'ai enfin pu détecter mes puces avec succès.
 
 ```bash
@@ -2308,22 +2445,28 @@ Une fois que la puce a été détectée, j'ai entrepris une réinstallation minu
 
 ## 22.2. Problème de Performance
 
-J'ai été confronté à un problème très handicapant lors de la troisième itération du projet. Jusqu'à présent, mes tests avec Gatling étaient relativement courts, d'une durée de moins de 20 minutes et avec un seul utilisateur. Cependant, lors de mon premier test avec 5 utilisateurs pendant 30 minutes, j'ai rencontré une erreur de mémoire insuffisante.
+Lors de la troisième itération du projet, un problème significatif s'est manifesté. Jusqu'à présent, mes tests avec Gatling étaient relativement courts, d'une durée de moins de 20 minutes et avec un seul utilisateur. Cependant, lors de mon premier test avec 5 utilisateurs pendant 30 minutes, une erreur de mémoire insuffisante est survenue.
 
-En effet, pour récupérer les informations de Gatling, je les extrayais des fichiers journaux, et avec ce genre de paramètres, le fichier journal devenait très rapidement très volumineux. De plus, ma méthode de traitement des informations n'était pas optimale et donc très gourmande en mémoire. J'ai donc dû revoir ma manière de traiter les données et de les stocker pour éviter ce genre de problème.
+Pour récupérer les informations de Gatling, j'extrayais les données des fichiers journaux. Avec ces paramètres, le fichier journal devenait très rapidement volumineux. De plus, ma méthode de traitement des informations était gourmande en mémoire. J'ai donc dû revoir ma manière de traiter les données et de les stocker pour éviter ce genre de problème.
 
-À l'origine, dans l'idée de généraliser mes fonctions, je visais à regrouper toutes les sources de données en un seul flux de données. Cependant, cela s'est avéré non optimal car cela demandait beaucoup de mémoire et de puissance de calcul. J'ai donc décidé de séparer les sources de données en plusieurs flux distincts et de les traiter individuellement. Cela a permis de réduire la charge de travail de Node-Red et, par conséquent, de réduire la consommation de mémoire.
+À l'origine, dans l'idée de généraliser mes fonctions, je visais à regrouper toutes les sources de données en un seul flux. Cependant, cela s'est avéré non optimal en termes de mémoire et de puissance de calcul. J'ai donc décidé de séparer les sources de données en plusieurs flux distincts et de les traiter individuellement. Cela a permis de réduire la charge de travail de Node-Red et, par conséquent, de réduire la consommation de mémoire.
 
-Cependant, celà permet de lancer des test plus imposants mais pas de réaliser de très long test de charges avec de nombreux utilisateurs. En effet, le problème de mémoire est toujours présent, mais il est moins important. Après pour rester réaliste, il faut prendre en compte que le Raspberry Pi 4 n'est pas un serveur et qu'il ne peut pas faire tourner des tests de charges avec des milliers d'utilisateurs. 
+Cependant, bien que cela permette de lancer des tests plus imposants, cela ne résout pas entièrement le problème de mémoire pour des tests de charges plus longs avec de nombreux utilisateurs. Il est important de noter que le Raspberry Pi 4 n'est pas un serveur capable de gérer des tests de charges massifs.
 
-Je cherche encore à améliorer la performance de mon application, mais pour l'instant, je n'ai pas trouvé de solution satisfaisante.
 
-Solutions testé :
-- Traitement des donnée séparément et plus dans un seul flux
-- Traitement des donnée plus tôt dans le flux pour éviter de stocker les données
+### 22.2.1. Solutions testées :
+- Traitement des données séparément au lieu de les regrouper en un seul flux.
+- Traitement précoce des données dans le flux pour éviter le stockage excessif de données.
 
-Solutions possible :
-- Externaliser Node-Red sur un serveur plus puissant pour améliorer les performances.
+### 22.2.2. Solutions possibles :
+- Externalisation de Node-Red sur un serveur plus puissant pour améliorer les performances.
+
+### 22.2.3. Solution choisie :
+En traitant les informations plus tôt dans le flux et en évitant de joindre les flux inutilement, j'ai pu réduire la consommation de mémoire et ainsi éviter les problèmes de performances. Cependant, il est essentiel de noter que, malgré ces améliorations, je ne peux pas réaliser des tests de charge avec de nombreux utilisateurs sur de longues périodes.
+
+J'ai réussi à réaliser des tests avec 10 utilisateurs effectuant 6 requêtes par seconde pendant 5 minutes, ou un test d'une heure avec un seul utilisateur.
+
+Il est important de maintenir des attentes réalistes : le Raspberry Pi 4 n'est pas un serveur et ne peut pas gérer des tests de charge avec des milliers d'utilisateurs pendant des heures et traiter ensuite des millions de lignes de journaux.
 
 
 <div style="page-break-after: always;"></div> 
@@ -2364,6 +2507,9 @@ Cependant, les variations les plus significatives ont été observées au niveau
 Il est important de noter que ces tests ont été réalisés pendant une période de canicule, ce qui signifie que la température ambiante était exceptionnellement élevée. Cela suggère que, dans des conditions ambiantes plus fraîches, la température du processeur aurait pu être encore plus basse. Cependant, il est peu probable que cela ait eu un impact significatif sur les différences observées, car la réduction de la température du processeur grâce au ventilateur était clairement substantielle et significative.
 
 
+<div style="page-break-after: always;"></div>
+
+
 # 23. Choix effectués
 Dans cette section, je vais détailler les choix que j'ai effectués pour chaque composant et technologie utilisée dans le cadre de ce projet. Il est important de noter que les options que j'ai choisies correspondent à celles que j'ai spécifiées au début du projet, sauf mention contraire. Voici un aperçu de ces choix :
 
@@ -2392,7 +2538,7 @@ Ces choix ont été soigneusement réfléchis et correspondent aux besoins et au
 
 # 24. Améliorations Futures
 
-Dès les premiers prémices de ce projet, il a toujours été clair pour toutes les parties prenantes que l'objectif n'était pas de limiter ce produit à notre utilisation personnelle. Au contraire, l'idéal serait de fournir un outil Open-Source que les développeurs pourraient utiliser, contribuer et améliorer. Dans cette section, je vais détailler les améliorations que je souhaite apporter à ce projet après la période de mon travail de diplôme.
+Dès les premiers prémices de ce projet, il a toujours été clair pour toutes les parties prenantes que l'objectif n'était pas de limiter ce produit à une utilisation personnelle. Au contraire, l'idéal serait de fournir un outil Open-Source que les développeurs pourraient utiliser, contribuer et améliorer. Dans cette section, je vais détailler les améliorations que je souhaite apporter à ce projet après la période de mon travail de diplôme.
 
 Le travail de diplôme est limité à une durée fixe de 6 semaines, mais après cette période, je continuerai à travailler sur le projet et le publierai sur GitHub. Mon engagement est de poursuivre le développement autant que possible.
 
@@ -2409,6 +2555,8 @@ L'adoption de FlowFuse offrirait une solution pour dépasser les limitations en 
 
 ## 24.4. Analyse des Données
 Faire appel à des experts en analyse de données et en création de rapports améliorerait la précision et la qualité des rapports générés. Cela rendrait également les rapports plus professionnels, ce qui serait essentiel pour des utilisations en entreprise.
+
+<div style="page-break-after: always;"></div>
 
 ## 24.5. Tests de Cluster
 À terme, il serait extrêmement intéressant de pouvoir tester un cluster de Raspberry Pi. Cela permettrait notamment de répartir la charge des serveurs, par exemple un pour le serveur web, un pour la base de données, un pour le proxy et un pour le load balancer. De telles expériences permettraient de tester la scalabilité de l'application et sa capacité à gérer des charges plus importantes.
@@ -2432,17 +2580,17 @@ Fournir une distribution Ubuntu optimisée au maximum, n'ayant que le strict min
 
 <div style="page-break-after: always;"></div> 
 
-# 26. Licences
+# 25. Licences
 
 Ce chapitre présente les licences associées à ce projet, y compris la licence principale du projet, la GPL V3.0, ainsi que les licences des dépendances utilisées.
 
-## 26.1. Licence Principale du Projet
+## 25.1. Licence Principale du Projet
 
 Le projet principal est sous licence **GNU General Public License Version 3.0 (GPL-3.0)**. Cette licence open source garantit les droits de l'utilisateur à exécuter, étudier, modifier et redistribuer le logiciel.
 
 Pour plus de détails sur la licence **GPL V3.0**, voici [le texte complet de la licence](https://www.gnu.org/licenses/gpl-3.0.html).
 
-## 26.2. Licences des Dépendances
+## 25.2. Licences des Dépendances
 
 Le projet utilise plusieurs dépendances, chacune étant sous une licence spécifique. Voici un aperçu des licences des dépendances :
 
@@ -2470,7 +2618,7 @@ Le projet utilise plusieurs dépendances, chacune étant sous une licence spéci
 
 <div style="page-break-after: always;"></div>
 
-# 27. Remerciement 
+# 26. Remerciement 
 Je tiens à exprimer ma profonde gratitude envers les personnes qui ont joué des rôles essentiels dans la réalisation de ce projet. Avant tout, je souhaite exprimer ma sincère reconnaissance à M. Benoit Vianin, dont la proposition du projet, le matériel fourni et les conseils avisés ont été cruciaux pour sa mise en place. Sa précieuse assistance technique a été d'une grande importance.
 
 Je tiens également à adresser mes remerciements à M. Fabien Maire, Directeur du service Informatique du SIS2 (Service Informatique du Secondaire 2), pour son accompagnement et ses conseils tout au long de ce travail. Sa vision éclairée et son expertise ont été des facteurs clés dans la réussite de ce projet.
@@ -2493,9 +2641,9 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 <div style="page-break-after: always;"></div> 
 
 
-# 28. Sources
+# 27. Sources
 
-## 28.1. Node-RED et Extensions
+## 27.1. Node-RED et Extensions
 
 1. [**Guide d'Installation Node-Red, Version: 18.17.1, Licence: Apache-2.0**](https://nodered.org/docs/getting-started/raspberrypi)
    > Guide officiel pour installer Node-Red sur Raspberry Pi.
@@ -2521,7 +2669,7 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 8. [**Chart Image Node-Red, Version: 1.2.0,Licence: BSD-2-Clause**](https://flows.nodered.org/node/node-red-contrib-chart-image)
    > Extension pour créer des graphiques dans Node-Red.
 
-## 28.2. Bibliothèques et Outils Externes
+## 27.2. Bibliothèques et Outils Externes
 
 9. [**Chart.js, Version: 4.4.0, Licence: MIT**](https://www.chartjs.org/)
    > Bibliothèque JavaScript pour créer des graphiques interactifs.
@@ -2539,7 +2687,7 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 
 <div style="page-break-after: always;"></div> 
 
-## 28.3. Tutoriels et Documentation Technique
+## 27.3. Tutoriels et Documentation Technique
 
 14. [**Tutoriel de Base Rototron**](https://www.rototron.info/raspberry-pi-ina219-tutorial/)
     > Tutoriel de base pour utiliser l'INA219 avec Raspberry Pi.
@@ -2562,41 +2710,43 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 20. [**Tutoriel Complet avec Arduino**](https://electropeak.com/learn/interfacing-ina219-current-sensor-module-with-arduino/)
     > Tutoriel complet sur l'utilisation de l'INA219 avec Arduino.
 
-## 28.4. Gatling
+21. [**Documentation matérielle du Raspberry Pi 4**](https://www.raspberrypi.org/documentation/hardware/raspberrypi/README.md)
+    > Documentation matérielle officielle du Raspberry Pi 4.
+## 27.4. Gatling
 
-20. [**Téléchargement Gatling, Verion 3.9.5, Licence : Apache-2.0**](https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/3.9.5/gatling-charts-highcharts-bundle-3.9.5-bundle.zip)
+22. [**Téléchargement Gatling, Verion 3.9.5, Licence : Apache-2.0**](https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/3.9.5/gatling-charts-highcharts-bundle-3.9.5-bundle.zip)
     > Lien de téléchargement de l'outil Gatling pour la performance des applications.
 
-21. [**Tutoriel Avancé Gatling**](https://gatling.io/docs/gatling/tutorials/advanced/)
+23. [**Tutoriel Avancé Gatling**](https://gatling.io/docs/gatling/tutorials/advanced/)
     > Tutoriel avancé pour utiliser Gatling dans des scénarios plus complexes.
 
-22. [**Tutoriel de Démarrage Rapide Gatling**](https://gatling.io/docs/gatling/tutorials/quickstart/)
+24. [**Tutoriel de Démarrage Rapide Gatling**](https://gatling.io/docs/gatling/tutorials/quickstart/)
     > Tutoriel rapide pour commencer à utiliser Gatling.
 
-## 28.5. Autres Outils et Ressources
+# 28. Autres Outils et Ressources
 
-23. [**Tutoriel sur l'utilisation de S1seven**](https://www.s1seven.com/blog/use-s1sevens-certificate-tools-to-convert-a-json-certificate-to-a-pdf/)
+25. [**Tutoriel sur l'utilisation de S1seven**](https://www.s1seven.com/blog/use-s1sevens-certificate-tools-to-convert-a-json-certificate-to-a-pdf/)
     > Tutoriel pour utiliser les outils de conversion de certificat JSON en PDF (n'est pas utilisée).
 
-24. [**FlowFuse, Version: 1.11.2, Licence : Apache-2.0**](https://www.flowfuse.io/)
+26. [**FlowFuse, Version: 1.11.2, Licence : Apache-2.0**](https://www.flowfuse.io/)
     > Plateforme de DevOps pour le développement et la mise en place d'application avec Node-Red
 
 <div style="page-break-after: always;"></div> 
 
-## 28.6. Articles de Recherche
+## 28.1. Articles de Recherche
 
-25. [**Yewan Wang, David Nörtershäuser, Stéphane Masson, Jean-Marc Menaud. Etude de l’influence de la température du processeur sur la consommation des serveurs. ComPAS 2018 - Conférence.d’informatique en Parallélisme, Architecture et Système, Jul 2018, Toulouse, France. pp.1-8.**](https://imt-atlantique.hal.science/hal-01807805/)
+27. [**Yewan Wang, David Nörtershäuser, Stéphane Masson, Jean-Marc Menaud. Etude de l’influence de la température du processeur sur la consommation des serveurs. ComPAS 2018 - Conférence.d’informatique en Parallélisme, Architecture et Système, Jul 2018, Toulouse, France. pp.1-8.**](https://imt-atlantique.hal.science/hal-01807805/)
     > Article de recherche sur l'influence de la température du processeur sur la consommation des serveurs.
 
-26. [**Profil de Consommation d'une carte de développement par M. Lamber**](https://www.researchgate.net/publication/350387196_Power_Consumption_Profiling_of_a_Lightweight_Development_Board_Sensing_with_the_INA219_and_Teensy_40_Microcontroller)
+28. [**Profil de Consommation d'une carte de développement par M. Lamber**](https://www.researchgate.net/publication/350387196_Power_Consumption_Profiling_of_a_Lightweight_Development_Board_Sensing_with_the_INA219_and_Teensy_40_Microcontroller)
     > Recherche sur le profil de consommation avec INA219 et Teensy 4.0.
 
-27. [**Profil de Consommation par M. Pol J. Planas Pulido**](https://upcommons.upc.edu/bitstream/handle/2117/180533/tfg-report-pol-planas.pdf?sequence=1&isAllowed=y)
+29. [**Profil de Consommation par M. Pol J. Planas Pulido**](https://upcommons.upc.edu/bitstream/handle/2117/180533/tfg-report-pol-planas.pdf?sequence=1&isAllowed=y)
     > Recherche sur le profil de consommation avec INA219.
 
-## 28.7. Outils Supplémentaires
+## 28.2. Outils Supplémentaires
 
-29. [**MicroChip AVR**](https://www.microchip.com/en-us/development-tool/ac164160)
+30. [**MicroChip AVR**](https://www.microchip.com/en-us/development-tool/ac164160)
     > Puce de développement Microchip AVR.
-30. [**Index des Licences Utilisées**](https://opensource.org/licenses/alphabetical)
+31. [**Index des Licences Utilisées**](https://opensource.org/licenses/alphabetical)
     > Index des licences open source.
