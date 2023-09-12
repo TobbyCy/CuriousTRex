@@ -6749,7 +6749,8 @@
         "y": 460,
         "wires": [
             [
-                "edb017f1c8523846"
+                "edb017f1c8523846",
+                "d65374ceff4d241b"
             ]
         ]
     },
@@ -8005,7 +8006,8 @@
         "wires": [
             [
                 "d11f7afdc4889557",
-                "752215d4be43422d"
+                "752215d4be43422d",
+                "8759770dc87d8ac7"
             ],
             [
                 "752215d4be43422d"
@@ -9005,6 +9007,70 @@
         ]
     },
     {
+        "id": "8759770dc87d8ac7",
+        "type": "change",
+        "z": "3ddecfbaabd60ba5",
+        "name": "Gatling",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "gatling",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 360,
+        "y": 1320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d65374ceff4d241b",
+        "type": "change",
+        "z": "3ddecfbaabd60ba5",
+        "name": "Delay",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "delay",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 350,
+        "y": 1360,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "9ba0d599c2412587",
         "type": "inject",
         "z": "aa36cc7d7fa5cea5",
@@ -9944,6 +10010,21 @@
             {
                 "t": "delete",
                 "p": "filename",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "_msgid",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "socketid",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "original",
                 "pt": "msg"
             }
         ],
