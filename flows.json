@@ -10366,7 +10366,7 @@
         "key": "topic",
         "joiner": "\\n",
         "joinerType": "str",
-        "accumulate": true,
+        "accumulate": false,
         "timeout": "",
         "count": "4",
         "reduceRight": false,
@@ -10374,7 +10374,7 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 370,
+        "x": 490,
         "y": 540,
         "wires": [
             [
