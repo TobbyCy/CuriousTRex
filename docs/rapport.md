@@ -141,6 +141,16 @@
   - [21.1. UI](#211-ui)
     - [21.1.1. Ventilateur](#2111-ventilateur)
     - [21.1.2. UI](#2112-ui)
+  - [21.2. Paramètres de Test](#212-paramètres-de-test)
+    - [21.2.1. Node-Red](#2121-node-red)
+    - [21.2.2. Gatling](#2122-gatling)
+  - [21.3. Optimisation](#213-optimisation)
+    - [21.3.1. Séparation des Flux de Données](#2131-séparation-des-flux-de-données)
+    - [21.3.2. Prétraitement des Données en Amont](#2132-prétraitement-des-données-en-amont)
+  - [21.4. JSON](#214-json)
+    - [21.4.1. Création du Fichier JSON](#2141-création-du-fichier-json)
+    - [21.4.2. Lecture du Fichier JSON](#2142-lecture-du-fichier-json)
+    - [21.4.3. Importation du Fichier JSON](#2143-importation-du-fichier-json)
 - [22. Problèmes](#22-problèmes)
   - [22.1. Problème de Détection I2C](#221-problème-de-détection-i2c)
   - [22.2. Problème de Performance](#222-problème-de-performance)
@@ -179,7 +189,7 @@
   - [27.4. Gatling](#274-gatling)
 - [28. Autres Outils et Ressources](#28-autres-outils-et-ressources)
   - [28.1. Articles de Recherche](#281-articles-de-recherche)
-  - [28.2. Outils Supplémentaires](#282-outils-supplémentaires)
+  - [28.2. Liens externes](#282-liens-externes)
 
 <div style="page-break-after: always;"></div>
 
@@ -1978,6 +1988,10 @@ L'objectif de cette étape est d'intégrer Gatling aux tests de Node-Red, offran
 
 Cette intégration de Gatling aux tests Node-Red offre un moyen puissant d'évaluer les performances de l'infrastructure tout en maintenant un contrôle complet sur les scénarios de test et les paramètres de durée.
 
+<div style="text-align:center;">
+<img src="../capture/RPI/Node-Red/RapportPDF/12.png" alt="Alt text" width="100%" style="width:100%;">
+</div>
+
 <div style="page-break-after: always;"></div>
 
 ## 20.3. Exécution d'un Test Préétabli sur Gatling depuis Node-Red
@@ -2358,12 +2372,13 @@ Maintenant que l'étape de "PoC" a été atteinte, il est temps de passer à la 
 
 Les objectifs à atteindre sont donc les suivants :
 - Passer des paramètres de test à Gatling depuis Node-Red
-- Intégrer le CSV de Gatling avec Node-Red
 - Améliorer l'interface utilisateur de Node-Red
 - Ajouter les valeurs souhaitées dans le rapport PDF
 - Modifier les graphiques pour une meilleure lisibilité
 - Ajouter la possibilité d'exporter les données au format JSON
 - Ajouter la possibilité d'importer les données au format JSON et de générer un PDF
+- Optimiser le code
+- Ajout d'une page d'accueil
 
 
 
@@ -2382,9 +2397,96 @@ Pour permettre de garder un certain contrôle, j'ai ajouté les informations de 
 <div style="text-align:center;">
 <img src="../capture/RPI/Node-Red/RapportPDF/ventilateur-vintage-indola-5-scaled.jpg" alt="Alt text" width="50%" style="width:50%;">
 </div>
-### 21.1.2. UI
-<img src="../capture/RPI/Node-Red/RapportPDF/11.png" alt="Alt text" width="100%" style="width:100%;">
 
+### 21.1.2. UI
+<div style="text-align:center;">
+<img src="../capture/RPI/Node-Red/RapportPDF/11.png" alt="Alt text" width="90%" style="width:90%;">
+</div>
+
+<div style="page-break-after: always;"></div>
+
+## 21.2. Paramètres de Test
+### 21.2.1. Node-Red
+Pour passer des paramètres de test à Gatling depuis Node-Red, j'ai ajouté un nœud **function** qui permet de créer la commande Gatling en fonction des paramètres saisis par l'utilisateur. Voici le code de la fonction :
+
+```javascript
+msg.original = msg.payload;
+if (msg.topic !== "inject" && msg.payload.time !== undefined && msg.payload.user_gatling !== undefined && msg.payload.time !== 0) {
+        // Crée la commande en utilisant les valeurs spécifiées
+    msg.payload.time = msg.payload.time * 60;
+    msg.payload = `/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s CuriusTRex -bm --run-mode local -erjo "-Dusers=${msg.payload.user_gatling} -Dramp=${msg.payload.time} -Xms2G -Xmx4G" | tail -1`;
+    } else {
+        //En partant du principe que rien n'est retournée je retourne une valeur l'indiquant #TODO
+        return null;
+    }
+
+    // Renvoie le message modifié
+    return msg;
+```
+#TODO
+
+- Cette fonctions à pour but de programmer la commande SSH qui sera envoyé au serveur Gatling, mais elle est également là pour définir si oui ou non il faut réaliser un test sur galing ou non, cela se fais par le biais du formulaire si l'on mets l'utilisateur à 0.
+### 21.2.2. Gatling
+Une fois que la commande est envoyé, il faut l'interpreter, pour ce faire j'ai rsajouter ces lignes au script de Gatling :
+```scala
+val nbUsers = java.lang.Long.getLong("users", 1).toDouble
+val myRamp = java.lang.Long.getLong("ramp", 1)
+println(s"Nombre d'utilisateurs : $nbUsers")
+println(s"Temps de montée : $myRamp")
+
+  setUp(scn.inject(constantUsersPerSec(nbUsers).during(myRamp seconds))).protocols(httpProtocol)
+```
+Cela permet de récupérer les valeurs passées en paramètres et de les utiliser pour le test, mais si aucune valeur n'est passée ou qu'elle ne corespond pas au format, alors les valeurs par défaut seront utilisées.
+
+<div style="page-break-after: always;"></div>
+
+## 21.3. Optimisation
+
+Pour améliorer les performances du système, j'ai pris deux approches principales.
+
+### 21.3.1. Séparation des Flux de Données
+
+Au départ, j'avais regroupé toutes les données dans un même flux. Cependant, cela a entraîné un inconvénient majeur : à chaque étape de traitement, chaque fonction ou jointure sollicitait l'ensemble du flux. Cela signifiait que d'énormes quantités de données étaient traitées inutilement, ce qui était tout sauf optimal.
+
+Pour remédier à cela, j'ai choisi de segmenter les flux de données et de les traiter indépendamment les uns des autres. Cette approche permet d'éviter le traitement de données superflues, améliorant ainsi considérablement les performances globales du système.
+
+### 21.3.2. Prétraitement des Données en Amont
+
+Ensuite, j'ai décidé de déplacer le traitement des données plus en amont de leur flux respectif. Cela signifie que les données sont traitées et simplifiées plus tôt dans leur parcours. En conséquence, des données déjà traitées et donc moins volumineuses transitent à travers les étapes suivantes.
+
+Cette stratégie réduit la charge de traitement à chaque étape ultérieure, ce qui se traduit par une nette amélioration des performances globales du système.
+
+<div style="page-break-after: always;"></div>
+
+## 21.4. JSON
+
+### 21.4.1. Création du Fichier JSON
+
+Au début de ce processus, j'ai centralisé toutes les données nécessaires à la création de graphiques en un point unique. À cet endroit, je les ai transformées en format JSON et les ai enregistrées dans un fichier.
+
+<div align="center">
+<img src="../capture/RPI/Node-Red/RapportPDF/13.png" alt="Image 1" width="100%" style="width:100%;">
+</div>
+
+### 21.4.2. Lecture du Fichier JSON
+
+Ensuite, j'ai mis en place une fonctionnalité permettant à l'utilisateur de télécharger les différents fichiers JSON générés. Cela offre une vue d'ensemble des données sous une forme exploitable.
+
+<div align="center">
+<img src="../capture/RPI/Node-Red/RapportPDF/14.png" alt="Image 2" width="100%" style="width:100%;">
+</div>
+
+<div style="page-break-after: always;"></div>
+
+### 21.4.3. Importation du Fichier JSON
+
+L'importation du fichier JSON s'effectue sur la page de Gatling, où l'utilisateur peut également télécharger les rapports de performance. Cette intégration logique permet à l'utilisateur de charger son fichier en utilisant un bouton dédié.
+
+Après l'importation, les données sont traitées de la même manière que lors de la création du rapport PDF, aboutissant ainsi au même résultat.
+
+<div align="center">
+<img src="../capture/RPI/Node-Red/RapportPDF/15.png" alt="Image 3" width="100%" style="width:100%;">
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -2744,9 +2846,13 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 29. [**Profil de Consommation par M. Pol J. Planas Pulido**](https://upcommons.upc.edu/bitstream/handle/2117/180533/tfg-report-pol-planas.pdf?sequence=1&isAllowed=y)
     > Recherche sur le profil de consommation avec INA219.
 
-## 28.2. Outils Supplémentaires
+## 28.2. Liens externes
 
 30. [**MicroChip AVR**](https://www.microchip.com/en-us/development-tool/ac164160)
     > Puce de développement Microchip AVR.
-31. [**Index des Licences Utilisées**](https://opensource.org/licenses/alphabetical)
+31. [**GeeekPi Raspberry Pi Cluster**](https://www.amazon.fr/GeeekPi-Raspberry-Stackable-Ventilateur-4-Couches/dp/B083FP9JRY)
+    > Cluster avec Ventilateur 120mm pour RPi 4B/3B+/3B/2B/B+ et Jetson Nano (4-Couches) 
+32. [**Cluster "standart" Raspberry Pi**](https://www.elektor.fr/tower-case-for-raspberry-pi-server-cluster)
+    > Cluster fais de plaque de pleixglass avec intercalaire
+33. [**Index des Licences Utilisées**](https://opensource.org/licenses/alphabetical)
     > Index des licences open source.
