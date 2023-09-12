@@ -9137,7 +9137,7 @@
         "type": "function",
         "z": "3ddecfbaabd60ba5",
         "name": "function 7",
-        "func": "\nreturn msg;",
+        "func": "// Supprimer les valeurs non essentielles du message d'entrée\nvar inputMsg = msg.payload;\ndelete inputMsg.cmd;\ndelete inputMsg.topic;\ndelete inputMsg.out;\ndelete inputMsg.filepath;\ndelete inputMsg.graphPath;\n\n// Calculer la différence entre les horodatages delay et gatling\nvar delayTimestamp = inputMsg.payload.delay;\nvar gatlingTimestamp = inputMsg.payload.gatling;\nvar timeDifference = gatlingTimestamp - delayTimestamp;\n\n// Créer un tableau pour stocker les informations\nvar outputData = [];\n\n// Ajouter la différence de temps au tableau\noutputData.push({ \"timeDifference\": timeDifference });\n\n// Ajouter les informations de msg.original au tableau\nvar originalData = msg.original;\noutputData.push(originalData);\n\n// Mettre le tableau résultant dans msg.payload\nmsg.payload = outputData;\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -9146,7 +9146,9 @@
         "x": 540,
         "y": 1420,
         "wires": [
-            []
+            [
+                "4c103088103e7e05"
+            ]
         ]
     },
     {
@@ -10102,7 +10104,6 @@
         "y": 480,
         "wires": [
             [
-                "18e07ec1ae9e7b08",
                 "c6cd1c2172602ac5"
             ]
         ]
@@ -10119,7 +10120,8 @@
         "y": 480,
         "wires": [
             [
-                "18e07ec1ae9e7b08"
+                "18e07ec1ae9e7b08",
+                "506d52becf1f6c24"
             ]
         ]
     },
@@ -10128,16 +10130,18 @@
         "type": "file",
         "z": "d3f49513ee177da2",
         "name": "",
-        "filename": "",
-        "filenameType": "str",
+        "filename": "graphPath.json.complet",
+        "filenameType": "msg",
         "appendNewline": true,
         "createDir": false,
-        "overwriteFile": "false",
+        "overwriteFile": "true",
         "encoding": "none",
         "x": 1060,
         "y": 480,
         "wires": [
-            []
+            [
+                "18e07ec1ae9e7b08"
+            ]
         ]
     },
     {
