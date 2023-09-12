@@ -4363,8 +4363,8 @@
         "topic": "change",
         "payload": "/home/NodeRed/json",
         "payloadType": "str",
-        "x": 270,
-        "y": 520,
+        "x": 1170,
+        "y": 640,
         "wires": [
             [
                 "b541a4c9d0c4c88b"
@@ -4391,8 +4391,8 @@
         "payloadType": "str",
         "topic": "change",
         "topicType": "str",
-        "x": 280,
-        "y": 600,
+        "x": 1180,
+        "y": 720,
         "wires": [
             [
                 "b541a4c9d0c4c88b"
@@ -4414,8 +4414,8 @@
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 1120,
-        "y": 560,
+        "x": 2020,
+        "y": 680,
         "wires": [
             []
         ]
@@ -4431,8 +4431,8 @@
         "syntax": "mustache",
         "template": "<table width=\"100%\">\n    <tr><th>Nom de Fichier</th><th>Taille</th><th>Créer</th><th>Changer</th></tr>\n    {{#payload}}\n        <tr>\n            <td><a href=\"/download?filename={{name}}\" target=\"blank\">{{fname}}</a></td>\n            <td>{{stat.size}}</td>\n            <td>{{stat.created}}</td>\n            <td>{{stat.changed}}</td>\n        </tr>\n    {{/payload}}\n</table>\n",
         "output": "str",
-        "x": 1100,
-        "y": 600,
+        "x": 2000,
+        "y": 720,
         "wires": [
             [
                 "c567b2b02f6d2abf"
@@ -4450,8 +4450,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 900,
-        "y": 600,
+        "x": 1800,
+        "y": 720,
         "wires": [
             [
                 "87a0a41c8c8d3310"
@@ -4467,8 +4467,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 360,
-        "y": 660,
+        "x": 1260,
+        "y": 780,
         "wires": [
             [
                 "078656573a2256d9"
@@ -4482,8 +4482,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 1150,
-        "y": 660,
+        "x": 2050,
+        "y": 780,
         "wires": []
     },
     {
@@ -4494,8 +4494,8 @@
         "func": "msg.filename = msg.req.query.filename;\nmsg.contentdisposition = \"attachment; filename=\\\"\" + msg.req.query.filename.replace(/^.*(\\\\|\\/|\\:)/, '') + \"\\\"\";\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 610,
-        "y": 660,
+        "x": 1510,
+        "y": 780,
         "wires": [
             [
                 "cff08753494e0ec5"
@@ -4516,8 +4516,8 @@
         "chunk": false,
         "sendError": false,
         "encoding": "none",
-        "x": 800,
-        "y": 660,
+        "x": 1700,
+        "y": 780,
         "wires": [
             [
                 "c8c1de185f0a1ac0"
@@ -4557,8 +4557,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 970,
-        "y": 660,
+        "x": 1870,
+        "y": 780,
         "wires": [
             [
                 "5f87111e0da70820"
@@ -4576,8 +4576,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 460,
-        "y": 600,
+        "x": 1360,
+        "y": 720,
         "wires": [
             [
                 "5deb3f7a069e94db"
@@ -4599,8 +4599,8 @@
         "depth": 0,
         "stat": true,
         "showWarnings": false,
-        "x": 670,
-        "y": 600,
+        "x": 1570,
+        "y": 720,
         "wires": [
             [
                 "e82612444b7ffefa"
@@ -4617,8 +4617,8 @@
             "9281f0402caa9ee5",
             "9c0192ec2aea8a29"
         ],
-        "x": 185,
-        "y": 600,
+        "x": 1085,
+        "y": 720,
         "wires": [
             [
                 "c8b72a9645297de5"
@@ -4654,8 +4654,8 @@
         "z": "d3f49513ee177da2",
         "name": "Afffichage",
         "info": "",
-        "x": 280,
-        "y": 480,
+        "x": 1180,
+        "y": 600,
         "wires": []
     },
     {
@@ -5294,8 +5294,7 @@
         "y": 1420,
         "wires": [
             [
-                "6f17735ef4b1dfc3",
-                "10bba2b70da2d696"
+                "6f17735ef4b1dfc3"
             ]
         ]
     },
@@ -5323,8 +5322,7 @@
         "y": 1460,
         "wires": [
             [
-                "0737ad1af2982ea4",
-                "10bba2b70da2d696"
+                "0737ad1af2982ea4"
             ]
         ]
     },
@@ -5816,8 +5814,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 440,
-        "y": 1360,
+        "x": 500,
+        "y": 1160,
         "wires": [
             [
                 "fbabe8d6af492a99"
@@ -5919,23 +5917,6 @@
                 "72f5c909f4bcb85b"
             ]
         ]
-    },
-    {
-        "id": "10bba2b70da2d696",
-        "type": "debug",
-        "z": "d3f49513ee177da2",
-        "name": "debug 4",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1720,
-        "y": 1460,
-        "wires": []
     },
     {
         "id": "6f25a04902ba1d25",
