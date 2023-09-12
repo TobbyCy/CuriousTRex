@@ -9262,7 +9262,7 @@
         "z": "3ddecfbaabd60ba5",
         "name": "",
         "property": "payload",
-        "action": "str",
+        "action": "obj",
         "pretty": false,
         "x": 650,
         "y": 1600,
