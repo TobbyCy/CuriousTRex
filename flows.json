@@ -6255,7 +6255,7 @@
         "name": "File Browser",
         "info": "1) Update the default folder in the Init node\n2) Update the default folder in the Reset node as well\n3) You can duplicate the Reset nodes and use them as saved shortcuts\n4) Check the Convert Timestamps function node if you want to see your dates in a different format. I just used the Javascript toISOString format.\n5) The Graph button can read any CSV file which have any number of values, but the first column always contains a timestamp column with javascript timestamp of the data point.",
         "x": 470,
-        "y": 60,
+        "y": 120,
         "wires": []
     },
     {
@@ -9083,7 +9083,8 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
         "x": 600,
@@ -9944,14 +9945,6 @@
         "rules": [
             {
                 "t": "set",
-                "p": "path",
-                "pt": "msg",
-                "to": "json.complet",
-                "tot": "global",
-                "dc": true
-            },
-            {
-                "t": "set",
                 "p": "topic",
                 "pt": "msg",
                 "to": "json",
@@ -9975,11 +9968,6 @@
             {
                 "t": "delete",
                 "p": "filepath",
-                "pt": "msg"
-            },
-            {
-                "t": "delete",
-                "p": "graphPath",
                 "pt": "msg"
             },
             {
@@ -10053,12 +10041,29 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 540,
+        "x": 660,
         "y": 480,
         "wires": [
             [
                 "18e07ec1ae9e7b08"
             ]
+        ]
+    },
+    {
+        "id": "ba42b52337814e76",
+        "type": "function",
+        "z": "d3f49513ee177da2",
+        "name": "function 7",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 480,
+        "wires": [
+            []
         ]
     },
     {
