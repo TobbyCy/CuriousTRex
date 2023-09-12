@@ -6769,7 +6769,8 @@
         "y": 560,
         "wires": [
             [
-                "8e88bc82f50cac2f"
+                "8e88bc82f50cac2f",
+                "41aa33d6cb459a40"
             ]
         ]
     },
@@ -8372,7 +8373,8 @@
         "name": "gatling",
         "mode": "link",
         "links": [
-            "476457a3a2a870ea"
+            "476457a3a2a870ea",
+            "45787365124bf1fc"
         ],
         "x": 1885,
         "y": 1400,
@@ -8485,8 +8487,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1450,
-        "y": 1460,
+        "x": 1410,
+        "y": 1440,
         "wires": [
             [
                 "96a8020826f4562b"
@@ -8871,7 +8873,8 @@
         "y": 600,
         "wires": [
             [
-                "5fcb7ef9b29fa1d1"
+                "5fcb7ef9b29fa1d1",
+                "41aa33d6cb459a40"
             ]
         ]
     },
@@ -8901,10 +8904,11 @@
         "name": "Log",
         "mode": "link",
         "links": [
-            "c64945024bc6d2c1"
+            "c64945024bc6d2c1",
+            "45787365124bf1fc"
         ],
         "x": 1885,
-        "y": 1460,
+        "y": 1440,
         "wires": []
     },
     {
@@ -8923,6 +8927,19 @@
                 "035632eacefbd3cd"
             ]
         ]
+    },
+    {
+        "id": "41aa33d6cb459a40",
+        "type": "link out",
+        "z": "3ddecfbaabd60ba5",
+        "name": "Values",
+        "mode": "link",
+        "links": [
+            "45787365124bf1fc"
+        ],
+        "x": 1475,
+        "y": 520,
+        "wires": []
     },
     {
         "id": "9ba0d599c2412587",
@@ -10192,8 +10209,8 @@
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 230,
-        "y": 320,
+        "x": 250,
+        "y": 960,
         "wires": [
             [
                 "288a58eab8860f59"
@@ -10213,8 +10230,71 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 400,
-        "y": 320,
+        "x": 420,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "e34690a6ebc525bd",
+        "type": "comment",
+        "z": "d3f49513ee177da2",
+        "name": "Afffichage",
+        "info": "",
+        "x": 260,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "31fb5f86f7c6dc37",
+        "type": "comment",
+        "z": "d3f49513ee177da2",
+        "name": "OUT",
+        "info": "",
+        "x": 250,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "45787365124bf1fc",
+        "type": "link in",
+        "z": "d3f49513ee177da2",
+        "name": "JSON",
+        "links": [
+            "41aa33d6cb459a40",
+            "96a8020826f4562b",
+            "c89add291df1506b"
+        ],
+        "x": 215,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "18e07ec1ae9e7b08",
+        "type": "debug",
+        "z": "d3f49513ee177da2",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "5b5eadd9fd68decf",
+        "type": "comment",
+        "z": "d3f49513ee177da2",
+        "name": "IN",
+        "info": "",
+        "x": 230,
+        "y": 900,
         "wires": []
     }
 ]
