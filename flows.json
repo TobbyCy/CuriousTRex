@@ -112,6 +112,20 @@
         "icon": "node-red/status.svg"
     },
     {
+        "id": "6161ee15cd9719be",
+        "type": "junction",
+        "z": "3ddecfbaabd60ba5",
+        "x": 360,
+        "y": 740,
+        "wires": [
+            [
+                "2ac0d272272f951b",
+                "843f23c9472dcd82",
+                "71d1b35c803dd600"
+            ]
+        ]
+    },
+    {
         "id": "e42b4edae71dedd4",
         "type": "ui_tab",
         "name": "Monittoring",
@@ -6659,10 +6673,7 @@
         "y": 740,
         "wires": [
             [
-                "71d1b35c803dd600",
-                "2ac0d272272f951b",
-                "843f23c9472dcd82",
-                "380769e1e1860986"
+                "6161ee15cd9719be"
             ]
         ]
     },
@@ -9153,23 +9164,6 @@
         ]
     },
     {
-        "id": "380769e1e1860986",
-        "type": "debug",
-        "z": "3ddecfbaabd60ba5",
-        "name": "debug 4",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 420,
-        "y": 700,
-        "wires": []
-    },
-    {
         "id": "c688c8b7226ba57e",
         "type": "inject",
         "z": "3ddecfbaabd60ba5",
@@ -9190,11 +9184,11 @@
         "topic": "",
         "payload": "{\"nameFile\":\"01\",\"time\":0.1,\"stressVolt\":false,\"stressNidus\":false,\"timeStress\":1,\"user_gatling\":1,\"flow\":false}",
         "payloadType": "json",
-        "x": 170,
+        "x": 270,
         "y": 700,
         "wires": [
             [
-                "380769e1e1860986"
+                "6161ee15cd9719be"
             ]
         ]
     },
