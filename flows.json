@@ -9025,6 +9025,13 @@
                 "pt": "msg",
                 "to": "gatling",
                 "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "complete",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
             }
         ],
         "action": "",
@@ -9105,13 +9112,13 @@
         "joinerType": "str",
         "accumulate": false,
         "timeout": "",
-        "count": "2",
+        "count": "",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 550,
+        "x": 590,
         "y": 1360,
         "wires": [
             [
