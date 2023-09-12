@@ -10050,23 +10050,6 @@
         ]
     },
     {
-        "id": "ba42b52337814e76",
-        "type": "function",
-        "z": "d3f49513ee177da2",
-        "name": "function 7",
-        "func": "\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 480,
-        "y": 480,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "0e5e9ecd9dbcb063",
         "type": "ui_text",
         "z": "6960c25d19217e0b",
