@@ -5911,14 +5911,41 @@
         "y": 1380,
         "wires": [
             [
-                "72f5c909f4bcb85b",
                 "0f72891b2e8d42c2",
                 "9879e350c33d3a1d",
                 "76466e9a1cc52f50",
                 "08699e97519c8893",
                 "1f46fbef1d033a11",
                 "609dd180b15cc79b",
-                "288a58eab8860f59"
+                "288a58eab8860f59",
+                "ccadae5bf5845fa0"
+            ]
+        ]
+    },
+    {
+        "id": "ccadae5bf5845fa0",
+        "type": "change",
+        "z": "d3f49513ee177da2",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "stats",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1250,
+        "y": 1460,
+        "wires": [
+            [
+                "72f5c909f4bcb85b"
             ]
         ]
     },
