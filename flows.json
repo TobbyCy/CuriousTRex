@@ -110,7 +110,7 @@
         "icon": "warning",
         "order": 5,
         "disabled": false,
-        "hidden": false
+        "hidden": true
     },
     {
         "id": "0838c35150fe8e4b",
@@ -296,7 +296,7 @@
         "icon": "error_outline",
         "order": 4,
         "disabled": false,
-        "hidden": false
+        "hidden": true
     },
     {
         "id": "ae336b538b957769",
@@ -323,7 +323,7 @@
         "icon": "error",
         "order": 3,
         "disabled": false,
-        "hidden": false
+        "hidden": true
     },
     {
         "id": "0fa13b0866bdba70",
@@ -6556,7 +6556,7 @@
         "type": "function",
         "z": "3ddecfbaabd60ba5",
         "name": "Ajoute le chemin du fichier ",
-        "func": "var now = new Date();\nvar jour = (\"0\" + now.getDate()).slice(-2);\nvar mois = (\"0\" + (now.getMonth() + 1)).slice(-2);\n\n// Récupérer le nom de fichier de msg.payload.nameFile, ou utiliser \"default\" si absent\nvar nameFile = msg.payload.nameFile || \"default\";\n// Remplacer les caractères interdits dans le nom de fichier par des underscores\nnameFile = nameFile.replace(/[\\\\/:\"*?<>|]+/g, \"_\");\n\n// Construire le chemin du fichier PDF\nmsg.filePath = \"/home/NodeRed/pdf/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \".pdf\";\n\n// Construire les chemins des fichiers graphiques\nmsg.graphPath = {\n    volt: {\n        complet: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"VOLT.png\",\n        cpu: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vcpu.png\",\n        ram: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vram.png\",\n        proc: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vproc.png\",\n        temp: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vtemp.png\",\n        watt: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vwatt.png\"\n    },\n    nidus: {\n        complet: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"NIDUS.png\",\n        cpu: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ncpu.png\",\n        ram: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nram.png\",\n        proc: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nproc.png\",\n        temp: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ntemp.png\"\n    },\n    gatling: {\n        complet: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"gatling.png\",\n        pass: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"pass.png\",\n        bySeconds: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"bySeconds.png\",\n        //proc: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nproc.png\",\n        //temp: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ntemp.png\"\n    }\n};\nglobal.set('path', msg.graphPath);\n// Renvoyer le message modifié\nreturn msg;\n",
+        "func": "var now = new Date();\nvar jour = (\"0\" + now.getDate()).slice(-2);\nvar mois = (\"0\" + (now.getMonth() + 1)).slice(-2);\n\n// Récupérer le nom de fichier de msg.payload.nameFile, ou utiliser \"default\" si absent\nvar nameFile = msg.payload.nameFile || \"default\";\n// Remplacer les caractères interdits dans le nom de fichier par des underscores\nnameFile = nameFile.replace(/[\\\\/:\"*?<>|]+/g, \"_\");\n\n// Construire le chemin du fichier PDF\nmsg.filePath = \"/home/NodeRed/pdf/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \".pdf\";\n\n// Construire les chemins des fichiers graphiques\nmsg.graphPath = {\n    volt: {\n        complet: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"VOLT.png\",\n        cpu: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vcpu.png\",\n        ram: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vram.png\",\n        proc: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vproc.png\",\n        temp: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vtemp.png\",\n        watt: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vwatt.png\"\n    },\n    nidus: {\n        complet: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"NIDUS.png\",\n        cpu: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ncpu.png\",\n        ram: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nram.png\",\n        proc: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nproc.png\",\n        temp: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ntemp.png\"\n    },\n    gatling: {\n        complet: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"gatling.png\",\n        pass: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"pass.png\",\n        bySeconds: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"bySeconds.png\",\n        //proc: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nproc.png\",\n        //temp: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ntemp.png\"\n    },\n    json :{\n        complet: \"/home/NodeRed/json/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"Complet.json\",\n    }\n};\nglobal.set('path', msg.graphPath);\n// Renvoyer le message modifié\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -7947,7 +7947,7 @@
         "type": "function",
         "z": "3ddecfbaabd60ba5",
         "name": "Mkdir",
-        "func": "if (msg.payload === \"Valider\"){\n    msg.payload = \"mkdir /home/NodeRed/png /home/NodeRed/pdf\";\n    return msg;\n}else{\n    return null;\n}\n",
+        "func": "if (msg.payload === \"Valider\"){\n    msg.payload = \"mkdir /home/NodeRed/png /home/NodeRed/pdf /home/NodeRed/json\";\n    return msg;\n}else{\n    return null;\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -10374,8 +10374,8 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 490,
-        "y": 540,
+        "x": 330,
+        "y": 480,
         "wires": [
             [
                 "18e07ec1ae9e7b08"
