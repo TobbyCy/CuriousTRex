@@ -9222,8 +9222,7 @@
         "y": 1520,
         "wires": [
             [
-                "4c103088103e7e05",
-                "2501c389aa45fac1"
+                "4c103088103e7e05"
             ]
         ]
     },
@@ -9253,22 +9252,6 @@
         "wires": [
             [
                 "2150bd970fda12fe"
-            ]
-        ]
-    },
-    {
-        "id": "2501c389aa45fac1",
-        "type": "json",
-        "z": "3ddecfbaabd60ba5",
-        "name": "",
-        "property": "payload",
-        "action": "obj",
-        "pretty": false,
-        "x": 650,
-        "y": 1600,
-        "wires": [
-            [
-                "4c103088103e7e05"
             ]
         ]
     },
