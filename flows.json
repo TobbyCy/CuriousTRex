@@ -521,6 +521,46 @@
         "className": ""
     },
     {
+        "id": "3e23de9dd2bfb993",
+        "type": "ui_spacer",
+        "z": "de0f28e0b2de7e99",
+        "name": "spacer",
+        "group": "4e715bdea006e7fa",
+        "order": 2,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "9189abe910352b48",
+        "type": "ui_spacer",
+        "z": "de0f28e0b2de7e99",
+        "name": "spacer",
+        "group": "4e715bdea006e7fa",
+        "order": 4,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "61c55b543ca8146c",
+        "type": "ui_spacer",
+        "z": "de0f28e0b2de7e99",
+        "name": "spacer",
+        "group": "4e715bdea006e7fa",
+        "order": 6,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "f738edda95d2480a",
+        "type": "ui_spacer",
+        "z": "de0f28e0b2de7e99",
+        "name": "spacer",
+        "group": "4e715bdea006e7fa",
+        "order": 7,
+        "width": 2,
+        "height": 1
+    },
+    {
         "id": "943ce04091291544",
         "type": "delay",
         "z": "4e666803b8f3f742",
@@ -6268,10 +6308,10 @@
         "z": "de0f28e0b2de7e99",
         "group": "4e715bdea006e7fa",
         "name": "",
-        "order": 9,
+        "order": 8,
         "width": 0,
         "height": 0,
-        "format": "<!DOCTYPE html>\n<html lang=\"fr\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Projet de Monitoring</title>\n    <style>\n        body {\n            font-family: Arial, sans-serif;\n            margin: 0;\n            padding: 0;\n        }\n\n        header {\n            background-color: #007BFF;\n            color: #fff;\n            padding: 20px;\n            text-align: center;\n        }\n\n        h1 {\n            margin: 0;\n        }\n\n        nav {\n            background-color: #f5f5f5;\n            border-bottom: 1px solid #ddd;\n        }\n\n        nav ul {\n            list-style-type: none;\n            padding: 0;\n            margin: 0;\n        }\n\n        nav ul li {\n            display: inline;\n            margin-right: 20px;\n        }\n\n        .container {\n            padding: 20px;\n        }\n\n        .section {\n            margin-bottom: 20px;\n        }\n    </style>\n</head>\n\n<body>\n    <header>\n        <h1>Projet de Monitoring</h1>\n        <p>Version V1, V2, V3</p>\n    </header>\n    <nav>\n        <ul>\n            <li><a href=\"#section-1\">Version V1</a></li>\n            <li><a href=\"#section-2\">Version V2</a></li>\n            <li><a href=\"#section-3\">Version V3</a></li>\n        </ul>\n    </nav>\n    <div class=\"container\">\n        <div id=\"section-1\" class=\"section\">\n            <h2>Version V1</h2>\n            <p>La version V1 est une première itération du projet. Elle comprend la mise en place de l'environnement de\n                test et la configuration des outils nécessaires pour effectuer les mesures.</p>\n        </div>\n        <div id=\"section-2\" class=\"section\">\n            <h2>Version V2</h2>\n            <p>La version V2 ajoute l'utilisation de Gatling aux tests de charge avec récupération des informations des\n                logs de Gatling et de l'INA219.</p>\n        </div>\n        <div id=\"section-3\" class=\"section\">\n            <h2>Version V3</h2>\n            <p>La version V3 améliore l'interface utilisateur, les graphiques, la gestion des données, et permet\n                l'exportation/importation de données au format JSON pour générer des rapports PDF détaillés.</p>\n        </div>\n    </div>\n</body>\n\n</html>",
+        "format": "<!DOCTYPE html>\n<html lang=\"fr\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <style>\n        body {\n            font-family: Arial, sans-serif;\n            margin: 0;\n            padding: 0;\n        }\n\n        header {\n            background-color: #007BFF;\n            color: #fff;\n            padding: 20px;\n            text-align: center;\n        }\n\n        h1 {\n            margin: 0;\n        }\n\n        nav {\n            background-color: #f5f5f5;\n            border-bottom: 1px solid #ddd;\n        }\n\n        nav ul {\n            list-style-type: none;\n            padding: 0;\n            margin: 0;\n        }\n\n        nav ul li {\n            display: inline;\n            margin-right: 20px;\n        }\n\n        .container {\n            padding: 20px;\n        }\n\n        .section {\n            margin-bottom: 20px;\n        }\n    </style>\n</head>\n\n<body>\n    <header>\n        <h1>Projet de Monitoring</h1>\n        <p>Version V1, V2, V3</p>\n    </header>\n    <div class=\"container\">\n        <div id=\"section-1\" class=\"section\">\n            <h2>Version V1</h2>\n            <p>La version V1 est une première itération du projet. Elle comprend la mise en place de l'environnement de\n                test et la configuration des outils nécessaires pour effectuer les mesures.</p>\n        </div>\n        <div id=\"section-2\" class=\"section\">\n            <h2>Version V2</h2>\n            <p>La version V2 ajoute l'utilisation de Gatling aux tests de charge avec récupération des informations des\n                logs de Gatling et de l'INA219.</p>\n        </div>\n        <div id=\"section-3\" class=\"section\">\n            <h2>Version V3</h2>\n            <p>La version V3 améliore l'interface utilisateur, les graphiques, la gestion des données, et permet\n                l'exportation/importation de données au format JSON pour générer des rapports PDF détaillés.</p>\n        </div>\n    </div>\n</body>\n\n</html>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
@@ -6288,11 +6328,95 @@
         "type": "ui_ui_control",
         "z": "de0f28e0b2de7e99",
         "name": "",
-        "events": "change",
-        "x": 680,
-        "y": 260,
+        "events": "all",
+        "x": 640,
+        "y": 360,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "2c4da020ab7025a7",
+        "type": "ui_button",
+        "z": "de0f28e0b2de7e99",
+        "name": "",
+        "group": "4e715bdea006e7fa",
+        "order": 1,
+        "width": 8,
+        "height": 2,
+        "passthru": false,
+        "label": "V1",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "StressTest_V1.0",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 490,
+        "y": 360,
+        "wires": [
+            [
+                "a283072b95a48a7c"
+            ]
+        ]
+    },
+    {
+        "id": "4366bad9a64a0c15",
+        "type": "ui_button",
+        "z": "de0f28e0b2de7e99",
+        "name": "",
+        "group": "4e715bdea006e7fa",
+        "order": 3,
+        "width": 8,
+        "height": 2,
+        "passthru": false,
+        "label": "V2",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "Gatling_PoC_V2.0",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 490,
+        "y": 400,
+        "wires": [
+            [
+                "a283072b95a48a7c"
+            ]
+        ]
+    },
+    {
+        "id": "079751aa40ce94f8",
+        "type": "ui_button",
+        "z": "de0f28e0b2de7e99",
+        "name": "",
+        "group": "4e715bdea006e7fa",
+        "order": 5,
+        "width": 8,
+        "height": 2,
+        "passthru": false,
+        "label": "V3",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "Gatling_V3.0",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 490,
+        "y": 440,
+        "wires": [
+            [
+                "a283072b95a48a7c"
+            ]
         ]
     },
     {
