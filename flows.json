@@ -10182,8 +10182,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 360,
-        "y": 1080,
+        "x": 1060,
+        "y": 1320,
         "wires": []
     },
     {
@@ -10611,10 +10611,12 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1060,
-        "y": 1260,
+        "x": 880,
+        "y": 1300,
         "wires": [
-            []
+            [
+                "288a58eab8860f59"
+            ]
         ]
     },
     {
@@ -11317,8 +11319,7 @@
         "wires": [
             [
                 "e2439077e9c87dc3",
-                "7a2bb985f72fbbb2",
-                "288a58eab8860f59"
+                "7a2bb985f72fbbb2"
             ]
         ]
     },
@@ -11386,12 +11387,69 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 580,
-        "y": 980,
+        "x": 600,
+        "y": 1340,
+        "wires": [
+            [
+                "fbabe8d6af492a99"
+            ]
+        ]
+    },
+    {
+        "id": "fbabe8d6af492a99",
+        "type": "change",
+        "z": "d3f49513ee177da2",
+        "name": "Organise Payload-Topic",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "moyenne",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "moyenne",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 850,
+        "y": 1340,
         "wires": [
             [
                 "288a58eab8860f59"
             ]
+        ]
+    },
+    {
+        "id": "8bbddc96986f146e",
+        "type": "join",
+        "z": "d3f49513ee177da2",
+        "name": "",
+        "mode": "auto",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": "false",
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "x": 1210,
+        "y": 1320,
+        "wires": [
+            []
         ]
     },
     {
