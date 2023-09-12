@@ -5341,13 +5341,13 @@
         "joinerType": "str",
         "accumulate": false,
         "timeout": "",
-        "count": "8",
+        "count": "7",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
         "reduceInitType": "num",
         "reduceFixup": "",
-        "x": 1450,
+        "x": 1530,
         "y": 1460,
         "wires": [
             [
