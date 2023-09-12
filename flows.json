@@ -9128,7 +9128,7 @@
         "type": "function",
         "z": "3ddecfbaabd60ba5",
         "name": "function 7",
-        "func": "// Calculer la différence entre les horodatages delay et gatling\nvar delayTimestamp = msg.payload.delay;\nvar gatlingTimestamp = msg.payload.gatling;\nvar timeDifference = gatlingTimestamp - delayTimestamp;\n\n// Ajouter les informations de msg.original au tableau\nvar originalData = msg.original;\n\n\n// Mettre le tableau résultant dans msg.payload\nmsg = null;\nmsg.payload.timedifference = timeDifference;\nmsg.payload.original = originalData;\n\nreturn msg;\n",
+        "func": "// Calculer la différence entre les horodatages delay et gatling\nvar delayTimestamp = msg.payload.delay;\nvar gatlingTimestamp = msg.payload.gatling;\nvar timeDifference = gatlingTimestamp - delayTimestamp;\n\n// Ajouter les informations de msg.original au tableau\nvar originalData = msg.original;\n\n\n// Mettre le tableau résultant dans msg.payload\nmsg.payload.timedifference = timeDifference;\nmsg.payload.original = originalData;\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
