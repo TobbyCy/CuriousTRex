@@ -10405,14 +10405,6 @@
                 "tot": "str"
             },
             {
-                "t": "set",
-                "p": "payload.Original",
-                "pt": "msg",
-                "to": "original",
-                "tot": "msg",
-                "dc": true
-            },
-            {
                 "t": "delete",
                 "p": "cmd",
                 "pt": "msg"
@@ -10434,7 +10426,7 @@
             },
             {
                 "t": "delete",
-                "p": "graphpath",
+                "p": "graphPath",
                 "pt": "msg"
             },
             {
@@ -10470,11 +10462,6 @@
             {
                 "t": "delete",
                 "p": "_topic",
-                "pt": "msg"
-            },
-            {
-                "t": "delete",
-                "p": "original",
                 "pt": "msg"
             },
             {
