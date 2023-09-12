@@ -9091,8 +9091,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 720,
-        "y": 1300,
+        "x": 740,
+        "y": 1520,
         "wires": []
     },
     {
@@ -9119,7 +9119,6 @@
         "y": 1360,
         "wires": [
             [
-                "4c103088103e7e05",
                 "52202be063f04fb9"
             ]
         ]
@@ -9135,11 +9134,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 540,
-        "y": 1420,
+        "x": 520,
+        "y": 1400,
         "wires": [
             [
-                "4c103088103e7e05"
+                "fe0c0331a5d26425"
             ]
         ]
     },
@@ -9169,6 +9168,90 @@
         "wires": [
             [
                 "6161ee15cd9719be"
+            ]
+        ]
+    },
+    {
+        "id": "fe0c0331a5d26425",
+        "type": "json",
+        "z": "3ddecfbaabd60ba5",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 530,
+        "y": 1440,
+        "wires": [
+            [
+                "fe67f01da8a9252d"
+            ]
+        ]
+    },
+    {
+        "id": "fe67f01da8a9252d",
+        "type": "file",
+        "z": "3ddecfbaabd60ba5",
+        "name": "",
+        "filename": "/home/NodeRed/stats",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 560,
+        "y": 1480,
+        "wires": [
+            [
+                "4c103088103e7e05"
+            ]
+        ]
+    },
+    {
+        "id": "2150bd970fda12fe",
+        "type": "file in",
+        "z": "3ddecfbaabd60ba5",
+        "name": "Read Stats",
+        "filename": "/home/NodeRed/stats",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 530,
+        "y": 1520,
+        "wires": [
+            [
+                "4c103088103e7e05"
+            ]
+        ]
+    },
+    {
+        "id": "7719521e1a8b7e04",
+        "type": "inject",
+        "z": "3ddecfbaabd60ba5",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 340,
+        "y": 1520,
+        "wires": [
+            [
+                "2150bd970fda12fe"
             ]
         ]
     },
