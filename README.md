@@ -46,7 +46,7 @@
     - [9.1.1. But](#911-but)
     - [9.1.2. Étapes](#912-étapes)
     - [9.1.3. Remarque](#913-remarque)
-  - [9.2. 1ère itération (22.08.2023 - 05.09.2023)](#92-1ère-itération-22082023---05092023)
+  - [9.2. 1ère itération (22.08.2023 - 05.09.2023) V1.0](#92-1ère-itération-22082023---05092023-v10)
     - [9.2.1. But](#921-but)
     - [9.2.2. Étapes](#922-étapes)
     - [9.2.3. Remarque](#923-remarque)
@@ -241,7 +241,7 @@ Le but de ce jalon est de mettre en place l'environnement de test et de configur
 
 Ce jalon est une étape importante pour le projet, car il permettra de mettre en place l'environnement de test et de configurer les outils nécessaires pour effectuer les mesures. En atteignant ces objectifs, le projet sera prêt à passer à la prochaine étape et à commencer à effectuer des tests de performance.
 
-## 9.2. 1ère itération (22.08.2023 - 05.09.2023)
+## 9.2. 1ère itération (22.08.2023 - 05.09.2023) V1.0
 
 ### 9.2.1. But
 
@@ -250,6 +250,7 @@ Mettre en place un "proof of concept" basé sur la génération de rapports PDF 
 Cette "PoC" ne permettra pas de :
 1. L'impossibilité de sélectionner le serveur à tester.
 2. L'incapacité à comparer les performances entre différents serveurs.
+3. Tester avec Gatling
 
 ### 9.2.2. Étapes
 
