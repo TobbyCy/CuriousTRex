@@ -40,14 +40,6 @@
         "env": []
     },
     {
-        "id": "6960c25d19217e0b",
-        "type": "tab",
-        "label": "Gatling_V3.0_Monittoring",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
         "id": "3572c39984e6901e",
         "type": "tab",
         "label": "GenerateChart",
@@ -59,6 +51,22 @@
         "id": "d3f49513ee177da2",
         "type": "tab",
         "label": "JSON_V3.0",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6960c25d19217e0b",
+        "type": "tab",
+        "label": "Gatling_V3.0_Monittoring",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "de0f28e0b2de7e99",
+        "type": "tab",
+        "label": "Accueil",
         "disabled": false,
         "info": "",
         "env": []
@@ -9079,547 +9087,6 @@
         ]
     },
     {
-        "id": "0e5e9ecd9dbcb063",
-        "type": "ui_text",
-        "z": "6960c25d19217e0b",
-        "d": true,
-        "group": "a73ce2171360eee8",
-        "order": 3,
-        "width": 8,
-        "height": 1,
-        "name": "",
-        "label": "MilliWatt : ",
-        "format": "{{msg.payload}}",
-        "layout": "row-center",
-        "className": "",
-        "style": false,
-        "font": "",
-        "fontSize": 16,
-        "color": "#000000",
-        "x": 480,
-        "y": 300,
-        "wires": []
-    },
-    {
-        "id": "a1ee7a35777f3582",
-        "type": "ui_chart",
-        "z": "6960c25d19217e0b",
-        "d": true,
-        "name": "MilliWatt",
-        "group": "a73ce2171360eee8",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "label": "",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "5",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "className": "",
-        "x": 480,
-        "y": 340,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "72290260aa76dca6",
-        "type": "ui_text",
-        "z": "6960c25d19217e0b",
-        "d": true,
-        "group": "a73ce2171360eee8",
-        "order": 2,
-        "width": 4,
-        "height": 1,
-        "name": "",
-        "label": "MillliVolt",
-        "format": "{{msg.payload}}",
-        "layout": "row-spread",
-        "className": "",
-        "style": false,
-        "font": "",
-        "fontSize": 16,
-        "color": "#000000",
-        "x": 480,
-        "y": 380,
-        "wires": []
-    },
-    {
-        "id": "66a1b9b1cdf1b642",
-        "type": "ui_text",
-        "z": "6960c25d19217e0b",
-        "d": true,
-        "group": "a73ce2171360eee8",
-        "order": 1,
-        "width": 4,
-        "height": 1,
-        "name": "",
-        "label": "MiliAmp",
-        "format": "{{msg.payload}}",
-        "layout": "row-spread",
-        "className": "",
-        "style": false,
-        "font": "",
-        "fontSize": 16,
-        "color": "#000000",
-        "x": 480,
-        "y": 420,
-        "wires": []
-    },
-    {
-        "id": "8953f0c1325120df",
-        "type": "ui_gauge",
-        "z": "6960c25d19217e0b",
-        "name": "",
-        "group": "17f190382a6c603e",
-        "order": 1,
-        "width": 4,
-        "height": 4,
-        "gtype": "gage",
-        "title": "CPU",
-        "label": "%",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "100",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "diff": false,
-        "className": "",
-        "x": 470,
-        "y": 460,
-        "wires": []
-    },
-    {
-        "id": "fa5dbba69af0affe",
-        "type": "ui_gauge",
-        "z": "6960c25d19217e0b",
-        "name": "",
-        "group": "17f190382a6c603e",
-        "order": 2,
-        "width": 4,
-        "height": 4,
-        "gtype": "gage",
-        "title": "RAM",
-        "label": "%",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "100",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "diff": false,
-        "className": "",
-        "x": 470,
-        "y": 500,
-        "wires": []
-    },
-    {
-        "id": "3dc4f3421702f4e1",
-        "type": "ui_gauge",
-        "z": "6960c25d19217e0b",
-        "name": "",
-        "group": "17f190382a6c603e",
-        "order": 3,
-        "width": 4,
-        "height": 4,
-        "gtype": "gage",
-        "title": "Processus",
-        "label": "",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "500",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "diff": false,
-        "className": "",
-        "x": 490,
-        "y": 540,
-        "wires": []
-    },
-    {
-        "id": "e1d70366f1ff078c",
-        "type": "ui_gauge",
-        "z": "6960c25d19217e0b",
-        "name": "",
-        "group": "17f190382a6c603e",
-        "order": 4,
-        "width": 4,
-        "height": 4,
-        "gtype": "gage",
-        "title": "Temp",
-        "label": "C",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "85",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "35",
-        "seg2": "50",
-        "diff": false,
-        "className": "",
-        "x": 470,
-        "y": 580,
-        "wires": []
-    },
-    {
-        "id": "70d9292d7426c8c8",
-        "type": "ui_gauge",
-        "z": "6960c25d19217e0b",
-        "name": "",
-        "group": "12f36826dc9bd0e6",
-        "order": 1,
-        "width": 4,
-        "height": 4,
-        "gtype": "gage",
-        "title": "CPU",
-        "label": "%",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "100",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "diff": false,
-        "className": "",
-        "x": 470,
-        "y": 620,
-        "wires": []
-    },
-    {
-        "id": "020cd680db32751f",
-        "type": "ui_gauge",
-        "z": "6960c25d19217e0b",
-        "name": "",
-        "group": "12f36826dc9bd0e6",
-        "order": 2,
-        "width": 4,
-        "height": 4,
-        "gtype": "gage",
-        "title": "RAM",
-        "label": "%",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "100",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "diff": false,
-        "className": "",
-        "x": 470,
-        "y": 660,
-        "wires": []
-    },
-    {
-        "id": "25396b134f9854b5",
-        "type": "ui_gauge",
-        "z": "6960c25d19217e0b",
-        "name": "",
-        "group": "12f36826dc9bd0e6",
-        "order": 3,
-        "width": 4,
-        "height": 4,
-        "gtype": "gage",
-        "title": "Processus",
-        "label": "",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "500",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "diff": false,
-        "className": "",
-        "x": 490,
-        "y": 700,
-        "wires": []
-    },
-    {
-        "id": "37921000de8bd742",
-        "type": "ui_gauge",
-        "z": "6960c25d19217e0b",
-        "name": "",
-        "group": "12f36826dc9bd0e6",
-        "order": 4,
-        "width": 4,
-        "height": 4,
-        "gtype": "gage",
-        "title": "Température",
-        "label": "C",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "85",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "35",
-        "seg2": "50",
-        "diff": false,
-        "className": "",
-        "x": 490,
-        "y": 740,
-        "wires": []
-    },
-    {
-        "id": "c3bbb85042ce25f8",
-        "type": "link in",
-        "z": "6960c25d19217e0b",
-        "name": "MilliWatt",
-        "links": [
-            "4aa27220845f2949"
-        ],
-        "x": 365,
-        "y": 300,
-        "wires": [
-            [
-                "0e5e9ecd9dbcb063",
-                "a1ee7a35777f3582",
-                "676a2b3ea9bdba7f"
-            ]
-        ]
-    },
-    {
-        "id": "1f33dcf11541ad85",
-        "type": "link in",
-        "z": "6960c25d19217e0b",
-        "name": "MilliVolt",
-        "links": [
-            "6bb685f3a7a0f0a5"
-        ],
-        "x": 365,
-        "y": 380,
-        "wires": [
-            [
-                "72290260aa76dca6"
-            ]
-        ]
-    },
-    {
-        "id": "34a5075b24efbec0",
-        "type": "link in",
-        "z": "6960c25d19217e0b",
-        "name": "MilliAmp",
-        "links": [
-            "7c257ee5dcd1af4a"
-        ],
-        "x": 365,
-        "y": 420,
-        "wires": [
-            [
-                "66a1b9b1cdf1b642"
-            ]
-        ]
-    },
-    {
-        "id": "ed77962c337bf813",
-        "type": "link in",
-        "z": "6960c25d19217e0b",
-        "name": "Volt_CPU",
-        "links": [
-            "df7d2b80bd59b4fb"
-        ],
-        "x": 365,
-        "y": 460,
-        "wires": [
-            [
-                "8953f0c1325120df"
-            ]
-        ]
-    },
-    {
-        "id": "8220b140c1af5a4f",
-        "type": "link in",
-        "z": "6960c25d19217e0b",
-        "name": "Volt_RAM",
-        "links": [
-            "ea92a59ad33b194e"
-        ],
-        "x": 365,
-        "y": 500,
-        "wires": [
-            [
-                "fa5dbba69af0affe"
-            ]
-        ]
-    },
-    {
-        "id": "54842d7063dfb6b4",
-        "type": "link in",
-        "z": "6960c25d19217e0b",
-        "name": "Volt_Process",
-        "links": [
-            "1855f7ba0c1cb43f"
-        ],
-        "x": 365,
-        "y": 540,
-        "wires": [
-            [
-                "3dc4f3421702f4e1"
-            ]
-        ]
-    },
-    {
-        "id": "a958a8309bbd6b3d",
-        "type": "link in",
-        "z": "6960c25d19217e0b",
-        "name": "Volt_Temp",
-        "links": [
-            "17d7264b5cdb9f27"
-        ],
-        "x": 365,
-        "y": 580,
-        "wires": [
-            [
-                "e1d70366f1ff078c"
-            ]
-        ]
-    },
-    {
-        "id": "ade602e74c57c476",
-        "type": "link in",
-        "z": "6960c25d19217e0b",
-        "name": "Nidus_CPU",
-        "links": [
-            "24edf858449e9c50"
-        ],
-        "x": 365,
-        "y": 620,
-        "wires": [
-            [
-                "70d9292d7426c8c8"
-            ]
-        ]
-    },
-    {
-        "id": "83aeb0d37671184e",
-        "type": "link in",
-        "z": "6960c25d19217e0b",
-        "name": "Nidus_RAM",
-        "links": [
-            "96bbc5b20c93f61c"
-        ],
-        "x": 365,
-        "y": 660,
-        "wires": [
-            [
-                "020cd680db32751f"
-            ]
-        ]
-    },
-    {
-        "id": "08e95c3bbdfa9e15",
-        "type": "link in",
-        "z": "6960c25d19217e0b",
-        "name": "Nidus_Process",
-        "links": [
-            "def3688a66231ed2"
-        ],
-        "x": 365,
-        "y": 700,
-        "wires": [
-            [
-                "25396b134f9854b5"
-            ]
-        ]
-    },
-    {
-        "id": "7a9b5849173b180a",
-        "type": "link in",
-        "z": "6960c25d19217e0b",
-        "name": "Nidus_Temp",
-        "links": [
-            "efd70bd2950f7343"
-        ],
-        "x": 365,
-        "y": 740,
-        "wires": [
-            [
-                "37921000de8bd742"
-            ]
-        ]
-    },
-    {
-        "id": "676a2b3ea9bdba7f",
-        "type": "ui_gauge",
-        "z": "6960c25d19217e0b",
-        "name": "",
-        "group": "a73ce2171360eee8",
-        "order": 1,
-        "width": "0",
-        "height": "0",
-        "gtype": "gage",
-        "title": "MilliWatt",
-        "label": "MilliWatt",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "10000",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "diff": false,
-        "className": "",
-        "x": 480,
-        "y": 260,
-        "wires": []
-    },
-    {
         "id": "dce34fa7.56d7d",
         "type": "function",
         "z": "3572c39984e6901e",
@@ -10391,7 +9858,7 @@
         "rules": [
             {
                 "t": "set",
-                "p": "payload",
+                "p": "path",
                 "pt": "msg",
                 "to": "json.complet",
                 "tot": "global",
@@ -10492,5 +9959,546 @@
                 "18e07ec1ae9e7b08"
             ]
         ]
+    },
+    {
+        "id": "0e5e9ecd9dbcb063",
+        "type": "ui_text",
+        "z": "6960c25d19217e0b",
+        "d": true,
+        "group": "a73ce2171360eee8",
+        "order": 3,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "MilliWatt : ",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 480,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "a1ee7a35777f3582",
+        "type": "ui_chart",
+        "z": "6960c25d19217e0b",
+        "d": true,
+        "name": "MilliWatt",
+        "group": "a73ce2171360eee8",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "5",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 480,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "72290260aa76dca6",
+        "type": "ui_text",
+        "z": "6960c25d19217e0b",
+        "d": true,
+        "group": "a73ce2171360eee8",
+        "order": 2,
+        "width": 4,
+        "height": 1,
+        "name": "",
+        "label": "MillliVolt",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 480,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "66a1b9b1cdf1b642",
+        "type": "ui_text",
+        "z": "6960c25d19217e0b",
+        "d": true,
+        "group": "a73ce2171360eee8",
+        "order": 1,
+        "width": 4,
+        "height": 1,
+        "name": "",
+        "label": "MiliAmp",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 480,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "8953f0c1325120df",
+        "type": "ui_gauge",
+        "z": "6960c25d19217e0b",
+        "name": "",
+        "group": "17f190382a6c603e",
+        "order": 1,
+        "width": 4,
+        "height": 4,
+        "gtype": "gage",
+        "title": "CPU",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 470,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "fa5dbba69af0affe",
+        "type": "ui_gauge",
+        "z": "6960c25d19217e0b",
+        "name": "",
+        "group": "17f190382a6c603e",
+        "order": 2,
+        "width": 4,
+        "height": 4,
+        "gtype": "gage",
+        "title": "RAM",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 470,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "3dc4f3421702f4e1",
+        "type": "ui_gauge",
+        "z": "6960c25d19217e0b",
+        "name": "",
+        "group": "17f190382a6c603e",
+        "order": 3,
+        "width": 4,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Processus",
+        "label": "",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "500",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 490,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "e1d70366f1ff078c",
+        "type": "ui_gauge",
+        "z": "6960c25d19217e0b",
+        "name": "",
+        "group": "17f190382a6c603e",
+        "order": 4,
+        "width": 4,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Temp",
+        "label": "C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "85",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "35",
+        "seg2": "50",
+        "diff": false,
+        "className": "",
+        "x": 470,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "70d9292d7426c8c8",
+        "type": "ui_gauge",
+        "z": "6960c25d19217e0b",
+        "name": "",
+        "group": "12f36826dc9bd0e6",
+        "order": 1,
+        "width": 4,
+        "height": 4,
+        "gtype": "gage",
+        "title": "CPU",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 470,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "020cd680db32751f",
+        "type": "ui_gauge",
+        "z": "6960c25d19217e0b",
+        "name": "",
+        "group": "12f36826dc9bd0e6",
+        "order": 2,
+        "width": 4,
+        "height": 4,
+        "gtype": "gage",
+        "title": "RAM",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 470,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "25396b134f9854b5",
+        "type": "ui_gauge",
+        "z": "6960c25d19217e0b",
+        "name": "",
+        "group": "12f36826dc9bd0e6",
+        "order": 3,
+        "width": 4,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Processus",
+        "label": "",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "500",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 490,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "37921000de8bd742",
+        "type": "ui_gauge",
+        "z": "6960c25d19217e0b",
+        "name": "",
+        "group": "12f36826dc9bd0e6",
+        "order": 4,
+        "width": 4,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Température",
+        "label": "C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "85",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "35",
+        "seg2": "50",
+        "diff": false,
+        "className": "",
+        "x": 490,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "c3bbb85042ce25f8",
+        "type": "link in",
+        "z": "6960c25d19217e0b",
+        "name": "MilliWatt",
+        "links": [
+            "4aa27220845f2949"
+        ],
+        "x": 365,
+        "y": 300,
+        "wires": [
+            [
+                "0e5e9ecd9dbcb063",
+                "a1ee7a35777f3582",
+                "676a2b3ea9bdba7f"
+            ]
+        ]
+    },
+    {
+        "id": "1f33dcf11541ad85",
+        "type": "link in",
+        "z": "6960c25d19217e0b",
+        "name": "MilliVolt",
+        "links": [
+            "6bb685f3a7a0f0a5"
+        ],
+        "x": 365,
+        "y": 380,
+        "wires": [
+            [
+                "72290260aa76dca6"
+            ]
+        ]
+    },
+    {
+        "id": "34a5075b24efbec0",
+        "type": "link in",
+        "z": "6960c25d19217e0b",
+        "name": "MilliAmp",
+        "links": [
+            "7c257ee5dcd1af4a"
+        ],
+        "x": 365,
+        "y": 420,
+        "wires": [
+            [
+                "66a1b9b1cdf1b642"
+            ]
+        ]
+    },
+    {
+        "id": "ed77962c337bf813",
+        "type": "link in",
+        "z": "6960c25d19217e0b",
+        "name": "Volt_CPU",
+        "links": [
+            "df7d2b80bd59b4fb"
+        ],
+        "x": 365,
+        "y": 460,
+        "wires": [
+            [
+                "8953f0c1325120df"
+            ]
+        ]
+    },
+    {
+        "id": "8220b140c1af5a4f",
+        "type": "link in",
+        "z": "6960c25d19217e0b",
+        "name": "Volt_RAM",
+        "links": [
+            "ea92a59ad33b194e"
+        ],
+        "x": 365,
+        "y": 500,
+        "wires": [
+            [
+                "fa5dbba69af0affe"
+            ]
+        ]
+    },
+    {
+        "id": "54842d7063dfb6b4",
+        "type": "link in",
+        "z": "6960c25d19217e0b",
+        "name": "Volt_Process",
+        "links": [
+            "1855f7ba0c1cb43f"
+        ],
+        "x": 365,
+        "y": 540,
+        "wires": [
+            [
+                "3dc4f3421702f4e1"
+            ]
+        ]
+    },
+    {
+        "id": "a958a8309bbd6b3d",
+        "type": "link in",
+        "z": "6960c25d19217e0b",
+        "name": "Volt_Temp",
+        "links": [
+            "17d7264b5cdb9f27"
+        ],
+        "x": 365,
+        "y": 580,
+        "wires": [
+            [
+                "e1d70366f1ff078c"
+            ]
+        ]
+    },
+    {
+        "id": "ade602e74c57c476",
+        "type": "link in",
+        "z": "6960c25d19217e0b",
+        "name": "Nidus_CPU",
+        "links": [
+            "24edf858449e9c50"
+        ],
+        "x": 365,
+        "y": 620,
+        "wires": [
+            [
+                "70d9292d7426c8c8"
+            ]
+        ]
+    },
+    {
+        "id": "83aeb0d37671184e",
+        "type": "link in",
+        "z": "6960c25d19217e0b",
+        "name": "Nidus_RAM",
+        "links": [
+            "96bbc5b20c93f61c"
+        ],
+        "x": 365,
+        "y": 660,
+        "wires": [
+            [
+                "020cd680db32751f"
+            ]
+        ]
+    },
+    {
+        "id": "08e95c3bbdfa9e15",
+        "type": "link in",
+        "z": "6960c25d19217e0b",
+        "name": "Nidus_Process",
+        "links": [
+            "def3688a66231ed2"
+        ],
+        "x": 365,
+        "y": 700,
+        "wires": [
+            [
+                "25396b134f9854b5"
+            ]
+        ]
+    },
+    {
+        "id": "7a9b5849173b180a",
+        "type": "link in",
+        "z": "6960c25d19217e0b",
+        "name": "Nidus_Temp",
+        "links": [
+            "efd70bd2950f7343"
+        ],
+        "x": 365,
+        "y": 740,
+        "wires": [
+            [
+                "37921000de8bd742"
+            ]
+        ]
+    },
+    {
+        "id": "676a2b3ea9bdba7f",
+        "type": "ui_gauge",
+        "z": "6960c25d19217e0b",
+        "name": "",
+        "group": "a73ce2171360eee8",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "gtype": "gage",
+        "title": "MilliWatt",
+        "label": "MilliWatt",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "10000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 480,
+        "y": 260,
+        "wires": []
     }
 ]
