@@ -6769,8 +6769,7 @@
         "y": 560,
         "wires": [
             [
-                "8e88bc82f50cac2f",
-                "41aa33d6cb459a40"
+                "8f18782105b3b273"
             ]
         ]
     },
@@ -7606,7 +7605,7 @@
         "type": "function",
         "z": "3ddecfbaabd60ba5",
         "name": "Rename",
-        "func": "// Définir le sujet du message\nmsg.topic = \"volt/benchmark/watt\";\n\n// Vérifier si le tableau payload existe et n'est pas vide\nif (msg.payload && Array.isArray(msg.payload) && msg.payload.length > 0) {\n    // Convertir les valeurs en chaînes de caractères en nombres entiers\n    var numericValues = msg.payload.map(function (value) {\n        return parseInt(value, 10); // 10 indique la base décimale\n    }).filter(function (value) {\n        return !isNaN(value); // Filtrer les valeurs non numériques\n    });\n\n    // Vérifier si des valeurs numériques ont été trouvées\n    if (numericValues.length > 0) {\n        // Calculer la somme des valeurs numériques dans le tableau\n        var sum = numericValues.reduce(function (acc, value) {\n            return acc + value;\n        }, 0);\n\n        // Calculer la moyenne en divisant la somme par le nombre d'éléments\n        var moyenne = sum / numericValues.length;\n\n        // Arrondir la moyenne à deux chiffres après la virgule et au multiple de 0.05 le plus proche\n        moyenne = Math.round(moyenne * 20) / 20;\n\n        // Ajouter la moyenne au message\n        msg.moyenne = moyenne.toFixed(2);\n    } else {\n        // Si aucune valeur numérique n'a été trouvée, définir la moyenne à 0\n        msg.moyenne = \"0.00\";\n    }\n} else {\n    // Si le tableau est vide ou n'existe pas, définir la moyenne à 0\n    msg.moyenne.volt.benchmark.cpu = \"0.00\";\n}\n\n// Renvoyer le message modifié\nreturn msg;\n\n",
+        "func": "// Définir le sujet du message\nmsg.topic = \"Watt\";\n\n// Vérifier si le tableau payload existe et n'est pas vide\nif (msg.payload && Array.isArray(msg.payload) && msg.payload.length > 0) {\n    // Convertir les valeurs en chaînes de caractères en nombres entiers\n    var numericValues = msg.payload.map(function (value) {\n        return parseInt(value, 10); // 10 indique la base décimale\n    }).filter(function (value) {\n        return !isNaN(value); // Filtrer les valeurs non numériques\n    });\n\n    // Vérifier si des valeurs numériques ont été trouvées\n    if (numericValues.length > 0) {\n        // Calculer la somme des valeurs numériques dans le tableau\n        var sum = numericValues.reduce(function (acc, value) {\n            return acc + value;\n        }, 0);\n\n        // Calculer la moyenne en divisant la somme par le nombre d'éléments\n        var moyenne = sum / numericValues.length;\n\n        // Arrondir la moyenne à deux chiffres après la virgule et au multiple de 0.05 le plus proche\n        moyenne = Math.round(moyenne * 20) / 20;\n\n        // Ajouter la moyenne au message\n        msg.moyenne = moyenne.toFixed(2);\n    } else {\n        // Si aucune valeur numérique n'a été trouvée, définir la moyenne à 0\n        msg.moyenne = \"0.00\";\n    }\n} else {\n    // Si le tableau est vide ou n'existe pas, définir la moyenne à 0\n    msg.moyenne.volt.benchmark.cpu = \"0.00\";\n}\n\n// Renvoyer le message modifié\nreturn msg;\n\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -8874,8 +8873,7 @@
         "y": 600,
         "wires": [
             [
-                "5fcb7ef9b29fa1d1",
-                "41aa33d6cb459a40"
+                "d066cf9ae5cc6b06"
             ]
         ]
     },
@@ -8938,9 +8936,65 @@
         "links": [
             "45787365124bf1fc"
         ],
-        "x": 1475,
-        "y": 520,
+        "x": 1615,
+        "y": 500,
         "wires": []
+    },
+    {
+        "id": "8f18782105b3b273",
+        "type": "change",
+        "z": "3ddecfbaabd60ba5",
+        "name": "Volt_Topic",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Volt",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1510,
+        "y": 560,
+        "wires": [
+            [
+                "8e88bc82f50cac2f",
+                "41aa33d6cb459a40"
+            ]
+        ]
+    },
+    {
+        "id": "d066cf9ae5cc6b06",
+        "type": "change",
+        "z": "3ddecfbaabd60ba5",
+        "name": "Nidus_Topic",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "nidus",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1510,
+        "y": 600,
+        "wires": [
+            [
+                "5fcb7ef9b29fa1d1",
+                "41aa33d6cb459a40"
+            ]
+        ]
     },
     {
         "id": "9ba0d599c2412587",
@@ -10269,7 +10323,8 @@
         "y": 480,
         "wires": [
             [
-                "18e07ec1ae9e7b08"
+                "18e07ec1ae9e7b08",
+                "3a258b624415b171"
             ]
         ]
     },
@@ -10299,5 +10354,27 @@
         "x": 230,
         "y": 900,
         "wires": []
+    },
+    {
+        "id": "3a258b624415b171",
+        "type": "join",
+        "z": "d3f49513ee177da2",
+        "name": "",
+        "mode": "auto",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": "false",
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "x": 370,
+        "y": 540,
+        "wires": [
+            []
+        ]
     }
 ]
