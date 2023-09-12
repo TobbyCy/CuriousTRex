@@ -10340,8 +10340,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 660,
-        "y": 540,
+        "x": 560,
+        "y": 600,
         "wires": []
     },
     {
@@ -10368,13 +10368,137 @@
         "joinerType": "str",
         "accumulate": false,
         "timeout": "",
-        "count": "4",
+        "count": "5",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
         "x": 330,
+        "y": 480,
+        "wires": [
+            [
+                "18e07ec1ae9e7b08",
+                "54ac4d484482dfab"
+            ]
+        ]
+    },
+    {
+        "id": "54ac4d484482dfab",
+        "type": "change",
+        "z": "d3f49513ee177da2",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "json.complet",
+                "tot": "global",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "json",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload.Original",
+                "pt": "msg",
+                "to": "original",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "delete",
+                "p": "cmd",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "out",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "delay",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "filepath",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "graphpath",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "originalDelay",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "use",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "moyenne",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "_event",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "qos",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "retain",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "_topic",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "original",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "rc",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "jsonFiles",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "filename",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 540,
         "y": 480,
         "wires": [
             [
