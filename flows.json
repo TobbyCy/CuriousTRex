@@ -9066,6 +9066,11 @@
                 "pt": "msg",
                 "to": "delay",
                 "tot": "str"
+            },
+            {
+                "t": "delete",
+                "p": "complete",
+                "pt": "msg"
             }
         ],
         "action": "",
@@ -10080,8 +10085,40 @@
         "y": 480,
         "wires": [
             [
-                "18e07ec1ae9e7b08"
+                "18e07ec1ae9e7b08",
+                "c6cd1c2172602ac5"
             ]
+        ]
+    },
+    {
+        "id": "c6cd1c2172602ac5",
+        "type": "json",
+        "z": "d3f49513ee177da2",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 890,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "506d52becf1f6c24",
+        "type": "file",
+        "z": "d3f49513ee177da2",
+        "name": "",
+        "filename": "",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 1060,
+        "y": 480,
+        "wires": [
+            []
         ]
     },
     {
