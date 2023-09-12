@@ -9132,7 +9132,7 @@
                 "t": "set",
                 "p": "topic",
                 "pt": "msg",
-                "to": "Volt",
+                "to": "volt",
                 "tot": "str"
             }
         ],
@@ -11398,7 +11398,7 @@
         "type": "function",
         "z": "d3f49513ee177da2",
         "name": "Moyenne",
-        "func": "\nreturn msg;",
+        "func": "// Tableaux de données d'entrée\nvar wattData = msg.payload.Watt;\nvar voltCpuData = msg.Volt.payload['volt/benchmark/cpu'];\nvar voltRamData = msg.Volt.payload['volt/benchmark/ram'];\nvar voltProcessesData = msg.Volt.payload['volt/benchmark/processes'];\nvar voltTempData = msg.Volt.payload['volt/benchmark/temp'];\nvar nidusCpuData = msg.nidus.payload['nidus/benchmark/cpu'];\nvar nidusRamData = msg.nidus.payload['nidus/benchmark/ram'];\nvar nidusProcessesData = msg.nidus.payload['nidus/benchmark/processes'];\nvar nidusTempData = msg.nidus.payload['nidus/benchmark/temp'];\n\n// Fonction pour calculer la moyenne d'un tableau de données\nfunction calculateAverage(data) {\n    var sum = 0;\n    for (var i = 0; i < data.length; i++) {\n        sum += parseFloat(data[i]);\n    }\n    return (sum / data.length).toFixed(2);\n}\n\n// Calcul des moyennes\nvar moyenne = {\n    \"Watt\": calculateAverage(wattData),\n    \"volt/benchmark/cpu\": calculateAverage(voltCpuData),\n    \"volt/benchmark/ram\": calculateAverage(voltRamData),\n    \"volt/benchmark/processes\": calculateAverage(voltProcessesData),\n    \"volt/benchmark/temp\": calculateAverage(voltTempData),\n    \"nidus/benchmark/cpu\": calculateAverage(nidusCpuData),\n    \"nidus/benchmark/ram\": calculateAverage(nidusRamData),\n    \"nidus/benchmark/processes\": calculateAverage(nidusProcessesData),\n    \"nidus/benchmark/temp\": calculateAverage(nidusTempData),\n    \"bySeconds\": calculateAverage(wattData)\n};\n\nmsg.moyenne = moyenne;\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
