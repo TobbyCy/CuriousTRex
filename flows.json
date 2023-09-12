@@ -6655,13 +6655,14 @@
         "topicType": "msg",
         "splitLayout": false,
         "className": "",
-        "x": 240,
+        "x": 220,
         "y": 740,
         "wires": [
             [
                 "71d1b35c803dd600",
                 "2ac0d272272f951b",
-                "843f23c9472dcd82"
+                "843f23c9472dcd82",
+                "380769e1e1860986"
             ]
         ]
     },
@@ -9137,7 +9138,7 @@
         "type": "function",
         "z": "3ddecfbaabd60ba5",
         "name": "function 7",
-        "func": "// Supprimer les valeurs non essentielles du message d'entrée\nvar inputMsg = msg.payload;\ndelete inputMsg.cmd;\ndelete inputMsg.topic;\ndelete inputMsg.out;\ndelete inputMsg.filepath;\ndelete inputMsg.graphPath;\n\n// Calculer la différence entre les horodatages delay et gatling\nvar delayTimestamp = inputMsg.delay;\nvar gatlingTimestamp = inputMsg.payload.gatling;\nvar timeDifference = gatlingTimestamp - delayTimestamp;\n\n// Créer un tableau pour stocker les informations\nvar outputData = [];\n\n// Ajouter la différence de temps au tableau\noutputData.push({ \"timeDifference\": timeDifference });\n\n// Ajouter les informations de msg.original au tableau\nvar originalData = msg.original;\noutputData.push(originalData);\n\n// Mettre le tableau résultant dans msg.payload\nmsg.payload = outputData;\n\nreturn msg;\n",
+        "func": "// Calculer la différence entre les horodatages delay et gatling\nvar delayTimestamp = msg.payload.delay;\nvar gatlingTimestamp = msg.payload.gatling;\nvar timeDifference = gatlingTimestamp - delayTimestamp;\n\n// Créer un tableau pour stocker les informations\nvar outputData = [];\n\n// Ajouter la différence de temps au tableau\noutputData.push({ \"timeDifference\": timeDifference });\n\n// Ajouter les informations de msg.original au tableau\nvar originalData = msg.original;\noutputData.push(originalData);\n\n// Mettre le tableau résultant dans msg.payload\nmsg.payload = outputData;\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -9150,6 +9151,23 @@
                 "4c103088103e7e05"
             ]
         ]
+    },
+    {
+        "id": "380769e1e1860986",
+        "type": "debug",
+        "z": "3ddecfbaabd60ba5",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 420,
+        "y": 700,
+        "wires": []
     },
     {
         "id": "9ba0d599c2412587",
