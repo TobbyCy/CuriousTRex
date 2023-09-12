@@ -56,6 +56,14 @@
         "env": []
     },
     {
+        "id": "d3f49513ee177da2",
+        "type": "tab",
+        "label": "JSON_V3.0",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "4e666803b8f3f742",
         "type": "subflow",
         "name": "MQTT Period",
@@ -100,7 +108,7 @@
         "type": "ui_tab",
         "name": "Monittoring",
         "icon": "warning",
-        "order": 4,
+        "order": 5,
         "disabled": false,
         "hidden": false
     },
@@ -184,7 +192,7 @@
             }
         },
         "site": {
-            "name": "Node-RED Dashboard",
+            "name": "Curius T-Rex",
             "hideToolbar": "false",
             "allowSwipe": "false",
             "lockMenu": "false",
@@ -286,7 +294,7 @@
         "type": "ui_tab",
         "name": "StressTest_V1.0",
         "icon": "error_outline",
-        "order": 3,
+        "order": 4,
         "disabled": false,
         "hidden": false
     },
@@ -313,7 +321,7 @@
         "type": "ui_tab",
         "name": "Gatling_PoC_V2.0",
         "icon": "error",
-        "order": 2,
+        "order": 3,
         "disabled": false,
         "hidden": false
     },
@@ -324,7 +332,7 @@
         "link": "https://mylos.cifom.ch/gitlab/ToblerC/banc-de-mesures-de-la-consommation-electrique",
         "icon": "github-circle",
         "target": "newtab",
-        "order": 5
+        "order": 6
     },
     {
         "id": "7a02dc45cdd22958",
@@ -469,6 +477,26 @@
         "order": 11,
         "width": 8,
         "height": 1
+    },
+    {
+        "id": "e4a2f7f90a33741d",
+        "type": "ui_tab",
+        "name": "JSON_V3.0",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "9848c7d7e57dbdee",
+        "type": "ui_group",
+        "name": "JSON",
+        "tab": "e4a2f7f90a33741d",
+        "order": 1,
+        "disp": true,
+        "width": "20",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "943ce04091291544",
@@ -6294,8 +6322,8 @@
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 1460,
-        "y": 240,
+        "x": 1320,
+        "y": 220,
         "wires": [
             []
         ]
@@ -6324,7 +6352,7 @@
         "type": "function",
         "z": "3ddecfbaabd60ba5",
         "name": "Convert timestamps",
-        "func": "// Parcourir chaque élément dans le tableau \"payload\" du message\nfor (var i = 0; i < msg.payload.length; i++) {\n    // Formater et mettre à jour les propriétés de date/heure dans l'objet \"stat\"\n    msg.payload[i].stat.created = msg.payload[i].stat.created.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.changed = msg.payload[i].stat.changed.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.accessed = msg.payload[i].stat.accessed.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.statusChanged = msg.payload[i].stat.statusChanged.toISOString().slice(0, 19).replace('T', ' ');\n\n    // Extraire le nom de fichier à partir de la propriété \"name\" et mettre à jour \"fname\"\n    msg.payload[i].fname = msg.payload[i].name.replace(/^.*(\\\\|\\/|\\:)/, '');\n}\n\nreturn msg; // Renvoyer le message modifié\n",
+        "func": "// Fonction pour formater une date en fonction de la timezone de Zurich\nfunction formatToZurichTimezone(date) {\n    var options = {\n        year: 'numeric',\n        month: '2-digit',\n        day: '2-digit',\n        hour: '2-digit',\n        minute: '2-digit',\n        second: '2-digit',\n        timeZone: 'Europe/Zurich'\n    };\n    return new Intl.DateTimeFormat('fr-CH', options).format(date);\n}\n\n// Parcourir chaque élément dans le tableau \"payload\" du message\nfor (var i = 0; i < msg.payload.length; i++) {\n    // Convertir les propriétés de date/heure dans l'objet \"stat\" au format de Zurich\n    msg.payload[i].stat.created = formatToZurichTimezone(new Date(msg.payload[i].stat.created));\n    msg.payload[i].stat.changed = formatToZurichTimezone(new Date(msg.payload[i].stat.changed));\n    msg.payload[i].stat.accessed = formatToZurichTimezone(new Date(msg.payload[i].stat.accessed));\n    msg.payload[i].stat.statusChanged = formatToZurichTimezone(new Date(msg.payload[i].stat.statusChanged));\n\n    // Extraire le nom de fichier à partir de la propriété \"name\" et mettre à jour \"fname\"\n    msg.payload[i].fname = msg.payload[i].name.replace(/^.*(\\\\|\\/|\\:)/, '');\n}\n\nreturn msg; // Renvoyer le message modifié\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -6528,7 +6556,7 @@
         "type": "function",
         "z": "3ddecfbaabd60ba5",
         "name": "Ajoute le chemin du fichier ",
-        "func": "var now = new Date();\nvar jour = (\"0\" + now.getDate()).slice(-2);\nvar mois = (\"0\" + (now.getMonth() + 1)).slice(-2);\n\n// Récupérer le nom de fichier de msg.payload.nameFile, ou utiliser \"default\" si absent\nvar nameFile = msg.payload.nameFile || \"default\";\n// Remplacer les caractères interdits dans le nom de fichier par des underscores\nnameFile = nameFile.replace(/[\\\\/:\"*?<>|]+/g, \"_\");\n\n// Construire le chemin du fichier PDF\nmsg.filePath = \"/home/NodeRed/pdf/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \".pdf\";\n\n// Construire les chemins des fichiers graphiques\nmsg.graphPath = {\n    volt: {\n        complet: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"VOLT.png\",\n        cpu: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vcpu.png\",\n        ram: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vram.png\",\n        proc: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vproc.png\",\n        temp: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vtemp.png\",\n        watt: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vwatt.png\"\n    },\n    nidus: {\n        complet: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"NIDUS.png\",\n        cpu: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ncpu.png\",\n        ram: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nram.png\",\n        proc: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nproc.png\",\n        temp: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ntemp.png\"\n    },\n    gatling: {\n        complet: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"gatling.png\",\n        pass: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"pass.png\",\n        //ram: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nram.png\",\n        //proc: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nproc.png\",\n        //temp: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ntemp.png\"\n    }\n};\n\n// Renvoyer le message modifié\nreturn msg;\n",
+        "func": "var now = new Date();\nvar jour = (\"0\" + now.getDate()).slice(-2);\nvar mois = (\"0\" + (now.getMonth() + 1)).slice(-2);\n\n// Récupérer le nom de fichier de msg.payload.nameFile, ou utiliser \"default\" si absent\nvar nameFile = msg.payload.nameFile || \"default\";\n// Remplacer les caractères interdits dans le nom de fichier par des underscores\nnameFile = nameFile.replace(/[\\\\/:\"*?<>|]+/g, \"_\");\n\n// Construire le chemin du fichier PDF\nmsg.filePath = \"/home/NodeRed/pdf/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \".pdf\";\n\n// Construire les chemins des fichiers graphiques\nmsg.graphPath = {\n    volt: {\n        complet: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"VOLT.png\",\n        cpu: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vcpu.png\",\n        ram: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vram.png\",\n        proc: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vproc.png\",\n        temp: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vtemp.png\",\n        watt: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vwatt.png\"\n    },\n    nidus: {\n        complet: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"NIDUS.png\",\n        cpu: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ncpu.png\",\n        ram: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nram.png\",\n        proc: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nproc.png\",\n        temp: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ntemp.png\"\n    },\n    gatling: {\n        complet: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"gatling.png\",\n        pass: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"pass.png\",\n        bySeconds: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"bySeconds.png\",\n        //proc: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nproc.png\",\n        //temp: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ntemp.png\"\n    }\n};\nglobal.set('path', msg.graphPath);\n// Renvoyer le message modifié\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -6634,7 +6662,7 @@
         "type": "function",
         "z": "3ddecfbaabd60ba5",
         "name": "Créer le contenue du fichier",
-        "func": "//Formatage du ventilateur\nvar ventilateur = msg.payload.gatling.Original.flow ? \"Ventilateur activé\" : \"Ventilateur non-activé\";\n// Formatage de la date de début\nvar timestamp = msg.payload.gatling.Assertion.start;\n\n// Créez un objet Date à partir du timestamp\nvar date = new Date(timestamp);\n\n// Définissez le format de date souhaité\nvar options = {\n    weekday: 'long',\n    year: 'numeric',\n    month: 'long',\n    day: 'numeric',\n    hour: '2-digit',\n    minute: '2-digit'\n};\n\n// Formatez la date en une chaîne de caractères\nvar formattedDate = date.toLocaleDateString(\"fr-FR\", options);\n\n\n// Création des données pour le rapport PDF\nmsg.payload = {\n    header: function (currentPage, pageCount, pageSize) {\n        return [\n            {\n                text: \"Tobler Cyril\", // Votre nom\n                alignment: \"left\",\n                fontSize: 10,\n                margin: [15, 10, 0, 0]\n            },\n            {\n                text: \"Nom du projet : Confuse T-Rex\", // Nom de votre projet\n                alignment: \"center\",\n                fontSize: 10,\n                margin: [0, 0, 0, 0]\n            }\n        ];\n    },\n    footer: function (currentPage, pageCount) {\n        return {\n            columns: [\n                {\n                    text: currentPage.toString() + \" / \" + pageCount, // Numéro de page actuel / Nombre total de pages\n                    alignment: \"left\",\n                    fontSize: 10,\n                    margin: [15, 0, 0, 10]\n                },\n                {\n                    text: new Date().toLocaleDateString(\"fr-FR\"), // Date actuelle au format français\n                    alignment: \"right\",\n                    fontSize: 10,\n                    margin: [0, 0, 15, 10]\n                }\n            ],\n            margin: [0, 0, 0, 10]\n        };\n    },\n    content: [\n        {\n            text: \"Rapport d'utilisation : \" + msg.original.nameFile , // Titre du rapport\n            style: \"header\",\n            margin: [0, 10, 0, 0]\n        },\n        {\n            text: \"Les valeurs sont des moyennes sur les \" + Math.floor(msg.delay / (1000 * 60)) + \" dernières minutes\" // Informations sur les valeurs\n        }, \n        {\n            text: ventilateur\n        },\n        {\n            text: \"Nidus :\", // Section Nidus\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"nidus/benchmark/cpu\"] // Valeur CPU de Nidus\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"nidus/benchmark/ram\"] // Valeur RAM de Nidus\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"nidus/benchmark/processes\"] // Nombre de processus de Nidus\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"nidus/benchmark/temp\"] // Température CPU de Nidus\n        },\n        {\n            image: 'nidusImage', // Image de Nidus\n            width: 500,\n            pageBreak: 'after', // Saut de page après l'image\n        },\n        {\n            text: \"Volt\", // Section Volt\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"volt/benchmark/cpu\"] // Valeur CPU de Volt\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"volt/benchmark/ram\"] // Valeur RAM de Volt\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"volt/benchmark/processes\"] // Nombre de processus de Volt\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"volt/benchmark/temp\"] // Température CPU de Volt\n        },\n        {\n            text: \"MilliWatt :           \" + msg.payload.moyenne[\"volt/benchmark/watt\"] // Valeur MilliWatt de Volt\n        },\n        {\n            image: 'voltImage', // Image de Volt\n            width: 500,\n        },\n        {\n            image: 'wattImage', // Image Watt de Volt\n            width: 500,\n            pageBreak: 'after', // Saut de page après l'image\n        },\n        {\n            text: \"Gatling\", // Section Gatling\n            style: \"header2\"\n        },\n        {\n            text: \"Nom de la simulation :                 \" + msg.payload.gatling.Assertion.simulation // Nom de la simulation Gatling\n        },\n        {\n            text: \"Commencée :                            \" + formattedDate // Date de début de la simulation Gatling (à formater)\n        },\n        {\n            text: \"Nombre d'utilisateur :                 \" + msg.original.user_gatling // Nom de la simulation Gatling\n        },\n        {\n            text: \"Durée prévu :                          \" + msg.payload.gatling.Original.time/60 + \"Min\" // Nom de la simulation Gatling\n        },\n        {\n            image: 'gatlingImage', // Image Gatling\n            width: 500,\n        },\n        {\n            image: 'gatlingGraphComplete', // Image graphique complet Gatling\n            width: 500,\n        },\n    ],\n    images: {\n        voltImage: 'data:image/png;base64,' + msg.payload.voltGraph.toString('base64'), // Utilisation du buffer pour l'image Volt\n        wattImage: 'data:image/png;base64,' + msg.payload.wattGraph.toString('base64'),  // Utilisation du buffer pour l'image Watt de Volt\n        nidusImage: 'data:image/png;base64,' + msg.payload.nidusGraph.toString('base64'),  // Utilisation du buffer pour l'image Nidus\n        gatlingImage: 'data:image/png;base64,' + msg.payload.gatlingGraph.toString('base64'),  // Utilisation du buffer pour l'image Gatling\n        gatlingGraphComplete: 'data:image/png;base64,' + msg.payload.gatlingGraphComplete.toString('base64'),  // Utilisation du buffer pour l'image Gatling\n    },\n    styles: {\n        header: {\n            fontSize: 22,\n            bold: true,\n            margin: [0, 30, 0, 0]\n        },\n        header2: {\n            fontSize: 18,\n            bold: true,\n            margin: [0, 20, 0, 0]\n        }\n    }\n};\n\nreturn msg; // Renvoyer le message\n",
+        "func": "//Formatage du ventilateur\nvar ventilateur = msg.payload.gatling.Original.flow ? \"Ventilateur activé\" : \"Ventilateur non-activé\";\n// Formatage de la date de début\nvar timestamp = msg.payload.gatling.Assertion.start;\n\n// Créez un objet Date à partir du timestamp\nvar date = new Date(timestamp);\n\n// Définissez le format de date souhaité\nvar options = {\n    weekday: 'long',\n    year: 'numeric',\n    month: 'long',\n    day: 'numeric',\n    hour: '2-digit',\n    minute: '2-digit'\n};\n\n// Formatez la date en une chaîne de caractères\nvar formattedDate = date.toLocaleDateString(\"fr-FR\", options);\n\n\n// Création des données pour le rapport PDF\nmsg.payload = {\n    header: function (currentPage, pageCount, pageSize) {\n        return [\n            {\n                text: \"Tobler Cyril\", // Votre nom\n                alignment: \"left\",\n                fontSize: 10,\n                margin: [15, 10, 0, 0]\n            },\n            {\n                text: \"Nom du projet : Confuse T-Rex\", // Nom de votre projet\n                alignment: \"center\",\n                fontSize: 10,\n                margin: [0, 0, 0, 0]\n            }\n        ];\n    },\n    footer: function (currentPage, pageCount) {\n        return {\n            columns: [\n                {\n                    text: currentPage.toString() + \" / \" + pageCount, // Numéro de page actuel / Nombre total de pages\n                    alignment: \"left\",\n                    fontSize: 10,\n                    margin: [15, 0, 0, 10]\n                },\n                {\n                    text: new Date().toLocaleDateString(\"fr-FR\"), // Date actuelle au format français\n                    alignment: \"right\",\n                    fontSize: 10,\n                    margin: [0, 0, 15, 10]\n                }\n            ],\n            margin: [0, 0, 0, 10]\n        };\n    },\n    content: [\n        {\n            text: \"Rapport d'utilisation : \" + msg.original.nameFile , // Titre du rapport\n            style: \"header\",\n            margin: [0, 10, 0, 0]\n        },\n        {\n            text: \"Les valeurs sont des moyennes sur les \" + Math.floor(msg.delay / (1000 * 60)) + \" dernières minutes\" // Informations sur les valeurs\n        }, \n        {\n            text: ventilateur\n        },\n        {\n            text: \"Nidus :\", // Section Nidus\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"nidus/benchmark/cpu\"] // Valeur CPU de Nidus\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"nidus/benchmark/ram\"] // Valeur RAM de Nidus\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"nidus/benchmark/processes\"] // Nombre de processus de Nidus\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"nidus/benchmark/temp\"] // Température CPU de Nidus\n        },\n        {\n            image: 'nidusImage', // Image de Nidus\n            width: 500,\n            pageBreak: 'after', // Saut de page après l'image\n        },\n        {\n            text: \"Volt\", // Section Volt\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"volt/benchmark/cpu\"] // Valeur CPU de Volt\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"volt/benchmark/ram\"] // Valeur RAM de Volt\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"volt/benchmark/processes\"] // Nombre de processus de Volt\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"volt/benchmark/temp\"] // Température CPU de Volt\n        },\n        {\n            text: \"MilliWatt :           \" + msg.payload.moyenne[\"volt/benchmark/watt\"] // Valeur MilliWatt de Volt\n        },\n        {\n            image: 'voltImage', // Image de Volt\n            width: 500,\n        },\n        {\n            image: 'wattImage', // Image Watt de Volt\n            width: 500,\n            pageBreak: 'after', // Saut de page après l'image\n        },\n        {\n            text: \"Gatling\", // Section Gatling\n            style: \"header2\"\n        },\n        {\n            text: \"Nom de la simulation :                 \" + msg.payload.gatling.Assertion.simulation // Nom de la simulation Gatling\n        },\n        {\n            text: \"Commencée :                            \" + formattedDate // Date de début de la simulation Gatling (à formater)\n        },\n        {\n            text: \"Nombre d'utilisateur :                 \" + msg.original.user_gatling // Nom de la simulation Gatling\n        },\n        {\n            text: \"Durée prévu :                          \" + msg.payload.gatling.Original.time/60 + \"Min\" // Nom de la simulation Gatling\n        },\n        {\n            image: 'gatlingImage', // Image Gatling\n            width: 500,\n        },\n        {\n            image: 'gatlingGraphComplete', // Image graphique complet Gatling\n            width: 500,\n        }, \n        {\n            image: 'gatlingGraphBySeconds', // Image graphique complet Gatling\n            width: 500,\n        },\n    ],\n    images: {\n        voltImage: 'data:image/png;base64,' + msg.payload.voltGraph.toString('base64'), // Utilisation du buffer pour l'image Volt\n        wattImage: 'data:image/png;base64,' + msg.payload.wattGraph.toString('base64'),  // Utilisation du buffer pour l'image Watt de Volt\n        nidusImage: 'data:image/png;base64,' + msg.payload.nidusGraph.toString('base64'),  // Utilisation du buffer pour l'image Nidus\n        gatlingImage: 'data:image/png;base64,' + msg.payload.gatlingGraph.toString('base64'),  // Utilisation du buffer pour l'image Gatling\n        gatlingGraphComplete: 'data:image/png;base64,' + msg.payload.gatlingGraphComplete.toString('base64'),  // Utilisation du buffer pour l'image Gatling\n        gatlingGraphBySeconds: 'data:image/png;base64,' + msg.payload.gatlingGraphBySeconds.toString('base64'),  // Utilisation du buffer pour l'image Gatling\n    },\n    styles: {\n        header: {\n            fontSize: 22,\n            bold: true,\n            margin: [0, 30, 0, 0]\n        },\n        header2: {\n            fontSize: 18,\n            bold: true,\n            margin: [0, 20, 0, 0]\n        }\n    }\n};\n\nreturn msg; // Renvoyer le message\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -6721,7 +6749,7 @@
         "id": "4e2b38fbcc7da674",
         "type": "join",
         "z": "3ddecfbaabd60ba5",
-        "name": "Values",
+        "name": "Values_Volt",
         "mode": "custom",
         "build": "object",
         "property": "payload",
@@ -6731,22 +6759,17 @@
         "joinerType": "str",
         "accumulate": false,
         "timeout": "",
-        "count": "9",
+        "count": "4",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 1290,
-        "y": 580,
+        "x": 1330,
+        "y": 560,
         "wires": [
             [
-                "9a915e3fcad82fe5",
-                "7abd3e7a912ccedc",
-                "8e88bc82f50cac2f",
-                "5fcb7ef9b29fa1d1",
-                "4f2f7a8aa9ba24bb",
-                "7be259fe9744c2ef"
+                "8e88bc82f50cac2f"
             ]
         ]
     },
@@ -6785,7 +6808,8 @@
         "name": "End_PDF",
         "mode": "link",
         "links": [
-            "e30a7bb45bf64a45"
+            "e30a7bb45bf64a45",
+            "61ea260f9c0b6ef6"
         ],
         "x": 2035,
         "y": 680,
@@ -6878,14 +6902,14 @@
         "type": "function",
         "z": "3ddecfbaabd60ba5",
         "name": "Gatling line chart Time_Response",
-        "func": "// Assurez-vous que msg.payload.gatling.Log est un tableau\nvar logEntries = Array.isArray(msg.payload.gatling.Log) ? msg.payload.gatling.Log : [];\n\n// Création du graphique\nvar chartData = {\n    \n    type: 'line', // Utilisez un graphique de type \"line\"\n    options: {\n        scales: {\n            yAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }],\n            xAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }]\n        },\n        dataset :{\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n        },\n        title: {\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n            display: true,\n            text: 'Comparaison des performances', // Titre du graphique,\n            fontSize: 40 \n        },\n        legend: {\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n            display: true // Affichez la légende du graphique\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd' // Couleur de fond du graphique\n        },\n        plugins: {\n            datalabels: {\n                display: false // Désactivez l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: logEntries.map(function (entry) {\n            if (entry.type === 'RUN') {\n                return 'Début de la Simulation'; // Label pour les opérations de type \"RUN\"\n            } else if (entry.type === 'REQUEST') {\n                // Calcul de la différence en millisecondes entre le début de la simulation et le début de la requête\n                var simulationStart = logEntries.find(function (item) {\n                    return item.type === 'RUN';\n                });\n                if (simulationStart) {\n                    var startTime = simulationStart.start;\n                    var requestTime = entry.start;\n                    var timeDiff = requestTime - startTime;\n\n                    // Si le temps de la simulation dépasse 1 minute\n                    if (timeDiff >= 60000) { // 60000 millisecondes équivalent à 1 minute\n                        var minutes = Math.floor(timeDiff / 60000);\n                        var seconds = ((timeDiff % 60000) / 1000).toFixed(0);\n                        return minutes + ' min ' + seconds + ' s';\n                    } else {\n                        return (timeDiff / 1000).toFixed(0) + ' s'; // Temps en secondes\n                    }\n                } else {\n                    return 'N/A'; // Si aucune opération de type \"RUN\" n'est trouvée\n                }\n            } else {\n                return ''; // Autres types d'opérations (USER, etc.) sans label\n            }\n        }),\n\n        datasets: [\n            {\n                label: \"Temps de Réponse\", // Légende de l'ensemble de données\n                borderColor: 'rgba(0, 128, 255, 1)', // Couleur de la ligne du graphique\n                fill: false, // Désactivez le remplissage sous la ligne\n                data: logEntries.map(function (entry) {\n                    if (entry.type === 'REQUEST') {\n                        // Calcul de la différence en millisecondes entre le début et la fin de la requête\n                        var requestStart = entry.start;\n                        var requestEnd = entry.end;\n                        var requestTime = requestEnd - requestStart;\n                        return requestTime;\n                    } else {\n                        return 0; // Valeurs pour les opérations de type \"RUN\" ou autres\n                    }\n                }),\n                pointRadius: 0, // Diamètre des points sur le graphique\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData; // Attribuez les données du graphique au message\n\nreturn msg; // Renvoyez le message\n",
+        "func": "// Création du graphique\nvar chartData = {\n    \n    type: 'line', // Utilisez un graphique de type \"line\"\n    options: {\n        scales: {\n            yAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }],\n            xAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }]\n        },\n        dataset :{\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n        },\n        title: {\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n            display: true,\n            text: 'Comparaison des performances', // Titre du graphique,\n            fontSize: 40 \n        },\n        legend: {\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n            display: true // Affichez la légende du graphique\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd' // Couleur de fond du graphique\n        },\n        plugins: {\n            datalabels: {\n                display: false // Désactivez l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: msg.payload.timeResponse.data.labels,\n\n        datasets: msg.payload.timeResponse.data.datasets,\n    }\n};\n\nmsg.payload = chartData; // Attribuez les données du graphique au message\nmsg.topic = \"CompletGatling\";\nmsg.graphPath = global.get('path') || 0;\nreturn msg; // Renvoyez le message\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1600,
-        "y": 360,
+        "x": 1800,
+        "y": 340,
         "wires": [
             [
                 "1a702c563ebe672c"
@@ -6899,11 +6923,12 @@
         "name": "",
         "width": "1920",
         "height": "1920",
-        "x": 1830,
-        "y": 360,
+        "x": 2030,
+        "y": 340,
         "wires": [
             [
-                "3de8c7b1973545bb"
+                "3de8c7b1973545bb",
+                "648931f9266586ae"
             ]
         ]
     },
@@ -6918,57 +6943,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 2060,
-        "y": 360,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "7abd3e7a912ccedc",
-        "type": "function",
-        "z": "3ddecfbaabd60ba5",
-        "name": "Vertical Line Chart",
-        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload;\nvar delayInSeconds = msg.delay / 1000; // Conversion en secondes\n\n// Extraction des données nécessaires\nvar voltCpuData = rawData[\"volt/benchmark/cpu\"];\nvar voltRamData = rawData[\"volt/benchmark/ram\"];\nvar voltProcessesData = rawData[\"volt/benchmark/processes\"];\nvar voltTempData = rawData[\"volt/benchmark/temp\"];\nvar nidusCpuData = rawData[\"nidus/benchmark/cpu\"];\nvar nidusRamData = rawData[\"nidus/benchmark/ram\"];\nvar nidusProcessesData = rawData[\"nidus/benchmark/processes\"];\nvar nidusTempData = rawData[\"nidus/benchmark/temp\"];\n\n// Création du graphique\nvar chartData = {\n    type: 'line',  // Changement du type de graphique en \"line\"\n    options: {\n        scales: {\n            yAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }],\n            xAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }]\n        },\n        title: {\n            display: true,\n            text: 'Comparaison des performances'\n        },\n        legend: {\n            display: true\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        plugins: {\n            datalabels: {\n                display: false  // Désactiver l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels:Array.from({ length: voltCpuData.length }, (_, i) => (i * delayInSeconds).toFixed(1)),  // Temps en secondes\n        \n        datasets: [\n            {\n                label: \"Volt CPU\",\n                borderColor: 'rgba(0, 128, 255, 1)',  // Couleur de la ligne (couleur froide pour Volt)\n                fill: false,  // Désactiver le remplissage sous la ligne\n                data: voltCpuData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Volt RAM\",\n                borderColor: 'rgba(0, 255, 128, 1)',\n                fill: false,\n                data: voltRamData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Volt Temp\",\n                borderColor: 'rgba(255, 193, 37, 1)',\n                fill: false,\n                data: voltTempData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Nidus CPU\",\n                borderColor: 'rgba(255, 69, 0, 1)',\n                fill: false,\n                data: nidusCpuData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Nidus RAM\",\n                borderColor: 'rgba(255, 165, 0, 1)',\n                fill: false,\n                data: nidusRamData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Nidus Temp\",\n                borderColor: 'rgba(255, 0, 0, 1)',\n                fill: false,\n                data: nidusTempData,\n                pointRadius: 0,\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1550,
-        "y": 480,
-        "wires": [
-            [
-                "97f0d2ca59edaebb"
-            ]
-        ]
-    },
-    {
-        "id": "97f0d2ca59edaebb",
-        "type": "chart-image",
-        "z": "3ddecfbaabd60ba5",
-        "name": "",
-        "width": "1920",
-        "height": "1080",
-        "x": 1770,
-        "y": 480,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "506deca00d6d721a",
-        "type": "file",
-        "z": "3ddecfbaabd60ba5",
-        "name": "Image dump",
-        "filename": "/home/NodeRed/line.png",
-        "filenameType": "msg",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "true",
-        "encoding": "none",
-        "x": 2050,
-        "y": 480,
+        "x": 2260,
+        "y": 340,
         "wires": [
             []
         ]
@@ -6980,8 +6956,8 @@
         "name": "",
         "width": "1920",
         "height": "1920",
-        "x": 1770,
-        "y": 520,
+        "x": 1970,
+        "y": 540,
         "wires": [
             [
                 "dd1e6a5c8dd54193",
@@ -7000,8 +6976,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 2050,
-        "y": 520,
+        "x": 2250,
+        "y": 540,
         "wires": [
             []
         ]
@@ -7013,8 +6989,8 @@
         "name": "",
         "width": "1920",
         "height": "1920",
-        "x": 1770,
-        "y": 560,
+        "x": 1970,
+        "y": 580,
         "wires": [
             [
                 "306f405893baae9d",
@@ -7033,8 +7009,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 2050,
-        "y": 560,
+        "x": 2250,
+        "y": 580,
         "wires": [
             []
         ]
@@ -7050,8 +7026,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1550,
-        "y": 560,
+        "x": 1750,
+        "y": 580,
         "wires": [
             [
                 "22465f6cd8c94555"
@@ -7069,8 +7045,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1540,
-        "y": 520,
+        "x": 1740,
+        "y": 540,
         "wires": [
             [
                 "174a1101b2f9c22a"
@@ -7154,7 +7130,7 @@
         "joinerType": "str",
         "accumulate": false,
         "timeout": "",
-        "count": "7",
+        "count": "8",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
@@ -7204,7 +7180,8 @@
                 "34a2fc5b8d7b23f5",
                 "2e398589767e8c31",
                 "7abe58379969346a",
-                "27d07c312e196c9d"
+                "27d07c312e196c9d",
+                "cb58717ad99b6f27"
             ]
         ]
     },
@@ -7267,8 +7244,7 @@
         "y": 720,
         "wires": [
             [
-                "61d24da92c494fff",
-                "30f8ec37c86dd727"
+                "61d24da92c494fff"
             ]
         ]
     },
@@ -7444,7 +7420,7 @@
         "joinerType": "str",
         "accumulate": false,
         "timeout": "",
-        "count": "4",
+        "count": "6",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
@@ -7677,14 +7653,14 @@
         "type": "function",
         "z": "3ddecfbaabd60ba5",
         "name": "Watt Line Chart",
-        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload;\nvar delayInSeconds = msg.delay / 1000; // Conversion en secondes\n\n// Extraction des données nécessaires\nvar voltWatt = rawData;\n// Création du graphique\nvar chartData = {\n    type: 'line',  // Changement du type de graphique en \"line\"\n    options: {\n        scales: {\n            yAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }],\n            xAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }]\n        },\n        title: {\n            display: true,\n            text: 'Comparaison des performances',\n            fontSize: 40 \n        },\n        legend: {\n            display: true,\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        plugins: {\n            datalabels: {\n                display: false  // Désactiver l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: Array.from({ length: voltWatt.length }, (_, i) => {\n            // Calculer le délai réel entre chaque valeur en millisecondes\n            var realDelay = msg.delay / (voltWatt.length - 1);\n\n            // Calculer le temps en millisecondes à partir de l'index\n            var timeMillis = i * realDelay;\n\n            // Convertir le temps en minutes et secondes\n            var minutes = Math.floor(timeMillis / 60000); // 60000 millisecondes équivalent à 1 minute\n            var seconds = ((timeMillis % 60000) / 1000).toFixed(0);\n\n            // Créer le label en fonction de la durée\n            if (minutes === 0) {\n                return seconds + ' s'; // Temps en secondes si inférieur à 1 minute\n            } else {\n                return minutes + ' min ' + seconds + ' s'; // Temps en minute:secondes si supérieur à 1 minute\n            }\n        }),datasets: [\n            \n            {\n                label: \"Volt Watt\",\n                borderColor: 'rgba(0, 255, 255, 1)',\n                fill: false,\n                data: voltWatt,\n                pointRadius: 0,\n            },\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
+        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload;\nvar delayInSeconds = msg.delay / 1000; // Conversion en secondes\n\n// Extraction des données nécessaires\nvar voltWatt = rawData;\n\n// Fonction pour calculer la moyenne mobile\nfunction movingAverage(data, windowSize) {\n    var smoothedData = [];\n    for (var i = 0; i < data.length; i++) {\n        var start = Math.max(0, i - Math.floor(windowSize / 2));\n        var end = Math.min(data.length - 1, i + Math.floor(windowSize / 2));\n        var sum = 0;\n        for (var j = start; j <= end; j++) {\n            sum += data[j];\n        }\n        smoothedData.push(sum / (end - start + 1));\n    }\n    return smoothedData;\n}\n\n// Appliquer la moyenne mobile avec une fenêtre de 5 échantillons (vous pouvez ajuster la taille de la fenêtre si nécessaire)\nvar smoothedVoltWatt = movingAverage(voltWatt, 5);\n\n// Création du graphique\nvar chartData = {\n    type: 'line',  // Changement du type de graphique en \"line\"\n    options: {\n        scales: {\n            yAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }],\n            xAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }]\n        },\n        title: {\n            display: true,\n            text: 'Comparaison des performances',\n            fontSize: 40\n        },\n        legend: {\n            display: true,\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        plugins: {\n            datalabels: {\n                display: false  // Désactiver l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: Array.from({ length: smoothedVoltWatt.length }, (_, i) => {\n            // Calculer le délai réel entre chaque valeur en millisecondes\n            var realDelay = msg.delay / (smoothedVoltWatt.length - 1);\n\n            // Calculer le temps en millisecondes à partir de l'index\n            var timeMillis = i * realDelay;\n\n            // Convertir le temps en minutes et secondes\n            var minutes = Math.floor(timeMillis / 60000); // 60000 millisecondes équivalent à 1 minute\n            var seconds = ((timeMillis % 60000) / 1000).toFixed(0);\n\n            // Créer le label en fonction de la durée\n            if (minutes === 0) {\n                return seconds + ' s'; // Temps en secondes si inférieur à 1 minute\n            } else {\n                return minutes + ' min ' + seconds + ' s'; // Temps en minute:secondes si supérieur à 1 minute\n            }\n        }),\n        datasets: [\n            {\n                label: \"Volt Watt\",\n                borderColor: 'rgba(0, 255, 255, 1)',\n                fill: false,\n                data: smoothedVoltWatt, // Utilisation des données lissées\n                pointRadius: 0,\n            },\n        ]\n    }\n};\n\nmsg.payload = chartData;\nmsg.topic = \"Watt\";\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1540,
-        "y": 400,
+        "x": 1740,
+        "y": 460,
         "wires": [
             [
                 "73659a47db81fffa"
@@ -7698,8 +7674,8 @@
         "name": "",
         "width": "1920",
         "height": "1920",
-        "x": 1830,
-        "y": 400,
+        "x": 2030,
+        "y": 460,
         "wires": [
             [
                 "f53a9c270f0476dd",
@@ -7718,8 +7694,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 2040,
-        "y": 400,
+        "x": 2240,
+        "y": 460,
         "wires": [
             []
         ]
@@ -7989,7 +7965,7 @@
         "type": "function",
         "z": "3ddecfbaabd60ba5",
         "name": "Command_Gatling",
-        "func": "msg.original = msg.payload;\nif (msg.topic !== \"inject\" && msg.payload.time !== undefined && msg.payload.user_gatling !== undefined) {\n        // Crée la commande en utilisant les valeurs spécifiées\n    msg.payload.time = msg.payload.time * 60;\n    msg.payload = `/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s CuriusTRex -bm --run-mode local -erjo \"-Dusers=${msg.payload.user_gatling} -Dramp=${msg.payload.time}\" -Xmx4G -Xms4G -server`;\n    } else {\n        // Utilise la commande d'origine car il ne s'agit pas d'un noeud inject ou les valeurs ne sont pas fournies\n        // Par défaut, utilisez la commande actuelle\n        msg.payload = \"/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s CuriusTRex -bm --run-mode local -erjo \\\" -Dusers=5 -Dramp=5\\\"\";\n    }\n\n    // Renvoie le message modifié\n    return msg;",
+        "func": "msg.original = msg.payload;\nif (msg.topic !== \"inject\" && msg.payload.time !== undefined && msg.payload.user_gatling !== undefined) {\n        // Crée la commande en utilisant les valeurs spécifiées\n    msg.payload.time = msg.payload.time * 60;\n    msg.payload = `/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s CuriusTRex -bm --run-mode local -erjo \"-Dusers=${msg.payload.user_gatling} -Dramp=${msg.payload.time} -Xms2G -Xmx4G\" | tail -1`;\n    } else {\n        // Utilise la commande d'origine car il ne s'agit pas d'un noeud inject ou les valeurs ne sont pas fournies\n        // Par défaut, utilisez la commande actuelle\n        msg.payload = \"/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s CuriusTRex -bm --run-mode local -erjo \\\" -Dusers=5 -Dramp=5\\\"\";\n    }\n\n    // Renvoie le message modifié\n    return msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -8019,10 +7995,15 @@
         "y": 1020,
         "wires": [
             [
-                "d11f7afdc4889557"
+                "d11f7afdc4889557",
+                "752215d4be43422d"
             ],
-            [],
-            []
+            [
+                "752215d4be43422d"
+            ],
+            [
+                "752215d4be43422d"
+            ]
         ]
     },
     {
@@ -8065,37 +8046,14 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 880,
-        "y": 1120,
+        "x": 920,
+        "y": 1020,
         "wires": [
             [
                 "9197964b7793ca79",
                 "46daa1258fe41e08",
                 "53c70d418773723d",
                 "7964135626c90274"
-            ]
-        ]
-    },
-    {
-        "id": "1ff3f3ba1cab43a1",
-        "type": "ui_template",
-        "z": "3ddecfbaabd60ba5",
-        "group": "7db53a0c4211bca9",
-        "name": "Upload Btn",
-        "order": 8,
-        "width": 5,
-        "height": 2,
-        "format": "<body>\n  <!-- Bouton pour déclencher l'importation des données -->\n  <button class=\"md-raised md-button md-ink-ripple\" onclick=\"importerDonnees()\">Télécharger</button>\n\n  <script>\n    // Conservez la portée originale\n    let restaureScope = scope;\n\n    // Fonction pour importer les données\n    function importerDonnees() {\n      // Créez un élément d'entrée de type fichier\n      let input = document.createElement('input');\n      input.type = 'file';\n      input.id = 'boutonRestaurer';\n\n      // Définissez l'événement onchange\n      input.onchange = _ => {\n        // Obtenez le nom du fichier choisi\n        let nomFichier = input.files[0].name;\n\n        // Vous pouvez utiliser cette méthode pour obtenir le fichier et effectuer les opérations respectives\n        let lecteurFichier = new FileReader();\n        lecteurFichier.readAsText(input.files[0]);\n\n        // Gérez la fin du chargement du fichier\n        lecteurFichier.onloadend = function(event){\n          // Envoyez les données lues et le nom du fichier à la portée originale\n          restaureScope.send({payload: event.target.result});\n        };\n      };\n\n      // Déclenchez le clic sur l'élément d'entrée de type fichier\n      input.click();\n    }\n  </script>\n</body>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": false,
-        "templateScope": "local",
-        "className": "",
-        "x": 210,
-        "y": 700,
-        "wires": [
-            [
-                "288a58eab8860f59"
             ]
         ]
     },
@@ -8302,13 +8260,13 @@
         "joinerType": "str",
         "accumulate": false,
         "timeout": "",
-        "count": "4",
+        "count": "3",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 1570,
+        "x": 1550,
         "y": 1360,
         "wires": [
             [
@@ -8339,8 +8297,8 @@
         "y": 1360,
         "wires": [
             [
-                "3f9aa754e519b6bf",
-                "c89add291df1506b"
+                "c89add291df1506b",
+                "3f9aa754e519b6bf"
             ]
         ]
     },
@@ -8416,8 +8374,8 @@
         "links": [
             "476457a3a2a870ea"
         ],
-        "x": 1915,
-        "y": 1220,
+        "x": 1885,
+        "y": 1400,
         "wires": []
     },
     {
@@ -8428,11 +8386,11 @@
         "links": [
             "c89add291df1506b"
         ],
-        "x": 1025,
-        "y": 580,
+        "x": 1465,
+        "y": 300,
         "wires": [
             [
-                "4e2b38fbcc7da674"
+                "4f2f7a8aa9ba24bb"
             ]
         ]
     },
@@ -8443,8 +8401,8 @@
         "name": "",
         "width": "1920",
         "height": "1920",
-        "x": 1830,
-        "y": 320,
+        "x": 2030,
+        "y": 300,
         "wires": [
             [
                 "96510d6bc4a88a3c",
@@ -8457,14 +8415,14 @@
         "type": "function",
         "z": "3ddecfbaabd60ba5",
         "name": "Gatling bar chart",
-        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload.gatling.Global;  // Utilisez les données de msg.payload.gatling.Global\nmsg.topic = \"VoltBarChart\"; // Définir le sujet du message\n\n// Extraction des données nécessaires\nvar groupData = [\n    rawData.group1,\n    rawData.group2,\n    rawData.group3,\n    rawData.group4\n];\n\nvar labels = [];\nvar percentages = [];\n\n// Parcourir les données des groupes et extraire les informations\nfor (var i = 1; i <= groupData.length; i++) {\n    var groupName = \"group\" + i;\n    labels.push(rawData[groupName].htmlName);\n    percentages.push(rawData[groupName].percentage);\n}\n\n// Création du graphique\nvar chartData = {\n    type: 'bar',  // Utiliser un graphique de type \"bar\"\n    options: {\n        title: {\n            display: true,\n            text: 'Répartition des performances par groupe', // Titre du graphique,\n            fontSize: 40 \n        },\n        legend: {\n            display: true,\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd' // Couleur de fond du graphique\n        },\n        scales: {\n            x: {\n                beginAtZero: true,\n                title: {\n                    display: true,\n                    text: 'Groupes' // Titre de l'axe des X\n                }\n            },\n\n            xAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }],\n            y: {\n                beginAtZero: true,\n                title: {\n                    display: true,\n                    text: 'Pourcentage' // Titre de l'axe des Y\n                }\n            },\n            yAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }],\n        },\n        plugins: {\n            datalabels: {\n                anchor: 'end',\n                align: 'top',\n                formatter: function (value) {\n                    return value + '%';  // Ajouter le symbole de pourcentage à l'étiquette\n                }\n            }\n        }\n    },\n    data: {\n        labels: labels,\n        datasets: [\n            {\n                label: \"Pourcentage\", // Légende de l'ensemble de données\n                backgroundColor: 'rgba(0, 128, 255, 0.7)',  // Couleur du remplissage des barres\n                data: percentages,\n                \n            }\n        ]\n    }\n};\n\nmsg.payload = chartData; // Attribuer les données du graphique au message\n\nreturn msg; // Renvoyer le message\n",
+        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload.Global;  // Utilisez les données de msg.payload.gatling.Global\nmsg.topic = \"GatlingPass\"; // Définir le sujet du message\n\n// Extraction des données nécessaires\nvar groupData = [\n    rawData.group1,\n    rawData.group2,\n    rawData.group3,\n    rawData.group4\n];\n\nvar labels = [];\nvar percentages = [];\n\n// Parcourir les données des groupes et extraire les informations\nfor (var i = 1; i <= groupData.length; i++) {\n    var groupName = \"group\" + i;\n    labels.push(rawData[groupName].htmlName);\n    percentages.push(rawData[groupName].percentage);\n}\n\n// Création du graphique\nvar chartData = {\n    type: 'bar',  // Utiliser un graphique de type \"bar\"\n    options: {\n        title: {\n            display: true,\n            text: 'Répartition des performances par groupe', // Titre du graphique,\n            fontSize: 40 \n        },\n        legend: {\n            display: true,\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd' // Couleur de fond du graphique\n        },\n        scales: {\n            x: {\n                beginAtZero: true,\n                title: {\n                    display: true,\n                    text: 'Groupes' // Titre de l'axe des X\n                }\n            },\n\n            xAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }],\n            y: {\n                beginAtZero: true,\n                title: {\n                    display: true,\n                    text: 'Pourcentage' // Titre de l'axe des Y\n                }\n            },\n            yAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }],\n        },\n        plugins: {\n            datalabels: {\n                anchor: 'end',\n                align: 'top',\n                formatter: function (value) {\n                    return value + '%';  // Ajouter le symbole de pourcentage à l'étiquette\n                }\n            }\n        }\n    },\n    data: {\n        labels: labels,\n        datasets: [\n            {\n                label: \"Pourcentage\", // Légende de l'ensemble de données\n                backgroundColor: 'rgba(0, 128, 255, 0.7)',  // Couleur du remplissage des barres\n                data: percentages,\n                \n            }\n        ]\n    }\n};\nmsg.graphPath = global.get('path') || 0;\nmsg.payload = chartData; // Attribuer les données du graphique au message\nreturn msg; // Renvoyer le message\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1540,
-        "y": 320,
+        "x": 1740,
+        "y": 300,
         "wires": [
             [
                 "e83ee25f95ec96b8"
@@ -8482,8 +8440,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 2050,
-        "y": 320,
+        "x": 2250,
+        "y": 300,
         "wires": [
             []
         ]
@@ -8500,11 +8458,11 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 1030,
+        "x": 1050,
         "y": 1440,
         "wires": [
             [
-                "8cf6c16261947a90"
+                "e00f65533336a5f7"
             ]
         ]
     },
@@ -8527,11 +8485,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1390,
-        "y": 1440,
+        "x": 1450,
+        "y": 1460,
         "wires": [
             [
-                "5f7d9a95d0c65757"
+                "96a8020826f4562b"
             ]
         ]
     },
@@ -8555,31 +8513,12 @@
         ]
     },
     {
-        "id": "8cf6c16261947a90",
-        "type": "function",
-        "z": "3ddecfbaabd60ba5",
-        "name": "Log TO JSObject",
-        "func": "// Fonction pour analyser les lignes du journal Gatling\nvar lines = msg.payload.split('\\n'); // Divise la charge utile en lignes individuelles et les stocke dans un tableau\nvar logs = []; // Initialise un tableau vide pour stocker les journaux analysés\n\nfor (var i = 0; i < lines.length; i++) { // Parcourt chaque ligne du journal\n    var line = lines[i].trim(); // Supprime les espaces inutiles autour de la ligne\n\n    if (line !== \"\") { // Vérifie si la ligne n'est pas vide\n        var parts = line.split('\\t'); // Divise la ligne en morceaux en utilisant la tabulation comme séparateur\n        var logObject = {}; // Initialise un objet vide pour stocker les informations du journal\n\n        // Définir des noms de clés significatives en fonction de votre format\n        logObject.type = parts[0]; // Type de journal\n        logObject.name = parts[1]; // Nom de la requête\n        logObject.start = parseInt(parts[3]); // Heure de début convertie en nombre entier\n        logObject.end = parseInt(parts[4]); // Heure de fin convertie en nombre entier\n        logObject.status = parts[5]; // Statut de la requête\n        logObject.error = parts[6]; // Message d'erreur en cas d'échec\n\n        logs.push(logObject); // Ajoute l'objet de journal au tableau des journaux analysés\n    }\n}\n\n// Envoyer les journaux analysés en sortie\nmsg.payload = logs; // Stocke les journaux analysés dans msg.logs\nreturn msg; // Renvoie le message modifié avec les journaux analysés\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1210,
-        "y": 1440,
-        "wires": [
-            [
-                "1a1358f228cfd1ff"
-            ]
-        ]
-    },
-    {
         "id": "905380c4f5bb1ad1",
         "type": "subflow:4e666803b8f3f742",
         "z": "3ddecfbaabd60ba5",
         "name": "Volt CPU",
         "x": 980,
-        "y": 620,
+        "y": 600,
         "wires": [
             [
                 "4e2b38fbcc7da674",
@@ -8593,7 +8532,7 @@
         "z": "3ddecfbaabd60ba5",
         "name": "Volt RAM",
         "x": 980,
-        "y": 660,
+        "y": 640,
         "wires": [
             [
                 "4e2b38fbcc7da674",
@@ -8607,7 +8546,7 @@
         "z": "3ddecfbaabd60ba5",
         "name": "Volt Process",
         "x": 990,
-        "y": 700,
+        "y": 680,
         "wires": [
             [
                 "4e2b38fbcc7da674",
@@ -8621,7 +8560,7 @@
         "z": "3ddecfbaabd60ba5",
         "name": "Volt Température",
         "x": 1010,
-        "y": 740,
+        "y": 720,
         "wires": [
             [
                 "4e2b38fbcc7da674",
@@ -8638,8 +8577,8 @@
         "y": 780,
         "wires": [
             [
-                "4e2b38fbcc7da674",
-                "47bc06039d5e9985"
+                "47bc06039d5e9985",
+                "14ee02e87481c6b6"
             ]
         ]
     },
@@ -8652,8 +8591,8 @@
         "y": 820,
         "wires": [
             [
-                "4e2b38fbcc7da674",
-                "47bc06039d5e9985"
+                "47bc06039d5e9985",
+                "14ee02e87481c6b6"
             ]
         ]
     },
@@ -8666,8 +8605,8 @@
         "y": 860,
         "wires": [
             [
-                "4e2b38fbcc7da674",
-                "47bc06039d5e9985"
+                "47bc06039d5e9985",
+                "14ee02e87481c6b6"
             ]
         ]
     },
@@ -8680,8 +8619,8 @@
         "y": 900,
         "wires": [
             [
-                "4e2b38fbcc7da674",
-                "47bc06039d5e9985"
+                "47bc06039d5e9985",
+                "14ee02e87481c6b6"
             ]
         ]
     },
@@ -8749,57 +8688,6 @@
         ]
     },
     {
-        "id": "288a58eab8860f59",
-        "type": "debug",
-        "z": "3ddecfbaabd60ba5",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 380,
-        "y": 700,
-        "wires": []
-    },
-    {
-        "id": "7be259fe9744c2ef",
-        "type": "debug",
-        "z": "3ddecfbaabd60ba5",
-        "name": "Values_Chart",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1540,
-        "y": 280,
-        "wires": []
-    },
-    {
-        "id": "30f8ec37c86dd727",
-        "type": "debug",
-        "z": "3ddecfbaabd60ba5",
-        "name": "Values_PDF",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2090,
-        "y": 760,
-        "wires": []
-    },
-    {
         "id": "7aea4a31c908237b",
         "type": "change",
         "z": "3ddecfbaabd60ba5",
@@ -8824,6 +8712,215 @@
         "wires": [
             [
                 "8ff2cbbf96cb265b"
+            ]
+        ]
+    },
+    {
+        "id": "035632eacefbd3cd",
+        "type": "function",
+        "z": "3ddecfbaabd60ba5",
+        "name": "Gatling line chart By_Seconds",
+        "func": "// Création du graphique\nvar chartData = {\n    type: 'line', // Utilisez un graphique de type \"line\"\n    options: {\n        scales: {\n            yAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }],\n            xAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }]\n        },\n        dataset: {\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n        },\n        title: {\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n            display: true,\n            text: 'Nombre de Requêtes Simultanées', // Titre du graphique\n            fontSize: 40\n        },\n        legend: {\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n            display: true // Affichez la légende du graphique\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd' // Couleur de fond du graphique\n        },\n        plugins: {\n            datalabels: {\n                display: false // Désactivez l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: msg.payload.bySeconds.data.labels,\n        datasets: msg.payload.bySeconds.data.datasets,\n    }\n};\n\nmsg.payload = chartData; // Attribuez les données du graphique au message\nmsg.topic = \"bySeconds\";\nmsg.graphPath = global.get('path') || 0;\nreturn msg; // Renvoyez le message\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1790,
+        "y": 380,
+        "wires": [
+            [
+                "a83bcdc5677662ee"
+            ]
+        ]
+    },
+    {
+        "id": "a83bcdc5677662ee",
+        "type": "chart-image",
+        "z": "3ddecfbaabd60ba5",
+        "name": "",
+        "width": "1920",
+        "height": "1920",
+        "x": 2030,
+        "y": 380,
+        "wires": [
+            [
+                "c17822d4517e2dae",
+                "648931f9266586ae"
+            ]
+        ]
+    },
+    {
+        "id": "c17822d4517e2dae",
+        "type": "file",
+        "z": "3ddecfbaabd60ba5",
+        "name": "Gatling RequeteParSeconde",
+        "filename": "graphPath.gatling.bySeconds",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 2300,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cb58717ad99b6f27",
+        "type": "file in",
+        "z": "3ddecfbaabd60ba5",
+        "name": "Read Graph Gatling",
+        "filename": "graphPath.gatling.bySeconds",
+        "filenameType": "msg",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 1480,
+        "y": 1200,
+        "wires": [
+            [
+                "26990d2e7aea2b2c"
+            ]
+        ]
+    },
+    {
+        "id": "26990d2e7aea2b2c",
+        "type": "base64",
+        "z": "3ddecfbaabd60ba5",
+        "name": "",
+        "action": "str",
+        "property": "msg.payload",
+        "x": 1720,
+        "y": 1200,
+        "wires": [
+            [
+                "9e06d1cd375a5890"
+            ]
+        ]
+    },
+    {
+        "id": "9e06d1cd375a5890",
+        "type": "change",
+        "z": "3ddecfbaabd60ba5",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "gatlingGraphBySeconds",
+                "tot": "str",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1730,
+        "y": 1240,
+        "wires": [
+            [
+                "3f9aa754e519b6bf"
+            ]
+        ]
+    },
+    {
+        "id": "752215d4be43422d",
+        "type": "debug",
+        "z": "3ddecfbaabd60ba5",
+        "name": "ERROR_Gatling",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "14ee02e87481c6b6",
+        "type": "join",
+        "z": "3ddecfbaabd60ba5",
+        "name": "Values_Nidus",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "4",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1340,
+        "y": 600,
+        "wires": [
+            [
+                "5fcb7ef9b29fa1d1"
+            ]
+        ]
+    },
+    {
+        "id": "e00f65533336a5f7",
+        "type": "function",
+        "z": "3ddecfbaabd60ba5",
+        "name": "Log To graph object",
+        "func": "// Fonction pour analyser les lignes du journal Gatling\nvar lines = msg.payload.split('\\n'); // Divise la charge utile en lignes individuelles et les stocke dans un tableau\nvar logs = []; // Initialise un tableau vide pour stocker les journaux analysés\n\nfor (var i = 0; i < lines.length; i++) { // Parcourt chaque ligne du journal\n    var line = lines[i].trim(); // Supprime les espaces inutiles autour de la ligne\n\n    if (line !== \"\") { // Vérifie si la ligne n'est pas vide\n        var parts = line.split('\\t'); // Divise la ligne en morceaux en utilisant la tabulation comme séparateur\n        var logObject = {}; // Initialise un objet vide pour stocker les informations du journal\n\n        // Définir des noms de clés significatives en fonction de votre format\n        logObject.type = parts[0]; // Type de journal\n        logObject.name = parts[1]; // Nom de la requête\n        logObject.start = parseInt(parts[3]); // Heure de début convertie en nombre entier\n        logObject.end = parseInt(parts[4]); // Heure de fin convertie en nombre entier\n        logObject.status = parts[5]; // Statut de la requête\n        logObject.error = parts[6]; // Message d'erreur en cas d'échec\n        logObject.user = parts[7]; // Nom de l'utilisateur\n\n        logs.push(logObject); // Ajoute l'objet de journal au tableau des journaux analysés\n    }\n}\n\nvar logEntries = Array.isArray(logs) ? logs : [];\n\n// Prépare les données pour le premier nœud (timeResponse)\nvar timeResponse = {\n    data: {\n        labels: logEntries.map(function (entry) {\n            if (entry.type === 'RUN') {\n                return 'Début de la Simulation'; // Label pour les opérations de type \"RUN\"\n            } else if (entry.type === 'REQUEST') {\n                // Calcul de la différence en millisecondes entre le début de la simulation et le début de la requête\n                var simulationStart = logEntries.find(function (item) {\n                    return item.type === 'RUN';\n                });\n                if (simulationStart) {\n                    var startTime = simulationStart.start;\n                    var requestTime = entry.start;\n                    var timeDiff = requestTime - startTime;\n\n                    // Si le temps de la simulation dépasse 1 minute\n                    if (timeDiff >= 60000) { // 60000 millisecondes équivalent à 1 minute\n                        var minutes = Math.floor(timeDiff / 60000);\n                        var seconds = ((timeDiff % 60000) / 1000).toFixed(0);\n                        return minutes + ' min ' + seconds + ' s';\n                    } else {\n                        return (timeDiff / 1000).toFixed(0) + ' s'; // Temps en secondes\n                    }\n                } else {\n                    return 'N/A'; // Si aucune opération de type \"RUN\" n'est trouvée\n                }\n            } else {\n                return ''; // Autres types d'opérations (USER, etc.) sans label\n            }\n        }),\n\n        datasets: [\n            {\n                label: \"Temps de Réponse\", // Légende de l'ensemble de données\n                borderColor: 'rgba(0, 128, 255, 1)', // Couleur de la ligne du graphique\n                fill: false, // Désactivez le remplissage sous la ligne\n                data: logEntries.map(function (entry) {\n                    if (entry.type === 'REQUEST') {\n                        // Calcul de la différence en millisecondes entre le début et la fin de la requête\n                        var requestStart = entry.start;\n                        var requestEnd = entry.end;\n                        var requestTime = requestEnd - requestStart;\n                        return requestTime;\n                    } else {\n                        return 0; // Valeurs pour les opérations de type \"RUN\" ou autres\n                    }\n                }),\n                pointRadius: 0, // Diamètre des points sur le graphique\n            }\n        ]\n    }\n};\n\n// Prépare les données pour le deuxième nœud (bySeconds)\nvar bySeconds = {\n    data: {\n        labels: timeResponse.data.labels,\n        datasets: [\n            {\n                label: \"Requêtes Simultanées\", // Légende de l'ensemble de données\n                borderColor: 'rgba(0, 128, 255, 1)', // Couleur de la ligne du graphique\n                fill: false, // Désactivez le remplissage sous la ligne\n                data: logEntries.map(function (entry, index, array) {\n                    if (entry.type === 'REQUEST') {\n                        var currentTimestamp = entry.start;\n                        var concurrentRequests = 0;\n\n                        for (var i = 0; i < array.length; i++) {\n                            var otherEntry = array[i];\n                            if (otherEntry.type === 'REQUEST' &&\n                                otherEntry.start <= currentTimestamp &&\n                                (otherEntry.end === null || otherEntry.end >= currentTimestamp)) {\n                                concurrentRequests++;\n                            }\n                        }\n\n                        return concurrentRequests;\n                    } else {\n                        return 0; // Valeurs pour les autres types d'opérations\n                    }\n                }),\n                pointRadius: 0, // Diamètre des points sur le graphique\n            }\n        ]\n    }\n};\n\nmsg.payload = {\n    timeResponse: timeResponse,\n    bySeconds: bySeconds\n};\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1230,
+        "y": 1440,
+        "wires": [
+            [
+                "1a1358f228cfd1ff"
+            ]
+        ]
+    },
+    {
+        "id": "96a8020826f4562b",
+        "type": "link out",
+        "z": "3ddecfbaabd60ba5",
+        "name": "Log",
+        "mode": "link",
+        "links": [
+            "c64945024bc6d2c1"
+        ],
+        "x": 1885,
+        "y": 1460,
+        "wires": []
+    },
+    {
+        "id": "c64945024bc6d2c1",
+        "type": "link in",
+        "z": "3ddecfbaabd60ba5",
+        "name": "link in 3",
+        "links": [
+            "96a8020826f4562b"
+        ],
+        "x": 1465,
+        "y": 360,
+        "wires": [
+            [
+                "9a915e3fcad82fe5",
+                "035632eacefbd3cd"
             ]
         ]
     },
@@ -9798,5 +9895,326 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "657bef1570c223b8",
+        "type": "inject",
+        "z": "d3f49513ee177da2",
+        "name": "Init",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "300",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "change",
+        "payload": "/home/NodeRed/json",
+        "payloadType": "str",
+        "x": 250,
+        "y": 100,
+        "wires": [
+            [
+                "b541a4c9d0c4c88b"
+            ]
+        ]
+    },
+    {
+        "id": "c8b72a9645297de5",
+        "type": "ui_button",
+        "z": "d3f49513ee177da2",
+        "name": "",
+        "group": "9848c7d7e57dbdee",
+        "order": 2,
+        "width": 4,
+        "height": 2,
+        "passthru": true,
+        "label": "Refresh",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "refresh",
+        "payload": "/home/NodeRed/json",
+        "payloadType": "str",
+        "topic": "change",
+        "topicType": "str",
+        "x": 260,
+        "y": 180,
+        "wires": [
+            [
+                "b541a4c9d0c4c88b"
+            ]
+        ]
+    },
+    {
+        "id": "c567b2b02f6d2abf",
+        "type": "ui_template",
+        "z": "d3f49513ee177da2",
+        "group": "9848c7d7e57dbdee",
+        "name": "",
+        "order": 1,
+        "width": "20",
+        "height": "8",
+        "format": "<div ng-bind-html=\"msg.payload\" height=\"400\" style=\"height: 400px;\"><br/>\n</div>\n<style>\n/* Applique des styles aux liens */\na[href] {\ncolor: #d93347; /* Couleur du lien */\ntext-decoration: none; /* Pas de soulignement */\n}\n\n/* Applique des styles au survol des liens */\na[href]:hover {\ncolor: #cb0505; /* Couleur du lien au survol */\ntext-decoration: underline; /* Soulignement au survol */\n}\n</style>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 1100,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "87a0a41c8c8d3310",
+        "type": "template",
+        "z": "d3f49513ee177da2",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<table width=\"100%\">\n    <tr><th>Nom de Fichier</th><th>Taille</th><th>Créer</th><th>Changer</th></tr>\n    {{#payload}}\n        <tr>\n            <td><a href=\"/download?filename={{name}}\" target=\"blank\">{{fname}}</a></td>\n            <td>{{stat.size}}</td>\n            <td>{{stat.created}}</td>\n            <td>{{stat.changed}}</td>\n        </tr>\n    {{/payload}}\n</table>\n",
+        "output": "str",
+        "x": 1080,
+        "y": 180,
+        "wires": [
+            [
+                "c567b2b02f6d2abf"
+            ]
+        ]
+    },
+    {
+        "id": "e82612444b7ffefa",
+        "type": "function",
+        "z": "d3f49513ee177da2",
+        "name": "Convert timestamps",
+        "func": "// Fonction pour formater une date en fonction de la timezone de Zurich\nfunction formatToZurichTimezone(date) {\n    var options = {\n        year: 'numeric',\n        month: '2-digit',\n        day: '2-digit',\n        hour: '2-digit',\n        minute: '2-digit',\n        second: '2-digit',\n        timeZone: 'Europe/Zurich'\n    };\n    return new Intl.DateTimeFormat('fr-CH', options).format(date);\n}\n\n// Parcourir chaque élément dans le tableau \"payload\" du message\nfor (var i = 0; i < msg.payload.length; i++) {\n    // Convertir les propriétés de date/heure dans l'objet \"stat\" au format de Zurich\n    msg.payload[i].stat.created = formatToZurichTimezone(new Date(msg.payload[i].stat.created));\n    msg.payload[i].stat.changed = formatToZurichTimezone(new Date(msg.payload[i].stat.changed));\n    msg.payload[i].stat.accessed = formatToZurichTimezone(new Date(msg.payload[i].stat.accessed));\n    msg.payload[i].stat.statusChanged = formatToZurichTimezone(new Date(msg.payload[i].stat.statusChanged));\n\n    // Extraire le nom de fichier à partir de la propriété \"name\" et mettre à jour \"fname\"\n    msg.payload[i].fname = msg.payload[i].name.replace(/^.*(\\\\|\\/|\\:)/, '');\n}\n\nreturn msg; // Renvoyer le message modifié\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 180,
+        "wires": [
+            [
+                "87a0a41c8c8d3310"
+            ]
+        ]
+    },
+    {
+        "id": "ec2e1b03b620f090",
+        "type": "http in",
+        "z": "d3f49513ee177da2",
+        "name": "",
+        "url": "/download",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 340,
+        "y": 240,
+        "wires": [
+            [
+                "078656573a2256d9"
+            ]
+        ]
+    },
+    {
+        "id": "5f87111e0da70820",
+        "type": "http response",
+        "z": "d3f49513ee177da2",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1130,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "078656573a2256d9",
+        "type": "function",
+        "z": "d3f49513ee177da2",
+        "name": "Get the file name",
+        "func": "msg.filename = msg.req.query.filename;\nmsg.contentdisposition = \"attachment; filename=\\\"\" + msg.req.query.filename.replace(/^.*(\\\\|\\/|\\:)/, '') + \"\\\"\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 590,
+        "y": 240,
+        "wires": [
+            [
+                "cff08753494e0ec5"
+            ]
+        ],
+        "outputLabels": [
+            "Folder selected",
+            "File selected"
+        ]
+    },
+    {
+        "id": "cff08753494e0ec5",
+        "type": "file in",
+        "z": "d3f49513ee177da2",
+        "name": "",
+        "filename": "",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 780,
+        "y": 240,
+        "wires": [
+            [
+                "c8c1de185f0a1ac0"
+            ]
+        ]
+    },
+    {
+        "id": "c8c1de185f0a1ac0",
+        "type": "change",
+        "z": "d3f49513ee177da2",
+        "name": "Set Headers",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "headers.content-type",
+                "pt": "msg",
+                "to": "text/csv",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.Content-Disposition",
+                "pt": "msg",
+                "to": "contentdisposition",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 950,
+        "y": 240,
+        "wires": [
+            [
+                "5f87111e0da70820"
+            ]
+        ]
+    },
+    {
+        "id": "b541a4c9d0c4c88b",
+        "type": "function",
+        "z": "d3f49513ee177da2",
+        "name": "Folder handling",
+        "func": "// Récupérer la valeur de la variable \"folder\" depuis le contexte\nlet folder = context.get(\"folder\");\n// Si la variable \"folder\" n'est pas définie, l'initialiser avec \"/\"\nif (folder === undefined) {\n    folder = \"/\";\n    context.set(\"folder\", folder); // Enregistrer la valeur dans le contexte\n}\n\n// Récupérer la valeur de la variable \"hidden\" depuis le contexte\nlet hidden = context.get(\"hidden\");\n// Si la variable \"hidden\" n'est pas définie, l'initialiser avec \"false\"\nif (hidden === undefined) {\n    hidden = false;\n    context.set(\"hidden\", hidden); // Enregistrer la valeur dans le contexte\n}\n\n// Si le sujet du message est \"up\"\nif (msg.topic === \"up\") {\n    var the_arr = folder.split('/');\n    the_arr.pop(); // Supprimer le dernier élément du tableau\n    folder = the_arr.join('/'); // Rejoindre les éléments du tableau pour former le nouveau chemin\n    context.set(\"folder\", folder); // Enregistrer le nouveau chemin dans le contexte\n}\n\n// Si le sujet du message est \"change\"\nif (msg.topic === \"change\") {\n    folder = msg.payload; // Mettre à jour la valeur de \"folder\" avec le contenu du champ \"payload\"\n    context.set(\"folder\", folder); // Enregistrer la nouvelle valeur dans le contexte\n}\n\n// Si le sujet du message est \"hidden\"\nif (msg.topic === \"hidden\") {\n    hidden = msg.payload; // Mettre à jour la valeur de \"hidden\" avec le contenu du champ \"payload\"\n    context.set(\"hidden\", hidden); // Enregistrer la nouvelle valeur dans le contexte\n}\n\n// Construire un objet JSON contenant les valeurs actuelles de \"folder\" et \"hidden\"\nmsg.payload = { \"start\": folder, \"hidden\": hidden };\n\nreturn msg; // Renvoyer le message modifié\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 180,
+        "wires": [
+            [
+                "5deb3f7a069e94db"
+            ]
+        ]
+    },
+    {
+        "id": "5deb3f7a069e94db",
+        "type": "fs-file-lister",
+        "z": "d3f49513ee177da2",
+        "name": "Files",
+        "start": "/home/pi",
+        "pattern": "*.*",
+        "folders": "*",
+        "hidden": false,
+        "lstype": "files",
+        "path": true,
+        "single": true,
+        "depth": 0,
+        "stat": true,
+        "showWarnings": false,
+        "x": 650,
+        "y": 180,
+        "wires": [
+            [
+                "e82612444b7ffefa"
+            ]
+        ]
+    },
+    {
+        "id": "61ea260f9c0b6ef6",
+        "type": "link in",
+        "z": "d3f49513ee177da2",
+        "name": "From_PDF",
+        "links": [
+            "a74b27989ec4408a"
+        ],
+        "x": 165,
+        "y": 180,
+        "wires": [
+            [
+                "c8b72a9645297de5"
+            ]
+        ]
+    },
+    {
+        "id": "1ff3f3ba1cab43a1",
+        "type": "ui_template",
+        "z": "d3f49513ee177da2",
+        "group": "9848c7d7e57dbdee",
+        "name": "Upload Btn",
+        "order": 8,
+        "width": 5,
+        "height": 2,
+        "format": "<body>\n  <!-- Bouton pour déclencher l'importation des données -->\n  <button class=\"md-raised md-button md-ink-ripple\" onclick=\"importerDonnees()\">Télécharger</button>\n\n  <script>\n    // Conservez la portée originale\n    let restaureScope = scope;\n\n    // Fonction pour importer les données\n    function importerDonnees() {\n      // Créez un élément d'entrée de type fichier\n      let input = document.createElement('input');\n      input.type = 'file';\n      input.id = 'boutonRestaurer';\n\n      // Définissez l'événement onchange\n      input.onchange = _ => {\n        // Obtenez le nom du fichier choisi\n        let nomFichier = input.files[0].name;\n\n        // Vous pouvez utiliser cette méthode pour obtenir le fichier et effectuer les opérations respectives\n        let lecteurFichier = new FileReader();\n        lecteurFichier.readAsText(input.files[0]);\n\n        // Gérez la fin du chargement du fichier\n        lecteurFichier.onloadend = function(event){\n          // Envoyez les données lues et le nom du fichier à la portée originale\n          restaureScope.send({payload: event.target.result});\n        };\n      };\n\n      // Déclenchez le clic sur l'élément d'entrée de type fichier\n      input.click();\n    }\n  </script>\n</body>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 230,
+        "y": 320,
+        "wires": [
+            [
+                "288a58eab8860f59"
+            ]
+        ]
+    },
+    {
+        "id": "288a58eab8860f59",
+        "type": "debug",
+        "z": "d3f49513ee177da2",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 320,
+        "wires": []
     }
 ]
