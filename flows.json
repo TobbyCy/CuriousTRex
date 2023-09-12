@@ -4647,23 +4647,6 @@
         ]
     },
     {
-        "id": "288a58eab8860f59",
-        "type": "debug",
-        "z": "d3f49513ee177da2",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1760,
-        "y": 1540,
-        "wires": []
-    },
-    {
         "id": "e34690a6ebc525bd",
         "type": "comment",
         "z": "d3f49513ee177da2",
@@ -5291,9 +5274,7 @@
         "x": 1500,
         "y": 1380,
         "wires": [
-            [
-                "9c0192ec2aea8a29"
-            ]
+            []
         ]
     },
     {
@@ -5311,23 +5292,9 @@
         "y": 1420,
         "wires": [
             [
-                "288a58eab8860f59"
+                "6f17735ef4b1dfc3"
             ]
         ]
-    },
-    {
-        "id": "9c0192ec2aea8a29",
-        "type": "link out",
-        "z": "d3f49513ee177da2",
-        "name": "End_PDF",
-        "mode": "link",
-        "links": [
-            "e30a7bb45bf64a45",
-            "61ea260f9c0b6ef6"
-        ],
-        "x": 1595,
-        "y": 1380,
-        "wires": []
     },
     {
         "id": "72f5c909f4bcb85b",
