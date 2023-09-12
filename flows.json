@@ -9170,6 +9170,35 @@
         "wires": []
     },
     {
+        "id": "c688c8b7226ba57e",
+        "type": "inject",
+        "z": "3ddecfbaabd60ba5",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"nameFile\":\"01\",\"time\":0.1,\"stressVolt\":false,\"stressNidus\":false,\"timeStress\":1,\"user_gatling\":1,\"flow\":false}",
+        "payloadType": "json",
+        "x": 170,
+        "y": 700,
+        "wires": [
+            [
+                "380769e1e1860986"
+            ]
+        ]
+    },
+    {
         "id": "9ba0d599c2412587",
         "type": "inject",
         "z": "aa36cc7d7fa5cea5",
