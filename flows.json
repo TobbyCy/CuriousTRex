@@ -9123,12 +9123,30 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 590,
+        "x": 530,
         "y": 1360,
         "wires": [
             [
-                "4c103088103e7e05"
+                "4c103088103e7e05",
+                "52202be063f04fb9"
             ]
+        ]
+    },
+    {
+        "id": "52202be063f04fb9",
+        "type": "function",
+        "z": "3ddecfbaabd60ba5",
+        "name": "function 7",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 1420,
+        "wires": [
+            []
         ]
     },
     {
@@ -9934,7 +9952,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 560,
+        "x": 1100,
         "y": 600,
         "wires": []
     },
@@ -9972,7 +9990,6 @@
         "y": 480,
         "wires": [
             [
-                "18e07ec1ae9e7b08",
                 "54ac4d484482dfab"
             ]
         ]
@@ -10096,12 +10113,14 @@
         "z": "d3f49513ee177da2",
         "name": "",
         "property": "payload",
-        "action": "",
+        "action": "str",
         "pretty": false,
         "x": 890,
         "y": 480,
         "wires": [
-            []
+            [
+                "18e07ec1ae9e7b08"
+            ]
         ]
     },
     {
