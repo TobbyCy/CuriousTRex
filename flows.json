@@ -406,7 +406,7 @@
     {
         "id": "de079e90a5b6fc2a",
         "type": "ui_tab",
-        "name": "Gatling_V3.0",
+        "name": "Curius T-Rex_V3.0",
         "icon": "dashboard",
         "order": 2,
         "disabled": false,
@@ -3911,7 +3911,7 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "Gatling_V3.0",
+        "payload": "Curius T-Rex_V3.0",
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
