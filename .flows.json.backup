@@ -121,7 +121,8 @@
             [
                 "2ac0d272272f951b",
                 "843f23c9472dcd82",
-                "71d1b35c803dd600"
+                "71d1b35c803dd600",
+                "d3181aa1cef802b1"
             ]
         ]
     },
@@ -146,6 +147,18 @@
         "wires": [
             [
                 "8bbddc96986f146e"
+            ]
+        ]
+    },
+    {
+        "id": "fc5e94a4a331daa9",
+        "type": "junction",
+        "z": "3ddecfbaabd60ba5",
+        "x": 2220,
+        "y": 880,
+        "wires": [
+            [
+                "b410e022596a76a9"
             ]
         ]
     },
@@ -392,46 +405,6 @@
         "className": ""
     },
     {
-        "id": "863bf26610ae079d",
-        "type": "ui_spacer",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "spacer",
-        "group": "7a02dc45cdd22958",
-        "order": 7,
-        "width": 7,
-        "height": 1
-    },
-    {
-        "id": "2bb26d4b3feb8061",
-        "type": "ui_spacer",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "spacer",
-        "group": "7a02dc45cdd22958",
-        "order": 9,
-        "width": 7,
-        "height": 1
-    },
-    {
-        "id": "e48c666f6233f306",
-        "type": "ui_spacer",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "spacer",
-        "group": "7a02dc45cdd22958",
-        "order": 10,
-        "width": 7,
-        "height": 1
-    },
-    {
-        "id": "0929cb01ac4bcd60",
-        "type": "ui_spacer",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "spacer",
-        "group": "7a02dc45cdd22958",
-        "order": 11,
-        "width": 7,
-        "height": 1
-    },
-    {
         "id": "de079e90a5b6fc2a",
         "type": "ui_tab",
         "name": "Gatling_V3.0",
@@ -582,6 +555,46 @@
         "group": "4e715bdea006e7fa",
         "order": 8,
         "width": 2,
+        "height": 1
+    },
+    {
+        "id": "7fb5e4b644df4e2c",
+        "type": "ui_spacer",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "spacer",
+        "group": "7a02dc45cdd22958",
+        "order": 10,
+        "width": 7,
+        "height": 1
+    },
+    {
+        "id": "6c439c68687ce984",
+        "type": "ui_spacer",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "spacer",
+        "group": "7a02dc45cdd22958",
+        "order": 12,
+        "width": 7,
+        "height": 1
+    },
+    {
+        "id": "1241c03197420b4f",
+        "type": "ui_spacer",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "spacer",
+        "group": "7a02dc45cdd22958",
+        "order": 13,
+        "width": 7,
+        "height": 1
+    },
+    {
+        "id": "237bcf2cda4fa38f",
+        "type": "ui_spacer",
+        "z": "a922dcbcf6a2e8c4",
+        "name": "spacer",
+        "group": "7a02dc45cdd22958",
+        "order": 14,
+        "width": 7,
         "height": 1
     },
     {
@@ -4363,8 +4376,8 @@
         "topic": "change",
         "payload": "/home/NodeRed/json",
         "payloadType": "str",
-        "x": 270,
-        "y": 520,
+        "x": 1170,
+        "y": 640,
         "wires": [
             [
                 "b541a4c9d0c4c88b"
@@ -4391,8 +4404,8 @@
         "payloadType": "str",
         "topic": "change",
         "topicType": "str",
-        "x": 280,
-        "y": 600,
+        "x": 1180,
+        "y": 720,
         "wires": [
             [
                 "b541a4c9d0c4c88b"
@@ -4414,8 +4427,8 @@
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 1120,
-        "y": 560,
+        "x": 2020,
+        "y": 680,
         "wires": [
             []
         ]
@@ -4431,8 +4444,8 @@
         "syntax": "mustache",
         "template": "<table width=\"100%\">\n    <tr><th>Nom de Fichier</th><th>Taille</th><th>Créer</th><th>Changer</th></tr>\n    {{#payload}}\n        <tr>\n            <td><a href=\"/download?filename={{name}}\" target=\"blank\">{{fname}}</a></td>\n            <td>{{stat.size}}</td>\n            <td>{{stat.created}}</td>\n            <td>{{stat.changed}}</td>\n        </tr>\n    {{/payload}}\n</table>\n",
         "output": "str",
-        "x": 1100,
-        "y": 600,
+        "x": 2000,
+        "y": 720,
         "wires": [
             [
                 "c567b2b02f6d2abf"
@@ -4450,8 +4463,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 900,
-        "y": 600,
+        "x": 1800,
+        "y": 720,
         "wires": [
             [
                 "87a0a41c8c8d3310"
@@ -4467,8 +4480,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 360,
-        "y": 660,
+        "x": 1260,
+        "y": 780,
         "wires": [
             [
                 "078656573a2256d9"
@@ -4482,8 +4495,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 1150,
-        "y": 660,
+        "x": 2050,
+        "y": 780,
         "wires": []
     },
     {
@@ -4494,8 +4507,8 @@
         "func": "msg.filename = msg.req.query.filename;\nmsg.contentdisposition = \"attachment; filename=\\\"\" + msg.req.query.filename.replace(/^.*(\\\\|\\/|\\:)/, '') + \"\\\"\";\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 610,
-        "y": 660,
+        "x": 1510,
+        "y": 780,
         "wires": [
             [
                 "cff08753494e0ec5"
@@ -4516,8 +4529,8 @@
         "chunk": false,
         "sendError": false,
         "encoding": "none",
-        "x": 800,
-        "y": 660,
+        "x": 1700,
+        "y": 780,
         "wires": [
             [
                 "c8c1de185f0a1ac0"
@@ -4557,8 +4570,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 970,
-        "y": 660,
+        "x": 1870,
+        "y": 780,
         "wires": [
             [
                 "5f87111e0da70820"
@@ -4576,8 +4589,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 460,
-        "y": 600,
+        "x": 1360,
+        "y": 720,
         "wires": [
             [
                 "5deb3f7a069e94db"
@@ -4599,8 +4612,8 @@
         "depth": 0,
         "stat": true,
         "showWarnings": false,
-        "x": 670,
-        "y": 600,
+        "x": 1570,
+        "y": 720,
         "wires": [
             [
                 "e82612444b7ffefa"
@@ -4617,8 +4630,8 @@
             "9281f0402caa9ee5",
             "9c0192ec2aea8a29"
         ],
-        "x": 185,
-        "y": 600,
+        "x": 1085,
+        "y": 720,
         "wires": [
             [
                 "c8b72a9645297de5"
@@ -4654,8 +4667,8 @@
         "z": "d3f49513ee177da2",
         "name": "Afffichage",
         "info": "",
-        "x": 280,
-        "y": 480,
+        "x": 1180,
+        "y": 600,
         "wires": []
     },
     {
@@ -5294,8 +5307,7 @@
         "y": 1420,
         "wires": [
             [
-                "6f17735ef4b1dfc3",
-                "10bba2b70da2d696"
+                "6f17735ef4b1dfc3"
             ]
         ]
     },
@@ -5323,8 +5335,7 @@
         "y": 1460,
         "wires": [
             [
-                "0737ad1af2982ea4",
-                "10bba2b70da2d696"
+                "0737ad1af2982ea4"
             ]
         ]
     },
@@ -5816,8 +5827,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 440,
-        "y": 1360,
+        "x": 500,
+        "y": 1160,
         "wires": [
             [
                 "fbabe8d6af492a99"
@@ -5921,23 +5932,6 @@
         ]
     },
     {
-        "id": "10bba2b70da2d696",
-        "type": "debug",
-        "z": "d3f49513ee177da2",
-        "name": "debug 4",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1720,
-        "y": 1460,
-        "wires": []
-    },
-    {
         "id": "6f25a04902ba1d25",
         "type": "comment",
         "z": "a922dcbcf6a2e8c4",
@@ -5982,7 +5976,7 @@
         "z": "a922dcbcf6a2e8c4",
         "name": "",
         "group": "7a02dc45cdd22958",
-        "order": 4,
+        "order": 7,
         "width": 4,
         "height": 2,
         "passthru": true,
@@ -6010,9 +6004,9 @@
         "z": "a922dcbcf6a2e8c4",
         "group": "7a02dc45cdd22958",
         "name": "",
-        "order": 1,
+        "order": 4,
         "width": 18,
-        "height": "13",
+        "height": "6",
         "format": "<div ng-bind-html=\"msg.payload\" height=\"400\" style=\"height: 400px;\"><br/>\n</div>\n<style>\n/* Applique des styles aux liens */\na[href] {\ncolor: #d93347; /* Couleur du lien */\ntext-decoration: none; /* Pas de soulignement */\n}\n\n/* Applique des styles au survol des liens */\na[href]:hover {\ncolor: #cb0505; /* Couleur du lien au survol */\ntext-decoration: underline; /* Soulignement au survol */\n}\n</style>",
         "storeOutMessages": true,
         "fwdInMessages": true,
@@ -6274,7 +6268,7 @@
         "name": "Configuration du Test",
         "label": "",
         "group": "7a02dc45cdd22958",
-        "order": 2,
+        "order": 5,
         "width": 0,
         "height": 0,
         "options": [
@@ -6849,7 +6843,7 @@
         "z": "a922dcbcf6a2e8c4",
         "group": "7a02dc45cdd22958",
         "name": "ProgressBar",
-        "order": 3,
+        "order": 6,
         "width": 0,
         "height": 0,
         "format": "<style>\n    .custom-progress-bar .md-progress-linear-fill {\n        height: 20px;\n        /* Définissez la hauteur souhaitée ici */\n    }\n</style>\n\n<div layout=\"column\" layout-align=\"center center\">\n    <md-progress-linear class=\"md-accent custom-progress-bar\" md-mode=\"determinate\"\n        value=\"{{(msg.originalDelay - msg.delay) / msg.originalDelay * 100}}\"\n        ng-show=\"msg.delay !== undefined && msg.originalDelay !== undefined\"></md-progress-linear>\n</div>",
@@ -7534,7 +7528,7 @@
         "type": "ui_text",
         "z": "a922dcbcf6a2e8c4",
         "group": "7a02dc45cdd22958",
-        "order": 5,
+        "order": 8,
         "width": 10,
         "height": 2,
         "name": "Time",
@@ -7579,7 +7573,7 @@
         "z": "a922dcbcf6a2e8c4",
         "name": "",
         "group": "7a02dc45cdd22958",
-        "order": 6,
+        "order": 9,
         "width": 4,
         "height": 2,
         "passthru": true,
@@ -7805,7 +7799,7 @@
         "z": "a922dcbcf6a2e8c4",
         "group": "7a02dc45cdd22958",
         "name": "Upload Btn",
-        "order": 8,
+        "order": 11,
         "width": 4,
         "height": 2,
         "format": "<body>\n  <!-- Bouton pour déclencher l'importation des données -->\n  <button class=\"md-raised md-button md-ink-ripple\" onclick=\"importerDonnees()\">Télécharger</button>\n\n  <script>\n    // Conservez la portée originale\n    let restaureScope = scope;\n\n    // Fonction pour importer les données\n    function importerDonnees() {\n      // Créez un élément d'entrée de type fichier\n      let input = document.createElement('input');\n      input.type = 'file';\n      input.id = 'boutonRestaurer';\n\n      // Définissez l'événement onchange\n      input.onchange = _ => {\n        // Obtenez le nom du fichier choisi\n        let nomFichier = input.files[0].name;\n\n        // Vous pouvez utiliser cette méthode pour obtenir le fichier et effectuer les opérations respectives\n        let lecteurFichier = new FileReader();\n        lecteurFichier.readAsText(input.files[0]);\n\n        // Gérez la fin du chargement du fichier\n        lecteurFichier.onloadend = function(event){\n          // Envoyez les données lues et le nom du fichier à la portée originale\n          restaureScope.send({payload: event.target.result});\n        };\n      };\n\n      // Déclenchez le clic sur l'élément d'entrée de type fichier\n      input.click();\n    }\n  </script>\n</body>",
@@ -8753,8 +8747,8 @@
         "inputProperty": "payload",
         "options": "{}",
         "outputProperty": "payload",
-        "x": 1800,
-        "y": 680,
+        "x": 2860,
+        "y": 820,
         "wires": [
             [
                 "568c67e01ff8c37c"
@@ -8772,8 +8766,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "base64",
-        "x": 1940,
-        "y": 680,
+        "x": 2740,
+        "y": 740,
         "wires": [
             [
                 "a74b27989ec4408a"
@@ -8785,7 +8779,7 @@
         "type": "function",
         "z": "3ddecfbaabd60ba5",
         "name": "Ajoute le chemin du fichier ",
-        "func": "var now = new Date();\nvar jour = (\"0\" + now.getDate()).slice(-2);\nvar mois = (\"0\" + (now.getMonth() + 1)).slice(-2);\n\n// Récupérer le nom de fichier de msg.payload.nameFile, ou utiliser \"default\" si absent\nvar nameFile = msg.payload.nameFile || \"default\";\n// Remplacer les caractères interdits dans le nom de fichier par des underscores\nnameFile = nameFile.replace(/[\\\\/:\"*?<>|]+/g, \"_\");\n\n// Construire le chemin du fichier PDF\nmsg.filePath = \"/home/NodeRed/pdf/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \".pdf\";\n\n// Construire les chemins des fichiers graphiques\nmsg.graphPath = {\n    volt: {\n        complet: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"VOLT.png\",\n        cpu: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vcpu.png\",\n        ram: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vram.png\",\n        proc: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vproc.png\",\n        temp: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vtemp.png\",\n        watt: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vwatt.png\"\n    },\n    nidus: {\n        complet: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"NIDUS.png\",\n        cpu: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ncpu.png\",\n        ram: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nram.png\",\n        proc: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nproc.png\",\n        temp: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ntemp.png\"\n    },\n    gatling: {\n        complet: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"gatling.png\",\n        pass: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"pass.png\",\n        bySeconds: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"bySeconds.png\",\n        //proc: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nproc.png\",\n        //temp: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ntemp.png\"\n    },\n    json :{\n        complet: \"/home/NodeRed/json/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"Complet.json\",\n    }\n};\nglobal.set('path', msg.graphPath);\n// Renvoyer le message modifié\nreturn msg;\n",
+        "func": "var now = new Date();\nvar jour = (\"0\" + now.getDate()).slice(-2);\nvar mois = (\"0\" + (now.getMonth() + 1)).slice(-2);\n\n// Récupérer le nom de fichier de msg.payload.nameFile, ou utiliser \"default\" si absent\nvar nameFile = msg.payload.nameFile || \"default\";\n// Remplacer les caractères interdits dans le nom de fichier par des underscores\nnameFile = nameFile.replace(/[\\\\/:\"*?<>|]+/g, \"_\");\n\n// Construire le chemin du fichier PDF\nmsg.filePath = \"/home/NodeRed/pdf/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \".pdf\";\n\n// Construire les chemins des fichiers graphiques\nmsg.graphPath = {\n    volt: {\n        complet: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"VOLT.png\",\n        cpu: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vcpu.png\",\n        ram: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vram.png\",\n        proc: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vproc.png\",\n        temp: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vtemp.png\",\n        watt: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"vwatt.png\"\n    },\n    nidus: {\n        complet: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"NIDUS.png\",\n        cpu: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ncpu.png\",\n        ram: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nram.png\",\n        proc: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nproc.png\",\n        temp: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ntemp.png\"\n    },\n    gatling: {\n        complet: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"gatling.png\",\n        pass: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"pass.png\",\n        bySeconds: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"bySeconds.png\",\n        //proc: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"nproc.png\",\n        //temp: \"/home/NodeRed/png/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"ntemp.png\"\n    },\n    json :{\n        complet: \"/home/NodeRed/json/\" + nameFile + \"_\" + msg.payload.time + \"Min_\" + jour + mois + \"Complet.json\",\n    }\n};\nif (msg.payload.user_gatling <= 0){\n    global.set('gatling', false);\n}else{\n    global.set('gatling', true);\n}\nglobal.set('original', msg.payload);\nglobal.set('path', msg.graphPath);\n// Renvoyer le message modifié\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -8889,14 +8883,14 @@
         "type": "function",
         "z": "3ddecfbaabd60ba5",
         "name": "Créer le contenue du fichier",
-        "func": "//Formatage du ventilateur\nvar ventilateur = msg.payload.gatling.Original.flow ? \"Ventilateur activé\" : \"Ventilateur non-activé\";\n// Formatage de la date de début\nvar timestamp = msg.payload.gatling.Assertion.start;\n\n// Créez un objet Date à partir du timestamp\nvar date = new Date(timestamp);\n\n// Définissez le format de date souhaité\nvar options = {\n    weekday: 'long',\n    year: 'numeric',\n    month: 'long',\n    day: 'numeric',\n    hour: '2-digit',\n    minute: '2-digit'\n};\n\n// Formatez la date en une chaîne de caractères\nvar formattedDate = date.toLocaleDateString(\"fr-FR\", options);\n\n\n// Création des données pour le rapport PDF\nmsg.payload = {\n    header: function (currentPage, pageCount, pageSize) {\n        return [\n            {\n                text: \"Tobler Cyril\", // Votre nom\n                alignment: \"left\",\n                fontSize: 10,\n                margin: [15, 10, 0, 0]\n            },\n            {\n                text: \"Nom du projet : Confuse T-Rex\", // Nom de votre projet\n                alignment: \"center\",\n                fontSize: 10,\n                margin: [0, 0, 0, 0]\n            }\n        ];\n    },\n    footer: function (currentPage, pageCount) {\n        return {\n            columns: [\n                {\n                    text: currentPage.toString() + \" / \" + pageCount, // Numéro de page actuel / Nombre total de pages\n                    alignment: \"left\",\n                    fontSize: 10,\n                    margin: [15, 0, 0, 10]\n                },\n                {\n                    text: new Date().toLocaleDateString(\"fr-FR\"), // Date actuelle au format français\n                    alignment: \"right\",\n                    fontSize: 10,\n                    margin: [0, 0, 15, 10]\n                }\n            ],\n            margin: [0, 0, 0, 10]\n        };\n    },\n    content: [\n        {\n            text: \"Rapport d'utilisation : \" + msg.original.nameFile , // Titre du rapport\n            style: \"header\",\n            margin: [0, 10, 0, 0]\n        },\n        {\n            text: \"Les valeurs sont des moyennes sur les \" + Math.floor(msg.delay / (1000 * 60)) + \" dernières minutes\" // Informations sur les valeurs\n        }, \n        {\n            text: ventilateur\n        },\n        {\n            text: \"Nidus :\", // Section Nidus\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"nidus/benchmark/cpu\"] // Valeur CPU de Nidus\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"nidus/benchmark/ram\"] // Valeur RAM de Nidus\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"nidus/benchmark/processes\"] // Nombre de processus de Nidus\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"nidus/benchmark/temp\"] // Température CPU de Nidus\n        },\n        {\n            image: 'nidusImage', // Image de Nidus\n            width: 500,\n            pageBreak: 'after', // Saut de page après l'image\n        },\n        {\n            text: \"Volt\", // Section Volt\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"volt/benchmark/cpu\"] // Valeur CPU de Volt\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"volt/benchmark/ram\"] // Valeur RAM de Volt\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"volt/benchmark/processes\"] // Nombre de processus de Volt\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"volt/benchmark/temp\"] // Température CPU de Volt\n        },\n        {\n            text: \"MilliWatt :           \" + msg.payload.moyenne[\"volt/benchmark/watt\"] // Valeur MilliWatt de Volt\n        },\n        {\n            image: 'voltImage', // Image de Volt\n            width: 500,\n        },\n        {\n            image: 'wattImage', // Image Watt de Volt\n            width: 500,\n            pageBreak: 'after', // Saut de page après l'image\n        },\n        {\n            text: \"Gatling\", // Section Gatling\n            style: \"header2\"\n        },\n        {\n            text: \"Nom de la simulation :                 \" + msg.payload.gatling.Assertion.simulation // Nom de la simulation Gatling\n        },\n        {\n            text: \"Commencée :                            \" + formattedDate // Date de début de la simulation Gatling (à formater)\n        },\n        {\n            text: \"Nombre d'utilisateur :                 \" + msg.original.user_gatling // Nom de la simulation Gatling\n        },\n        {\n            text: \"Durée prévu :                          \" + msg.payload.gatling.Original.time/60 + \"Min\" // Nom de la simulation Gatling\n        },\n        {\n            image: 'gatlingImage', // Image Gatling\n            width: 500,\n        },\n        {\n            image: 'gatlingGraphComplete', // Image graphique complet Gatling\n            width: 500,\n        }, \n        {\n            image: 'gatlingGraphBySeconds', // Image graphique complet Gatling\n            width: 500,\n        },\n    ],\n    images: {\n        voltImage: 'data:image/png;base64,' + msg.payload.voltGraph.toString('base64'), // Utilisation du buffer pour l'image Volt\n        wattImage: 'data:image/png;base64,' + msg.payload.wattGraph.toString('base64'),  // Utilisation du buffer pour l'image Watt de Volt\n        nidusImage: 'data:image/png;base64,' + msg.payload.nidusGraph.toString('base64'),  // Utilisation du buffer pour l'image Nidus\n        gatlingImage: 'data:image/png;base64,' + msg.payload.gatlingGraph.toString('base64'),  // Utilisation du buffer pour l'image Gatling\n        gatlingGraphComplete: 'data:image/png;base64,' + msg.payload.gatlingGraphComplete.toString('base64'),  // Utilisation du buffer pour l'image Gatling\n        gatlingGraphBySeconds: 'data:image/png;base64,' + msg.payload.gatlingGraphBySeconds.toString('base64'),  // Utilisation du buffer pour l'image Gatling\n    },\n    styles: {\n        header: {\n            fontSize: 22,\n            bold: true,\n            margin: [0, 30, 0, 0]\n        },\n        header2: {\n            fontSize: 18,\n            bold: true,\n            margin: [0, 20, 0, 0]\n        }\n    }\n};\n\nreturn msg; // Renvoyer le message\n",
+        "func": "//Formatage du ventilateur\nvar ventilateur = global.get(\"original.flow\") ? \"Ventilateur activé\" : \"Ventilateur non-activé\";\n// Formatage de la date de début\nvar timestamp = msg.payload.gatling.Assertion.start;\n\n// Créez un objet Date à partir du timestamp\nvar date = new Date(timestamp);\n\n// Définissez le format de date souhaité\nvar options = {\n    weekday: 'long',\n    year: 'numeric',\n    month: 'long',\n    day: 'numeric',\n    hour: '2-digit',\n    minute: '2-digit'\n};\n\n// Formatez la date en une chaîne de caractères\nvar formattedDate = date.toLocaleDateString(\"fr-FR\", options);\n\n\n// Création des données pour le rapport PDF\nmsg.payload = {\n    header: function (currentPage, pageCount, pageSize) {\n        return [\n            {\n                text: \"Tobler Cyril\", // Votre nom\n                alignment: \"left\",\n                fontSize: 10,\n                margin: [15, 10, 0, 0]\n            },\n            {\n                text: \"Nom du projet : Confuse T-Rex\", // Nom de votre projet\n                alignment: \"center\",\n                fontSize: 10,\n                margin: [0, 0, 0, 0]\n            }\n        ];\n    },\n    footer: function (currentPage, pageCount) {\n        return {\n            columns: [\n                {\n                    text: currentPage.toString() + \" / \" + pageCount, // Numéro de page actuel / Nombre total de pages\n                    alignment: \"left\",\n                    fontSize: 10,\n                    margin: [15, 0, 0, 10]\n                },\n                {\n                    text: new Date().toLocaleDateString(\"fr-FR\"), // Date actuelle au format français\n                    alignment: \"right\",\n                    fontSize: 10,\n                    margin: [0, 0, 15, 10]\n                }\n            ],\n            margin: [0, 0, 0, 10]\n        };\n    },\n    content: [\n        {\n            text: \"Rapport d'utilisation : \" + global.get(\"original.nameFile\") , // Titre du rapport\n            style: \"header\",\n            margin: [0, 10, 0, 0]\n        },\n        {\n            text: \"Les valeurs sont des moyennes sur les \" + Math.floor(msg.delay / (1000 * 60)) + \" dernières minutes\" // Informations sur les valeurs\n        }, \n        {\n            text: ventilateur\n        },\n        {\n            text: \"Nidus :\", // Section Nidus\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"nidus/benchmark/cpu\"] // Valeur CPU de Nidus\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"nidus/benchmark/ram\"] // Valeur RAM de Nidus\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"nidus/benchmark/processes\"] // Nombre de processus de Nidus\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"nidus/benchmark/temp\"] // Température CPU de Nidus\n        },\n        {\n            image: 'nidusImage', // Image de Nidus\n            width: 500,\n            pageBreak: 'after', // Saut de page après l'image\n        },\n        {\n            text: \"Volt\", // Section Volt\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"volt/benchmark/cpu\"] // Valeur CPU de Volt\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"volt/benchmark/ram\"] // Valeur RAM de Volt\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"volt/benchmark/processes\"] // Nombre de processus de Volt\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"volt/benchmark/temp\"] // Température CPU de Volt\n        },\n        {\n            text: \"MilliWatt :           \" + msg.payload.moyenne[\"volt/benchmark/watt\"] // Valeur MilliWatt de Volt\n        },\n        {\n            image: 'voltImage', // Image de Volt\n            width: 500,\n        },\n        {\n            image: 'wattImage', // Image Watt de Volt\n            width: 500,\n            pageBreak: 'after', // Saut de page après l'image\n        },\n        {\n            text: \"Gatling\", // Section Gatling\n            style: \"header2\"\n        },\n        {\n            text: \"Nom de la simulation :                 \" + msg.payload.gatling.Assertion.simulation // Nom de la simulation Gatling\n        },\n        {\n            text: \"Commencée :                            \" + formattedDate // Date de début de la simulation Gatling (à formater)\n        },\n        {\n            text: \"Nombre d'utilisateur :                 \" + msg.original.user_gatling // Nom de la simulation Gatling\n        },\n        {\n            text: \"Durée prévu :                          \" + msg.payload.gatling.Original.time/60 + \"Min\" // Nom de la simulation Gatling\n        },\n        {\n            image: 'gatlingImage', // Image Gatling\n            width: 500,\n        },\n        {\n            image: 'gatlingGraphComplete', // Image graphique complet Gatling\n            width: 500,\n        }, \n        {\n            image: 'gatlingGraphBySeconds', // Image graphique complet Gatling\n            width: 500,\n        },\n    ],\n    images: {\n        voltImage: 'data:image/png;base64,' + msg.payload.voltGraph.toString('base64'), // Utilisation du buffer pour l'image Volt\n        wattImage: 'data:image/png;base64,' + msg.payload.wattGraph.toString('base64'),  // Utilisation du buffer pour l'image Watt de Volt\n        nidusImage: 'data:image/png;base64,' + msg.payload.nidusGraph.toString('base64'),  // Utilisation du buffer pour l'image Nidus\n        gatlingImage: 'data:image/png;base64,' + msg.payload.gatlingGraph.toString('base64'),  // Utilisation du buffer pour l'image Gatling\n        gatlingGraphComplete: 'data:image/png;base64,' + msg.payload.gatlingGraphComplete.toString('base64'),  // Utilisation du buffer pour l'image Gatling\n        gatlingGraphBySeconds: 'data:image/png;base64,' + msg.payload.gatlingGraphBySeconds.toString('base64'),  // Utilisation du buffer pour l'image Gatling\n    },\n    styles: {\n        header: {\n            fontSize: 22,\n            bold: true,\n            margin: [0, 30, 0, 0]\n        },\n        header2: {\n            fontSize: 18,\n            bold: true,\n            margin: [0, 20, 0, 0]\n        }\n    }\n};\n\nreturn msg; // Renvoyer le message\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2000,
-        "y": 720,
+        "x": 2520,
+        "y": 800,
         "wires": [
             [
                 "185b6166af84320d"
@@ -9021,8 +9015,8 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 1470,
-        "y": 680,
+        "x": 1530,
+        "y": 700,
         "wires": [
             [
                 "4b6c6f050d038ee7"
@@ -9039,8 +9033,8 @@
             "e30a7bb45bf64a45",
             "61ea260f9c0b6ef6"
         ],
-        "x": 2035,
-        "y": 680,
+        "x": 2855,
+        "y": 740,
         "wires": []
     },
     {
@@ -9158,7 +9152,7 @@
         "wires": [
             [
                 "3de8c7b1973545bb",
-                "648931f9266586ae"
+                "ebe77bbd9f1ad946"
             ]
         ]
     },
@@ -9191,7 +9185,7 @@
         "wires": [
             [
                 "dd1e6a5c8dd54193",
-                "648931f9266586ae"
+                "ebe77bbd9f1ad946"
             ]
         ]
     },
@@ -9224,7 +9218,7 @@
         "wires": [
             [
                 "306f405893baae9d",
-                "648931f9266586ae"
+                "ebe77bbd9f1ad946"
             ]
         ]
     },
@@ -9366,11 +9360,11 @@
         "reduceInit": "",
         "reduceInitType": "num",
         "reduceFixup": "",
-        "x": 1910,
-        "y": 760,
+        "x": 2130,
+        "y": 880,
         "wires": [
             [
-                "b410e022596a76a9"
+                "fc5e94a4a331daa9"
             ]
         ]
     },
@@ -9401,17 +9395,16 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1490,
-        "y": 740,
+        "x": 1450,
+        "y": 960,
         "wires": [
             [
                 "3f9aa754e519b6bf",
                 "0e7f197bf1565d7d",
                 "34a2fc5b8d7b23f5",
                 "2e398589767e8c31",
-                "7abe58379969346a",
-                "27d07c312e196c9d",
-                "cb58717ad99b6f27"
+                "bf9fb2fa5c67c823",
+                "7bea6cb7e326cd96"
             ]
         ]
     },
@@ -9442,11 +9435,12 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1900,
-        "y": 620,
+        "x": 1820,
+        "y": 700,
         "wires": [
             [
-                "47bc06039d5e9985"
+                "47bc06039d5e9985",
+                "de35c161617563d2"
             ]
         ]
     },
@@ -9470,11 +9464,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1790,
-        "y": 720,
+        "x": 2090,
+        "y": 820,
         "wires": [
             [
-                "61d24da92c494fff"
+                "e2f02700306d0d95"
             ]
         ]
     },
@@ -9490,8 +9484,8 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 1500,
-        "y": 960,
+        "x": 1740,
+        "y": 1200,
         "wires": [
             [
                 "4d1dc0b82f1f1fc7"
@@ -9505,8 +9499,8 @@
         "name": "",
         "action": "str",
         "property": "msg.payload",
-        "x": 1720,
-        "y": 960,
+        "x": 1960,
+        "y": 1200,
         "wires": [
             [
                 "880fa3757ad43cf0"
@@ -9525,8 +9519,8 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 1490,
-        "y": 840,
+        "x": 1730,
+        "y": 1080,
         "wires": [
             [
                 "c7adcd216ef822e7"
@@ -9540,8 +9534,8 @@
         "name": "",
         "action": "str",
         "property": "msg.payload",
-        "x": 1720,
-        "y": 840,
+        "x": 1960,
+        "y": 1080,
         "wires": [
             [
                 "43a3c100f421df13"
@@ -9568,11 +9562,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1710,
-        "y": 800,
+        "x": 1950,
+        "y": 1040,
         "wires": [
             [
-                "3f9aa754e519b6bf"
+                "7bea6cb7e326cd96"
             ]
         ]
     },
@@ -9596,11 +9590,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1710,
-        "y": 1000,
+        "x": 1950,
+        "y": 1240,
         "wires": [
             [
-                "3f9aa754e519b6bf"
+                "7bea6cb7e326cd96"
             ]
         ]
     },
@@ -9617,8 +9611,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 530,
-        "y": 1560,
+        "x": 550,
+        "y": 1520,
         "wires": []
     },
     {
@@ -9628,8 +9622,8 @@
         "name": "",
         "scope": null,
         "uncaught": false,
-        "x": 340,
-        "y": 1560,
+        "x": 360,
+        "y": 1520,
         "wires": [
             [
                 "e3d7396a7875a998"
@@ -9656,7 +9650,7 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 1730,
+        "x": 2090,
         "y": 620,
         "wires": [
             [
@@ -9910,7 +9904,7 @@
         "wires": [
             [
                 "f53a9c270f0476dd",
-                "648931f9266586ae"
+                "ebe77bbd9f1ad946"
             ]
         ]
     },
@@ -9943,8 +9937,8 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 1480,
-        "y": 880,
+        "x": 1720,
+        "y": 1120,
         "wires": [
             [
                 "b536d3599aa2f9d1"
@@ -9958,8 +9952,8 @@
         "name": "",
         "action": "str",
         "property": "msg.payload",
-        "x": 1720,
-        "y": 880,
+        "x": 1960,
+        "y": 1120,
         "wires": [
             [
                 "b0c62acec8c6f52e"
@@ -9986,11 +9980,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1710,
-        "y": 920,
+        "x": 1950,
+        "y": 1160,
         "wires": [
             [
-                "3f9aa754e519b6bf"
+                "7bea6cb7e326cd96"
             ]
         ]
     },
@@ -10196,7 +10190,7 @@
         "type": "function",
         "z": "3ddecfbaabd60ba5",
         "name": "Command_Gatling",
-        "func": "msg.original = msg.payload;\nif (msg.topic !== \"inject\" && msg.payload.time !== undefined && msg.payload.user_gatling !== undefined && msg.payload.time !== 0) {\n        // Crée la commande en utilisant les valeurs spécifiées\n    msg.payload.time = msg.payload.time * 60;\n    msg.payload = `/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s CuriusTRex -bm --run-mode local -erjo \"-Dusers=${msg.payload.user_gatling} -Dramp=${msg.payload.time} -Xms2G -Xmx4G\" | tail -1`;\n    } else {\n        //En partant du principe que rien n'est retournée je retourne une valeur l'indiquant TODO\n        return null;\n    }\n\n    // Renvoie le message modifié\n    return msg;",
+        "func": "msg.original = msg.payload;\nif (msg.payload.time !== undefined && msg.payload.user_gatling !== undefined && msg.payload.user_gatling > 0) {\n        // Crée la commande en utilisant les valeurs spécifiées\n    msg.payload.time = msg.payload.time * 60;\n    msg.payload = `/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s CuriusTRex -bm --run-mode local -erjo \"-Dusers=${msg.payload.user_gatling} -Dramp=${msg.payload.time} -Xms2G -Xmx4G\" | tail -1`;\n    return msg;\n    } else {\n        return null;\n    }",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -10206,7 +10200,8 @@
         "y": 1040,
         "wires": [
             [
-                "94a5562c2961dfd4"
+                "94a5562c2961dfd4",
+                "d3181aa1cef802b1"
             ]
         ]
     },
@@ -10285,7 +10280,8 @@
                 "9197964b7793ca79",
                 "46daa1258fe41e08",
                 "53c70d418773723d",
-                "7964135626c90274"
+                "7964135626c90274",
+                "fc32669e2dac2e43"
             ]
         ]
     },
@@ -10301,8 +10297,8 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 1060,
-        "y": 1320,
+        "x": 1400,
+        "y": 1660,
         "wires": [
             [
                 "11d925bcc7cda83a"
@@ -10321,8 +10317,8 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 1070,
-        "y": 1360,
+        "x": 1410,
+        "y": 1700,
         "wires": [
             [
                 "95ed665ca3423482"
@@ -10341,8 +10337,8 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 1050,
-        "y": 1400,
+        "x": 1390,
+        "y": 1740,
         "wires": [
             [
                 "35a5648a451bfded"
@@ -10357,8 +10353,8 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 1210,
-        "y": 1400,
+        "x": 1550,
+        "y": 1740,
         "wires": [
             [
                 "6a6ebdee55ae4406"
@@ -10373,8 +10369,8 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 1230,
-        "y": 1360,
+        "x": 1570,
+        "y": 1700,
         "wires": [
             [
                 "623af51c16473252"
@@ -10389,8 +10385,8 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 1210,
-        "y": 1320,
+        "x": 1550,
+        "y": 1660,
         "wires": [
             [
                 "a1254d1ea617fcfe"
@@ -10416,8 +10412,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1350,
-        "y": 1320,
+        "x": 1690,
+        "y": 1660,
         "wires": [
             [
                 "5f7d9a95d0c65757"
@@ -10443,8 +10439,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1370,
-        "y": 1360,
+        "x": 1710,
+        "y": 1700,
         "wires": [
             [
                 "5f7d9a95d0c65757"
@@ -10470,8 +10466,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1350,
-        "y": 1400,
+        "x": 1690,
+        "y": 1740,
         "wires": [
             [
                 "5f7d9a95d0c65757"
@@ -10498,8 +10494,8 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 1550,
-        "y": 1360,
+        "x": 1890,
+        "y": 1700,
         "wires": [
             [
                 "7aea4a31c908237b"
@@ -10525,12 +10521,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1750,
-        "y": 1360,
+        "x": 2090,
+        "y": 1700,
         "wires": [
             [
-                "c89add291df1506b",
-                "3f9aa754e519b6bf"
+                "c89add291df1506b"
             ]
         ]
     },
@@ -10546,8 +10541,8 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 1480,
-        "y": 1040,
+        "x": 1720,
+        "y": 1280,
         "wires": [
             [
                 "af3509726586fd8a"
@@ -10561,8 +10556,8 @@
         "name": "",
         "action": "str",
         "property": "msg.payload",
-        "x": 1720,
-        "y": 1040,
+        "x": 1960,
+        "y": 1280,
         "wires": [
             [
                 "b8596cff6176e5e9"
@@ -10589,11 +10584,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1730,
-        "y": 1080,
+        "x": 1970,
+        "y": 1320,
         "wires": [
             [
-                "3f9aa754e519b6bf"
+                "7bea6cb7e326cd96"
             ]
         ]
     },
@@ -10604,11 +10599,12 @@
         "name": "gatling",
         "mode": "link",
         "links": [
+            "45787365124bf1fc",
             "476457a3a2a870ea",
-            "45787365124bf1fc"
+            "4f5c88f3e01f4956"
         ],
-        "x": 1885,
-        "y": 1400,
+        "x": 2225,
+        "y": 1700,
         "wires": []
     },
     {
@@ -10639,7 +10635,7 @@
         "wires": [
             [
                 "96510d6bc4a88a3c",
-                "648931f9266586ae"
+                "ebe77bbd9f1ad946"
             ]
         ]
     },
@@ -10691,8 +10687,8 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 1050,
-        "y": 1440,
+        "x": 1390,
+        "y": 1780,
         "wires": [
             [
                 "e00f65533336a5f7"
@@ -10718,8 +10714,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1410,
-        "y": 1440,
+        "x": 1750,
+        "y": 1780,
         "wires": [
             [
                 "96a8020826f4562b"
@@ -10737,8 +10733,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 900,
-        "y": 1440,
+        "x": 1240,
+        "y": 1780,
         "wires": [
             [
                 "8b690f4ccb97858f"
@@ -10869,8 +10865,8 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 1480,
-        "y": 1120,
+        "x": 1720,
+        "y": 1360,
         "wires": [
             [
                 "2c1bf4e7042ee3c8"
@@ -10884,8 +10880,8 @@
         "name": "",
         "action": "str",
         "property": "msg.payload",
-        "x": 1720,
-        "y": 1120,
+        "x": 1960,
+        "y": 1360,
         "wires": [
             [
                 "5add3707313e9f2e"
@@ -10912,11 +10908,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1730,
-        "y": 1160,
+        "x": 1970,
+        "y": 1400,
         "wires": [
             [
-                "3f9aa754e519b6bf"
+                "7bea6cb7e326cd96"
             ]
         ]
     },
@@ -10940,8 +10936,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1670,
-        "y": 1320,
+        "x": 2010,
+        "y": 1660,
         "wires": [
             [
                 "8ff2cbbf96cb265b"
@@ -10979,7 +10975,7 @@
         "wires": [
             [
                 "c17822d4517e2dae",
-                "648931f9266586ae"
+                "ebe77bbd9f1ad946"
             ]
         ]
     },
@@ -11012,8 +11008,8 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 1480,
-        "y": 1200,
+        "x": 1720,
+        "y": 1440,
         "wires": [
             [
                 "26990d2e7aea2b2c"
@@ -11027,8 +11023,8 @@
         "name": "",
         "action": "str",
         "property": "msg.payload",
-        "x": 1720,
-        "y": 1200,
+        "x": 1960,
+        "y": 1440,
         "wires": [
             [
                 "9e06d1cd375a5890"
@@ -11055,11 +11051,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1730,
-        "y": 1240,
+        "x": 1970,
+        "y": 1480,
         "wires": [
             [
-                "3f9aa754e519b6bf"
+                "7bea6cb7e326cd96"
             ]
         ]
     },
@@ -11068,7 +11064,7 @@
         "type": "debug",
         "z": "3ddecfbaabd60ba5",
         "name": "ERROR_Gatling",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -11076,7 +11072,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 760,
+        "x": 800,
         "y": 1140,
         "wires": []
     },
@@ -11119,8 +11115,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1230,
-        "y": 1440,
+        "x": 1570,
+        "y": 1780,
         "wires": [
             [
                 "1a1358f228cfd1ff"
@@ -11137,8 +11133,8 @@
             "c64945024bc6d2c1",
             "45787365124bf1fc"
         ],
-        "x": 1885,
-        "y": 1440,
+        "x": 2225,
+        "y": 1780,
         "wires": []
     },
     {
@@ -11260,8 +11256,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 360,
-        "y": 1320,
+        "x": 380,
+        "y": 1280,
         "wires": [
             [
                 "845da1dee5fc73f0"
@@ -11299,8 +11295,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 350,
-        "y": 1360,
+        "x": 370,
+        "y": 1320,
         "wires": [
             [
                 "845da1dee5fc73f0"
@@ -11320,8 +11316,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 740,
-        "y": 1520,
+        "x": 760,
+        "y": 1480,
         "wires": []
     },
     {
@@ -11344,8 +11340,8 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 530,
-        "y": 1360,
+        "x": 550,
+        "y": 1320,
         "wires": [
             [
                 "52202be063f04fb9"
@@ -11363,8 +11359,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 520,
-        "y": 1400,
+        "x": 540,
+        "y": 1360,
         "wires": [
             [
                 "fe0c0331a5d26425"
@@ -11375,7 +11371,7 @@
         "id": "c688c8b7226ba57e",
         "type": "inject",
         "z": "3ddecfbaabd60ba5",
-        "name": "",
+        "name": "NoGatling",
         "props": [
             {
                 "p": "payload"
@@ -11390,9 +11386,9 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "{\"nameFile\":\"01\",\"time\":0.1,\"stressVolt\":false,\"stressNidus\":false,\"timeStress\":1,\"user_gatling\":1,\"flow\":false}",
+        "payload": "{\"nameFile\":\"NoGatling\",\"time\":0.1,\"stressVolt\":false,\"stressNidus\":false,\"timeStress\":1,\"user_gatling\":0,\"flow\":false}",
         "payloadType": "json",
-        "x": 270,
+        "x": 280,
         "y": 700,
         "wires": [
             [
@@ -11408,8 +11404,8 @@
         "property": "payload",
         "action": "str",
         "pretty": false,
-        "x": 530,
-        "y": 1440,
+        "x": 550,
+        "y": 1400,
         "wires": [
             [
                 "fe67f01da8a9252d"
@@ -11427,8 +11423,8 @@
         "createDir": false,
         "overwriteFile": "false",
         "encoding": "none",
-        "x": 560,
-        "y": 1480,
+        "x": 580,
+        "y": 1440,
         "wires": [
             [
                 "4c103088103e7e05"
@@ -11447,8 +11443,8 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 530,
-        "y": 1520,
+        "x": 550,
+        "y": 1480,
         "wires": [
             [
                 "4c103088103e7e05"
@@ -11476,13 +11472,315 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 340,
-        "y": 1520,
+        "x": 360,
+        "y": 1480,
         "wires": [
             [
                 "2150bd970fda12fe"
             ]
         ]
+    },
+    {
+        "id": "bf9fb2fa5c67c823",
+        "type": "switch",
+        "z": "3ddecfbaabd60ba5",
+        "name": "",
+        "property": "gatling",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1490,
+        "y": 1400,
+        "wires": [
+            [
+                "7abe58379969346a",
+                "27d07c312e196c9d",
+                "cb58717ad99b6f27"
+            ]
+        ]
+    },
+    {
+        "id": "4f5c88f3e01f4956",
+        "type": "link in",
+        "z": "3ddecfbaabd60ba5",
+        "name": "link in 4",
+        "links": [
+            "c89add291df1506b"
+        ],
+        "x": 2005,
+        "y": 1000,
+        "wires": [
+            [
+                "7bea6cb7e326cd96"
+            ]
+        ]
+    },
+    {
+        "id": "e2f02700306d0d95",
+        "type": "switch",
+        "z": "3ddecfbaabd60ba5",
+        "name": "",
+        "property": "gatling",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 2250,
+        "y": 820,
+        "wires": [
+            [
+                "61d24da92c494fff",
+                "d595d4a11d912d2c"
+            ],
+            [
+                "108617ec7ae62832",
+                "d595d4a11d912d2c"
+            ]
+        ]
+    },
+    {
+        "id": "108617ec7ae62832",
+        "type": "function",
+        "z": "3ddecfbaabd60ba5",
+        "name": "Créer le contenue du fichier Sans gatling ",
+        "func": "//Formatage du ventilateur\nvar ventilateur = global.get(\"original.flow\") ? \"Ventilateur activé\" : \"Ventilateur non-activé\";\n// Formatage de la date de début\nvar timestamp = Date.now()- (msg.delay);\n\n// Créez un objet Date à partir du timestamp\nvar date = new Date(timestamp);\n\n// Définissez le format de date souhaité\nvar options = {\n    weekday: 'long',\n    year: 'numeric',\n    month: 'long',\n    day: 'numeric',\n    hour: '2-digit',\n    minute: '2-digit'\n};\n\n// Formatez la date en une chaîne de caractères\nvar formattedDate = date.toLocaleDateString(\"fr-FR\", options);\n\n\n// Création des données pour le rapport PDF\nmsg.payload = {\n    header: function (currentPage, pageCount, pageSize) {\n        return [\n            {\n                text: \"Tobler Cyril\", // Votre nom\n                alignment: \"left\",\n                fontSize: 10,\n                margin: [15, 10, 0, 0]\n            },\n            {\n                text: \"Nom du projet : Confuse T-Rex\", // Nom de votre projet\n                alignment: \"center\",\n                fontSize: 10,\n                margin: [0, 0, 0, 0]\n            }\n        ];\n    },\n    footer: function (currentPage, pageCount) {\n        return {\n            columns: [\n                {\n                    text: currentPage.toString() + \" / \" + pageCount, // Numéro de page actuel / Nombre total de pages\n                    alignment: \"left\",\n                    fontSize: 10,\n                    margin: [15, 0, 0, 10]\n                },\n                {\n                    text: new Date().toLocaleDateString(\"fr-FR\"), // Date actuelle au format français\n                    alignment: \"right\",\n                    fontSize: 10,\n                    margin: [0, 0, 15, 10]\n                }\n            ],\n            margin: [0, 0, 0, 10]\n        };\n    },\n    content: [\n        {\n            text: \"Rapport d'utilisation : \" + global.get(\"original.nameFile\") , // Titre du rapport\n            style: \"header\",\n            margin: [0, 10, 0, 0]\n        },\n        {\n            text: \"Les valeurs sont des moyennes sur les \" + Math.floor(msg.delay / (1000 * 60)) + \" dernières minutes\" // Informations sur les valeurs\n        }, \n        {\n            text: ventilateur\n        },\n        {\n            text: \"Nidus :\", // Section Nidus\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"nidus/benchmark/cpu\"] // Valeur CPU de Nidus\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"nidus/benchmark/ram\"] // Valeur RAM de Nidus\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"nidus/benchmark/processes\"] // Nombre de processus de Nidus\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"nidus/benchmark/temp\"] // Température CPU de Nidus\n        },\n        {\n            image: 'nidusImage', // Image de Nidus\n            width: 500,\n            pageBreak: 'after', // Saut de page après l'image\n        },\n        {\n            text: \"Volt\", // Section Volt\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.moyenne[\"volt/benchmark/cpu\"] // Valeur CPU de Volt\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.moyenne[\"volt/benchmark/ram\"] // Valeur RAM de Volt\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.moyenne[\"volt/benchmark/processes\"] // Nombre de processus de Volt\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.moyenne[\"volt/benchmark/temp\"] // Température CPU de Volt\n        },\n        {\n            text: \"MilliWatt :           \" + msg.payload.moyenne[\"volt/benchmark/watt\"] // Valeur MilliWatt de Volt\n        },\n        {\n            image: 'voltImage', // Image de Volt\n            width: 500,\n        },\n        {\n            image: 'wattImage', // Image Watt de Volt\n            width: 500,\n            pageBreak: 'after', // Saut de page après l'image\n        },\n    ],\n    images: {\n        voltImage: 'data:image/png;base64,' + msg.payload.voltGraph.toString('base64'), // Utilisation du buffer pour l'image Volt\n        wattImage: 'data:image/png;base64,' + msg.payload.wattGraph.toString('base64'),  // Utilisation du buffer pour l'image Watt de Volt\n        nidusImage: 'data:image/png;base64,' + msg.payload.nidusGraph.toString('base64'),  // Utilisation du buffer pour l'image Nidus\n    },\n    styles: {\n        header: {\n            fontSize: 22,\n            bold: true,\n            margin: [0, 30, 0, 0]\n        },\n        header2: {\n            fontSize: 18,\n            bold: true,\n            margin: [0, 20, 0, 0]\n        }\n    }\n};\n\nreturn msg; // Renvoyer le message\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2560,
+        "y": 840,
+        "wires": [
+            [
+                "185b6166af84320d"
+            ]
+        ]
+    },
+    {
+        "id": "f8dcca7514d5bc5b",
+        "type": "inject",
+        "z": "3ddecfbaabd60ba5",
+        "name": "Short",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"nameFile\":\"Gatling\",\"time\":0.1,\"stressVolt\":false,\"stressNidus\":false,\"timeStress\":1,\"user_gatling\":1,\"flow\":false}",
+        "payloadType": "json",
+        "x": 150,
+        "y": 660,
+        "wires": [
+            [
+                "6161ee15cd9719be"
+            ]
+        ]
+    },
+    {
+        "id": "0ac8a08df228f713",
+        "type": "join",
+        "z": "3ddecfbaabd60ba5",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "4",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 2130,
+        "y": 920,
+        "wires": [
+            [
+                "fc5e94a4a331daa9"
+            ]
+        ]
+    },
+    {
+        "id": "7bea6cb7e326cd96",
+        "type": "switch",
+        "z": "3ddecfbaabd60ba5",
+        "name": "",
+        "property": "gatling",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 2130,
+        "y": 960,
+        "wires": [
+            [
+                "3f9aa754e519b6bf"
+            ],
+            [
+                "0ac8a08df228f713"
+            ]
+        ]
+    },
+    {
+        "id": "ebe77bbd9f1ad946",
+        "type": "switch",
+        "z": "3ddecfbaabd60ba5",
+        "name": "",
+        "property": "gatling",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1770,
+        "y": 640,
+        "wires": [
+            [
+                "648931f9266586ae"
+            ],
+            [
+                "40b05d8ae97f8c8b"
+            ]
+        ]
+    },
+    {
+        "id": "40b05d8ae97f8c8b",
+        "type": "join",
+        "z": "3ddecfbaabd60ba5",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "3",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 2090,
+        "y": 660,
+        "wires": [
+            [
+                "f19dd33d0ea2556f"
+            ]
+        ]
+    },
+    {
+        "id": "fc32669e2dac2e43",
+        "type": "debug",
+        "z": "3ddecfbaabd60ba5",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1200,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "de35c161617563d2",
+        "type": "debug",
+        "z": "3ddecfbaabd60ba5",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2060,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "d595d4a11d912d2c",
+        "type": "debug",
+        "z": "3ddecfbaabd60ba5",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2440,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "d3181aa1cef802b1",
+        "type": "debug",
+        "z": "3ddecfbaabd60ba5",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 1220,
+        "wires": []
     },
     {
         "id": "0e5e9ecd9dbcb063",
