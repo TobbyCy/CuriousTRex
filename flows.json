@@ -10185,7 +10185,8 @@
         "y": 1040,
         "wires": [
             [
-                "94a5562c2961dfd4"
+                "94a5562c2961dfd4",
+                "33f6382e8b91ed16"
             ]
         ]
     },
@@ -11047,7 +11048,7 @@
         "type": "debug",
         "z": "3ddecfbaabd60ba5",
         "name": "ERROR_Gatling",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -11055,7 +11056,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 760,
+        "x": 800,
         "y": 1140,
         "wires": []
     },
@@ -11597,6 +11598,23 @@
                 "6161ee15cd9719be"
             ]
         ]
+    },
+    {
+        "id": "33f6382e8b91ed16",
+        "type": "debug",
+        "z": "3ddecfbaabd60ba5",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 1200,
+        "wires": []
     },
     {
         "id": "0e5e9ecd9dbcb063",
