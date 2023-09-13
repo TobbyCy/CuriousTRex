@@ -545,36 +545,6 @@
         "height": 1
     },
     {
-        "id": "ecf3adbc80932daf",
-        "type": "ui_spacer",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "spacer",
-        "group": "7a02dc45cdd22958",
-        "order": 1,
-        "width": 18,
-        "height": 1
-    },
-    {
-        "id": "aa0e27a0911694d1",
-        "type": "ui_spacer",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "spacer",
-        "group": "7a02dc45cdd22958",
-        "order": 2,
-        "width": 18,
-        "height": 1
-    },
-    {
-        "id": "3d2410c23eda3781",
-        "type": "ui_spacer",
-        "z": "a922dcbcf6a2e8c4",
-        "name": "spacer",
-        "group": "7a02dc45cdd22958",
-        "order": 3,
-        "width": 18,
-        "height": 1
-    },
-    {
         "id": "7fb5e4b644df4e2c",
         "type": "ui_spacer",
         "z": "a922dcbcf6a2e8c4",
@@ -6023,7 +5993,7 @@
         "name": "",
         "order": 4,
         "width": 18,
-        "height": 8,
+        "height": "6",
         "format": "<div ng-bind-html=\"msg.payload\" height=\"400\" style=\"height: 400px;\"><br/>\n</div>\n<style>\n/* Applique des styles aux liens */\na[href] {\ncolor: #d93347; /* Couleur du lien */\ntext-decoration: none; /* Pas de soulignement */\n}\n\n/* Applique des styles au survol des liens */\na[href]:hover {\ncolor: #cb0505; /* Couleur du lien au survol */\ntext-decoration: underline; /* Soulignement au survol */\n}\n</style>",
         "storeOutMessages": true,
         "fwdInMessages": true,
