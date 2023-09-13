@@ -121,7 +121,7 @@
             [
                 "2ac0d272272f951b",
                 "843f23c9472dcd82",
-                "71d1b35c803dd600"
+                "813230440be27805"
             ]
         ]
     },
@@ -11615,6 +11615,29 @@
         "x": 540,
         "y": 1200,
         "wires": []
+    },
+    {
+        "id": "813230440be27805",
+        "type": "switch",
+        "z": "3ddecfbaabd60ba5",
+        "name": "",
+        "property": "gatling",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 410,
+        "y": 1000,
+        "wires": [
+            [
+                "71d1b35c803dd600"
+            ]
+        ]
     },
     {
         "id": "0e5e9ecd9dbcb063",
