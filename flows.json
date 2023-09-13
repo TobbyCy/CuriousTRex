@@ -11709,6 +11709,23 @@
         ]
     },
     {
+        "id": "fc32669e2dac2e43",
+        "type": "debug",
+        "z": "3ddecfbaabd60ba5",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 1000,
+        "wires": []
+    },
+    {
         "id": "0e5e9ecd9dbcb063",
         "type": "ui_text",
         "z": "6960c25d19217e0b",
