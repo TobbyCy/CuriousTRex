@@ -150,6 +150,18 @@
         ]
     },
     {
+        "id": "fc5e94a4a331daa9",
+        "type": "junction",
+        "z": "3ddecfbaabd60ba5",
+        "x": 2220,
+        "y": 880,
+        "wires": [
+            [
+                "b410e022596a76a9"
+            ]
+        ]
+    },
+    {
         "id": "e42b4edae71dedd4",
         "type": "ui_tab",
         "name": "Monittoring",
@@ -9347,11 +9359,11 @@
         "reduceInit": "",
         "reduceInitType": "num",
         "reduceFixup": "",
-        "x": 2210,
-        "y": 860,
+        "x": 2130,
+        "y": 880,
         "wires": [
             [
-                "b410e022596a76a9"
+                "fc5e94a4a331daa9"
             ]
         ]
     },
@@ -9390,7 +9402,8 @@
                 "0e7f197bf1565d7d",
                 "34a2fc5b8d7b23f5",
                 "2e398589767e8c31",
-                "bf9fb2fa5c67c823"
+                "bf9fb2fa5c67c823",
+                "7bea6cb7e326cd96"
             ]
         ]
     },
@@ -9551,7 +9564,7 @@
         "y": 1040,
         "wires": [
             [
-                "3f9aa754e519b6bf"
+                "7bea6cb7e326cd96"
             ]
         ]
     },
@@ -9579,7 +9592,7 @@
         "y": 1240,
         "wires": [
             [
-                "3f9aa754e519b6bf"
+                "7bea6cb7e326cd96"
             ]
         ]
     },
@@ -9969,7 +9982,7 @@
         "y": 1160,
         "wires": [
             [
-                "3f9aa754e519b6bf"
+                "7bea6cb7e326cd96"
             ]
         ]
     },
@@ -10571,7 +10584,7 @@
         "y": 1320,
         "wires": [
             [
-                "3f9aa754e519b6bf"
+                "7bea6cb7e326cd96"
             ]
         ]
     },
@@ -10895,7 +10908,7 @@
         "y": 1400,
         "wires": [
             [
-                "3f9aa754e519b6bf"
+                "7bea6cb7e326cd96"
             ]
         ]
     },
@@ -11038,7 +11051,7 @@
         "y": 1480,
         "wires": [
             [
-                "3f9aa754e519b6bf"
+                "7bea6cb7e326cd96"
             ]
         ]
     },
@@ -11500,7 +11513,7 @@
         "y": 1000,
         "wires": [
             [
-                "3f9aa754e519b6bf"
+                "7bea6cb7e326cd96"
             ]
         ]
     },
@@ -11565,7 +11578,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2440,
+        "x": 2460,
         "y": 880,
         "wires": []
     },
@@ -11595,6 +11608,63 @@
         "wires": [
             [
                 "6161ee15cd9719be"
+            ]
+        ]
+    },
+    {
+        "id": "0ac8a08df228f713",
+        "type": "join",
+        "z": "3ddecfbaabd60ba5",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "4",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 2130,
+        "y": 920,
+        "wires": [
+            [
+                "fc5e94a4a331daa9"
+            ]
+        ]
+    },
+    {
+        "id": "7bea6cb7e326cd96",
+        "type": "switch",
+        "z": "3ddecfbaabd60ba5",
+        "name": "",
+        "property": "gatling",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 2130,
+        "y": 960,
+        "wires": [
+            [
+                "3f9aa754e519b6bf"
+            ],
+            [
+                "0ac8a08df228f713"
             ]
         ]
     },
