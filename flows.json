@@ -11357,7 +11357,7 @@
         "id": "c688c8b7226ba57e",
         "type": "inject",
         "z": "3ddecfbaabd60ba5",
-        "name": "",
+        "name": "NoGatling",
         "props": [
             {
                 "p": "payload"
@@ -11372,9 +11372,9 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "{\"nameFile\":\"01\",\"time\":0.1,\"stressVolt\":false,\"stressNidus\":false,\"timeStress\":1,\"user_gatling\":1,\"flow\":false}",
+        "payload": "{\"nameFile\":\"01\",\"time\":0.1,\"stressVolt\":false,\"stressNidus\":false,\"timeStress\":1,\"user_gatling\":0,\"flow\":false}",
         "payloadType": "json",
-        "x": 270,
+        "x": 280,
         "y": 700,
         "wires": [
             [
@@ -11588,6 +11588,35 @@
         "x": 2440,
         "y": 880,
         "wires": []
+    },
+    {
+        "id": "f8dcca7514d5bc5b",
+        "type": "inject",
+        "z": "3ddecfbaabd60ba5",
+        "name": "Short",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"nameFile\":\"01\",\"time\":0.1,\"stressVolt\":false,\"stressNidus\":false,\"timeStress\":1,\"user_gatling\":1,\"flow\":false}",
+        "payloadType": "json",
+        "x": 150,
+        "y": 660,
+        "wires": [
+            [
+                "6161ee15cd9719be"
+            ]
+        ]
     },
     {
         "id": "0e5e9ecd9dbcb063",
