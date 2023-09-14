@@ -17519,7 +17519,7 @@
         "height": 4,
         "gtype": "gage",
         "title": "RAM",
-        "label": "%",
+        "label": "Go utilisée",
         "format": "{{value | number:2}} / 4Go",
         "min": 0,
         "max": "4",
