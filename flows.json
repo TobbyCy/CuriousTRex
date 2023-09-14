@@ -674,7 +674,7 @@
         "id": "7ffe48729859f226",
         "type": "ui_tab",
         "name": "Curious T-Rex",
-        "icon": "mi- browse_activity",
+        "icon": "mi-browse_activity",
         "order": 2,
         "disabled": false,
         "hidden": false
