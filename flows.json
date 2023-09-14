@@ -17520,9 +17520,9 @@
         "gtype": "gage",
         "title": "RAM",
         "label": "%",
-        "format": "{{value}}",
+        "format": "{{value | number:2}} / 4Go",
         "min": 0,
-        "max": "100",
+        "max": "4",
         "colors": [
             "#00b500",
             "#e6e600",
