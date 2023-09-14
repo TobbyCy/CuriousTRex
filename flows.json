@@ -484,7 +484,7 @@
         "icon": "dashboard",
         "order": 4,
         "disabled": false,
-        "hidden": false
+        "hidden": true
     },
     {
         "id": "7db53a0c4211bca9",
@@ -537,7 +537,7 @@
         "icon": "dashboard",
         "order": 5,
         "disabled": false,
-        "hidden": false
+        "hidden": true
     },
     {
         "id": "9848c7d7e57dbdee",
