@@ -14450,7 +14450,7 @@
         "type": "function",
         "z": "4efe9327eddfa7d6",
         "name": "Activate",
-        "func": "var delay = msg.payload.time !== null ? msg.payload.time * 60 * 1000 : 30000; // Convertir en millisecondes si nécessaire\n\n// Créer les objets de message pour chaque sortie\nvar msg1 = {\n    cmd: \"subscribe\",\n    topic: \"/\",\n    complete: true,\n    out:1,\n    delay: delay, // Délai en ms\n    filepath: msg.filePath,\n    graphPath: msg.graphPath\n};\n\nvar msg2 = {\n    cmd: \"subscribe\",\n    topic: \"volt/benchmark/cpu\",\n    out: 2,\n    delay: delay, // Délai en ms\n    filepath: msg.filePath,\n    graphPath: msg.graphPath\n};\n\nvar msg3 = {\n    cmd: \"subscribe\",\n    topic: \"volt/benchmark/ram\",\n    out: 3,\n    delay: delay, // Délai en ms\n    filepath: msg.filePath,\n    graphPath: msg.graphPath\n};\n\nvar msg4 = {\n    cmd: \"subscribe\",\n    topic: \"volt/benchmark/processes\",\n    out: 4,\n    delay: delay, // Délai en ms\n    filepath: msg.filePath,\n    graphPath: msg.graphPath\n};\n\nvar msg5 = {\n    cmd: \"subscribe\",\n    topic: \"volt/benchmark/temp\",\n    out: 5,\n    delay: delay, // Délai en ms\n    filepath: msg.filePath,\n    graphPath: msg.graphPath\n};\n\n\n\nvar msg6 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/cpu\",\n    out: 6,\n    delay: delay, // Délai en ms\n    filepath: msg.filePath,\n    graphPath: msg.graphPath\n};\n\nvar msg7 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/ram\",\n    out: 7,\n    delay: delay, // Délai en ms\n    filepath: msg.filePath,\n    graphPath: msg.graphPath\n};\n\nvar msg8 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/processes\",\n    out: 8,\n    delay: delay, // Délai en ms\n    filepath: msg.filePath,\n    graphPath: msg.graphPath\n};\nvar msg9 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/temp\",\n    out: 9,\n    delay: delay, // Délai en ms\n    filepath: msg.filePath,\n    graphPath: msg.graphPath\n};\n\n\n// Envoyer les messages aux sorties correspondantes\n// Les messages seront envoyés dans l'ordre de 0 à 6, correspondant aux sorties activées\n// Assurez-vous que le nœud \"Function\" a sept sorties activées pour recevoir ces messages\nnode.send([msg1, msg2, msg3, msg4, msg5, msg6, msg7,msg8,msg9]);\n",
+        "func": "var delay = msg.payload.time !== null ? msg.payload.time * 60 * 1000 : 30000; // Convertir en millisecondes si nécessaire\ndelay = delay + 30000; // Ajout d'un délai de 30seconde du au fais que gatling à besoin de temps pour cloturer se requete \n// Créer les objets de message pour chaque sortie\nvar msg1 = {\n    cmd: \"subscribe\",\n    topic: \"/\",\n    complete: true,\n    out:1,\n    delay: delay, // Délai en ms\n    filepath: msg.filePath,\n    graphPath: msg.graphPath\n};\n\nvar msg2 = {\n    cmd: \"subscribe\",\n    topic: \"volt/benchmark/cpu\",\n    out: 2,\n    delay: delay, // Délai en ms\n    filepath: msg.filePath,\n    graphPath: msg.graphPath\n};\n\nvar msg3 = {\n    cmd: \"subscribe\",\n    topic: \"volt/benchmark/ram\",\n    out: 3,\n    delay: delay, // Délai en ms\n    filepath: msg.filePath,\n    graphPath: msg.graphPath\n};\n\nvar msg4 = {\n    cmd: \"subscribe\",\n    topic: \"volt/benchmark/processes\",\n    out: 4,\n    delay: delay, // Délai en ms\n    filepath: msg.filePath,\n    graphPath: msg.graphPath\n};\n\nvar msg5 = {\n    cmd: \"subscribe\",\n    topic: \"volt/benchmark/temp\",\n    out: 5,\n    delay: delay, // Délai en ms\n    filepath: msg.filePath,\n    graphPath: msg.graphPath\n};\n\n\n\nvar msg6 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/cpu\",\n    out: 6,\n    delay: delay, // Délai en ms\n    filepath: msg.filePath,\n    graphPath: msg.graphPath\n};\n\nvar msg7 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/ram\",\n    out: 7,\n    delay: delay, // Délai en ms\n    filepath: msg.filePath,\n    graphPath: msg.graphPath\n};\n\nvar msg8 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/processes\",\n    out: 8,\n    delay: delay, // Délai en ms\n    filepath: msg.filePath,\n    graphPath: msg.graphPath\n};\nvar msg9 = {\n    cmd: \"subscribe\",\n    topic: \"nidus/benchmark/temp\",\n    out: 9,\n    delay: delay, // Délai en ms\n    filepath: msg.filePath,\n    graphPath: msg.graphPath\n};\n\n\n// Envoyer les messages aux sorties correspondantes\n// Les messages seront envoyés dans l'ordre de 0 à 6, correspondant aux sorties activées\n// Assurez-vous que le nœud \"Function\" a sept sorties activées pour recevoir ces messages\nnode.send([msg1, msg2, msg3, msg4, msg5, msg6, msg7,msg8,msg9]);\n",
         "outputs": 9,
         "noerr": 0,
         "initialize": "",
@@ -17275,7 +17275,7 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 480,
+        "x": 620,
         "y": 220,
         "wires": []
     },
@@ -17318,7 +17318,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 480,
+        "x": 620,
         "y": 260,
         "wires": [
             []
@@ -17342,7 +17342,7 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 480,
+        "x": 620,
         "y": 300,
         "wires": []
     },
@@ -17364,7 +17364,7 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 480,
+        "x": 620,
         "y": 340,
         "wires": []
     },
@@ -17380,7 +17380,7 @@
         "gtype": "gage",
         "title": "CPU",
         "label": "%",
-        "format": "{{value}}",
+        "format": "{{value}}%",
         "min": 0,
         "max": "100",
         "colors": [
@@ -17392,7 +17392,7 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 470,
+        "x": 610,
         "y": 380,
         "wires": []
     },
@@ -17410,7 +17410,7 @@
         "label": "%",
         "format": "{{value}}",
         "min": 0,
-        "max": "100",
+        "max": "4",
         "colors": [
             "#00b500",
             "#e6e600",
@@ -17420,7 +17420,7 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 470,
+        "x": 630,
         "y": 420,
         "wires": []
     },
@@ -17448,7 +17448,7 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 490,
+        "x": 630,
         "y": 460,
         "wires": []
     },
@@ -17463,8 +17463,8 @@
         "height": 4,
         "gtype": "gage",
         "title": "Température",
-        "label": "C",
-        "format": "{{value}}",
+        "label": "Celsius",
+        "format": "{{value}}°C",
         "min": 0,
         "max": "85",
         "colors": [
@@ -17476,7 +17476,7 @@
         "seg2": "50",
         "diff": false,
         "className": "",
-        "x": 490,
+        "x": 630,
         "y": 500,
         "wires": []
     },
@@ -17504,7 +17504,7 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 470,
+        "x": 610,
         "y": 540,
         "wires": []
     },
@@ -17532,7 +17532,7 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 470,
+        "x": 610,
         "y": 580,
         "wires": []
     },
@@ -17560,7 +17560,7 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 490,
+        "x": 630,
         "y": 620,
         "wires": []
     },
@@ -17575,8 +17575,8 @@
         "height": 4,
         "gtype": "gage",
         "title": "Température",
-        "label": "C",
-        "format": "{{value}}",
+        "label": "Celsius",
+        "format": "{{value}}°C",
         "min": 0,
         "max": "85",
         "colors": [
@@ -17588,7 +17588,7 @@
         "seg2": "50",
         "diff": false,
         "className": "",
-        "x": 490,
+        "x": 630,
         "y": 660,
         "wires": []
     },
@@ -17670,7 +17670,8 @@
         "y": 420,
         "wires": [
             [
-                "ddb683c969d0cd70"
+                "ddb683c969d0cd70",
+                "72fc3857b2a17a46"
             ]
         ]
     },
@@ -17794,8 +17795,59 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 480,
+        "x": 620,
         "y": 180,
+        "wires": []
+    },
+    {
+        "id": "564c8201a9464f48",
+        "type": "function",
+        "z": "0893a32b929905a3",
+        "name": "Return_RamGo",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8c4c83eecd9956c3",
+        "type": "function",
+        "z": "0893a32b929905a3",
+        "name": "function 12",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "72fc3857b2a17a46",
+        "type": "debug",
+        "z": "0893a32b929905a3",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 380,
         "wires": []
     }
 ]
