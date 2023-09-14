@@ -1177,7 +1177,7 @@ Il faut donc modifier le fichier de conf comme suit :
 ```bash
 tobby@Nidus:~ $ sudo vim /etc/mosquitto/mosquitto.conf
 ```
-- Vérification du fichier de conf
+- Vérification du fichier de conf 
 ```bash
 tobby@Nidus:~ $ sudo cat /etc/mosquitto/mosquitto.conf 
 # Place your local configuration in /etc/mosquitto/conf.d/
@@ -2569,6 +2569,13 @@ En traitant les informations plus tôt dans le flux et en évitant de joindre le
 J'ai réussi à réaliser des tests avec 10 utilisateurs effectuant 6 requêtes par seconde pendant 5 minutes, ou un test d'une heure avec un seul utilisateur.
 
 Il est important de maintenir des attentes réalistes : le Raspberry Pi 4 n'est pas un serveur et ne peut pas gérer des tests de charge avec des milliers d'utilisateurs pendant des heures et traiter ensuite des millions de lignes de journaux.
+
+En terme de chiffre, j'ai conclu que le Raspberry Pi 4 peut gérer un test avec 10 utilisateurs pendant 5 minutes, mais à ce points nous touchons les limites du Raspberry Pi 4.
+Après de nombreaux test j'ai réàlisée que la limite actuelle est chiffrable, en effet il faut se fier à cette equation :
+
+$
+nbUsers * nbRequestsPerSecond * testDuration \leq 300
+$
 
 
 <div style="page-break-after: always;"></div> 
