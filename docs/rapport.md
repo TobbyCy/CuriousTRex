@@ -2632,6 +2632,7 @@ Après de nombreaux test j'ai réàlisée que la limite actuelle est chiffrable,
 
 $
 nbUsers * nbRequestsPerSecond * testDuration \leq 300
+$
 
 
 <div style="page-break-after: always;"></div> 
