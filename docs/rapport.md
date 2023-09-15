@@ -137,7 +137,8 @@
     - [20.6.1. Création des graphiques](#2061-création-des-graphiques)
     - [20.6.2. PDF](#2062-pdf)
   - [20.7. Refactoring](#207-refactoring)
-- [21. Gatling V3.0](#21-gatling-v30)
+  - [20.8. Résultat](#208-résultat)
+- [21. Curius T-Rex V3.0](#21-curius-t-rex-v30)
   - [21.1. UI](#211-ui)
     - [21.1.1. Ventilateur](#2111-ventilateur)
     - [21.1.2. UI](#2112-ui)
@@ -151,6 +152,10 @@
     - [21.4.1. Création du Fichier JSON](#2141-création-du-fichier-json)
     - [21.4.2. Lecture du Fichier JSON](#2142-lecture-du-fichier-json)
     - [21.4.3. Importation du Fichier JSON](#2143-importation-du-fichier-json)
+  - [21.5. Rapport PDF selon Gatling](#215-rapport-pdf-selon-gatling)
+    - [21.5.1. Mise en place de la fonction](#2151-mise-en-place-de-la-fonction)
+  - [Résultat](#résultat)
+- [Curius T-Rex V4.0](#curius-t-rex-v40)
 - [22. Problèmes](#22-problèmes)
   - [22.1. Problème de Détection I2C](#221-problème-de-détection-i2c)
   - [22.2. Problème de Performance](#222-problème-de-performance)
@@ -190,6 +195,7 @@
 - [28. Autres Outils et Ressources](#28-autres-outils-et-ressources)
   - [28.1. Articles de Recherche](#281-articles-de-recherche)
   - [28.2. Liens externes](#282-liens-externes)
+  - [28.3. OS](#283-os)
 
 <div style="page-break-after: always;"></div>
 
@@ -1177,7 +1183,7 @@ Il faut donc modifier le fichier de conf comme suit :
 ```bash
 tobby@Nidus:~ $ sudo vim /etc/mosquitto/mosquitto.conf
 ```
-- Vérification du fichier de conf
+- Vérification du fichier de conf 
 ```bash
 tobby@Nidus:~ $ sudo cat /etc/mosquitto/mosquitto.conf 
 # Place your local configuration in /etc/mosquitto/conf.d/
@@ -2359,38 +2365,61 @@ Pour finir, j'ai créer des subflow pour le noeud MQTT afin de simplifier la vis
 
 <div style="page-break-after: always;"></div>
 
-# 21. Gatling V3.0
 
-Maintenant que l'étape de "PoC" a été atteinte, il est temps de passer à la version utilisable du projet. À partir de Node-Red, vous pouvez désormais réaliser les actions suivantes :
+## 20.8. Résultat
+<img src="../capture/RPI/Node-Red/RapportPDF/16.png" alt="Alt text" width="100%" style="width:100%;">
 
-- Lancer des StressTests
-- Lancer des tests Gatling
-- Récupérer les informations de monitoring (CPU, RAM, Température, etc.)
-- Récupérer les informations de Gatling (Temps de réponse, pourcentage de réussite, etc.)
-- Joindre les informations pour créer des graphiques
-- Regrouper tout pour créer un rapport PDF
+Après la conclusion des tests, les graphiques sont générés et intégrés au rapport PDF :
 
-Les objectifs à atteindre sont donc les suivants :
-- Passer des paramètres de test à Gatling depuis Node-Red
-- Améliorer l'interface utilisateur de Node-Red
-- Ajouter les valeurs souhaitées dans le rapport PDF
-- Modifier les graphiques pour une meilleure lisibilité
-- Ajouter la possibilité d'exporter les données au format JSON
-- Ajouter la possibilité d'importer les données au format JSON et de générer un PDF
-- Optimiser le code
-- Ajout d'une page d'accueil
+<img src="../capture/RPI/Node-Red/RapportPDF/17.png" alt="Alt text" width="100%" style="width:100%;">
+<img src="../capture/RPI/Node-Red/RapportPDF/18.png" alt="Alt text" width="100%" style="width:100%;">
+<div align="center">
+<img src="../capture/RPI/Node-Red/RapportPDF/19.png" alt="Alt text" width="100%" style="width:70%;">
+</div>
+Dans ce PDF, vous pouvez constater que toutes les données souhaitées sont présentes. Cependant, des problèmes de mise en page sont apparents. En effet, les étiquettes des graphiques sont trop petites et mal formatées.
+
+De plus, il est difficile de suivre l'état des RPI pendant le test Gatling. Par conséquent, il est impératif de trouver une solution pour améliorer l'interface utilisateur.
+
+Dans la version 3, je vais donc m'efforcer de résoudre ces problèmes.
+
+<div style="page-break-after: always;"></div>
+
+
+# 21. Curius T-Rex V3.0
+
+Après avoir atteint l'étape de la "PoC" (Preuve de Concept), il est temps de passer à la version opérationnelle du projet. À partir de Node-Red, vous avez désormais la capacité d'effectuer les actions suivantes :
+
+- Lancer des StressTests.
+- Lancer des tests Gatling.
+- Collecter des données de monitoring (CPU, RAM, Température, etc.).
+- Collecter des données de Gatling (Temps de réponse, pourcentage de réussite, etc.).
+- Fusionner ces données pour créer des graphiques.
+- Compiler l'ensemble pour générer un rapport PDF.
+
+Les objectifs à atteindre pour cette version sont les suivants :
+- Transmettre des paramètres de test à Gatling depuis Node-Red.
+- Améliorer l'interface utilisateur de Node-Red.
+- Intégrer les valeurs requises dans le rapport PDF.
+- Adapter les graphiques pour une meilleure lisibilité.
+- Ajouter la fonctionnalité d'exportation des données au format JSON.
+- Intégrer la possibilité d'importer les données au format JSON et de générer un PDF.
+- Optimiser le code.
+- Introduire une page d'accueil.
+- Offrir la possibilité de lancer soit uniquement un StressTest, soit un StressTest avec Gatling.
 
 
 
 ## 21.1. UI
 
-Pour l'interface utilisateur (UI), j'ai choisi de limiter le temps sélectionné à la durée du test. Ce choix s'explique par le fait qu'en principe, la durée des mesures devrait toujours correspondre à la durée de Gatling. Cependant, je laisse toujours la possibilité de définir la durée du StressTest indépendamment de Gatling.
+Pour l'interface utilisateur (UI), j'ai pris la décision de limiter la durée du test de Gatling à la durée du test. Cette décision est basée sur le principe selon lequel la durée des mesures devrait généralement correspondre à la durée de Gatling. Cependant, je laisse toujours la possibilité de définir la durée du StressTest de manière indépendante.
 
-J'ai ajouté une entrée pour définir si un ventilateur est activé. Actuellement, avec des températures proches de 30 degrés à l'extérieur, le ventilateur est nécessaire pour éviter la surchauffe du Raspberry Pi. Sachant cela, je voulais avoir la possibilité de le notifier dans le rapport.
+J'ai également ajouté une option pour spécifier si le ventilateur est activé. Actuellement, étant donné les températures élevées d'environ 30 degrés à l'extérieur, il est nécessaire d'utiliser un ventilateur pour éviter la surchauffe du Raspberry Pi. Je tenais donc à avoir la possibilité de le signaler dans le rapport.
 
-À l'heure actuelle, le ventilateur est un ventilateur de bureau pris dans mon stock personnel, actionné par un bouton. Il n'est donc pas possible de le contrôler depuis Node-Red. Cependant, il est possible qu'à l'avenir, un ventilateur contrôlable soit utilisé, auquel cas il sera possible de l'activer ou de le désactiver depuis Node-Red.
+Actuellement, le ventilateur utilisé est un modèle de bureau issu de ma propre réserve, et il est activé manuellement à l'aide d'un interrupteur. Il n'est donc pas contrôlable depuis Node-Red. Toutefois, il est envisageable qu'à l'avenir, nous utilisions un ventilateur contrôlable, auquel cas il serait possible de l'activer ou de le désactiver depuis Node-Red.
 
-Pour permettre de garder un certain contrôle, j'ai ajouté les informations de monitoring directement à côté du formulaire de lancement du test. Ainsi, il est possible de voir les valeurs de monitoring en temps réel et de surveiller le déroulement du test.
+Pour maintenir un certain niveau de contrôle, j'ai intégré les informations de monitoring directement à côté du formulaire de lancement du test. Ainsi, il est possible de visualiser en temps réel les valeurs de monitoring et de suivre le déroulement du test.
+
+
 <div style="page-break-after: always;"></div>
 
 ### 21.1.1. Ventilateur 
@@ -2411,23 +2440,17 @@ Pour passer des paramètres de test à Gatling depuis Node-Red, j'ai ajouté un 
 
 ```javascript
 msg.original = msg.payload;
-if (msg.topic !== "inject" && msg.payload.time !== undefined && msg.payload.user_gatling !== undefined && msg.payload.time !== 0) {
+if (msg.topic !== "inject" && msg.payload.time !== undefined && msg.payload.user_gatling !== undefined && msg.payload.user_gatling > 0) {
         // Crée la commande en utilisant les valeurs spécifiées
     msg.payload.time = msg.payload.time * 60;
     msg.payload = `/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s CuriusTRex -bm --run-mode local -erjo "-Dusers=${msg.payload.user_gatling} -Dramp=${msg.payload.time} -Xms2G -Xmx4G" | tail -1`;
     } else {
-        //En partant du principe que rien n'est retournée je retourne une valeur l'indiquant #TODO
         return null;
     }
-
-    // Renvoie le message modifié
-    return msg;
 ```
-#TODO
 
-- Cette fonctions à pour but de programmer la commande SSH qui sera envoyé au serveur Gatling, mais elle est également là pour définir si oui ou non il faut réaliser un test sur galing ou non, cela se fais par le biais du formulaire si l'on mets l'utilisateur à 0.
 ### 21.2.2. Gatling
-Une fois que la commande est envoyé, il faut l'interpreter, pour ce faire j'ai rsajouter ces lignes au script de Gatling :
+Une fois que la commande est envoyée, il est nécessaire de l'interpréter du côté du script Gatling. À cette fin, j'ai ajouté les lignes suivantes au script de Gatling :
 ```scala
 val nbUsers = java.lang.Long.getLong("users", 1).toDouble
 val myRamp = java.lang.Long.getLong("ramp", 1)
@@ -2436,7 +2459,8 @@ println(s"Temps de montée : $myRamp")
 
   setUp(scn.inject(constantUsersPerSec(nbUsers).during(myRamp seconds))).protocols(httpProtocol)
 ```
-Cela permet de récupérer les valeurs passées en paramètres et de les utiliser pour le test, mais si aucune valeur n'est passée ou qu'elle ne corespond pas au format, alors les valeurs par défaut seront utilisées.
+Cela permet de récupérer les valeurs passées en paramètres et de les utiliser pour le test. Toutefois, si aucune valeur n'est passée ou si elle ne correspond pas au format attendu, le script utilisera les valeurs par défaut.
+
 
 <div style="page-break-after: always;"></div>
 
@@ -2459,7 +2483,7 @@ Cette stratégie réduit la charge de traitement à chaque étape ultérieure, c
 <div style="page-break-after: always;"></div>
 
 ## 21.4. JSON
-
+Dans la version 3.0, je n'ai pas inclus la possibilité de générer un rapport à partir d'un test réalisé sans Gatling. Cette décision découle du fait que la génération de rapports avec ou sans Gatling est l'une des dernières fonctionnalités que je souhaitais ajouter à la V3.0. Cette transformation sera intégrée dans la V4.0 du projet.
 ### 21.4.1. Création du Fichier JSON
 
 Au début de ce processus, j'ai centralisé toutes les données nécessaires à la création de graphiques en un point unique. À cet endroit, je les ai transformées en format JSON et les ai enregistrées dans un fichier.
@@ -2489,6 +2513,39 @@ Après l'importation, les données sont traitées de la même manière que lors 
 </div>
 
 <div style="page-break-after: always;"></div>
+
+## 21.5. Rapport PDF selon Gatling
+
+Dans la dernière fonctionnalité que j'ai mise en place au sein de la version 3.0, j'ai introduit la possibilité de créer un rapport PDF différent en fonction des circonstances. J'ai pris en considération le fait que l'utilisateur ne souhaite peut-être pas toujours effectuer un stress test ou une simulation Gatling. Par exemple, il pourrait vouloir évaluer le comportement de son système d'exploitation à vide pour des fins de comparaison. Dans cette optique, j'avais déjà donné à l'utilisateur la possibilité de choisir s'il devait ou non effectuer un stress test sur l'un ou l'autre des Raspberry Pi. J'ai ensuite ajouté une option pour l'exécution de Gatling. Si l'utilisateur choisit de ne pas utiliser Gatling, le rapport PDF sera généré sans les graphiques de Gatling.
+
+### 21.5.1. Mise en place de la fonction
+
+```javascript
+msg.original = msg.payload;
+if (msg.topic !== "inject" && msg.payload.time !== undefined && msg.payload.user_gatling !== undefined && msg.payload.user_gatling > 0) {
+        // Crée la commande en utilisant les valeurs spécifiées
+    msg.payload.time = msg.payload.time * 60;
+    msg.payload = `/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s CuriusTRex -bm --run-mode local -erjo "-Dusers=${msg.payload.user_gatling} -Dramp=${msg.payload.time} -Xms2G -Xmx4G" | tail -1`;
+    } else {
+        return null;
+    }
+```
+J'ai ajouté une condition dans la fonction qui crée la commande Gatling à envoyer en SSH. Cette condition permet de déterminer si l'utilisateur a choisi d'effectuer un test Gatling ou non. Le formulaire de l'utilisateur est utilisé pour cela. Lors de l'envoi des valeurs du formulaire, je stocke ces valeurs dans une variable globale accessible par tous les nœuds et persistante. Cette approche me permet de traiter les données de Gatling ou de les ignorer lors de la génération du rapport ultérieurement. Ainsi, je peux générer un rapport avec ou sans les données de Gatling en fonction de la décision de l'utilisateur, que ce soit pour effectuer un test Gatling ou simplement un StressTest.
+
+Grâce à l'optimisation que j'ai réalisée plus tôt, une situation innatendu en à découlé qui s'est posrtée complètement à mon avantage en effet en séparant les flux il m'as été beaucoup plus simple de mettre des `switch`, en effet choisir de continuer ou non flux par flux est beaucoup plus simple si je n'avais pas réaliser cette optimisation plus tôt j'aurais du créer un flux complet diférent qui aurait commencé par un switch.
+
+<div style="page-break-after: always;"></div>
+
+## Résultat
+Au terme de cette version 3.0, j'ai atteint tous les objectifs que je m'étais fixés. Le système est désormais capable de générer un rapport PDF à partir de données de monitoring et de Gatling. Il est également possible d'exporter les données au format JSON et de les réimporter pour générer un rapport PDF.
+Qui plus est, les performances du système ont été améliorées grâce à l'optimisation du code et à la séparation des flux de données.
+Les graphique sont plus lisibles et les données sont mieux organisées dans le rapport PDF.
+
+
+<div style="page-break-after: always;"></div>
+
+# Curius T-Rex V4.0
+
 
 # 22. Problèmes
 Comme dans tout projet, j'ai rencontré des problèmes lors de la réalisation de ce projet. Certains ont été résolus, d'autres non. Dans cette section, je vais décrire les problèmes rencontrés et les solutions que j'ai trouvées.
@@ -2569,6 +2626,13 @@ En traitant les informations plus tôt dans le flux et en évitant de joindre le
 J'ai réussi à réaliser des tests avec 10 utilisateurs effectuant 6 requêtes par seconde pendant 5 minutes, ou un test d'une heure avec un seul utilisateur.
 
 Il est important de maintenir des attentes réalistes : le Raspberry Pi 4 n'est pas un serveur et ne peut pas gérer des tests de charge avec des milliers d'utilisateurs pendant des heures et traiter ensuite des millions de lignes de journaux.
+
+En terme de chiffre, j'ai conclu que le Raspberry Pi 4 peut gérer un test avec 10 utilisateurs pendant 5 minutes, mais à ce points nous touchons les limites du Raspberry Pi 4.
+Après de nombreaux test j'ai réàlisée que la limite actuelle est chiffrable, en effet il faut se fier à cette equation :
+
+$
+nbUsers * nbRequestsPerSecond * testDuration \leq 300
+$
 
 
 <div style="page-break-after: always;"></div> 
@@ -2856,3 +2920,10 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
     > Cluster fais de plaque de pleixglass avec intercalaire
 33. [**Index des Licences Utilisées**](https://opensource.org/licenses/alphabetical)
     > Index des licences open source.
+## 28.3. OS
+34. [**Raspberry Pi OS**](https://www.raspberrypi.org/software/)
+    > Système d'exploitation officiel du Raspberry Pi.
+35. [**Ubuntu Server**](https://ubuntu.com/download/server)
+    > Système d'exploitation Ubuntu Server.
+
+
