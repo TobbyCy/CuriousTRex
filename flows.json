@@ -17259,6 +17259,84 @@
         "wires": []
     },
     {
+        "id": "dc4374dfefd87acc",
+        "type": "inject",
+        "z": "4efe9327eddfa7d6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "7200",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "ssh tobby@157.26.228.77 \\\"echo \"lsij419\" | sudo -S /etc/init.d/mqtt.sh\\\"",
+        "payloadType": "str",
+        "x": 170,
+        "y": 1220,
+        "wires": [
+            [
+                "6a1ac2d16dbf47f9"
+            ]
+        ]
+    },
+    {
+        "id": "6a1ac2d16dbf47f9",
+        "type": "exec",
+        "z": "4efe9327eddfa7d6",
+        "command": "",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 330,
+        "y": 1240,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "bdc99b29a23f5753",
+        "type": "inject",
+        "z": "4efe9327eddfa7d6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "7200",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "echo \"lsij419\" | sudo -S /etc/init.d/mqtt.sh",
+        "payloadType": "str",
+        "x": 170,
+        "y": 1260,
+        "wires": [
+            [
+                "6a1ac2d16dbf47f9"
+            ]
+        ]
+    },
+    {
         "id": "8611542176501860",
         "type": "ui_text",
         "z": "0893a32b929905a3",
