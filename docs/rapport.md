@@ -155,8 +155,8 @@
   - [21.5. Rapport PDF selon Gatling](#215-rapport-pdf-selon-gatling)
     - [21.5.1. Mise en place de la fonction](#2151-mise-en-place-de-la-fonction)
   - [21.6. Résultat](#216-résultat)
-    - [UI](#ui)
-    - [Rapport PDF](#rapport-pdf)
+    - [21.6.1. UI](#2161-ui)
+    - [21.6.2. Rapport PDF](#2162-rapport-pdf)
 - [22. Curious T-Rex](#22-curious-t-rex)
   - [22.1. Installation](#221-installation)
     - [22.1.1. Utilisation](#2211-utilisation)
@@ -2545,7 +2545,7 @@ Au terme de cette version 3.0, j'ai atteint tous les objectifs que je m'étais f
 Qui plus est, les performances du système ont été améliorées grâce à l'optimisation du code et à la séparation des flux de données.
 Les graphique sont plus lisibles et les données sont mieux organisées dans le rapport PDF.
 
-### UI
+### 21.6.1. UI
 <div align="center">
 <img src="../capture/RPI/Manuel/Interface1.png" alt="Image 3" width="100%" style="width:80%;">
 </div>
@@ -2555,7 +2555,7 @@ Les graphique sont plus lisibles et les données sont mieux organisées dans le 
 
 <div style="page-break-after: always;"></div>
 
-### Rapport PDF
+### 21.6.2. Rapport PDF
 Malgré que toutes les donnée étais présente dans le rapport PDF, après l'entretient du suivi de projet, il a été soulevé certains points qui posait problèmeme, en effet donnée n'étais pas très bien allignée et laissée sans explication, j'ai donc décidé de revoir la mise en page du rapport PDF. J'ai également rajoutée la consommation moyenne d'une requête Gatling, ce calcul à été réalisée en faisant un très long test sans aucune charge de travail et en déduisant la consommation moyenne d'une requête Gatling.
 <div align="center">
 <img src="../capture/RPI/Manuel/PDF1.png" alt="Image 3" width="100%" style="width:100%;">
@@ -3219,7 +3219,7 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 33. [**Index des Licences Utilisées**](https://opensource.org/licenses/alphabetical)
     > Index des licences open source.
 ## 29.3. OS
-34. [**Raspberry Pi OS, Version 2023-05-03, **](https://www.raspberrypi.org/software/)
+34. [**Raspberry Pi OS, Version 2023-05-03, Licence : GNU GPL**](https://www.raspberrypi.org/software/)
     > Système d'exploitation officiel du Raspberry Pi.
 35. [**Ubuntu Server, Version 23.04, Licence : GNU GPL**](https://ubuntu.com/download/server)
     > Système d'exploitation Ubuntu Server.
