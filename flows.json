@@ -12908,6 +12908,13 @@
                 "t": "delete",
                 "p": "original",
                 "pt": "msg"
+            },
+            {
+                "t": "set",
+                "p": "gatling",
+                "pt": "msg",
+                "to": "gatling",
+                "tot": "global"
             }
         ],
         "action": "",
