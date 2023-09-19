@@ -14657,6 +14657,7 @@
         "name": "CopyDelay",
         "func": "// Vérifier si msg.delay est défini\nif (msg.delay !== undefined) {\nmsg.originalDelay = msg.delay;\nreturn msg;\n}else{\n    return null;\n}",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
