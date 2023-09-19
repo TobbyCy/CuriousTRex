@@ -14311,7 +14311,7 @@
         "filename": "filepath",
         "filenameType": "msg",
         "appendNewline": true,
-        "createDir": false,
+        "createDir": true,
         "overwriteFile": "true",
         "encoding": "base64",
         "x": 2660,
