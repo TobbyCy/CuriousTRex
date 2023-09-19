@@ -14712,7 +14712,7 @@
         "filename": "graphPath.gatling.complet",
         "filenameType": "msg",
         "appendNewline": true,
-        "createDir": false,
+        "createDir": true,
         "overwriteFile": "true",
         "encoding": "none",
         "x": 2180,
@@ -14745,7 +14745,7 @@
         "filename": "graphPath.volt.complet",
         "filenameType": "msg",
         "appendNewline": true,
-        "createDir": false,
+        "createDir": true,
         "overwriteFile": "true",
         "encoding": "none",
         "x": 2170,
@@ -14778,7 +14778,7 @@
         "filename": "graphPath.nidus.complet",
         "filenameType": "msg",
         "appendNewline": true,
-        "createDir": false,
+        "createDir": true,
         "overwriteFile": "true",
         "encoding": "none",
         "x": 2170,
@@ -14862,9 +14862,15 @@
         "x": 650,
         "y": 920,
         "wires": [
-            [],
-            [],
-            []
+            [
+                "a2cafb01a92dbf15"
+            ],
+            [
+                "a2cafb01a92dbf15"
+            ],
+            [
+                "a2cafb01a92dbf15"
+            ]
         ]
     },
     {
@@ -15463,7 +15469,7 @@
         "filename": "graphPath.volt.watt",
         "filenameType": "msg",
         "appendNewline": true,
-        "createDir": false,
+        "createDir": true,
         "overwriteFile": "true",
         "encoding": "none",
         "x": 2160,
@@ -16210,7 +16216,7 @@
         "filename": "graphPath.gatling.pass",
         "filenameType": "msg",
         "appendNewline": true,
-        "createDir": false,
+        "createDir": true,
         "overwriteFile": "true",
         "encoding": "none",
         "x": 2170,
@@ -16531,7 +16537,7 @@
         "filename": "graphPath.gatling.bySeconds",
         "filenameType": "msg",
         "appendNewline": true,
-        "createDir": false,
+        "createDir": true,
         "overwriteFile": "true",
         "encoding": "none",
         "x": 2220,
@@ -16608,7 +16614,7 @@
         "type": "debug",
         "z": "4efe9327eddfa7d6",
         "name": "ERROR_Gatling",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -17364,6 +17370,23 @@
         "statusType": "auto",
         "x": 500,
         "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "a2cafb01a92dbf15",
+        "type": "debug",
+        "z": "4efe9327eddfa7d6",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 1040,
         "wires": []
     },
     {
