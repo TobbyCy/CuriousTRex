@@ -13910,8 +13910,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 640,
-        "y": 820,
+        "x": 660,
+        "y": 720,
         "wires": [
             [
                 "36b7ffd5cce2713e"
@@ -14105,8 +14105,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 440,
-        "y": 780,
+        "x": 600,
+        "y": 600,
         "wires": [
             [
                 "d71e90762e0615fb",
