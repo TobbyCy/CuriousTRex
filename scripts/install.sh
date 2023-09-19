@@ -162,7 +162,7 @@ echo ""
 sudo npm install -g --unsafe-perm node-red --no-audit --no-update-notifier --no-fund --save --save-prefix=~ --omit=dev --engine-strict node-red-contrib-easybotics-ina219-sensor@0.7.6
 echo "Installation de chart image..."
 echo ""
-run_command_silently sudo apt-get install libcairo2-dev libjpeg-dev libgif-dev build-essential g++ -y
+run_command_silently sudo apt-get install libcairo2-dev libjpeg-dev libgif-dev build-essential stress-ng g++ -y
 run_command_silently sudo apt-get install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev -y
 run_command_silently sudo apt-get install libpixman-1-dev libxcb-composite0-dev -y
 sudo npm install -g --unsafe-perm node-red --no-audit --no-update-notifier --no-fund --save --save-prefix=~ --omit=dev --engine-strict node-red-contrib-chart-image
@@ -171,7 +171,9 @@ echo ""
 sudo npm install -g --unsafe-perm node-red --no-audit --no-update-notifier --no-fund --save --save-prefix=~ --omit=dev --engine-strict node-red-node-base64
 echo ""
 echo ""
-
+sudo mkdir /home/NodeRed
+sudo chown -R tobby:tobby /home/NodeRed
+sudo chown -R tobby:tobby /home/tobby/.gatling
 # Écho pour indiquer la fin du script
 echo "Installation de Gatling, Mosquitto, Node-Red et ses dépendances terminée."
 echo ""
