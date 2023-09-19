@@ -138,7 +138,7 @@
     - [20.6.2. PDF](#2062-pdf)
   - [20.7. Refactoring](#207-refactoring)
   - [20.8. Résultat](#208-résultat)
-- [21. Curius T-Rex V3.0](#21-curius-t-rex-v30)
+- [21. Curious T-Rex V3.0](#21-curious-t-rex-v30)
   - [21.1. UI](#211-ui)
     - [21.1.1. Ventilateur](#2111-ventilateur)
     - [21.1.2. UI](#2112-ui)
@@ -154,48 +154,52 @@
     - [21.4.3. Importation du Fichier JSON](#2143-importation-du-fichier-json)
   - [21.5. Rapport PDF selon Gatling](#215-rapport-pdf-selon-gatling)
     - [21.5.1. Mise en place de la fonction](#2151-mise-en-place-de-la-fonction)
-  - [Résultat](#résultat)
-- [Curius T-Rex V4.0](#curius-t-rex-v40)
-- [22. Problèmes](#22-problèmes)
-  - [22.1. Problème de Détection I2C](#221-problème-de-détection-i2c)
-  - [22.2. Problème de Performance](#222-problème-de-performance)
-    - [22.2.1. Solutions testées :](#2221-solutions-testées-)
-    - [22.2.2. Solutions possibles :](#2222-solutions-possibles-)
-    - [22.2.3. Solution choisie :](#2223-solution-choisie-)
-  - [22.3. Température](#223-température)
-    - [22.3.1. Sans ventilateur](#2231-sans-ventilateur)
-    - [22.3.2. Avec Ventilateur](#2232-avec-ventilateur)
-  - [22.4. Analyse des Résultats des Tests de Performance](#224-analyse-des-résultats-des-tests-de-performance)
-- [23. Choix effectués](#23-choix-effectués)
-  - [23.1. Node-Red](#231-node-red)
-  - [23.2. MQTT pour les Relevés de Monitoring](#232-mqtt-pour-les-relevés-de-monitoring)
-  - [23.3. Rapport PDF](#233-rapport-pdf)
-  - [23.4. INA219](#234-ina219)
-  - [23.5. Gatling](#235-gatling)
-- [24. Améliorations Futures](#24-améliorations-futures)
-  - [24.1. Amélioration du calcul de la bar de chargement](#241-amélioration-du-calcul-de-la-bar-de-chargement)
-  - [24.2. Base de Données](#242-base-de-données)
-  - [24.3. Utilisation de FlowFuse](#243-utilisation-de-flowfuse)
-  - [24.4. Analyse des Données](#244-analyse-des-données)
-  - [24.5. Tests de Cluster](#245-tests-de-cluster)
-  - [24.6. Intégration de Services Cloud](#246-intégration-de-services-cloud)
-  - [24.7. Sécurité Renforcée](#247-sécurité-renforcée)
-  - [24.8. Intégration de l'Apprentissage Automatique](#248-intégration-de-lapprentissage-automatique)
-  - [24.9. Support Multilingue](#249-support-multilingue)
-  - [24.10. Optimisation d'une distribution Ubuntu](#2410-optimisation-dune-distribution-ubuntu)
-- [25. Licences](#25-licences)
-  - [25.1. Licence Principale du Projet](#251-licence-principale-du-projet)
-  - [25.2. Licences des Dépendances](#252-licences-des-dépendances)
-- [26. Remerciement](#26-remerciement)
-- [27. Sources](#27-sources)
-  - [27.1. Node-RED et Extensions](#271-node-red-et-extensions)
-  - [27.2. Bibliothèques et Outils Externes](#272-bibliothèques-et-outils-externes)
-  - [27.3. Tutoriels et Documentation Technique](#273-tutoriels-et-documentation-technique)
-  - [27.4. Gatling](#274-gatling)
-- [28. Autres Outils et Ressources](#28-autres-outils-et-ressources)
-  - [28.1. Articles de Recherche](#281-articles-de-recherche)
-  - [28.2. Liens externes](#282-liens-externes)
-  - [28.3. OS](#283-os)
+  - [21.6. Résultat](#216-résultat)
+    - [21.6.1. UI](#2161-ui)
+    - [21.6.2. Rapport PDF](#2162-rapport-pdf)
+- [22. Curious T-Rex](#22-curious-t-rex)
+  - [22.1. Installation](#221-installation)
+    - [22.1.1. Utilisation](#2211-utilisation)
+- [23. Problèmes](#23-problèmes)
+  - [23.1. Problème de Détection I2C](#231-problème-de-détection-i2c)
+  - [23.2. Problème de Performance](#232-problème-de-performance)
+    - [23.2.1. Solutions testées :](#2321-solutions-testées-)
+    - [23.2.2. Solutions possibles :](#2322-solutions-possibles-)
+    - [23.2.3. Solution choisie :](#2323-solution-choisie-)
+  - [23.3. Température](#233-température)
+    - [23.3.1. Sans ventilateur](#2331-sans-ventilateur)
+    - [23.3.2. Avec Ventilateur](#2332-avec-ventilateur)
+  - [23.4. Analyse des Résultats des Tests de Performance](#234-analyse-des-résultats-des-tests-de-performance)
+- [24. Choix effectués](#24-choix-effectués)
+  - [24.1. Node-Red](#241-node-red)
+  - [24.2. MQTT pour les Relevés de Monitoring](#242-mqtt-pour-les-relevés-de-monitoring)
+  - [24.3. Rapport PDF](#243-rapport-pdf)
+  - [24.4. INA219](#244-ina219)
+  - [24.5. Gatling](#245-gatling)
+- [25. Améliorations Futures](#25-améliorations-futures)
+  - [25.1. Amélioration du calcul de la bar de chargement](#251-amélioration-du-calcul-de-la-bar-de-chargement)
+  - [25.2. Base de Données](#252-base-de-données)
+  - [25.3. Utilisation de FlowFuse](#253-utilisation-de-flowfuse)
+  - [25.4. Analyse des Données](#254-analyse-des-données)
+  - [25.5. Tests de Cluster](#255-tests-de-cluster)
+  - [25.6. Intégration de Services Cloud](#256-intégration-de-services-cloud)
+  - [25.7. Sécurité Renforcée](#257-sécurité-renforcée)
+  - [25.8. Intégration de l'Apprentissage Automatique](#258-intégration-de-lapprentissage-automatique)
+  - [25.9. Support Multilingue](#259-support-multilingue)
+  - [25.10. Optimisation d'une distribution Ubuntu](#2510-optimisation-dune-distribution-ubuntu)
+- [26. Licences](#26-licences)
+  - [26.1. Licence Principale du Projet](#261-licence-principale-du-projet)
+  - [26.2. Licences des Dépendances](#262-licences-des-dépendances)
+- [27. Remerciement](#27-remerciement)
+- [28. Sources](#28-sources)
+  - [28.1. Node-RED et Extensions](#281-node-red-et-extensions)
+  - [28.2. Bibliothèques et Outils Externes](#282-bibliothèques-et-outils-externes)
+  - [28.3. Tutoriels et Documentation Technique](#283-tutoriels-et-documentation-technique)
+  - [28.4. Gatling](#284-gatling)
+- [29. Autres Outils et Ressources](#29-autres-outils-et-ressources)
+  - [29.1. Articles de Recherche](#291-articles-de-recherche)
+  - [29.2. Liens externes](#292-liens-externes)
+  - [29.3. OS](#293-os)
 
 <div style="page-break-after: always;"></div>
 
@@ -273,7 +277,7 @@ En plus des raspberry il y a ma machine de développement qui se trouve être mo
 
 <br><br><br><br><br>
 <div style="text-align:center;">
-<img src="./LogoOpenSuse.jpg" alt="Image" width="100%" style="width:60%;">
+<img src="../capture/LogoOpenSuse.jpg" alt="Image" width="100%" style="width:60%;">
 </div>
 <div style="page-break-after: always;"></div>
 
@@ -1015,7 +1019,7 @@ import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import scala.concurrent.duration._
 
-class CuriusTRex_Bash extends Simulation {
+class CuriousTRex_Bash extends Simulation {
 
   val httpProtocol = http
     .baseUrl("http://volt.s2.rpn.ch")// Il s'agit de l'adresse du site web
@@ -1053,7 +1057,7 @@ class CuriusTRex_Bash extends Simulation {
     "Upgrade-Insecure-Requests" -> "1"
   )
 
-  val scn = scenario("CuriusTRex")
+  val scn = scenario("CuriousTRex")
     .exec(
       http("request_0")
         .get("/styles.css")
@@ -2005,7 +2009,7 @@ L'exécution d'un test préétabli sur Gatling depuis Node-Red revêt une import
 
 Je lui transmets la commande suivante en entrée :
 ```bash
-tobby@Nidus:~ $ /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s CuriusTRex -bm --run-mode local -erjo " -Dusers=5 -Dramp=5"
+tobby@Nidus:~ $ /home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s CuriousTRex -bm --run-mode local -erjo " -Dusers=5 -Dramp=5"
 ```
 <img src="../capture/RPI/Node-Red/RapportPDF/8.png" alt="Alt text" width="100%" style="width:100%;">
 <img src="../capture/RPI/Node-Red/RapportPDF/8.8.png" alt="Alt text" width="100%" style="width:100%;">
@@ -2023,11 +2027,11 @@ msg.original = msg.payload;
 if (msg.topic !== "inject" && msg.payload.time_gatling !== undefined && msg.payload.user_gatling !== undefined) {
     // Crée la commande en utilisant les valeurs spécifiées
     msg.payload.time = msg.payload.time_gatling * 60;
-    msg.payload = `/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s CuriusTRex -bm --run-mode local -erjo "-Dusers=${msg.payload.user_gatling} -Dramp=${msg.payload.time_gatling}"`;
+    msg.payload = `/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s CuriousTRex -bm --run-mode local -erjo "-Dusers=${msg.payload.user_gatling} -Dramp=${msg.payload.time_gatling}"`;
 } else {
     // Utilise la commande d'origine car il ne s'agit pas d'un noeud inject ou les valeurs ne sont pas fournies
     // Par défaut, utilisez la commande actuelle
-    msg.payload = "/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s CuriusTRex -bm --run-mode local -erjo \" -Dusers=5 -Dramp=5\"";
+    msg.payload = "/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s CuriousTRex -bm --run-mode local -erjo \" -Dusers=5 -Dramp=5\"";
 }
 
 // Renvoie le message modifié
@@ -2042,11 +2046,11 @@ return msg;
 Pour obtenir les informations d'un rapport Gatling, j'ai dû entreprendre une rétro-ingénierie significative. En effet, Gatling ne propose pas de mécanisme direct pour extraire des informations depuis la ligne de commande. Il est nécessaire de collecter les données directement à partir des fichiers générés par Gatling. Voici un exemple de fichier généré par Gatling :
 
 ```log
-RUN	CuriusTRex_Bash	curiustrex-bash	1693898386165	 	3.9.5
-USER	CuriusTRex	START	1693898386953
+RUN	CuriousTRex_Bash	Curioustrex-bash	1693898386165	 	3.9.5
+USER	CuriousTRex	START	1693898386953
 REQUEST		request_0	1693898386949	1693898386985	OK	 
 REQUEST		request_1	1693898387009	1693898387014	OK	 
-USER	CuriusTRex	START	1693898387108
+USER	CuriousTRex	START	1693898387108
 REQUEST		request_0	1693898387107	1693898387128	OK	 
 REQUEST		request_1	1693898387132	1693898387136	OK	 
 REQUEST		styles.css	1693898387162	1693898387167	OK	 
@@ -2127,12 +2131,12 @@ Tout cela se fait à la sortie du nœud exec, lequel renvoie les informations su
 ---- Requests ------------------------------------------------------------------
 [...]
 
----- CuriusTRex ----------------------------------------------------------------
+---- CuriousTRex ----------------------------------------------------------------
 [##########################################################################]100%
           waiting: 0      / active: 0      / done: 150   
 ================================================================================
 
-Simulation CuriusTRex_Bash completed in 29 seconds
+Simulation CuriousTRex_Bash completed in 29 seconds
 Parsing log file(s)...
 Parsing log file(s) done
 Generating reports...
@@ -2148,7 +2152,7 @@ Generating reports...
 ================================================================================
 
 Reports generated in 0s.
-Please open the following file: file:///home/toblerc/T%C3%A9l%C3%A9chargements/gatling-charts-highcharts-bundle-3.9.5/results/curiustrex-bash-20230905090433239/index.html
+Please open the following file: file:///home/toblerc/T%C3%A9l%C3%A9chargements/gatling-charts-highcharts-bundle-3.9.5/results/Curioustrex-bash-20230905090433239/index.html
 ```
 
 <div style="page-break-after: always;"></div>
@@ -2385,7 +2389,7 @@ Dans la version 3, je vais donc m'efforcer de résoudre ces problèmes.
 <div style="page-break-after: always;"></div>
 
 
-# 21. Curius T-Rex V3.0
+# 21. Curious T-Rex V3.0
 
 Après avoir atteint l'étape de la "PoC" (Preuve de Concept), il est temps de passer à la version opérationnelle du projet. À partir de Node-Red, vous avez désormais la capacité d'effectuer les actions suivantes :
 
@@ -2443,7 +2447,7 @@ msg.original = msg.payload;
 if (msg.topic !== "inject" && msg.payload.time !== undefined && msg.payload.user_gatling !== undefined && msg.payload.user_gatling > 0) {
         // Crée la commande en utilisant les valeurs spécifiées
     msg.payload.time = msg.payload.time * 60;
-    msg.payload = `/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s CuriusTRex -bm --run-mode local -erjo "-Dusers=${msg.payload.user_gatling} -Dramp=${msg.payload.time} -Xms2G -Xmx4G" | tail -1`;
+    msg.payload = `/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s CuriousTRex -bm --run-mode local -erjo "-Dusers=${msg.payload.user_gatling} -Dramp=${msg.payload.time} -Xms2G -Xmx4G" | tail -1`;
     } else {
         return null;
     }
@@ -2525,7 +2529,7 @@ msg.original = msg.payload;
 if (msg.topic !== "inject" && msg.payload.time !== undefined && msg.payload.user_gatling !== undefined && msg.payload.user_gatling > 0) {
         // Crée la commande en utilisant les valeurs spécifiées
     msg.payload.time = msg.payload.time * 60;
-    msg.payload = `/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s CuriusTRex -bm --run-mode local -erjo "-Dusers=${msg.payload.user_gatling} -Dramp=${msg.payload.time} -Xms2G -Xmx4G" | tail -1`;
+    msg.payload = `/home/tobby/.gatling/gatling-charts-highcharts-bundle-3.9.5/bin/gatling.sh -s CuriousTRex -bm --run-mode local -erjo "-Dusers=${msg.payload.user_gatling} -Dramp=${msg.payload.time} -Xms2G -Xmx4G" | tail -1`;
     } else {
         return null;
     }
@@ -2536,21 +2540,317 @@ Grâce à l'optimisation que j'ai réalisée plus tôt, une situation innatendu 
 
 <div style="page-break-after: always;"></div>
 
-## Résultat
+## 21.6. Résultat
 Au terme de cette version 3.0, j'ai atteint tous les objectifs que je m'étais fixés. Le système est désormais capable de générer un rapport PDF à partir de données de monitoring et de Gatling. Il est également possible d'exporter les données au format JSON et de les réimporter pour générer un rapport PDF.
 Qui plus est, les performances du système ont été améliorées grâce à l'optimisation du code et à la séparation des flux de données.
 Les graphique sont plus lisibles et les données sont mieux organisées dans le rapport PDF.
 
+### 21.6.1. UI
+<div align="center">
+<img src="../capture/RPI/Manuel/Interface1.png" alt="Image 3" width="100%" style="width:80%;">
+</div>
+<div align="center">
+<img src="../capture/RPI/Manuel/Interface2.png" alt="Image 3" width="100%" style="width:80%;">
+</div>
 
 <div style="page-break-after: always;"></div>
 
-# Curius T-Rex V4.0
+### 21.6.2. Rapport PDF
+Malgré que toutes les donnée étais présente dans le rapport PDF, après l'entretient du suivi de projet, il a été soulevé certains points qui posait problèmeme, en effet donnée n'étais pas très bien allignée et laissée sans explication, j'ai donc décidé de revoir la mise en page du rapport PDF. J'ai également rajoutée la consommation moyenne d'une requête Gatling, ce calcul à été réalisée en faisant un très long test sans aucune charge de travail et en déduisant la consommation moyenne d'une requête Gatling.
+<div align="center">
+<img src="../capture/RPI/Manuel/PDF1.png" alt="Image 3" width="100%" style="width:100%;">
+</div>
+<div align="center">
+<img src="../capture/RPI/Manuel/PDF2.png" alt="Image 3" width="100%" style="width:100%;">
+</div>
+<div align="center">
+<img src="../capture/RPI/Manuel/PDF3.png" alt="Image 3" width="100%" style="width:100%;">
+</div>
 
 
-# 22. Problèmes
+
+<div style="page-break-after: always;"></div>
+
+# 22. Curious T-Rex
+Pour pouvoir faciliter la prise en main du projet, il fallais une méthode rapide pour installer Nidus, donc j'ai réalisé un script d'installation qui permet d'installer Nidus en une seule commande.
+
+## 22.1. Installation
+Voici le script d'installation, il est volontairement plus court que celui présent sur [git](https://mylos.cifom.ch/gitlab/ToblerC/banc-de-mesures-de-la-consommation-electrique/-/blob/main/scripts/install.sh), pour des raisons de lisibilité :
+
+```bash
+#!/bin/bash
+
+# Nom d'utilisateur et répertoire d'utilisation
+user="tobby"
+user_home="/home/$user"
+
+# Fonction pour exécuter une commande en silence (redirection de la sortie)
+run_command_silently() {
+    "$@" > /dev/null 2>&1
+    return $?
+}
+# Changement du nom d'hôte en Nidus
+hostnamectl set-hostname Nidus
+
+# Mise à jour de Node.js et installation de Node-Red
+bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered) --confirm-install --confirm-root --confirm-pi --no-init
+if [ $? -eq 0 ]; then
+   echo "Node.js et Node-Red installés avec succès."
+else
+   echo "Erreur lors de l'installation de Node.js et Node-Red."
+   exit 1
+fi
+
+# Instalation de Git
+run_command_silently sudo apt install git -y
+if [ $? -eq 0 ]; then
+    echo "Git installé avec succès."
+else
+    echo "Erreur lors de l'installation de Git."
+fi
+
+# Activation des services du Raspberry Pi OS nécessaires pour le projet
+sudo systemctl enable ssh
+if [ $? -eq 0 ]; then
+    echo "Service SSH activé avec succès."
+else
+    echo "Erreur lors de l'activation du service SSH."
+fi
+sudo raspi-config nonint do_i2c 0
+
+# Création des clés SSH si elles n'existent pas déjà
+if [ ! -f $user_home/.ssh/id_rsa ]; then
+    sudo -u $user ssh-keygen -t rsa -b 2048 -f $user_home/.ssh/id_rsa -N ""
+    if [ $? -eq 0 ]; then
+        echo "Clés SSH créées avec succès."
+    else
+        echo "Erreur lors de la création des clés SSH."
+    fi
+else
+    echo "Les clés SSH existent déjà, aucune action requise."
+fi
+
+# Installation de Java JDK
+run_command_silently sudo apt install default-jdk -y
+if [ $? -eq 0 ]; then
+    echo "Java JDK installé avec succès."
+else
+    echo "Erreur lors de l'installation de Java JDK."
+fi
+
+# Création du répertoire .gatling
+sudo mkdir $user_home/.gatling
+if [ $? -eq 0 ]; then
+    echo "Répertoire .gatling créé avec succès."
+else
+    echo "Erreur lors de la création du répertoire .gatling."
+fi
+
+# Téléchargement de Gatling
+run_command_silently sudo wget -O $user_home/.gatling/gatling-charts-highcharts-bundle-3.9.5-bundle.zip https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/3.9.5/gatling-charts-highcharts-bundle-3.9.5-bundle.zip
+if [ $? -eq 0 ]; then
+    echo "Gatling téléchargé avec succès."
+else
+    echo "Erreur lors du téléchargement de Gatling."
+fi
+
+# Extraction de Gatling
+run_command_silently sudo unzip $user_home/.gatling/gatling-charts-highcharts-bundle-3.9.5-bundle.zip -d $user_home/.gatling/
+if [ $? -eq 0 ]; then
+    echo "Gatling extrait avec succès."
+else
+    echo "Erreur lors de l'extraction de Gatling."
+fi
+
+# Installation de Mosquitto
+run_command_silently sudo apt install mosquitto -y
+if [ $? -eq 0 ]; then
+    echo "Mosquitto installé avec succès."
+else
+    echo "Erreur lors de l'installation de Mosquitto."
+fi
+
+# Configuration de Mosquitto
+sudo tee /etc/mosquitto/mosquitto.conf > /dev/null <<EOL
+listener 1883
+allow_anonymous true
+EOL
+
+# Redémarrage de Mosquitto pour appliquer la configuration
+sudo service mosquitto restart
+if [ $? -eq 0 ]; then
+    echo "Mosquitto redémarré avec succès."
+else
+    echo "Erreur lors du redémarrage de Mosquitto."
+fi
+
+# Activation du service Mosquitto
+systemctl enable mosquitto
+if [ $? -eq 0 ]; then
+    echo "Service Mosquitto activé avec succès."
+else
+    echo "Erreur lors de l'activation du service Mosquitto."
+fi
+
+# Acfivation du service Node-Red
+sudo systemctl enable nodered.service
+if [ $? -eq 0 ]; then
+    echo "Service Node-Red activé avec succès."
+else
+    echo "Erreur lors de l'activation du service Node-Red."
+fi
+
+# Installation des dépendances de Node-Red
+sudo npm install -g --unsafe-perm node-red --no-audit --no-update-notifier --no-fund --save --save-prefix=~ --omit=dev --engine-strict @node-red-contrib-themes/theme-collection
+
+sudo npm install -g --unsafe-perm node-red --no-audit --no-update-notifier --no-fund --save --save-prefix=~ --omit=dev --engine-strict node-red-dashboard@3.6.0
+
+sudo npm install -g --unsafe-perm node-red --no-audit --no-update-notifier --no-fund --save --save-prefix=~ --omit=dev --engine-strict node-red-contrib-pdfmake2@2.0.0
+
+sudo npm install -g --unsafe-perm node-red --no-audit --no-update-notifier --no-fund --save --save-prefix=~ --omit=dev --engine-strict node-red-contrib-mqtt-plus@0.0.7
+
+sudo npm install -g --unsafe-perm node-red --no-audit --no-update-notifier --no-fund --save --save-prefix=~ --omit=dev --engine-strict node-red-contrib-fs@1.4.1
+
+sudo npm install -g --unsafe-perm node-red --no-audit --no-update-notifier --no-fund --save --save-prefix=~ --omit=dev --engine-strict node-red-contrib-easybotics-ina219-sensor@0.7.6
+
+run_command_silently sudo apt-get install libcairo2-dev libjpeg-dev libgif-dev build-essential g++ -y
+
+run_command_silently sudo apt-get install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev -y
+
+run_command_silently sudo apt-get install libpixman-1-dev libxcb-composite0-dev -y
+
+sudo npm install -g --unsafe-perm node-red --no-audit --no-update-notifier --no-fund --save --save-prefix=~ --omit=dev --engine-strict node-red-contrib-chart-image
+
+sudo npm install -g --unsafe-perm node-red --no-audit --no-update-notifier --no-fund --save --save-prefix=~ --omit=dev --engine-strict node-red-node-base64
+
+# Écho pour indiquer la fin du script
+echo "Installation de Gatling, Mosquitto, Node-Red et ses dépendances terminée."
+echo "Initialisation de Node-Red..."
+node-red admin init
+echo "Redémarrage de Node-Red..."
+sudo systemctl restart nodered.service
+echo "Installation terminée."
+echo "Vous pouvez maintenant vous connecter à Node-Red à l'adresse suivante : http://localhost:1880"
+
+```
+
+<div style="page-break-after: always;"></div>
+
+Ce script automatisé a pour objectif de simplifier l'installation de Gatling, Mosquitto, Node-Red et leurs dépendances dans le contexte du projet. Voici les principales étapes :
+
+1. **Changement du nom d'hôte :** Le script modifie le nom d'hôte du système en "Nidus".
+
+2. **Mise à jour de Node.js et installation de Node-Red :** Node.js est mis à jour, et Node-Red est installé via un script externe.
+
+3. **Installation de Git :** Git est installé pour la gestion du code source.
+
+4. **Activation des services nécessaires :** Les services SSH et Mosquitto sont activés pour la communication.
+
+5. **Création des clés SSH :** Des clés SSH sont générées si elles n'existent pas déjà.
+
+6. **Installation de Java JDK :** Java JDK est installé pour les besoins du projet.
+
+7. **Création du répertoire .gatling :** Un répertoire .gatling est créé pour Gatling.
+
+8. **Téléchargement de Gatling :** Gatling est téléchargé depuis un dépôt Maven.
+
+9. **Extraction de Gatling :** Le fichier Gatling est extrait dans le répertoire .gatling.
+
+10. **Installation de Mosquitto :** Mosquitto, un serveur MQTT, est installé.
+
+11. **Configuration de Mosquitto :** La configuration de Mosquitto est adaptée pour permettre une communication anonyme.
+
+12. **Redémarrage de Mosquitto :** Mosquitto est redémarré pour appliquer la nouvelle configuration.
+
+13. **Activation du service Mosquitto :** Le service Mosquitto est activé pour un démarrage automatique.
+
+14. **Activation du service Node-Red :** Le service Node-Red est activé pour un démarrage automatique.
+
+15. **Installation des dépendances de Node-Red :** Plusieurs dépendances essentielles pour Node-Red sont installées, y compris les thèmes, le dashboard, pdfmake2, mqtt-plus, fs, INA219 sensor, chart image et base64.
+
+16. **Finalisation de l'installation :** Le script termine en initialisant Node-Red et en redémarrant le service pour que les modifications prennent effet.
+
+Ces étapes permettent de préparer l'environnement nécessaire à notre projet, en installant les outils et services requis. Une fois le script exécuté avec succès, vous pourrez accéder à Node-Red via l'adresse [http://localhost:1880](http://localhost:1880).
+
+<div style="page-break-after: always;"></div>
+
+### 22.1.1. Utilisation
+Pour utiliser le script, il faut d'abord installer le Raspberry Pi OS sur une carte SD. 
+<div align="center">
+<img src="../capture/RPI/Manuel/Imager1.png" alt="Image 3" width="100%" style="width:70%;">
+</div>
+
+<div align="center">
+<img src="../capture/RPI/Manuel/Imager2.png" alt="Image 3" width="80%" style="width:50%;">
+</div>
+
+<div style="page-break-after: always;"></div>
+
+Comme on peut le voir précédemment, il faut sélectionner le fichier image du Raspberry Pi OS, puis la carte SD sur laquelle on veut l'installer.puis dans la configuration, nous allons lui donner tous les paramètres nécessaires pour qu'il puisse se connecter au réseau et que nous puissions nous connecter à lui via SSH :
+- Nom d'hôte : Nidus
+- Activation du SSH avec la clé SSH publique
+- Utilisateur de base
+- Les variable locales :
+  - Timezone : Europe/Zurich
+  - Keyboard : French (Switzerland) => CH
+
+Une fois que le Raspberry Pi OS est installé, il faut le démarrer et se connecter en SSH. Pour cela, il faut utiliser la commande suivante :
+```bash
+toblerc@LPT-UNIX-USB-CT:~$ ssh tobby@Nidus
+```
+Pour simplifier le déployement du script, nous alors simplement copier coller le script dans le terminal SSH, puis l'exécuter :
+```bash
+tobby@Nidus:~ $ sudo vi ./install.sh
+tobby@Nidus:~ $ sudo chmod +x ./install.sh 
+tobby@Nidus:~ $ bash ./install.sh
+```
+Attention car à la fin du script, il vas être demandé de remplir les paramêtre de Node-Red, et voici donc les paramètres à entrer :
+
+#TODO
+
+Une fois que le script est terminé, il est recommandé de redémarrer le Raspberry Pi pour que les modifications prennent effet. Pour cela, il suffit d'utiliser la commande suivante :
+```bash
+tobby@Nidus:~ $ sudo reboot
+```
+
+<div style="page-break-after: always;"></div>
+
+Maintenant, Node-Red est disponible et il faut donc connecter à Git pour pouvoir récupérer le code source du projet. Heureusement comme c'est nôtre premier démarrage, Node-Red nous propose de le faire directement depuis l'interface web. Il suffit donc de cliquer sur le bouton cloner un referentiel Git, puis de remplir les champs comme ci-dessous :
+<div align="center">
+<img src="../capture/RPI/Manuel/Project1.png" alt="Image 3" width="100%" style="width:80%;">
+</div>
+<div align="center">
+<img src="../capture/RPI/Manuel/Project2.png" alt="Image 3" width="100%" style="width:80%;">
+</div>
+<div align="center">
+<img src="../capture/RPI/Manuel/Project3.png" alt="Image 3" width="100%" style="width:80%;">
+</div>
+
+<div style="page-break-after: always;"></div>
+
+Nous voyons maintenant que les flux sont disponibles dans Node-Red, il est maintenant temps de vérifier que tout fonctionne correctement. Pour cela, il faut se rendre sur la page de monitoring et vérifier que les données sont bien collectées.
+<div align="center">
+<img src="../capture/RPI/Manuel/Project4.png" alt="Image 3" width="100%" style="width:80%;">
+</div>
+Evidemment ce n'est pas encore le cas car il faudrais encore pour cela que les clé SSH entre les Raspberry Pi soit échangées, et que le script MQTT soit installé sur Nidus mais dés à présent nous pouvons déja voir que les données de Volt sont déja affiché.
+
+<div align="center">
+<img src="../capture/RPI/Manuel/Project5.png" alt="Image 5" width="100%" style="width:90%;">
+</div>
+<div align="center">
+<img src="../capture/RPI/Manuel/Project6.png" alt="Image 3" width="100%" style="width:25%;">
+</div>
+
+
+<div style="page-break-after: always;"></div>
+
+
+
+
+# 23. Problèmes
 Comme dans tout projet, j'ai rencontré des problèmes lors de la réalisation de ce projet. Certains ont été résolus, d'autres non. Dans cette section, je vais décrire les problèmes rencontrés et les solutions que j'ai trouvées.
 
-## 22.1. Problème de Détection I2C
+## 23.1. Problème de Détection I2C
 
 Lors de l'installation de l'INA219, l'une des premières étapes consiste à vérifier si le Raspberry Pi détecte correctement le module. Pour ce faire, il faut utiliser la commande `sudo i2cdetect -y 1`, qui permet de répertorier les modules I2C connectés au Raspberry Pi. Cependant, lors de mes tests, j'ai rencontré des difficultés pour détecter l'INA219. J'ai donc entrepris une série de tests avec l'aide précieuse de M. Singelé afin de déterminer la cause du problème.
 
@@ -2602,7 +2902,7 @@ Une fois que la puce a été détectée, j'ai entrepris une réinstallation minu
 
 <div style="page-break-after: always;"></div>
 
-## 22.2. Problème de Performance
+## 23.2. Problème de Performance
 
 Lors de la troisième itération du projet, un problème significatif s'est manifesté. Jusqu'à présent, mes tests avec Gatling étaient relativement courts, d'une durée de moins de 20 minutes et avec un seul utilisateur. Cependant, lors de mon premier test avec 5 utilisateurs pendant 30 minutes, une erreur de mémoire insuffisante est survenue.
 
@@ -2613,14 +2913,14 @@ Pour récupérer les informations de Gatling, j'extrayais les données des fichi
 Cependant, bien que cela permette de lancer des tests plus imposants, cela ne résout pas entièrement le problème de mémoire pour des tests de charges plus longs avec de nombreux utilisateurs. Il est important de noter que le Raspberry Pi 4 n'est pas un serveur capable de gérer des tests de charges massifs.
 
 
-### 22.2.1. Solutions testées :
+### 23.2.1. Solutions testées :
 - Traitement des données séparément au lieu de les regrouper en un seul flux.
 - Traitement précoce des données dans le flux pour éviter le stockage excessif de données.
 
-### 22.2.2. Solutions possibles :
+### 23.2.2. Solutions possibles :
 - Externalisation de Node-Red sur un serveur plus puissant pour améliorer les performances.
 
-### 22.2.3. Solution choisie :
+### 23.2.3. Solution choisie :
 En traitant les informations plus tôt dans le flux et en évitant de joindre les flux inutilement, j'ai pu réduire la consommation de mémoire et ainsi éviter les problèmes de performances. Cependant, il est essentiel de noter que, malgré ces améliorations, je ne peux pas réaliser des tests de charge avec de nombreux utilisateurs sur de longues périodes.
 
 J'ai réussi à réaliser des tests avec 10 utilisateurs effectuant 6 requêtes par seconde pendant 5 minutes, ou un test d'une heure avec un seul utilisateur.
@@ -2630,14 +2930,12 @@ Il est important de maintenir des attentes réalistes : le Raspberry Pi 4 n'est 
 En terme de chiffre, j'ai conclu que le Raspberry Pi 4 peut gérer un test avec 10 utilisateurs pendant 5 minutes, mais à ce points nous touchons les limites du Raspberry Pi 4.
 Après de nombreaux test j'ai réàlisée que la limite actuelle est chiffrable, en effet il faut se fier à cette equation :
 
-$
-nbUsers * nbRequestsPerSecond * testDuration \leq 300
-$
+nbUsers * nbRequestsPerSecond * testDuration < 300 
 
 
 <div style="page-break-after: always;"></div> 
 
-## 22.3. Température
+## 23.3. Température
 Les Raspberry Pi sont connus pour leur tendance à surchauffer. C'est pourquoi il est important de prendre des mesures pour éviter la surchauffe. 
 
 Dans un premier temps la solution abordée dès le départ fut de greffer Nidus et Volt de radiateur afin de dissiper la chaleur. Cependant, cette solution n'était pas suffisante pour éviter la surchauffe. J'ai donc décidé d'ajouter un ventilateur de bureau pour aider à dissiper la chaleur.
@@ -2652,17 +2950,17 @@ Et après plusieurs test j'ai pu comparer les résultats avec et sans ventilateu
 
 <div style="page-break-after: always;"></div> 
 
-### 22.3.1. Sans ventilateur
+### 23.3.1. Sans ventilateur
 <img src="../capture/RPI/Temp/NidusHot.png" alt="Alt text" width="100%" style="width:100%;">
 
 <div style="page-break-after: always;"></div> 
 
-### 22.3.2. Avec Ventilateur
+### 23.3.2. Avec Ventilateur
 <img src="../capture/RPI/Temp/NidusCold.png" alt="Alt text" width="100%" style="width:100%;">
 
 <div style="page-break-after: always;"></div>
 
-## 22.4. Analyse des Résultats des Tests de Performance
+## 23.4. Analyse des Résultats des Tests de Performance
 
 Dans un souci de fournir des résultats impartiaux, il est important de noter certaines observations lors des tests de performance avec et sans ventilateur. Ces observations visent à contextualiser les résultats et à en expliquer les variations.
 
@@ -2676,25 +2974,25 @@ Il est important de noter que ces tests ont été réalisés pendant une périod
 <div style="page-break-after: always;"></div>
 
 
-# 23. Choix effectués
+# 24. Choix effectués
 Dans cette section, je vais détailler les choix que j'ai effectués pour chaque composant et technologie utilisée dans le cadre de ce projet. Il est important de noter que les options que j'ai choisies correspondent à celles que j'ai spécifiées au début du projet, sauf mention contraire. Voici un aperçu de ces choix :
 
-## 23.1. Node-Red
+## 24.1. Node-Red
 
 **Node-Red** a été sélectionné comme principal outil de développement pour plusieurs raisons. Tout d'abord, il offre une interface visuelle conviviale pour la création de flux de données et d'automatisations, ce qui le rend accessible même pour ceux qui n'ont pas de compétences avancées en programmation. De plus, Node-Red dispose d'une vaste bibliothèque de nœuds (nodes) préconçus, ce qui accélère considérablement le processus de développement. Enfin, il est compatible avec les protocoles MQTT et SSH, ce qui le rend idéal pour notre application.
 
-## 23.2. MQTT pour les Relevés de Monitoring
+## 24.2. MQTT pour les Relevés de Monitoring
 
 Le **protocole MQTT** a été retenu pour la communication entre les dispositifs IoT et le serveur central pour les relevés de monitoring. Cela est dû à sa légèreté, à son efficacité dans la gestion de nombreuses connexions simultanées et à sa prise en charge par Node-Red. Il offre également une flexibilité pour la mise en œuvre de stratégies de publication/abonnement, ce qui est essentiel pour notre application de suivi de la consommation énergétique.
 
-## 23.3. Rapport PDF
+## 24.3. Rapport PDF
 
 Le choix entre un **rapport PDF** et un **rapport HTML** c'est surtout fais pour la portabilité et la facilité de lecture. En effet, un rapport PDF est plus facile à lire et à partager qu'un rapport HTML. A terme, il est possible grâce à la flexibilité de Node-Red de générer un rapport HTML, mais pour l'instant, le rapport PDF est plus adapté à notre application.
-## 23.4. INA219
+## 24.4. INA219
 
 L'instrumentation pour la mesure de la consommation électrique a été un choix crucial. J'ai opté pour l'utilisation de **l'INA219** en raison de sa précision dans la mesure des tensions et courants, ainsi que de sa compatibilité avec les Raspberry Pi. Cependant, la prise de décision a été facilitée par le fait que l'INA219 répondait parfaitement aux exigences de notre projet.
 
-## 23.5. Gatling
+## 24.5. Gatling
 
 Pour les tests de charge et de performance, **Gatling** a été choisi. Cet outil a été privilégié pour sa simplicité d'utilisation, sa capacité à générer des charges réalistes et sa compatibilité avec Node-Red pour l'automatisation des tests. Bien que **JMeter** soit un outil bien établi dans ce domaine, Gatling s'est révélé plus adapté à nos besoins spécifiques en termes de flexibilité et de génération de rapports.
 
@@ -2702,7 +3000,7 @@ Ces choix ont été soigneusement réfléchis et correspondent aux besoins et au
 
 <div style="page-break-after: always;"></div>
 
-# 24. Améliorations Futures
+# 25. Améliorations Futures
 
 Dès les premiers prémices de ce projet, il a toujours été clair pour toutes les parties prenantes que l'objectif n'était pas de limiter ce produit à une utilisation personnelle. Au contraire, l'idéal serait de fournir un outil Open-Source que les développeurs pourraient utiliser, contribuer et améliorer. Dans cette section, je vais détailler les améliorations que je souhaite apporter à ce projet après la période de mon travail de diplôme.
 
@@ -2710,53 +3008,53 @@ Le travail de diplôme est limité à une durée fixe de 6 semaines, mais après
 
 Personnellement, je crois qu'à notre époque, l'optimisation des ressources pour des raisons de performance est souvent mise en avant, mais l'optimisation de la consommation d'énergie est négligée. C'est pourquoi je pense que ce projet a un grand potentiel pour devenir un outil de référence pour les développeurs, en mettant l'accent sur l'efficacité énergétique.
 
-## 24.1. Amélioration du calcul de la bar de chargement
+## 25.1. Amélioration du calcul de la bar de chargement
 Actuellement, la barre de chargement est calculé par rapport au temps défini par l'utilisateur lors de la création du test. Cependant, il serait plus intéressant de calculer la barre de chargement par rapport au temps de la simulation Gatling. Cela permettrait d'avoir une barre de chargement plus précise et plus réaliste.
 
-## 24.2. Base de Données
+## 25.2. Base de Données
 L'ajout d'une base de données permettrait de stocker les données de monitoring et de Gatling. Cela aurait plusieurs avantages, notamment la conservation d'un historique des données pour des analyses futures. De plus, cela réduirait la charge de travail de Node-Red, car les données seraient stockées dans une base de données plutôt que dans des fichiers.
 
-## 24.3. Utilisation de FlowFuse
+## 25.3. Utilisation de FlowFuse
 L'adoption de FlowFuse offrirait une solution pour dépasser les limitations en termes de puissance de calcul et de mémoire du Raspberry Pi. Cela permettrait également de réduire la charge de travail, notamment lors de la création de rapports, en offrant des ressources supplémentaires pour traiter les données.
 
-## 24.4. Analyse des Données
+## 25.4. Analyse des Données
 Faire appel à des experts en analyse de données et en création de rapports améliorerait la précision et la qualité des rapports générés. Cela rendrait également les rapports plus professionnels, ce qui serait essentiel pour des utilisations en entreprise.
 
 <div style="page-break-after: always;"></div>
 
-## 24.5. Tests de Cluster
+## 25.5. Tests de Cluster
 À terme, il serait extrêmement intéressant de pouvoir tester un cluster de Raspberry Pi. Cela permettrait notamment de répartir la charge des serveurs, par exemple un pour le serveur web, un pour la base de données, un pour le proxy et un pour le load balancer. De telles expériences permettraient de tester la scalabilité de l'application et sa capacité à gérer des charges plus importantes.
 
 De plus, avec la possibilité de tester un cluster de Raspberry Pi, il serait également envisageable de tester des clusters Kubernetes pour évaluer si l'application est capable de gérer un environnement de conteneurs orchestrateurs.
 
-## 24.6. Intégration de Services Cloud
+## 25.6. Intégration de Services Cloud
 Permettre l'intégration avec des services cloud populaires tels que AWS, Azure ou Google Cloud pour le stockage des données et l'analyse avancée.
 
-## 24.7. Sécurité Renforcée
+## 25.7. Sécurité Renforcée
 Renforcer la sécurité de l'ensemble du système, en mettant en place des mécanismes de chiffrement des données, d'authentification forte et de protection contre les vulnérabilités.
 
-## 24.8. Intégration de l'Apprentissage Automatique
+## 25.8. Intégration de l'Apprentissage Automatique
 Explorer l'intégration de l'apprentissage automatique pour l'analyse prédictive des données, ce qui pourrait permettre de détecter des tendances et des anomalies.
 
-## 24.9. Support Multilingue
+## 25.9. Support Multilingue
 Ajouter la prise en charge de plusieurs langues pour rendre l'application accessible à un public international.
 
-## 24.10. Optimisation d'une distribution Ubuntu
+## 25.10. Optimisation d'une distribution Ubuntu
 Fournir une distribution Ubuntu optimisée au maximum, n'ayant que le strict minimum en termes de service et de logiciel. Cela permettrait de réduire la consommation de ressources et de faciliter le développement. Cette optimisation permettrait notamment de réduire les biais de performance liés à l'OS et de pouvoir comparer les performances plus en détail.
 
 <div style="page-break-after: always;"></div> 
 
-# 25. Licences
+# 26. Licences
 
 Ce chapitre présente les licences associées à ce projet, y compris la licence principale du projet, la GPL V3.0, ainsi que les licences des dépendances utilisées.
 
-## 25.1. Licence Principale du Projet
+## 26.1. Licence Principale du Projet
 
 Le projet principal est sous licence **GNU General Public License Version 3.0 (GPL-3.0)**. Cette licence open source garantit les droits de l'utilisateur à exécuter, étudier, modifier et redistribuer le logiciel.
 
 Pour plus de détails sur la licence **GPL V3.0**, voici [le texte complet de la licence](https://www.gnu.org/licenses/gpl-3.0.html).
 
-## 25.2. Licences des Dépendances
+## 26.2. Licences des Dépendances
 
 Le projet utilise plusieurs dépendances, chacune étant sous une licence spécifique. Voici un aperçu des licences des dépendances :
 
@@ -2784,7 +3082,7 @@ Le projet utilise plusieurs dépendances, chacune étant sous une licence spéci
 
 <div style="page-break-after: always;"></div>
 
-# 26. Remerciement 
+# 27. Remerciement 
 Je tiens à exprimer ma profonde gratitude envers les personnes qui ont joué des rôles essentiels dans la réalisation de ce projet. Avant tout, je souhaite exprimer ma sincère reconnaissance à M. Benoit Vianin, dont la proposition du projet, le matériel fourni et les conseils avisés ont été cruciaux pour sa mise en place. Sa précieuse assistance technique a été d'une grande importance.
 
 Je tiens également à adresser mes remerciements à M. Fabien Maire, Directeur du service Informatique du SIS2 (Service Informatique du Secondaire 2), pour son accompagnement et ses conseils tout au long de ce travail. Sa vision éclairée et son expertise ont été des facteurs clés dans la réussite de ce projet.
@@ -2807,9 +3105,9 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 <div style="page-break-after: always;"></div> 
 
 
-# 27. Sources
+# 28. Sources
 
-## 27.1. Node-RED et Extensions
+## 28.1. Node-RED et Extensions
 
 1. [**Guide d'Installation Node-Red, Version: 18.17.1, Licence: Apache-2.0**](https://nodered.org/docs/getting-started/raspberrypi)
    > Guide officiel pour installer Node-Red sur Raspberry Pi.
@@ -2835,7 +3133,7 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 8. [**Chart Image Node-Red, Version: 1.2.0,Licence: BSD-2-Clause**](https://flows.nodered.org/node/node-red-contrib-chart-image)
    > Extension pour créer des graphiques dans Node-Red.
 
-## 27.2. Bibliothèques et Outils Externes
+## 28.2. Bibliothèques et Outils Externes
 
 9. [**Chart.js, Version: 4.4.0, Licence: MIT**](https://www.chartjs.org/)
    > Bibliothèque JavaScript pour créer des graphiques interactifs.
@@ -2853,7 +3151,7 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 
 <div style="page-break-after: always;"></div> 
 
-## 27.3. Tutoriels et Documentation Technique
+## 28.3. Tutoriels et Documentation Technique
 
 14. [**Tutoriel de Base Rototron**](https://www.rototron.info/raspberry-pi-ina219-tutorial/)
     > Tutoriel de base pour utiliser l'INA219 avec Raspberry Pi.
@@ -2878,7 +3176,7 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 
 21. [**Documentation matérielle du Raspberry Pi 4**](https://www.raspberrypi.org/documentation/hardware/raspberrypi/README.md)
     > Documentation matérielle officielle du Raspberry Pi 4.
-## 27.4. Gatling
+## 28.4. Gatling
 
 22. [**Téléchargement Gatling, Verion 3.9.5, Licence : Apache-2.0**](https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/3.9.5/gatling-charts-highcharts-bundle-3.9.5-bundle.zip)
     > Lien de téléchargement de l'outil Gatling pour la performance des applications.
@@ -2889,7 +3187,7 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 24. [**Tutoriel de Démarrage Rapide Gatling**](https://gatling.io/docs/gatling/tutorials/quickstart/)
     > Tutoriel rapide pour commencer à utiliser Gatling.
 
-# 28. Autres Outils et Ressources
+# 29. Autres Outils et Ressources
 
 25. [**Tutoriel sur l'utilisation de S1seven**](https://www.s1seven.com/blog/use-s1sevens-certificate-tools-to-convert-a-json-certificate-to-a-pdf/)
     > Tutoriel pour utiliser les outils de conversion de certificat JSON en PDF (n'est pas utilisée).
@@ -2899,7 +3197,7 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 
 <div style="page-break-after: always;"></div> 
 
-## 28.1. Articles de Recherche
+## 29.1. Articles de Recherche
 
 27. [**Yewan Wang, David Nörtershäuser, Stéphane Masson, Jean-Marc Menaud. Etude de l’influence de la température du processeur sur la consommation des serveurs. ComPAS 2018 - Conférence.d’informatique en Parallélisme, Architecture et Système, Jul 2018, Toulouse, France. pp.1-8.**](https://imt-atlantique.hal.science/hal-01807805/)
     > Article de recherche sur l'influence de la température du processeur sur la consommation des serveurs.
@@ -2910,7 +3208,7 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 29. [**Profil de Consommation par M. Pol J. Planas Pulido**](https://upcommons.upc.edu/bitstream/handle/2117/180533/tfg-report-pol-planas.pdf?sequence=1&isAllowed=y)
     > Recherche sur le profil de consommation avec INA219.
 
-## 28.2. Liens externes
+## 29.2. Liens externes
 
 30. [**MicroChip AVR**](https://www.microchip.com/en-us/development-tool/ac164160)
     > Puce de développement Microchip AVR.
@@ -2920,10 +3218,10 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
     > Cluster fais de plaque de pleixglass avec intercalaire
 33. [**Index des Licences Utilisées**](https://opensource.org/licenses/alphabetical)
     > Index des licences open source.
-## 28.3. OS
-34. [**Raspberry Pi OS**](https://www.raspberrypi.org/software/)
+## 29.3. OS
+34. [**Raspberry Pi OS, Version 2023-05-03, Licence : GNU GPL**](https://www.raspberrypi.org/software/)
     > Système d'exploitation officiel du Raspberry Pi.
-35. [**Ubuntu Server**](https://ubuntu.com/download/server)
+35. [**Ubuntu Server, Version 23.04, Licence : GNU GPL**](https://ubuntu.com/download/server)
     > Système d'exploitation Ubuntu Server.
 
 
