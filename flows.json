@@ -4868,8 +4868,7 @@
             "41aa33d6cb459a40",
             "96a8020826f4562b",
             "c89add291df1506b",
-            "49896466c0e53f77",
-            "b163b8b1f5f05f1b"
+            "49896466c0e53f77"
         ],
         "x": 255,
         "y": 800,
@@ -12765,11 +12764,11 @@
             "d71ca3e7d62a8a8e",
             "e0ddb30c3e6fd14f"
         ],
-        "x": 395,
-        "y": 460,
+        "x": 205,
+        "y": 480,
         "wires": [
             [
-                "02ee582104162e71"
+                "e8b8bbda9263c251"
             ]
         ]
     },
@@ -12803,7 +12802,7 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 510,
+        "x": 520,
         "y": 460,
         "wires": [
             [
@@ -12922,8 +12921,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 690,
-        "y": 460,
+        "x": 750,
+        "y": 480,
         "wires": [
             [
                 "1b8b1c4702e84221"
@@ -12938,8 +12937,8 @@
         "property": "payload",
         "action": "str",
         "pretty": false,
-        "x": 850,
-        "y": 460,
+        "x": 890,
+        "y": 480,
         "wires": [
             [
                 "628830ca862fbbf2"
@@ -12957,8 +12956,8 @@
         "createDir": true,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 1020,
-        "y": 460,
+        "x": 1060,
+        "y": 480,
         "wires": [
             []
         ]
@@ -14008,6 +14007,63 @@
         "wires": [
             [
                 "0278807ed305654d"
+            ]
+        ]
+    },
+    {
+        "id": "3482a308d6a5b9ac",
+        "type": "join",
+        "z": "2305a910a579de42",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "3",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 520,
+        "y": 500,
+        "wires": [
+            [
+                "66977ed0b8d2a464"
+            ]
+        ]
+    },
+    {
+        "id": "e8b8bbda9263c251",
+        "type": "switch",
+        "z": "2305a910a579de42",
+        "name": "",
+        "property": "gatling",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 340,
+        "y": 480,
+        "wires": [
+            [
+                "02ee582104162e71"
+            ],
+            [
+                "3482a308d6a5b9ac"
             ]
         ]
     },
@@ -16716,7 +16772,6 @@
         "name": "Values",
         "mode": "link",
         "links": [
-            "45787365124bf1fc",
             "15420dcbe122257f"
         ],
         "x": 1595,
