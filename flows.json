@@ -17252,7 +17252,7 @@
         "type": "debug",
         "z": "4efe9327eddfa7d6",
         "name": "debug 2",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
