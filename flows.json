@@ -12914,6 +12914,14 @@
                 "pt": "msg",
                 "to": "gatling",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "payload.original",
+                "pt": "msg",
+                "to": "original",
+                "tot": "global",
+                "dc": true
             }
         ],
         "action": "",
