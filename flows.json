@@ -12910,7 +12910,7 @@
             },
             {
                 "t": "set",
-                "p": "gatling",
+                "p": "payload.type",
                 "pt": "msg",
                 "to": "gatling",
                 "tot": "global"
@@ -12925,7 +12925,8 @@
         "y": 480,
         "wires": [
             [
-                "1b8b1c4702e84221"
+                "1b8b1c4702e84221",
+                "67aab02646e2f467"
             ]
         ]
     },
@@ -12941,7 +12942,8 @@
         "y": 480,
         "wires": [
             [
-                "628830ca862fbbf2"
+                "628830ca862fbbf2",
+                "67aab02646e2f467"
             ]
         ]
     },
@@ -14066,6 +14068,22 @@
                 "3482a308d6a5b9ac"
             ]
         ]
+    },
+    {
+        "id": "67aab02646e2f467",
+        "type": "debug",
+        "z": "2305a910a579de42",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 240,
+        "wires": []
     },
     {
         "id": "76e81b58c55dcdac",
