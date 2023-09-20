@@ -7884,8 +7884,8 @@
         "type": "switch",
         "z": "2305a910a579de42",
         "name": "",
-        "property": "gatling",
-        "propertyType": "global",
+        "property": "type",
+        "propertyType": "msg",
         "rules": [
             {
                 "t": "true"
