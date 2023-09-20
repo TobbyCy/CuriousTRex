@@ -6737,8 +6737,7 @@
         "y": 780,
         "wires": [
             [
-                "e6d78f53985d3ae8",
-                "87f04f9db9eadf25"
+                "e6d78f53985d3ae8"
             ]
         ]
     },
@@ -7198,8 +7197,7 @@
         "y": 820,
         "wires": [
             [
-                "e6d78f53985d3ae8",
-                "87f04f9db9eadf25"
+                "e6d78f53985d3ae8"
             ]
         ]
     },
@@ -7436,7 +7434,7 @@
         "joinerType": "str",
         "accumulate": false,
         "timeout": "",
-        "count": "8",
+        "count": "7",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
@@ -7978,14 +7976,16 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1740,
-        "y": 1360,
+        "x": 1880,
+        "y": 1400,
         "wires": [
             [
-                "2c14ab0d70397d15"
+                "2c14ab0d70397d15",
+                "fef2566cb073d0db"
             ],
             [
-                "c70227685067934e"
+                "c70227685067934e",
+                "fef2566cb073d0db"
             ]
         ]
     },
@@ -7994,7 +7994,7 @@
         "type": "debug",
         "z": "2305a910a579de42",
         "name": "debug 5",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -8034,7 +8034,7 @@
                 "41718c1318270a67",
                 "513b5521a179ed0e",
                 "6c4bf0cb9d1ad2ef",
-                "87f04f9db9eadf25"
+                "af06efaf0c6bfce6"
             ]
         ]
     },
@@ -8050,8 +8050,7 @@
         "y": 1140,
         "wires": [
             [
-                "e6d78f53985d3ae8",
-                "87f04f9db9eadf25"
+                "e6d78f53985d3ae8"
             ]
         ]
     },
@@ -8066,23 +8065,6 @@
         ],
         "x": 2645,
         "y": 840,
-        "wires": []
-    },
-    {
-        "id": "87f04f9db9eadf25",
-        "type": "debug",
-        "z": "2305a910a579de42",
-        "name": "debug 6",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1180,
-        "y": 1100,
         "wires": []
     },
     {
