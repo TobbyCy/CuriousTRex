@@ -6737,7 +6737,8 @@
         "y": 780,
         "wires": [
             [
-                "e6d78f53985d3ae8"
+                "e6d78f53985d3ae8",
+                "87f04f9db9eadf25"
             ]
         ]
     },
@@ -7197,7 +7198,8 @@
         "y": 820,
         "wires": [
             [
-                "e6d78f53985d3ae8"
+                "e6d78f53985d3ae8",
+                "87f04f9db9eadf25"
             ]
         ]
     },
@@ -7852,8 +7854,8 @@
         "type": "switch",
         "z": "2305a910a579de42",
         "name": "",
-        "property": "gatling",
-        "propertyType": "global",
+        "property": "type",
+        "propertyType": "msg",
         "rules": [
             {
                 "t": "true"
@@ -8041,7 +8043,8 @@
         "y": 1140,
         "wires": [
             [
-                "e6d78f53985d3ae8"
+                "e6d78f53985d3ae8",
+                "87f04f9db9eadf25"
             ]
         ]
     },
