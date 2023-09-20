@@ -186,30 +186,6 @@
         ]
     },
     {
-        "id": "e590adf1fa299f3d",
-        "type": "junction",
-        "z": "2305a910a579de42",
-        "x": 1460,
-        "y": 920,
-        "wires": [
-            [
-                "368423fcbf86479f"
-            ]
-        ]
-    },
-    {
-        "id": "467b6180ebc0d310",
-        "type": "junction",
-        "z": "2305a910a579de42",
-        "x": 900,
-        "y": 1040,
-        "wires": [
-            [
-                "6b25be8c80cc93af"
-            ]
-        ]
-    },
-    {
         "id": "b9e3c634e5e5a408",
         "type": "junction",
         "z": "4efe9327eddfa7d6",
@@ -12762,7 +12738,8 @@
         "links": [
             "b163b8b1f5f05f1b",
             "d71ca3e7d62a8a8e",
-            "e0ddb30c3e6fd14f"
+            "e0ddb30c3e6fd14f",
+            "2c565ed46dbadb19"
         ],
         "x": 205,
         "y": 480,
@@ -12933,8 +12910,7 @@
         "y": 480,
         "wires": [
             [
-                "1b8b1c4702e84221",
-                "67aab02646e2f467"
+                "1b8b1c4702e84221"
             ]
         ]
     },
@@ -12972,869 +12948,6 @@
         ]
     },
     {
-        "id": "e2a4c0beef813f44",
-        "type": "function",
-        "z": "2305a910a579de42",
-        "name": "Gatling line chart Time_Response",
-        "func": "// Création du graphique\nvar chartData = {\n    \n    type: 'line', // Utilisez un graphique de type \"line\"\n    options: {\n        scales: {\n            yAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }],\n            xAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }]\n        },\n        dataset :{\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n        },\n        title: {\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n            display: true,\n            text: 'Comparaison des performances', // Titre du graphique,\n            fontSize: 40 \n        },\n        legend: {\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n            display: true // Affichez la légende du graphique\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd' // Couleur de fond du graphique\n        },\n        plugins: {\n            datalabels: {\n                display: false // Désactivez l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: msg.payload.Log.timeResponse.data.labels,\n\n        datasets: msg.payload.Log.timeResponse.data.datasets,\n    }\n};\n\nmsg.payload = chartData; // Attribuez les données du graphique au message\nmsg.topic = \"CompletGatling\";\nreturn msg; // Renvoyez le message\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1140,
-        "y": 640,
-        "wires": [
-            [
-                "6cfbd5ae6250be54"
-            ]
-        ]
-    },
-    {
-        "id": "6cfbd5ae6250be54",
-        "type": "chart-image",
-        "z": "2305a910a579de42",
-        "name": "",
-        "width": "1920",
-        "height": "1920",
-        "x": 1370,
-        "y": 640,
-        "wires": [
-            [
-                "f02fec4d70759db4",
-                "e590adf1fa299f3d"
-            ]
-        ]
-    },
-    {
-        "id": "f02fec4d70759db4",
-        "type": "file",
-        "z": "2305a910a579de42",
-        "name": "Gatling Complet",
-        "filename": "graphPath.gatling.complet",
-        "filenameType": "msg",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "true",
-        "encoding": "none",
-        "x": 1600,
-        "y": 640,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "30a46ff6995a8d14",
-        "type": "chart-image",
-        "z": "2305a910a579de42",
-        "name": "",
-        "width": "1920",
-        "height": "1920",
-        "x": 1310,
-        "y": 840,
-        "wires": [
-            [
-                "bcc497f17d08d098",
-                "e590adf1fa299f3d"
-            ]
-        ]
-    },
-    {
-        "id": "bcc497f17d08d098",
-        "type": "file",
-        "z": "2305a910a579de42",
-        "name": "volt.complet",
-        "filename": "graphPath.volt.complet",
-        "filenameType": "msg",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "true",
-        "encoding": "none",
-        "x": 1590,
-        "y": 840,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "415ea1619f72f86b",
-        "type": "chart-image",
-        "z": "2305a910a579de42",
-        "name": "",
-        "width": "1920",
-        "height": "1920",
-        "x": 1310,
-        "y": 880,
-        "wires": [
-            [
-                "75c8ec6facb916b5",
-                "e590adf1fa299f3d"
-            ]
-        ]
-    },
-    {
-        "id": "75c8ec6facb916b5",
-        "type": "file",
-        "z": "2305a910a579de42",
-        "name": "volt.complet",
-        "filename": "graphPath.nidus.complet",
-        "filenameType": "msg",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "true",
-        "encoding": "none",
-        "x": 1590,
-        "y": 880,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "0d6a1735c75d67c1",
-        "type": "function",
-        "z": "2305a910a579de42",
-        "name": "Nidus Line Chart",
-        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload.nidus;\nvar delayInSeconds = msg.payload.gatling.Original.time; // Conversion en secondes\nmsg.topic = \"NidusLineChart\";\n// Extraction des données nécessaires\nvar nidusCpuData = rawData[\"nidus/benchmark/cpu\"];\nvar nidusRamData = rawData[\"nidus/benchmark/ram\"];\nvar nidusTempData = rawData[\"nidus/benchmark/temp\"];\n\n// Création du graphique\nvar chartData = {\n    type: 'line',  // Changement du type de graphique en \"line\"\n    options: {\n        scales: {\n            yAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }],\n            xAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }]\n        },\n        title: {\n            display: true,\n            text: 'Comparaison des performances',\n            fontSize: 40 // Définir la taille de la police ici\n        },\n        legend: {\n            display: true,\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        plugins: {\n            datalabels: {\n                display: false  // Désactiver l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: Array.from({ length: nidusCpuData.length }, (_, i) => {\n            // Calculer le délai réel entre chaque valeur en millisecondes\n            var realDelay = (msg.payload.gatling.Original.time*1000) / (nidusCpuData.length - 1);\n\n            // Calculer le temps en millisecondes à partir de l'index\n            var timeMillis = i * realDelay;\n\n            // Convertir le temps en minutes et secondes\n            var minutes = Math.floor(timeMillis / 60000); // 60000 millisecondes équivalent à 1 minute\n            var seconds = ((timeMillis % 60000) / 1000).toFixed(0);\n\n            // Créer le label en fonction de la durée\n            if (minutes === 0) {\n                return seconds + ' s'; // Temps en secondes si inférieur à 1 minute\n            } else {\n                return minutes + ' min ' + seconds + ' s'; // Temps en minute:secondes si supérieur à 1 minute\n            }\n        }),\n\n\n        datasets: [\n            \n            {\n                label: \"Nidus CPU\",\n                borderColor: 'rgba(255, 69, 0, 1)',\n                fill: false,\n                data: nidusCpuData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Nidus RAM\",\n                borderColor: 'rgba(255, 165, 0, 1)',\n                fill: false,\n                data: nidusRamData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Nidus Temp\",\n                borderColor: 'rgba(255, 0, 0, 1)',\n                fill: false,\n                data: nidusTempData,\n                pointRadius: 0,\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1090,
-        "y": 880,
-        "wires": [
-            [
-                "415ea1619f72f86b"
-            ]
-        ]
-    },
-    {
-        "id": "badeec2e58c9b77c",
-        "type": "function",
-        "z": "2305a910a579de42",
-        "name": "Volt Line Chart",
-        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload.volt;\nvar delayInSeconds = msg.payload.gatling.Original.time; // Conversion en secondes\nmsg.topic = \"VoltLineChart\";\n// Extraction des données nécessaires\nvar voltCpuData = rawData[\"volt/benchmark/cpu\"];\nvar voltRamData = rawData[\"volt/benchmark/ram\"];\nvar voltTempData = rawData[\"volt/benchmark/temp\"];\n\n\n// Création du graphique\nvar chartData = {\n    type: 'line',  // Changement du type de graphique en \"line\"\n    options: {\n        scales: {\n            yAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }],\n            xAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }]\n        },\n        title: {\n            display: true,\n            text: 'Comparaison des performances',\n            fontSize: 40 \n        },\n        legend: {\n            display: true,\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        plugins: {\n            datalabels: {\n                display: false  // Désactiver l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: Array.from({ length: voltCpuData.length }, (_, i) => {\n            // Calculer le délai réel entre chaque valeur en millisecondes\n            var realDelay = (msg.payload.gatling.Original.time*1000) / (voltCpuData.length - 1);\n\n            // Calculer le temps en millisecondes à partir de l'index\n            var timeMillis = i * realDelay;\n\n            // Convertir le temps en minutes et secondes\n            var minutes = Math.floor(timeMillis / 60000); // 60000 millisecondes équivalent à 1 minute\n            var seconds = ((timeMillis % 60000) / 1000).toFixed(0);\n\n            // Créer le label en fonction de la durée\n            if (minutes === 0) {\n                return seconds + ' s'; // Temps en secondes si inférieur à 1 minute\n            } else {\n                return minutes + ' min ' + seconds + ' s'; // Temps en minute:secondes si supérieur à 1 minute\n            }\n        }),datasets: [\n            {\n                label: \"Volt CPU\",\n                borderColor: 'rgba(0, 128, 255, 1)',  // Couleur de la ligne (couleur froide pour Volt)\n                fill: false,  // Désactiver le remplissage sous la ligne\n                data: voltCpuData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Volt RAM\",\n                borderColor: 'rgba(0, 255, 128, 1)',\n                fill: false,\n                data: voltRamData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Volt Temp\",\n                borderColor: 'rgba(0, 173, 0, 1)',\n                fill: false,\n                data: voltTempData,\n                pointRadius: 0,\n            },\n\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1080,
-        "y": 840,
-        "wires": [
-            [
-                "30a46ff6995a8d14"
-            ]
-        ]
-    },
-    {
-        "id": "8954ed785e83d848",
-        "type": "change",
-        "z": "2305a910a579de42",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "complete",
-                "pt": "msg",
-                "to": "true",
-                "tot": "bool",
-                "dc": true
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "ChartComplete",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 780,
-        "y": 1020,
-        "wires": [
-            [
-                "467b6180ebc0d310"
-            ]
-        ]
-    },
-    {
-        "id": "368423fcbf86479f",
-        "type": "join",
-        "z": "2305a910a579de42",
-        "name": "",
-        "mode": "custom",
-        "build": "object",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": false,
-        "timeout": "",
-        "count": "6",
-        "reduceRight": false,
-        "reduceExp": "",
-        "reduceInit": "",
-        "reduceInitType": "",
-        "reduceFixup": "",
-        "x": 830,
-        "y": 980,
-        "wires": [
-            [
-                "8954ed785e83d848"
-            ]
-        ]
-    },
-    {
-        "id": "f7eca6932718e584",
-        "type": "function",
-        "z": "2305a910a579de42",
-        "name": "Watt Line Chart",
-        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload.Watt;\nvar delayInSeconds = msg.delay / 1000; // Conversion en secondes\n\n// Extraction des données nécessaires\nvar voltWatt = rawData;\n\n// Fonction pour calculer la moyenne mobile\nfunction movingAverage(data, windowSize) {\n    var smoothedData = [];\n    for (var i = 0; i < data.length; i++) {\n        var start = Math.max(0, i - Math.floor(windowSize / 2));\n        var end = Math.min(data.length - 1, i + Math.floor(windowSize / 2));\n        var sum = 0;\n        for (var j = start; j <= end; j++) {\n            sum += data[j];\n        }\n        smoothedData.push(sum / (end - start + 1));\n    }\n    return smoothedData;\n}\n\n// Appliquer la moyenne mobile avec une fenêtre de 5 échantillons (vous pouvez ajuster la taille de la fenêtre si nécessaire)\nvar smoothedVoltWatt = movingAverage(voltWatt, 5);\n\n// Création du graphique\nvar chartData = {\n    type: 'line',  // Changement du type de graphique en \"line\"\n    options: {\n        scales: {\n            yAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }],\n            xAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }]\n        },\n        title: {\n            display: true,\n            text: 'Comparaison des performances',\n            fontSize: 40\n        },\n        legend: {\n            display: true,\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        plugins: {\n            datalabels: {\n                display: false  // Désactiver l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: Array.from({ length: smoothedVoltWatt.length }, (_, i) => {\n            // Calculer le délai réel entre chaque valeur en millisecondes\n            var realDelay = msg.delay / (smoothedVoltWatt.length - 1);\n\n            // Calculer le temps en millisecondes à partir de l'index\n            var timeMillis = i * realDelay;\n\n            // Convertir le temps en minutes et secondes\n            var minutes = Math.floor(timeMillis / 60000); // 60000 millisecondes équivalent à 1 minute\n            var seconds = ((timeMillis % 60000) / 1000).toFixed(0);\n\n            // Créer le label en fonction de la durée\n            if (minutes === 0) {\n                return seconds + ' s'; // Temps en secondes si inférieur à 1 minute\n            } else {\n                return minutes + ' min ' + seconds + ' s'; // Temps en minute:secondes si supérieur à 1 minute\n            }\n        }),\n        datasets: [\n            {\n                label: \"Volt Watt\",\n                borderColor: 'rgba(0, 255, 255, 1)',\n                fill: false,\n                data: smoothedVoltWatt, // Utilisation des données lissées\n                pointRadius: 0,\n            },\n        ]\n    }\n};\n\nmsg.payload = chartData;\nmsg.topic = \"Watt\";\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1080,
-        "y": 760,
-        "wires": [
-            [
-                "47b454107026b3d3"
-            ]
-        ]
-    },
-    {
-        "id": "47b454107026b3d3",
-        "type": "chart-image",
-        "z": "2305a910a579de42",
-        "name": "",
-        "width": "1920",
-        "height": "1920",
-        "x": 1370,
-        "y": 760,
-        "wires": [
-            [
-                "3b219f948bc63a73",
-                "e590adf1fa299f3d"
-            ]
-        ]
-    },
-    {
-        "id": "3b219f948bc63a73",
-        "type": "file",
-        "z": "2305a910a579de42",
-        "name": "volt.watt",
-        "filename": "graphPath.volt.watt",
-        "filenameType": "msg",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "true",
-        "encoding": "none",
-        "x": 1580,
-        "y": 760,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "ee49e933dbe00705",
-        "type": "chart-image",
-        "z": "2305a910a579de42",
-        "name": "",
-        "width": "1920",
-        "height": "1920",
-        "x": 1370,
-        "y": 600,
-        "wires": [
-            [
-                "7610791de3b20b78",
-                "e590adf1fa299f3d"
-            ]
-        ]
-    },
-    {
-        "id": "9dc4211140a524a8",
-        "type": "function",
-        "z": "2305a910a579de42",
-        "name": "Gatling bar chart",
-        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload.gatling.Global;  // Utilisez les données de msg.payload.gatling.Global\nmsg.topic = \"GatlingPass\"; // Définir le sujet du message\n\n// Extraction des données nécessaires\nvar groupData = [\n    rawData.group1,\n    rawData.group2,\n    rawData.group3,\n    rawData.group4\n];\n\nvar labels = [];\nvar percentages = [];\n\n// Parcourir les données des groupes et extraire les informations\nfor (var i = 1; i <= groupData.length; i++) {\n    var groupName = \"group\" + i;\n    labels.push(rawData[groupName].htmlName);\n    percentages.push(rawData[groupName].percentage);\n}\n\n// Création du graphique\nvar chartData = {\n    type: 'bar',  // Utiliser un graphique de type \"bar\"\n    options: {\n        title: {\n            display: true,\n            text: 'Répartition des performances par groupe', // Titre du graphique,\n            fontSize: 40 \n        },\n        legend: {\n            display: true,\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd' // Couleur de fond du graphique\n        },\n        scales: {\n            x: {\n                beginAtZero: true,\n                title: {\n                    display: true,\n                    text: 'Groupes' // Titre de l'axe des X\n                }\n            },\n\n            xAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }],\n            y: {\n                beginAtZero: true,\n                title: {\n                    display: true,\n                    text: 'Pourcentage' // Titre de l'axe des Y\n                }\n            },\n            yAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }],\n        },\n        plugins: {\n            datalabels: {\n                anchor: 'end',\n                align: 'top',\n                formatter: function (value) {\n                    return value + '%';  // Ajouter le symbole de pourcentage à l'étiquette\n                }\n            }\n        }\n    },\n    data: {\n        labels: labels,\n        datasets: [\n            {\n                label: \"Pourcentage\", // Légende de l'ensemble de données\n                backgroundColor: 'rgba(0, 128, 255, 0.7)',  // Couleur du remplissage des barres\n                data: percentages,\n                \n            }\n        ]\n    }\n};\nmsg.payload = chartData; // Attribuer les données du graphique au message\nreturn msg; // Renvoyer le message\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1080,
-        "y": 600,
-        "wires": [
-            [
-                "ee49e933dbe00705"
-            ]
-        ]
-    },
-    {
-        "id": "7610791de3b20b78",
-        "type": "file",
-        "z": "2305a910a579de42",
-        "name": "gatling.pass",
-        "filename": "graphPath.gatling.pass",
-        "filenameType": "msg",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "true",
-        "encoding": "none",
-        "x": 1590,
-        "y": 600,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "4cd75f8778386f53",
-        "type": "function",
-        "z": "2305a910a579de42",
-        "name": "Gatling line chart By_Seconds",
-        "func": "// Création du graphique\nvar chartData = {\n    type: 'line', // Utilisez un graphique de type \"line\"\n    options: {\n        scales: {\n            yAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }],\n            xAxes: [{\n                ticks: {\n                    fontSize: 30\n                }\n            }]\n        },\n        dataset: {\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n        },\n        title: {\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n            display: true,\n            text: 'Nombre de Requêtes Simultanées', // Titre du graphique\n            fontSize: 40\n        },\n        legend: {\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 30,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n            display: true // Affichez la légende du graphique\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd' // Couleur de fond du graphique\n        },\n        plugins: {\n            datalabels: {\n                display: false // Désactivez l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: msg.payload.Log.bySeconds.data.labels,\n        datasets: msg.payload.Log.bySeconds.data.datasets,\n    }\n};\n\nmsg.payload = chartData; // Attribuez les données du graphique au message\nmsg.topic = \"bySeconds\";\nreturn msg; // Renvoyez le message\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1130,
-        "y": 680,
-        "wires": [
-            [
-                "7daef8e1aa63673a"
-            ]
-        ]
-    },
-    {
-        "id": "7daef8e1aa63673a",
-        "type": "chart-image",
-        "z": "2305a910a579de42",
-        "name": "",
-        "width": "1920",
-        "height": "1920",
-        "x": 1370,
-        "y": 680,
-        "wires": [
-            [
-                "d455bfb92c80d504",
-                "e590adf1fa299f3d"
-            ]
-        ]
-    },
-    {
-        "id": "d455bfb92c80d504",
-        "type": "file",
-        "z": "2305a910a579de42",
-        "name": "Gatling RequeteParSeconde",
-        "filename": "graphPath.gatling.bySeconds",
-        "filenameType": "msg",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "true",
-        "encoding": "none",
-        "x": 1640,
-        "y": 680,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "aff53e2325f520c7",
-        "type": "pdfmake",
-        "z": "2305a910a579de42",
-        "name": "",
-        "outputType": "base64",
-        "inputProperty": "payload",
-        "options": "{}",
-        "outputProperty": "payload",
-        "x": 1500,
-        "y": 1040,
-        "wires": [
-            [
-                "62e9016a92d4fa4f"
-            ]
-        ]
-    },
-    {
-        "id": "62e9016a92d4fa4f",
-        "type": "file",
-        "z": "2305a910a579de42",
-        "name": "",
-        "filename": "filePath",
-        "filenameType": "msg",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "true",
-        "encoding": "base64",
-        "x": 1640,
-        "y": 1040,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "6ef0c0d2db95aa60",
-        "type": "function",
-        "z": "2305a910a579de42",
-        "name": "Créer le contenue du fichier",
-        "func": "//Formatage du ventilateur\nvar ventilateur = msg.payload.stats.original.gatling.Original.flow ? \"Ventilateur activé\" : \"Ventilateur non-activé\";\n// Formatage de la date de début\nvar timestamp = msg.payload.stats.original.gatling.Assertion.start;\n\n// Créez un objet Date à partir du timestamp\nvar date = new Date(timestamp);\n\n// Définissez le format de date souhaité\nvar options = {\n    weekday: 'long',\n    year: 'numeric',\n    month: 'long',\n    day: 'numeric',\n    hour: '2-digit',\n    minute: '2-digit'\n};\n\n// Formatez la date en une chaîne de caractères\n// @ts-ignore\nvar formattedDate = date.toLocaleDateString(\"fr-FR\", options);\n\n\n// Création des données pour le rapport PDF\nmsg.payload = {\n    header: function (currentPage, pageCount, pageSize) {\n        return [\n            {\n                text: \"Tobler Cyril\", \n                alignment: \"left\",\n                fontSize: 10,\n                margin: [15, 10, 0, 0]\n            },\n            {\n                text: \"Nom du projet : Confuse T-Rex\", // Nom du projet\n                alignment: \"center\",\n                fontSize: 10,\n                margin: [0, 0, 0, 0]\n            }\n        ];\n    },\n    footer: function (currentPage, pageCount) {\n        return {\n            columns: [\n                {\n                    text: currentPage.toString() + \" / \" + pageCount, // Numéro de page actuel / Nombre total de pages\n                    alignment: \"left\",\n                    fontSize: 10,\n                    margin: [15, 0, 0, 10]\n                },\n                {\n                    text: new Date().toLocaleDateString(\"fr-FR\"), // Date actuelle au format français\n                    alignment: \"right\",\n                    fontSize: 10,\n                    margin: [0, 0, 15, 10]\n                }\n            ],\n            margin: [0, 0, 0, 10]\n        };\n    },\n    content: [\n        {\n            text: \"Rapport d'utilisation : \" + msg.payload.stats.original.gatling.Original.nameFile , // Titre du rapport\n            style: \"header\",\n            margin: [0, 10, 0, 0]\n        },\n        {\n            text: \"Les valeurs sont des moyennes sur les \" + Math.floor(msg.payload.stats.original.gatling.Original.time / 60) + \" dernières minutes\" // Informations sur les valeurs\n        }, \n        {\n            text: ventilateur\n        },\n        {\n            text: \"Nidus :\", // Section Nidus\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.stats.moyenne[\"nidus/benchmark/cpu\"] // Valeur CPU de Nidus\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.stats.moyenne[\"nidus/benchmark/ram\"] // Valeur RAM de Nidus\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.stats.moyenne[\"nidus/benchmark/processes\"] // Nombre de processus de Nidus\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.stats.moyenne[\"nidus/benchmark/temp\"] // Température CPU de Nidus\n        },\n        {\n            image: 'nidusImage', // Image de Nidus\n            width: 500,\n            pageBreak: 'after', // Saut de page après l'image\n        },\n        {\n            text: \"Volt\", // Section Volt\n            style: \"header2\"\n        },\n        {\n            text: \"CPU :                 \" + msg.payload.stats.moyenne[\"volt/benchmark/cpu\"] // Valeur CPU de Volt\n        },\n        {\n            text: \"RAM :                 \" + msg.payload.stats.moyenne[\"volt/benchmark/ram\"] // Valeur RAM de Volt\n        },\n        {\n            text: \"Nombre de processus : \" + msg.payload.stats.moyenne[\"volt/benchmark/processes\"] // Nombre de processus de Volt\n        },\n        {\n            text: \"Température CPU :     \" + msg.payload.stats.moyenne[\"volt/benchmark/temp\"] // Température CPU de Volt\n        },\n        {\n            text: \"MilliWatt :           \" + msg.payload.stats.moyenne[\"volt/benchmark/watt\"] // Valeur MilliWatt de Volt\n        },\n        {\n            image: 'voltImage', // Image de Volt\n            width: 500,\n        },\n        {\n            image: 'wattImage', // Image Watt de Volt\n            width: 500,\n            pageBreak: 'after', // Saut de page après l'image\n        },\n        {\n            text: \"Gatling\", // Section Gatling\n            style: \"header2\"\n        },\n        {\n            text: \"Nom de la simulation :                 \" + msg.payload.stats.original.gatling.Assertion.simulation // Nom de la simulation Gatling\n        },\n        {\n            text: \"Commencée :                            \" + formattedDate // Date de début de la simulation Gatling (à formater)\n        },\n        {\n            text: \"Nombre d'utilisateur :                 \" + msg.payload.stats.original.gatling.Original.user_gatling // Nom de la simulation Gatling\n        },\n        {\n            text: \"Durée prévu :                          \" + msg.payload.stats.original.gatling.Original.time/60 + \"Min\" // Nom de la simulation Gatling\n        },\n        {\n            image: 'gatlingImage', // Image Gatling\n            width: 500,\n        },\n        {\n            image: 'gatlingGraphComplete', // Image graphique complet Gatling\n            width: 500,\n        }, \n        {\n            image: 'gatlingGraphBySeconds', // Image graphique complet Gatling\n            width: 500,\n        },\n    ],\n    images: {\n        voltImage: 'data:image/png;base64,' + msg.payload.voltGraph.toString('base64'), // Utilisation du buffer pour l'image Volt\n        wattImage: 'data:image/png;base64,' + msg.payload.wattGraph.toString('base64'),  // Utilisation du buffer pour l'image Watt de Volt\n        nidusImage: 'data:image/png;base64,' + msg.payload.nidusGraph.toString('base64'),  // Utilisation du buffer pour l'image Nidus\n        gatlingImage: 'data:image/png;base64,' + msg.payload.gatlingGraph.toString('base64'),  // Utilisation du buffer pour l'image Gatling\n        gatlingGraphComplete: 'data:image/png;base64,' + msg.payload.gatlingGraphComplete.toString('base64'),  // Utilisation du buffer pour l'image Gatling\n        gatlingGraphBySeconds: 'data:image/png;base64,' + msg.payload.gatlingGraphBySeconds.toString('base64'),  // Utilisation du buffer pour l'image Gatling\n    },\n    styles: {\n        header: {\n            fontSize: 22,\n            bold: true,\n            margin: [0, 30, 0, 0]\n        },\n        header2: {\n            fontSize: 18,\n            bold: true,\n            margin: [0, 20, 0, 0]\n        }\n    }\n};\n\nreturn msg; // Renvoyer le message\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1700,
-        "y": 1080,
-        "wires": [
-            [
-                "aff53e2325f520c7"
-            ]
-        ]
-    },
-    {
-        "id": "0278807ed305654d",
-        "type": "join",
-        "z": "2305a910a579de42",
-        "name": "",
-        "mode": "custom",
-        "build": "object",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": false,
-        "timeout": "",
-        "count": "7",
-        "reduceRight": false,
-        "reduceExp": "",
-        "reduceInit": "",
-        "reduceInitType": "num",
-        "reduceFixup": "",
-        "x": 1670,
-        "y": 1120,
-        "wires": [
-            [
-                "8aa962851e839e96"
-            ]
-        ]
-    },
-    {
-        "id": "8aa962851e839e96",
-        "type": "change",
-        "z": "2305a910a579de42",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "Moyenne_Graph",
-                "tot": "str",
-                "dc": true
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1490,
-        "y": 1080,
-        "wires": [
-            [
-                "6ef0c0d2db95aa60"
-            ]
-        ]
-    },
-    {
-        "id": "15dc6a608ad06b62",
-        "type": "file in",
-        "z": "2305a910a579de42",
-        "name": "Read Graph Nidus Complet",
-        "filename": "graphPath.nidus.complet",
-        "filenameType": "msg",
-        "format": "",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 1200,
-        "y": 1320,
-        "wires": [
-            [
-                "8f4f4e4f392d24bd"
-            ]
-        ]
-    },
-    {
-        "id": "8f4f4e4f392d24bd",
-        "type": "base64",
-        "z": "2305a910a579de42",
-        "name": "",
-        "action": "str",
-        "property": "msg.payload",
-        "x": 1420,
-        "y": 1320,
-        "wires": [
-            [
-                "24493c7dc41092a7"
-            ]
-        ]
-    },
-    {
-        "id": "c0e27eb1a2ce7a0f",
-        "type": "file in",
-        "z": "2305a910a579de42",
-        "name": "Read Graph Volt Complet",
-        "filename": "graphPath.volt.complet",
-        "filenameType": "msg",
-        "format": "",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 1190,
-        "y": 1200,
-        "wires": [
-            [
-                "3e49e595452a9c17"
-            ]
-        ]
-    },
-    {
-        "id": "3e49e595452a9c17",
-        "type": "base64",
-        "z": "2305a910a579de42",
-        "name": "",
-        "action": "str",
-        "property": "msg.payload",
-        "x": 1420,
-        "y": 1200,
-        "wires": [
-            [
-                "81c475269da219f8"
-            ]
-        ]
-    },
-    {
-        "id": "81c475269da219f8",
-        "type": "change",
-        "z": "2305a910a579de42",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "voltGraph",
-                "tot": "str",
-                "dc": true
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1410,
-        "y": 1160,
-        "wires": [
-            [
-                "0278807ed305654d"
-            ]
-        ]
-    },
-    {
-        "id": "24493c7dc41092a7",
-        "type": "change",
-        "z": "2305a910a579de42",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "nidusGraph",
-                "tot": "str",
-                "dc": true
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1410,
-        "y": 1360,
-        "wires": [
-            [
-                "0278807ed305654d"
-            ]
-        ]
-    },
-    {
-        "id": "15a684c2c6e4a5e2",
-        "type": "file in",
-        "z": "2305a910a579de42",
-        "name": "Read Graph Volt Watt",
-        "filename": "graphPath.volt.watt",
-        "filenameType": "msg",
-        "format": "",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 1180,
-        "y": 1240,
-        "wires": [
-            [
-                "af67d666b658917a"
-            ]
-        ]
-    },
-    {
-        "id": "af67d666b658917a",
-        "type": "base64",
-        "z": "2305a910a579de42",
-        "name": "",
-        "action": "str",
-        "property": "msg.payload",
-        "x": 1420,
-        "y": 1240,
-        "wires": [
-            [
-                "46304511a13e9608"
-            ]
-        ]
-    },
-    {
-        "id": "46304511a13e9608",
-        "type": "change",
-        "z": "2305a910a579de42",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "wattGraph",
-                "tot": "str",
-                "dc": true
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1410,
-        "y": 1280,
-        "wires": [
-            [
-                "0278807ed305654d"
-            ]
-        ]
-    },
-    {
-        "id": "273195657a8c3864",
-        "type": "file in",
-        "z": "2305a910a579de42",
-        "name": "Read Graph Gatling",
-        "filename": "graphPath.gatling.pass",
-        "filenameType": "msg",
-        "format": "",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 1180,
-        "y": 1400,
-        "wires": [
-            [
-                "c61f6001727bb109"
-            ]
-        ]
-    },
-    {
-        "id": "c61f6001727bb109",
-        "type": "base64",
-        "z": "2305a910a579de42",
-        "name": "",
-        "action": "str",
-        "property": "msg.payload",
-        "x": 1420,
-        "y": 1400,
-        "wires": [
-            [
-                "bf7b8176ec9fb049"
-            ]
-        ]
-    },
-    {
-        "id": "bf7b8176ec9fb049",
-        "type": "change",
-        "z": "2305a910a579de42",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "gatlingGraph",
-                "tot": "str",
-                "dc": true
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1430,
-        "y": 1440,
-        "wires": [
-            [
-                "0278807ed305654d"
-            ]
-        ]
-    },
-    {
-        "id": "1b08b1c8be542ae4",
-        "type": "file in",
-        "z": "2305a910a579de42",
-        "name": "Read Graph Gatling",
-        "filename": "graphPath.gatling.complet",
-        "filenameType": "msg",
-        "format": "",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 1180,
-        "y": 1480,
-        "wires": [
-            [
-                "baf361f7f5f4d7d4"
-            ]
-        ]
-    },
-    {
-        "id": "baf361f7f5f4d7d4",
-        "type": "base64",
-        "z": "2305a910a579de42",
-        "name": "",
-        "action": "str",
-        "property": "msg.payload",
-        "x": 1420,
-        "y": 1480,
-        "wires": [
-            [
-                "1db1de448d4b9a9b"
-            ]
-        ]
-    },
-    {
-        "id": "1db1de448d4b9a9b",
-        "type": "change",
-        "z": "2305a910a579de42",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "gatlingGraphComplete",
-                "tot": "str",
-                "dc": true
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1430,
-        "y": 1520,
-        "wires": [
-            [
-                "0278807ed305654d"
-            ]
-        ]
-    },
-    {
-        "id": "396999da5f268ca5",
-        "type": "file in",
-        "z": "2305a910a579de42",
-        "name": "Read Graph Gatling",
-        "filename": "graphPath.gatling.bySeconds",
-        "filenameType": "msg",
-        "format": "",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 1180,
-        "y": 1560,
-        "wires": [
-            [
-                "cbb014bc09dd4edf"
-            ]
-        ]
-    },
-    {
-        "id": "cbb014bc09dd4edf",
-        "type": "base64",
-        "z": "2305a910a579de42",
-        "name": "",
-        "action": "str",
-        "property": "msg.payload",
-        "x": 1420,
-        "y": 1560,
-        "wires": [
-            [
-                "de2fdd71321ceeaf"
-            ]
-        ]
-    },
-    {
-        "id": "de2fdd71321ceeaf",
-        "type": "change",
-        "z": "2305a910a579de42",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "gatlingGraphBySeconds",
-                "tot": "str",
-                "dc": true
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1430,
-        "y": 1600,
-        "wires": [
-            [
-                "0278807ed305654d"
-            ]
-        ]
-    },
-    {
         "id": "ec2c74ecb56f96d0",
         "type": "json",
         "z": "2305a910a579de42",
@@ -13846,7 +12959,6 @@
         "y": 600,
         "wires": [
             [
-                "67aab02646e2f467",
                 "c106757caa4ed24c"
             ]
         ]
@@ -13892,17 +13004,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 740,
+        "x": 720,
         "y": 680,
         "wires": [
             [
-                "9dc4211140a524a8",
-                "e2a4c0beef813f44",
-                "4cd75f8778386f53",
-                "f7eca6932718e584",
-                "badeec2e58c9b77c",
-                "0d6a1735c75d67c1",
-                "467b6180ebc0d310"
+                "67aab02646e2f467"
             ]
         ]
     },
@@ -13922,103 +13028,7 @@
         "y": 720,
         "wires": [
             [
-                "36b7ffd5cce2713e"
-            ]
-        ]
-    },
-    {
-        "id": "36b7ffd5cce2713e",
-        "type": "change",
-        "z": "2305a910a579de42",
-        "name": "Organise Payload-Topic",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "moyenne",
-                "tot": "msg",
-                "dc": true
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "moyenne",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 730,
-        "y": 1060,
-        "wires": [
-            [
-                "467b6180ebc0d310"
-            ]
-        ]
-    },
-    {
-        "id": "6b25be8c80cc93af",
-        "type": "join",
-        "z": "2305a910a579de42",
-        "name": "",
-        "mode": "custom",
-        "build": "object",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": true,
-        "timeout": "",
-        "count": "",
-        "reduceRight": false,
-        "reduceExp": "",
-        "reduceInit": "",
-        "reduceInitType": "",
-        "reduceFixup": "",
-        "x": 990,
-        "y": 1040,
-        "wires": [
-            [
-                "c0e27eb1a2ce7a0f",
-                "15a684c2c6e4a5e2",
-                "15dc6a608ad06b62",
-                "273195657a8c3864",
-                "1b08b1c8be542ae4",
-                "396999da5f268ca5",
-                "4f540a68671a9890"
-            ]
-        ]
-    },
-    {
-        "id": "4f540a68671a9890",
-        "type": "change",
-        "z": "2305a910a579de42",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "stats",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1410,
-        "y": 1120,
-        "wires": [
-            [
-                "0278807ed305654d"
+                "67aab02646e2f467"
             ]
         ]
     },
@@ -14088,11 +13098,12 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 920,
-        "y": 220,
+        "x": 860,
+        "y": 880,
         "wires": []
     },
     {
@@ -14122,6 +13133,329 @@
             ],
             []
         ]
+    },
+    {
+        "id": "3e631a1aef3f7b0f",
+        "type": "function",
+        "z": "2305a910a579de42",
+        "name": "Gatling line chart Time_Response",
+        "func": "// Création du graphique\nvar chartData = {\n    \n    type: 'line', // Utilisez un graphique de type \"line\"\n    options: {\n        scales: {\n            yAxes: [{\n                ticks: {\n                    fontSize: 40\n                }\n            }],\n            xAxes: [{\n                ticks: {\n                    fontSize: 40\n                }\n            }]\n        },\n        dataset :{\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 40,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 40\n            },\n        },\n        title: {\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 50,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 50\n            },\n            display: true,\n            text: 'Comparaison des performances', // Titre du graphique,\n            fontSize: 50 \n        },\n        legend: {\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 40,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 40\n            },\n            display: true // Affichez la légende du graphique\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd' // Couleur de fond du graphique\n        },\n        plugins: {\n            datalabels: {\n                display: false // Désactivez l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: msg.payload.timeResponse.data.labels,\n\n        datasets: msg.payload.timeResponse.data.datasets,\n    }\n};\n\nmsg.payload = chartData; // Attribuez les données du graphique au message\nmsg.topic = \"CompletGatling\";\nmsg.graphPath = global.get('path') || 0;\nreturn msg; // Renvoyez le message\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1240,
+        "y": 680,
+        "wires": [
+            [
+                "f90c1334137ff387"
+            ]
+        ]
+    },
+    {
+        "id": "f90c1334137ff387",
+        "type": "chart-image",
+        "z": "2305a910a579de42",
+        "name": "",
+        "width": "1920",
+        "height": "1920",
+        "x": 1470,
+        "y": 680,
+        "wires": [
+            [
+                "0f53da62abd81f72"
+            ]
+        ]
+    },
+    {
+        "id": "0f53da62abd81f72",
+        "type": "file",
+        "z": "2305a910a579de42",
+        "name": "Gatling Complet",
+        "filename": "graphPath.gatling.complet",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1700,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "095e73ca9ee16e33",
+        "type": "chart-image",
+        "z": "2305a910a579de42",
+        "name": "",
+        "width": "1920",
+        "height": "1920",
+        "x": 1410,
+        "y": 880,
+        "wires": [
+            [
+                "ca633ba9b979e697"
+            ]
+        ]
+    },
+    {
+        "id": "ca633ba9b979e697",
+        "type": "file",
+        "z": "2305a910a579de42",
+        "name": "volt.complet",
+        "filename": "graphPath.volt.complet",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1690,
+        "y": 880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f52aae777ff078d8",
+        "type": "chart-image",
+        "z": "2305a910a579de42",
+        "name": "",
+        "width": "1920",
+        "height": "1920",
+        "x": 1410,
+        "y": 920,
+        "wires": [
+            [
+                "34ab1b6277576124"
+            ]
+        ]
+    },
+    {
+        "id": "34ab1b6277576124",
+        "type": "file",
+        "z": "2305a910a579de42",
+        "name": "volt.complet",
+        "filename": "graphPath.nidus.complet",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1690,
+        "y": 920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2fa4b031d932b54f",
+        "type": "function",
+        "z": "2305a910a579de42",
+        "name": "Nidus Line Chart",
+        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload;\nvar delayInSeconds = msg.delay / 1000; // Conversion en secondes\nmsg.topic = \"NidusLineChart\";\n// Extraction des données nécessaires\nvar nidusCpuData = rawData[\"nidus/benchmark/cpu\"];\nvar nidusRamData = rawData[\"nidus/benchmark/ram\"];\nvar nidusTempData = rawData[\"nidus/benchmark/temp\"];\n\n// Création du graphique\nvar chartData = {\n    type: 'line',  // Changement du type de graphique en \"line\"\n    options: {\n        scales: {\n            yAxes: [{\n                ticks: {\n                    fontSize: 40\n                }\n            }],\n            xAxes: [{\n                ticks: {\n                    fontSize: 40\n                }\n            }]\n        },\n        title: {\n            display: true,\n            text: 'Comparaison des performances',\n            fontSize: 50 // Définir la taille de la police ici\n        },\n        legend: {\n            display: true,\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 40,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        plugins: {\n            datalabels: {\n                display: false  // Désactiver l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: Array.from({ length: nidusCpuData.length }, (_, i) => {\n            // Calculer le délai réel entre chaque valeur en millisecondes\n            var realDelay = msg.delay / (nidusCpuData.length - 1);\n\n            // Calculer le temps en millisecondes à partir de l'index\n            var timeMillis = i * realDelay;\n\n            // Convertir le temps en minutes et secondes\n            var minutes = Math.floor(timeMillis / 60000); // 60000 millisecondes équivalent à 1 minute\n            var seconds = ((timeMillis % 60000) / 1000).toFixed(0);\n\n            // Créer le label en fonction de la durée\n            if (minutes === 0) {\n                return seconds + ' s'; // Temps en secondes si inférieur à 1 minute\n            } else {\n                return minutes + ' min ' + seconds + ' s'; // Temps en minute:secondes si supérieur à 1 minute\n            }\n        }),\n\n\n        datasets: [\n            \n            {\n                label: \"Nidus CPU en %\",\n                borderColor: '#aa5500',\n                fill: false,\n                data: nidusCpuData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Nidus RAM en %\",\n                borderColor: '#ffff00',\n                fill: false,\n                data: nidusRamData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Température de Nidus en °C\",\n                borderColor: 'rgba(255, 0, 0, 1)',\n                fill: false,\n                data: nidusTempData,\n                pointRadius: 0,\n            }\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1190,
+        "y": 920,
+        "wires": [
+            [
+                "f52aae777ff078d8"
+            ]
+        ]
+    },
+    {
+        "id": "32fc9e7134422a24",
+        "type": "function",
+        "z": "2305a910a579de42",
+        "name": "Volt Line Chart",
+        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload.volt;\nvar delayInSeconds = msg.payload.original.time*60; // Conversion en secondes\nmsg.topic = \"VoltLineChart\";\n// Extraction des données nécessaires\nvar voltCpuData = rawData[\"volt/benchmark/cpu\"];\nvar voltRamData = rawData[\"volt/benchmark/ram\"];\nvar voltTempData = rawData[\"volt/benchmark/temp\"];\n\n\n// Création du graphique\nvar chartData = {\n    type: 'line',  // Changement du type de graphique en \"line\"\n    options: {\n        scales: {\n            yAxes: [{\n                ticks: {\n                    fontSize: 40\n                }\n            }],\n            xAxes: [{\n                ticks: {\n                    fontSize: 40\n                }\n            }]\n        },\n        title: {\n            display: true,\n            text: 'Comparaison des performances',\n            fontSize: 50 \n        },\n        legend: {\n            display: true,\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 40,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        plugins: {\n            datalabels: {\n                display: false  // Désactiver l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: Array.from({ length: voltCpuData.length }, (_, i) => {\n            // Calculer le délai réel entre chaque valeur en millisecondes\n            var realDelay = msg.delay / (voltCpuData.length - 1);\n\n            // Calculer le temps en millisecondes à partir de l'index\n            var timeMillis = i * realDelay;\n\n            // Convertir le temps en minutes et secondes\n            var minutes = Math.floor(timeMillis / 60000); // 60000 millisecondes équivalent à 1 minute\n            var seconds = ((timeMillis % 60000) / 1000).toFixed(0);\n\n            // Créer le label en fonction de la durée\n            if (minutes === 0) {\n                return seconds + ' s'; // Temps en secondes si inférieur à 1 minute\n            } else {\n                return minutes + ' min ' + seconds + ' s'; // Temps en minute:secondes si supérieur à 1 minute\n            }\n        }),datasets: [\n            {\n                label: \"Volt CPU en %\",\n                borderColor: 'rgba(0, 128, 255, 1)',  // Couleur de la ligne (couleur froide pour Volt)\n                fill: false,  // Désactiver le remplissage sous la ligne\n                data: voltCpuData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Volt RAM en %\",\n                borderColor: 'rgba(0, 255, 128, 1)',\n                fill: false,\n                data: voltRamData,\n                pointRadius: 0,\n            },\n            {\n                label: \"Température Volt en °C\",\n                borderColor: 'rgba(0, 173, 0, 1)',\n                fill: false,\n                data: voltTempData,\n                pointRadius: 0,\n            },\n\n        ]\n    }\n};\n\nmsg.payload = chartData;\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1180,
+        "y": 880,
+        "wires": [
+            [
+                "095e73ca9ee16e33"
+            ]
+        ]
+    },
+    {
+        "id": "884ae0cb02d22c92",
+        "type": "function",
+        "z": "2305a910a579de42",
+        "name": "Watt Line Chart",
+        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload.Watt;\nvar delayInSeconds = msg.payload.original.time * 60; // Conversion en secondes\n\n// Extraction des données nécessaires\nvar voltWatt = rawData;\n\n// Fonction pour calculer la moyenne mobile\nfunction movingAverage(data, windowSize) {\n    var smoothedData = [];\n    for (var i = 0; i < data.length; i++) {\n        var start = Math.max(0, i - Math.floor(windowSize / 2));\n        var end = Math.min(data.length - 1, i + Math.floor(windowSize / 2));\n        var sum = 0;\n        for (var j = start; j <= end; j++) {\n            sum += data[j];\n        }\n        smoothedData.push(sum / (end - start + 1));\n    }\n    return smoothedData;\n}\n\n// Appliquer la moyenne mobile avec une fenêtre de 5 échantillons (vous pouvez ajuster la taille de la fenêtre si nécessaire)\nvar smoothedVoltWatt = movingAverage(voltWatt, 5);\n\n// Création du graphique\nvar chartData = {\n    type: 'line',  // Changement du type de graphique en \"line\"\n    options: {\n        scales: {\n            yAxes: [{\n                ticks: {\n                    fontSize: 40\n                }\n            }],\n            xAxes: [{\n                ticks: {\n                    fontSize: 40\n                }\n            }]\n        },\n        title: {\n            display: true,\n            text: 'Comparaison des performances',\n            fontSize: 50\n        },\n        legend: {\n            display: true,\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 40,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd'\n        },\n        plugins: {\n            datalabels: {\n                display: false  // Désactiver l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: Array.from({ length: smoothedVoltWatt.length }, (_, i) => {\n            // Calculer le délai réel entre chaque valeur en millisecondes\n            var realDelay = msg.delay / (smoothedVoltWatt.length - 1);\n\n            // Calculer le temps en millisecondes à partir de l'index\n            var timeMillis = i * realDelay;\n\n            // Convertir le temps en minutes et secondes\n            var minutes = Math.floor(timeMillis / 60000); // 60000 millisecondes équivalent à 1 minute\n            var seconds = ((timeMillis % 60000) / 1000).toFixed(0);\n\n            // Créer le label en fonction de la durée\n            if (minutes === 0) {\n                return seconds + ' s'; // Temps en secondes si inférieur à 1 minute\n            } else {\n                return minutes + ' min ' + seconds + ' s'; // Temps en minute:secondes si supérieur à 1 minute\n            }\n        }),\n        datasets: [\n            {\n                label: \"MilliWatt de Volt\",\n                borderColor: '#47006b',\n                fill: false,\n                data: smoothedVoltWatt, // Utilisation des données lissées\n                pointRadius: 0,\n            },\n        ]\n    }\n};\n\nmsg.payload = chartData;\nmsg.topic = \"Watt\";\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1180,
+        "y": 800,
+        "wires": [
+            [
+                "b2184dd989bd2eb6"
+            ]
+        ]
+    },
+    {
+        "id": "b2184dd989bd2eb6",
+        "type": "chart-image",
+        "z": "2305a910a579de42",
+        "name": "",
+        "width": "1920",
+        "height": "1920",
+        "x": 1470,
+        "y": 800,
+        "wires": [
+            [
+                "6ea049507bd137b6"
+            ]
+        ]
+    },
+    {
+        "id": "6ea049507bd137b6",
+        "type": "file",
+        "z": "2305a910a579de42",
+        "name": "volt.watt",
+        "filename": "graphPath.volt.watt",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1680,
+        "y": 800,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a81f9a4923904a31",
+        "type": "chart-image",
+        "z": "2305a910a579de42",
+        "name": "",
+        "width": "1920",
+        "height": "1920",
+        "x": 1470,
+        "y": 640,
+        "wires": [
+            [
+                "316f0f8820e65843"
+            ]
+        ]
+    },
+    {
+        "id": "1aea9bfa57f09fac",
+        "type": "function",
+        "z": "2305a910a579de42",
+        "name": "Gatling bar chart",
+        "func": "// Données reçues du flux précédent\nvar rawData = msg.payload.gatling.Global;  // Utilisez les données de msg.payload.gatling.Global\nmsg.topic = \"GatlingPass\"; // Définir le sujet du message\n\n// Extraction des données nécessaires\nvar groupData = [\n    rawData.group1,\n    rawData.group2,\n    rawData.group3,\n    rawData.group4\n];\n\nvar labels = [];\nvar percentages = [];\n\n// Parcourir les données des groupes et extraire les informations\nfor (var i = 1; i <= groupData.length; i++) {\n    var groupName = \"group\" + i;\n    labels.push(rawData[groupName].htmlName);\n    percentages.push(rawData[groupName].percentage);\n}\n\n// Création du graphique\nvar chartData = {\n    type: 'bar',  // Utiliser un graphique de type \"bar\"\n    options: {\n        title: {\n            display: true,\n            text: 'Répartition des performances par groupe', // Titre du graphique,\n            fontSize: 50 \n        },\n        legend: {\n            display: true,\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 40,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 40\n            },\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd' // Couleur de fond du graphique\n        },\n        scales: {\n            x: {\n                beginAtZero: true,\n                title: {\n                    display: true,\n                    text: 'Groupes' // Titre de l'axe des X\n                }\n            },\n\n            xAxes: [{\n                ticks: {\n                    fontSize: 40\n                }\n            }],\n            y: {\n                beginAtZero: true,\n                title: {\n                    display: true,\n                    text: 'Pourcentage' // Titre de l'axe des Y\n                }\n            },\n            yAxes: [{\n                ticks: {\n                    fontSize: 40\n                }\n            }],\n        },\n        plugins: {\n            datalabels: {\n                anchor: 'end',\n                align: 'top',\n                formatter: function (value) {\n                    return value + '%';  // Ajouter le symbole de pourcentage à l'étiquette\n                }\n            }\n        }\n    },\n    data: {\n        labels: labels,\n        datasets: [\n            {\n                label: \"Pourcentage\", // Légende de l'ensemble de données\n                backgroundColor: 'rgba(0, 128, 255, 0.7)',  // Couleur du remplissage des barres\n                data: percentages,\n                \n            }\n        ]\n    }\n};\nmsg.graphPath = global.get('path') || 0;\nmsg.payload = chartData; // Attribuer les données du graphique au message\nreturn msg; // Renvoyer le message\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1180,
+        "y": 640,
+        "wires": [
+            [
+                "a81f9a4923904a31"
+            ]
+        ]
+    },
+    {
+        "id": "316f0f8820e65843",
+        "type": "file",
+        "z": "2305a910a579de42",
+        "name": "gatling.pass",
+        "filename": "graphPath.gatling.pass",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1690,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0aaf304dd9ae2d32",
+        "type": "function",
+        "z": "2305a910a579de42",
+        "name": "Gatling line chart By_Seconds",
+        "func": "// Création du graphique\nvar chartData = {\n    type: 'line', // Utilisez un graphique de type \"line\"\n    options: {\n        scales: {\n            yAxes: [{\n                ticks: {\n                    fontSize: 40\n                }\n            }],\n            xAxes: [{\n                ticks: {\n                    fontSize: 40\n                }\n            }]\n        },\n        dataset: {\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 40,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 30\n            },\n        },\n        title: {\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 50,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 50\n            },\n            display: true,\n            text: 'Nombre de Requêtes Simultanées', // Titre du graphique\n            fontSize: 40\n        },\n        legend: {\n            labels: {\n                // This more specific font property overrides the global property\n                fontSize: 40,\n                fontColor: 'black',\n                family: 'Arial'\n            },\n            font: {\n                size: 40\n            },\n            display: true // Affichez la légende du graphique\n        },\n        chartArea: {\n            backgroundColor: '#d3d7dd' // Couleur de fond du graphique\n        },\n        plugins: {\n            datalabels: {\n                display: false // Désactivez l'affichage des étiquettes de données\n            }\n        }\n    },\n    data: {\n        labels: msg.payload.bySeconds.data.labels,\n        datasets: msg.payload.bySeconds.data.datasets,\n    }\n};\n\nmsg.payload = chartData; // Attribuez les données du graphique au message\nmsg.topic = \"bySeconds\";\nmsg.graphPath = global.get('path') || 0;\nreturn msg; // Renvoyez le message\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1230,
+        "y": 720,
+        "wires": [
+            [
+                "236a8d0152934264"
+            ]
+        ]
+    },
+    {
+        "id": "236a8d0152934264",
+        "type": "chart-image",
+        "z": "2305a910a579de42",
+        "name": "",
+        "width": "1920",
+        "height": "1920",
+        "x": 1470,
+        "y": 720,
+        "wires": [
+            [
+                "64a1c3c6022b2f57"
+            ]
+        ]
+    },
+    {
+        "id": "64a1c3c6022b2f57",
+        "type": "file",
+        "z": "2305a910a579de42",
+        "name": "Gatling RequeteParSeconde",
+        "filename": "graphPath.gatling.bySeconds",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1740,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2c565ed46dbadb19",
+        "type": "link out",
+        "z": "2305a910a579de42",
+        "name": "Values",
+        "mode": "link",
+        "links": [
+            "15420dcbe122257f"
+        ],
+        "x": 1115,
+        "y": 840,
+        "wires": []
     },
     {
         "id": "76e81b58c55dcdac",
