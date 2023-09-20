@@ -391,6 +391,9 @@ Une fois le matériel pris en compte, je tiens également à calculer le coût h
 
 Bien sûr, dans le cadre de ce projet, le salaire n'est pas pris en compte, mais il est important de le considérer si l'on souhaite reproduire le projet dans un contexte professionnel.
 
+<div style="text-align:right;">
+<img src="../capture/icone/tux.png" alt="Image" width="30%" style="width:30%;">
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -448,6 +451,7 @@ gantt
     Agrégation du lancement des tests et des relevés de l'INA219 : V1-d5, after V1-d4, 12h
     Réinstallation de Volt : V1-d6, after V1-d5, 12h
     Passage du SSH au MQTT pour la récupération des infos : V1-d7, after V1-d6, 12h
+    Première reunion de projet : milestone, V1-dR, after V1-d7, 1h
     Création d'un graphique avec Node-Red : V1-d8, after V1-d7, 18h
     Ajout des graphique au PDF : V1-d9, after V1-d8, 18h
     Documentation de la première itération : milestone, V1-d10, after V1-d9, 0h
@@ -523,10 +527,16 @@ gantt
     Documentation general (Lundi du jeune fédéral) : V4-d3, after V4-d2, 24h
     Test de l'instalation de Nidus : V4-d4, after V4-d3, 12h
     Documentation du script d'instalation de Nidus : V4-d5, after V4-d4, 12h
-    Mpodiication de l'import des JSON sans les tests de Gatling : V4-d6, after V4-d5, 24h
-
+    Modiication de l'import des JSON sans les tests de Gatling : V4-d6, after V4-d5, 24h
+    Finalisation de la documentation :  V4-d7, after V4-d6, 47h
+    Rendre le rapport zipper : milestone, V4-d8, after V4-d7, 1h
 
 ```
+<br><br><br><br><br>
+<div style="text-align:center;">
+<img src="../capture/icone/Raspberry_Pi_OS_Logo.png" alt="Image" width="50%" style="width:50%;">
+</div>
+
 
 <div style="page-break-after: always;"></div>
 
@@ -593,6 +603,8 @@ De fais toute intéraction de l'utilisateur se fait avec **Nidus**.
 ## 10.1. Shéma de principe visuel
 
 <img src="./UML/uml.png" alt="Image" width="100%" style="width:100%;">
+
+<div style="page-break-after: always;"></div>
 
 ## 10.2. Diagrame de séquence
 
@@ -690,6 +702,14 @@ toblerc@LPT-UNIX-USB-CT:~$
 tobby@Volt:~$ sudo cp -r /home/tobby/html /var/www/
 ```
 
+<br><br><br>
+<br><br><br>
+<br><br><br>
+<div style="text-align:center;">
+<img src="../capture/icone/Apache.png" alt="Image" width="70%" style="width:70%;">
+</div>
+
+
 <div style="page-break-after: always;"></div>
 
 
@@ -765,6 +785,15 @@ tobby@Nidus:~ $ sudo vi ./install.sh
 tobby@Nidus:~ $ sudo chmod +x ./install.sh 
 tobby@Nidus:~ $ bash ./install.sh
 ```
+
+À terme, il serait intéressant de pouvoir récupérer le script directement depuis GitHub. Cependant, actuellement, le projet est hébergé sur un GitLab privé, ce qui rend cette option impossible. Voici le type de commande que j'aimerais pouvoir utiliser :
+```bash
+tobby@Nidus:~ $ sudo wget "URL du script"
+```
+<br><br><br>
+<div align="right">
+<img src="../capture/icone/GitLab.png" alt="Image 3" width="30%" style="width:30%;">
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -956,8 +985,13 @@ La syntaxe de base de la commande SCP est la suivante :
 ```bash
 scp [options] [source] [destination]
 ```
-
-
+<br><br><br>
+<br><br><br>
+<br><br><br>
+<br><br><br>
+<div align="right">
+<img src="../capture/icone/linux-tux-3-logo-png-transparent.png" alt="Image 3" width="30%" style="width:30%;">
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -1073,6 +1107,13 @@ Pour ce faire je vais simplement me connecter à l'interface web de Node-Red.
 
 <img src="../capture/RPI/Node-Red/PostInstall.png" alt="Image" width="100%" style="width:100%;">
 
+<br><br><br>
+<br><br><br>
+<br><br><br>
+<br><br><br>
+<div align="right">
+<img src="../capture/icone/node-red-hexagon.png" alt="Image 3" width="30%" style="width:30%;">
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -1138,7 +1179,12 @@ Comme il s'agit d'un *clone*, il faudra ajouter les fichiers manquants et ajuste
 tobby@Nidus:~/.node-red/projects/banc-de-mesures-de-la-consommation-electrique $ touch ~/.node-red/projects/banc-de-mesures-de-la-consommation-electrique/flows_cred.json
 tobby@Nidus:~/.node-red/projects/banc-de-mesures-de-la-consommation-electrique $ chmod 600 ~/.node-red/projects/banc-de-mesures-de-la-consommation-electrique/flows_cred.json
 ```
-
+<br><br><br>
+<br><br><br>
+<br><br><br>
+<div align="right">
+<img src="../capture/icone/Tuz-logo.png" alt="Image 3" width="30%" style="width:30%;">
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -1177,6 +1223,9 @@ drwxr-xr-x  3 root  root  4096 16 aoû 13:58 ..
 drwxr-xr-x  2 tobby tobby 4096 16 aoû 15:10 .gatling
 [...]
 ```
+
+<div style="page-break-after: always;"></div>
+
 - Téléchargement de Gatling
 ```bash
 tobby@Nidus:~ $ wget -O ~/.gatling/gatling-charts-highcharts-bundle-3.9.5-bundle.zip https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/3.9.5/gatling-charts-highcharts-bundle-3.9.5-bundle.zip
@@ -1210,6 +1259,12 @@ drwxr-xr-x 2 tobby tobby 12288 10 mai 11:19 lib
 drwxr-xr-x 2 tobby tobby  4096 10 mai 11:19 results
 drwxr-xr-x 5 tobby tobby  4096 10 mai 11:19 user-files
 ```
+
+<br><br><br>
+<div align="right">
+<img src="../capture/icone/gatling-logo.png" alt="Image 3" width="30%" style="width:30%;">
+</div>
+
 
 <div style="page-break-after: always;"></div>
 
@@ -1356,8 +1411,12 @@ println(s"Temps de montée : $myRamp")
 
   setUp(scn.inject(constantUsersPerSec(nbUsers).during(myRamp seconds))).protocols(httpProtocol)
 }
-
 ```
+<br>
+<div align="left">
+<img src="../capture/icone/scala.png" alt="Image 3" width="30%" style="width:40%;">
+</div>
+
 <div style="page-break-after: always;"></div>
 
 ## 15.4. Scala
@@ -1407,7 +1466,10 @@ E premier lieux je le copie donc sur le serveur web avec la commande suivante :
 ```bash
 scp -r /home/toblerc/Documents/ES_2024/banc-de-mesures-de-la-consommation-electrique/siteWeb/www/html tobby@Volt:/var/www/html/
 ```
-
+<br><br><br><br><br><br>
+<div align="right">
+<img src="../capture/icone/apache-software-logo-vector.png" alt="Image 3" width="30%" style="width:30%;">
+</div>
 <div style="page-break-after: always;"></div>
 
 # 17. MQTT
@@ -1425,6 +1487,11 @@ Ma décision d'utiliser MQTT découle de mon expérience antérieure. J'ai eu l'
 En utilisant le MQTT, nous évitons la complexité liée au transfert de requêtes via SSH ainsi que l'utilisation de clés SSH. Cela se traduit par un gain significatif en termes de performances et de sécurité. Sur le plan des performances, MQTT se distingue par sa légèreté, étant environ dix fois plus léger que SSH. Cette légèreté en fait un choix judicieux pour la transmission de données de consommation.
 
 Au niveau du soft que j'ai choisi de mettre en place, il s'agit de [**Mosquitto**](https://mosquitto.org/), un broker MQTT open source. Il est disponible sur les dépôts officiels de Debian, ce qui facilite son installation. De plus, il est très simple à configurer et j'ai déjà eu l'occasion de l'utiliser dans le cadre de mon travail de diplôme de CFC. 
+
+<br><br><br><br>
+<div align="right">
+<img src="../capture/icone/MQTT.png" alt="Image 3" width="30%" style="width:30%;">
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -1456,6 +1523,10 @@ tobby@Nidus:~/.ssh $ sudo systemctl status mosquitto
 aoû 22 16:01:58 Nidus systemd[1]: Starting Mosquitto MQTT Broker...
 aoû 22 16:01:58 Nidus systemd[1]: Started Mosquitto MQTT Broker.
 ```
+<br><br><br><br>
+<div align="center">
+<img src="../capture/icone/mosquitto.png" alt="Image 3" width="30%" style="width:50%;">
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -1495,6 +1566,11 @@ J'ai développé un script MQTT relativement sophistiqué, spécialement conçu 
 Comme nous l'avons évoqué à plusieurs reprises, l'objectif de ce banc de test est de minimiser les exigences envers Volt. Idéalement, il devrait être possible de simplement flasher une image sur une carte SD, de l'insérer dans Volt, et de connecter le banc de test sans contraintes majeures liées à un système d'exploitation spécifique ou à une configuration particulière.
 
 Cependant, il est presque impossible de créer un système entièrement "plug and play". Par conséquent, le script ci-dessous accomplit une tâche cruciale en mettant en place toutes les dépendances et configurations nécessaires pour assurer le bon fonctionnement du script et l'envoi réussi des données vers le broker MQTT.
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<div align="right">
+<img src="../capture/icone/tux3.jpg" alt="Image 3" width="30%" style="width:30%;">
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -1719,7 +1795,10 @@ tobby@Nidus:~ $ sudo i2cdetect -y 1
 60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 70: -- -- -- -- -- -- -- --    
 ```
-
+<br><br><br><br><br><br><br><br><br><br><br>
+<div align="right">
+<img src="../capture/icone/I2C.jpg" alt="Image 3" width="30%" style="width:30%;">
+</div>
 <div style="page-break-after: always;"></div>
 
 ## 18.3. Obtention des données
@@ -1756,7 +1835,10 @@ drwxr-xr-x 2 tobby tobby 4096 22 aoû 10:19 .
 drwxr-xr-x 3 tobby tobby 4096 22 aoû 10:18 ..
 -rw-r--r-- 1 tobby tobby    0 22 aoû 10:19 my_ina219.py
 ```
-
+<br>
+<div align="left">
+<img src="../capture/icone/Python-logo-notext.png" alt="Image 3" width="30%" style="width:30%;">
+</div>
 <div style="page-break-after: always;"></div>
 
 - Modification du script
@@ -1932,6 +2014,10 @@ En effet, bien que disposer des valeurs à un instant donné soit utile, pouvoir
 En plus du nœud de graphique, nous aurons besoin du nœud **node-red-node-base64**, qui facilitera la conversion d'images en base64 et vice versa. Cette conversion est essentielle pour intégrer les images dans le document PDF.
 
 Cette combinaison de nœuds nous permettra de créer des représentations visuelles attrayantes et informatives des données, offrant ainsi une compréhension plus approfondie et une présentation visuellement engageante.
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
+<div style="text-align:left;">
+<img src="../capture/icone/ChartJS.png" alt="Image de Monitoring" width="50%" style="width:50%;">
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -2248,6 +2334,7 @@ Au cours de mes tests, j'ai réalisé qu'un problème survient lorsque l'on gén
 <img src="../capture/RPI/Node-Red/RapportPDF/7.png" alt="Alt text" width="50%" style="width:50%;">
 </div>
 
+
 <div style="page-break-after: always;"></div
 
 Voici les nœuds qui gèrent cette partie :
@@ -2258,6 +2345,11 @@ Voici les nœuds qui gèrent cette partie :
 Ce que l'on peut observer, c'est qu'après avoir appuyé sur le bouton de purge, un message est envoyé dans un nœud `show dialog` qui affiche une fenêtre de confirmation. Si l'utilisateur appuie sur le bouton "Oui", un message est transmis à un nœud de fonction qui vérifie le contenu du message et redemande une confirmation s'il est à nouveau validé. À ce stade, deux flux sont créés :
 - Le premier effectue la purge totale de tous les fichiers dans `/home/NodeRed/`.
 - Le second commence par un délai de quelques secondes avant de recréer les dossiers de structuration.
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div style="text-align:right;">
+<img src="../capture/icone/PngItem_209333.png" alt="Image de Monitoring" width="30%" style="width:30%;">
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -2590,6 +2682,9 @@ var chartData = {
 msg.payload = chartData; // Attribuez les données du graphique au message
 return msg; // Renvoyez le message
 ```
+
+<div style="page-break-after: always;"></div>
+
 ### 21.6.2. PDF
 Une fois les chart créer,  je les réutilise dans le noeud de création de PDF pour les ajouter au rapport :
 ```javascript
@@ -2700,6 +2795,10 @@ Actuellement, le ventilateur utilisé est un modèle de bureau issu de ma propre
 Pour maintenir un certain niveau de contrôle, j'ai intégré les informations de monitoring directement à côté du formulaire de lancement du test. Ainsi, il est possible de visualiser en temps réel les valeurs de monitoring et de suivre le déroulement du test.
 
 
+<div style="text-align:right;">
+<img src="../capture/icone/icon192x192.png" alt="Alt text" width="30%" style="width:30%;">
+</div>
+
 <div style="page-break-after: always;"></div>
 
 ### 22.1.1. Ventilateur 
@@ -2759,6 +2858,11 @@ Pour remédier à cela, j'ai choisi de segmenter les flux de données et de les 
 Ensuite, j'ai décidé de déplacer le traitement des données plus en amont de leur flux respectif. Cela signifie que les données sont traitées et simplifiées plus tôt dans leur parcours. En conséquence, des données déjà traitées et donc moins volumineuses transitent à travers les étapes suivantes.
 
 Cette stratégie réduit la charge de traitement à chaque étape ultérieure, ce qui se traduit par une nette amélioration des performances globales du système.
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div style="text-align:left;">
+<img src="../capture/icone/Tux.svg.png" alt="Alt text" width="20%" style="width:20%;">
+</div>
+
 
 <div style="page-break-after: always;"></div>
 
@@ -2779,7 +2883,10 @@ Ensuite, j'ai mis en place une fonctionnalité permettant à l'utilisateur de t�
 <div align="center">
 <img src="../capture/RPI/Node-Red/RapportPDF/14.png" alt="Image 2" width="100%" style="width:100%;">
 </div>
-
+<br><br><br><br><br><br>
+<div style="text-align:right;">
+<img src="../capture/icone/json-logo.png" alt="Alt text" width="20%" style="width:20%;">
+</div>
 <div style="page-break-after: always;"></div>
 
 ### 22.4.3. Importation du Fichier JSON
@@ -2823,10 +2930,10 @@ Les graphique sont plus lisibles et les données sont mieux organisées dans le 
 
 ### 22.6.1. UI
 <div align="center">
-<img src="../capture/RPI/Manuel/Interface1.png" alt="Image 3" width="100%" style="width:80%;">
+<img src="../capture/RPI/Manuel/Interface1.png" alt="Image 3" width="100%" style="width:90%;">
 </div>
 <div align="center">
-<img src="../capture/RPI/Manuel/Interface2.png" alt="Image 3" width="100%" style="width:80%;">
+<img src="../capture/RPI/Manuel/Interface2.png" alt="Image 3" width="100%" style="width:90%;">
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -3048,8 +3155,6 @@ Ce script automatisé a pour objectif de simplifier l'installation de Gatling, M
 
 Ces étapes permettent de préparer l'environnement nécessaire à notre projet, en installant les outils et services requis. Une fois le script exécuté avec succès, vous pourrez accéder à Node-Red via l'adresse [http://localhost:1880](http://localhost:1880).
 
-<div style="page-break-after: always;"></div>
-
 ### 23.1.1. Utilisation
 Afin de tester le script dans des conditions proches de sa finalité, j'ai opté pour une approche pratique. Au lieu de créer une seconde carte SD, réaliser des captures d'écran et effectuer des manipulations séparées, j'ai pris la décision de flasher en direct la carte SD de Nidus, la machine sur laquelle je développe le projet. Cette approche comportait un certain risque, car en cas d'échec, cela aurait pu entraîner une perte de temps considérable. Cependant, j'ai décidé de relever ce défi pour tester le script en conditions réelles et apporter des modifications en temps réel si nécessaire.
 
@@ -3142,7 +3247,7 @@ Voici les tests que j'ai effectués :
 - Essai sur un autre emplacement de la breadboard
 - Vérification de la présence de modules noyau I2C (`lsmod | grep i2c`)
 - Vérification avec un oscilloscope
-
+- 
 <div style="page-break-after: always;"></div>
 
 Malheureusement, aucun de ces tests n'a abouti à une solution. J'ai donc pris la décision de repartir de zéro en effectuant une installation propre, sans Node-Red ni Gatling. À ce moment-là, j'ai enfin pu détecter mes puces avec succès.
@@ -3241,7 +3346,9 @@ Lors du test avec le ventilateur activé, une légère augmentation de la consom
 Cependant, les variations les plus significatives ont été observées au niveau des températures. La température du processeur est restée constamment en dessous de 40 degrés Celsius lors du test avec le ventilateur en fonctionnement, tandis qu'elle a dépassé les 60 degrés Celsius lors du test sans ventilateur. Ces résultats démontrent clairement l'impact positif du ventilateur sur la température du processeur.
 
 Il est important de noter que ces tests ont été réalisés pendant une période de canicule, ce qui signifie que la température ambiante était exceptionnellement élevée. Cela suggère que, dans des conditions ambiantes plus fraîches, la température du processeur aurait pu être encore plus basse. Cependant, il est peu probable que cela ait eu un impact significatif sur les différences observées, car la réduction de la température du processeur grâce au ventilateur était clairement substantielle et significative.
-
+<br><br><br><br><br><br>
+<img src="../capture/RPI/Temp/NidusCold.png" alt="Alt text" width="49%" style="width:49%;">
+<img src="../capture/RPI/Temp/NidusHot.png" alt="Alt text" width="49%" style="width:49%;">
 
 <div style="page-break-after: always;"></div>
 
@@ -3542,3 +3649,7 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
     > Système d'exploitation Ubuntu Server.
 
 
+<br><br><br><br><br>
+<div style="text-align:right;">
+<img src="../capture/CuriousTRex.png" alt="Image" width="50%" style="width:30%;">
+</div>
