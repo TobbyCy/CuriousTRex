@@ -20,12 +20,14 @@ INSTALL_DIR="/usr/local/bin"
 # Nom du script
 SCRIPT_NAME="mqtt.sh"
 # Adresse du broker MQTT
-MQTT_BROKER="nidus"
+MQTT_BROKER="localhost"
+# Base du topic
+MQTT_TOPIC_BASE="nidus/benchmark"
 # Sujets MQTT pour les différentes données
-MQTT_TOPIC_CPU="benchmark/cpu"
-MQTT_TOPIC_RAM="benchmark/ram"
-MQTT_TOPIC_PROCESSES="benchmark/processes"
-
+MQTT_TOPIC_CPU=$MQTT_TOPIC_BASE"/cpu"
+MQTT_TOPIC_RAM=$MQTT_TOPIC_BASE"/ram"
+MQTT_TOPIC_PROCESSES=$MQTT_TOPIC_BASE"/processes"
+MQTT_TOPIC_TEMP=$MQTT_TOPIC_BASE"/temp"
 # Vérification si le script est dans le bon dossier d'installation
 if [ "$(dirname "$(readlink -f "$0")")" != "$INSTALL_DIR" ]; then
     echo "Erreur : Le script doit être installé dans $INSTALL_DIR"
@@ -60,13 +62,13 @@ while true; do
     CPU_LOAD=$(top -bn1 | grep "Cpu(s)" | awk '{print $2 + $4}')
     RAM_LOAD=$(free | awk '/Mem/{printf("%.2f\n", $3/$2*100)}')
     PROCESS_COUNT=$(ps aux | wc -l)
-
+    TEMP=$(vcgencmd measure_temp | egrep -o '[0-9]*\.[0-9]*')
     # Publication des données sur MQTT
     mosquitto_pub -h $MQTT_BROKER -t $MQTT_TOPIC_CPU -m "$CPU_LOAD"
     mosquitto_pub -h $MQTT_BROKER -t $MQTT_TOPIC_RAM -m "$RAM_LOAD"
     mosquitto_pub -h $MQTT_BROKER -t $MQTT_TOPIC_PROCESSES -m "$PROCESS_COUNT"
+    mosquitto_pub -h $MQTT_BROKER -t $MQTT_TOPIC_TEMP -m "$TEMP"
+   #echo "Données publiées sur MQTT"
 
-    echo "Données publiées sur MQTT"
-
-    sleep 1  # Attente d'une seconde
+   sleep 0.5  # Attente d'une demi seconde
 done

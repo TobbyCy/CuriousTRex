@@ -2,7 +2,7 @@ import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import scala.concurrent.duration._
 
-class CuriusTRex_Bash extends Simulation {
+class CuriousTRex extends Simulation {
 
   val httpProtocol = http
     .baseUrl("http://volt.s2.rpn.ch")
@@ -10,6 +10,7 @@ class CuriusTRex_Bash extends Simulation {
     .acceptHeader("image/avif,image/webp,*/*")
     .acceptEncodingHeader("gzip, deflate")
     .acceptLanguageHeader("fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3")
+    .disableCaching
     .userAgentHeader("Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/114.0")
 
   val headers_0 = Map(
@@ -78,8 +79,8 @@ class CuriusTRex_Bash extends Simulation {
    .exec(flushSessionCookies)
    .exec(flushCookieJar)
 
-val nbUsers = java.lang.Long.getLong("users", 1).toDouble
-val myRamp = java.lang.Long.getLong("ramp", 0)
+val nbUsers = java.lang.Long.getLong("users", 100).toDouble
+val myRamp = java.lang.Long.getLong("ramp", 180)
 println(s"Nombre d'utilisateurs : $nbUsers")
 println(s"Temps de montée : $myRamp")
 
