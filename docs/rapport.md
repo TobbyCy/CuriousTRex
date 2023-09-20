@@ -179,6 +179,13 @@
 - [23. Curious T-Rex](#23-curious-t-rex)
   - [23.1. Installation](#231-installation)
     - [23.1.1. Utilisation](#2311-utilisation)
+  - [23.2. Mise à jour du JSON](#232-mise-à-jour-du-json)
+    - [23.2.1. Affichage](#2321-affichage)
+    - [23.2.2. Enregistrement des données](#2322-enregistrement-des-données)
+    - [23.2.3. IN](#2323-in)
+    - [23.2.4. Création des graphiques](#2324-création-des-graphiques)
+    - [23.2.5. Récupération des images](#2325-récupération-des-images)
+    - [23.2.6. Création du PDF](#2326-création-du-pdf)
 - [24. Problèmes](#24-problèmes)
   - [24.1. Problème de Détection I2C](#241-problème-de-détection-i2c)
   - [24.2. Problème de Performance](#242-problème-de-performance)
@@ -209,18 +216,22 @@
 - [27. Licences](#27-licences)
   - [27.1. Licence Principale du Projet](#271-licence-principale-du-projet)
   - [27.2. Licences des Dépendances](#272-licences-des-dépendances)
-- [28. Remerciement](#28-remerciement)
-- [29. Sources](#29-sources)
-  - [29.1. Node-RED et Extensions](#291-node-red-et-extensions)
-  - [29.2. Bibliothèques et Outils Externes](#292-bibliothèques-et-outils-externes)
-  - [29.3. Tutoriels et Documentation Technique](#293-tutoriels-et-documentation-technique)
-  - [29.4. Gatling](#294-gatling)
-- [30. Autres Outils et Ressources](#30-autres-outils-et-ressources)
-  - [30.1. Articles de Recherche](#301-articles-de-recherche)
-  - [30.2. Liens externes](#302-liens-externes)
-  - [30.3. OS](#303-os)
+    - [27.2.1. Brevets et Contributions spécifiques :](#2721-brevets-et-contributions-spécifiques-)
+    - [27.2.2. Responsabilité Limitée :](#2722-responsabilité-limitée-)
+- [28. Conclusion](#28-conclusion)
+- [29. Remerciement](#29-remerciement)
+- [30. Sources](#30-sources)
+  - [30.1. Node-RED et Extensions](#301-node-red-et-extensions)
+  - [30.2. Bibliothèques et Outils Externes](#302-bibliothèques-et-outils-externes)
+  - [30.3. Tutoriels et Documentation Technique](#303-tutoriels-et-documentation-technique)
+  - [30.4. Gatling](#304-gatling)
+- [31. Autres Outils et Ressources](#31-autres-outils-et-ressources)
+  - [31.1. Articles de Recherche](#311-articles-de-recherche)
+  - [31.2. Liens externes](#312-liens-externes)
+  - [31.3. OS](#313-os)
 
 <div style="page-break-after: always;"></div>
+
 
 # 3. Introduction
 Le développement de sites web et d'applications web requiert une attention particulière à la performance et à la consommation des ressources. Afin de réduire l’impact écologique des solutions digitale et d’optimiser la charge des systèmes, il est essentiel de mesurer et d'analyser la consommation de ces systèmes dans des conditions de charge réalistes. Dans ce contexte, il est nécessaire de mettre en place un banc de mesures de la consommation capable de générer du trafic web, de mesurer la consommation électrique et de fournir des rapports sur la performance du code ou de l'architecture testée.
@@ -360,19 +371,19 @@ En ce qui concerne le budget, je vais fournir les prix de **Digitec/Galaxus** po
 
 ---
 
-| Matériel                                                                                                                                                                                                                            | Quantité | Prix Par Unité | Prix Total |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | -------------- | ---------- |
+| Matériel                                                                                                                                                                                                                                | Quantité | Prix Par Unité | Prix Total |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | -------------- | ---------- |
 | [**Raspberry Pi Câble officiel blanc Micro-HDMI vers HDMI 1M pour Raspberry Pi 4**](https://www.digitec.ch/fr/s1/product/raspberry-pi-cable-officiel-blanc-micro-hdmi-vers-hdmi-1m-pour-raspberry-pi-4-type-a-accessoires-ele-24227466) | 1X       | 12.90          | 12.90      |
 | [**RASPBERRY Radiateur**](https://www.digitec.ch/fr/s1/product/intertech-raspberry-boitier-ods-721-pi4-modele-b-divers-accessoires-electroniques-boitier-18233601)                                                                      | 2X       | 25.80          | 51.60      |
 | [**Raspberry Pi 4 4G Modèle B ARMv8**](https://www.digitec.ch/fr/s1/product/raspberry-pi-4-2g-modele-b-armv8-carte-de-developpement-kit-11267870)                                                                                       | 2X       | 87.–           | 174.–      |
 | [**Official Raspberry Pi 4 Power Adapter**](https://www.digitec.ch/fr/s1/product/raspberry-pi-official-raspberry-pi-4-power-adapter-carte-de-developpement-kit-11268330)                                                                | 2X       | 13.90          | 27.80      |
-| [**microSDXC, 64 Go, U3, UHS-I**](https://www.digitec.ch/fr/s1/product/sandisk-microsdxc-high-endurance-monitoring-microsdxc-64-go-u3-uhs-i-carte-memoire-11141387)                                                                   | 2X       | 14.90          | 29.80      |
+| [**microSDXC, 64 Go, U3, UHS-I**](https://www.digitec.ch/fr/s1/product/sandisk-microsdxc-high-endurance-monitoring-microsdxc-64-go-u3-uhs-i-carte-memoire-11141387)                                                                     | 2X       | 14.90          | 29.80      |
 | [**Carte enfichable à grille de trous Breadboard ZY-60**](https://www.digitec.ch/fr/s1/product/oem-carte-enfichable-a-grille-de-trous-breadboard-zy-60-planche-a-pain-accessoires-electroniques-boi-5999412)                            | 1X       | 18.90          | 18.90      |
-| [**INA219**](https://www.digitec.ch/fr/s1/product/adafruit-ina219-detecteur-module-electronique-8027636)                                                                                                                               | 2X       | 17.90          | 35.80      |
+| [**INA219**](https://www.digitec.ch/fr/s1/product/adafruit-ina219-detecteur-module-electronique-8027636)                                                                                                                                | 2X       | 17.90          | 35.80      |
 | [**MikroElektronika Fils de connexion**](https://www.digitec.ch/fr/s1/product/mikroelektronika-fils-de-connexion-pour-perfboard-cable-prise-electronique-10125053)                                                                      | 1X       | 13.-           | 13.-       |
 | [**Cable RJ45 violet court**](https://www.digitec.ch/fr/s1/product/violet-015-metre-lszh-uutp-cat6-datacenter-slimline-patch-cable-snagless-with-rj45-connectors-uutp-u-24167092)                                                       | 2X       | 9.75           | 19.50      |
 | [**Cable USB-C Mâle-Femelle**](https://www.digitec.ch/fr/s1/product/renkforce-cable-usb-32-gen2x2-usb-c-male-usb-c-femelle-200-m-noir-gaine-pvc-2-m-cable-usb-24206671)                                                                 | 2X       | 14.95          | 29.90      |
-| **Total**                                                                                                                                                                                                                              |          |                | 433.20     |
+| **Total**                                                                                                                                                                                                                               |          |                | 433.20     |
 
 ---
 
@@ -3047,6 +3058,67 @@ Cela a conduit à la rédaction du chapitre détaillant la deuxième installatio
 
 <div style="page-break-after: always;"></div>
 
+## 23.2. Mise à jour du JSON
+
+La mise à jour du JSON a nécessité un travail de fond conséquent. J'ai dû repartir de zéro pour mettre en place un système de différenciation en fonction de l'utilisation de Gatling. Cela m'a amené à repenser entièrement la manière dont les données étaient enregistrées et lues. Par exemple, j'ai ajouté un champ spécifique pour indiquer si Gatling avait été utilisé.
+
+Afin de tirer pleinement parti de cette refonte majeure, j'ai choisi de décomposer au maximum les flux de données. Cela signifie qu'il n'y a plus de liens rigides entre les différentes étapes de traitement. Cette flexibilité offre l'avantage de faciliter la séparation ultérieure des flux en plusieurs parcours distincts si cela s'avère nécessaire.
+
+Cette révision en profondeur du JSON était essentielle pour garantir la robustesse et la modularité du système. Elle permet également d'anticiper d'éventuels besoins d'adaptation future en fonction des évolutions du projet.
+
+Cependant, cette approche a également ses inconvénients. En effet, il faut être beaucoup plus rigoureux lors de la mise en place des fluc car il est plus complexe de faire des modifications en cours de route. De plus, il faut être très attentif à la manière dont les données sont traitées, car il est facile de se perdre dans les différents flux.
+
+### 23.2.1. Affichage
+
+Au niveau de l'affichage des fichier JSON, je n'ai rien changé, en effet l'affichage des fichier JSON est déjà très bien réalisé et ne nécessite pas de modification.
+
+<div align="center">
+<img src="../capture/RPI/Node-Red/JSON/Affichage.png" alt="Image 3" width="100%" style="width:100%;">
+</div>
+
+<div style="page-break-after: always;"></div>
+
+### 23.2.2. Enregistrement des données
+
+Pour l'enregistrement des données, j'ai décidé de simplement ajouter un donnée pour indiquer si Gatling a été utilisé ou non. Cette approche permet de conserver la structure existante et de ne pas avoir à modifier les données existantes.
+
+<div align="center">
+<img src="../capture/RPI/Node-Red/JSON/OUT.png" alt="Image 3" width="100%" style="width:100%;">
+</div>
+
+### 23.2.3. IN
+
+Pour la lecture des donnée, j'ai pu garder une ghrande partie de ce qui avais été mis en place car avec mon aproche à base de switch, il m'as été très simple de rajouter un switch pour différencier les données de Gatling et les données de monitoring.
+
+<div align="center">
+<img src="../capture/RPI/Node-Red/JSON/IN.png" alt="Image 3" width="100%" style="width:100%;">
+</div>
+
+### 23.2.4. Création des graphiques
+
+Pour la création des graphiques, je me suis inspirée de ce que j'avais déjà réalisé, j'ai donc gardé la même structure mais j'ai du rajouter un switch pour différencier les données de Gatling et les données de monitoring.
+
+<div align="center">
+<img src="../capture/RPI/Node-Red/JSON/CreatGraph.png" alt="Image 3" width="100%" style="width:100%;">
+</div>
+
+### 23.2.5. Récupération des images
+
+Pour la récupération des images, il à fallu faire du ménage car les entrée et les sortie étais chaotique, j'ai donc du revoir la structure de la récupération des images, j'ai donc décidé d'épurer au maximum les flux pour ne garder que l'essentiel.
+
+<div align="center">
+<img src="../capture/RPI/Node-Red/JSON/ExtractImage.png" alt="Image 3" width="100%" style="width:100%;">
+</div>
+
+### 23.2.6. Création du PDF
+La création du PDF est la partie la plus modifié car j'ai du séparer mon flux selon l'utilisation de Gatling, en effet si Gatling n'est pas utilisé, il n'y a pas de graphique de Gatling à afficher, j'ai donc du créer un flux pour Gatling et un flux pour le monitoring.
+
+<div align="center">
+<img src="../capture/RPI/Node-Red/JSON/CreatePDF.png" alt="Image 3" width="100%" style="width:100%;">
+</div>
+
+<div style="page-break-after: always;"></div>
+
 # 24. Problèmes
 Comme dans tout projet, j'ai rencontré des problèmes lors de la réalisation de ce projet. Certains ont été résolus, d'autres non. Dans cette section, je vais décrire les problèmes rencontrés et les solutions que j'ai trouvées.
 
@@ -3255,34 +3327,79 @@ Le projet principal est sous licence **GNU General Public License Version 3.0 (G
 Pour plus de détails sur la licence **GPL V3.0**, voici [le texte complet de la licence](https://www.gnu.org/licenses/gpl-3.0.html).
 
 ## 27.2. Licences des Dépendances
-
-Le projet utilise plusieurs dépendances, chacune étant sous une licence spécifique. Voici un aperçu des licences des dépendances :
+Le projet utilise plusieurs dépendances, chacune étant soumise à une licence spécifique. Voici un aperçu des licences des dépendances, avec des informations sur chacune d'entre elles :
 
 1. [**Licence MIT**](https://opensource.org/license/mit/)
-   - **Chart.js, PDMMake2, PDF Make, pi-ina219,**
-   - Cette licence permet une utilisation, une modification et une redistribution libres du logiciel, tant que les avis de droits d'auteur sont conservés.
+   - **Chart.js, PDFMake2, PDF Make, pi-ina219**
+   - La licence MIT autorise une utilisation, une modification et une redistribution libres du logiciel, à condition que les avis de droits d'auteur soient conservés.
 
 2. [**Licence Apache 2.0**](https://opensource.org/license/apache-2-0/)
-   - **Node-Red, Dashboard, MQTT+, File System Node-Red, Base64 Node-Red, Gatling, FlowFuse,**
-   - Cette licence permet une utilisation, une modification et une redistribution libres du logiciel, avec des dispositions spécifiques pour les brevets et les contributions.
+   - **Node-Red, Dashboard, MQTT+, File System Node-Red, Base64 Node-Red, Gatling, FlowFuse**
+   - La licence Apache 2.0 permet une utilisation, une modification et une redistribution libres du logiciel, tout en incluant des dispositions spécifiques concernant les brevets et les contributions.
 
 3. [**Licence ISC (Internet Systems Consortium)**](https://opensource.org/license/isc-license-txt/)
    - **INA219 Node-Red**
-   - Cette licence permet une utilisation, une modification et une redistribution libres du logiciel, avec une responsabilité limitée.
+   - La licence ISC autorise une utilisation, une modification et une redistribution libres du logiciel, avec une responsabilité limitée.
 
 4. [**Licence BSD-2-Clause**](https://opensource.org/license/bsd-2-clause/)
    - **Chart-Image Node-Red**
-   - Cette licence permet une utilisation, une modification et une redistribution libres du logiciel, tant que les avis de droits d'auteur sont conservés.
+   - La licence BSD-2-Clause autorise une utilisation, une modification et une redistribution libres du logiciel, en exigeant que les avis de droits d'auteur soient conservés.
 
 5. [**Licence EPL/EDL (Eclipse Public License / Eclipse Distribution License)**](https://opensource.org/license/epl-2-0/)
    - **Mosquitto**
-   - Cette licence est spécifique à la fondation Eclipse et permet une utilisation, une modification et une redistribution libres du logiciel, avec des exigences spécifiques pour les distributions.
+   - La licence EPL/EDL est spécifique à la fondation Eclipse et permet une utilisation, une modification et une redistribution libres du logiciel, avec des exigences particulières pour les distributions.
 
+6. [**GNU General Public License Version 3.0 (GPL-3.0)**](https://opensource.org/license/gpl-3.0/)
+   - **Raspberry Pi OS, Ubuntu**
+   - La licence GNU General Public License Version 3.0 garantit les droits de l'utilisateur à exécuter, étudier, modifier et redistribuer le logiciel conformément à ses termes et conditions.
+
+<div style="page-break-after: always;"></div>
+
+
+### 27.2.1. Brevets et Contributions spécifiques :
+
+Cela signifie que la licence a des dispositions spécifiques concernant les brevets et les contributions. En général, cela indique que les personnes qui contribuent au projet en ajoutant du code ou d'autres ressources acceptent de céder les droits de leurs brevets associés à ce code au projet. Cela permet au projet d'utiliser ces brevets en toute légalité sans craindre de litiges futurs liés aux brevets. C'est une mesure de protection pour le projet open source et ses contributeurs.
+
+Implication pour les développeurs : Si vous utilisez une bibliothèque ou un logiciel sous une licence avec cette clause, vous devez être conscient que toute contribution que vous apportez au projet peut entraîner la cession de vos droits de brevet associés à cette contribution. Cela signifie que vous ne pourrez pas utiliser ces brevets pour poursuivre le projet ou d'autres contributeurs en justice pour des violations de brevet. Cela encourage la collaboration et la protection du projet.
+
+### 27.2.2. Responsabilité Limitée :
+
+Cette clause signifie généralement que les auteurs du logiciel ne sont pas responsables des dommages ou des problèmes qui pourraient résulter de l'utilisation du logiciel. En d'autres termes, si le logiciel provoque un problème, une perte de données ou tout autre dommage, les auteurs ne sont pas légalement responsables.
+
+Implication pour les développeurs : En utilisant un logiciel sous une licence avec cette clause, vous acceptez que les auteurs ne soient pas responsables des éventuels problèmes ou dommages causés par le logiciel. Vous devez utiliser le logiciel en connaissance de cause et prendre vos propres mesures pour minimiser les risques. Cela protège les auteurs du logiciel contre d'éventuelles poursuites en responsabilité.
+
+
+| Licence                                                                                                                | Brevets et Contributions spécifiques | Responsabilité Limitée |
+| ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ---------------------- |
+| [**Licence MIT**](https://opensource.org/license/mit/)                                                                 | Non                                  | Non                    |
+| [**Licence Apache 2.0**](https://opensource.org/license/apache-2-0/)                                                   | Oui                                  | Non                    |
+| [**Licence ISC (Internet Systems Consortium)**](https://opensource.org/license/isc-license-txt/)                       | Non                                  | Oui                    |
+| [**Licence BSD-2-Clause**](https://opensource.org/license/bsd-2-clause/)                                               | Non                                  | Non                    |
+| [**Licence EPL/EDL (Eclipse Public License / Eclipse Distribution License)**](https://opensource.org/license/epl-2-0/) | Oui                                  | Non                    |
+| [**GNU General Public License Version 3.0 (GPL-3.0)**](https://opensource.org/license/gpl-3-0/)                        | Non                                  | Non                    |
+
+<div style="page-break-after: always;"></div>
+
+# 28. Conclusion
+Au cours de ce projet, j'ai eu l'opportunité de me confronter à une multitude de défis passionnants liés à l'optimisation des ressources et à la réduction de la consommation électrique. Ce projet, axé sur l'utilisation de Gatling, Node-Red, et Mosquitto sur le Raspberry Pi (Nidus) pour collecter, agréger et générer des rapports PDF de données, a été une véritable aventure d'apprentissage.
+
+L'une des principales difficultés auxquelles j'ai été confronté était le besoin constant d'acquérir de nouvelles connaissances. J'ai souvent dû solliciter l'aide d'autres experts et plonger dans des documentations exhaustives. Par exemple, j'ai découvert que la température du CPU pouvait influencer la consommation électrique, ce qui a nécessité une analyse minutieuse de ces variables pour obtenir des résultats précis. Plus le projet avançait, plus je prenais conscience de l'ampleur de cette tâche colossale.
+
+En ce qui concerne l'infrastructure, j'ai compris l'importance de proposer un produit ouvert et évolutif. Les besoins ont évolué au fil du temps, allant de la simple collecte de données à des demandes plus avancées, telles que la possibilité de tester des clusters de Raspberry Pi, de stocker les données en base de données, ou encore de mettre en place un système de notation et de comparaison. Chacune de ces possibilités représente un projet en soi.
+
+Mon espoir est que ce projet ne se limite pas à une simple preuve de concept, mais qu'il serve de base pour les futures promotions d'étudiants. J'aspire à ce que ces futurs étudiants puissent continuer à le faire évoluer, le perfectionner et lui apporter des améliorations continues. Parmi les pistes d'avenir pour ce projet, je pense notamment à :
+
+- La création d'un système de notation et de comparaison des tests avec stockage en base de données.
+- La conception d'un boîtier modulable avec une gestion optimisée du flux d'air pour les Raspberry Pi.
+- L'exploration de l'analyse des données à l'aide d'outils d'intelligence artificielle pour des insights plus poussés.
+- L'expérimentation avec la mise en place d'un système de cluster de Raspberry Pi pour des tests encore plus poussés.
+
+Chacun de ces aspects pourrait devenir le point de départ du travail de diplôme d'un étudiant désireux de se plonger dans le domaine passionnant de l'optimisation des ressources et de la consommation électrique, et je serais fier de pouvoir avoir un rôle dans la suite de ce projet, que ce soit à mon compte ou en tant que conseil ou expert pour de futurs étudiants.
 
 
 <div style="page-break-after: always;"></div>
 
-# 28. Remerciement 
+# 29. Remerciement 
 Je tiens à exprimer ma profonde gratitude envers les personnes qui ont joué des rôles essentiels dans la réalisation de ce projet. Avant tout, je souhaite exprimer ma sincère reconnaissance à M. Benoit Vianin, dont la proposition du projet, le matériel fourni et les conseils avisés ont été cruciaux pour sa mise en place. Sa précieuse assistance technique a été d'une grande importance.
 
 Je tiens également à adresser mes remerciements à M. Fabien Maire, Directeur du service Informatique du SIS2 (Service Informatique du Secondaire 2), pour son accompagnement et ses conseils tout au long de ce travail. Sa vision éclairée et son expertise ont été des facteurs clés dans la réussite de ce projet.
@@ -3305,9 +3422,9 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 <div style="page-break-after: always;"></div> 
 
 
-# 29. Sources
+# 30. Sources
 
-## 29.1. Node-RED et Extensions
+## 30.1. Node-RED et Extensions
 
 1. [**Guide d'Installation Node-Red, Version: 18.17.1, Licence: Apache-2.0**](https://nodered.org/docs/getting-started/raspberrypi)
    > Guide officiel pour installer Node-Red sur Raspberry Pi.
@@ -3333,7 +3450,7 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 8. [**Chart Image Node-Red, Version: 1.2.0,Licence: BSD-2-Clause**](https://flows.nodered.org/node/node-red-contrib-chart-image)
    > Extension pour créer des graphiques dans Node-Red.
 
-## 29.2. Bibliothèques et Outils Externes
+## 30.2. Bibliothèques et Outils Externes
 
 9. [**Chart.js, Version: 4.4.0, Licence: MIT**](https://www.chartjs.org/)
    > Bibliothèque JavaScript pour créer des graphiques interactifs.
@@ -3351,7 +3468,7 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 
 <div style="page-break-after: always;"></div> 
 
-## 29.3. Tutoriels et Documentation Technique
+## 30.3. Tutoriels et Documentation Technique
 
 14. [**Tutoriel de Base Rototron**](https://www.rototron.info/raspberry-pi-ina219-tutorial/)
     > Tutoriel de base pour utiliser l'INA219 avec Raspberry Pi.
@@ -3376,7 +3493,7 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 
 21. [**Documentation matérielle du Raspberry Pi 4**](https://www.raspberrypi.org/documentation/hardware/raspberrypi/README.md)
     > Documentation matérielle officielle du Raspberry Pi 4.
-## 29.4. Gatling
+## 30.4. Gatling
 
 22. [**Téléchargement Gatling, Verion 3.9.5, Licence : Apache-2.0**](https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/3.9.5/gatling-charts-highcharts-bundle-3.9.5-bundle.zip)
     > Lien de téléchargement de l'outil Gatling pour la performance des applications.
@@ -3387,7 +3504,7 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 24. [**Tutoriel de Démarrage Rapide Gatling**](https://gatling.io/docs/gatling/tutorials/quickstart/)
     > Tutoriel rapide pour commencer à utiliser Gatling.
 
-# 30. Autres Outils et Ressources
+# 31. Autres Outils et Ressources
 
 25. [**Tutoriel sur l'utilisation de S1seven**](https://www.s1seven.com/blog/use-s1sevens-certificate-tools-to-convert-a-json-certificate-to-a-pdf/)
     > Tutoriel pour utiliser les outils de conversion de certificat JSON en PDF (n'est pas utilisée).
@@ -3397,7 +3514,7 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 
 <div style="page-break-after: always;"></div> 
 
-## 30.1. Articles de Recherche
+## 31.1. Articles de Recherche
 
 27. [**Yewan Wang, David Nörtershäuser, Stéphane Masson, Jean-Marc Menaud. Etude de l’influence de la température du processeur sur la consommation des serveurs. ComPAS 2018 - Conférence.d’informatique en Parallélisme, Architecture et Système, Jul 2018, Toulouse, France. pp.1-8.**](https://imt-atlantique.hal.science/hal-01807805/)
     > Article de recherche sur l'influence de la température du processeur sur la consommation des serveurs.
@@ -3408,7 +3525,7 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 29. [**Profil de Consommation par M. Pol J. Planas Pulido**](https://upcommons.upc.edu/bitstream/handle/2117/180533/tfg-report-pol-planas.pdf?sequence=1&isAllowed=y)
     > Recherche sur le profil de consommation avec INA219.
 
-## 30.2. Liens externes
+## 31.2. Liens externes
 
 30. [**MicroChip AVR**](https://www.microchip.com/en-us/development-tool/ac164160)
     > Puce de développement Microchip AVR.
@@ -3418,7 +3535,7 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
     > Cluster fais de plaque de pleixglass avec intercalaire
 33. [**Index des Licences Utilisées**](https://opensource.org/licenses/alphabetical)
     > Index des licences open source.
-## 30.3. OS
+## 31.3. OS
 34. [**Raspberry Pi OS, Version 2023-05-03, Licence : GNU GPL**](https://www.raspberrypi.org/software/)
     > Système d'exploitation officiel du Raspberry Pi.
 35. [**Ubuntu Server, Version 23.04, Licence : GNU GPL**](https://ubuntu.com/download/server)
