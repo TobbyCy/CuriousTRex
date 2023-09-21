@@ -772,6 +772,22 @@
         "height": "1"
     },
     {
+        "id": "feabd600.f71b28",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "fb98fdb9.b193a",
+        "order": 1,
+        "disp": false,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "fb98fdb9.b193a",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard"
+    },
+    {
         "id": "943ce04091291544",
         "type": "delay",
         "z": "4e666803b8f3f742",
@@ -4107,6 +4123,27 @@
             [
                 "a283072b95a48a7c"
             ]
+        ]
+    },
+    {
+        "id": "42b8d6d1.fc68e8",
+        "type": "ui_template",
+        "z": "de0f28e0b2de7e99",
+        "group": "feabd600.f71b28",
+        "name": "Logo / Clock",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "format": "<script id=\"clockScript1\" type=\"text/javascript\">\n    var clockInterval;\n    $(function () {\n        if (clockInterval) return;\n\n        //add logo\n        var div1 = $('<div/>');\n        var logo = new Image();\n\n        logo.src = '/logo.png'\n        logo.height = 45;\n        div1[0].style.margin = '10px auto';\n\n        div1.append(logo);\n\n        //add clock\n        var div2 = $('<div/>');\n        var p = $('<p/>');\n\n        div2.append(p);\n        div2[0].style.margin = '5px';\n\n        function displayTime() {\n            p.text(new Date().toLocaleString());\n        }\n        \n        clockInterval = setInterval(displayTime, 1000);\n\n        //add to toolbar when it's available\n        var addToToolbarTimer;\n        \n        function addToToolbar() {\n            var toolbar = $('.md-toolbar-tools');\n            \n            if(!toolbar.length) return;\n            \n            toolbar.append(div1);\n            toolbar.append(div2);\n            clearInterval(addToToolbarTimer);\n        }\n        addToToolbarTimer = setInterval(addToToolbar, 100);\n    });\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "global",
+        "className": "",
+        "x": 450,
+        "y": 160,
+        "wires": [
+            []
         ]
     },
     {
