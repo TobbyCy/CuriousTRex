@@ -4143,10 +4143,39 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 230,
+        "x": 310,
         "y": 200,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "e7d935347dad11f9",
+        "type": "inject",
+        "z": "de0f28e0b2de7e99",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 200,
+        "wires": [
+            [
+                "4ef14630b10c9ef6"
+            ]
         ]
     },
     {
