@@ -772,22 +772,6 @@
         "height": "1"
     },
     {
-        "id": "feabd600.f71b28",
-        "type": "ui_group",
-        "name": "Default",
-        "tab": "fb98fdb9.b193a",
-        "order": 1,
-        "disp": false,
-        "width": "24",
-        "collapse": false
-    },
-    {
-        "id": "fb98fdb9.b193a",
-        "type": "ui_tab",
-        "name": "Home",
-        "icon": "dashboard"
-    },
-    {
         "id": "943ce04091291544",
         "type": "delay",
         "z": "4e666803b8f3f742",
@@ -4129,7 +4113,7 @@
         "id": "42b8d6d1.fc68e8",
         "type": "ui_template",
         "z": "de0f28e0b2de7e99",
-        "group": "feabd600.f71b28",
+        "group": "",
         "name": "Logo / Clock",
         "order": 0,
         "width": 0,
@@ -4140,8 +4124,8 @@
         "resendOnRefresh": false,
         "templateScope": "global",
         "className": "",
-        "x": 450,
-        "y": 160,
+        "x": 190,
+        "y": 200,
         "wires": [
             []
         ]
