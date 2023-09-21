@@ -2930,10 +2930,7 @@ Les graphique sont plus lisibles et les données sont mieux organisées dans le 
 
 ### 22.6.1. UI
 <div align="center">
-<img src="../capture/RPI/Manuel/Interface1.png" alt="Image 3" width="100%" style="width:90%;">
-</div>
-<div align="center">
-<img src="../capture/RPI/Manuel/Interface2.png" alt="Image 3" width="100%" style="width:90%;">
+<img src="../capture/FinalUI.png" alt="Image 3" width="100%" style="width:90%;">
 </div>
 
 <div style="page-break-after: always;"></div>
