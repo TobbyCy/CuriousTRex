@@ -1,4 +1,4 @@
-# 1. README
+# 1. README : Banc de mesures de la consommation électrique pour application web
 
 <img src="./capture/CuruisTRex.png" alt="Image" width="100%" style="width:100%;">
 
@@ -21,7 +21,7 @@
 <div style="page-break-after: always;"></div>
 
 # 2. Table des matières
-- [1. README](#1-readme)
+- [1. README : Banc de mesures de la consommation électrique pour application web](#1-readme--banc-de-mesures-de-la-consommation-électrique-pour-application-web)
 - [2. Table des matières](#2-table-des-matières)
 - [3. Introduction](#3-introduction)
 - [4. Objectifs](#4-objectifs)
@@ -40,24 +40,18 @@
   - [6.3. Nidus](#63-nidus)
 - [7. Shéma de principe](#7-shéma-de-principe)
   - [7.1. Shéma de principe visuel](#71-shéma-de-principe-visuel)
+  - [7.2. Diagrame de séquence](#72-diagrame-de-séquence)
 - [8. Analyse UI](#8-analyse-ui)
 - [9. Jalons](#9-jalons)
-  - [9.1. Mise en place (14.08.2023 - 21.08.2023)](#91-mise-en-place-14082023---21082023)
+  - [9.1. Mise en place](#91-mise-en-place)
     - [9.1.1. But](#911-but)
-    - [9.1.2. Étapes](#912-étapes)
-    - [9.1.3. Remarque](#913-remarque)
-  - [9.2. 1ère itération (22.08.2023 - 05.09.2023) V1.0](#92-1ère-itération-22082023---05092023-v10)
+  - [9.2. Première itération](#92-première-itération)
     - [9.2.1. But](#921-but)
-    - [9.2.2. Étapes](#922-étapes)
-    - [9.2.3. Remarque](#923-remarque)
-  - [9.3. 2ème itération (06.09.2023 - 15.09.2023)](#93-2ème-itération-06092023---15092023)
+  - [9.3. Deuxième itération](#93-deuxième-itération)
     - [9.3.1. But](#931-but)
-    - [9.3.2. Étapes](#932-étapes)
-    - [9.3.3. Remarque](#933-remarque)
-  - [9.4. Troisième itération (12.09.2023 - 15.09.2023)](#94-troisième-itération-12092023---15092023)
+  - [9.4. Troisième itération](#94-troisième-itération)
     - [9.4.1. But](#941-but)
-    - [9.4.2. Étapes](#942-étapes)
-    - [9.4.3. Remarque](#943-remarque)
+  - [9.5. Quatrième itération](#95-quatrième-itération)
 - [10. Améliorations Futures](#10-améliorations-futures)
   - [10.1. Amélioration du calcul de la bar de chargement](#101-amélioration-du-calcul-de-la-bar-de-chargement)
   - [10.2. Base de Données](#102-base-de-données)
@@ -71,15 +65,18 @@
   - [10.10. Optimisation d'une distribution Ubuntu](#1010-optimisation-dune-distribution-ubuntu)
 - [11. Documentation](#11-documentation)
   - [11.1. Licences des Dépendances](#111-licences-des-dépendances)
+    - [11.1.1. Brevets et Contributions spécifiques :](#1111-brevets-et-contributions-spécifiques-)
+    - [11.1.2. Responsabilité Limitée :](#1112-responsabilité-limitée-)
 - [12. Remerciement](#12-remerciement)
 - [13. Sources](#13-sources)
   - [13.1. Node-RED et Extensions](#131-node-red-et-extensions)
   - [13.2. Bibliothèques et Outils Externes](#132-bibliothèques-et-outils-externes)
   - [13.3. Tutoriels et Documentation Technique](#133-tutoriels-et-documentation-technique)
   - [13.4. Gatling](#134-gatling)
-  - [13.5. Autres Outils et Ressources](#135-autres-outils-et-ressources)
-  - [13.6. Articles de Recherche](#136-articles-de-recherche)
-  - [13.7. Outils Supplémentaires](#137-outils-supplémentaires)
+- [14. Autres Outils et Ressources](#14-autres-outils-et-ressources)
+  - [14.1. Articles de Recherche](#141-articles-de-recherche)
+  - [14.2. Liens externes](#142-liens-externes)
+  - [14.3. OS](#143-os)
 
 
 
@@ -155,10 +152,6 @@ Au niveau des hostname, les Raspberry Pi seront nommés comme suit :
 En plus des raspberry il y a ma machine de développement qui se trouve être mon laptop personnel qui tourne sous un Kubuntu 22.04. Cette machine est nommé comme suit :
 - **LPT-UNIX-USB-CT**
 
-<br><br><br><br><br>
-<div style="text-align:center;">
-<img src="./docs/LogoOpenSuse.jpg" alt="Image" width="100%" style="width:60%;">
-</div>
 <div style="page-break-after: always;"></div>
 
 ## 6.2. Volt
@@ -214,103 +207,150 @@ De fais toute intéraction de l'utilisateur se fait avec **Nidus**.
 
 <div style="page-break-after: always;"></div>
 
+## 7.2. Diagrame de séquence
+
+<img src="./docs/UML/mermaid-diagram-2023-09-11-112036.svg" alt="Image" width="100%" style="width:100%;">
+
 
 # 8. Analyse UI
 L'interface web sera réalisé avec Node-Red de fais, la navigation se fera via un menu hamburger en haut a gauche, et les pages seront affiché dans la partie centrale de la page.
 Dans le cadre de ce projet, j'ai choisi de garder les version du projet comme pages pour la navigation, et de faire une page d'accueil qui permet de choisir la version du projet a utiliser avec un description de la version et un bouton pour lancer la version choisi.
 
 # 9. Jalons
+## 9.1. Mise en place
+### 9.1.1. But 
+Le but de ce jalon est de mettre en place l'environnement de test et de configurer les outils nécessaires pour effectuer les mesures. Tout ce qui est nécessaire pour effectuer les tests de performance doit être installé et configuré,  Node-RED, Gatling et l'INA219. Les Raspberry Pi doivent être installés dans l'environnement prévu et configurés avec les paramètres de base.
+```mermaid
+gantt
+    dateFormat  YYYY-MM-DD
+    title       Mise en place
+    excludes    weekends
+    axisFormat %d-%m
+    tickInterval 1day
+    section Mise en place
 
-## 9.1. Mise en place (14.08.2023 - 21.08.2023)
+    Création du repository pour le projet : mise-en-place-a, 2023-08-14, 12h
+    Mise en place d'un répertoire de documentation : mise-en-place-b, after mise-en-place-a, 12h
+    Installation physique des Raspberry Pi : mise-en-place-c, after mise-en-place-b, 6h
+    Configuration des Raspberry Pi : mise-en-place-d, after mise-en-place-c, 12h
+    Branchement réseau : mise-en-place-e, after mise-en-place-d, 6h
+    Installation de Node-Red : mise-en-place-f, after mise-en-place-e, 12h
+    Installation de Gatling : mise-en-place-g, after mise-en-place-f, 12h
+    Lecture de documentation INA219 : mise-en-place-h, after mise-en-place-g, 12h
+    Préparation de l'INA219 : mise-en-place-i, after mise-en-place-h, 36h
+    Mise en place d'un serveur Apache : mise-en-place-j, after mise-en-place-i, 12h
+    Documentation de l'installation : milestone, mise-en-place-k, after mise-en-place-j, 12h
 
-### 9.1.1. But
 
-Le but de ce jalon est de mettre en place l'environnement de test et de configurer les outils nécessaires pour effectuer les mesures. Tout ce qui est nécessaire pour effectuer les tests de performance doit être installé et configuré, Node-RED, Gatling, et l'INA219. Les Raspberry Pi doivent être installés dans l'environnement prévu et configurés avec les paramètres de base.
 
-### 9.1.2. Étapes
+```
 
-- [x] Création du repository du projet (14.08.2023)
-- [x] Mise en place de la structure de documentation (14.08.2023)
-- [x] Installation des Raspberry Pi dans l'environnement prévu (15.08.2023)
-- [x] Configuration des paramètres de base des Raspberry Pi (15.08.2023)
-- [x] Installation de Node-RED et Gatling sur les Raspberry Pi (16.08.2023)
-- [x] Configuration de l'INA219 pour la mesure de la consommation (17.08.2023)
-- [x] Documentation de l'installation (21.08.2023)
+<div style="page-break-after: always;"></div>
 
-### 9.1.3. Remarque
-
-Ce jalon est une étape importante pour le projet, car il permettra de mettre en place l'environnement de test et de configurer les outils nécessaires pour effectuer les mesures. En atteignant ces objectifs, le projet sera prêt à passer à la prochaine étape et à commencer à effectuer des tests de performance.
-
-## 9.2. 1ère itération (22.08.2023 - 05.09.2023) V1.0
-
+## 9.2. Première itération
 ### 9.2.1. But
+Mettre en places un "proof of concept" qui se baseras simplement sur la génération d'un rapport PDF par node-red via les informations de monitoring d'une machine mise sous pression par SSH.
 
-Mettre en place un "proof of concept" basé sur la génération de rapports PDF par Node-RED à partir des informations de monitoring d'une machine mise sous pression par Gatling.
-
-Cette "PoC" ne permettra pas de :
+Cette "PoC" ne permettras pas de :
 1. L'impossibilité de sélectionner le serveur à tester.
 2. L'incapacité à comparer les performances entre différents serveurs.
-3. Tester avec Gatling
+```mermaid
+gantt
+    dateFormat  YYYY-MM-DD
+    title       V1.0
+    excludes    weekends
+    axisFormat %d-%m
+    tickInterval 1day
+    section Première Itération
 
-### 9.2.2. Étapes
+    Configuration de Node-Red  : V1-d1, 2023-08-21, 12h
+    Configurer Gatling  : V1-d2, after V1-d1, 12h
+    Configuration et test de relevé de l'INA219  : V1-d3, after V1-d2, 12h
+    Création de PDF avec Node-Red : V1-d4, after V1-d3, 12h
+    Agrégation du lancement des tests et des relevés de l'INA219 : V1-d5, after V1-d4, 12h
+    Réinstallation de Volt : V1-d6, after V1-d5, 12h
+    Passage du SSH au MQTT pour la récupération des infos : V1-d7, after V1-d6, 12h
+    Première reunion de projet : milestone, V1-dR, after V1-d7, 1h
+    Création d'un graphique avec Node-Red : V1-d8, after V1-d7, 18h
+    Ajout des graphique au PDF : V1-d9, after V1-d8, 18h
+    Documentation de la première itération : milestone, V1-d10, after V1-d9, 0h
+    
 
-- [x] Configuration de Node-RED pour la gestion des flux de données (22.08.2023)
-- [x] Installation d'un serveur Apache simple sur Volt (22.08.2023)
-- [x] Configuration de l'outil Gatling pour générer des charges de test sur Volt et collecter les données de performance (23.08.2023)
-- [x] Configuration et test de relevé de l'INA219 (24.08.2023)
-- [x] Test de création de PDF avec Node-RED (25.08.2023)
-- [x] Lancement des tests de charge de Gatling depuis Node-RED (26.08.2023)
-- [x] Agrégation du lancement des tests et des relevés de l'INA219 (27.08.2023)
-- [x] Réinstallation de Volt (28.08.2023)
-- [x] Passage du SSH au MQTT pour la récupération des infos (29.08.2023)
-- [x] Création d'un graphique avec Node-RED (30.08.2023)
-- [x] Ajout des graphiques au PDF (31.08.2023)
-- [x] Documentation de la première itération (05.09.2023)
+```
 
-### 9.2.3. Remarque
+<div style="page-break-after: always;"></div>
 
-En atteignant ces étapes de validation, le PoC démontrera la capacité à générer un rapport PDF en utilisant Node-RED, basé sur les informations de surveillance d'une machine soumise à des tests de charge avec Gatling. Cela jettera les bases d'une solution plus complète pour l'interface utilisateur, la comparaison de serveurs et d'autres fonctionnalités futures.
-
-## 9.3. 2ème itération (06.09.2023 - 15.09.2023)
-
+## 9.3. Deuxième itération
 ### 9.3.1. But
+Ajout de Gatling aux test de charges avec récupérations des informations des logs de Gatling et de l'INA219. 
+```mermaid
+gantt
+    dateFormat  YYYY-MM-DD
+    title       V2.0
+    excludes    weekends
+    axisFormat %d-%m
+    tickInterval 1day
+    section Deuxième Itération
 
-Ajout de Gatling aux tests de charges avec récupération des informations des logs de Gatling et de l'INA219.
+    Execution d'un test préétabli sur Gatling depuis Node-Red : V2-d1, 2023-08-28, 1d
+    Envoi de commande avec une durée : V2-d2, after V2-d1, 1d
+    Récupération des informations : V2-d3, after V2-d2, 1d
+    Traitement des données : V2-d4, after V2-d3, 1d
+    Création des graphiques : V2-d5, after V2-d4, 23h
+    Documentation de la deuxième itération : milestone, V2-d6, after V2-d5, 1h
 
-### 9.3.2. Étapes
+```
 
-- [x] Exécution d'un test préétabli sur Gatling depuis Node-RED (06.09.2023)
-- [x] Envoi de commande avec une durée (07.09.2023)
-- [x] Récupération des informations (07.09.2023)
-- [x] Traitement des données (08.09.2023)
-- [x] Création des graphiques (9.09.2023)
-- [x] Documentation de la deuxième itération (11.09.2023)
-
-### 9.3.3. Remarque
-
-Cette itération représente l'ajout de Gatling aux tests de charge et la récupération des informations des logs de Gatling et de l'INA219. Cela permettra d'améliorer la collecte de données de performance et de préparer le terrain pour la troisième itération.
-
-## 9.4. Troisième itération (12.09.2023 - 15.09.2023)
-
+## 9.4. Troisième itération
 ### 9.4.1. But
+La troisième itération a pour but de rendre le projet utilisable notamment en modifiant les visuels des graphique pour les rendre plus lisible, en modifiant le script Gatlignqui utilise le scala en lieux et place du java en ajoutant de nouveau graphique et enfin en ajoutant la possibilité d'exporter les données au format JSON et d'importer les données au format JSON et de générer un PDF.
 
-La troisième itération a pour but de rendre le projet utilisable, notamment en modifiant les visuels des graphiques pour les rendre plus lisibles, en modifiant le script Gatling qui utilise le Scala au lieu du Java, en ajoutant de nouveaux graphiques, et enfin en ajoutant la possibilité d'exporter les données au format JSON et d'importer les données au format JSON pour générer un PDF.
+```mermaid
+gantt
+    dateFormat  YYYY-MM-DD
+    title       V3.0
+    excludes    weekends
+    axisFormat %d-%m
+    tickInterval 1day
+    section Troisième Itération
 
-### 9.4.2. Étapes
+    Correction des graphiques : V3-d1, 2023-09-04, 12h
+    Modification de la simulation en Scala : V3-d2, after V3-d1, 12h
+    Ajout de graphiques : V3-d3, after V3-d2, 1d
+    Mise à jour de la documentation : V3-d4, after V3-d3, 1d
+    Optimisation des flux de données : V3-d5, after V3-d4, 3d
+    Ajouter la possibilité d'exporter les données au format JSON : V3-d6, after V3-d5, 12h
+    Ajouter la possibilité d'importer les données au format JSON et de générer un PDF : V3-d7, after V3-d6, 12h
+    Ajouter la possibilitée de tester sans Gatling: V3-d8, after V3-d7, 12h
+    Documentation : milestone, V3-d9, after V3-d8, 1h  
+    Suivi de projet 2 : milestone, V3-d10, after V3-d9, 1h  
+```
 
-- [ ] Correction des graphiques (12.09.2023)
-- [ ] Modification de la simulation en Scala (13.09.2023)
-- [ ] Ajout de graphiques (14.09.2023)
-- [ ] Mise à jour de la documentation (15.09.2023)
-- [ ] Ajout de la possibilité d'exporter les données au format JSON (15.09.2023)
-- [ ] Ajout de la possibilité d'importer les données au format JSON et de générer un PDF (15.09.2023)
-- [ ] Intégration du CSV de Gatling avec Node-RED (15.09.2023)
-- [ ] Documentation de la troisième itération (15.09.2023)
+<div style="page-break-after: always;"></div>
 
-### 9.4.3. Remarque
+## 9.5. Quatrième itération
+La quatrième et dernière itération a pour but de peaufiner le projet en ajoutant des fonctionnalitées qui ne sont pas nécessaire mais qui peuvent être utile pour l'utilisateur. Il s'agit de la création d'un script d'instalation de Nidus, de l'ajout de l'import des JSON sans les tests de Gatling, 
 
-La troisième itération représente la phase finale du projet, où il deviendra pleinement utilisable avec une interface utilisateur améliorée, des graphiques plus clairs, une meilleure gestion des données, et la possibilité d'exporter/importer des données au format JSON pour générer des rapports PDF détaillés.
 
+```mermaid
+gantt
+    dateFormat  YYYY-MM-DD
+    title       V4.0
+    excludes    weekends
+    axisFormat %d-%m
+    tickInterval 1day
+    section Quatrième Itération
+
+    Correction du PDF selon le suivi : V4-d1, 2023-09-14, 24h
+    Sciprt Install Nidus : V4-d2, after V4-d1, 24h
+    Documentation general (Lundi du jeune fédéral) : V4-d3, after V4-d2, 24h
+    Test de l'instalation de Nidus : V4-d4, after V4-d3, 12h
+    Documentation du script d'instalation de Nidus : V4-d5, after V4-d4, 12h
+    Modiication de l'import des JSON sans les tests de Gatling : V4-d6, after V4-d5, 24h
+    Finalisation de la documentation :  V4-d7, after V4-d6, 47h
+    Rendre le rapport zipper : milestone, V4-d8, after V4-d7, 1h
+
+```
 # 10. Améliorations Futures
 
 Dès les premiers prémices de ce projet, il a toujours été clair pour toutes les parties prenantes que l'objectif n'était pas de limiter ce produit à notre utilisation personnelle. Au contraire, l'idéal serait de fournir un outil Open-Source que les développeurs pourraient utiliser, contribuer et améliorer. Dans cette section, je vais détailler les améliorations que je souhaite apporter à ce projet après la période de mon travail de diplôme.
@@ -361,28 +401,56 @@ La documentation est écrite en Markdown et peut être consultée directement su
 Un [wiki](https://mylos.cifom.ch/gitlab/ToblerC/banc-de-mesures-de-la-consommation-electrique/-/wikis/home) est également disponible sur GitLab pour fournir des informations mieux structurées sur le projet.
 
 ## 11.1. Licences des Dépendances
-
-Le projet utilise plusieurs dépendances, chacune étant sous une licence spécifique. Voici un aperçu des licences des dépendances :
+Le projet utilise plusieurs dépendances, chacune étant soumise à une licence spécifique. Voici un aperçu des licences des dépendances, avec des informations sur chacune d'entre elles :
 
 1. [**Licence MIT**](https://opensource.org/license/mit/)
-   - **Chart.js, PDMMake2, PDF Make, pi-ina219,**
-   - Cette licence permet une utilisation, une modification et une redistribution libres du logiciel, tant que les avis de droits d'auteur sont conservés.
+   - **Chart.js, PDFMake2, PDF Make, pi-ina219**
+   - La licence MIT autorise une utilisation, une modification et une redistribution libres du logiciel, à condition que les avis de droits d'auteur soient conservés.
 
 2. [**Licence Apache 2.0**](https://opensource.org/license/apache-2-0/)
-   - **Node-Red, Dashboard, MQTT+, File System Node-Red, Base64 Node-Red, Gatling, FlowFuse,**
-   - Cette licence permet une utilisation, une modification et une redistribution libres du logiciel, avec des dispositions spécifiques pour les brevets et les contributions.
+   - **Node-Red, Dashboard, MQTT+, File System Node-Red, Base64 Node-Red, Gatling, FlowFuse**
+   - La licence Apache 2.0 permet une utilisation, une modification et une redistribution libres du logiciel, tout en incluant des dispositions spécifiques concernant les brevets et les contributions.
 
 3. [**Licence ISC (Internet Systems Consortium)**](https://opensource.org/license/isc-license-txt/)
    - **INA219 Node-Red**
-   - Cette licence permet une utilisation, une modification et une redistribution libres du logiciel, avec une responsabilité limitée.
+   - La licence ISC autorise une utilisation, une modification et une redistribution libres du logiciel, avec une responsabilité limitée.
 
 4. [**Licence BSD-2-Clause**](https://opensource.org/license/bsd-2-clause/)
    - **Chart-Image Node-Red**
-   - Cette licence permet une utilisation, une modification et une redistribution libres du logiciel, tant que les avis de droits d'auteur sont conservés.
+   - La licence BSD-2-Clause autorise une utilisation, une modification et une redistribution libres du logiciel, en exigeant que les avis de droits d'auteur soient conservés.
 
 5. [**Licence EPL/EDL (Eclipse Public License / Eclipse Distribution License)**](https://opensource.org/license/epl-2-0/)
    - **Mosquitto**
-   - Cette licence est spécifique à la fondation Eclipse et permet une utilisation, une modification et une redistribution libres du logiciel, avec des exigences spécifiques pour les distributions.
+   - La licence EPL/EDL est spécifique à la fondation Eclipse et permet une utilisation, une modification et une redistribution libres du logiciel, avec des exigences particulières pour les distributions.
+
+6. [**GNU General Public License Version 3.0 (GPL-3.0)**](https://opensource.org/license/gpl-3.0/)
+   - **Raspberry Pi OS, Ubuntu**
+   - La licence GNU General Public License Version 3.0 garantit les droits de l'utilisateur à exécuter, étudier, modifier et redistribuer le logiciel conformément à ses termes et conditions.
+
+<div style="page-break-after: always;"></div>
+
+
+### 11.1.1. Brevets et Contributions spécifiques :
+
+Cela signifie que la licence a des dispositions spécifiques concernant les brevets et les contributions. En général, cela indique que les personnes qui contribuent au projet en ajoutant du code ou d'autres ressources acceptent de céder les droits de leurs brevets associés à ce code au projet. Cela permet au projet d'utiliser ces brevets en toute légalité sans craindre de litiges futurs liés aux brevets. C'est une mesure de protection pour le projet open source et ses contributeurs.
+
+Implication pour les développeurs : Si vous utilisez une bibliothèque ou un logiciel sous une licence avec cette clause, vous devez être conscient que toute contribution que vous apportez au projet peut entraîner la cession de vos droits de brevet associés à cette contribution. Cela signifie que vous ne pourrez pas utiliser ces brevets pour poursuivre le projet ou d'autres contributeurs en justice pour des violations de brevet. Cela encourage la collaboration et la protection du projet.
+
+### 11.1.2. Responsabilité Limitée :
+
+Cette clause signifie généralement que les auteurs du logiciel ne sont pas responsables des dommages ou des problèmes qui pourraient résulter de l'utilisation du logiciel. En d'autres termes, si le logiciel provoque un problème, une perte de données ou tout autre dommage, les auteurs ne sont pas légalement responsables.
+
+Implication pour les développeurs : En utilisant un logiciel sous une licence avec cette clause, vous acceptez que les auteurs ne soient pas responsables des éventuels problèmes ou dommages causés par le logiciel. Vous devez utiliser le logiciel en connaissance de cause et prendre vos propres mesures pour minimiser les risques. Cela protège les auteurs du logiciel contre d'éventuelles poursuites en responsabilité.
+
+
+| Licence                                                                                                                | Brevets et Contributions spécifiques | Responsabilité Limitée |
+| ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ---------------------- |
+| [**Licence MIT**](https://opensource.org/license/mit/)                                                                 | Non                                  | Non                    |
+| [**Licence Apache 2.0**](https://opensource.org/license/apache-2-0/)                                                   | Oui                                  | Non                    |
+| [**Licence ISC (Internet Systems Consortium)**](https://opensource.org/license/isc-license-txt/)                       | Non                                  | Oui                    |
+| [**Licence BSD-2-Clause**](https://opensource.org/license/bsd-2-clause/)                                               | Non                                  | Non                    |
+| [**Licence EPL/EDL (Eclipse Public License / Eclipse Distribution License)**](https://opensource.org/license/epl-2-0/) | Oui                                  | Non                    |
+| [**GNU General Public License Version 3.0 (GPL-3.0)**](https://opensource.org/license/gpl-3-0/)                        | Non                                  | Non                    |
 
 
 
@@ -404,6 +472,7 @@ Je tiens aussi à remercier une personne qui se reconnaîtra, pour le fais que m
 Enfin, Un remerciement tout particulier à ma mère et à ma copine pour leur soutien infaillible durant ma formation, qui m'a conduit à accomplir ce travail. Leur encouragement constant et leur confiance en moi ont été des sources d'inspiration essentielles.
 
 Ces individus exceptionnels ont joué un rôle capital dans la réalisation de ce projet. Leur soutien, leur expertise et leur encouragement ont été essentiels, et je leur suis profondément reconnaissant.
+
 
 # 13. Sources
 
@@ -474,41 +543,52 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 20. [**Tutoriel Complet avec Arduino**](https://electropeak.com/learn/interfacing-ina219-current-sensor-module-with-arduino/)
     > Tutoriel complet sur l'utilisation de l'INA219 avec Arduino.
 
+21. [**Documentation matérielle du Raspberry Pi 4**](https://www.raspberrypi.org/documentation/hardware/raspberrypi/README.md)
+    > Documentation matérielle officielle du Raspberry Pi 4.
 ## 13.4. Gatling
 
-20. [**Téléchargement Gatling, Verion 3.9.5, Licence : Apache-2.0**](https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/3.9.5/gatling-charts-highcharts-bundle-3.9.5-bundle.zip)
+22. [**Téléchargement Gatling, Verion 3.9.5, Licence : Apache-2.0**](https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/3.9.5/gatling-charts-highcharts-bundle-3.9.5-bundle.zip)
     > Lien de téléchargement de l'outil Gatling pour la performance des applications.
 
-21. [**Tutoriel Avancé Gatling**](https://gatling.io/docs/gatling/tutorials/advanced/)
+23. [**Tutoriel Avancé Gatling**](https://gatling.io/docs/gatling/tutorials/advanced/)
     > Tutoriel avancé pour utiliser Gatling dans des scénarios plus complexes.
 
-22. [**Tutoriel de Démarrage Rapide Gatling**](https://gatling.io/docs/gatling/tutorials/quickstart/)
+24. [**Tutoriel de Démarrage Rapide Gatling**](https://gatling.io/docs/gatling/tutorials/quickstart/)
     > Tutoriel rapide pour commencer à utiliser Gatling.
 
-## 13.5. Autres Outils et Ressources
+# 14. Autres Outils et Ressources
 
-23. [**Tutoriel sur l'utilisation de S1seven**](https://www.s1seven.com/blog/use-s1sevens-certificate-tools-to-convert-a-json-certificate-to-a-pdf/)
+25. [**Tutoriel sur l'utilisation de S1seven**](https://www.s1seven.com/blog/use-s1sevens-certificate-tools-to-convert-a-json-certificate-to-a-pdf/)
     > Tutoriel pour utiliser les outils de conversion de certificat JSON en PDF (n'est pas utilisée).
 
-24. [**FlowFuse, Version: 1.11.2, Licence : Apache-2.0**](https://www.flowfuse.io/)
+26. [**FlowFuse, Version: 1.11.2, Licence : Apache-2.0**](https://www.flowfuse.io/)
     > Plateforme de DevOps pour le développement et la mise en place d'application avec Node-Red
 
 <div style="page-break-after: always;"></div> 
 
-## 13.6. Articles de Recherche
+## 14.1. Articles de Recherche
 
-25. [**Yewan Wang, David Nörtershäuser, Stéphane Masson, Jean-Marc Menaud. Etude de l’influence de la température du processeur sur la consommation des serveurs. ComPAS 2018 - Conférence.d’informatique en Parallélisme, Architecture et Système, Jul 2018, Toulouse, France. pp.1-8.**](https://imt-atlantique.hal.science/hal-01807805/)
+27. [**Yewan Wang, David Nörtershäuser, Stéphane Masson, Jean-Marc Menaud. Etude de l’influence de la température du processeur sur la consommation des serveurs. ComPAS 2018 - Conférence.d’informatique en Parallélisme, Architecture et Système, Jul 2018, Toulouse, France. pp.1-8.**](https://imt-atlantique.hal.science/hal-01807805/)
     > Article de recherche sur l'influence de la température du processeur sur la consommation des serveurs.
 
-26. [**Profil de Consommation d'une carte de développement par M. Lamber**](https://www.researchgate.net/publication/350387196_Power_Consumption_Profiling_of_a_Lightweight_Development_Board_Sensing_with_the_INA219_and_Teensy_40_Microcontroller)
+28. [**Profil de Consommation d'une carte de développement par M. Lamber**](https://www.researchgate.net/publication/350387196_Power_Consumption_Profiling_of_a_Lightweight_Development_Board_Sensing_with_the_INA219_and_Teensy_40_Microcontroller)
     > Recherche sur le profil de consommation avec INA219 et Teensy 4.0.
 
-27. [**Profil de Consommation par M. Pol J. Planas Pulido**](https://upcommons.upc.edu/bitstream/handle/2117/180533/tfg-report-pol-planas.pdf?sequence=1&isAllowed=y)
+29. [**Profil de Consommation par M. Pol J. Planas Pulido**](https://upcommons.upc.edu/bitstream/handle/2117/180533/tfg-report-pol-planas.pdf?sequence=1&isAllowed=y)
     > Recherche sur le profil de consommation avec INA219.
 
-## 13.7. Outils Supplémentaires
+## 14.2. Liens externes
 
-29. [**MicroChip AVR**](https://www.microchip.com/en-us/development-tool/ac164160)
+30. [**MicroChip AVR**](https://www.microchip.com/en-us/development-tool/ac164160)
     > Puce de développement Microchip AVR.
-30. [**Index des Licences Utilisées**](https://opensource.org/licenses/alphabetical)
+31. [**GeeekPi Raspberry Pi Cluster**](https://www.amazon.fr/GeeekPi-Raspberry-Stackable-Ventilateur-4-Couches/dp/B083FP9JRY)
+    > Cluster avec Ventilateur 120mm pour RPi 4B/3B+/3B/2B/B+ et Jetson Nano (4-Couches) 
+32. [**Cluster "standart" Raspberry Pi**](https://www.elektor.fr/tower-case-for-raspberry-pi-server-cluster)
+    > Cluster fais de plaque de pleixglass avec intercalaire
+33. [**Index des Licences Utilisées**](https://opensource.org/licenses/alphabetical)
     > Index des licences open source.
+## 14.3. OS
+34. [**Raspberry Pi OS, Version 2023-05-03, Licence : GNU GPL**](https://www.raspberrypi.org/software/)
+    > Système d'exploitation officiel du Raspberry Pi.
+35. [**Ubuntu Server, Version 23.04, Licence : GNU GPL**](https://ubuntu.com/download/server)
+    > Système d'exploitation Ubuntu Server.

@@ -3488,11 +3488,16 @@ Implication pour les développeurs : En utilisant un logiciel sous une licence a
 <div style="page-break-after: always;"></div>
 
 # 28. Conclusion
+
 Au cours de ce projet, j'ai eu l'opportunité de me confronter à une multitude de défis passionnants liés à l'optimisation des ressources et à la réduction de la consommation électrique. Ce projet, axé sur l'utilisation de Gatling, Node-Red, et Mosquitto sur le Raspberry Pi (Nidus) pour collecter, agréger et générer des rapports PDF de données, a été une véritable aventure d'apprentissage.
 
 L'une des principales difficultés auxquelles j'ai été confronté était le besoin constant d'acquérir de nouvelles connaissances. J'ai souvent dû solliciter l'aide d'autres experts et plonger dans des documentations exhaustives. Par exemple, j'ai découvert que la température du CPU pouvait influencer la consommation électrique, ce qui a nécessité une analyse minutieuse de ces variables pour obtenir des résultats précis. Plus le projet avançait, plus je prenais conscience de l'ampleur de cette tâche colossale.
 
 En ce qui concerne l'infrastructure, j'ai compris l'importance de proposer un produit ouvert et évolutif. Les besoins ont évolué au fil du temps, allant de la simple collecte de données à des demandes plus avancées, telles que la possibilité de tester des clusters de Raspberry Pi, de stocker les données en base de données, ou encore de mettre en place un système de notation et de comparaison. Chacune de ces possibilités représente un projet en soi.
+
+Au niveau du projet en lui-même, j'en conclus que les points forts de ce projet sont que les développeurs peuvent à moindre coût s'offrir une solution de monitoring et de test de performance, et que le projet est facilement modifiable et personnalisable pour un utilisateur ayant des bases avec Gatling, Node-Red, ou du JavaScript.
+
+En ce qui concerne ses points faibles, il est clair que l'infrastructure actuelle n'est pas adaptée pour des tests de charge massifs, et que le Raspberry Pi 4 n'est pas un serveur, mais un ordinateur de bureau. Par conséquent, il ne peut pas gérer des tests de charge avec des milliers d'utilisateurs pendant des heures et traiter ensuite des millions de lignes de journaux. Il faudra donc réfléchir à des solutions plus adaptées (FlowFuse, serveur plus performant, etc...). De plus, l'une des solutions qu'il faudra mettre en place est l'ajout d'un microcontrôleur entre le Raspberry Pi et l'INA219, car le Raspberry Pi ne peut pas gérer une horloge parfaitement fiable alors qu'en parallèle il effectue le traitement d'un grand nombre de données, ce qui peut fausser les résultats.
 
 Mon espoir est que ce projet ne se limite pas à une simple preuve de concept, mais qu'il serve de base pour les futures promotions d'étudiants. J'aspire à ce que ces futurs étudiants puissent continuer à le faire évoluer, le perfectionner et lui apporter des améliorations continues. Parmi les pistes d'avenir pour ce projet, je pense notamment à :
 
@@ -3642,10 +3647,12 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
     > Cluster fais de plaque de pleixglass avec intercalaire
 33. [**Index des Licences Utilisées**](https://opensource.org/licenses/alphabetical)
     > Index des licences open source.
+34. [**ChatGPT**](https://chat.openai.com/)
+    > Outil de chat avec une IA, utilisé pour corriger les fautes d'orthographe et la syntaxe.
 ## 31.3. OS
-34. [**Raspberry Pi OS, Version 2023-05-03, Licence : GNU GPL**](https://www.raspberrypi.org/software/)
+35. [**Raspberry Pi OS, Version 2023-05-03, Licence : GNU GPL**](https://www.raspberrypi.org/software/)
     > Système d'exploitation officiel du Raspberry Pi.
-35. [**Ubuntu Server, Version 23.04, Licence : GNU GPL**](https://ubuntu.com/download/server)
+36. [**Ubuntu Server, Version 23.04, Licence : GNU GPL**](https://ubuntu.com/download/server)
     > Système d'exploitation Ubuntu Server.
 
 
