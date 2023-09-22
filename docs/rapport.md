@@ -132,15 +132,15 @@
   - [24.2. Problème de Performance](#242-problème-de-performance)
   - [24.3. Température](#243-température)
   - [24.4. Analyse des Résultats des Tests de Performance](#244-analyse-des-résultats-des-tests-de-performance)
+
+<div style="page-break-after: always;"></div>
+
 - [25. Choix effectués](#25-choix-effectués)
   - [25.1. Node-Red](#251-node-red)
   - [25.2. MQTT pour les Relevés de Monitoring](#252-mqtt-pour-les-relevés-de-monitoring)
   - [25.3. Rapport PDF](#253-rapport-pdf)
   - [25.4. INA219](#254-ina219)
   - [25.5. Gatling](#255-gatling)
-
-<div style="page-break-after: always;"></div>
-
 - [26. Améliorations Futures](#26-améliorations-futures)
   - [26.1. Amélioration du calcul de la bar de chargement](#261-amélioration-du-calcul-de-la-bar-de-chargement)
   - [26.2. Base de Données](#262-base-de-données)
@@ -162,11 +162,12 @@
   - [30.2. Bibliothèques et Outils Externes](#302-bibliothèques-et-outils-externes)
   - [30.3. Tutoriels et Documentation Technique](#303-tutoriels-et-documentation-technique)
   - [30.4. Gatling](#304-gatling)
-- [31. Autres Outils et Ressources](#31-autres-outils-et-ressources)
-  - [31.1. Articles de Recherche](#311-articles-de-recherche)
-  - [31.2. Liens externes](#312-liens-externes)
-  - [31.3. OS](#313-os)
-- [32. Annexes](#32-annexes)
+  - [30.5. Autres Outils et Ressources](#305-autres-outils-et-ressources)
+  - [30.6. Articles de Recherche](#306-articles-de-recherche)
+  - [30.7. Liens externes](#307-liens-externes)
+  - [30.8. OS](#308-os)
+- [31. Annexes](#31-annexes)
+
 
 <div style="page-break-after: always;"></div>
 
@@ -461,12 +462,12 @@ gantt
     section Quatrième Itération
 
     Correction du PDF selon le suivi : V4-d1, 2023-09-14, 24h
-    Sciprt Install Nidus : V4-d2, after V4-d1, 24h
+    Script d'instalation de Nidus et des dépendances : V4-d2, after V4-d1, 24h
     Documentation general (Lundi du jeune fédéral) : V4-d3, after V4-d2, 24h
     Test de l'instalation de Nidus : V4-d4, after V4-d3, 12h
     Documentation du script d'instalation de Nidus : V4-d5, after V4-d4, 12h
     Modiication de l'import des JSON sans les tests de Gatling : V4-d6, after V4-d5, 24h
-    Finalisation de la documentation :  V4-d7, after V4-d6, 47h
+    Finalisation de la documentation :  V4-d7, after V4-d6, 38h
     Rendre le rapport zipper : milestone, V4-d8, after V4-d7, 1h
 
 ```
@@ -502,7 +503,7 @@ Pour différencier physiquement les deux Raspberry Pi, j'ai décidé de d'utilis
 <div style="page-break-after: always;"></div>
 
 ## 9.4. Suite
-En début de projet, il à été rapidement pensé de mettre les deux Raspberry Pi dans un boîtier, mais après réflexion et celà reste une reflexion d'actualitée, en y regardant j'ai trouvé deux modèles qui dommine le marché et qui sont les suivant :
+En début de projet, il a été rapidement envisagé de placer les deux Raspberry Pi dans un boîtier. Cependant, après réflexion, et cette réflexion demeure d'actualité, j'ai identifié deux modèles qui dominent le marché, à savoir :
 
 ### 9.4.1. Plaque de plexiglas avec des vis
 <div style="text-align:center;">
@@ -3182,7 +3183,7 @@ Voici les tests que j'ai effectués :
 - Essai sur un autre emplacement de la breadboard
 - Vérification de la présence de modules noyau I2C (`lsmod | grep i2c`)
 - Vérification avec un oscilloscope
-- 
+  
 <div style="page-break-after: always;"></div>
 
 Malheureusement, aucun de ces tests n'a abouti à une solution. J'ai donc pris la décision de repartir de zéro en effectuant une installation propre, sans Node-Red ni Gatling. À ce moment-là, j'ai enfin pu détecter mes puces avec succès.
@@ -3241,9 +3242,9 @@ Il est important de maintenir des attentes réalistes : le Raspberry Pi 4 n'est 
 
 En terme de chiffre, j'ai conclu que le Raspberry Pi 4 peut gérer un test avec 10 utilisateurs pendant 5 minutes, mais à ce points nous touchons les limites du Raspberry Pi 4.
 Après de nombreaux test j'ai réàlisée que la limite actuelle est chiffrable, en effet il faut se fier à cette equation :
-
-nbUsers * nbRequestsPerSecond * testDuration < 300 
-
+```ascii
+NombreDUtilisateur * NombreDeRequeteParSeconde * Durée < 300 
+```
 
 <div style="page-break-after: always;"></div> 
 
@@ -3251,8 +3252,6 @@ nbUsers * nbRequestsPerSecond * testDuration < 300
 Les Raspberry Pi sont connus pour leur tendance à surchauffer. C'est pourquoi il est important de prendre des mesures pour éviter la surchauffe. 
 
 Dans un premier temps la solution abordée dès le départ fut de greffer Nidus et Volt de radiateur afin de dissiper la chaleur. Cependant, cette solution n'était pas suffisante pour éviter la surchauffe. J'ai donc décidé d'ajouter un ventilateur de bureau pour aider à dissiper la chaleur.
-
-Cependant, le ventilateur n'est pas contrôlable depuis Node-Red, ce qui signifie qu'il doit être activé manuellement.
 
 Cela signifie également que le ventilateur doit être activé avant le début du test et désactivé après la fin du test. 
 
@@ -3551,7 +3550,7 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 24. [**Tutoriel de Démarrage Rapide Gatling**](https://gatling.io/docs/gatling/tutorials/quickstart/)
     > Tutoriel rapide pour commencer à utiliser Gatling.
 
-# 31. Autres Outils et Ressources
+## 30.5. Autres Outils et Ressources
 
 25. [**Tutoriel sur l'utilisation de S1seven**](https://www.s1seven.com/blog/use-s1sevens-certificate-tools-to-convert-a-json-certificate-to-a-pdf/)
     > Tutoriel pour utiliser les outils de conversion de certificat JSON en PDF (n'est pas utilisée).
@@ -3561,7 +3560,7 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 
 <div style="page-break-after: always;"></div> 
 
-## 31.1. Articles de Recherche
+## 30.6. Articles de Recherche
 
 27. [**Yewan Wang, David Nörtershäuser, Stéphane Masson, Jean-Marc Menaud. Etude de l’influence de la température du processeur sur la consommation des serveurs. ComPAS 2018 - Conférence.d’informatique en Parallélisme, Architecture et Système, Jul 2018, Toulouse, France. pp.1-8.**](https://imt-atlantique.hal.science/hal-01807805/)
     > Article de recherche sur l'influence de la température du processeur sur la consommation des serveurs.
@@ -3572,7 +3571,7 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 29. [**Profil de Consommation par M. Pol J. Planas Pulido**](https://upcommons.upc.edu/bitstream/handle/2117/180533/tfg-report-pol-planas.pdf?sequence=1&isAllowed=y)
     > Recherche sur le profil de consommation avec INA219.
 
-## 31.2. Liens externes
+## 30.7. Liens externes
 
 30. [**MicroChip AVR**](https://www.microchip.com/en-us/development-tool/ac164160)
     > Puce de développement Microchip AVR.
@@ -3584,7 +3583,7 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
     > Index des licences open source.
 34. [**ChatGPT**](https://chat.openai.com/)
     > Outil de chat avec une IA, utilisé pour corriger les fautes d'orthographe et la syntaxe.
-## 31.3. OS
+## 30.8. OS
 35. [**Raspberry Pi OS, Version 2023-05-03, Licence : GNU GPL**](https://www.raspberrypi.org/software/)
     > Système d'exploitation officiel du Raspberry Pi.
 36. [**Ubuntu Server, Version 23.04, Licence : GNU GPL**](https://ubuntu.com/download/server)
@@ -3592,7 +3591,7 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 
 <div style="page-break-after: always;"></div>
 
-# 32. Annexes
+# 31. Annexes
 
 Vous trouverez une collection de documents essentiels pour une compréhension complète du projet dans le dossier du rapport. Ces documents sont les suivants :
 
