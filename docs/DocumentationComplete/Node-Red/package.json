@@ -1,0 +1,20 @@
+{
+    "name": "banc-de-mesures-de-la-consommation-electrique",
+    "description": "Banc de mesures de la consommation électrique pour application web",
+    "version": "4.0.1",
+    "dependencies": {
+        "node-red-dashboard": "3.5.0",
+        "node-red-contrib-pdfmake2": "2.0.0",
+        "node-red-contrib-mqtt-plus": "0.0.7",
+        "node-red-contrib-fs": "1.4.1",
+        "node-red-contrib-easybotics-ina219-sensor": "0.7.6",
+        "node-red-contrib-chart-image": "1.2.0",
+        "node-red-node-base64": "0.3.0"
+    },
+    "node-red": {
+        "settings": {
+            "flowFile": "flows.json",
+            "credentialsFile": "flows_cred.json"
+        }
+    }
+}

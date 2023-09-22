@@ -28,9 +28,6 @@
 - [4. Objectifs](#4-objectifs)
   - [4.1. Objectif principal](#41-objectif-principal)
   - [4.2. Objectifs spécifiques](#42-objectifs-spécifiques)
-    - [4.2.1. Génération de trafic web](#421-génération-de-trafic-web)
-    - [4.2.2. Mesure de la consommation](#422-mesure-de-la-consommation)
-    - [4.2.3. Génération de rapports sur la performance](#423-génération-de-rapports-sur-la-performance)
 - [5. Caractéristiques](#5-caractéristiques)
   - [5.1. Génération de trafic web](#51-génération-de-trafic-web)
   - [5.2. Mesure de la consommation électrique (INA219)](#52-mesure-de-la-consommation-électrique-ina219)
@@ -44,22 +41,15 @@
 - [7. Budget](#7-budget)
 - [8. Planification](#8-planification)
   - [8.1. Mise en place](#81-mise-en-place)
-    - [8.1.1. But](#811-but)
   - [8.2. Première itération](#82-première-itération)
-    - [8.2.1. But](#821-but)
   - [8.3. Deuxième itération](#83-deuxième-itération)
-    - [8.3.1. But](#831-but)
   - [8.4. Troisième itération](#84-troisième-itération)
-    - [8.4.1. But](#841-but)
   - [8.5. Quatrième itération](#85-quatrième-itération)
 - [9. Instalation physique](#9-instalation-physique)
   - [9.1. Nidus](#91-nidus)
   - [9.2. Volt](#92-volt)
   - [9.3. Situation finale](#93-situation-finale)
   - [9.4. Suite](#94-suite)
-    - [9.4.1. Plaque de plexiglas avec des vis](#941-plaque-de-plexiglas-avec-des-vis)
-    - [9.4.2. Boîtier en plastique](#942-boîtier-en-plastique)
-    - [9.4.3. Conclusion](#943-conclusion)
 - [10. Shéma de principe](#10-shéma-de-principe)
   - [10.1. Shéma de principe visuel](#101-shéma-de-principe-visuel)
   - [10.2. Diagrame de séquence](#102-diagrame-de-séquence)
@@ -68,13 +58,7 @@
   - [11.2. Raspberry Pi OS (Raspbian)](#112-raspberry-pi-os-raspbian)
   - [11.3. Première installation](#113-première-installation)
   - [11.4. Seconde instalation Ubuntu Server](#114-seconde-instalation-ubuntu-server)
-    - [11.4.1. Configuration post instalation](#1141-configuration-post-instalation)
-    - [11.4.2. Instalation Apache](#1142-instalation-apache)
-    - [11.4.3. Script MQTT](#1143-script-mqtt)
   - [11.5. Deuxième installation Raspbian](#115-deuxième-installation-raspbian)
-    - [11.5.1. Script d'installation](#1151-script-dinstallation)
-    - [11.5.2. Suite au script d'installation](#1152-suite-au-script-dinstallation)
-    - [11.5.3. Vérification](#1153-vérification)
 - [12. I²C (Inter-Integrated Circuit)](#12-ic-inter-integrated-circuit)
   - [12.1. Bus Série Synchrone Bidirectionnel Half-Duplex](#121-bus-série-synchrone-bidirectionnel-half-duplex)
   - [12.2. Les Deux Câbles Essentiels : SDA et SCL](#122-les-deux-câbles-essentiels--sda-et-scl)
@@ -84,35 +68,22 @@
   - [13.2. Génération de clé SSH](#132-génération-de-clé-ssh)
   - [13.3. Utilisation de la clé SSH](#133-utilisation-de-la-clé-ssh)
   - [13.4. SCP (Secure Copy Protocol)](#134-scp-secure-copy-protocol)
-    - [13.4.1. Syntaxe de base](#1341-syntaxe-de-base)
 - [14. Node-RED](#14-node-red)
   - [14.1. Introduction](#141-introduction)
   - [14.2. Node.js](#142-nodejs)
   - [14.3. FlowFuse](#143-flowfuse)
   - [14.4. La Programmation par Flux](#144-la-programmation-par-flux)
-    - [14.4.1. Comprendre les Flux](#1441-comprendre-les-flux)
-    - [14.4.2. Différences avec la Programmation Orientée Objet](#1442-différences-avec-la-programmation-orientée-objet)
-    - [14.4.3. Conclusion](#1443-conclusion)
   - [14.5. Instalation](#145-instalation)
   - [14.6. Configuration](#146-configuration)
-    - [14.6.1. Installation des plugins](#1461-installation-des-plugins)
-    - [14.6.2. Sécurisation de Node-Red](#1462-sécurisation-de-node-red)
-    - [14.6.3. Sécurisation du Dashboard](#1463-sécurisation-du-dashboard)
-    - [14.6.4. Suivi Git](#1464-suivi-git)
 - [15. Gatling](#15-gatling)
   - [15.1. Installation](#151-installation)
-    - [15.1.1. Prerequis](#1511-prerequis)
-    - [15.1.2. Download](#1512-download)
   - [15.2. Vérification de l'installation](#152-vérification-de-linstallation)
   - [15.3. Scripts](#153-scripts)
   - [15.4. Scala](#154-scala)
-    - [15.4.1. Performance](#1541-performance)
-    - [15.4.2. Concision et Expressivité](#1542-concision-et-expressivité)
-    - [15.4.3. Interopérabilité Java](#1543-interopérabilité-java)
   - [15.5. Kotlin](#155-kotlin)
-    - [15.5.1. Scala vs. Kotlin](#1551-scala-vs-kotlin)
-    - [15.5.2. Expressivité](#1552-expressivité)
-    - [15.5.3. Performance](#1553-performance)
+
+<div style="page-break-after: always;"></div>
+
 - [16. Apache et Site Web](#16-apache-et-site-web)
   - [16.1. Installation](#161-installation)
   - [16.2. Mise en place d'un site Web](#162-mise-en-place-dun-site-web)
@@ -120,26 +91,17 @@
   - [17.1. Installation de Mosquitto sur Nidus](#171-installation-de-mosquitto-sur-nidus)
   - [17.2. Ouverture des port sur Nidus](#172-ouverture-des-port-sur-nidus)
   - [17.3. Script MQTT](#173-script-mqtt)
-    - [17.3.1. Script](#1731-script)
-    - [17.3.2. Description détaillée du script](#1732-description-détaillée-du-script)
-    - [17.3.3. Conclusion](#1733-conclusion)
   - [17.4. Installation](#174-installation)
   - [17.5. Utilisation du script](#175-utilisation-du-script)
-    - [17.5.1. Vérification](#1751-vérification)
 - [18. INA219](#18-ina219)
   - [18.1. GPIO](#181-gpio)
   - [18.2. Installation physique](#182-installation-physique)
-    - [18.2.1. Branchement SANS VOLT](#1821-branchement-sans-volt)
-    - [18.2.2. Branchement AVEC VOLT](#1822-branchement-avec-volt)
-    - [18.2.3. Vérification de la présence du INA219](#1823-vérification-de-la-présence-du-ina219)
   - [18.3. Obtention des données](#183-obtention-des-données)
-    - [18.3.1. Test avec le un script python](#1831-test-avec-le-un-script-python)
 - [19. Noeud Node-Red](#19-noeud-node-red)
   - [19.1. Dashboard](#191-dashboard)
   - [19.2. INA219](#192-ina219)
   - [19.3. Monitoring](#193-monitoring)
   - [19.4. PDF](#194-pdf)
-    - [19.4.1. Base](#1941-base)
   - [19.5. Images de graphiques et de tableaux](#195-images-de-graphiques-et-de-tableaux)
 - [20. Stress Test V1.0](#20-stress-test-v10)
   - [20.1. Écran d'Accueil](#201-écran-daccueil)
@@ -153,48 +115,22 @@
   - [21.4. Envoi de Commande avec une Durée](#214-envoi-de-commande-avec-une-durée)
   - [21.5. Récupération des Informations](#215-récupération-des-informations)
   - [21.6. Traitement des données](#216-traitement-des-données)
-    - [21.6.1. Création des graphiques](#2161-création-des-graphiques)
-    - [21.6.2. PDF](#2162-pdf)
   - [21.7. Refactoring](#217-refactoring)
   - [21.8. Résultat](#218-résultat)
 - [22. Curious T-Rex V3.0](#22-curious-t-rex-v30)
   - [22.1. UI](#221-ui)
-    - [22.1.1. Ventilateur](#2211-ventilateur)
-    - [22.1.2. UI](#2212-ui)
   - [22.2. Paramètres de Test](#222-paramètres-de-test)
-    - [22.2.1. Node-Red](#2221-node-red)
-    - [22.2.2. Gatling](#2222-gatling)
   - [22.3. Optimisation](#223-optimisation)
-    - [22.3.1. Séparation des Flux de Données](#2231-séparation-des-flux-de-données)
-    - [22.3.2. Prétraitement des Données en Amont](#2232-prétraitement-des-données-en-amont)
   - [22.4. JSON](#224-json)
-    - [22.4.1. Création du Fichier JSON](#2241-création-du-fichier-json)
-    - [22.4.2. Lecture du Fichier JSON](#2242-lecture-du-fichier-json)
-    - [22.4.3. Importation du Fichier JSON](#2243-importation-du-fichier-json)
   - [22.5. Rapport PDF selon Gatling](#225-rapport-pdf-selon-gatling)
-    - [22.5.1. Mise en place de la fonction](#2251-mise-en-place-de-la-fonction)
   - [22.6. Résultat](#226-résultat)
-    - [22.6.1. UI](#2261-ui)
-    - [22.6.2. Rapport PDF](#2262-rapport-pdf)
 - [23. Curious T-Rex](#23-curious-t-rex)
   - [23.1. Installation](#231-installation)
-    - [23.1.1. Utilisation](#2311-utilisation)
   - [23.2. Mise à jour du JSON](#232-mise-à-jour-du-json)
-    - [23.2.1. Affichage](#2321-affichage)
-    - [23.2.2. Enregistrement des données](#2322-enregistrement-des-données)
-    - [23.2.3. IN](#2323-in)
-    - [23.2.4. Création des graphiques](#2324-création-des-graphiques)
-    - [23.2.5. Récupération des images](#2325-récupération-des-images)
-    - [23.2.6. Création du PDF](#2326-création-du-pdf)
 - [24. Problèmes](#24-problèmes)
   - [24.1. Problème de Détection I2C](#241-problème-de-détection-i2c)
   - [24.2. Problème de Performance](#242-problème-de-performance)
-    - [24.2.1. Solutions testées :](#2421-solutions-testées-)
-    - [24.2.2. Solutions possibles :](#2422-solutions-possibles-)
-    - [24.2.3. Solution choisie :](#2423-solution-choisie-)
   - [24.3. Température](#243-température)
-    - [24.3.1. Sans ventilateur](#2431-sans-ventilateur)
-    - [24.3.2. Avec Ventilateur](#2432-avec-ventilateur)
   - [24.4. Analyse des Résultats des Tests de Performance](#244-analyse-des-résultats-des-tests-de-performance)
 - [25. Choix effectués](#25-choix-effectués)
   - [25.1. Node-Red](#251-node-red)
@@ -202,6 +138,9 @@
   - [25.3. Rapport PDF](#253-rapport-pdf)
   - [25.4. INA219](#254-ina219)
   - [25.5. Gatling](#255-gatling)
+
+<div style="page-break-after: always;"></div>
+
 - [26. Améliorations Futures](#26-améliorations-futures)
   - [26.1. Amélioration du calcul de la bar de chargement](#261-amélioration-du-calcul-de-la-bar-de-chargement)
   - [26.2. Base de Données](#262-base-de-données)
@@ -216,8 +155,6 @@
 - [27. Licences](#27-licences)
   - [27.1. Licence Principale du Projet](#271-licence-principale-du-projet)
   - [27.2. Licences des Dépendances](#272-licences-des-dépendances)
-    - [27.2.1. Brevets et Contributions spécifiques :](#2721-brevets-et-contributions-spécifiques-)
-    - [27.2.2. Responsabilité Limitée :](#2722-responsabilité-limitée-)
 - [28. Conclusion](#28-conclusion)
 - [29. Remerciement](#29-remerciement)
 - [30. Sources](#30-sources)
@@ -229,6 +166,7 @@
   - [31.1. Articles de Recherche](#311-articles-de-recherche)
   - [31.2. Liens externes](#312-liens-externes)
   - [31.3. OS](#313-os)
+- [32. Annexes](#32-annexes)
 
 <div style="page-break-after: always;"></div>
 
@@ -3652,8 +3590,32 @@ Ces individus exceptionnels ont joué un rôle capital dans la réalisation de c
 36. [**Ubuntu Server, Version 23.04, Licence : GNU GPL**](https://ubuntu.com/download/server)
     > Système d'exploitation Ubuntu Server.
 
+<div style="page-break-after: always;"></div>
 
-<br><br><br><br><br>
+# 32. Annexes
+
+Vous trouverez une collection de documents essentiels pour une compréhension complète du projet dans le dossier du rapport. Ces documents sont les suivants :
+
+1. **Code Source de l'Application Node-Red :** Le code source complet de l'application Node-Red développée pour ce projet. Il inclut les configurations et les fonctionnalités mises en place.
+
+2. **Scripts Utilisés :** Tous les scripts pertinents utilisés dans le cadre du projet, y compris ceux pour l'installation, la configuration et le lancement du système de mesure.
+
+3. **Manuel d'Utilisation de l'Application :** Un guide détaillé expliquant comment utiliser l'application développée, y compris les étapes pour l'exécution des tests et la récupération des rapports au format PDF.
+
+4. **Factsheet ESNE :** La factsheet ESNE présentant le contexte et les objectifs du projet.
+
+5. **Rapport du HAL sur la Consommation du CPU :** Un rapport complet détaillant l'analyse de la consommation du CPU en fonction de la température. Ce rapport peut fournir des informations cruciales pour comprendre les facteurs d'influence sur la consommation électrique.
+
+6. **Rapport de Développement d'un Datalogger avec l'INA219 et Python :** Un rapport exhaustif documentant le développement d'un datalogger utilisant le chip INA219 en conjonction avec le langage de programmation Python.
+
+7. **Rapport de Recherche sur le Profil de Consommation avec l'INA219 et Teensy 4.0 :** Un rapport de recherche décrivant en détail l'exploration du profil de consommation électrique en utilisant le chip INA219 en combinaison avec le Teensy 4.0.
+
+8. **Fiche Technique de l'INA219 :** Une fiche technique complète de l'INA219, fournissant des informations techniques approfondies sur ce composant essentiel au système de mesure.
+
+Ces annexes sont mises à disposition pour approfondir la compréhension du projet, faciliter les futurs travaux de recherche et de développement, et permettre une utilisation efficace de l'application et de ses composants.
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
 <div style="text-align:right;">
 <img src="../capture/CuriousTRex.png" alt="Image" width="50%" style="width:30%;">
 </div>
