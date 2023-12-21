@@ -17561,7 +17561,7 @@
         "once": false,
         "onceDelay": "1",
         "topic": "",
-        "payload": "ssh tobby@157.26.228.77 \"echo \\\"lsij419\\\" | sudo -S /etc/init.d/mqtt.sh\"",
+        "payload": "ssh tobby@157.26.228.77 \"echo \\\"Pass\\\" | sudo -S /etc/init.d/mqtt.sh\"",
         "payloadType": "str",
         "x": 170,
         "y": 1220,
