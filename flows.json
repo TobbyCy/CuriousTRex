@@ -17616,7 +17616,7 @@
         "once": false,
         "onceDelay": "1",
         "topic": "",
-        "payload": "echo \"lsij419\" | sudo -S /etc/init.d/mqtt.sh",
+        "payload": "echo \"Pass\" | sudo -S /etc/init.d/mqtt.sh",
         "payloadType": "str",
         "x": 170,
         "y": 1260,
